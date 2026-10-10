@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.29.5 Fluid Torso
+# Mermaid Adventure — v0.29.6 Unified Waist
+
+**v0.29.6** unifies Sarah’s torso–tail overlap with a restrained blue-pearl colour transition. It preserves the painted scales, highlights, silhouette and anchored hip. See `godot/SARAH-WAIST-REVIEW.md` and `godot/validation-v0296.json`.
 
 **v0.29.5** focuses on Sarah’s torso. The ribcage has independent damped rotation, lift and gentle volume changes; the waist responds at another delay and passes its bend into the proximal tail. Shoulders and the painted collar move with the ribcage, while the neck counterbalances and has a soft local throat response. The lower hip socket stays fixed. See `godot/SARAH-TORSO-REVIEW.md` and `godot/validation-v0295.json`.
 

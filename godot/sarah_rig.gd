@@ -482,6 +482,7 @@ func _ready() -> void:
     # Seat the painted hip beneath the bodice's lower waist, with overlap.
     tail_skin.setup(NEW_TAIL,Rect2(24,28,2126,669),Rect2(-150,-33,184,80))
     tail_skin.material = _volume_material([24.0/2172,28.0/724,2126.0/2172,669.0/724])
+    tail_skin.material.set_shader_parameter("waist_role",2)
     add_child(tail_skin)
     # Tail skin has its own anchored mesh; hair still uses its two flutter strips.
     ribbons.append(tail_skin)
@@ -503,6 +504,7 @@ func _ready() -> void:
     bodice.rest = shaped
     bodice.reset_shape()
     bodice.material = _volume_material(BODY_CROPS[0])
+    bodice.material.set_shader_parameter("waist_role",1)
     torso.add_child(bodice)
     painted_parts.append(bodice)
 

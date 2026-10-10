@@ -1,9 +1,13 @@
-Sarah Maria — Mermaid Adventure | Godot v0.29.5 — Fluid Torso
+Sarah Maria — Mermaid Adventure | Godot v0.29.6 — Unified Waist
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
 Begin adventure starts the family tutorial. Choose a chapter opens any of the
 eight levels directly.
+
+v0.29.6 adds a shared blue-pearl transition across the torso–tail join.
+Original painted scales and the anchored hip are preserved.
+See godot/SARAH-WAIST-REVIEW.md.
 
 v0.29.5 adds independent ribcage rotation/lift/volume, delayed waist-to-tail
 flow, and a neck/collar that follows the chest. See godot/SARAH-TORSO-REVIEW.md.
