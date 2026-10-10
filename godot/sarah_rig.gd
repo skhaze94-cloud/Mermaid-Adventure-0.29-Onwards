@@ -7,6 +7,11 @@ const NEW_TAIL = preload("res://godot/assets/sarah-tail-v019.webp")
 const EXPRESSIONS = preload("res://godot/assets/sarah-expressions-v019.webp")
 const FACE_REGIONS := [Rect2(15,80,710,570),Rect2(735,80,700,570),Rect2(1445,80,710,570)]
 var face_sprite: Sprite2D
+const FaceDetails = preload("res://godot/sarah_face_details.gd")
+var face_details: Polygon2D
+var detail_gaze := Vector2.ZERO
+var expression_blend := 0.0
+var blink_blend := 0.0
 var faces: Array[Texture2D] = []
 var tail_skin: Polygon2D
 var cycle_pose := Vector4.ZERO
@@ -236,6 +241,10 @@ func reset_performance() -> void:
     arm_pose_near = Vector3.ZERO
     arm_pose_far = Vector3.ZERO
     expression_index = 0
+    detail_gaze = Vector2.ZERO
+    expression_blend = 0.0
+    blink_blend = 0.0
+    if face_details: face_details.reset_details()
     if face_sprite: face_sprite.texture = faces[0]
 
 func _arm(index: int, parent: Node2D, length: float, height: float) -> void:
@@ -285,7 +294,7 @@ func _ribbon(index: int, parent: Node2D, destination: Rect2, shining: bool) -> v
     var region := Rect2(Vector2(crop[0],crop[1]) * Vector2(ATLAS.get_width(),ATLAS.get_height()), Vector2(crop[2],crop[3]) * Vector2(ATLAS.get_width(),ATLAS.get_height()))
     var mesh := Ribbon.new()
     mesh.name = "FlexiblePaintedPart_%d" % index
-    mesh.configure(ATLAS,region,destination)
+    mesh.configure(ATLAS,region,destination,16,5)
     if shining:
         var material := ShaderMaterial.new()
         material.shader = SCALES
@@ -309,8 +318,9 @@ func _update_ribbons(_dt: float, phase: float, swim_amount: float) -> void:
     # The old 45 Hz gate skipped alternating frames on a 60 Hz display.
     # Fixed attachment edges and bounded curvature protect the head/hip seams.
     var strength := 0.35 + swim_amount * 3.0 + boost_blend * 0.5
-    ribbons[0].deform(phase*0.7,2.3+strength*0.45,hair_drag*6.0+horizontal_drag*4.0)
-    ribbons[1].deform(phase*0.8-0.7,1.5+strength*0.8,hair_drag*4.0+horizontal_drag*5.0)
+    var shared_wave := cycle_pose.y*.45
+    ribbons[0].deform(phase*.5-.4,2.3+strength*.35,hair_drag*6.0+horizontal_drag*4.0+shared_wave)
+    ribbons[1].deform(phase*.5-1.1,1.5+strength*.55,hair_drag*4.0+horizontal_drag*5.0+shared_wave*.7)
     var expression := 0.25 if leaping or boosting else 1.0
     # Array order is far then near. Keep each elbow/wrist on its own shoulder.
     arm_meshes[1].skin(arm_pose_near.y+gesture_wave*expression*.12, arm_pose_near.z+gesture_wave*expression*.14-gesture_reach*expression*.08+jump_joy_near*sin(jump_air_time*18)*.10)
@@ -492,6 +502,14 @@ func _ready() -> void:
     face_sprite.scale = Vector2(.116,.116)
     head_joint.add_child(face_sprite)
     painted_parts.append(face_sprite)
+    # Keep the original sprite as the face registration transform for tools/tests.
+    # Self modulation hides its own quad without hiding the connected child mesh.
+    face_sprite.self_modulate=Color(1,1,1,0)
+    face_details=FaceDetails.new()
+    face_details.name="ConnectedFaceHairDetails"
+    face_details.configure(EXPRESSIONS,FACE_REGIONS)
+    face_sprite.add_child(face_details)
+    painted_parts.append(face_details)
 
     # Seat the sleeve within opaque bodice paint throughout the backward sweep.
     near_arm = _joint("NearArm", torso, Vector2(22, -28))
@@ -645,7 +663,8 @@ func _process(delta: float) -> void:
     var rise := 0.0 if reduced_motion else sin(slow_phase * 1.2) * 1.6
     torso.position = Vector2(12.0, 24.0 + rise * (1.0 - boost_blend) + landing_compress * 2.0 - arch*2.0)
     torso.rotation = lerpf(torso.rotation, -velocity_value.y / 1400.0 * 0.12 + turn_kick * 0.18 + depth_bank*.18, ease)
-    head_joint.rotation = lerpf(head_joint.rotation, -torso.rotation * 0.18 + nod * 0.055 - depth_bank*.055, ease)
+    var head_follow := 0.0 if reduced_motion else visual_travel.y/760.0*.012+depth_turn*.012
+    head_joint.rotation = lerpf(head_joint.rotation, -torso.rotation * 0.18 + nod * 0.055 - depth_bank*.055 + head_follow, ease)
     var arm_sweep := 0.0 if reduced_motion else sin(swim_phase * 0.74 + 0.65) * amount
     # Opposed crawl/scull, symmetric butterfly/scoop, and streamlined boost.
     # Blend full joint tracks at the same phase, including direction changes.
@@ -725,9 +744,17 @@ func _process(delta: float) -> void:
         tail_skin.reset_shape()
     else:
         tail_skin.skin(cycle_pose,tail_tuck,turn_kick)
-    # Brief eyelid closure, with an excited expression during actions.
-    var blink := fposmod(clock,4.7)
-    expression_index = 2 if blink>4.49 and blink<4.63 and not boosting else (1 if boosting or jump_joy_near>.4 or wave>.2 else 0)
+    # Face, ear, nose and hair share the body's clocks, current, yaw and effort.
+    blink_blend = FaceDetails.blink_at(clock)
+    var joy := clampf(boost_blend*.65+jump_joy_near*.45+absf(wave)*.40+absf(reach)*.12,0,1)
+    expression_blend = lerpf(expression_blend,joy,1.0-exp(-dt*7.0))
+    var look := Vector2(clampf(visual_travel.x*facing_value/760.0,-1,1),clampf(visual_travel.y/760.0,-1,1))
+    look += Vector2(depth_turn*.2,cycle_pose.x*.12)
+    detail_gaze = detail_gaze.lerp(look.limit_length(1.0),1.0-exp(-dt*8.0))
+    face_details.set_response(Vector2(visual_travel.x*facing_value,visual_travel.y)/760.0,
+        depth_turn,boost_blend,sin(slow_phase),cycle_pose.y,hair_drag+horizontal_drag,
+        swim_phase,detail_gaze,expression_blend,blink_blend,high_quality and not reduced_motion)
+    expression_index = 2 if blink_blend>.55 else (1 if expression_blend>.35 else 0)
     face_sprite.texture = faces[expression_index]
     _update_ribbons(dt,swim_phase,swim_blend)
     self_modulate.a = alpha_value

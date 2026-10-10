@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.29 Ultimate Sarah
+# Mermaid Adventure — v0.29.1 Sarah Detail Polish
+
+**v0.29.1** adds soft local blinks, eased gaze and smile transitions, tiny head-following ear/nose responses, and connected front/back hair motion. These details share the body’s stroke phase, turn, current and effort cues. The painted neck stays anchored; Gentle Motion and Economy disable the extra deformation. See `godot/SARAH-DETAILS-VALIDATION.md`.
 
 **v0.29 — Ultimate Sarah** builds on the complete v0.28 Living Creatures baseline. Sarah now has 36 body/fluke loops with 144 samples each, 12 distinct swim-stroke profiles, and six aerial performances. Direction, speed, boost and waterfall phase choose her strokes automatically, with continuous phase and blended joints.
 

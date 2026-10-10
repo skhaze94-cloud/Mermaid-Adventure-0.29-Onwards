@@ -1,3 +1,9 @@
+# v0.29.1 — Sarah Detail Polish
+
+Soft local blinks, eased gaze/smiles, small ear/nose responses and connected hair follow the same stroke phase, body yaw, effort and current as the full rig. Neck anchors and original painted artwork are preserved. Gentle Motion and Economy disable additional deformation.
+
+See [SARAH-DETAILS-VALIDATION.md](SARAH-DETAILS-VALIDATION.md) for checks and limits.
+
 # v0.29 — Ultimate Sarah
 
 Import the **root** `project.godot` in Godot 4.3 or later. Allow asset import, then press F5. Use a fresh folder for each ZIP release.
