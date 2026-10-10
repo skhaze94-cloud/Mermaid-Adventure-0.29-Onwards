@@ -1,9 +1,13 @@
 extends RefCounted
-## Eighteen reproducible 72-sample loops (1,296 poses), with continuous tangents.
-const POSES := 72
+## Thirty-six 144-sample body/fluke loops (5,184 poses), with continuous tangents.
+const POSES := 144
 const NAMES := ["idle","swim","glide","boost","rise","playful",
     "hover","drift","cruise","sprint","descend","bank",
-    "settle","reach","greet","cast","recover","celebrate"]
+    "settle","reach","greet","cast","recover","celebrate",
+    "crawl","sidestroke","butterfly","scoop","climb","dive","spear",
+    "dolphin","boost_drive","boost_rise","boost_dive","waterfall_pull",
+    "waterfall_scull","waterfall_rise","waterfall_dive","waterfall_boost",
+    "waterfall_outflow","turn_carve"]
 static var cycles: Dictionary = {}
 static func build() -> void:
     if not cycles.is_empty(): return
@@ -32,6 +36,24 @@ static func build() -> void:
                 "cast": pose = Vector4(-.08+sin(p)*.07,.10+sin(p-.9)*.19,sin(p-1.7)*.20,sin(p+.2)*.05)
                 "recover": pose = Vector4(.04+sin(p)*.10,.23+sin(p-.7)*.22,sin(p-1.6)*.21,sin(p+.5)*.07)
                 "celebrate": pose = Vector4(sin(p)*.25,.24+sin(p-.6)*.52,sin(p-1.5)*.35,sin(p+.8)*.23)
+                "crawl": pose = Vector4(sin(p)*.17,sin(p-.9)*.39,sin(p-1.9)*.29,sin(p)*.16)
+                "sidestroke": pose = Vector4(.04+sin(p)*.12,.16+sin(p-1.1)*.26,sin(p-2.0)*.21,sin(p+.8)*.10)
+                "butterfly": pose = Vector4(sin(p-.2)*.25,sin(p-1.0)*.46,sin(p-1.85)*.37,sin(p-.4)*.22)
+                "scoop": pose = Vector4(-.10+sin(p)*.21,.22+sin(p-.9)*.45,sin(p-1.75)*.28,sin(p-.6)*.19)
+                "climb": pose = Vector4(-.06+sin(p)*.15,.14+sin(p-.6)*.37,sin(p-1.5)*.33,sin(p+.3)*.15)
+                "dive": pose = Vector4(.12+sin(p)*.14,-.18+sin(p-.9)*.29,sin(p-1.9)*.22,sin(p+.9)*.11)
+                "spear": pose = Vector4(.06+sin(p)*.08,-.06+sin(p-1.05)*.20,sin(p-2.05)*.18,sin(p)*.05)
+                "dolphin": pose = Vector4(sin(p)*.12,sin(p-.8)*.33,sin(p-1.6)*.44,sin(p+.5)*.02)
+                "boost_drive": pose = Vector4(sin(p)*.14,sin(p-.65)*.29,sin(p-1.45)*.38,sin(p+.2)*.04)
+                "boost_rise": pose = Vector4(-.08+sin(p)*.11,.10+sin(p-.75)*.32,sin(p-1.65)*.41,sin(p+.4)*.03)
+                "boost_dive": pose = Vector4(.08+sin(p)*.09,-.08+sin(p-.95)*.27,sin(p-1.8)*.39,sin(p+.6)*.025)
+                "waterfall_pull": pose = Vector4(.06+sin(p)*.13,.32+sin(p-.6)*.25,sin(p-1.6)*.30,sin(p+.2)*.13)
+                "waterfall_scull": pose = Vector4(sin(p)*.11,.18+sin(p-1.1)*.22,sin(p-2.0)*.25,sin(p+.7)*.12)
+                "waterfall_rise": pose = Vector4(-.12+sin(p)*.19,.28+sin(p-.8)*.40,sin(p-1.7)*.32,sin(p+.3)*.18)
+                "waterfall_dive": pose = Vector4(.10+sin(p)*.12,-.14+sin(p-.85)*.28,sin(p-1.75)*.26,sin(p+.5)*.09)
+                "waterfall_boost": pose = Vector4(sin(p)*.10,.04+sin(p-.9)*.30,sin(p-1.85)*.43,sin(p+.3)*.035)
+                "waterfall_outflow": pose = Vector4(-.04+sin(p)*.16,.08+sin(p-.75)*.31,sin(p-1.6)*.27,sin(p+.65)*.14)
+                "turn_carve": pose = Vector4(.05+sin(p+.4)*.20,.20+sin(p-.5)*.33,sin(p-1.4)*.29,sin(p+.8)*.13)
             poses.append(pose)
         cycles[name] = poses
 static func sample(name: String, phase: float) -> Vector4:

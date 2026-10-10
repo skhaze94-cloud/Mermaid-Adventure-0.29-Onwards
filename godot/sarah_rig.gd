@@ -17,6 +17,15 @@ var settle_blend := 0.0
 var expression_index := 0
 
 const ArmCycles = preload("res://godot/sarah_arm_cycles.gd")
+const SwimStyles = preload("res://godot/sarah_swim_styles.gd")
+var swim_style := "breaststroke"
+var swim_style_override := "" # Deterministic previews/tests; gameplay uses direction.
+var stroke_weights: Dictionary = {"breaststroke":1.0}
+var stroke_candidate := "breaststroke"
+var stroke_candidate_time := 0.0
+var stroke_frequency := 2.9
+var waterfall_context := ""
+var visual_travel := Vector2.ZERO
 var arm_pose_near := Vector3.ZERO
 var arm_pose_far := Vector3.ZERO
 var bodice: Polygon2D
@@ -124,6 +133,38 @@ var painted_parts: Array[Node2D] = []
 func set_steering(direction: Vector2) -> void:
     steering_value = direction.limit_length(1.0)
 
+func set_waterfall_context(phase: String) -> void:
+    waterfall_context = phase
+
+func _update_stroke(dt: float, speed: float) -> void:
+    visual_travel = visual_travel.lerp(velocity_value,1.0-exp(-dt*12.0))
+    var requested := SwimStyles.choose(speed,visual_travel.y,swim_clock,boosting,waterfall_context)
+    if swim_style_override in SwimStyles.NAMES: requested = swim_style_override
+    if requested != stroke_candidate:
+        stroke_candidate = requested
+        stroke_candidate_time = 0.0
+    stroke_candidate_time += dt
+    # Direction noise must persist before changing strokes. Boost responds at once.
+    if boosting or stroke_candidate_time >= .18:
+        swim_style = stroke_candidate
+    var blend := 1.0-exp(-dt*10.0)
+    for style in SwimStyles.NAMES:
+        stroke_weights[style] = lerpf(float(stroke_weights.get(style,0.0)),1.0 if style==swim_style else 0.0,blend)
+    var frequency := 2.9+3.0*swim_blend+2.0*boost_blend
+    if swim_style=="sidestroke": frequency *= .78
+    elif swim_style=="dive_spear": frequency *= .82
+    elif swim_style=="waterfall_scull": frequency = 4.5
+    stroke_frequency = lerpf(stroke_frequency,frequency,1.0-exp(-dt*7.0))
+    swim_clock += dt*stroke_frequency
+
+func _blended_stroke(far: bool) -> Vector3:
+    var result := Vector3.ZERO
+    for style in SwimStyles.NAMES:
+        var weight: float = stroke_weights.get(style,0.0)
+        if weight > .00001:
+            result += SwimStyles.sample(style,swim_clock,far)*weight
+    return result
+
 func set_quality(high: bool) -> void:
     high_quality = high
     for material in ribbon_materials:
@@ -157,6 +198,13 @@ func reset_performance() -> void:
     jump_style_cursor = 0
     jump_style = 0
     swim_clock = 0.0
+    swim_style = "breaststroke"
+    stroke_candidate = "breaststroke"
+    stroke_candidate_time = 0.0
+    stroke_frequency = 2.9
+    stroke_weights = {"breaststroke":1.0}
+    waterfall_context = ""
+    visual_travel = Vector2.ZERO
     turn_elapsed = 1.0
     brake_blend = 0.0
     steering_value = Vector2.ZERO
@@ -273,8 +321,8 @@ func _update_ribbons(_dt: float, phase: float, swim_amount: float) -> void:
         material.set_shader_parameter("motion_enabled", not reduced_motion)
 
 func start_jump(chain: int, direction: float) -> void:
-    # Two small opposing corkscrews, then the familiar full aerial roll.
-    jump_style = jump_style_cursor % 3
+    # Six performances: opposing corkscrews, roll, soaring arc, twirl and wave.
+    jump_style = jump_style_cursor % 6
     jump_style_cursor += 1
     jump_chain = chain
     jump_direction = direction
@@ -297,6 +345,12 @@ func set_jump_state(phase: String, air_time: float, chain: int, direction: float
 func _jump_roll(progress: float) -> float:
     if jump_style == 2:
         return spin_curve.sample_baked(progress)*TAU*jump_direction
+    if jump_style == 3:
+        return sin(progress*PI)*.20*jump_direction
+    if jump_style == 4:
+        return sin(progress*TAU*1.5)*sin(progress*PI)*.24*jump_direction
+    if jump_style == 5:
+        return -sin(progress*TAU)*sin(progress*PI)*.32*jump_direction
     var handedness := 1.0 if jump_style == 0 else -1.0
     return sin(progress*TAU*1.15)*sin(progress*PI)*0.30*handedness*jump_direction
 
@@ -508,7 +562,7 @@ func _process(delta: float) -> void:
     hit_kick = lerpf(hit_kick, 0.0, 1.0 - exp(-dt * 12.0))
     animation_mode = "boost" if boost_blend > 0.6 else ("leap" if leap_blend > 0.6 else ("swim" if swim_blend > 0.22 else "idle"))
     # Integrate frequency instead of multiplying all elapsed time by changing speed.
-    swim_clock += dt * (2.9 + 3.0 * swim_blend + 2.0 * boost_blend)
+    _update_stroke(dt,smoothed_speed)
     var swim_phase := swim_clock
     turn_elapsed = minf(1.0,turn_elapsed + dt)
     var turn_pose := sin(clampf(turn_elapsed/0.30,0.0,1.0)*PI) if not reduced_motion else 0.0
@@ -539,7 +593,19 @@ func _process(delta: float) -> void:
     corkscrew = sin(air_progress*TAU*1.35)*sin(air_progress*PI)*handedness if playful_air and jump_style != 2 else 0.0
     jump_joy_near = _joy_envelope(air_progress,0.0)*jump_pose_blend if playful_air else 0.0
     jump_joy_far = _joy_envelope(air_progress,0.07)*jump_pose_blend if playful_air else 0.0
+    if playful_air:
+        if jump_style==3:
+            jump_joy_near *= .40
+            jump_joy_far *= .25
+        elif jump_style==4:
+            jump_joy_near *= .70+.30*sin(air_progress*TAU)
+            jump_joy_far *= .70-.30*sin(air_progress*TAU)
+        elif jump_style==5:
+            jump_joy_far *= .45
     var tuck := sin(air_progress * PI) * jump_pose_blend if jump_phase == "airborne" else 0.0
+    if jump_style==3: tuck *= .55
+    elif jump_style==4: tuck *= .85
+    elif jump_style==5: tuck *= .75
     var dive := smoothstep(0.60,0.93,air_progress) * jump_pose_blend if jump_phase == "airborne" else 0.0
     var lift := jump_pose_blend if jump_phase == "ascent" else (1.0 - dive) * jump_pose_blend
     var curl := launch_curl * 0.22 + tuck * (0.42 + minf(jump_chain,3) * 0.035)
@@ -557,7 +623,7 @@ func _process(delta: float) -> void:
         horizontal_drag = 0.0
         horizontal_drag_speed = 0.0
     var pitch_limit := 0.22 if reduced_motion else 0.36
-    var pitch_target := clampf(atan2(velocity_value.y,absf(velocity_value.x)+180.0)*0.38,-pitch_limit,pitch_limit)
+    var pitch_target := clampf(atan2(visual_travel.y,absf(visual_travel.x)+180.0)*0.38,-pitch_limit,pitch_limit)
     body_pitch = lerp_angle(body_pitch,pitch_target,ease)
     if reduced_motion:
         body_pitch = clampf(body_pitch,-0.22,0.22)
@@ -581,17 +647,19 @@ func _process(delta: float) -> void:
     torso.rotation = lerpf(torso.rotation, -velocity_value.y / 1400.0 * 0.12 + turn_kick * 0.18 + depth_bank*.18, ease)
     head_joint.rotation = lerpf(head_joint.rotation, -torso.rotation * 0.18 + nod * 0.055 - depth_bank*.055, ease)
     var arm_sweep := 0.0 if reduced_motion else sin(swim_phase * 0.74 + 0.65) * amount
-    # The swim cycle folds at the elbow, then recovers forward. Dash holds a
-    # streamlined forward reach; action gestures and aerial joy take priority.
-    var stroke_amount := swim_blend*(1.0-boost_blend)*(1.0-leap_blend)
+    # Opposed crawl/scull, symmetric butterfly/scoop, and streamlined boost.
+    # Blend full joint tracks at the same phase, including direction changes.
+    var stroke_amount := maxf(swim_blend,.65 if waterfall_context!="" else 0.0)*(1.0-leap_blend)
     stroke_amount *= 1.0-clampf(absf(wave)+absf(reach)+hit_kick,0,1)
     if reduced_motion or not high_quality: stroke_amount = 0.0
-    var stroke_near := ArmCycles.performance(swim_phase,speed,velocity_value.y)
-    var stroke_far := ArmCycles.performance(swim_phase+.10,speed,velocity_value.y)
+    var stroke_near := _blended_stroke(false)
+    var stroke_far := _blended_stroke(true)
     var near_target := Vector3(.0,.10,0).lerp(stroke_near,stroke_amount)
     var far_target := Vector3(.0,.09,0).lerp(stroke_far*Vector3(.91,.92,.9),stroke_amount)
-    near_target = near_target.lerp(Vector3(-.42,.035,-.06),boost_blend)
-    far_target = far_target.lerp(Vector3(-.34,.025,-.04),boost_blend)
+    # Gentle motion keeps a quiet, readable forward boost pose.
+    if reduced_motion or not high_quality:
+        near_target = near_target.lerp(Vector3(-.42,.035,-.06),boost_blend)
+        far_target = far_target.lerp(Vector3(-.34,.025,-.04),boost_blend)
     arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
     arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
     near_arm.rotation = lerpf(near_arm.rotation,
@@ -628,6 +696,21 @@ func _process(delta: float) -> void:
         elif speed>100 and speed<240 and absf(velocity_value.y)<90: pose_set = "cruise"
     elif boosting and speed>650:
         pose_set = "sprint"
+    if not gesture_player.is_playing() and jump_pose_blend <= .25:
+        if waterfall_context == "pull": pose_set = "waterfall_pull"
+        elif waterfall_context == "outflow": pose_set = "waterfall_outflow"
+        elif waterfall_context == "descent":
+            if boosting: pose_set = "waterfall_boost"
+            elif swim_style.begins_with("rise"): pose_set = "waterfall_rise"
+            elif swim_style.begins_with("dive"): pose_set = "waterfall_dive"
+            else: pose_set = "waterfall_scull"
+        elif boosting:
+            if visual_travel.y < -speed*.32: pose_set = "boost_rise"
+            elif visual_travel.y > speed*.32: pose_set = "boost_dive"
+            else: pose_set = SwimStyles.body_loop(swim_style)
+        elif pose_set in ["swim","rise","descend","sprint"]:
+            pose_set = SwimStyles.body_loop(swim_style)
+        elif pose_set=="bank" and turn_elapsed>.15: pose_set = "turn_carve"
     var desired_pose := Cycles.sample(pose_set,swim_phase)
     # Paired base/context loops provide organic variation without hard state swaps.
     if pose_set=="hover": desired_pose = desired_pose.lerp(Cycles.sample("idle",swim_phase),.35)

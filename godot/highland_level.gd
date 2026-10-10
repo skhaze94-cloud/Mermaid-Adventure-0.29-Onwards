@@ -602,9 +602,11 @@ func _sync_native_visuals() -> void:
     var pos := _hero_screen_position()
     native_rig.position = pos
     var waterfall_active := waterfall_phase != ""
-    var velocity := waterfall_velocity * Vector2(520.0, 1.0) if waterfall_active else player_velocity
+    var waterfall_half := minf(get_viewport_rect().size.x*.40,520.0)
+    var velocity := waterfall_velocity * Vector2(waterfall_half, 1.0) if waterfall_active else player_velocity
     var faded := 1.0 if invulnerable <= 0.0 else 0.65 + 0.35 * absf(sin(time * 13.0))
     native_rig.set_steering(_input_vector())
+    native_rig.set_waterfall_context(waterfall_phase)
     native_rig.set_motion(velocity, facing, boost_time > 0.0 or waterfall_boost > 0.0, jump_time > 0.0, faded)
     native_rig.set_jump_state(leap_phase, leap_air_time, splash_chain, leap_spin_direction)
     native_rig.position.y += native_rig.airborne_clearance(pos.y)

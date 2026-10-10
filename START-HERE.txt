@@ -1,29 +1,21 @@
-Sarah Maria — Mermaid Adventure | Godot v0.28 — Living Creatures
+Sarah Maria — Mermaid Adventure | Godot v0.29 — Ultimate Sarah
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
-Wait for import, then press F5. Begin adventure starts the family tutorial.
-Choose a chapter opens any of the eight levels directly.
+Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
+Begin adventure starts the family tutorial. Choose a chapter opens any of the
+eight levels directly.
 
-v0.28: the comprehensive enemy animation update.
-Each crab, eel, jellyfish, pufferfish, swordfish and shark now has 16 actual
-joint-motion clips, up from four portrait poses. Each clip has 96 intervals
-of sampled motion with seamless interpolation and smooth clip blending.
-A persistent 1,617-vertex skin bends the original painted creature itself:
-- Crab: both claw wrists, opposed pincer jaws and alternating walking legs.
-- Eel: articulated swimming spine and delayed tail flexion.
-- Jellyfish: bell contraction and independently lagging tentacle strands.
-- Pufferfish: inflation, tail kick and fin paddling.
-- Swordfish / shark: two tail hinges, pectoral paddle, dorsal fin and banking.
-Carlo, Duke Claw, Miguel, Flip, Baron Bite, Rana Rex, Nessie and the palace
-performance use the same 16-clip system with species-specific articulation.
-Combat colors remain immediate. Animation never moves the collision root.
-Paused clocks stay still; Gentle Motion and Economy settings remain supported.
+v0.29 focuses on Sarah: 36 body/fluke loops, 144 samples per loop, twelve
+distinct swim-stroke profiles and six aerial performances. Swim horizontally,
+up, down or boost to see different arm strokes and matching tail movement.
+Continued swimming naturally alternates related strokes. The waterfall has
+dedicated entry, balance/sculling, climb, dive, boost and exit performances.
+Stroke changes blend smoothly without resetting the animation phase.
 
-The complete v0.27 character update, family tutorial, Avina choices, chapter
-menus, transitions and all eight levels are included.
 WASD/arrows: move. Space: Boost. J/Shift: Jump. B/Z: Bubble.
-P/Escape: pause. R: restart. Touch and controller controls included.
+P/Escape: pause. R: restart. Touch and controller controls are included.
+Gentle Motion and Economy settings remain available.
 
-Validated with Linux Godot 4.3: 24 automated suites, native chapter renders,
-16-second native animation preview, and fresh ZIP extraction/import.
-See godot/LIVING-CREATURES-VALIDATION.md for scope and results.
+See godot/ULTIMATE-SARAH-VALIDATION.md for this release's checks and limits.
+The v0.28 Living Creatures adventure, all eight chapters, family tutorial,
+Avina choices and creature articulation are retained.

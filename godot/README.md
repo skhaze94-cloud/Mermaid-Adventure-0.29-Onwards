@@ -1,3 +1,15 @@
+# v0.29 — Ultimate Sarah
+
+Import the **root** `project.godot` in Godot 4.3 or later. Allow asset import, then press F5. Use a fresh folder for each ZIP release.
+
+Sarah's body/fluke library doubles from 18 to 36 loops, with samples doubled from 72 to 144 per loop. Her two arms now have twelve independently sampled stroke profiles: breaststroke, front crawl, sidestroke, butterfly, upward scoop, alternating climb, spear dive, sweeping dive, dolphin boost, power boost, waterfall scull and waterfall surge. Each profile has separate near/far shoulder, elbow and wrist tracks, with continuous loop tangents.
+
+Speed and vertical direction select the appropriate stroke. Sustained swimming alternates related strokes every three cycles, while directional changes use a short stability window and blend at the existing phase. Cadence eases with speed instead of restarting. Six aerial performances replace the previous three. Waterfall entry, balance, rise, dive, boost and exit select dedicated body motions.
+
+See [ULTIMATE-SARAH-VALIDATION.md](ULTIMATE-SARAH-VALIDATION.md). Artwork and movement/combat rules are retained; Gentle Motion, Economy, pause and restart continue to work.
+
+## Earlier releases
+
 # v0.27 — Character Harmony
 
 Import the root `project.godot` into Godot 4.3 or newer, wait for asset import, then press F5. Extract each release into a fresh folder.

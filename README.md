@@ -1,10 +1,12 @@
-# Mermaid Adventure — v0.28 baseline
+# Mermaid Adventure — v0.29 Ultimate Sarah
 
-This repository starts with the complete **Godot v0.28 — Living Creatures** project, imported unchanged from `Mermaid-Adventure-Godot-v0.28-Living-Creatures (1).zip`. It is the baseline for future v0.29 development; this import does not constitute a v0.29 release.
+**v0.29 — Ultimate Sarah** builds on the complete v0.28 Living Creatures baseline. Sarah now has 36 body/fluke loops with 144 samples each, 12 distinct swim-stroke profiles, and six aerial performances. Direction, speed, boost and waterfall phase choose her strokes automatically, with continuous phase and blended joints.
+
+Horizontal swimming includes breaststroke, alternating front crawl, relaxed sidestroke and butterfly. Rising uses a high scoop or alternating climb; diving uses a spear reach or compact sweep. Boost drives a dolphin kick or power stroke. The waterfall has dedicated entry, balancing/sculling, climb, dive, surge and exit body motions.
 
 Open the root `project.godot` in Godot 4.3 or later, allow asset import, then press F5. Keep `godot/` and `dist/` beside `project.godot`; their paths are used by the project.
 
-See `START-HERE.txt`, `godot/README.md`, and `godot/LIVING-CREATURES-VALIDATION.md` for controls and the source project's validation records. Those records were supplied in the ZIP; the baseline import verifies file integrity, not new gameplay testing.
+See `START-HERE.txt` for controls and `godot/ULTIMATE-SARAH-VALIDATION.md` for v0.29 checks. Older validation records describe earlier releases. Sarah's existing artwork, collisions, speed limits, jump trajectories and combat timing remain intact. Gentle Motion and Economy settings remain available.
 
 ## Import provenance
 

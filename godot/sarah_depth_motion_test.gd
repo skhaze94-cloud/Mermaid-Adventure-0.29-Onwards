@@ -12,10 +12,10 @@ func advance(rig, ticks: int) -> void:
     for i in range(ticks): rig._process(1.0/60)
 func run() -> void:
     Cycles.build()
-    check(Cycles.NAMES.size()==18,"Movement library must triple six original loops")
+    check(Cycles.NAMES.size()==36,"v0.29 must double the 18 body loops")
     var signatures: Array[Vector4] = []
     for name in Cycles.NAMES:
-        check(Cycles.cycles[name].size()==72,"Each loop needs 72 poses")
+        check(Cycles.cycles[name].size()==144,"v0.29 must double samples per loop")
         var signature := Cycles.sample(name,.7)+Cycles.sample(name,2.2)*.5
         for previous in signatures: check(previous.distance_to(signature)>.003,"Distinct performances must not duplicate another loop")
         signatures.append(signature)
@@ -23,7 +23,7 @@ func run() -> void:
     root.add_child(rig)
     rig.set_process(false)
     rig.gesture_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
-    for state in [[Vector2.ZERO,"hover"],[Vector2(160,0),"cruise"],[Vector2(410,0),"sprint"],[Vector2(160,180),"descend"]]:
+    for state in [[Vector2.ZERO,"hover"],[Vector2(160,0),"cruise"],[Vector2(410,0),"crawl"],[Vector2(160,180),"spear"]]:
         rig.reset_performance()
         rig.set_motion(state[0],1,false,false,1)
         advance(rig,90)
