@@ -1,6 +1,6 @@
 extends RefCounted
-## Thirty-six 144-sample body/fluke loops (5,184 poses), with continuous tangents.
-const POSES := 144
+## Thirty-six 432-sample body/fluke loops (15,552 poses), with continuous tangents.
+const POSES := 432
 const NAMES := ["idle","swim","glide","boost","rise","playful",
     "hover","drift","cruise","sprint","descend","bank",
     "settle","reach","greet","cast","recover","celebrate",

@@ -6,6 +6,7 @@ uniform vec4 blink_crop = vec4(1445.0,80.0,710.0,570.0);
 uniform bool detail_enabled = false;
 uniform vec4 response = vec4(0.0); // Local travel x/y, shared body yaw, boost effort.
 uniform float breath = 0.0;
+uniform float jaw_open : hint_range(0.0,1.0) = 0.0;
 uniform float body_wave = 0.0;
 uniform float hair_lag = 0.0;
 uniform float motion_phase = 0.0;
@@ -29,6 +30,8 @@ void vertex() {
         float anchored=1.0-smoothstep(.78,.90,p.y);
         float ear=feature(p,vec2(.49,.70),vec2(.10,.12));
         float nose=feature(p,vec2(.83,.565),vec2(.065,.075));
+        float jaw=feature(p,vec2(.80,.71),vec2(.14,.085));
+        float lower_lip=feature(p,vec2(.82,.685),vec2(.11,.025));
         float cheek=feature(p,vec2(.73,.65),vec2(.20,.15));
         float brows=max(feature(p,vec2(.68,.36),vec2(.12,.05)),feature(p,vec2(.88,.31),vec2(.085,.05)));
         float hair=max(1.0-smoothstep(.38,.64,p.x),1.0-smoothstep(.10,.22,p.y));
@@ -39,6 +42,7 @@ void vertex() {
             wave*(2.0+response.w*1.3)+hair_lag*8.0+body_wave*1.1);
         VERTEX+=drift*free_end;
         // Sub-pixel game-scale parallax, rather than independent ear/nose flapping.
+        VERTEX.y+=anchored*jaw_open*(jaw*2.8+lower_lip*1.2);
         VERTEX.x+=anchored*(ear*(-response.z*1.2+hair_lag*.65)+nose*response.z*.8);
         VERTEX.y+=anchored*(ear*(response.y*.35+body_wave*.25)
             +nose*breath*.18+cheek*breath*.24-brows*expression*.65);

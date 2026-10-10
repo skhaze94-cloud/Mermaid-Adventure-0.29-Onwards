@@ -16,10 +16,10 @@ func hand(rig) -> Vector2:
 func run() -> void:
     Styles.build()
     Cycles.build()
-    check(Cycles.NAMES.size()==36 and Cycles.POSES==144,"Doubled movement library missing")
+    check(Cycles.NAMES.size()==36 and Cycles.POSES==432,"Doubled movement library missing")
     var signatures: Array[Vector3] = []
     for style in Styles.NAMES:
-        check(Styles.tracks[style][0].size()==144,"Dense arm tracks missing")
+        check(Styles.tracks[style][0].size()==432,"Dense arm tracks missing")
         var signature := Styles.sample(style,.7)+Styles.sample(style,2.2)*.5
         for other in signatures: check(signature.distance_to(other)>.01,"Duplicated swim stroke: "+style)
         signatures.append(signature)

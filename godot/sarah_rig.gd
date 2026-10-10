@@ -685,9 +685,9 @@ func _process(delta: float) -> void:
         far_target = far_target.lerp(Vector3(-.34,.025,-.04),boost_blend)
     arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
     arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
-    near_arm.rotation = lerpf(near_arm.rotation,
+    near_arm.rotation = lerpf(near_arm.rotation-spine_motion.shoulder_near.x,
         arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95, fast_ease)
-    far_arm.rotation = lerpf(far_arm.rotation,
+    far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x,
         arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20, fast_ease)
     # A readable faux yaw: foreshortening, overlap and lighting agree on depth.
     var roll := sin(air_progress*TAU-0.45)*sin(air_progress*PI) if jump_phase == "airborne" else 0.0
@@ -744,7 +744,7 @@ func _process(delta: float) -> void:
     var tuck_target := clampf(launch_curl*.7+tuck*.88+brake_blend*.32+absf(turn_kick)*.8,0,1)
     tail_tuck = lerpf(tail_tuck,tuck_target,fast_ease)
     # Shared stroke wave passes through the back before the neck settles.
-    spine_motion.apply(self,dt,arch,nod)
+    spine_motion.apply(self,dt,arch,nod,swim_phase)
     tail_skin.position = Vector2(1,6)
     if reduced_motion or not high_quality:
         tail_skin.reset_shape()

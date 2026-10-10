@@ -1,4 +1,8 @@
-# Mermaid Adventure — v0.29.2 Fluid Neck and Back
+# Mermaid Adventure — v0.29.3 Definitive Sarah
+
+**v0.29.3** triples body/fluke and arm-track samples from 144 to 432: 15,552 body poses and 10,368 paired arm samples. Independent damped shoulder rolls follow each arm catch, head motion gains delayed stroke harmonics and gaze-led tilt, and the jaw responds locally to breathing, effort and expression. Existing collar pivots and sleeve attachments stay anchored. Gentle Motion and Economy disable the added targets.
+
+## Previous updates
 
 **v0.29.2** softens the neck and back: the chest leads a restrained stroke-driven ripple, the neck follows with critically damped inertia, and rotation pivots around the painted collar. Shoulder/collar and hip bands remain pinned. See `godot/SARAH-SPINE-REVIEW.md` for the review and validation.
 

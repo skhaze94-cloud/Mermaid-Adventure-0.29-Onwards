@@ -2,6 +2,9 @@ extends RefCounted
 ## Critically damped back/neck response with fixed painted attachment bands.
 var back := Vector2.ZERO # Angle and angular velocity.
 var neck := Vector2.ZERO
+var shoulder_near := Vector2.ZERO
+var shoulder_far := Vector2.ZERO
+var jaw := Vector2.ZERO
 var bend := Vector2.ZERO
 
 static func spring(state: Vector2, target: float, frequency: float, dt: float) -> Vector2:
@@ -16,8 +19,11 @@ func reset() -> void:
     back=Vector2.ZERO
     neck=Vector2.ZERO
     bend=Vector2.ZERO
+    shoulder_near=Vector2.ZERO
+    shoulder_far=Vector2.ZERO
+    jaw=Vector2.ZERO
 
-func apply(rig, dt: float, arch: float, nod: float) -> void:
+func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     var enabled: bool = rig.high_quality and not rig.reduced_motion
     var activity: float = lerpf(.28,1.0,rig.swim_blend)
     # Faster strokes keep a compact line; the ripple persists through boosts.
@@ -27,14 +33,34 @@ func apply(rig, dt: float, arch: float, nod: float) -> void:
         target += wave*activity*(1.0-rig.boost_blend*.35)-arch*.018
     back=spring(back,clampf(target,-.13,.13),12.0,dt)
     rig.torso.rotation=back.x
+    # Shoulder girdle follows the catch with independent, delayed near/far rolls.
+    # Rotate at existing painted attachment pivots; never translate the sleeves.
+    var reach_near: float = sin(rig.arm_pose_near.x)*.045
+    var reach_far: float = sin(rig.arm_pose_far.x)*.045
+    var amplitude: float = activity*(1.0-rig.boost_blend*.55)
+    var near_target: float = (sin(phase-.35)*.042+sin(phase*2.0-.8)*.012+reach_near)*amplitude if enabled else 0.0
+    var far_target: float = (sin(phase-.70)*.038+sin(phase*2.0-1.1)*.010+reach_far)*amplitude if enabled else 0.0
+    shoulder_near=spring(shoulder_near,near_target,14.0,dt)
+    shoulder_far=spring(shoulder_far,far_target,13.0,dt)
+    rig.near_arm.rotation+=shoulder_near.x
+    rig.far_arm.rotation+=shoulder_far.x
     var neck_target: float = -back.x*.32+nod*.055-rig.depth_bank*.055
     if enabled:
         neck_target += rig.visual_travel.y/760.0*.018+rig.depth_turn*.014
         # Inertia lets the chest lead while the eyes settle into the new heading.
         neck_target -= back.y*.014
         neck_target += wave*activity*.20
+        # Eyes lead a change in depth; head tilts and settles behind the gaze.
+        neck_target += sin(phase-.95)*.024*activity
+        neck_target += sin(phase*2.0-1.4)*.008*activity
+        neck_target += rig.detail_gaze.y*.022+rig.turn_kick*.025
     neck=spring(neck,clampf(neck_target,-.10,.10),10.0,dt)
     rig.head_joint.rotation=neck.x
+    # Jaw opens locally with a bounded, damped breath/effort response.
+    var jaw_target: float = (.10+.28*rig.boost_blend+.20*rig.expression_blend
+        +.12*(.5+.5*sin(phase-1.25))*activity) if enabled else 0.0
+    jaw=spring(jaw,clampf(jaw_target,0.0,.65),11.0,dt)
+    rig.face_details.surface.set_shader_parameter("jaw_open",jaw.x if enabled else 0.0)
     # Rotate around the painted collar, rather than swinging it away from the body.
     var collar := Vector2(3.52,-4.04)
     rig.head_joint.position=Vector2(35.5,-28)+collar-collar.rotated(neck.x)

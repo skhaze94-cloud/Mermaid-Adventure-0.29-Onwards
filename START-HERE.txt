@@ -1,4 +1,4 @@
-Sarah Maria — Mermaid Adventure | Godot v0.29.2 — Fluid Neck and Back
+Sarah Maria — Mermaid Adventure | Godot v0.29.3 — Definitive Sarah
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
@@ -12,7 +12,7 @@ v0.29.1 adds subtle blinks, gaze, smiles, ear/nose head-follow and hair motion
 coordinated with the body, tail, strokes, boosts and waterfall current.
 See godot/SARAH-DETAILS-VALIDATION.md for the detail polish checks.
 
-v0.29 focuses on Sarah: 36 body/fluke loops, 144 samples per loop, twelve
+v0.29 focuses on Sarah: 36 body/fluke loops, 432 samples per loop, twelve
 distinct swim-stroke profiles and six aerial performances. Swim horizontally,
 up, down or boost to see different arm strokes and matching tail movement.
 Continued swimming naturally alternates related strokes. The waterfall has
@@ -26,3 +26,5 @@ Gentle Motion and Economy settings remain available.
 See godot/ULTIMATE-SARAH-VALIDATION.md for this release's checks and limits.
 The v0.28 Living Creatures adventure, all eight chapters, family tutorial,
 Avina choices and creature articulation are retained.
+
+ v0.29.3 triples sampled motion and adds coordinated shoulders, head and jaw.

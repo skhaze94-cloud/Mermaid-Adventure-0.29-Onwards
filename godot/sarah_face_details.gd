@@ -55,4 +55,5 @@ func set_response(flow: Vector2, turn: float, effort: float, breath: float,
     surface.set_shader_parameter("blink",blink)
 
 func reset_details() -> void:
+    surface.set_shader_parameter("jaw_open",0.0)
     set_response(Vector2.ZERO,0,0,0,0,0,0,Vector2.ZERO,0,0,false)
