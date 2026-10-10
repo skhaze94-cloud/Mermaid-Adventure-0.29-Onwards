@@ -56,4 +56,5 @@ func set_response(flow: Vector2, turn: float, effort: float, breath: float,
 
 func reset_details() -> void:
     surface.set_shader_parameter("jaw_open",0.0)
+    surface.set_shader_parameter("neck_follow",0.0)
     set_response(Vector2.ZERO,0,0,0,0,0,0,Vector2.ZERO,0,0,false)

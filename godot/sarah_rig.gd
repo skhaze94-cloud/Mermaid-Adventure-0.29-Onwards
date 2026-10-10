@@ -16,6 +16,8 @@ const SpineMotion = preload("res://godot/sarah_spine_motion.gd")
 var spine_motion = SpineMotion.new()
 const DefinitiveMotion = preload("res://godot/sarah_definitive_motion.gd")
 var definitive_motion = DefinitiveMotion.new()
+const TorsoMotion = preload("res://godot/sarah_torso_motion.gd")
+var torso_motion = TorsoMotion.new()
 var faces: Array[Texture2D] = []
 var tail_skin: Polygon2D
 var cycle_pose := Vector4.ZERO
@@ -250,6 +252,8 @@ func reset_performance() -> void:
     expression_index = 0
     spine_motion.reset()
     definitive_motion.reset()
+    torso_motion.reset()
+    tail_skin.root_bend=0.0
     near_arm.position=Vector2(22,-28)
     far_arm.position=Vector2(34,-25)
     if bodice: bodice.reset_shape()
@@ -693,9 +697,9 @@ func _process(delta: float) -> void:
         far_target = far_target.lerp(Vector3(-.34,.025,-.04),boost_blend)
     arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
     arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
-    near_arm.rotation = lerpf(near_arm.rotation-spine_motion.shoulder_near.x,
+    near_arm.rotation = lerpf(near_arm.rotation-spine_motion.shoulder_near.x-torso_motion.rib_angle,
         arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95 + definitive_motion.shoulder_near.y*.045, fast_ease)
-    far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x,
+    far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x-torso_motion.rib_angle,
         arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045, fast_ease)
     # A readable faux yaw: foreshortening, overlap and lighting agree on depth.
     var roll := sin(air_progress*TAU-0.45)*sin(air_progress*PI) if jump_phase == "airborne" else 0.0
@@ -767,7 +771,7 @@ func _process(delta: float) -> void:
     look += Vector2(depth_turn*.2,cycle_pose.x*.12)
     detail_gaze = detail_gaze.lerp(look.limit_length(1.0),1.0-exp(-dt*8.0))
     face_details.set_response(Vector2(visual_travel.x*facing_value,visual_travel.y)/760.0,
-        depth_turn,boost_blend,sin(slow_phase),cycle_pose.y,hair_drag+horizontal_drag,
+        depth_turn,boost_blend,torso_motion.breath.x/.0065,cycle_pose.y,hair_drag+horizontal_drag,
         swim_phase,detail_gaze,expression_blend,blink_blend,high_quality and not reduced_motion)
     expression_index = 2 if blink_blend>.55 else (1 if expression_blend>.35 else 0)
     face_sprite.texture = faces[expression_index]

@@ -33,14 +33,17 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
         target += wave*activity*(1.0-rig.boost_blend*.35)-arch*.018+rig.definitive_motion.expression.z*.025
     back=spring(back,clampf(target,-.13,.13),12.0,dt)
     rig.torso.rotation=back.x
+    rig.torso_motion.update(rig,dt)
     # Remove last frame's roll in the rig before interpolating the base arm pose.
     var amplitude: float = activity*(1.0-rig.boost_blend*.55)
     var near_target: float = (sin(rig.arm_pose_near.x)*.045+rig.definitive_motion.shoulder_near.y*.055)*amplitude if enabled else 0.0
     var far_target: float = (sin(rig.arm_pose_far.x)*.045+rig.definitive_motion.shoulder_far.y*.055)*amplitude if enabled else 0.0
     shoulder_near=spring(shoulder_near,near_target,14.0,dt)
     shoulder_far=spring(shoulder_far,far_target,13.0,dt)
-    rig.near_arm.rotation+=shoulder_near.x
-    rig.far_arm.rotation+=shoulder_far.x
+    rig.near_arm.rotation+=shoulder_near.x+rig.torso_motion.rib_angle
+    rig.near_arm.position=rig.torso_motion.chest_point(rig.near_arm.position)
+    rig.far_arm.rotation+=shoulder_far.x+rig.torso_motion.rib_angle
+    rig.far_arm.position=rig.torso_motion.chest_point(rig.far_arm.position)
     jaw=Vector2(rig.definitive_motion.expression.y,rig.definitive_motion.jaw_spring.y) if enabled else Vector2.ZERO
     rig.face_details.surface.set_shader_parameter("jaw_open",jaw.x)
     var neck_target: float = -back.x*.32+nod*.055-rig.depth_bank*.055
@@ -51,11 +54,14 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
         neck_target += wave*activity*.20+rig.definitive_motion.expression.x
         neck_target -= clampf(rig.body_pitch*.08,-.025,.025)
         neck_target += rig.detail_gaze.y*.022+rig.turn_kick*.025
+        neck_target -= rig.torso_motion.rib_angle*.35
     neck=spring(neck,clampf(neck_target,-.10,.10),10.0,dt)
-    rig.head_joint.rotation=neck.x
+    rig.head_joint.rotation=neck.x+rig.torso_motion.rib_angle
+    rig.face_details.surface.set_shader_parameter("neck_follow",neck.x if enabled else 0.0)
     # Rotate around the painted collar, rather than swinging it away from the body.
     var collar := Vector2(3.52,-4.04)
-    rig.head_joint.position=Vector2(35.5,-28)+collar-collar.rotated(neck.x)
+    var chest_collar: Vector2 = rig.torso_motion.chest_point(Vector2(35.5,-28)+collar)
+    rig.head_joint.position=chest_collar-collar.rotated(rig.head_joint.rotation)
     var bend_target: float = (wave*activity+arch*.025+rig.hair_drag*.045) if enabled else 0.0
     bend=spring(bend,clampf(bend_target,-.075,.075),13.0,dt)
     if not enabled:
@@ -77,5 +83,5 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
         var far_weight := exp(-pow((p.x-34.0)/9.0,2.0))
         var total := maxf(1.0,near_weight+far_weight)
         points[i]+=(rig.definitive_motion.shoulder_near*near_weight+rig.definitive_motion.shoulder_far*far_weight)*band/total
-    rig.bodice.polygon=points
+    rig.bodice.polygon=rig.torso_motion.deform(points,rig.bodice.rest)
     rig.bodice.mesh_updates+=1

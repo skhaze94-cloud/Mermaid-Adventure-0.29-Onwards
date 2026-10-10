@@ -7,6 +7,7 @@ var tip_center := Vector2(-175,0)
 var centers := PackedVector2Array()
 var angles := PackedFloat32Array()
 var bend_value := 0.0
+var root_bend := 0.0
 func setup(source: Texture2D, region: Rect2, destination: Rect2) -> void:
     configure(source,region,destination,SEGMENTS,13)
     socket = Vector2(destination.end.x,destination.get_center().y)
@@ -25,6 +26,8 @@ func skin(pose: Vector4, tuck: float, steering: float) -> void:
         var t := (float(i)-.5)/SEGMENTS
         # Travel through the body, then fold at the middle; the socket stays fixed.
         var angle := pose.x*smoothstep(0,.28,t)
+        # The waist bend flows into the proximal tail, with zero displacement at the socket.
+        angle += root_bend*smoothstep(0,.18,t)*(1.0-smoothstep(.45,.80,t))
         angle += bend_value*smoothstep(.22,.70,t)
         angle += pose.z*smoothstep(.67,1,t)
         angles[i] = angle
@@ -42,3 +45,4 @@ func reset_shape() -> void:
     super.reset_shape()
     tip_center = Vector2(socket.x-tail_length,socket.y)
     bend_value = 0
+    root_bend = 0

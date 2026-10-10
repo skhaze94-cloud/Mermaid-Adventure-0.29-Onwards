@@ -1,3 +1,9 @@
+# v0.29.5 — Fluid Torso
+
+Independent damped ribcage rotation, lift and volume change flow through the waist into the proximal tail. Neck/collar and shoulder sockets follow the moving chest; neck skin softly counterbalances the head. The bottom hip seam remains anchored. Gentle Motion and Economy remove the added torso targets.
+
+See [SARAH-TORSO-REVIEW.md](SARAH-TORSO-REVIEW.md) and `validation-v0295.json`. Historical release records follow.
+
 # v0.29.4 — Definitive Sarah: rendered review
 
 Coordinated shoulder socket/painting glide, delayed head anticipation and settling, gesture/stroke-specific jaw motion and 22 new sampled performance profiles complete the review. The 432-point body/arm libraries retain triple sampling; breaststroke controls increase to 24. Shoulder timing is integrated consistently across frame rates.

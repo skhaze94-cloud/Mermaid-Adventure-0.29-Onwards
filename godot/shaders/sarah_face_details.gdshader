@@ -7,6 +7,7 @@ uniform bool detail_enabled = false;
 uniform vec4 response = vec4(0.0); // Local travel x/y, shared body yaw, boost effort.
 uniform float breath = 0.0;
 uniform float jaw_open : hint_range(0.0,1.0) = 0.0;
+uniform float neck_follow = 0.0;
 uniform float body_wave = 0.0;
 uniform float hair_lag = 0.0;
 uniform float motion_phase = 0.0;
@@ -41,6 +42,9 @@ void vertex() {
         vec2 drift=vec2(-response.x*.9+hair_lag*2.0,
             wave*(2.0+response.w*1.3)+hair_lag*8.0+body_wave*1.1);
         VERTEX+=drift*free_end;
+        // A soft throat bend fades out before the painted collar attachment.
+        float throat=feature(p,vec2(.70,.835),vec2(.13,.065));
+        VERTEX.x+=throat*neck_follow*14.0*anchored;
         // Sub-pixel game-scale parallax, rather than independent ear/nose flapping.
         VERTEX.y+=anchored*jaw_open*(jaw*3.4+lower_lip*.6);
         VERTEX.x-=anchored*jaw_open*jaw*.65;

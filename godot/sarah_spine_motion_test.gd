@@ -32,18 +32,19 @@ func run() -> void:
                 for frame in range(150):
                     var previous: float = rig.head_joint.rotation
                     rig._process(1.0/60)
-                    check(absf(rig.torso.rotation)<=.131 and absf(rig.head_joint.rotation)<=.101,"Unbounded back or neck")
+                    check(absf(rig.torso.rotation)<=.131 and absf(rig.head_joint.rotation-rig.torso_motion.rib_angle)<=.101,"Unbounded back or neck")
                     check(absf(rig.head_joint.rotation-previous)<.025,"Neck snaps during transition")
                     var collar: Vector2 = rig.head_joint.position+Vector2(3.52,-4.04).rotated(rig.head_joint.rotation)
-                    check(collar.distance_to(Vector2(39.02,-32.04))<.0001,"Collar pivot separates")
+                    check(collar.distance_to(rig.torso_motion.chest_point(Vector2(39.02,-32.04)))<.0001,"Collar pivot separates")
                     check(rig.bodice.uv==uv and rig.bodice.rest==rest,"Paint registration changes")
                     if frame%15==0:
                         for i in range(rest.size()):
                             var t: float = (rest[i].y+40)/60
                             var distance: float = rig.bodice.polygon[i].distance_to(rest[i])
                             movement=maxf(movement,distance)
-                            check(distance<1.5,"Back overstretches painting")
-                            if t<=.18 or t>=.94: check(distance<.00001,"Collar/hip band moves")
+                            check(distance<2.5,"Back overstretches painting")
+                            if t>=.94: check(distance<.00001,"Hip band moves")
+                            if t<=.18: check(rig.bodice.polygon[i].distance_to(rig.torso_motion.chest_point(rest[i]))<.0001,"Collar does not follow ribcage")
     check(movement>.10,"Back remains rigid")
     rig.set_quality(true)
     rig.reduced_motion=true

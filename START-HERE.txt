@@ -1,9 +1,13 @@
-Sarah Maria — Mermaid Adventure | Godot v0.29.4 — Definitive Sarah Reviewed
+Sarah Maria — Mermaid Adventure | Godot v0.29.5 — Fluid Torso
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
 Begin adventure starts the family tutorial. Choose a chapter opens any of the
 eight levels directly.
+
+v0.29.5 adds independent ribcage rotation/lift/volume, delayed waist-to-tail
+flow, and a neck/collar that follows the chest. See godot/SARAH-TORSO-REVIEW.md.
+The v0.29.4 Definitive Sarah review and 432-point motion libraries are retained.
 
 v0.29.2 adds a gentle back ripple, chest-led turns and delayed neck settling.
 The collar and hip joins remain anchored. See godot/SARAH-SPINE-REVIEW.md.

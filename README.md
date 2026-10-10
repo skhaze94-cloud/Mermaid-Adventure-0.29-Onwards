@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.29.4 Definitive Sarah — Reviewed
+# Mermaid Adventure — v0.29.5 Fluid Torso
+
+**v0.29.5** focuses on Sarah’s torso. The ribcage has independent damped rotation, lift and gentle volume changes; the waist responds at another delay and passes its bend into the proximal tail. Shoulders and the painted collar move with the ribcage, while the neck counterbalances and has a soft local throat response. The lower hip socket stays fixed. See `godot/SARAH-TORSO-REVIEW.md` and `godot/validation-v0295.json`.
 
 **v0.29.4** completes the rendered review of Definitive Sarah. Body/fluke and paired arm tracks retain 432 points per loop (three times v0.29.2); breaststroke control points increase from 8 to 24. A new 22-profile, seven-channel library adds 9,504 sampled shoulder/head/jaw/chest frames. Shoulder sockets and their painted bodice areas glide together, head motion anticipates and settles behind each stroke, and local jaw/lower-lip motion stays restrained. Twelve strokes, six aerial performances and gestures blend through the existing phase without resetting. Boost keeps a compact expression and body line.
 

@@ -54,18 +54,18 @@ func run() -> void:
                 check(rig.near_arm.position.distance_to(previous)<.30,"Shoulder socket transition snaps")
                 check(absf(rig.head_joint.rotation-old_head)<.025,"Head transition snaps")
                 check(absf(rig.spine_motion.jaw.x-old_jaw)<.06,"Jaw transition snaps")
-                check(rig.near_arm.position.distance_to(Vector2(22,-28))<1.0,"Shoulder leaves overlap band")
-                check(rig.far_arm.position.distance_to(Vector2(34,-25))<1.0,"Far shoulder leaves overlap band")
+                check(rig.near_arm.position.distance_to(rig.torso_motion.chest_point(Vector2(22,-28)))<1.0,"Shoulder leaves overlap band")
+                check(rig.far_arm.position.distance_to(rig.torso_motion.chest_point(Vector2(34,-25)))<1.0,"Far shoulder leaves overlap band")
                 check(rig.bodice.uv==uv,"Shoulder painting slips in its UVs")
                 check(is_equal_approx(rig.face_details.surface.get_shader_parameter("jaw_open"),rig.spine_motion.jaw.x),"Jaw shader misses performance signal")
-                max_near=maxf(max_near,rig.near_arm.position.distance_to(Vector2(22,-28)))
+                max_near=maxf(max_near,rig.near_arm.position.distance_to(rig.torso_motion.chest_point(Vector2(22,-28))))
                 max_head=maxf(max_head,absf(rig.head_joint.rotation))
                 max_jaw=maxf(max_jaw,rig.spine_motion.jaw.x)
         for action in ["greet","cast","celebrate","impact","reward"]:
             rig.reset_performance(); rig.play_gesture(action)
             for i in range(fps):
                 rig.gesture_player.advance(1.0/fps);rig._process(1.0/fps)
-                check(absf(rig.head_joint.rotation)<=.101 and rig.spine_motion.jaw.x<=.56,"Gesture fights bounded head/jaw motion")
+                check(absf(rig.head_joint.rotation-rig.torso_motion.rib_angle)<=.101 and rig.spine_motion.jaw.x<=.56,"Gesture fights bounded head/jaw motion")
         for style in range(6):
             rig.reset_jump();rig.reset_performance()
             rig.jump_style=style
