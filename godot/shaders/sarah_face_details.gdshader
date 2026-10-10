@@ -42,7 +42,8 @@ void vertex() {
             wave*(2.0+response.w*1.3)+hair_lag*8.0+body_wave*1.1);
         VERTEX+=drift*free_end;
         // Sub-pixel game-scale parallax, rather than independent ear/nose flapping.
-        VERTEX.y+=anchored*jaw_open*(jaw*2.8+lower_lip*1.2);
+        VERTEX.y+=anchored*jaw_open*(jaw*3.4+lower_lip*.6);
+        VERTEX.x-=anchored*jaw_open*jaw*.65;
         VERTEX.x+=anchored*(ear*(-response.z*1.2+hair_lag*.65)+nose*response.z*.8);
         VERTEX.y+=anchored*(ear*(response.y*.35+body_wave*.25)
             +nose*breath*.18+cheek*breath*.24-brows*expression*.65);

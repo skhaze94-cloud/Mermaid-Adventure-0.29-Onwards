@@ -1,4 +1,4 @@
-Sarah Maria — Mermaid Adventure | Godot v0.29.3 — Definitive Sarah
+Sarah Maria — Mermaid Adventure | Godot v0.29.4 — Definitive Sarah Reviewed
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.

@@ -1,4 +1,10 @@
-# Godot Mermaid Adventure — v0.29.3 Definitive Sarah
+# v0.29.4 — Definitive Sarah: rendered review
+
+Coordinated shoulder socket/painting glide, delayed head anticipation and settling, gesture/stroke-specific jaw motion and 22 new sampled performance profiles complete the review. The 432-point body/arm libraries retain triple sampling; breaststroke controls increase to 24. Shoulder timing is integrated consistently across frame rates.
+
+See [DEFINITIVE-SARAH-REVIEW.md](DEFINITIVE-SARAH-REVIEW.md) and `validation-v0294.json`. Historical release records remain below.
+
+# Godot Mermaid Adventure — v0.29.4 Definitive Sarah — Reviewed
 
 **v0.29.3** triples body/fluke and arm-track samples from 144 to 432: 15,552 body poses and 10,368 paired arm samples. Independent damped shoulder rolls follow each arm catch, head motion gains delayed stroke harmonics and gaze-led tilt, and the jaw responds locally to breathing, effort and expression. Existing collar pivots and sleeve attachments stay anchored. Gentle Motion and Economy disable the added targets.
 

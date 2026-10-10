@@ -30,37 +30,29 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     var wave: float = rig.cycle_pose.x*.14+rig.cycle_pose.y*.035
     var target: float = -rig.visual_travel.y/1400.0*.12+rig.turn_kick*.18+rig.depth_bank*.18
     if enabled:
-        target += wave*activity*(1.0-rig.boost_blend*.35)-arch*.018
+        target += wave*activity*(1.0-rig.boost_blend*.35)-arch*.018+rig.definitive_motion.expression.z*.025
     back=spring(back,clampf(target,-.13,.13),12.0,dt)
     rig.torso.rotation=back.x
-    # Shoulder girdle follows the catch with independent, delayed near/far rolls.
-    # Rotate at existing painted attachment pivots; never translate the sleeves.
-    var reach_near: float = sin(rig.arm_pose_near.x)*.045
-    var reach_far: float = sin(rig.arm_pose_far.x)*.045
+    # Remove last frame's roll in the rig before interpolating the base arm pose.
     var amplitude: float = activity*(1.0-rig.boost_blend*.55)
-    var near_target: float = (sin(phase-.35)*.042+sin(phase*2.0-.8)*.012+reach_near)*amplitude if enabled else 0.0
-    var far_target: float = (sin(phase-.70)*.038+sin(phase*2.0-1.1)*.010+reach_far)*amplitude if enabled else 0.0
+    var near_target: float = (sin(rig.arm_pose_near.x)*.045+rig.definitive_motion.shoulder_near.y*.055)*amplitude if enabled else 0.0
+    var far_target: float = (sin(rig.arm_pose_far.x)*.045+rig.definitive_motion.shoulder_far.y*.055)*amplitude if enabled else 0.0
     shoulder_near=spring(shoulder_near,near_target,14.0,dt)
     shoulder_far=spring(shoulder_far,far_target,13.0,dt)
     rig.near_arm.rotation+=shoulder_near.x
     rig.far_arm.rotation+=shoulder_far.x
+    jaw=Vector2(rig.definitive_motion.expression.y,rig.definitive_motion.jaw_spring.y) if enabled else Vector2.ZERO
+    rig.face_details.surface.set_shader_parameter("jaw_open",jaw.x)
     var neck_target: float = -back.x*.32+nod*.055-rig.depth_bank*.055
     if enabled:
         neck_target += rig.visual_travel.y/760.0*.018+rig.depth_turn*.014
         # Inertia lets the chest lead while the eyes settle into the new heading.
         neck_target -= back.y*.014
-        neck_target += wave*activity*.20
-        # Eyes lead a change in depth; head tilts and settles behind the gaze.
-        neck_target += sin(phase-.95)*.024*activity
-        neck_target += sin(phase*2.0-1.4)*.008*activity
+        neck_target += wave*activity*.20+rig.definitive_motion.expression.x
+        neck_target -= clampf(rig.body_pitch*.08,-.025,.025)
         neck_target += rig.detail_gaze.y*.022+rig.turn_kick*.025
     neck=spring(neck,clampf(neck_target,-.10,.10),10.0,dt)
     rig.head_joint.rotation=neck.x
-    # Jaw opens locally with a bounded, damped breath/effort response.
-    var jaw_target: float = (.10+.28*rig.boost_blend+.20*rig.expression_blend
-        +.12*(.5+.5*sin(phase-1.25))*activity) if enabled else 0.0
-    jaw=spring(jaw,clampf(jaw_target,0.0,.65),11.0,dt)
-    rig.face_details.surface.set_shader_parameter("jaw_open",jaw.x if enabled else 0.0)
     # Rotate around the painted collar, rather than swinging it away from the body.
     var collar := Vector2(3.52,-4.04)
     rig.head_joint.position=Vector2(35.5,-28)+collar-collar.rotated(neck.x)
@@ -72,9 +64,18 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     var points: PackedVector2Array = rig.bodice.rest.duplicate()
     for i in range(points.size()):
         var t: float = (rig.bodice.rest[i].y-rig.BODICE_BOUNDS.position.y)/rig.BODICE_BOUNDS.size.y
-        # Upper shoulder/collar and lower hip bands are exactly pinned.
+        # Back ripple pins the upper band; the separate shoulder pass keeps collar/hip fixed.
         var envelope := smoothstep(.36,.55,t)*(1.0-smoothstep(.78,.94,t))
         points[i].x += bend.x*18.0*envelope
         points[i].y += bend.x*(points[i].x-29.0)*.12*envelope
+    # Shoulder painting glides with the sockets; collar and hip stay pinned.
+    for i in range(points.size()):
+        var p: Vector2 = rig.bodice.rest[i]
+        var t: float = (p.y-rig.BODICE_BOUNDS.position.y)/rig.BODICE_BOUNDS.size.y
+        var band := smoothstep(.18,.25,t)*(1.0-smoothstep(.45,.58,t))
+        var near_weight := exp(-pow((p.x-22.0)/11.0,2.0))
+        var far_weight := exp(-pow((p.x-34.0)/9.0,2.0))
+        var total := maxf(1.0,near_weight+far_weight)
+        points[i]+=(rig.definitive_motion.shoulder_near*near_weight+rig.definitive_motion.shoulder_far*far_weight)*band/total
     rig.bodice.polygon=points
     rig.bodice.mesh_updates+=1

@@ -14,6 +14,8 @@ var expression_blend := 0.0
 var blink_blend := 0.0
 const SpineMotion = preload("res://godot/sarah_spine_motion.gd")
 var spine_motion = SpineMotion.new()
+const DefinitiveMotion = preload("res://godot/sarah_definitive_motion.gd")
+var definitive_motion = DefinitiveMotion.new()
 var faces: Array[Texture2D] = []
 var tail_skin: Polygon2D
 var cycle_pose := Vector4.ZERO
@@ -161,8 +163,11 @@ func _update_stroke(dt: float, speed: float) -> void:
     if swim_style=="sidestroke": frequency *= .78
     elif swim_style=="dive_spear": frequency *= .82
     elif swim_style=="waterfall_scull": frequency = 4.5
-    stroke_frequency = lerpf(stroke_frequency,frequency,1.0-exp(-dt*7.0))
-    swim_clock += dt*stroke_frequency
+    var cadence_decay := exp(-dt*7.0)
+    var previous_frequency := stroke_frequency
+    stroke_frequency = frequency+(previous_frequency-frequency)*cadence_decay
+    # Integrate the eased cadence, rather than using its end-of-frame value.
+    swim_clock += frequency*dt+(previous_frequency-frequency)*(1.0-cadence_decay)/7.0
 
 func _blended_stroke(far: bool) -> Vector3:
     var result := Vector3.ZERO
@@ -244,6 +249,9 @@ func reset_performance() -> void:
     arm_pose_far = Vector3.ZERO
     expression_index = 0
     spine_motion.reset()
+    definitive_motion.reset()
+    near_arm.position=Vector2(22,-28)
+    far_arm.position=Vector2(34,-25)
     if bodice: bodice.reset_shape()
     if head_joint:
         head_joint.position = Vector2(35.5,-28)
@@ -686,9 +694,9 @@ func _process(delta: float) -> void:
     arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
     arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
     near_arm.rotation = lerpf(near_arm.rotation-spine_motion.shoulder_near.x,
-        arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95, fast_ease)
+        arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95 + definitive_motion.shoulder_near.y*.045, fast_ease)
     far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x,
-        arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20, fast_ease)
+        arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045, fast_ease)
     # A readable faux yaw: foreshortening, overlap and lighting agree on depth.
     var roll := sin(air_progress*TAU-0.45)*sin(air_progress*PI) if jump_phase == "airborne" else 0.0
     var yaw_target := clampf((corkscrew*0.95 if jump_style != 2 and playful_air else roll*0.82) + turn_pose*0.45 + sin(swim_phase*0.5)*swim_blend*0.13 + depth_bank*.9,-0.9,0.9)
@@ -744,6 +752,7 @@ func _process(delta: float) -> void:
     var tuck_target := clampf(launch_curl*.7+tuck*.88+brake_blend*.32+absf(turn_kick)*.8,0,1)
     tail_tuck = lerpf(tail_tuck,tuck_target,fast_ease)
     # Shared stroke wave passes through the back before the neck settles.
+    definitive_motion.update(self,dt)
     spine_motion.apply(self,dt,arch,nod,swim_phase)
     tail_skin.position = Vector2(1,6)
     if reduced_motion or not high_quality:

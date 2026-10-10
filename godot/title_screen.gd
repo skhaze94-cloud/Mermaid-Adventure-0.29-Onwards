@@ -206,7 +206,7 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v0.29.2  •  FLUID NECK & BACK" if page == "menu" else "SARAH MARIA"
+    footer.text = "v0.29.4  •  DEFINITIVE SARAH" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")

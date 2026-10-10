@@ -43,7 +43,7 @@ func run() -> void:
                             var distance: float = rig.bodice.polygon[i].distance_to(rest[i])
                             movement=maxf(movement,distance)
                             check(distance<1.5,"Back overstretches painting")
-                            if t<=.36 or t>=.94: check(distance<.00001,"Collar/shoulder/hip band moves")
+                            if t<=.18 or t>=.94: check(distance<.00001,"Collar/hip band moves")
     check(movement>.10,"Back remains rigid")
     rig.set_quality(true)
     rig.reduced_motion=true

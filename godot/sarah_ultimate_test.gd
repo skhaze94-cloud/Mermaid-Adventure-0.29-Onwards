@@ -16,7 +16,7 @@ func hand(rig) -> Vector2:
 func run() -> void:
     Styles.build()
     Cycles.build()
-    check(Cycles.NAMES.size()==36 and Cycles.POSES==432,"Doubled movement library missing")
+    check(Cycles.NAMES.size()==36 and Cycles.POSES==432,"Tripled movement sampling missing")
     var signatures: Array[Vector3] = []
     for style in Styles.NAMES:
         check(Styles.tracks[style][0].size()==432,"Dense arm tracks missing")
@@ -29,8 +29,8 @@ func run() -> void:
             var left := (seam-Styles.sample(style,-.001,far))/.001
             var right := (Styles.sample(style,.001,far)-seam)/.001
             check(left.distance_to(right)<.02,"Loop velocity seam: "+style)
-            for tick in range(144):
-                var pose := Styles.sample(style,float(tick)*TAU/144,far)
+            for tick in range(Styles.SAMPLES):
+                var pose := Styles.sample(style,float(tick)*TAU/Styles.SAMPLES,far)
                 check(pose.is_finite() and pose.y > -1.30 and absf(pose.z)<.3,"Joint range: "+style)
     var level = load("res://godot/highland_level.tscn").instantiate()
     root.add_child(level)

@@ -1,4 +1,8 @@
-# Mermaid Adventure — v0.29.3 Definitive Sarah
+# Mermaid Adventure — v0.29.4 Definitive Sarah — Reviewed
+
+**v0.29.4** completes the rendered review of Definitive Sarah. Body/fluke and paired arm tracks retain 432 points per loop (three times v0.29.2); breaststroke control points increase from 8 to 24. A new 22-profile, seven-channel library adds 9,504 sampled shoulder/head/jaw/chest frames. Shoulder sockets and their painted bodice areas glide together, head motion anticipates and settles behind each stroke, and local jaw/lower-lip motion stays restrained. Twelve strokes, six aerial performances and gestures blend through the existing phase without resetting. Boost keeps a compact expression and body line.
+
+All 29 regression suites passed, followed by native rendered review and fresh release-package checks. See `godot/DEFINITIVE-SARAH-REVIEW.md` and `godot/validation-v0294.json`. Original binary artwork is preserved. Gentle Motion and Economy omit added detail motion.
 
 **v0.29.3** triples body/fluke and arm-track samples from 144 to 432: 15,552 body poses and 10,368 paired arm samples. Independent damped shoulder rolls follow each arm catch, head motion gains delayed stroke harmonics and gaze-led tilt, and the jaw responds locally to breathing, effort and expression. Existing collar pivots and sleeve attachments stay anchored. Gentle Motion and Economy disable the added targets.
 
