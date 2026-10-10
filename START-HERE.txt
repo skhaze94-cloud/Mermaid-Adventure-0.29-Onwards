@@ -1,9 +1,12 @@
-Sarah Maria — Mermaid Adventure | Godot v0.29.1 — Sarah Detail Polish
+Sarah Maria — Mermaid Adventure | Godot v0.29.2 — Fluid Neck and Back
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
 Begin adventure starts the family tutorial. Choose a chapter opens any of the
 eight levels directly.
+
+v0.29.2 adds a gentle back ripple, chest-led turns and delayed neck settling.
+The collar and hip joins remain anchored. See godot/SARAH-SPINE-REVIEW.md.
 
 v0.29.1 adds subtle blinks, gaze, smiles, ear/nose head-follow and hair motion
 coordinated with the body, tail, strokes, boosts and waterfall current.

@@ -12,6 +12,8 @@ var face_details: Polygon2D
 var detail_gaze := Vector2.ZERO
 var expression_blend := 0.0
 var blink_blend := 0.0
+const SpineMotion = preload("res://godot/sarah_spine_motion.gd")
+var spine_motion = SpineMotion.new()
 var faces: Array[Texture2D] = []
 var tail_skin: Polygon2D
 var cycle_pose := Vector4.ZERO
@@ -241,6 +243,11 @@ func reset_performance() -> void:
     arm_pose_near = Vector3.ZERO
     arm_pose_far = Vector3.ZERO
     expression_index = 0
+    spine_motion.reset()
+    if bodice: bodice.reset_shape()
+    if head_joint:
+        head_joint.position = Vector2(35.5,-28)
+        head_joint.rotation = 0.0
     detail_gaze = Vector2.ZERO
     expression_blend = 0.0
     blink_blend = 0.0
@@ -662,9 +669,6 @@ func _process(delta: float) -> void:
     hair_strand.rotation = lerpf(hair_strand.rotation, -current * 1.6 + turn_kick * 0.85 + hair_drag * 0.75, ease)
     var rise := 0.0 if reduced_motion else sin(slow_phase * 1.2) * 1.6
     torso.position = Vector2(12.0, 24.0 + rise * (1.0 - boost_blend) + landing_compress * 2.0 - arch*2.0)
-    torso.rotation = lerpf(torso.rotation, -velocity_value.y / 1400.0 * 0.12 + turn_kick * 0.18 + depth_bank*.18, ease)
-    var head_follow := 0.0 if reduced_motion else visual_travel.y/760.0*.012+depth_turn*.012
-    head_joint.rotation = lerpf(head_joint.rotation, -torso.rotation * 0.18 + nod * 0.055 - depth_bank*.055 + head_follow, ease)
     var arm_sweep := 0.0 if reduced_motion else sin(swim_phase * 0.74 + 0.65) * amount
     # Opposed crawl/scull, symmetric butterfly/scoop, and streamlined boost.
     # Blend full joint tracks at the same phase, including direction changes.
@@ -739,6 +743,8 @@ func _process(delta: float) -> void:
     cycle_pose = cycle_pose.lerp(desired_pose,fast_ease)
     var tuck_target := clampf(launch_curl*.7+tuck*.88+brake_blend*.32+absf(turn_kick)*.8,0,1)
     tail_tuck = lerpf(tail_tuck,tuck_target,fast_ease)
+    # Shared stroke wave passes through the back before the neck settles.
+    spine_motion.apply(self,dt,arch,nod)
     tail_skin.position = Vector2(1,6)
     if reduced_motion or not high_quality:
         tail_skin.reset_shape()

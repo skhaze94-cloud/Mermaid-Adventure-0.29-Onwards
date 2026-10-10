@@ -1,3 +1,9 @@
+# v0.29.2 — Fluid Neck and Back
+
+A restrained stroke-driven back ripple and damped neck follow connect the chest to the tail. The head pivots around the painted collar; collar/shoulder and hip bands remain fixed. Boost keeps a compact line, and waterfall movement uses the same current and stroke signals. Gentle Motion and Economy omit mesh rippling.
+
+See [SARAH-SPINE-REVIEW.md](SARAH-SPINE-REVIEW.md).
+
 # v0.29.1 — Sarah Detail Polish
 
 Soft local blinks, eased gaze/smiles, small ear/nose responses and connected hair follow the same stroke phase, body yaw, effort and current as the full rig. Neck anchors and original painted artwork are preserved. Gentle Motion and Economy disable additional deformation.

@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.29.1 Sarah Detail Polish
+# Mermaid Adventure — v0.29.2 Fluid Neck and Back
+
+**v0.29.2** softens the neck and back: the chest leads a restrained stroke-driven ripple, the neck follows with critically damped inertia, and rotation pivots around the painted collar. Shoulder/collar and hip bands remain pinned. See `godot/SARAH-SPINE-REVIEW.md` for the review and validation.
 
 **v0.29.1** adds soft local blinks, eased gaze and smile transitions, tiny head-following ear/nose responses, and connected front/back hair motion. These details share the body’s stroke phase, turn, current and effort cues. The painted neck stays anchored; Gentle Motion and Economy disable the extra deformation. See `godot/SARAH-DETAILS-VALIDATION.md`.
 
