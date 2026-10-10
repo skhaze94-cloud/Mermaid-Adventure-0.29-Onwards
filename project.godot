@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Sarah Maria — Mermaid Adventure (Godot v0.28 — Living Creatures)"
+config/description="Sarah Maria Mermaid Adventure — the complete basic eight-chapter Godot adventure, with chapter selection and linked results."
+run/main_scene="res://godot/title_screen.tscn"
+config/features=PackedStringArray("4.3")
+
+[audio]
+
+buses/default_bus_layout="res://godot/default_bus_layout.tres"
+
+[autoload]
+
+AppPreferences="*res://godot/app_preferences.gd"
+AdventureRun="*res://godot/adventure_run.gd"
+OceanAudio="*res://godot/ocean_audio.gd"
+SceneFlow="*res://godot/scene_flow.gd"
+
+[display]
+
+window/size/viewport_width=1400
+window/size/viewport_height=960
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
+[shader_globals]
+
+gameplay_time={
+"type": "float",
+"value": 0.0
+}

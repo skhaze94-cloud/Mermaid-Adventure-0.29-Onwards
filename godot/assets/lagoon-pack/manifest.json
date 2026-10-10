@@ -1,0 +1,1806 @@
+{
+  "version": 1,
+  "target": {
+    "chapter": 2,
+    "internalStage": 1,
+    "excludeInterlude": "Blackwater Tunnel"
+  },
+  "alpha": "straight RGBA",
+  "angles": "discrete illustrative views",
+  "atlases": [
+    {
+      "id": "maraca-snapper",
+      "file": "assets/maraca-snapper.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 2
+    },
+    {
+      "id": "ribbon-ambusher",
+      "file": "assets/ribbon-ambusher.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 2
+    },
+    {
+      "id": "bubble-bandit-otter",
+      "file": "assets/bubble-bandit-otter.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 2
+    },
+    {
+      "id": "orchid-hermit",
+      "file": "assets/orchid-hermit.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 2
+    },
+    {
+      "id": "drumback-turtle",
+      "file": "assets/drumback-turtle.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 2
+    },
+    {
+      "id": "disco-cuttlefish",
+      "file": "assets/disco-cuttlefish.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 2
+    },
+    {
+      "id": "lagoon-terrain-atlas",
+      "file": "assets/lagoon-terrain-atlas.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 3,
+      "rows": 4
+    },
+    {
+      "id": "lagoon-flora-atlas",
+      "file": "assets/lagoon-flora-atlas.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 3,
+      "rows": 4
+    }
+  ],
+  "frames": [
+    {
+      "id": "maraca-snapper/idle/left-profile",
+      "atlas": "maraca-snapper",
+      "rect": [
+        0,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        21,
+        219,
+        308,
+        535
+      ]
+    },
+    {
+      "id": "maraca-snapper/idle/left-three-quarter",
+      "atlas": "maraca-snapper",
+      "rect": [
+        313,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        14,
+        209,
+        304,
+        539
+      ]
+    },
+    {
+      "id": "maraca-snapper/idle/right-three-quarter",
+      "atlas": "maraca-snapper",
+      "rect": [
+        627,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        14,
+        209,
+        303,
+        539
+      ]
+    },
+    {
+      "id": "maraca-snapper/idle/right-profile",
+      "atlas": "maraca-snapper",
+      "rect": [
+        940,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        7,
+        219,
+        293,
+        535
+      ]
+    },
+    {
+      "id": "maraca-snapper/windup/left-profile",
+      "atlas": "maraca-snapper",
+      "rect": [
+        0,
+        627,
+        320,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        45,
+        99,
+        319,
+        446
+      ]
+    },
+    {
+      "id": "maraca-snapper/windup/left-three-quarter",
+      "atlas": "maraca-snapper",
+      "rect": [
+        320,
+        627,
+        307,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        4,
+        100,
+        296,
+        445
+      ]
+    },
+    {
+      "id": "maraca-snapper/windup/right-three-quarter",
+      "atlas": "maraca-snapper",
+      "rect": [
+        627,
+        627,
+        307,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        12,
+        98,
+        304,
+        445
+      ]
+    },
+    {
+      "id": "maraca-snapper/windup/right-profile",
+      "atlas": "maraca-snapper",
+      "rect": [
+        934,
+        627,
+        320,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        2,
+        105,
+        280,
+        446
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/idle/left-profile",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        0,
+        0,
+        330,
+        638
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        39,
+        160,
+        326,
+        634
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/idle/left-three-quarter",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        330,
+        0,
+        297,
+        638
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        53,
+        137,
+        274,
+        632
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/idle/right-three-quarter",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        627,
+        0,
+        297,
+        638
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        23,
+        137,
+        247,
+        632
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/idle/right-profile",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        924,
+        0,
+        330,
+        638
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        4,
+        160,
+        290,
+        634
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/windup/left-profile",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        0,
+        638,
+        343,
+        616
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        31,
+        75,
+        340,
+        502
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/windup/right-three-quarter",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        343,
+        638,
+        284,
+        616
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        41,
+        71,
+        271,
+        501
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/windup/left-three-quarter",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        627,
+        638,
+        284,
+        616
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        13,
+        71,
+        243,
+        501
+      ]
+    },
+    {
+      "id": "ribbon-ambusher/windup/right-profile",
+      "atlas": "ribbon-ambusher",
+      "rect": [
+        911,
+        638,
+        343,
+        616
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        4,
+        75,
+        314,
+        502
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/idle/left-profile",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        0,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        81,
+        261,
+        235,
+        502
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/idle/left-three-quarter",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        313,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        91,
+        257,
+        258,
+        503
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/idle/right-three-quarter",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        627,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        73,
+        260,
+        236,
+        505
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/idle/right-profile",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        940,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        84,
+        262,
+        236,
+        503
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/windup/left-profile",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        0,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        68,
+        223,
+        280,
+        397
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/windup/left-three-quarter",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        313,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        73,
+        219,
+        270,
+        410
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/windup/right-three-quarter",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        627,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        53,
+        216,
+        255,
+        410
+      ]
+    },
+    {
+      "id": "bubble-bandit-otter/windup/right-profile",
+      "atlas": "bubble-bandit-otter",
+      "rect": [
+        940,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        56,
+        223,
+        261,
+        401
+      ]
+    },
+    {
+      "id": "orchid-hermit/idle/left-profile",
+      "atlas": "orchid-hermit",
+      "rect": [
+        0,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        28,
+        289,
+        298,
+        570
+      ]
+    },
+    {
+      "id": "orchid-hermit/idle/left-three-quarter",
+      "atlas": "orchid-hermit",
+      "rect": [
+        313,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        38,
+        285,
+        301,
+        573
+      ]
+    },
+    {
+      "id": "orchid-hermit/idle/right-three-quarter",
+      "atlas": "orchid-hermit",
+      "rect": [
+        627,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        25,
+        283,
+        293,
+        574
+      ]
+    },
+    {
+      "id": "orchid-hermit/idle/right-profile",
+      "atlas": "orchid-hermit",
+      "rect": [
+        940,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        26,
+        288,
+        294,
+        570
+      ]
+    },
+    {
+      "id": "orchid-hermit/windup/left-profile",
+      "atlas": "orchid-hermit",
+      "rect": [
+        0,
+        627,
+        338,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        33,
+        68,
+        337,
+        373
+      ]
+    },
+    {
+      "id": "orchid-hermit/windup/left-three-quarter",
+      "atlas": "orchid-hermit",
+      "rect": [
+        338,
+        627,
+        289,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        2,
+        50,
+        278,
+        367
+      ]
+    },
+    {
+      "id": "orchid-hermit/windup/right-three-quarter",
+      "atlas": "orchid-hermit",
+      "rect": [
+        627,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        24,
+        51,
+        309,
+        372
+      ]
+    },
+    {
+      "id": "orchid-hermit/windup/right-profile",
+      "atlas": "orchid-hermit",
+      "rect": [
+        940,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        4,
+        67,
+        293,
+        372
+      ]
+    },
+    {
+      "id": "drumback-turtle/idle/left-profile",
+      "atlas": "drumback-turtle",
+      "rect": [
+        0,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        89,
+        311,
+        273,
+        466
+      ]
+    },
+    {
+      "id": "drumback-turtle/idle/left-three-quarter",
+      "atlas": "drumback-turtle",
+      "rect": [
+        313,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        86,
+        305,
+        255,
+        467
+      ]
+    },
+    {
+      "id": "drumback-turtle/idle/right-three-quarter",
+      "atlas": "drumback-turtle",
+      "rect": [
+        627,
+        0,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        60,
+        305,
+        229,
+        467
+      ]
+    },
+    {
+      "id": "drumback-turtle/idle/right-profile",
+      "atlas": "drumback-turtle",
+      "rect": [
+        940,
+        0,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        43,
+        311,
+        227,
+        466
+      ]
+    },
+    {
+      "id": "drumback-turtle/windup/left-profile",
+      "atlas": "drumback-turtle",
+      "rect": [
+        0,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        69,
+        157,
+        278,
+        336
+      ]
+    },
+    {
+      "id": "drumback-turtle/windup/left-three-quarter",
+      "atlas": "drumback-turtle",
+      "rect": [
+        313,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        59,
+        162,
+        277,
+        335
+      ]
+    },
+    {
+      "id": "drumback-turtle/windup/right-three-quarter",
+      "atlas": "drumback-turtle",
+      "rect": [
+        627,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        38,
+        161,
+        256,
+        335
+      ]
+    },
+    {
+      "id": "drumback-turtle/windup/right-profile",
+      "atlas": "drumback-turtle",
+      "rect": [
+        940,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        38,
+        157,
+        249,
+        336
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/idle/left-profile",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        0,
+        0,
+        340,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        33,
+        229,
+        337,
+        511
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/idle/left-three-quarter",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        340,
+        0,
+        287,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        9,
+        193,
+        273,
+        544
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/idle/right-three-quarter",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        627,
+        0,
+        286,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        15,
+        194,
+        280,
+        544
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/idle/right-profile",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        913,
+        0,
+        341,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        4,
+        229,
+        308,
+        511
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/windup/left-profile",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        0,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        10,
+        80,
+        313,
+        427
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/windup/left-three-quarter",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        313,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        2,
+        95,
+        311,
+        431
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/windup/right-three-quarter",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        627,
+        627,
+        313,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        8,
+        97,
+        312,
+        431
+      ]
+    },
+    {
+      "id": "disco-cuttlefish/windup/right-profile",
+      "atlas": "disco-cuttlefish",
+      "rect": [
+        940,
+        627,
+        314,
+        627
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        313.5,
+        627.0
+      ],
+      "contentBoundsInCell": [
+        1,
+        80,
+        304,
+        427
+      ]
+    },
+    {
+      "id": "emerald-roots/frontal",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        0,
+        0,
+        418,
+        339
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        64,
+        94,
+        378,
+        333
+      ]
+    },
+    {
+      "id": "emerald-roots/oblique-left",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        418,
+        0,
+        418,
+        339
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        83,
+        91,
+        357,
+        330
+      ]
+    },
+    {
+      "id": "emerald-roots/oblique-right",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        836,
+        0,
+        418,
+        339
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        56,
+        94,
+        356,
+        336
+      ]
+    },
+    {
+      "id": "golden-mica-sand/frontal",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        0,
+        339,
+        418,
+        288
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        66,
+        128,
+        376,
+        233
+      ]
+    },
+    {
+      "id": "golden-mica-sand/oblique-left",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        418,
+        339,
+        418,
+        288
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        71,
+        115,
+        353,
+        244
+      ]
+    },
+    {
+      "id": "golden-mica-sand/oblique-right",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        836,
+        339,
+        418,
+        288
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        58,
+        128,
+        350,
+        242
+      ]
+    },
+    {
+      "id": "polished-stone/frontal",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        0,
+        627,
+        418,
+        313
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        60,
+        61,
+        391,
+        259
+      ]
+    },
+    {
+      "id": "polished-stone/oblique-left",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        418,
+        627,
+        418,
+        313
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        80,
+        49,
+        366,
+        262
+      ]
+    },
+    {
+      "id": "polished-stone/oblique-right",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        836,
+        627,
+        418,
+        313
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        53,
+        66,
+        360,
+        264
+      ]
+    },
+    {
+      "id": "sunken-mosaic/frontal",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        0,
+        940,
+        418,
+        314
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        64,
+        14,
+        388,
+        243
+      ]
+    },
+    {
+      "id": "sunken-mosaic/oblique-left",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        418,
+        940,
+        418,
+        314
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        82,
+        11,
+        359,
+        246
+      ]
+    },
+    {
+      "id": "sunken-mosaic/oblique-right",
+      "atlas": "lagoon-terrain-atlas",
+      "rect": [
+        836,
+        940,
+        418,
+        314
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        60,
+        11,
+        356,
+        252
+      ]
+    },
+    {
+      "id": "moonflower-garden/frontal",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        0,
+        0,
+        418,
+        334
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        102,
+        77,
+        356,
+        328
+      ]
+    },
+    {
+      "id": "moonflower-garden/oblique-left",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        418,
+        0,
+        418,
+        334
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        115,
+        79,
+        350,
+        326
+      ]
+    },
+    {
+      "id": "moonflower-garden/oblique-right",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        836,
+        0,
+        418,
+        334
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        85,
+        85,
+        334,
+        331
+      ]
+    },
+    {
+      "id": "rainbow-current-ribbon/frontal",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        0,
+        334,
+        418,
+        276
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        49,
+        72,
+        393,
+        213
+      ]
+    },
+    {
+      "id": "rainbow-current-ribbon/oblique-left",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        418,
+        334,
+        418,
+        276
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        84,
+        67,
+        378,
+        214
+      ]
+    },
+    {
+      "id": "rainbow-current-ribbon/oblique-right",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        836,
+        334,
+        418,
+        276
+      ],
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        52,
+        83,
+        383,
+        216
+      ]
+    },
+    {
+      "id": "bubble-orchid/frontal",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        0,
+        610,
+        418,
+        325
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        97,
+        4,
+        357,
+        275
+      ]
+    },
+    {
+      "id": "bubble-orchid/oblique-left",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        418,
+        610,
+        418,
+        325
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        118,
+        6,
+        365,
+        273
+      ]
+    },
+    {
+      "id": "bubble-orchid/oblique-right",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        836,
+        610,
+        418,
+        325
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        97,
+        4,
+        354,
+        276
+      ]
+    },
+    {
+      "id": "lantern-seedpods/frontal",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        0,
+        935,
+        418,
+        319
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        94,
+        4,
+        370,
+        249
+      ]
+    },
+    {
+      "id": "lantern-seedpods/oblique-left",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        418,
+        935,
+        418,
+        319
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        108,
+        11,
+        347,
+        248
+      ]
+    },
+    {
+      "id": "lantern-seedpods/oblique-right",
+      "atlas": "lagoon-flora-atlas",
+      "rect": [
+        836,
+        935,
+        418,
+        319
+      ],
+      "pivot": [
+        0.5,
+        1
+      ],
+      "referenceSize": [
+        418.0,
+        313.5
+      ],
+      "contentBoundsInCell": [
+        88,
+        6,
+        358,
+        248
+      ]
+    }
+  ]
+}

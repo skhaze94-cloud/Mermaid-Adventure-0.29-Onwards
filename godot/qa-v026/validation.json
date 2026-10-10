@@ -1,0 +1,112 @@
+[
+  {
+    "suite": "avina_tutorial_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "complete_adventure_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "device_layout_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "enemy_engagement_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "enemy_visuals_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "environment_visuals_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "family_layout_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "gameplay_controls_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "grounding_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "journey_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "jump_animation_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "level1_smoke_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "ocean_alive_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "rock_collision_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "sarah_breaststroke_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "sarah_continuity_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "sarah_depth_motion_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "sarah_fluid_motion_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "sarah_magnifique_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "scene_flow_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "scoring_ui_test",
+    "exit": 0,
+    "errors": false
+  },
+  {
+    "suite": "title_flow_test",
+    "exit": 0,
+    "errors": false
+  }
+]

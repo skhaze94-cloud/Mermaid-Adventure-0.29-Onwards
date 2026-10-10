@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "units": "Proposed game world units and seconds; tune through playtesting.",
+  "implementationStatus": "Design specification only; no enemy AI installed.",
+  "common": {
+    "stateOrder": [
+      "idle",
+      "notice",
+      "windup",
+      "attack",
+      "recover"
+    ],
+    "noticeSeconds": 0.35,
+    "activation": "Only while onscreen or within 100-unit edge margin.",
+    "cooldownSeconds": 2.5,
+    "maxSimultaneousAttacks": 2,
+    "reducedMotion": "Static warning pose plus icon/sound; no intense flashing.",
+    "poseMap": {
+      "idle": "idle",
+      "notice": "idle",
+      "windup": "windup",
+      "attack": "windup",
+      "recover": "idle"
+    },
+    "damage": "Use existing hurt() and invincibility handling; decoration does not deal damage."
+  },
+  "enemies": [
+    {
+      "id": "maraca-snapper",
+      "hp": 1,
+      "bodyRadius": [
+        40,
+        32
+      ],
+      "windup": 1,
+      "attack": "Expanding sound ring with a clearly marked 70-degree safe gap; no offscreen activation.",
+      "recover": 1.2,
+      "counter": "Pass through gap or boost into recovering body.",
+      "speed": 90,
+      "range": 500
+    },
+    {
+      "id": "ribbon-ambusher",
+      "hp": 1,
+      "bodyRadius": [
+        46,
+        26
+      ],
+      "windup": 1.1,
+      "attack": "Lock target during windup, then straight 0.45s lunge at 430 units/s. No tracking during lunge.",
+      "recover": 1.3,
+      "counter": "Sidestep committed path; boost during recovery.",
+      "speed": 65,
+      "range": 420
+    },
+    {
+      "id": "bubble-bandit-otter",
+      "hp": 1,
+      "bodyRadius": [
+        38,
+        46
+      ],
+      "windup": 1,
+      "attack": "Capture at most three nearby untaken ordinary coins with original IDs; flee up to 400 units toward a visible burrow.",
+      "recover": 1,
+      "counter": "Catch otter or burst visible loot bubble. Escape releases every coin at reachable burrow entrance.",
+      "speed": 145,
+      "range": 350,
+      "coinSafety": "Release coins before despawn, checkpoint reset, stage exit and defeat. Trial mode: disable theft."
+    },
+    {
+      "id": "orchid-hermit",
+      "hp": 2,
+      "bodyRadius": [
+        42,
+        34
+      ],
+      "windup": 1.1,
+      "attack": "Frontal guard while idle; expose body during seedpod throw. One slow straight projectile at 160 units/s.",
+      "recover": 1.4,
+      "counter": "Flank guard or boost during exposed recovery.",
+      "speed": 35,
+      "range": 420
+    },
+    {
+      "id": "drumback-turtle",
+      "hp": 2,
+      "bodyRadius": [
+        52,
+        34
+      ],
+      "windup": 1.2,
+      "attack": "Mark one horizontal current lane, then push for 0.8s. Push alone does not damage. No stun-lock or forced obstacle collision.",
+      "recover": 1.5,
+      "counter": "Swim around lane or ride push; exposed head is vulnerable in recovery.",
+      "speed": 50,
+      "range": 460
+    },
+    {
+      "id": "disco-cuttlefish",
+      "hp": 1,
+      "bodyRadius": [
+        38,
+        38
+      ],
+      "windup": 1.1,
+      "attack": "Spawn two translucent harmless decoys for 3s. Real creature retains solid shadow and bubble marker. Max two decoys per creature.",
+      "recover": 1.3,
+      "counter": "Identify marked real creature; decoys pop harmlessly on contact.",
+      "speed": 80,
+      "range": 450
+    }
+  ]
+}

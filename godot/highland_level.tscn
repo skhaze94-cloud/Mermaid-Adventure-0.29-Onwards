@@ -1,0 +1,72 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://godot/highland_level.gd" id="1_level"]
+[ext_resource type="Script" path="res://godot/native_fx.gd" id="2_effects"]
+[ext_resource type="Script" path="res://godot/sarah_rig.gd" id="3_sarah"]
+[ext_resource type="Script" path="res://godot/carlo_boss.gd" id="4_carlo"]
+[ext_resource type="Script" path="res://godot/world_depth.gd" id="5_depth"]
+[ext_resource type="Script" path="res://godot/foreground_depth.gd" id="6_foreground"]
+[ext_resource type="Script" path="res://godot/reef_obstacles.gd" id="7_obstacles"]
+[ext_resource type="Script" path="res://godot/premium_hud.gd" id="8_hud"]
+[ext_resource type="Script" path="res://godot/water_surface.gd" id="9_surface"]
+[ext_resource type="Script" path="res://godot/animated_enemies.gd" id="10_enemies"]
+[ext_resource type="Script" path="res://godot/performance_overlay.gd" id="11_perf"]
+
+[ext_resource type="Script" path="res://godot/waterfall_world.gd" id="12_waterfall"]
+
+[ext_resource type="Script" path="res://godot/jump_effects.gd" id="13_jump"]
+
+[ext_resource type="Script" path="res://godot/environment_landmarks.gd" id="14_landmarks"]
+
+[node name="HighlandGold" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="PaintedWorldDepth" type="Node2D" parent="."]
+z_index = -3
+script = ExtResource("5_depth")
+
+[node name="ReliefReefObstacles" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("7_obstacles")
+
+[node name="NativeUnderwaterFX" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("2_effects")
+
+[node name="AnimatedEnemySprites" type="Node2D" parent="."]
+script = ExtResource("10_enemies")
+
+[node name="WaterfallEnemySprites" type="Node2D" parent="."]
+script = ExtResource("10_enemies")
+
+[node name="JumpChoreographyFX" type="Node2D" parent="."]
+script = ExtResource("13_jump")
+
+[node name="SarahAtlasRig" type="Node2D" parent="."]
+script = ExtResource("3_sarah")
+
+[node name="CarloNativeBoss" type="Node2D" parent="."]
+script = ExtResource("4_carlo")
+
+[node name="SparseForegroundDepth" type="Node2D" parent="."]
+z_index = 2
+script = ExtResource("6_foreground")
+
+[node name="PaintedWaterSurface" type="Node2D" parent="."]
+z_index = -1
+script = ExtResource("9_surface")
+
+[node name="PremiumHud" type="CanvasLayer" parent="."]
+layer = 6
+script = ExtResource("8_hud")
+
+[node name="PerformanceOverlay" type="CanvasLayer" parent="."]
+layer = 12
+script = ExtResource("11_perf")
+
+[node name="PaintedWaterfallCavern" type="Node2D" parent="."]
+z_index = -2
+script = ExtResource("12_waterfall")
+
+[node name="EnvironmentLandmarks" type="Node2D" parent="."]
+script = ExtResource("14_landmarks")

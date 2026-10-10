@@ -1,0 +1,50 @@
+{
+  "failures": 0,
+  "profiles": [
+    {
+      "logical_view": "(1706.667, 960)",
+      "minimum_touch_px": 48,
+      "multitouch_pause_resize": "passed",
+      "profile": "phone-small",
+      "ui_scale": 2,
+      "window_px": "(640, 360)"
+    },
+    {
+      "logical_view": "(2077.539, 960)",
+      "minimum_touch_px": 52,
+      "multitouch_pause_resize": "passed",
+      "profile": "phone-wide",
+      "ui_scale": 2,
+      "window_px": "(844, 390)"
+    },
+    {
+      "logical_view": "(1400, 1050)",
+      "minimum_touch_px": 64,
+      "multitouch_pause_resize": "passed",
+      "profile": "tablet-4x3",
+      "ui_scale": 1.3671875,
+      "window_px": "(1024, 768)"
+    },
+    {
+      "logical_view": "(1536, 960)",
+      "minimum_touch_px": 64.0000025431315,
+      "multitouch_pause_resize": "passed",
+      "profile": "tablet-wide",
+      "ui_scale": 1.2,
+      "window_px": "(1280, 800)"
+    },
+    {
+      "logical_view": "(1706.667, 960)",
+      "minimum_touch_px": 72,
+      "multitouch_pause_resize": "passed",
+      "profile": "desktop",
+      "ui_scale": 1,
+      "window_px": "(1920, 1080)"
+    },
+    {
+      "profile": "phone-portrait",
+      "rotation_guard": true
+    }
+  ],
+  "test_type": "simulated viewport and input"
+}

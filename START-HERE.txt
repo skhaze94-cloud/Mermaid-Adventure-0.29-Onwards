@@ -1,0 +1,29 @@
+Sarah Maria — Mermaid Adventure | Godot v0.28 — Living Creatures
+
+Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
+Wait for import, then press F5. Begin adventure starts the family tutorial.
+Choose a chapter opens any of the eight levels directly.
+
+v0.28: the comprehensive enemy animation update.
+Each crab, eel, jellyfish, pufferfish, swordfish and shark now has 16 actual
+joint-motion clips, up from four portrait poses. Each clip has 96 intervals
+of sampled motion with seamless interpolation and smooth clip blending.
+A persistent 1,617-vertex skin bends the original painted creature itself:
+- Crab: both claw wrists, opposed pincer jaws and alternating walking legs.
+- Eel: articulated swimming spine and delayed tail flexion.
+- Jellyfish: bell contraction and independently lagging tentacle strands.
+- Pufferfish: inflation, tail kick and fin paddling.
+- Swordfish / shark: two tail hinges, pectoral paddle, dorsal fin and banking.
+Carlo, Duke Claw, Miguel, Flip, Baron Bite, Rana Rex, Nessie and the palace
+performance use the same 16-clip system with species-specific articulation.
+Combat colors remain immediate. Animation never moves the collision root.
+Paused clocks stay still; Gentle Motion and Economy settings remain supported.
+
+The complete v0.27 character update, family tutorial, Avina choices, chapter
+menus, transitions and all eight levels are included.
+WASD/arrows: move. Space: Boost. J/Shift: Jump. B/Z: Bubble.
+P/Escape: pause. R: restart. Touch and controller controls included.
+
+Validated with Linux Godot 4.3: 24 automated suites, native chapter renders,
+16-second native animation preview, and fresh ZIP extraction/import.
+See godot/LIVING-CREATURES-VALIDATION.md for scope and results.

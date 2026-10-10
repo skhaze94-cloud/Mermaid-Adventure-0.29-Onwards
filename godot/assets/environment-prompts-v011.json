@@ -1,0 +1,43 @@
+[
+  {
+    "asset": "lake",
+    "prompt": "Use case: stylized-concept. Production environment art for Sarah Maria's premium children's mermaid adventure, cohesive rich painted storybook illustration, refined sculptural volume, crisp natural material detail, elegant teal/lavender/coral palette, no text, no UI, no characters. Create a NEW polished Highland lake environment inspired by reference1. LANDSCAPE 3072x2048 pixels, 3:2 composition. Exact water surface at 29 percent image height. Upper 29 percent: spacious pastel sky, distant purple mountains, Scottish castle small on far-left shore, evergreen coast. Lower 71 percent: clean transparent-looking turquoise underwater vista, sculpted slate-blue rocky ledges at outer edges, golden sand and fine pebbles along bottom, graceful sparse aquatic plants, distant submerged rock shelves fading into depth. Broad clear central swim corridor, no huge foreground rock in middle, no coral clutter. Soft light shafts with subtle caustics baked only lightly; retain detailed stone and sand, clean edges, clear depth planes. Beautiful inviting spacious premium game backdrop. Opaque image.",
+    "reference": "dist/assets/highlands.webp",
+    "transparent_background": false
+  },
+  {
+    "asset": "grotto",
+    "prompt": "Use case: stylized-concept. Production environment art for Sarah Maria's premium children's mermaid adventure, cohesive rich painted storybook illustration, refined sculptural volume, crisp natural material detail, elegant teal/lavender/coral palette, no text, no UI, no characters. Create a dedicated magnificent underground flooded grotto backdrop, LANDSCAPE 3072x2048 pixels 3:2. Upper 29 percent is an airy misty cavern vault above a still underground pool: sculptured mossy limestone ceiling at corners, tiny lavender-blue luminescent cave flowers, mysterious soft openings distant centre, NO daylight sky, mountains or castle. Waterline exactly at 29 percent image height. Lower 71 percent is underwater, deep clear sapphire-teal grotto with ancient rock terraces at edges, fine golden sand bottom, luminous crystal veins and restrained pink/blue corals in peripheral rock niches. Vast uncluttered central swim corridor. Rich material detail and atmospheric perspective, softly illuminated, magical friendly adventure atmosphere, no horror, no hard grid texture. Opaque background. Match reference's polished children's painted-world style.",
+    "reference": "dist/assets/highlands.webp",
+    "transparent_background": false
+  },
+  {
+    "asset": "gardens",
+    "prompt": "Use case: stylized-concept. Production environment art for Sarah Maria's premium children's mermaid adventure, cohesive rich painted storybook illustration, refined sculptural volume, crisp natural material detail, elegant teal/lavender/coral palette, no text, no UI, no characters. Genuine transparent alpha sprite atlas. EXACTLY 8 separate underwater garden clusters in a regular FOUR COLUMN TWO ROW grid. Landscape 3072x1536. Each equal square cell contains ONE complete isolated cluster centered with 15 percent fully transparent margin on all four sides. Row1: graceful emerald kelp on a small slate pebble base; lavender branching fan coral; warm peach anemone on slate rock; teal tube sponge colony. Row2: pearl pink shell on small sandbank; sea grass with delicate blue flowers; low coral-covered rounded rock; small ancient carved urn with plants. Gentle natural texture variation, moist stone, fine sand, subtle volume, no neon edge, no outlined stickers, no glow cloud or opaque backdrop, no labels. Front/three-quarter side-on game perspective. Full roots/rock base contained in each cell, no overlapping neighbouring cells. Fine clean alpha edges. Reference is style inspiration only; create refined new clusters with restrained colours.",
+    "reference": "dist/assets/reef-garden-v75.webp",
+    "transparent_background": true
+  },
+  {
+    "asset": "rocks",
+    "prompt": "Use case: stylized-concept. Production environment art for Sarah Maria's premium children's mermaid adventure, cohesive rich painted storybook illustration, refined sculptural volume, crisp natural material detail, elegant teal/lavender/coral palette, no text, no UI, no characters. Genuine transparent alpha sprite atlas EXACTLY 4 different rock obstacles in regular TWO COLUMN TWO ROW grid, square 2048x2048. All objects centered inside equal square cells with 12 percent transparent margin. Top-left: upright broad slate-blue reef pillar with carved horizontal strata and sparse moss/coral at edges. Top-right: distinct upright pale blue limestone pillar with crystal seam and two purple coral sprigs. Bottom-left: broad low boulder mound of basalt with fine sand and teal sponges. Bottom-right: broad low limestone reef ledge with shell fossils and restrained moss. Front-facing 2D game cross-section, substantial solid silhouettes, continuous rock body, no passable-looking holes. Show nuanced matte stone grain, chipped edges, believable cracks, directional soft top-left highlights and dark crevices. No gradients behind objects, no opaque ground strip, no stray fragments, no glow haze, no isolated floating decorations. Entire rock and peripheral plants fully inside its cell. Preserve soft polished children's illustration style, not a rough photo.",
+    "reference": "dist/assets/barrier-reef.webp",
+    "transparent_background": true
+  },
+  {
+    "asset": "props",
+    "prompt": "Use case: stylized-concept. Production environment art for Sarah Maria's premium children's mermaid adventure, cohesive rich painted storybook illustration, refined sculptural volume, crisp natural material detail, elegant teal/lavender/coral palette, no text, no UI, no characters. Genuine transparent alpha sprite atlas EXACTLY 4 isolated treasure props in a TWO COLUMN TWO ROW grid square 2048x2048, generous 18 percent transparent padding inside each equal quadrant. Top-left: single luminous ivory pearl cradled in an open elegant pearlescent lavender clam shell, simple readable silhouette. Top-right: closed ornate warm walnut treasure chest with curved lid, golden bands, gold shell emblem and latch, detailed bevelled wood planks. Bottom-left: polished rose-pink heart-shaped gemstone with delicate gold setting, a clear classic heart silhouette. Bottom-right: turquoise faceted energy crystal with golden shell-like setting, clear upright diamond silhouette. Coherent refined painted 3D-looking game props, friendly magical style, all objects same perspective and lighting. No surrounding particles or glow cloud, no text, no ground, no scenery, no labels. All props entirely within their own quadrant, no overlap.",
+    "reference": "dist/assets/reef-garden-v75.webp",
+    "transparent_background": true
+  },
+  {
+    "asset": "portal",
+    "prompt": "Use case: stylized-concept. Production environment art for Sarah Maria's premium children's mermaid adventure, cohesive rich painted storybook illustration, refined sculptural volume, crisp natural material detail, elegant teal/lavender/coral palette, no text, no UI, no characters. One magnificent underwater exit portal frame on genuine transparent alpha background, portrait 1024x1536. A carved slate-blue and pale turquoise stone oval arch with gold seashell keystone, small warm pearl inlays, subtle lavender coral sprouts near the two feet, substantial sculpted volume and refined cracks. Elegant friendly magical gateway, old underwater kingdom style. The oval opening must be completely EMPTY and TRANSPARENT so a native animated water shader can be inserted behind it. The entire arch and base centered with generous 12 percent clear padding, full frame visible. No glowing fog, no opaque background, no characters, no ground strip, no effects crossing outside the frame. Arch stone style inspired by reference.",
+    "reference": "dist/assets/barrier-reef.webp",
+    "transparent_background": true
+  },
+  {
+    "asset": "portal-transparent-edit",
+    "prompt": "Remove all background from this stone seashell portal arch image. Keep the detailed arch, rocks, plants and gold crest exactly intact. Everything outside the arch AND the large inner portal opening must be completely transparent, clean sharp alpha with no coloured haze or backdrop. Return isolated game sprite on transparent background.",
+    "transparent_background": true
+  }
+]

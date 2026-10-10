@@ -1,0 +1,370 @@
+{
+  "sourceHtmlUnchanged": true,
+  "sourceSha256": "2ec6fa873712d72ae6f23151f011aa12c28223625b6335545e50f91f34004fbd",
+  "frames": 72,
+  "atlases": 8,
+  "boundaryChecks": [
+    {
+      "frame": "maraca-snapper/idle/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/idle/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/idle/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/idle/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/windup/left-profile",
+      "maxBoundaryAlpha": 3,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/windup/left-three-quarter",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/windup/right-three-quarter",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "maraca-snapper/windup/right-profile",
+      "maxBoundaryAlpha": 4,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/idle/left-profile",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/idle/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/idle/right-three-quarter",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/idle/right-profile",
+      "maxBoundaryAlpha": 3,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/windup/left-profile",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/windup/right-three-quarter",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/windup/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "ribbon-ambusher/windup/right-profile",
+      "maxBoundaryAlpha": 3,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/idle/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/idle/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/idle/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/idle/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/windup/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/windup/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/windup/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-bandit-otter/windup/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/idle/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/idle/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/idle/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/idle/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/windup/left-profile",
+      "maxBoundaryAlpha": 7,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/windup/left-three-quarter",
+      "maxBoundaryAlpha": 6,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/windup/right-three-quarter",
+      "maxBoundaryAlpha": 3,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "orchid-hermit/windup/right-profile",
+      "maxBoundaryAlpha": 3,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/idle/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/idle/left-three-quarter",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/idle/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/idle/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/windup/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/windup/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/windup/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "drumback-turtle/windup/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/idle/left-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/idle/left-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/idle/right-three-quarter",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/idle/right-profile",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/windup/left-profile",
+      "maxBoundaryAlpha": 115,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/windup/left-three-quarter",
+      "maxBoundaryAlpha": 15,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/windup/right-three-quarter",
+      "maxBoundaryAlpha": 17,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "disco-cuttlefish/windup/right-profile",
+      "maxBoundaryAlpha": 13,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "emerald-roots/frontal",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "emerald-roots/oblique-left",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "emerald-roots/oblique-right",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "golden-mica-sand/frontal",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "golden-mica-sand/oblique-left",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "golden-mica-sand/oblique-right",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "polished-stone/frontal",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "polished-stone/oblique-left",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "polished-stone/oblique-right",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "sunken-mosaic/frontal",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "sunken-mosaic/oblique-left",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "sunken-mosaic/oblique-right",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "moonflower-garden/frontal",
+      "maxBoundaryAlpha": 3,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "moonflower-garden/oblique-left",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "moonflower-garden/oblique-right",
+      "maxBoundaryAlpha": 7,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "rainbow-current-ribbon/frontal",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "rainbow-current-ribbon/oblique-left",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "rainbow-current-ribbon/oblique-right",
+      "maxBoundaryAlpha": 5,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-orchid/frontal",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-orchid/oblique-left",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "bubble-orchid/oblique-right",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "lantern-seedpods/frontal",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "lantern-seedpods/oblique-left",
+      "maxBoundaryAlpha": 1,
+      "opaqueBorderPixelCount": 0
+    },
+    {
+      "frame": "lantern-seedpods/oblique-right",
+      "maxBoundaryAlpha": 2,
+      "opaqueBorderPixelCount": 0
+    }
+  ],
+  "visualReview": "Final sheets reviewed separately",
+  "gameIntegrationTested": false
+}
