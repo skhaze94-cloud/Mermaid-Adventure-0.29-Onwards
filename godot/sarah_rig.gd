@@ -120,6 +120,7 @@ var arm_meshes: Array[Polygon2D] = []
 var ribbon_materials: Array[ShaderMaterial] = []
 var gesture_player: AnimationPlayer
 var gesture_wave := 0.0
+var camera_wave := 0.0 # Menu greeting envelope; zero during gameplay.
 var gesture_nod := 0.0
 var gesture_reach := 0.0
 var gesture_arch := 0.0
@@ -220,6 +221,7 @@ func reset_performance() -> void:
     jump_style = 0
     swim_clock = 0.0
     horizontal_stroke_clock = 0.0
+    camera_wave = 0.0
     swim_style = "breaststroke"
     stroke_candidate = "breaststroke"
     stroke_candidate_time = 0.0
@@ -328,7 +330,7 @@ func _ribbon(index: int, parent: Node2D, destination: Rect2, shining: bool) -> v
     var region := Rect2(Vector2(crop[0],crop[1]) * Vector2(ATLAS.get_width(),ATLAS.get_height()), Vector2(crop[2],crop[3]) * Vector2(ATLAS.get_width(),ATLAS.get_height()))
     var mesh := Ribbon.new()
     mesh.name = "FlexiblePaintedPart_%d" % index
-    mesh.configure(ATLAS,region,destination,16,5)
+    mesh.configure(ATLAS,region,destination,50,5) # 255 points: three times the v0.30 hair mesh.
     if shining:
         var material := ShaderMaterial.new()
         material.shader = SCALES
@@ -727,6 +729,7 @@ func _process(delta: float) -> void:
         arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
         arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
     var near_reach: float = arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95 + definitive_motion.shoulder_near.y*.045
+    near_reach -= camera_wave*.48
     var far_reach: float = arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045
     # Ease into a sideward raised reach, instead of taking the forearm through
     # the face. The soft limit has a continuous slope rather than a hard stop.
@@ -798,6 +801,8 @@ func _process(delta: float) -> void:
     if reduced_motion or not high_quality:
         tail_skin.reset_shape()
     else:
+        tail_skin.detail_phase=swim_phase
+        tail_skin.detail_strength=(.35+swim_blend*.65)*(1.0-boost_blend*.65)
         tail_skin.skin(cycle_pose,tail_tuck,turn_kick)
     # Face, ear, nose and hair share the body's clocks, current, yaw and effort.
     blink_blend = FaceDetails.blink_at(clock)

@@ -41,7 +41,14 @@ void vertex() {
         float wave=sin(motion_phase*.5-.4-p.x*2.0-p.y*.7);
         vec2 drift=vec2(-response.x*.9+hair_lag*2.0,
             wave*(2.0+response.w*1.3)+hair_lag*8.0+body_wave*1.1);
+        drift+=vec2(sin(motion_phase*.83-p.x*4.7)*.22+sin(motion_phase*1.27-p.y*6.3)*.10,
+            sin(motion_phase*.91-p.x*5.5-p.y)*.48+sin(motion_phase*1.43-p.x*8.0+p.y)*.20);
         VERTEX+=drift*free_end;
+        // Forehead locks breathe across the crown without moving eyes or brows.
+        float crown=(1.0-smoothstep(.18,.32,p.y))*smoothstep(.32,.52,p.x)*(1.0-smoothstep(.92,1.0,p.x));
+        VERTEX+=crown*vec2(sin(motion_phase*.47-p.x*3.2)*.65
+            +sin(motion_phase*.79-p.x*5.8)*.22+sin(motion_phase*1.21-p.x*8.4)*.09,
+            sin(motion_phase*.55-p.x*4.0)*.60+sin(motion_phase*.93-p.x*6.5)*.20+sin(motion_phase*1.39-p.x*9.0)*.08);
         // A soft throat bend fades out before the painted collar attachment.
         float throat=feature(p,vec2(.70,.835),vec2(.13,.065));
         VERTEX.x+=throat*neck_follow*14.0*anchored;

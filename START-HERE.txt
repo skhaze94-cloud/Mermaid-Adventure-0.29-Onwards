@@ -1,9 +1,13 @@
-Sarah Maria — Mermaid Adventure | Godot v0.30 — Ultimate Sarah Maria
+Sarah Maria — Mermaid Adventure | Godot v0.31 — Ultimate Definitive Sarah Maria
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
 Begin adventure starts the family tutorial. Choose a chapter opens any of the
 eight levels directly.
+
+v0.31 adds the opposite-side entrance, a small camera wave, tripled hair,
+forehead and tail paint points, and layered subtle detail movement.
+See godot/SARAH-V031-BUNDLE-REVIEW.md.
 
 v0.30 is the Ultimate Definitive Sarah Maria bundle: recurring breaststroke,
 deeper elbow flexion, hand cupping, connected shoulder paint and a softened

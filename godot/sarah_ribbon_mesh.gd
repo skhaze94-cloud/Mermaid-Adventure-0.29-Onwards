@@ -32,6 +32,10 @@ func deform(phase: float, amplitude: float, inertia: float) -> void:
         # The seam remains fixed; flutter grows gently toward the free edge.
         points[i].y += weight * (sin(phase - weight * 2.8) * amplitude + inertia)
         points[i].x += weight * sin(phase * 0.7 - weight) * amplitude * 0.11
+        # Three layered current responses; roots remain pinned, tips move most.
+        var ripple := sin(phase*1.37-weight*5.1)*.18+sin(phase*2.11-weight*8.7)*.08
+        points[i].y += weight*weight*amplitude*ripple
+        points[i].x += weight*weight*amplitude*(sin(phase*1.13-weight*3.9)*.025+sin(phase*1.83-weight*7.3)*.012)
     polygon = points
     mesh_updates += 1
 func reset_shape() -> void:

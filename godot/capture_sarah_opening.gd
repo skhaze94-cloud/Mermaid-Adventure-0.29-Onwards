@@ -33,5 +33,5 @@ func run() -> void:
                 await process_frame
             await RenderingServer.frame_post_draw
             if root.get_texture().get_image().save_png(out+"/layout-"+layout[1]+".png")!=OK: quit(1); return
-    print("SARAH V030 OPENING: 540 native frames")
+    print("SARAH V031 OPENING: 540 native frames")
     quit()

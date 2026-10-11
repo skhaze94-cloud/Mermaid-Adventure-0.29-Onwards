@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.30 Ultimate Definitive Sarah Maria
+# Mermaid Adventure — v0.31 Ultimate Definitive Sarah Maria
+
+**v0.31** adds an opening entrance from the opposite side and a small hand wave toward the viewer. Back-hair and loose-strand meshes, the connected forehead/face surface and tail each have exactly three times the v0.30 paint points. Layered current ripples, crown locks, fin-edge flutter and fine tail breathing retain pinned roots and bounded motion. See `godot/SARAH-V031-BUNDLE-REVIEW.md` and `godot/validation-v031.json`.
 
 **v0.30** bundles recurring breaststroke after two then three ordinary swims, deeper inward elbow recovery, subtle hand cupping, shoulder-root blending and a softer continuous torso–tail scale transition. The opening now uses the full animated gameplay Sarah, with a swim-in entrance, greeting and recurring performances. Compact layouts show all menu actions more clearly. See `godot/SARAH-V030-BUNDLE-REVIEW.md` and `godot/validation-v030.json`.
 

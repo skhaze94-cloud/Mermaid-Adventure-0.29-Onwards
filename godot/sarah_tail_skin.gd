@@ -1,6 +1,8 @@
 extends "res://godot/sarah_ribbon_mesh.gd"
 ## One connected painted tail; centerline skin preserves length while curling.
-const SEGMENTS := 64
+const SEGMENTS := 194 # 2,535 paint points: three times v0.30.
+var detail_phase := 0.0
+var detail_strength := 0.0
 var socket := Vector2.ZERO
 var tail_length := 175.0
 var tip_center := Vector2(-175,0)
@@ -30,6 +32,9 @@ func skin(pose: Vector4, tuck: float, steering: float) -> void:
         angle += root_bend*smoothstep(0,.18,t)*(1.0-smoothstep(.45,.80,t))
         angle += bend_value*smoothstep(.22,.70,t)
         angle += pose.z*smoothstep(.67,1,t)
+        var release := smoothstep(.15,.48,t)
+        angle += detail_strength*release*(sin(detail_phase*.73-t*5.0)*.009
+            +sin(detail_phase*1.17-t*8.0)*.004+sin(detail_phase*1.81-t*11.0)*.002)
         angles[i] = angle
         centers[i] = centers[i-1]+Vector2(-step,0).rotated(angle)
     var points := rest.duplicate()
@@ -37,6 +42,14 @@ func skin(pose: Vector4, tuck: float, steering: float) -> void:
         var t := weights[i]
         var column := mini(SEGMENTS,int(round(t*SEGMENTS)))
         var offset := Vector2(0,rest[i].y-socket.y).rotated(angles[column])
+        var edge := (rest[i].y-socket.y)/(tail_length*.23)
+        var tip := smoothstep(.65,.95,t)
+        var flutter := detail_strength*tip*(sin(detail_phase*.91-t*6.0+edge*.8)*.20
+            +sin(detail_phase*1.39-t*9.0-edge*.5)*.09+sin(detail_phase*2.03-t*12.0)*.04)
+        offset.y += flutter*edge
+        # Fine scale-breathing, separate from the fin edges and main centerline.
+        offset *= 1.0+detail_strength*smoothstep(.2,.55,t)*(sin(detail_phase*.53-t*4.0)*.0015
+            +sin(detail_phase*.89-t*6.0)*.0007+sin(detail_phase*1.31-t*9.0)*.0003)
         points[i] = centers[column]+offset
     polygon = points
     tip_center = centers[SEGMENTS-3]
@@ -46,3 +59,5 @@ func reset_shape() -> void:
     tip_center = Vector2(socket.x-tail_length,socket.y)
     bend_value = 0
     root_bend = 0
+    detail_phase = 0
+    detail_strength = 0

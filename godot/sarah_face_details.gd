@@ -1,7 +1,7 @@
 extends Polygon2D
 ## One persistent painted surface. Neck anchors and UVs stay fixed.
 const DETAIL_SHADER = preload("res://godot/shaders/sarah_face_details.gdshader")
-const COLUMNS := 64
+const COLUMNS := 194 # 9,555 connected points: three times v0.30.
 const ROWS := 49
 var rest := PackedVector2Array()
 var surface: ShaderMaterial

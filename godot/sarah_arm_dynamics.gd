@@ -63,6 +63,9 @@ func update(rig, dt: float) -> void:
         else:
             wrist_target-=rig.gesture_wave*expression*.12
             wrist_target+=rig.jump_joy_far*sin(rig.jump_air_time*16+.8)*.10
+        if i==1:
+            elbow_target-=rig.camera_wave*.50
+            wrist_target+=rig.camera_wave*sin(rig.clock*8.0)*.13
         elbow_target=clampf(elbow_target,-1.28,.20)
         elbows[i]=spring_linear(elbows[i],previous_targets[i].x,elbow_target,22.0,dt)
         wrist_target-=clampf(elbows[i].y*.025,-.07,.07)*compact

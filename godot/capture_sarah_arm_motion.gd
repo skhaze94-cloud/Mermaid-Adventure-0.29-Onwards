@@ -27,7 +27,7 @@ func run() -> void:
     shade.color=Color(.01,.045,.06,.48)
     shade.size=Vector2(1280,720)
     root.add_child(shade)
-    label("V0.30 · ULTIMATE SARAH MARIA",Vector2(30,25),29,Color("f4dca5"))
+    label("V0.31 · ULTIMATE SARAH MARIA",Vector2(30,25),29,Color("f4dca5"))
     label("Full body",Vector2(30,95),20,Color("b4d9d9"))
     label("Arm articulation · tracking close-up",Vector2(760,95),20,Color("b4d9d9"))
     var panel := Control.new()
