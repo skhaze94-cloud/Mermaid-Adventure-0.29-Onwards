@@ -27,6 +27,7 @@ func run() -> void:
     level.player=Vector2(level._portal_x()+1,550); level._update_swimming(0); await frames(); await capture("Avina-Companion-Choice")
     level.bring_button.pressed.emit(); await frames(); await capture("Family-Take-Along-Farewell")
     level.reply_box.get_child(0).pressed.emit(); level.reply_box.get_child(0).pressed.emit(); await frames(18)
+    while root.get_node("SceneFlow").busy: await process_frame
     current_scene.set_physics_process(false); current_scene.fallen=true; current_scene.player=Vector2(2060,570); current_scene.camera=1530
     await frames(30); await capture("Avina-Highland-Companion")
     current_scene.free(); await frames(); quit()

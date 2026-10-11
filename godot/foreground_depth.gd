@@ -29,7 +29,7 @@ func _ready() -> void:
         sprite.scale = Vector2.ONE * (210.0 + float(i % 4) * 24.0) / sprite.texture.get_width()
         sprite.offset.y = -sprite.texture.get_height() * 0.5
         sprite.material = material
-        sprite.modulate.a = 0.46 + float(i % 3) * 0.035
+        sprite.modulate.a = 0.82 + float(i % 3) * 0.025
         sprite.flip_h = i % 2 == 0
         add_child(sprite)
         entries.append({"sprite": sprite, "x": 290.0 + float(i) * 1170.0, "phase": float(i) * 0.77})

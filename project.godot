@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Sarah Maria — Mermaid Adventure (Godot v0.31 — Ultimate Sarah Maria)"
-config/description="Sarah Maria Mermaid Adventure — the complete basic eight-chapter Godot adventure, with chapter selection and linked results."
+config/name="Sarah Maria — Mermaid Adventure (Godot v0.4 — Ultimate Mega-Max Polish)"
+config/description="Sarah Maria Mermaid Adventure — eight connected chapters, family tutorial, refined controls and a polished painted ocean."
 run/main_scene="res://godot/title_screen.tscn"
 config/features=PackedStringArray("4.3")
 

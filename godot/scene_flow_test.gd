@@ -34,5 +34,16 @@ func run() -> void:
         current_scene._return_to_menu()
         await wait_for_flow(flow)
         check(current_scene.name == "SarahStorybookOpening" and not paused, "return from pause uses same transition")
+    prefs.reduced_motion=false
+    check(flow.go("res://godot/highland_level.tscn","Highland Gold","",0),"Interrupted reveal starts")
+    var started := Time.get_ticks_msec()
+    while (not is_instance_valid(current_scene) or current_scene.name!="HighlandGold") and Time.get_ticks_msec()-started<15000:
+        await process_frame
+    for tick in range(5): await process_frame
+    if is_instance_valid(current_scene): current_scene.free()
+    await wait_for_flow(flow)
+    check(not flow.surface.visible and not flow.busy,"Removed incoming scene leaves transition overlay")
+    change_scene_to_file("res://godot/title_screen.tscn")
+    await process_frame
     print("SCENE FLOW TEST " + ("PASSED" if failures == 0 else "FAILED"))
     quit(0 if failures == 0 else 1)

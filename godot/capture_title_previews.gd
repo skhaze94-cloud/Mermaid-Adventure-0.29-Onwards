@@ -52,5 +52,12 @@ func _capture() -> void:
             print("TITLE PREVIEW CAPTURED: " + shot[0])
     root.remove_child(menu)
     menu.free()
+    var audio := root.get_node("OceanAudio")
+    for voice in audio.voices:
+        voice.stop()
+        voice.stream=null
+    audio.ambience.stop()
+    audio.ambience.stream=null
+    for tick in range(6): await process_frame
     print("GODOT TITLE RENDER TEST " + ("PASSED" if failures == 0 else "FAILED"))
     quit(0 if failures == 0 else 1)

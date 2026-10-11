@@ -130,21 +130,24 @@ func _travel(path: String) -> void:
     await get_tree().process_frame
     await get_tree().process_frame
     var incoming := get_tree().current_scene
+    if not is_instance_valid(incoming):
+        _finish()
+        return
     var incoming_mode := incoming.process_mode
     incoming.process_mode = Node.PROCESS_MODE_DISABLED
     var incoming_music: AudioStreamPlayer = incoming.get("music_player")
     var target_volume: float = incoming_music.volume_db if incoming_music else -17.0
-    if incoming_music and not fast:
+    if is_instance_valid(incoming_music) and not fast:
         incoming_music.volume_db = -60.0
     if not fast:
         if not gentle: await get_tree().create_timer(0.55, true).timeout
-        if incoming_music:
+        if is_instance_valid(incoming_music):
             create_tween().tween_property(incoming_music, "volume_db", target_volume, 0.75)
         var reveal := create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
         reveal.tween_property(card, "modulate:a", 0.0, 0.18)
         reveal.tween_property(self, "cover", 0.0, 0.22 if gentle else 0.55)
         await reveal.finished
-    incoming.process_mode = incoming_mode
+    if is_instance_valid(incoming): incoming.process_mode = incoming_mode
     _finish()
 
 func _recover(message: String) -> void:

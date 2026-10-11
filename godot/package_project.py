@@ -8,7 +8,16 @@ root = Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
 parser.add_argument('output', type=Path)
 args = parser.parse_args()
-files = {p.relative_to(root).as_posix() for p in (root/'godot').rglob('*') if p.is_file() and p.suffix not in {'.uid','.import','.gif','.jpg'} and '.godot' not in p.parts}
+LEGACY_UI = {'joystick','thumb','jump','boost','pause','settings','home','restart','bubble','chest','ribbon'}
+RUNTIME_SUFFIXES = {'.gd','.tscn','.tres','.gdshader','.json','.png','.webp','.wav','.ogg','.mp3','.ttf','.otf'}
+def runtime_file(p):
+    relative = p.relative_to(root/'godot')
+    if p.suffix not in RUNTIME_SUFFIXES or not p.is_file(): return False
+    if any(x in {'.godot','device-qa'} or 'previews' in x for x in relative.parts): return False
+    if p.name.startswith(('capture_','validation-')) or p.name.endswith('_test.gd'): return False
+    if relative.parent.as_posix() == 'assets/ui-v014' and p.stem in LEGACY_UI: return False
+    return True
+files = {p.relative_to(root).as_posix() for p in (root/'godot').rglob('*') if runtime_file(p)}
 files.add('project.godot')
 for name in list(files):
     if (root/name).suffix in {'.gd','.tscn','.tres','.godot','.gdshader'}:
@@ -17,7 +26,7 @@ for name in list(files):
                 raise RuntimeError('Missing runtime asset: '+resource)
             files.add(resource)
 notes = (root/'START-HERE.txt').read_text(encoding='utf-8')
-files.update({'README.md', '.gitignore'})
+files.add('README.md')
 directories = {str(parent)+'/' for name in files for parent in Path(name).parents if str(parent)!='.'}
 args.output.parent.mkdir(parents=True,exist_ok=True)
 temporary = args.output.with_suffix('.zip.tmp')

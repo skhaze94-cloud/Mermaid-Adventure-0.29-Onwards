@@ -162,8 +162,6 @@ func _button(text_value: String, action: Callable, featured := false) -> Button:
     button.add_theme_stylebox_override("hover", _style(Color("fff0c9") if featured else Color("153c47"), GOLD))
     button.add_theme_stylebox_override("pressed", _style(Color("d0ba89") if featured else Color("102c37"), GOLD))
     button.add_theme_stylebox_override("focus", _style(Color(0,0,0,0), Color("a3fff1"), 3))
-    var Kit = preload("res://godot/ui_kit.gd")
-    button.icon = Kit.ICONS["settings" if "Options" in text_value else ("home" if "Back" in text_value else ("jump" if "Begin" in text_value else "shell"))]
     button.expand_icon = true
     button.add_theme_constant_override("icon_max_width",34)
     button.pressed.connect(func(): get_node("/root/OceanAudio").play("ui",0))
@@ -215,7 +213,7 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v0.31  •  ULTIMATE SARAH MARIA" if page == "menu" else "SARAH MARIA"
+    footer.text = "v0.4  •  SARAH MARIA" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")

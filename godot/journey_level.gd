@@ -314,8 +314,12 @@ func _draw_world(s: Vector2) -> void:
         draw_texture_rect(background,Rect2(Vector2(-(panorama_size.x-s.x)*progress,(s.y-panorama_size.y)*.5),panorama_size),false)
     else:
         Terrain.panorama(self,background,s,_water_line(),350.0,progress)
-    draw_rect(Rect2(0,_water_line(),s.x,s.y-_water_line()),Color(.015,.06,.15,.25) if shadow else Color(.015,.2,.22,.18))
-    draw_line(Vector2(0,_water_line()),Vector2(s.x,_water_line()),Color(.5,.95,.95,.65),3)
+    if shadow:
+        # The kingdom painting is already underwater; no false surface stripe.
+        draw_rect(Rect2(Vector2.ZERO,s),Color(.015,.06,.15,.16))
+    else:
+        draw_rect(Rect2(0,_water_line(),s.x,s.y-_water_line()),Color(.015,.2,.22,.18))
+        draw_line(Vector2(0,_water_line()),Vector2(s.x,_water_line()),Color(.5,.95,.95,.65),3)
     texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
     Terrain.seabed(self,s,camera,"shadow" if shadow else "miguel")
     for i in range(obstacles.size()):
@@ -334,15 +338,11 @@ func _draw_world(s: Vector2) -> void:
     for x in Journey.pads(shadow):
         if x-camera< -160 or x-camera>s.x+160: continue
         var pos := Vector2(x-camera,_water_line()+75)
-        _paint_oval(pos,Vector2(80,18),Color("#65c9a0"))
-        draw_arc(pos,55,PI,TAU,24,Color("#fff1a8"),3)
-        _draw_text(pos+Vector2(-27,6),"JUMP",14,Color("#123f47"))
+        Polish.launch_hint(self,pos)
     for switch in switches:
         var pos: Vector2 = switch["pos"]-Vector2(camera,0)
         if pos.x< -100 or pos.x>s.x+100: continue
-        draw_circle(pos,29,Color("#89ffca") if switch["on"] else Color("#b799ed"))
-        draw_arc(pos,36,0,TAU,30,Color("#fff0be"),3)
-        _draw_text(pos+Vector2(-12,7),"✓" if switch["on"] else "B",20)
+        Polish.shell_switch(self,pos,switch["on"])
     # Draw ordinary rewards and both projectile types using the original native icons.
     super._draw_world(s)
     for enemy in enemies:
@@ -353,37 +353,25 @@ func _draw_world(s: Vector2) -> void:
         var scale := 165/float(LagoonArt.sizes[enemy["kind"]])
         var size := texture.get_size()*scale
         if enemy["kind"] == "disco-cuttlefish" and enemy.get("mode","") in ["windup","attack"]:
-            for side in [-1,1]: draw_texture_rect(texture,Rect2(pos+Vector2(side*115,-20)-size*.5,size),false,Color(1,1,1,.25))
+            draw_arc(pos,88,-PI*.85,-PI*.15,24,Color(.9,.73,.95,.55),2,true)
         draw_texture_rect(texture,Rect2(pos-size*.5,size),false)
         if enemy.get("mode","") == "windup": draw_arc(pos,100,0,TAU,32,Color(1,.85,.45,.7),2)
     var portal := Vector2(_portal_x()-camera,540)
     if portal.x> -180 and portal.x<s.x+180:
         Terrain.portal(self,portal,boss_hp<=0)
-        _draw_text(portal+Vector2(-76,145),"PORTAL OPEN" if boss_hp<=0 else "DEFEAT THE BOSS",17)
-    var label := "DESCENT"
-    if shadow:
-        for section in [[2860,"OUTER KINGDOM"],[5720,"CRAB MARKET"],[8580,"SHADOW TUNNELS"],[11440,"ROYAL APPROACH"]]:
-            if player.x>=section[0]: label = section[1]
-    else: label = "COLOMBIA · THE ENCHANTED LAGOON"
-    _draw_text(Vector2(30,s.y-30),label,16,Color(.85,.97,1,.85))
-func _paint_oval(pos: Vector2, size: Vector2, color: Color) -> void:
-    var vertices := PackedVector2Array()
-    for i in range(40): vertices.append(pos+Vector2(cos(i*TAU/40),sin(i*TAU/40))*size)
-    draw_colored_polygon(vertices,color)
+        if boss_hp<=0: _draw_text(portal+Vector2(-48,145),"Continue",18,Color("#c7ece3"))
 func _draw_boss() -> void:
     if boss_hp<=0: return
     var pos := boss_position-Vector2(camera,0)
     if shadow:
         if duke_hp>0:
             # Artwork is rendered by the expressive boss mesh actor.
-            draw_arc(pos,175,0,TAU,48,Color("#9dffd5") if _boss_vulnerable() else Color("#d2b8f4"),3)
-            _draw_text(pos+Vector2(-70,-170),"DUKE CLAW  %s/10" % duke_hp,16)
+            Polish.boss_cue(self,pos,152,_boss_vulnerable())
         if flip_hp>0:
             var flip := flip_position-Vector2(camera,0)
             # Flip has a connected tail performance and independent hit reaction.
-            _draw_text(flip+Vector2(-70,-95),"FLIP  %s/8" % flip_hp,16)
+            Polish.boss_cue(self,flip,115,flip_stun>0)
             if flip_stun>0: draw_arc(flip,115,0,TAU,32,Color("#a8ffe2"),3)
     else:
         # Miguel’s wing mesh remains anchored at its shared centre.
-        draw_arc(pos,195,0,TAU,48,Color("#96ffd1") if _boss_vulnerable() else Color("#e3a5ff"),4)
-        _draw_text(pos+Vector2(-100,-185),"MIGUEL · BOOST NOW!" if _boss_vulnerable() else "MIGUEL · DODGE THE STARS",17)
+        Polish.boss_cue(self,pos,185,_boss_vulnerable())

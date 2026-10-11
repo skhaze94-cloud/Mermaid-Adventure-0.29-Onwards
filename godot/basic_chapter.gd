@@ -158,8 +158,11 @@ func _draw_world(view: Vector2) -> void:
     else:
         var source_line := 285.0 if chapter_id in ["palace","training"] else 350.0
         Terrain.panorama(self,background,view,_water_line(),source_line,progress)
-    draw_rect(Rect2(0,_water_line(),view.x,view.y-_water_line()),Color(.04,.09,.2,.16))
-    draw_line(Vector2(0,_water_line()),Vector2(view.x,_water_line()),Color(.65,.94,1,.6),2)
+    if chapter_id=="blackwater":
+        draw_rect(Rect2(Vector2.ZERO,view),Color(.015,.035,.07,.12))
+    else:
+        draw_rect(Rect2(0,_water_line(),view.x,view.y-_water_line()),Color(.04,.09,.2,.16))
+        draw_line(Vector2(0,_water_line()),Vector2(view.x,_water_line()),Color(.65,.94,1,.6),2)
     texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
     Terrain.seabed(self,view,camera,chapter_id)
     for i in range(obstacles.size()):
@@ -185,35 +188,19 @@ func _draw_world(view: Vector2) -> void:
     for shot in bubble_shots:
         draw_arc(shot["pos"]-Vector2(camera,0),12 if shot.get("baby",false) else 18,0,TAU,24,Color("#efd0ff") if shot.get("baby",false) else Color("#caffff"),3)
     _paint_chapter_boss()
-    if chapter_id=="palace": _paint_palace_gates(view)
-    if chapter_id=="blackwater":
-        # Modest darkness keeps the basic route readable while marking the tunnel.
-        draw_rect(Rect2(Vector2.ZERO,view),Color(.005,.015,.04,.25))
-        draw_arc(player-Vector2(camera,0),220,0,TAU,64,Color(.48,.92,1,.22),6)
     var portal := Vector2(_portal_x()-camera,530)
     if portal.x > -100 and portal.x<view.x+150:
         Terrain.portal(self,portal,_portal_is_open())
-        _draw_text(portal+Vector2(-70,160),_portal_hint(),19)
-func _paint_palace_gates(view: Vector2) -> void:
-    for gate in Chapter.source("palace").get("palace",{}).get("gates",[]):
-        var x := float(gate.x)-camera
-        if x < -120 or x>view.x+120: continue
-        Terrain.contact(self,Vector2(x,Terrain.GROUND_Y),35,.35)
-        Terrain.contact(self,Vector2(x+float(gate.w),Terrain.GROUND_Y),35,.35)
-        # Decorative open columns. Static source rocks own collision, so no hidden gate traps.
-        draw_line(Vector2(x,360),Vector2(x,Terrain.GROUND_Y),Color(.9,.82,1,.4),10)
-        draw_line(Vector2(x+float(gate.w),360),Vector2(x+float(gate.w),Terrain.GROUND_Y),Color(.9,.82,1,.4),10)
+        if _portal_is_open(): _draw_text(portal+Vector2(-48,160),"Continue",18,Color("#c7ece3"))
 func _paint_chapter_boss() -> void:
     if boss_hp<=0 or chapter_boss_art==null: return
     var pos := boss_position-Vector2(camera,0)
     if pos.x < -500 or pos.x>get_viewport_rect().size.x+500: return
     # Shared mesh actor supplies connected fins, breathing and hit/defeat reactions.
-    draw_arc(pos,190,0,TAU,48,Color(.5,1,.7) if _boss_vulnerable() else Color(1,.7,.5),4)
-    _draw_text(pos+Vector2(-110,-210),"BOOST NOW!" if _boss_vulnerable() else "DODGE & WAIT",19)
+    Polish.boss_cue(self,pos,140 if chapter_id=="palace" else 170,_boss_vulnerable())
     if chapter_id=="rana" and boss_phase!="recover":
         draw_line(Vector2(pos.x-850,laser_y),Vector2(pos.x,laser_y),Color(1,.3,.55,.65),5 if boss_phase=="attack" else 2)
     if chapter_id=="nessie":
-        draw_texture_rect(preload("res://godot/assets/ui-v014/crown.png"),Rect2(pos+Vector2(84,-166),Vector2(80,60)),false)
         if pulse_radius>0: draw_arc(pos,pulse_radius,0,TAU,48,Color(.75,.5,1,.45),4)
 
 func _portal_is_open() -> bool: return boss_hp<=0

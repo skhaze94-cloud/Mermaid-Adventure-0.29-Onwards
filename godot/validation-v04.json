@@ -1,0 +1,156 @@
+[
+  {
+    "test": "creature_articulation_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 0.75,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCREATURE ARTICULATION: 109458 checks, 0 failures\n"
+  },
+  {
+    "test": "enemy_engagement_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.57,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENEMY ENGAGEMENT TEST PASSED\n"
+  },
+  {
+    "test": "enemy_visuals_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.39,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENEMY VISUALS TEST PASSED\n"
+  },
+  {
+    "test": "environment_visuals_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.39,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENVIRONMENT VISUALS TEST PASSED\n"
+  },
+  {
+    "test": "journey_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 2.68,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT FIRST THREE CHAPTERS TEST PASSED\n"
+  },
+  {
+    "test": "jump_animation_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 2.04,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT JUMP ANIMATION TEST PASSED\n"
+  },
+  {
+    "test": "level1_smoke_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.6,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT LEVEL 1 LOGIC TEST PASSED\n"
+  },
+  {
+    "test": "ocean_alive_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 2.78,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOCEAN ALIVE: 117 checks, 0 failures\n"
+  },
+  {
+    "test": "rock_collision_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 2.5,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nROCK RESCUE: 1153 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_continuity_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 5.17,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH CONTINUITY: 4325 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_depth_motion_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 3.47,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH DEPTH: 1581 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_magnifique_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.67,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SARAH MAGNIFIQUE TEST PASSED\n"
+  },
+  {
+    "test": "complete_adventure_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 9.22,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures\n"
+  },
+  {
+    "test": "family_layout_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 4.43,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures\n"
+  },
+  {
+    "test": "title_flow_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 5.23,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT TITLE FLOW TEST PASSED\n"
+  },
+  {
+    "test": "scene_flow_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 8.16,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED\n"
+  },
+  {
+    "test": "avina_tutorial_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 3.66,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY TUTORIAL: 122 checks, 0 failures\n"
+  },
+  {
+    "test": "grounding_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 2.21,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GROUNDING TEST: 487 checks, 0 failures\n"
+  },
+  {
+    "test": "visual_polish_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 3.35,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nVISUAL POLISH: 336 checks, 0 failures\n"
+  },
+  {
+    "test": "device_layout_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.38,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED\n"
+  },
+  {
+    "test": "gameplay_controls_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.38,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED\n"
+  },
+  {
+    "test": "scoring_ui_test.gd",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.29,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED\n"
+  }
+]

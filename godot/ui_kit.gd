@@ -2,14 +2,11 @@ extends RefCounted
 const FONT = preload("res://dist/fonts/treasure-display.ttf")
 const BODY = preload("res://dist/fonts/story-serif.ttf")
 const ICONS := {
- "shell":preload("res://godot/assets/ui-v014/shell.png"),"heart":preload("res://godot/assets/ui-v014/heart.png"),
- "crown":preload("res://godot/assets/ui-v014/crown.png"),"star":preload("res://godot/assets/ui-v014/star.png"),
- "chest":preload("res://godot/assets/ui-v014/chest.png"),"bubble":preload("res://godot/assets/ui-v014/bubble.png"),
- "jump":preload("res://godot/assets/ui-v014/jump.png"),"boost":preload("res://godot/assets/ui-v014/boost.png"),
- "pause":preload("res://godot/assets/ui-v014/pause.png"),"settings":preload("res://godot/assets/ui-v014/settings.png"),
- "home":preload("res://godot/assets/ui-v014/home.png"),"restart":preload("res://godot/assets/ui-v014/restart.png"),
- "joystick":preload("res://godot/assets/ui-v014/joystick.png"),"thumb":preload("res://godot/assets/ui-v014/thumb.png"),
- "ribbon":preload("res://godot/assets/ui-v014/ribbon.png"),"crest":preload("res://godot/assets/ui-v014/crest.png")}
+ "shell":preload("res://godot/assets/ui-v014/shell.png"),
+ "heart":preload("res://godot/assets/ui-v014/heart.png"),
+ "crown":preload("res://godot/assets/ui-v014/crown.png"),
+ "star":preload("res://godot/assets/ui-v014/star.png"),
+ "crest":preload("res://godot/assets/ui-v014/crest.png")}
 static func panel(fill := Color("#082b40"), edge := Color("#60cfcf"), radius := 18) -> StyleBoxFlat:
     var p := StyleBoxFlat.new()
     p.bg_color = fill
@@ -22,6 +19,10 @@ static func panel(fill := Color("#082b40"), edge := Color("#60cfcf"), radius := 
     p.set_content_margin_all(10)
     return p
 static func theme() -> Theme:
+    var body_font: FontFile = BODY
+    var display_font: FontFile = FONT
+    body_font.multichannel_signed_distance_field=true
+    display_font.multichannel_signed_distance_field=true
     var t := Theme.new()
     t.default_font = BODY
     t.default_font_size = 18

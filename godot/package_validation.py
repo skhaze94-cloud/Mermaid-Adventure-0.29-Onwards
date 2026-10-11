@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Validate directory entries, Godot extraction and fresh project startup."""
-import argparse, pathlib, subprocess, tempfile, zipfile, hashlib, sys
+import argparse, pathlib, subprocess, tempfile, zipfile, hashlib, sys, shutil
 root = pathlib.Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
 parser.add_argument('--godot', default='godot')
@@ -26,7 +26,11 @@ with tempfile.TemporaryDirectory(prefix='sarah-package-',dir=args.temp_dir) as t
     # Wait for all imports, rather than closing the editor during a slow scan.
     run([args.godot,'--headless','--editor','--path',str(stage/'fresh'),'--import'])
     run([args.godot,'--headless','--path',str(stage/'fresh'),'--quit-after','16'])
-    for suite in ['sarah_v031_bundle_test.gd', 'sarah_v030_bundle_test.gd', 'sarah_arm_review_test.gd', 'sarah_torso_motion_test.gd', 'sarah_definitive_review_test.gd', 'sarah_definitive_test.gd', 'sarah_spine_motion_test.gd', 'sarah_face_details_test.gd', 'sarah_ultimate_test.gd', 'complete_adventure_test.gd']:
-        print(run([args.godot,'--headless','--path',str(stage/'fresh'),'--max-fps','60','--script','res://godot/'+suite]).strip())
+    suites = ['visual_polish_test.gd','gameplay_controls_test.gd','environment_visuals_test.gd','family_layout_test.gd','complete_adventure_test.gd','scoring_ui_test.gd','title_flow_test.gd','scene_flow_test.gd']
+    # Developer checks are copied into the temporary extraction only.
+    # The playable ZIP has no captures, tests or historical reports.
+    for suite in suites:
+        shutil.copyfile(root/'godot'/suite,stage/'fresh/godot'/suite)
+        print(run([args.godot,'--headless','--path',str(stage/'fresh'),'--max-fps','60','--script','res://godot/'+suite]).strip(),flush=True)
     print(log.strip())
     print('GODOT FRESH PACKAGE IMPORT TEST PASSED')

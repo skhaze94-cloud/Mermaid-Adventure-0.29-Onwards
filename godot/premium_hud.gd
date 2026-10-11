@@ -1,5 +1,6 @@
 extends CanvasLayer
 signal menu_requested
+const Polish = preload("res://godot/visual_polish.gd")
 const Controls = preload("res://godot/control_layout.gd")
 const Kit = preload("res://godot/ui_kit.gd")
 const Card = preload("res://godot/ui_card.tscn")
@@ -67,7 +68,7 @@ func _ready() -> void:
     canvas.name = "PearlAndCrownHUD"
     canvas.mouse_filter = Control.MOUSE_FILTER_IGNORE
     canvas.theme = Kit.theme()
-    touch_normal = Kit.panel(Color(0.015,0.10,0.17,0.80),Color("#59bfc4"),28)
+    touch_normal = Kit.panel(Color(0.025,0.12,0.18,0.94),Color("#6fc9c7"),22)
     touch_pressed = Kit.panel(Color("#145565"),Color("#ffb7e5"),28)
     add_child(canvas)
     score_card = Card.instantiate()
@@ -120,7 +121,8 @@ func _ready() -> void:
     canvas.add_child(boss_card)
     var boss_box := VBoxContainer.new()
     boss_card.add_child(boss_box)
-    boss_label = Kit.label("CARLO THE CRAB",14,Color("#ffe3a1"))
+    boss_label = Kit.label("CARLO THE CRAB",16,Color("#ffe3a1"))
+    boss_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
     boss_box.add_child(boss_label)
     boss_meter = _meter(boss_box)
     boss_meter.custom_minimum_size.y = 12
@@ -192,7 +194,6 @@ func _ready() -> void:
         var button := Button.new()
         button.mouse_filter = Control.MOUSE_FILTER_IGNORE
         button.text = {"resume":"Resume adventure","restart":"Play again","menu":"Back to the lagoon"}[action]
-        button.icon = Kit.ICONS["home" if action == "menu" else ("restart" if action == "restart" else "jump")]
         button.expand_icon = true
         button.add_theme_constant_override("icon_max_width",26)
         button.pressed.connect(func(): _modal_action(action))
@@ -212,20 +213,17 @@ func _ready() -> void:
     banner = Control.new()
     banner.mouse_filter = Control.MOUSE_FILTER_IGNORE
     canvas.add_child(banner)
-    var ribbon := Kit.icon("ribbon")
-    ribbon.stretch_mode = TextureRect.STRETCH_SCALE
-    ribbon.position = Vector2.ZERO
-    ribbon.size = Vector2(240,80)
-    banner.add_child(ribbon)
-    banner_label = Kit.label("",20,Color("#fff2ba"))
-    banner_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    banner_label.position = Vector2(12,22)
-    banner_label.size = Vector2(216,42)
+    var toast := Panel.new()
+    toast.name="RewardToast"
+    toast.mouse_filter=Control.MOUSE_FILTER_IGNORE
+    toast.size=Vector2(240,48)
+    toast.add_theme_stylebox_override("panel",Kit.panel(Color("#103847"),Color("#6cbcb9"),12))
+    banner.add_child(toast)
+    banner_label=Kit.label("",17,Color("#ffe4b0"))
+    banner_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+    banner_label.position=Vector2(10,7)
+    banner_label.size=Vector2(220,34)
     banner.add_child(banner_label)
-    for i in range(5):
-        var sparkle := Kit.icon("star",Vector2(12,12))
-        banner.add_child(sparkle)
-        banner_sparkles.append(sparkle)
     banner.visible = false
     _ignore_decoration(canvas)
     get_viewport().size_changed.connect(_resize)
@@ -275,7 +273,7 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
     combo_label.position = Vector2(18,117)
     combo_meter.position = Vector2(18,140)
     combo_meter.size = Vector2(minf(240,w*0.34),8)
-    chapter.position = Vector2(18,155)
+    chapter.position = Vector2(18,130)
     route.position = Vector2(16,h-12)
     route.size = Vector2(w-32,6)
     var message_width := minf(w-40,740)
@@ -300,7 +298,7 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
         modal_buttons[action].size = rect.size
     rotate_label.position = Vector2(0,h*0.43)
     rotate_label.size = Vector2(w,90)
-    banner.position = Vector2(w-258,118)
+    banner.position = Vector2(w-258,126)
     _refresh()
 func to_ui(point: Vector2) -> Vector2: return (point-safe_frame.position)/ui_scale
 func to_game(rect: Rect2) -> Rect2: return Rect2(safe_frame.position+rect.position*ui_scale,rect.size*ui_scale)
@@ -325,6 +323,8 @@ func action_rect(action: String) -> Rect2:
         var center := rect.get_center()
         rect.size *= maxf(1.0,control_size)
         rect.position = center-rect.size/2
+        if action in ["jump","bubble"]:
+            rect.position.y-=maxf(0.0,control_size-1.0)*180.0
         rect.position.x = clampf(rect.position.x,12,game_size.x-12-rect.size.x)
     return rect
 func update_hud(next_info: Dictionary) -> void:
@@ -360,8 +360,9 @@ func _refresh() -> void:
     combo_label.text = "COMBO! ×%s" % combo if combo>1 else ""
     combo_meter.visible = combo>1 and not portrait
     combo_meter.value = float(info.get("combo_left",0))/3.0
-    combo_label.visible = not portrait
-    chapter.text = "THE WATERFALL" if info.get("waterfall","") != "" else info.get("chapter","HIGHLAND GOLD · STAGE 1")
+    combo_label.visible = combo>1 and not portrait
+    chapter.position.y=155.0 if combo>1 else 130.0
+    chapter.text = "The waterfall" if info.get("waterfall","") != "" else String(info.get("chapter","Highland Gold")).split(" · ")[0].capitalize()
     chapter.visible = not portrait and not (game_size.y<720 and info.get("boss_active",false))
     route.value = info.get("fall_progress" if info.get("waterfall","") != "" else "progress",0)
     route.visible = not portrait
@@ -373,7 +374,7 @@ func _refresh() -> void:
     message_back.modulate.a = hint_alpha
     boss_card.visible = info.get("boss_active",false) and not portrait
     boss_meter.value = info.get("boss_health",1.0)
-    boss_label.text = info.get("boss_name","CARLO THE CRAB") + (" · BOOST!" if info.get("boss_vulnerable",false) else "")
+    boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + (" · Boost now" if info.get("boss_vulnerable",false) else "")
     touch_layer.visible = info.get("touch",false) and not portrait and not info.get("paused",false) and not info.get("victory",false)
     touch_layer.modulate.a = control_opacity
     touch_layer.queue_redraw()
@@ -502,10 +503,16 @@ func _draw_touch() -> void:
     var center := pad.get_center()
     var factor := control_size
     var direction: Vector2 = info.get("pad",Vector2.ZERO)
-    touch_layer.draw_texture_rect(Kit.ICONS["joystick"],Rect2(center-Vector2(78,66)*factor,Vector2(156,132)*factor),false)
-    if direction.length()>0.05:
-        touch_layer.draw_line(center,center+direction*42*maxf(1,factor),Color("#a5fff5"),4)
-    touch_layer.draw_texture_rect(Kit.ICONS["thumb"],Rect2(center+direction*42*maxf(1,factor)-Vector2(24,24)*factor,Vector2(48,48)*factor),false)
+    var radius := 58.0*factor
+    touch_layer.draw_circle(center,radius,Color(.025,.12,.18,.92))
+    touch_layer.draw_arc(center,radius,0,TAU,64,Color(.45,.80,.78,.85),2,true)
+    for angle in [0,PI*.5,PI,PI*1.5]:
+        var axis := Vector2.RIGHT.rotated(angle)
+        touch_layer.draw_line(center+axis*radius*.76,center+axis*radius*.88,Color(.65,.9,.86,.65),2,true)
+    var knob := center+direction*35.0*maxf(1,factor)
+    if direction.length()>0.05: touch_layer.draw_line(center,knob,Color("#a5fff5"),3,true)
+    touch_layer.draw_circle(knob,20*factor,Color("#75d3c6"))
+    touch_layer.draw_arc(knob,20*factor,0,TAU,40,Color("#c1f4e6"),1.5,true)
     for action in ["jump","boost","bubble","pause"]:
         var rect := action_rect(action)
         var locked: bool = action == "bubble" and not info.get("bubble",false)
@@ -515,9 +522,9 @@ func _draw_touch() -> void:
         touch_layer.draw_style_box(style,rect)
         var icon_size := minf(rect.size.x,rect.size.y)*0.64*minf(1,factor)
         var icon_at := rect.get_center()-Vector2.ONE*icon_size/2+Vector2(0,-5)
-        touch_layer.draw_texture_rect(Kit.ICONS[action],Rect2(icon_at,Vector2.ONE*icon_size),false,Color(0.4,0.5,0.6,0.55) if locked or not available else Color.WHITE)
-        var label: String = "LOCKED" if locked else ("LOW ENERGY" if not available else String(action).to_upper())
-        touch_layer.draw_string(ThemeDB.fallback_font,rect.position+Vector2(0,rect.size.y-10),label,HORIZONTAL_ALIGNMENT_CENTER,rect.size.x,11,Color("#defdf5"))
+        Polish.glyph(touch_layer,"lock" if locked else action,icon_at+Vector2.ONE*icon_size*.5,icon_size*.78,Color("#789ba4") if locked or not available else Color("#c5f6e8"))
+        var label: String = "LOCKED" if locked else ("RECHARGE" if not available else String(action).to_upper())
+        touch_layer.draw_string(Kit.BODY,rect.position+Vector2(0,rect.size.y-10),label,HORIZONTAL_ALIGNMENT_CENTER,rect.size.x,13,Color("#defdf5"))
         var cool := float(info.get("cooldowns",{}).get(action,0))
         if cool>0:
             touch_layer.draw_arc(rect.get_center(),minf(rect.size.x,rect.size.y)*0.43,-PI/2,-PI/2+TAU*clampf(cool/(0.20 if action == "bubble" else 0.9),0,1),32,Color("#ffe2ad"),3)

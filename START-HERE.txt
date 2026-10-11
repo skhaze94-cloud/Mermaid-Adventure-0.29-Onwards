@@ -1,51 +1,20 @@
-Sarah Maria — Mermaid Adventure | Godot v0.31 — Ultimate Definitive Sarah Maria
+Sarah Maria — Mermaid Adventure
+v0.4 — Ultimate Mega-Max Polish
 
-Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
-Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
-Begin adventure starts the family tutorial. Choose a chapter opens any of the
-eight levels directly.
+1. Extract the whole ZIP into a NEW EMPTY folder.
+2. Import the ROOT project.godot in Godot. Tested with Godot 4.4.1.
+3. Keep godot/ and dist/ beside project.godot. Wait for asset import.
+4. Press F5. Begin adventure starts the family lagoon tutorial.
+   Choose a chapter opens any of the eight chapters.
 
-v0.31 adds the opposite-side entrance, a small camera wave, tripled hair,
-forehead and tail paint points, and layered subtle detail movement.
-See godot/SARAH-V031-BUNDLE-REVIEW.md.
+Swim: arrows / WASD / controller stick / touch pad
+Boost: Space / controller B
+Jump: J or Shift / controller A
+Bubble: B or Z / controller X (earned during the adventure)
+Pause: Escape / P / controller Start
 
-v0.30 is the Ultimate Definitive Sarah Maria bundle: recurring breaststroke,
-deeper elbow flexion, hand cupping, connected shoulder paint and a softened
-torso–tail scale transition. The opening features the animated gameplay Sarah.
-See godot/SARAH-V030-BUNDLE-REVIEW.md.
+Use landscape for play. Portrait pauses safely.
+Options includes audio, Gentle Motion, Economy graphics and touch controls.
 
-v0.29.7 adds localized elbow flexion, independent wrist follow-through and
-face-safe raised arm reaches. See godot/SARAH-ARM-REVIEW.md for the full
-review of body joins, texture overlap and movement validation.
-
-v0.29.6 adds a shared blue-pearl transition across the torso–tail join.
-Original painted scales and the anchored hip are preserved.
-See godot/SARAH-WAIST-REVIEW.md.
-
-v0.29.5 adds independent ribcage rotation/lift/volume, delayed waist-to-tail
-flow, and a neck/collar that follows the chest. See godot/SARAH-TORSO-REVIEW.md.
-The v0.29.4 Definitive Sarah review and 432-point motion libraries are retained.
-
-v0.29.2 adds a gentle back ripple, chest-led turns and delayed neck settling.
-The collar and hip joins remain anchored. See godot/SARAH-SPINE-REVIEW.md.
-
-v0.29.1 adds subtle blinks, gaze, smiles, ear/nose head-follow and hair motion
-coordinated with the body, tail, strokes, boosts and waterfall current.
-See godot/SARAH-DETAILS-VALIDATION.md for the detail polish checks.
-
-v0.29 focuses on Sarah: 36 body/fluke loops, 432 samples per loop, twelve
-distinct swim-stroke profiles and six aerial performances. Swim horizontally,
-up, down or boost to see different arm strokes and matching tail movement.
-Continued swimming naturally alternates related strokes. The waterfall has
-dedicated entry, balance/sculling, climb, dive, boost and exit performances.
-Stroke changes blend smoothly without resetting the animation phase.
-
-WASD/arrows: move. Space: Boost. J/Shift: Jump. B/Z: Bubble.
-P/Escape: pause. R: restart. Touch and controller controls are included.
-Gentle Motion and Economy settings remain available.
-
-See godot/ULTIMATE-SARAH-VALIDATION.md for this release's checks and limits.
-The v0.28 Living Creatures adventure, all eight chapters, family tutorial,
-Avina choices and creature articulation are retained.
-
- v0.29.3 triples sampled motion and adds coordinated shoulders, head and jaw.
+This is the cleaned playable project. Tests, capture scripts and historical
+reports remain in the GitHub repository rather than the playable ZIP.

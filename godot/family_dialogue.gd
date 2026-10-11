@@ -9,15 +9,15 @@ const NODES := {
     ["I’ll take the safe route.","earnest","Excellent. Look ahead, steer around stone, and let your tail do the work."],
     ["Does it have a health bar?","cheeky","Not yet. It is still negotiating its contract."],
     ["Where did the treasure come from?","curious","Mum hid three chests at different depths. Curiosity deserves a reward."]]],
-"boost":["king","Very dignified zoomies","Aim first, boost second! Space, controller A, or the gold Boost button. Your aqua bar needs 40% and refills itself.",[
+"boost":["king","Very dignified zoomies","Aim first, boost second! Space, controller B, or the Boost button. Your aqua bar needs 40% and refills itself.",[
     ["Stand back. Zoomies incoming.","cheeky","The royal beard has been secured. Proceed."],
     ["I’ll aim before I boost.","earnest","Beautiful. A little control makes a big difference."],
     ["What if the bar runs out?","curious","Keep swimming while it recharges. We have all the time in the lagoon."]]],
-"jump":["king","Time to meet the sky","Press J or Shift, controller B, or Jump. Start underwater with 40% energy. Steer in the air and land back in the water.",[
+"jump":["king","Time to meet the sky","Press J or Shift, controller A, or Jump. Start underwater with 40% energy. Steer in the air and land back in the water.",[
     ["One small splash first.","earnest","A wonderful start. Land gently; you can practise as often as you like."],
     ["Please rate my landing kindly.","cheeky","I have already ordered the trophy. Your mother is checking the invoice."],
     ["Can I bounce again?","curious","Tap Jump around splashdown to chain a second leap. Watch your landing."]]],
-"air":["king","Over the reef!","Start LEFT of the tall reef at 4,800, jump, then steer RIGHT. Land beyond it.\nSarah: Please tell the reef to stay still.",[
+"air":["king","Over the reef!","Start to the left of the tall reef, jump, then steer right. Land beyond it.\nSarah: Please tell the reef to stay still.",[
     ["Aim, jump, steer, land.","earnest","Exactly. Four little steps, one magnificent splash."],
     ["Ten out of ten, please.","cheeky","Eleven. The extra point is for confidence."],
     ["What if I bump it?","curious","You are safe here. Swim back to the left, refill your energy, and try again."]]],

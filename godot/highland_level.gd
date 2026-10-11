@@ -1,4 +1,5 @@
 extends Node2D
+const Polish = preload("res://godot/visual_polish.gd")
 const GroundArt = preload("res://godot/terrain_painter.gd")
 ## Sarah Maria — Highland Gold, Godot 4 playable port (prototype 0.1).
 ## Source of truth: dist/game.js, dist/highland.js, dist/creature-sprites-v731.js
@@ -1195,14 +1196,9 @@ func _draw_boss() -> void:
     if x < -360 or x > get_viewport_rect().size.x + 360:
         return
     var y := boss_position.y
-    var glow := Color(0.28, 1.0, 0.58, 0.22) if _boss_vulnerable() else Color(1.0, 0.44, 0.47, 0.18)
-    draw_circle(Vector2(x, y), 180.0, glow)
+    Polish.boss_cue(self,Vector2(x,y),148,_boss_vulnerable())
     if not is_instance_valid(native_boss):
-        draw_texture_rect(CARLO, Rect2(x - 162, y - 180, 324, 352), false)
-    draw_rect(Rect2(x - 140, y - 206, 280, 15), Color("#123349"))
-    draw_rect(Rect2(x - 140, y - 206, 280.0 * float(boss_hp) / _boss_max_health(), 15), Color("#80ffc8") if _boss_vulnerable() else Color("#ffba8a"))
-    var label: String = "BOOST NOW" if _boss_vulnerable() else ["CLAW SWEEP", "PEARL VOLLEY", "CRAB DASH"][boss_pattern]
-    _draw_text(Vector2(x - 110, y - 220), label, 22, Color("#fff0d1"))
+        draw_texture_rect(CARLO,Rect2(x-162,y-180,324,352),false)
     if boss_phase == "windup":
         var origin := boss_position - Vector2(camera, 0)
         if boss_pattern == 0:
@@ -1274,55 +1270,8 @@ func _draw_waterfall(s: Vector2) -> void:
     _draw_hero(hero_pos)
 
 
-func _draw_hud(s: Vector2) -> void:
-    draw_rect(Rect2(12, 10, s.x - 24, 79), Color(0.035, 0.13, 0.22, 0.75))
-    _draw_text(Vector2(30, 46), "HIGHLAND GOLD", 27, Color("#fff2d2"))
-    _draw_text(Vector2(30, 76), "Carlo's Cold Kingdom", 18, Color("#b4edee"))
-    if s.x >= 1100:
-        _draw_text(Vector2(s.x - 380, 72), "F3: MOTION   F4: DEPTH   M: MUSIC", 14, Color("#b4edee"))
-    for i in range(MAX_HEALTH):
-        draw_circle(Vector2(315.0 + float(i) * 29.0, 43.0), 11.0, Color("#ff8eb9") if i < health else Color("#465568"))
-    _draw_text(Vector2(490, 48), "SCORE  " + str(score), 23, Color("#fff1bc"))
-    draw_rect(Rect2(700, 29, 178, 20), Color("#25495e"))
-    draw_rect(Rect2(700, 29, 178 * energy, 20), Color("#72ead9"))
-    _draw_text(Vector2(705, 70), "BOOST", 18, Color("#d9fffd"))
-    _draw_text(Vector2(905, 47), "PEARLS  " + str(picked_count), 21, Color("#d9fbff"))
-    var progress := clampf(player.x / _level_length(), 0.0, 1.0)
-    draw_rect(Rect2(12, s.y - 11, s.x - 24, 6), Color("#123a54"))
-    draw_rect(Rect2(12, s.y - 11, (s.x - 24.0) * progress, 6), Color("#f7d78b"))
-    if message_time > 0.0 and state == "playing":
-        var width := minf(s.x - 36.0, 900.0)
-        var start := (s.x - width) * 0.5
-        draw_rect(Rect2(start, 118, width, 59), Color(0.025, 0.17, 0.28, 0.76))
-        _draw_text(Vector2(start + 21, 155), message, 21, Color("#f3fff5"))
-    if player.x > _boss_home() - 850.0 and boss_hp > 0:
-        _draw_text(Vector2(s.x * 0.5 - 215, 200), "CARLO: BOOST WHEN HE GLOWS GREEN", 23, Color("#ffeed1"))
-    if bubble_unlocked:
-        _draw_text(Vector2(s.x - 287, 76), "B / Z : BUBBLE", 20, Color("#aeffee"))
-
 func _draw_text(pos: Vector2, value: String, font_size: int = 23, color: Color = Color.WHITE) -> void:
-    draw_string(ThemeDB.fallback_font, pos, value, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)
-
-func _draw_touch_controls(s: Vector2) -> void:
-    for action in ["left", "right", "up", "down", "boost", "jump", "bubble", "pause"]:
-        if action == "bubble" and not bubble_unlocked:
-            continue
-        var rect := _touch_rect(action, s)
-        draw_rect(rect, Color(0.04, 0.21, 0.30, 0.70))
-        var labels := {"left": "LEFT", "right": "RIGHT", "up": "UP", "down": "DOWN", "boost": "BOOST", "jump": "JUMP", "bubble": "BUBBLE", "pause": "II"}
-        _draw_text(rect.position + Vector2(8, rect.size.y * 0.60), labels[action], 20, Color("#eafffa"))
-
-func _draw_overlay(s: Vector2) -> void:
-    draw_rect(Rect2(Vector2.ZERO, s), Color(0.015, 0.075, 0.11, 0.78))
-    var center := s * 0.5
-    var heading := "LEVEL COMPLETE" if state == "victory" else "PAUSED"
-    _draw_text(center + Vector2(-160, -70), heading, 45, Color("#fff0cb"))
-    _draw_text(center + Vector2(-174, -20), "Score: " + str(score) + "   |   Collected: " + str(picked_count), 25, Color("#c7fff6"))
-    _draw_text(center + Vector2(-220, 33), "Press P to resume, or R to restart" if state == "paused" else "Press Enter or R to play again", 22, Color("#f1fdff"))
-    if DisplayServer.is_touchscreen_available():
-        var rect := _touch_rect("restart", s)
-        draw_rect(rect, Color("#268d93"))
-        _draw_text(rect.position + Vector2(48, 43), "RESTART", 23, Color.WHITE)
+    draw_string(preload("res://dist/fonts/story-serif.ttf"), pos, value, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color)
 
 func _draw_enemy_cue(enemy: Dictionary, pos: Vector2) -> void:
     var mode := String(enemy.get("mode", "patrol"))

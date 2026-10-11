@@ -4,7 +4,7 @@ const Royal = preload("res://godot/family_royal_actor.gd")
 const RINGS: Array[Vector2] = [Vector2(1100,430),Vector2(1900,650),Vector2(2850,420)]
 const HIDES: Array[Vector2] = [Vector2(7100,756),Vector2(7240,735),Vector2(7360,760)]
 const TITLES := ["Explore the family lagoon","Three glowing swim rings","Through the elite reef","Very dignified zoomies","Your first sky jump","Over the tall reef","Antonella’s royal gifts","Three volunteer boops","King Daddy’s final trial","A tiny game of peekaboo","Avina’s very first bubble"]
-const HINTS := ["Swim freely • arrows / WASD / stick / touch pad","Swim into each glowing ring · 0 / 3","Swim beyond the reef · relic chests are optional","Aim and Boost • Space / controller A / Boost button","Jump and land • J or Shift / controller B / Jump","Jump LEFT of 4,800 · steer RIGHT · land past the reef","Collect heart + gold · jump with the power · land","Boost boop Professor Puff, Sir Wobble and Noodle","Dodge slow spells · wait for GREEN · Boost into Daddy","Look for a little bow behind the sparkling coral","B or Z / controller X / Bubble · then swim to the portal"]
+const HINTS := ["Swim freely • arrows / WASD / stick / touch pad","Swim into each glowing ring · 0 / 3","Swim beyond the reef · relic chests are optional","Aim and Boost • Space / controller B / Boost button","Jump and land • J or Shift / controller A / Jump","Jump before the tall reef · steer right · land beyond it","Collect heart + gold · jump with the power · land","Boost boop Professor Puff, Sir Wobble and Noodle","Dodge slow spells · wait for GREEN · Boost into Daddy","Look for a little bow behind the sparkling coral","B or Z / controller X / Bubble · then swim to the portal"]
 var lesson := 0
 var ring_count := 0
 var explore_time := 0.0
@@ -276,7 +276,7 @@ func _draw_world(view: Vector2) -> void:
         if cloud_active:
             for i in range(5): draw_circle(cloud-Vector2(camera,0)+Vector2((i-2)*16,sin(i)*10),22,Color(.7,.9,1,.4))
         if wave_active: draw_arc(wave-Vector2(camera,0),95,-PI*.5,PI*.5,32,Color(.6,1,.95,.7),5)
-        draw_arc(boss_position-Vector2(camera,0),145,0,TAU,64,Color("9bffd0") if _boss_vulnerable() else Color("dcc18e"),3)
+        Polish.boss_cue(self,boss_position-Vector2(camera,0),120,_boss_vulnerable())
         _draw_text(boss_position-Vector2(camera,0)+Vector2(-175,-178),move_name,18)
     if queen_demo>0:
         var center := queen_teacher.position+Vector2(65,-45)
@@ -287,9 +287,6 @@ func _draw_world(view: Vector2) -> void:
             draw_circle(center+offset,6,Color(.98,.86,1,.45))
             draw_arc(center+offset,6,0,TAU,20,Color("ffe4d4"),1)
         _draw_text(queen_teacher.position+Vector2(-100,175),["PEARL FAN · demonstration","CROWN HALO · demonstration","PEARL WAVE · demonstration"][mini(phase,2)],14)
-    if lesson>=6:
-        _draw_text(queen_teacher.position+Vector2(-95,-165),"QUEEN ANTONELLA",16)
-    if lesson>=1: _draw_text(king.position+Vector2(-65,-165),"KING DADDY",16)
 
 func _paint_chapter_boss() -> void: pass
 func _start_hide_seek() -> void:
@@ -476,7 +473,7 @@ func _input(event: InputEvent) -> void:
 func _card() -> PanelContainer:
     var panel := PanelContainer.new()
     var style := StyleBoxFlat.new()
-    style.bg_color = Color("102f49f2")
+    style.bg_color = Color("102f49")
     style.border_color = Color("b6a4d5")
     style.set_border_width_all(1)
     style.set_corner_radius_all(22)
