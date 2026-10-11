@@ -39,6 +39,8 @@ var waterfall_context := ""
 var visual_travel := Vector2.ZERO
 var arm_pose_near := Vector3.ZERO
 var arm_pose_far := Vector3.ZERO
+const ArmDynamics = preload("res://godot/sarah_arm_dynamics.gd")
+var arm_dynamics = ArmDynamics.new()
 var bodice: Polygon2D
 const BODICE_BOUNDS := Rect2(-3,-40,60,60)
 const BODICE_REGION := Rect2(8,19,240,218)
@@ -138,6 +140,7 @@ var jump_joy_near := 0.0
 var jump_joy_far := 0.0
 var corkscrew := 0.0
 var depth_turn := 0.0
+var arm_depth_swapped := false
 var volume_materials: Array[ShaderMaterial] = []
 var painted_parts: Array[Node2D] = []
 
@@ -249,6 +252,7 @@ func reset_performance() -> void:
     settle_blend = 0.0
     arm_pose_near = Vector3.ZERO
     arm_pose_far = Vector3.ZERO
+    arm_dynamics.reset()
     expression_index = 0
     spine_motion.reset()
     definitive_motion.reset()
@@ -272,6 +276,9 @@ func _arm(index: int, parent: Node2D, length: float, height: float) -> void:
     var region := Rect2(Vector2(crop[0],crop[1])*size,Vector2(crop[2],crop[3])*size)
     var mesh := ArmMesh.new()
     mesh.name = "ContinuousArmSkin_%d" % index
+    if index==1:
+        mesh.elbow_uv=Vector2(.45,.49)
+        mesh.wrist_uv=Vector2(.67,.62)
     mesh.configure(ARMS,region,Rect2(-5.0,-height*0.28,length,height),32,9)
     # Fuller upper arm with a gently tapered wrist; retain painted hands and UVs.
     for i in range(mesh.rest.size()):
@@ -294,6 +301,7 @@ func _volume_material(crop: Array) -> ShaderMaterial:
 
 func _reset_depth_pose() -> void:
     depth_turn = 0.0
+    arm_depth_swapped = false
     corkscrew = 0.0
     jump_joy_near = 0.0
     jump_joy_far = 0.0
@@ -324,7 +332,8 @@ func _ribbon(index: int, parent: Node2D, destination: Rect2, shining: bool) -> v
     ribbons.append(mesh)
     painted_parts.append(mesh)
 
-func _update_ribbons(_dt: float, phase: float, swim_amount: float) -> void:
+func _update_ribbons(dt: float, phase: float, swim_amount: float) -> void:
+    arm_dynamics.update(self,dt)
     var active := high_quality and not reduced_motion
     if not active:
         if mesh_was_active:
@@ -340,10 +349,9 @@ func _update_ribbons(_dt: float, phase: float, swim_amount: float) -> void:
     var shared_wave := cycle_pose.y*.45
     ribbons[0].deform(phase*.5-.4,2.3+strength*.35,hair_drag*6.0+horizontal_drag*4.0+shared_wave)
     ribbons[1].deform(phase*.5-1.1,1.5+strength*.55,hair_drag*4.0+horizontal_drag*5.0+shared_wave*.7)
-    var expression := 0.25 if leaping or boosting else 1.0
     # Array order is far then near. Keep each elbow/wrist on its own shoulder.
-    arm_meshes[1].skin(arm_pose_near.y+gesture_wave*expression*.12, arm_pose_near.z+gesture_wave*expression*.14-gesture_reach*expression*.08+jump_joy_near*sin(jump_air_time*18)*.10)
-    arm_meshes[0].skin(arm_pose_far.y, arm_pose_far.z-gesture_wave*expression*.10+jump_joy_far*sin(jump_air_time*16+.8)*.10)
+    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y)
+    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y)
     for material in ribbon_materials:
         material.set_shader_parameter("motion_clock", clock)
         material.set_shader_parameter("charge_mix", boost_blend)
@@ -697,12 +705,20 @@ func _process(delta: float) -> void:
     if reduced_motion or not high_quality:
         near_target = near_target.lerp(Vector3(-.42,.035,-.06),boost_blend)
         far_target = far_target.lerp(Vector3(-.34,.025,-.04),boost_blend)
-    arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
-    arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
-    near_arm.rotation = lerpf(near_arm.rotation-spine_motion.shoulder_near.x-torso_motion.rib_angle,
-        arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95 + definitive_motion.shoulder_near.y*.045, fast_ease)
-    far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x-torso_motion.rib_angle,
-        arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045, fast_ease)
+    if high_quality and not reduced_motion:
+        arm_pose_near = arm_dynamics.filter_pose(1,arm_pose_near,near_target,dt)
+        arm_pose_far = arm_dynamics.filter_pose(0,arm_pose_far,far_target,dt)
+    else:
+        arm_pose_near = arm_pose_near.lerp(near_target,fast_ease)
+        arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
+    var near_reach: float = arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95 + definitive_motion.shoulder_near.y*.045
+    var far_reach: float = arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045
+    # Ease into a sideward raised reach, instead of taking the forearm through
+    # the face. The soft limit has a continuous slope rather than a hard stop.
+    if near_reach < -.5: near_reach=-.5+.20*tanh((near_reach+.5)/.20)
+    if far_reach < -.5: far_reach=-.5+.22*tanh((far_reach+.5)/.22)
+    near_arm.rotation = lerpf(near_arm.rotation-spine_motion.shoulder_near.x-torso_motion.rib_angle,near_reach,fast_ease)
+    far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x-torso_motion.rib_angle,far_reach,fast_ease)
     # A readable faux yaw: foreshortening, overlap and lighting agree on depth.
     var roll := sin(air_progress*TAU-0.45)*sin(air_progress*PI) if jump_phase == "airborne" else 0.0
     var yaw_target := clampf((corkscrew*0.95 if jump_style != 2 and playful_air else roll*0.82) + turn_pose*0.45 + sin(swim_phase*0.5)*swim_blend*0.13 + depth_bank*.9,-0.9,0.9)
@@ -712,8 +728,11 @@ func _process(delta: float) -> void:
     torso.scale = Vector2(1.0-depth*0.10,1.0+(0.0 if reduced_motion else tuck*0.025))
     near_arm.scale = Vector2(1.0-maxf(depth_turn,0.0)*0.20,1.0)
     far_arm.scale = Vector2(1.0-maxf(-depth_turn,0.0)*0.20,1.0)
-    near_arm.z_index = -1 if depth_turn > 0.38 else 1
-    far_arm.z_index = 1 if depth_turn > 0.38 else -1
+    # Hysteresis keeps a hovering yaw from repeatedly flipping the two skins.
+    if depth_turn>.42: arm_depth_swapped=true
+    elif depth_turn<.32: arm_depth_swapped=false
+    near_arm.z_index = -1 if arm_depth_swapped else 1
+    far_arm.z_index = 1 if arm_depth_swapped else -1
     near_arm.modulate = Color.WHITE.lerp(Color(0.77,0.84,0.94,1.0),maxf(depth_turn,0.0))
     far_arm.modulate = Color(0.84,0.88,0.94,1.0).lerp(Color.WHITE,maxf(depth_turn,0.0))
     for material in volume_materials + ribbon_materials:

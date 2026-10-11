@@ -13,22 +13,22 @@ static func _pose(style: String, p: float, far: bool) -> Vector3:
         "breaststroke": return Breaststroke.sample(p + (.10 if far else 0.0))
         "front_crawl":
             # Alternating long catch and folded recovery under the shoulder.
-            return Vector3(.57 + .78*sin(q), -.40-.38*sin(q-.65), .14*sin(q+.4))
+            return Vector3(.57 + .78*sin(q), -.43-.44*sin(q-.65), .24*sin(q-.25))
         "sidestroke":
             # Leading arm reaches while the trailing arm makes a compact pull.
-            return Vector3(.48+.54*sin(p+.35), -.38-.28*sin(p-.55), .12*sin(p)) if not far else Vector3(.91+.32*sin(p+1.6), -.55-.20*sin(p+.9), -.10*sin(p+.6))
+            return Vector3(.48+.54*sin(p+.35), -.38-.32*sin(p-.55), .21*sin(p-.35)) if not far else Vector3(.91+.32*sin(p+1.6), -.55-.24*sin(p+.9), -.18*sin(p+.25))
         "butterfly":
-            return Vector3(.46+.89*sin(p-.35), -.36-.37*sin(p-1.0), .15*sin(p+.6))
+            return Vector3(.46+.89*sin(p-.35), -.40-.42*sin(p-1.0), .25*sin(p-.05))
         "rise_scoop":
             # Higher catch, deep symmetric downward scoop for upward travel.
-            return Vector3(.27+.91*sin(p-.65), -.38-.40*sin(p-1.3), -.05+.13*sin(p+.2))
+            return Vector3(.27+.91*sin(p-.65), -.40-.44*sin(p-1.3), -.05+.23*sin(p-.4))
         "rise_alternate":
-            return Vector3(.12+.68*sin(q-.5), -.43-.30*sin(q-1.2), .15*sin(q+.3))
+            return Vector3(.12+.68*sin(q-.5), -.43-.35*sin(q-1.2), .24*sin(q-.3))
         "dive_spear":
             # Reach, then a small alternating trim sweep; never a rigid dive.
-            return Vector3(-.25+.26*sin(q), -.16-.12*sin(q-.8), -.07+.10*sin(q+.2))
+            return Vector3(-.25+.26*sin(q), -.16-.14*sin(q-.8), -.07+.16*sin(q-.3))
         "dive_sweep":
-            return Vector3(.71+.55*sin(p+.6), -.34-.28*sin(p-.15), .14*sin(p+1.0))
+            return Vector3(.71+.55*sin(p+.6), -.36-.32*sin(p-.15), .23*sin(p+.35))
         "boost_dolphin":
             # Streamlined arms; propulsion travels through hips and fluke.
             return Vector3(-.42+.025*sin(p), .025+.012*sin(p-.5), -.06+.02*sin(p-1.0))
@@ -36,7 +36,7 @@ static func _pose(style: String, p: float, far: bool) -> Vector3:
             return Vector3(-.37+.07*sin(p), -.045+.045*sin(p-.8), -.035+.03*sin(p))
         "waterfall_scull":
             # Compact opposed steering sweeps hold balance in the current.
-            return Vector3(.67+.37*sin(q), -.48-.23*sin(q-.5), .20*sin(q+1.0))
+            return Vector3(.67+.37*sin(q), -.48-.28*sin(q-.5), .28*sin(q+.35))
         "waterfall_surge":
             return Vector3(-.28+.055*sin(p), -.025+.035*sin(p-.9), -.07+.025*sin(p+.2))
     return Vector3.ZERO

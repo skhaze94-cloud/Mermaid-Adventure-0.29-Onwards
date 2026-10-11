@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.29.6 Unified Waist
+# Mermaid Adventure — v0.29.7 Dynamic Arms
+
+**v0.29.7** gives Sarah localized elbow bends, anatomically registered wrist pivots and independent joint follow-through. Regular strokes have stronger wrist response, aerial reaches keep her face clear, and arm depth switches resist flicker. The review covers her painted body joins, face, hair, tail and fins. See `godot/SARAH-ARM-REVIEW.md` and `godot/validation-v0297.json`.
 
 **v0.29.6** unifies Sarah’s torso–tail overlap with a restrained blue-pearl colour transition. It preserves the painted scales, highlights, silhouette and anchored hip. See `godot/SARAH-WAIST-REVIEW.md` and `godot/validation-v0296.json`.
 

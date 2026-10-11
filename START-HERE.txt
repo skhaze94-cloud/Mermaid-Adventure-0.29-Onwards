@@ -1,9 +1,13 @@
-Sarah Maria — Mermaid Adventure | Godot v0.29.6 — Unified Waist
+Sarah Maria — Mermaid Adventure | Godot v0.29.7 — Dynamic Arms
 
 Extract into a NEW EMPTY folder. Import the ROOT project.godot in Godot 4.3+.
 Keep godot/ and dist/ beside project.godot. Wait for asset import, then press F5.
 Begin adventure starts the family tutorial. Choose a chapter opens any of the
 eight levels directly.
+
+v0.29.7 adds localized elbow flexion, independent wrist follow-through and
+face-safe raised arm reaches. See godot/SARAH-ARM-REVIEW.md for the full
+review of body joins, texture overlap and movement validation.
 
 v0.29.6 adds a shared blue-pearl transition across the torso–tail join.
 Original painted scales and the anchored hip are preserved.
