@@ -7,6 +7,8 @@ var previous_pose_targets := [Vector3.ZERO,Vector3.ZERO]
 var previous_shoulders := Vector2.ZERO
 var shoulder_speed := Vector2.ZERO
 var applied := [Vector2.ZERO,Vector2.ZERO]
+var cups := [Vector2.ZERO,Vector2.ZERO]
+var previous_cups := [0.0,0.0]
 
 func reset() -> void:
     elbows=[Vector2.ZERO,Vector2.ZERO]
@@ -14,6 +16,8 @@ func reset() -> void:
     previous_targets=[Vector2.ZERO,Vector2.ZERO]
     previous_pose_targets=[Vector3.ZERO,Vector3.ZERO]
     applied=[Vector2.ZERO,Vector2.ZERO]
+    cups=[Vector2.ZERO,Vector2.ZERO]
+    previous_cups=[0.0,0.0]
     previous_shoulders=Vector2.ZERO
     shoulder_speed=Vector2.ZERO
 
@@ -59,10 +63,13 @@ func update(rig, dt: float) -> void:
         else:
             wrist_target-=rig.gesture_wave*expression*.12
             wrist_target+=rig.jump_joy_far*sin(rig.jump_air_time*16+.8)*.10
-        elbow_target=clampf(elbow_target,-1.16,.20)
+        elbow_target=clampf(elbow_target,-1.28,.20)
         elbows[i]=spring_linear(elbows[i],previous_targets[i].x,elbow_target,22.0,dt)
         wrist_target-=clampf(elbows[i].y*.025,-.07,.07)*compact
         wrist_target=clampf(wrist_target,-.38,.38)
         wrists[i]=spring_linear(wrists[i],previous_targets[i].y,wrist_target,18.0,dt)
         previous_targets[i]=Vector2(elbow_target,wrist_target)
         applied[i]=Vector2(elbows[i].x,wrists[i].x)
+        var cup_target: float = clampf(-wrists[i].x*.35+sin(rig.swim_clock-.6+i*.12)*.035*rig.swim_blend+rig.gesture_wave*.035,-.12,.14)*compact
+        cups[i]=spring_linear(cups[i],previous_cups[i],cup_target,18.0,dt)
+        previous_cups[i]=cup_target

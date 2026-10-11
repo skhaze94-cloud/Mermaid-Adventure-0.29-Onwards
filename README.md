@@ -1,4 +1,6 @@
-# Mermaid Adventure — v0.29.7 Dynamic Arms
+# Mermaid Adventure — v0.30 Ultimate Definitive Sarah Maria
+
+**v0.30** bundles recurring breaststroke after two then three ordinary swims, deeper inward elbow recovery, subtle hand cupping, shoulder-root blending and a softer continuous torso–tail scale transition. The opening now uses the full animated gameplay Sarah, with a swim-in entrance, greeting and recurring performances. Compact layouts show all menu actions more clearly. See `godot/SARAH-V030-BUNDLE-REVIEW.md` and `godot/validation-v030.json`.
 
 **v0.29.7** gives Sarah localized elbow bends, anatomically registered wrist pivots and independent joint follow-through. Regular strokes have stronger wrist response, aerial reaches keep her face clear, and arm depth switches resist flicker. The review covers her painted body joins, face, hair, tail and fins. See `godot/SARAH-ARM-REVIEW.md` and `godot/validation-v0297.json`.
 

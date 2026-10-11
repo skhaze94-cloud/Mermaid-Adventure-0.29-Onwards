@@ -26,7 +26,7 @@ with tempfile.TemporaryDirectory(prefix='sarah-package-',dir=args.temp_dir) as t
     # Wait for all imports, rather than closing the editor during a slow scan.
     run([args.godot,'--headless','--editor','--path',str(stage/'fresh'),'--import'])
     run([args.godot,'--headless','--path',str(stage/'fresh'),'--quit-after','16'])
-    for suite in ['sarah_arm_review_test.gd', 'sarah_torso_motion_test.gd', 'sarah_definitive_review_test.gd', 'sarah_definitive_test.gd', 'sarah_spine_motion_test.gd', 'sarah_face_details_test.gd', 'sarah_ultimate_test.gd', 'complete_adventure_test.gd']:
+    for suite in ['sarah_v030_bundle_test.gd', 'sarah_arm_review_test.gd', 'sarah_torso_motion_test.gd', 'sarah_definitive_review_test.gd', 'sarah_definitive_test.gd', 'sarah_spine_motion_test.gd', 'sarah_face_details_test.gd', 'sarah_ultimate_test.gd', 'complete_adventure_test.gd']:
         print(run([args.godot,'--headless','--path',str(stage/'fresh'),'--max-fps','60','--script','res://godot/'+suite]).strip())
     print(log.strip())
     print('GODOT FRESH PACKAGE IMPORT TEST PASSED')

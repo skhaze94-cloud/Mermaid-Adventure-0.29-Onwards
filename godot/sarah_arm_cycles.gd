@@ -3,7 +3,7 @@ extends RefCounted
 ## Shared phase makes this breaststroke; small perspective differences separate hands.
 const AUTHORED_KEYS := [Vector3(-.22,.04,-.08),Vector3(-.24,.02,-.04),
     Vector3(.65,.08,.18),Vector3(1.36,-.30,.05),
-    Vector3(1.72,-.76,-.24),Vector3(1.10,-1.12,-.20),
+    Vector3(1.72,-.86,-.28),Vector3(1.10,-1.24,-.24),
     Vector3(.38,-.64,.10),Vector3(-.15,-.08,.04)]
 static func _authored(phase: float) -> Vector3:
     var cursor := fposmod(phase,TAU)/TAU*AUTHORED_KEYS.size()

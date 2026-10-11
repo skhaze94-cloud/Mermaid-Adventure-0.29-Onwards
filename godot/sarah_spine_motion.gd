@@ -38,6 +38,13 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     var amplitude: float = activity*(1.0-rig.boost_blend*.55)
     var near_target: float = (sin(rig.arm_pose_near.x)*.045+rig.definitive_motion.shoulder_near.y*.055)*amplitude if enabled else 0.0
     var far_target: float = (sin(rig.arm_pose_far.x)*.045+rig.definitive_motion.shoulder_far.y*.055)*amplitude if enabled else 0.0
+    if enabled:
+        # The inward catch loads the shoulder; wrist release follows the elbow.
+        var loading: float = rig.swim_blend*(1.0-rig.boost_blend*.85)
+        near_target+=(-rig.arm_pose_near.y*.026+rig.arm_pose_near.z*.025)*loading
+        far_target+=(-rig.arm_pose_far.y*.023-rig.arm_pose_far.z*.020)*loading
+        near_target=clampf(near_target,-.11,.11)
+        far_target=clampf(far_target,-.11,.11)
     shoulder_near=spring(shoulder_near,near_target,14.0,dt)
     shoulder_far=spring(shoulder_far,far_target,13.0,dt)
     rig.near_arm.rotation+=shoulder_near.x+rig.torso_motion.rib_angle

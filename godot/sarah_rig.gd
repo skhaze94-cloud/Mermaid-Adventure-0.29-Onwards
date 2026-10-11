@@ -125,6 +125,7 @@ var gesture_reach := 0.0
 var gesture_arch := 0.0
 var high_quality := true
 var swim_clock := 0.0
+var horizontal_stroke_clock := 0.0
 var mesh_was_active := false
 var turn_elapsed := 1.0
 var brake_blend := 0.0
@@ -152,7 +153,7 @@ func set_waterfall_context(phase: String) -> void:
 
 func _update_stroke(dt: float, speed: float) -> void:
     visual_travel = visual_travel.lerp(velocity_value,1.0-exp(-dt*12.0))
-    var requested := SwimStyles.choose(speed,visual_travel.y,swim_clock,boosting,waterfall_context)
+    var requested := SwimStyles.choose(speed,visual_travel.y,swim_clock,boosting,waterfall_context,horizontal_stroke_clock)
     if swim_style_override in SwimStyles.NAMES: requested = swim_style_override
     if requested != stroke_candidate:
         stroke_candidate = requested
@@ -172,7 +173,10 @@ func _update_stroke(dt: float, speed: float) -> void:
     var previous_frequency := stroke_frequency
     stroke_frequency = frequency+(previous_frequency-frequency)*cadence_decay
     # Integrate the eased cadence, rather than using its end-of-frame value.
-    swim_clock += frequency*dt+(previous_frequency-frequency)*(1.0-cadence_decay)/7.0
+    var advance := frequency*dt+(previous_frequency-frequency)*(1.0-cadence_decay)/7.0
+    swim_clock += advance
+    if speed>35 and absf(visual_travel.y)<maxf(90.0,speed*.32) and not boosting and waterfall_context=="" and leap_blend<.5:
+        horizontal_stroke_clock+=advance
 
 func _blended_stroke(far: bool) -> Vector3:
     var result := Vector3.ZERO
@@ -215,6 +219,7 @@ func reset_performance() -> void:
     jump_style_cursor = 0
     jump_style = 0
     swim_clock = 0.0
+    horizontal_stroke_clock = 0.0
     swim_style = "breaststroke"
     stroke_candidate = "breaststroke"
     stroke_candidate_time = 0.0
@@ -288,6 +293,8 @@ func _arm(index: int, parent: Node2D, length: float, height: float) -> void:
         mesh.rest[i].y = center_y+(mesh.rest[i].y-center_y)*fullness
     mesh.reset_shape()
     mesh.material = _volume_material(crop)
+    mesh.material.set_shader_parameter("sleeve_connected",true)
+    mesh.material.set_shader_parameter("torso_paint",ATLAS)
     parent.add_child(mesh)
     arm_meshes.append(mesh)
     painted_parts.append(mesh)
@@ -334,6 +341,13 @@ func _ribbon(index: int, parent: Node2D, destination: Rect2, shining: bool) -> v
 
 func _update_ribbons(dt: float, phase: float, swim_amount: float) -> void:
     arm_dynamics.update(self,dt)
+    for i in range(2):
+        var joint: Node2D = far_arm if i==0 else near_arm
+        var mapping: Transform2D = torso_motion.rib_transform.affine_inverse()*joint.transform
+        var surface: ShaderMaterial = arm_meshes[i].material
+        surface.set_shader_parameter("arm_origin",mapping.origin)
+        surface.set_shader_parameter("arm_axis_x",mapping.x)
+        surface.set_shader_parameter("arm_axis_y",mapping.y)
     var active := high_quality and not reduced_motion
     if not active:
         if mesh_was_active:
@@ -350,8 +364,8 @@ func _update_ribbons(dt: float, phase: float, swim_amount: float) -> void:
     ribbons[0].deform(phase*.5-.4,2.3+strength*.35,hair_drag*6.0+horizontal_drag*4.0+shared_wave)
     ribbons[1].deform(phase*.5-1.1,1.5+strength*.55,hair_drag*4.0+horizontal_drag*5.0+shared_wave*.7)
     # Array order is far then near. Keep each elbow/wrist on its own shoulder.
-    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y)
-    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y)
+    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y,arm_dynamics.cups[1].x)
+    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y,arm_dynamics.cups[0].x)
     for material in ribbon_materials:
         material.set_shader_parameter("motion_clock", clock)
         material.set_shader_parameter("charge_mix", boost_blend)
@@ -513,6 +527,7 @@ func _ready() -> void:
     bodice.reset_shape()
     bodice.material = _volume_material(BODY_CROPS[0])
     bodice.material.set_shader_parameter("waist_role",1)
+    bodice.material.set_shader_parameter("join_tail_paint",NEW_TAIL)
     torso.add_child(bodice)
     painted_parts.append(bodice)
 

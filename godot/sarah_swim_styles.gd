@@ -64,7 +64,7 @@ static func sample(style: String, phase: float, far: bool = false) -> Vector3:
     var p3: Vector3 = frames[(a+2)%SAMPLES]
     return .5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t*t+(-p0+3*p1-3*p2+p3)*t*t*t)
 
-static func choose(speed: float, vertical: float, phase: float, boost: bool, waterfall: String) -> String:
+static func choose(speed: float, vertical: float, phase: float, boost: bool, waterfall: String, horizontal_phase: float = -1.0) -> String:
     var alternate := int(floor(phase/(TAU*3.0)))%2 == 1
     if boost:
         if waterfall != "": return "waterfall_surge"
@@ -76,9 +76,13 @@ static func choose(speed: float, vertical: float, phase: float, boost: bool, wat
     if vertical > maxf(90.0,speed*.32):
         return "dive_sweep" if alternate else "dive_spear"
     if waterfall == "descent": return "waterfall_scull"
+    # Two ordinary strokes, breaststroke, three ordinary strokes, breaststroke.
+    # Directional strokes and boost retain their own appropriate propulsion.
+    var horizontal := phase if horizontal_phase<0 else horizontal_phase
+    if int(floor(horizontal/TAU))%7 in [2,6]: return "breaststroke"
     if speed < 235.0: return "sidestroke"
     if speed > 320.0: return "butterfly" if alternate else "front_crawl"
-    return "front_crawl" if alternate else "breaststroke"
+    return "front_crawl"
 
 static func body_loop(style: String) -> String:
     return {"breaststroke":"swim", "front_crawl":"crawl", "sidestroke":"sidestroke",

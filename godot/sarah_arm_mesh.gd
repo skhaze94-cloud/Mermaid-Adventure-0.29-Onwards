@@ -11,7 +11,7 @@ func painted_pivot(point: Vector2) -> Vector2:
     var y := mini(7,int(row))
     return rest[y*33+x].lerp(rest[y*33+x+1],column-x).lerp(
         rest[(y+1)*33+x].lerp(rest[(y+1)*33+x+1],column-x),row-y)
-func skin(elbow_angle: float, wrist_angle: float) -> void:
+func skin(elbow_angle: float, wrist_angle: float, hand_cup: float = 0.0) -> void:
     var points := rest.duplicate()
     var left := rest[0].x
     var length := rest[32].x-left
@@ -20,6 +20,9 @@ func skin(elbow_angle: float, wrist_angle: float) -> void:
     var elbow := painted_pivot(elbow_uv)
     var wrist_rest := painted_pivot(wrist_uv)
     var wrist := elbow+(wrist_rest-elbow).rotated(elbow_angle)
+    var hand_rest := painted_pivot(Vector2(.80,wrist_uv.y))
+    var palm := elbow+(hand_rest-elbow).rotated(elbow_angle)
+    palm=wrist+(palm-wrist).rotated(wrist_angle)
     for i in range(points.size()):
         var u := (rest[i].x-left)/length
         if u<=.34:
@@ -31,5 +34,11 @@ func skin(elbow_angle: float, wrist_angle: float) -> void:
         var p := elbow+(rest[i]-elbow).rotated(elbow_angle*bend)
         var finger := smoothstep(.63,.78,u)
         points[i] = wrist+(p-wrist).rotated(wrist_angle*finger)
+        # Soft cupping closes the painted finger fan during the catch and
+        # releases it through recovery; the wrist and sleeve remain anchored.
+        var free := smoothstep(.80,.99,u)
+        var offset := points[i]-palm
+        points[i]+=offset*Vector2(-absf(hand_cup)*.10,-hand_cup*.30)*free
+        points[i]+=Vector2(-hand_cup*1.8,hand_cup*.8).rotated(elbow_angle+wrist_angle)*free
     polygon = points
     mesh_updates += 1

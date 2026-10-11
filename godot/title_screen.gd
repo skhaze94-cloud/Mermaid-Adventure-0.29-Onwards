@@ -25,6 +25,9 @@ var transitioning := false
 var background: TextureRect
 var lagoon_material: ShaderMaterial
 var hero: TextureRect
+const OpeningPerformance = preload("res://godot/sarah_opening_performance.gd")
+var hero_performance = OpeningPerformance.new()
+var hero_rig: Node2D
 var hero_home := Vector2.ZERO
 var motes: Control
 var ui: Control
@@ -72,6 +75,12 @@ func _ready() -> void:
     hero.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
     hero.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(hero)
+    hero.self_modulate.a=0.0
+    hero_rig=preload("res://godot/sarah_rig.gd").new()
+    hero.add_child(hero_rig)
+    hero_rig.set_process(false)
+    hero_rig.gesture_player.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
+    hero_rig.jump_player.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
     ui = Control.new()
     ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
     add_child(ui)
@@ -206,7 +215,7 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v0.29.5  •  FLUID TORSO" if page == "menu" else "SARAH MARIA"
+    footer.text = "v0.30  •  ULTIMATE SARAH MARIA" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")
@@ -312,6 +321,9 @@ func play_intro() -> void:
         return
     page = "intro"
     intro_clock = 0.0
+    hero_performance.reset()
+    hero_rig.reset_jump()
+    hero_rig.reset_performance()
     intro_card = -1
     skip.visible = true
     back_button.visible = false
@@ -381,7 +393,7 @@ func _resize() -> void:
     ui.size = ui_size
     var w := ui_size.x
     var h := ui_size.y
-    var compact := h < 650.0
+    var compact := h < 760.0
     var portrait := w < h * 0.8
     var inset := 26.0 if compact or portrait else maxf(65.0, (w - 1400.0) * 0.5 + 65.0)
     var width := minf(540.0, w * 0.46 - inset) if not portrait else w - 52.0
@@ -420,8 +432,8 @@ func _process(delta: float) -> void:
     clock += delta
     lagoon_material.set_shader_parameter("menu_clock", clock)
     lagoon_material.set_shader_parameter("gentle_motion", not prefs.reduced_motion and not prefs.economy)
-    if not prefs.reduced_motion:
-        hero.position = hero_home + Vector2(sin(clock * 0.37) * 6.0, sin(clock * 0.65) * 9.0) * ui_scale
+    hero.position=hero_home
+    hero_performance.update(self,delta)
     motes.queue_redraw()
     if page == "intro" and not transitioning:
         intro_clock += delta

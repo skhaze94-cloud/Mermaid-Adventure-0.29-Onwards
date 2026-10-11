@@ -85,7 +85,7 @@ func run() -> void:
                 low=low.min(angle); high=high.max(angle)
                 for i in range(2):
                     check(absf(rig.arm_dynamics.applied[i].y)<.381,"Wrist beyond safe envelope")
-                    check(rig.arm_dynamics.applied[i].x> -1.161,"Elbow beyond safe envelope")
+                    check(rig.arm_dynamics.applied[i].x> -1.301,"Elbow beyond safe envelope")
                     var mesh: Polygon2D = rig.arm_meshes[i]
                     for point in range(mesh.rest.size()):
                         if (mesh.rest[point].x+5.0)/(88.0 if i==1 else 78.0)<=.34:

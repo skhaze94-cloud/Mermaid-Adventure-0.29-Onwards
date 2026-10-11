@@ -27,7 +27,7 @@ func run() -> void:
     shade.color=Color(.01,.045,.06,.48)
     shade.size=Vector2(1280,720)
     root.add_child(shade)
-    label("SARAH · FLUID ELBOWS & WRISTS",Vector2(30,25),29,Color("f4dca5"))
+    label("V0.30 · ULTIMATE SARAH MARIA",Vector2(30,25),29,Color("f4dca5"))
     label("Full body",Vector2(30,95),20,Color("b4d9d9"))
     label("Arm articulation · tracking close-up",Vector2(760,95),20,Color("b4d9d9"))
     var panel := Control.new()
@@ -50,6 +50,7 @@ func run() -> void:
     label("Shoulder-led reach · elbow flexion · wrist follow-through · continuous painted skin",Vector2(30,671),17,Color("b4d9d9"))
     var cases := [
         [Vector2.ZERO,false,"","Idle · relaxed shoulders and head",150,"",-1,""],
+        [Vector2(345,0),false,"","AUTOMATIC SWIM · breaststroke every two / three strokes",480,"",-1,""],
         [Vector2(345,0),false,"","Breaststroke · elbow catch and wrist recovery",60,"breaststroke",-1,""],
         [Vector2(345,0),false,"","Front Crawl · elbow catch and wrist recovery",60,"front_crawl",-1,""],
         [Vector2(345,0),false,"","Sidestroke · elbow catch and wrist recovery",60,"sidestroke",-1,""],
@@ -62,12 +63,12 @@ func run() -> void:
         [Vector2(760,0),true,"","Boost Drive · elbow catch and wrist recovery",60,"boost_drive",-1,""],
         [Vector2(345,0),false,"descent","Waterfall Scull · elbow catch and wrist recovery",60,"waterfall_scull",-1,""],
         [Vector2(760,0),true,"descent","Waterfall Surge · elbow catch and wrist recovery",60,"waterfall_surge",-1,""],
-        [Vector2(310,-120),false,"","Aerial performance 1 · ribcage and waist response",60,"",0,""],
-        [Vector2(310,-120),false,"","Aerial performance 2 · ribcage and waist response",60,"",1,""],
-        [Vector2(310,-120),false,"","Aerial performance 3 · ribcage and waist response",60,"",2,""],
-        [Vector2(310,-120),false,"","Aerial performance 4 · ribcage and waist response",60,"",3,""],
-        [Vector2(310,-120),false,"","Aerial performance 5 · ribcage and waist response",60,"",4,""],
-        [Vector2(310,-120),false,"","Aerial performance 6 · ribcage and waist response",60,"",5,""],
+        [Vector2(310,-120),false,"","Aerial performance 1 · raised reach and hand follow-through",60,"",0,""],
+        [Vector2(310,-120),false,"","Aerial performance 2 · raised reach and hand follow-through",60,"",1,""],
+        [Vector2(310,-120),false,"","Aerial performance 3 · raised reach and hand follow-through",60,"",2,""],
+        [Vector2(310,-120),false,"","Aerial performance 4 · raised reach and hand follow-through",60,"",3,""],
+        [Vector2(310,-120),false,"","Aerial performance 5 · raised reach and hand follow-through",60,"",4,""],
+        [Vector2(310,-120),false,"","Aerial performance 6 · raised reach and hand follow-through",60,"",5,""],
         [Vector2.ZERO,false,"","Greet · arm gesture and hand settling",60,"",-1,"greet"],
         [Vector2.ZERO,false,"","Cast · arm gesture and hand settling",60,"",-1,"cast"],
         [Vector2.ZERO,false,"","Celebrate · arm gesture and hand settling",60,"",-1,"celebrate"],
@@ -97,6 +98,8 @@ func run() -> void:
                     if case[6]>=0: rig.set_jump_state("airborne",float(frame*2+tick)/(case[4]*2)*.88,case[6],1)
                     rig.gesture_player.advance(1.0/60)
                     rig._process(1.0/60)
+            if case[3].begins_with("AUTOMATIC SWIM"):
+                caption.text="Automatic swim · "+str(rigs[0].swim_style).replace("_"," ").capitalize()+" · recurring breaststroke"
             rigs[0].scale*=1.55 if case[6]>=0 else 1.9
             rigs[1].scale*=3.2
             var focus: Vector2 = panel.get_global_transform().affine_inverse()*rigs[1].torso.to_global(rigs[1].torso_motion.chest_point(Vector2(45,-8)))
