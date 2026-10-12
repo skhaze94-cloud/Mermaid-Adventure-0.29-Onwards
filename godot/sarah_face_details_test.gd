@@ -27,7 +27,7 @@ func run() -> void:
     var nodes: int = rig.get_child_count()
     check(mesh.get_parent()==rig.face_sprite and rig.face_sprite.get_parent()==rig.head_joint,"Face details lost skull hierarchy")
     check(rig.face_sprite.self_modulate.a==0,"Original face quad would double-draw")
-    check(mesh.rest.size()==9555 and mesh.polygons.size()==18624,"Connected detail surface lacks local resolution")
+    check(mesh.rest.size()==28665 and mesh.polygons.size()==56064,"Connected detail surface lacks local resolution")
     check(mesh.texture==rig.EXPRESSIONS,"Details replace original face artwork")
     # Every stroke and action must feed the same whole-body response.
     for state in [[Vector2.ZERO,1.0,false,""],[Vector2(345,0),1.0,false,""],

@@ -12,14 +12,14 @@ func check(ok: bool, why: String) -> void:
 func advance(rig, seconds: float, fps: int = 60) -> void:
     for i in range(int(seconds*fps)): rig._process(1.0/fps)
 func hand(rig) -> Vector2:
-    return rig.arm_meshes[1].to_global(rig.arm_meshes[1].polygon[164])
+    return rig.arm_meshes[1].to_global(rig.arm_meshes[1].polygon[4*(rig.arm_meshes[1].COLUMNS+1)+rig.arm_meshes[1].COLUMNS])
 func run() -> void:
     Styles.build()
     Cycles.build()
-    check(Cycles.NAMES.size()==36 and Cycles.POSES==432,"Tripled movement sampling missing")
+    check(Cycles.NAMES.size()==36 and Cycles.POSES==1296,"Tripled movement sampling missing")
     var signatures: Array[Vector3] = []
     for style in Styles.NAMES:
-        check(Styles.tracks[style][0].size()==432,"Dense arm tracks missing")
+        check(Styles.tracks[style][0].size()==1296,"Dense arm tracks missing")
         var signature := Styles.sample(style,.7)+Styles.sample(style,2.2)*.5
         for other in signatures: check(signature.distance_to(other)>.01,"Duplicated swim stroke: "+style)
         signatures.append(signature)
@@ -90,7 +90,7 @@ func run() -> void:
             previous_fin=rig.tail_skin.tip_center
             for mesh in rig.arm_meshes:
                 check(mesh.polygon[0]==mesh.rest[0],"Shoulder seam moves")
-                check(mesh.polygon[164].is_finite(),"Hand geometry invalid")
+                check(mesh.polygon[4*(mesh.COLUMNS+1)+mesh.COLUMNS].is_finite(),"Hand geometry invalid")
     check(rig.arm_meshes[1].uv==uv and rig.tail_skin.uv==tail_uv,"Painting shifts during strokes")
     check(rig.get_child_count()==node_count,"Animation allocates rig nodes")
     # Six independently reachable aerial performances, with bounded rotation.

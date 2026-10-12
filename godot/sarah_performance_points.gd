@@ -1,7 +1,7 @@
 extends RefCounted
-## 432 samples for seven coordinated channels: two shoulder sockets, head, jaw, chest.
+## 1,296 samples for seven coordinated channels: two shoulder sockets, head, jaw, chest.
 const Styles = preload("res://godot/sarah_swim_styles.gd")
-const SAMPLES := 432
+const SAMPLES := 1296
 const EXTRA := ["idle","turn","greet","cast","celebrate","impact",
     "jump_ascent","jump_airborne","jump_landing","recover"]
 static var tracks: Dictionary = {}
@@ -30,6 +30,11 @@ static func pose(name: String, p: float) -> Array:
     var pitch := (sin(p-.90)+.22*sin(p*2.0-.35))*head
     var jaw_response := (.5+.5*sin(p-1.25))*jaw
     var chest := sin(p-.25)*effort*.22
+    var variation := preload("res://godot/sarah_princess_motion.gd").weights(p)
+    near+=Vector2(sin(p*2.0-.7)*.06,sin(p-1.1)*.07)*variation.y*effort
+    far+=Vector2(sin(far_phase*2.0-1.0)*.05,sin(far_phase-1.4)*.06)*variation.z*effort
+    pitch+=sin(p*2.0-1.2)*head*.10*variation.y
+    chest+=sin(p*2.0-.9)*effort*.025*variation.z
     return [Vector4(near.x,near.y,far.x,far.y),Vector3(pitch,jaw_response,chest)]
 static func build() -> void:
     if not tracks.is_empty(): return

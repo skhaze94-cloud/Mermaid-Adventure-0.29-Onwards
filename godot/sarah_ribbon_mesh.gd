@@ -3,7 +3,11 @@ extends Polygon2D
 var rest := PackedVector2Array()
 var weights := PackedFloat32Array()
 var mesh_updates := 0
+var mesh_columns := 0
+var column_offsets := PackedVector2Array()
 func configure(source: Texture2D, region: Rect2, destination: Rect2, columns: int = 8, rows: int = 3) -> void:
+    mesh_columns=columns+1
+    column_offsets.resize(mesh_columns)
     texture = source
     texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
     antialiased = true
@@ -27,15 +31,20 @@ func configure(source: Texture2D, region: Rect2, destination: Rect2, columns: in
     polygons = faces
 func deform(phase: float, amplitude: float, inertia: float) -> void:
     var points := rest.duplicate()
-    for i in range(points.size()):
+    for i in range(mesh_columns):
         var weight := weights[i]
+        var displacement := Vector2.ZERO
         # The seam remains fixed; flutter grows gently toward the free edge.
-        points[i].y += weight * (sin(phase - weight * 2.8) * amplitude + inertia)
-        points[i].x += weight * sin(phase * 0.7 - weight) * amplitude * 0.11
+        displacement.y += weight * (sin(phase - weight * 2.8) * amplitude + inertia)
+        displacement.x += weight * sin(phase * 0.7 - weight) * amplitude * 0.11
         # Three layered current responses; roots remain pinned, tips move most.
         var ripple := sin(phase*1.37-weight*5.1)*.18+sin(phase*2.11-weight*8.7)*.08
-        points[i].y += weight*weight*amplitude*ripple
-        points[i].x += weight*weight*amplitude*(sin(phase*1.13-weight*3.9)*.025+sin(phase*1.83-weight*7.3)*.012)
+        displacement.y += weight*weight*amplitude*ripple
+        displacement.x += weight*weight*amplitude*(sin(phase*1.13-weight*3.9)*.025+sin(phase*1.83-weight*7.3)*.012)
+        var fine := sin(phase*.61-weight*4.0)*.045+sin(phase*1.59-weight*9.2)*.025+sin(phase*2.73-weight*13.1)*.012
+        displacement.y += weight*weight*amplitude*fine
+        column_offsets[i]=displacement
+    for i in range(points.size()): points[i]+=column_offsets[i%mesh_columns]
     polygon = points
     mesh_updates += 1
 func reset_shape() -> void:

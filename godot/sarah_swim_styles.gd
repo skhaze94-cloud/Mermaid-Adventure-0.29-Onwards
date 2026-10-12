@@ -1,6 +1,6 @@
 extends RefCounted
 ## Shared, sampled shoulder/elbow/wrist tracks. Phase is never reset on a turn.
-const SAMPLES := 432
+const SAMPLES := 1296
 const NAMES := ["breaststroke", "front_crawl", "sidestroke", "butterfly",
     "rise_scoop", "rise_alternate", "dive_spear", "dive_sweep",
     "boost_dolphin", "boost_drive", "waterfall_scull", "waterfall_surge"]

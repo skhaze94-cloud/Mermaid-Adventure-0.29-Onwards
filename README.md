@@ -1,11 +1,13 @@
-# Mermaid Adventure — v0.4 Ultimate Mega-Max Polish
+# Mermaid Adventure - v0.5 Princess Polish Sarah
 
-An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection, linked results and Avina’s optional companionship. This release preserves the v0.31 Sarah animation bundle and cleans the controls, scenery, combat presentation and interface.
+An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
 
-Extract the playable ZIP into a new empty folder. Import the root `project.godot`, wait for asset import, then run the main scene. Tested with Godot 4.4.1 on Windows using the compatibility renderer. The ZIP contains the playable project and this short guide; development captures, tests, reports and unused decorative control artwork are excluded.
+Extract the playable ZIP into a new empty folder. Import the root `project.godot`, wait for asset import, then run the main scene. Tested with Godot 4.4.1 on Windows using the compatibility renderer. Development captures, tests, reports and unused decorative controls are excluded from the playable ZIP.
 
-Swim with the arrow keys, WASD, controller stick or touch pad. Boost: Space / controller B. Jump: J or Shift / controller A. Bubble: B or Z / controller X. Pause: Escape / P / controller Start. Play in landscape; portrait pauses safely. Music, effects, ambience, Gentle Motion, Economy graphics and touch preferences are available in Options.
+Swim with arrows, WASD, controller stick or touch pad. Boost: Space / controller B. Jump: J or Shift / controller A. Bubble: B or Z / controller X. Pause: Escape / P / controller Start. Play in landscape; portrait pauses safely. Audio, Gentle Motion, Economy graphics and touch preferences are available in Options.
 
-v0.4 replaces the decorative touch artwork with clear vector controls, simplifies reward feedback, removes duplicate boss labels and large status rings, removes ghost enemy copies and the floating extra crown, cleans false underwater surface stripes and palace overlays, and removes the dormant old HUD. Combat telegraphs, switches, launch hints, pickups and progress remain readable and functional.
+Princess Polish Sarah triples the sampled body, arm and performance tracks and the painted hair, face, torso, arm and tail articulation points relative to v0.4. Three flowing interpretations add delayed reach, catch and release motion; 18 aerial variations replace six. Boost blends into a new torpedo pose with near-straight elbows, aligned shoulders and tail-driven propulsion. Layered shaded droplets and projected vortex trails add depth to swimming, including waterfall movement. These are effects in the existing 2D renderer.
 
-The repository retains the original v0.28 baseline and release history. Development review details are in `godot/V04-POLISH-REVIEW.md`, with regression results in `godot/validation-v04.json`. The original MermaidADVENTURE repository is unchanged.
+The v0.4 interface and scenery cleanup remains. Original artwork, physics, controller mappings and connected adventure progression are preserved. Gentle Motion and Economy settings suppress secondary articulation and the new wake.
+
+The repository retains the original v0.28 baseline and release history. Review details: `godot/V05-PRINCESS-REVIEW.md`; checks: `godot/validation-v05.json`. The original MermaidADVENTURE repository is unchanged.

@@ -18,7 +18,7 @@ static func _authored(phase: float) -> Vector3:
 static var KEYS: Array[Vector3] = []
 static func build() -> void:
     if not KEYS.is_empty(): return
-    for i in range(24): KEYS.append(_authored(float(i)*TAU/24))
+    for i in range(72): KEYS.append(_authored(float(i)*TAU/72))
 static func sample(phase: float) -> Vector3:
     build()
     var cursor := fposmod(phase,TAU)/TAU*KEYS.size()

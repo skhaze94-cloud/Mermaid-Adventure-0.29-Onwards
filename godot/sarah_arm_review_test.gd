@@ -65,11 +65,14 @@ func run() -> void:
     rig.set_process(false)
     rig.gesture_player.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
     rig.jump_player.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
-    var skins: Array = [rig.bodice,rig.tail_skin,rig.face_details]+rig.ribbons+rig.arm_meshes
+    var skins: Array = [rig.bodice,rig.tail_skin,rig.ribbons[0],rig.ribbons[1]]+rig.arm_meshes
     var original_uv := {}
     for mesh in skins:
         prepare(mesh)
         original_uv[mesh]=mesh.uv.duplicate()
+    # The shader face grid is static on the CPU: validate its topology once.
+    prepare(rig.face_details)
+    inspect(rig.face_details,"static face topology")
     var ranges := {}
     for facing in [-1,1]:
         for style in Styles.NAMES:
@@ -108,7 +111,7 @@ func run() -> void:
                 joins_and_face(rig,action)
                 if frame%12==0:
                     for mesh in skins: inspect(mesh,action)
-        for style in range(6):
+        for style in range(18):
             rig.reset_jump(); rig.reset_performance(); rig.jump_style=style
             rig.set_motion(Vector2(facing*310,-120),facing,false,true,1)
             for frame in range(90):

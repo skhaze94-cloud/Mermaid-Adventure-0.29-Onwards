@@ -11,7 +11,7 @@ func _initialize() -> void: call_deferred("run")
 func hand(rig, index: int) -> Vector2:
     var mesh = rig.arm_meshes[index]
     # Middle row at the fingertips of the actual deformed arm geometry.
-    var columns := 32
+    var columns: int = mesh.COLUMNS
     var middle_row := 4
     return mesh.get_parent().to_local(mesh.to_global(mesh.polygon[middle_row*(columns+1)+columns]))
 func run() -> void:

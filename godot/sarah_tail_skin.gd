@@ -1,6 +1,6 @@
 extends "res://godot/sarah_ribbon_mesh.gd"
 ## One connected painted tail; centerline skin preserves length while curling.
-const SEGMENTS := 194 # 2,535 paint points: three times v0.30.
+const SEGMENTS := 584 # 7,605 paint points: three times v0.4.
 var detail_phase := 0.0
 var detail_strength := 0.0
 var socket := Vector2.ZERO
@@ -10,14 +10,33 @@ var centers := PackedVector2Array()
 var angles := PackedFloat32Array()
 var bend_value := 0.0
 var root_bend := 0.0
+var column_map := PackedInt32Array()
+var flutter_base := PackedVector4Array()
+var flutter_edge := PackedVector2Array()
+var flutter_shared := PackedFloat32Array()
+var scale_wave := PackedFloat32Array()
+var row_wave := PackedVector4Array()
+var row_edge := PackedVector2Array()
+var row_offset := PackedFloat32Array()
 func setup(source: Texture2D, region: Rect2, destination: Rect2) -> void:
     configure(source,region,destination,SEGMENTS,13)
     socket = Vector2(destination.end.x,destination.get_center().y)
     tail_length = destination.size.x
     centers.resize(SEGMENTS+1)
     angles.resize(SEGMENTS+1)
+    flutter_base.resize(SEGMENTS+1)
+    flutter_edge.resize(SEGMENTS+1)
+    flutter_shared.resize(SEGMENTS+1)
+    scale_wave.resize(SEGMENTS+1)
+    column_map.resize(rest.size())
+    for row in range(13):
+        var edge := (rest[row*(SEGMENTS+1)].y-socket.y)/(tail_length*.23)
+        row_offset.append(edge)
+        row_wave.append(Vector4(cos(edge*.8),sin(edge*.8),cos(edge*.5),sin(edge*.5)))
+        row_edge.append(Vector2(cos(edge),sin(edge)))
     for i in range(rest.size()):
         weights[i] = clampf((socket.x-rest[i].x)/tail_length,0,1)
+        column_map[i] = mini(SEGMENTS,int(round(weights[i]*SEGMENTS)))
     skin(Vector4.ZERO,0,0)
 func skin(pose: Vector4, tuck: float, steering: float) -> void:
     centers[0] = socket
@@ -34,22 +53,36 @@ func skin(pose: Vector4, tuck: float, steering: float) -> void:
         angle += pose.z*smoothstep(.67,1,t)
         var release := smoothstep(.15,.48,t)
         angle += detail_strength*release*(sin(detail_phase*.73-t*5.0)*.009
-            +sin(detail_phase*1.17-t*8.0)*.004+sin(detail_phase*1.81-t*11.0)*.002)
+            +sin(detail_phase*1.17-t*8.0)*.004+sin(detail_phase*1.81-t*11.0)*.002
+            +sin(detail_phase*.43-t*3.5)*.0015+sin(detail_phase*2.31-t*14.0)*.0008+sin(detail_phase*2.87-t*17.0)*.0004
+            +sin(detail_phase*.61-t*4.1)*.001+sin(detail_phase*1.53-t*9.6)*.0006+sin(detail_phase*3.17-t*19.1)*.0003)
         angles[i] = angle
         centers[i] = centers[i-1]+Vector2(-step,0).rotated(angle)
+    # Column waves are shared by all 13 painted rows. Cache the trigonometry.
+    for column in range(SEGMENTS+1):
+        var t := float(column)/SEGMENTS
+        var tip := detail_strength*smoothstep(.65,.95,t)
+        var a := detail_phase*.91-t*6.0
+        var b := detail_phase*1.39-t*9.0
+        flutter_base[column]=Vector4(sin(a)*.20,cos(a)*.20,sin(b)*.09,-cos(b)*.09)*tip
+        var d := detail_phase*.57-t*3.9
+        var f := detail_phase*2.51-t*15.1
+        var h := detail_phase*1.91-t*11.7
+        flutter_edge[column]=Vector2(sin(d)*.028+sin(f)*.008+sin(h)*.006,
+            cos(d)*.028-cos(f)*.008+cos(h)*.006)*tip
+        flutter_shared[column]=(sin(detail_phase*2.03-t*12.0)*.04
+            +sin(detail_phase*1.73-t*10.3)*.017+sin(detail_phase*.69-t*4.7)*.012
+            +sin(detail_phase*2.93-t*17.3)*.003)*tip
+        scale_wave[column]=1.0+detail_strength*smoothstep(.2,.55,t)*(sin(detail_phase*.53-t*4.0)*.0015
+            +sin(detail_phase*.89-t*6.0)*.0007+sin(detail_phase*1.31-t*9.0)*.0003)
     var points := rest.duplicate()
     for i in range(points.size()):
-        var t := weights[i]
-        var column := mini(SEGMENTS,int(round(t*SEGMENTS)))
+        var column := column_map[i]
+        var row := i/(SEGMENTS+1)
         var offset := Vector2(0,rest[i].y-socket.y).rotated(angles[column])
-        var edge := (rest[i].y-socket.y)/(tail_length*.23)
-        var tip := smoothstep(.65,.95,t)
-        var flutter := detail_strength*tip*(sin(detail_phase*.91-t*6.0+edge*.8)*.20
-            +sin(detail_phase*1.39-t*9.0-edge*.5)*.09+sin(detail_phase*2.03-t*12.0)*.04)
-        offset.y += flutter*edge
-        # Fine scale-breathing, separate from the fin edges and main centerline.
-        offset *= 1.0+detail_strength*smoothstep(.2,.55,t)*(sin(detail_phase*.53-t*4.0)*.0015
-            +sin(detail_phase*.89-t*6.0)*.0007+sin(detail_phase*1.31-t*9.0)*.0003)
+        var flutter := flutter_base[column].dot(row_wave[row])+flutter_edge[column].dot(row_edge[row])+flutter_shared[column]
+        offset.y += flutter*row_offset[row]
+        offset *= scale_wave[column]
         points[i] = centers[column]+offset
     polygon = points
     tip_center = centers[SEGMENTS-3]

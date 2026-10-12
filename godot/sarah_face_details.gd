@@ -1,10 +1,13 @@
 extends Polygon2D
 ## One persistent painted surface. Neck anchors and UVs stay fixed.
 const DETAIL_SHADER = preload("res://godot/shaders/sarah_face_details.gdshader")
-const COLUMNS := 194 # 9,555 connected points: three times v0.30.
+const COLUMNS := 584 # 28,665 connected points: three times v0.4.
 const ROWS := 49
 var rest := PackedVector2Array()
 var surface: ShaderMaterial
+var full_triangles: Array[PackedInt32Array] = []
+var play_triangles: Array[PackedInt32Array] = []
+var full_detail := true
 
 func configure(source: Texture2D, regions: Array) -> void:
     texture=source
@@ -27,6 +30,19 @@ func configure(source: Texture2D, regions: Array) -> void:
     polygon=rest
     uv=coordinates
     polygons=triangles
+    full_triangles=triangles
+    # Retain all authored points, but avoid shading invisible subpixel triangles.
+    var columns: Array[int] = []
+    for column in range(0,COLUMNS,3): columns.append(column)
+    columns.append(COLUMNS)
+    for row in range(ROWS-1):
+        for index in range(columns.size()-1):
+            var a := row*(COLUMNS+1)+columns[index]
+            var next := row*(COLUMNS+1)+columns[index+1]
+            var b := a+COLUMNS+1
+            var end := next+COLUMNS+1
+            play_triangles.append(PackedInt32Array([a,next,end]))
+            play_triangles.append(PackedInt32Array([a,end,b]))
     surface=ShaderMaterial.new()
     surface.shader=DETAIL_SHADER
     surface.set_shader_parameter("atlas_size",source.get_size())
@@ -35,6 +51,13 @@ func configure(source: Texture2D, regions: Array) -> void:
         surface.set_shader_parameter(["neutral_crop","happy_crop","blink_crop"][i],Vector4(crop.position.x,crop.position.y,crop.size.x,crop.size.y))
     material=surface
     reset_details()
+
+func adapt_detail(high: bool) -> void:
+    var width := 710.0*get_global_transform_with_canvas().get_scale().abs().x
+    var wanted := high and (width>110.0 if full_detail else width>130.0)
+    if wanted==full_detail: return
+    full_detail=wanted
+    polygons=full_triangles if full_detail else play_triangles
 
 static func blink_at(time: float) -> float:
     var phase := fposmod(time,4.7)

@@ -4,24 +4,48 @@
 resource_name = "launch"
 length = 0.32
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:launch_curl")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.07, 0.16, 0.32), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0.0, 1.0, 0.45, 0.0]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.00777778, 0.0233333, 0.0466667, 0.0622222, 0.07, 0.1, 0.13, 0.16, 0.213333, 0.266667, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0301745, 0.231456, 0.685134, 0.932754, 1.0, 0.961726, 0.693988, 0.45, 0.216626, 0.0583128, 0.0]
+}
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:launch_stretch")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
-tracks/1/keys = {"times": PackedFloat32Array(0, 0.07, 0.17, 0.32), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0.0, -0.8, 1.35, 0.0]}
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.00777778, 0.0233333, 0.0466667, 0.0622222, 0.07, 0.103333, 0.136667, 0.17, 0.22, 0.27, 0.32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0290713, -0.218453, -0.614684, -0.785656, -0.8, -0.279922, 0.670595, 1.35, 1.20667, 0.453333, 0.0]
+}
 
 [sub_resource type="Animation" id="Land"]
 resource_name = "land"
 length = 0.52
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:landing_compress")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.06, 0.20, 0.35, 0.52), "transitions": PackedFloat32Array(1, 1, 1, 1, 1), "update": 0, "values": [0.0, 1.15, -0.38, 0.14, 0.0]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.00666667, 0.02, 0.04, 0.0533333, 0.06, 0.106667, 0.153333, 0.2, 0.25, 0.3, 0.35, 0.406667, 0.463333, 0.52),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0327623, 0.25309, 0.761735, 1.05716, 1.15, 1.00487, 0.204333, -0.38, -0.349784, -0.071375, 0.14, 0.140364, 0.0546266, 0.0]
+}
 
 [resource]
-_data = {"launch": SubResource("Launch"), "land": SubResource("Land")}
+_data = {
+&"land": SubResource("Land"),
+&"launch": SubResource("Launch")
+}

@@ -1,5 +1,5 @@
 Sarah Maria — Mermaid Adventure
-v0.4 — Ultimate Mega-Max Polish
+v0.5 — Princess Polish Sarah
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
 2. Import the ROOT project.godot in Godot. Tested with Godot 4.4.1.
@@ -15,6 +15,9 @@ Pause: Escape / P / controller Start
 
 Use landscape for play. Portrait pauses safely.
 Options includes audio, Gentle Motion, Economy graphics and touch controls.
+
+Princess Polish Sarah adds finer coordinated motion, a torpedo boost pose,
+and layered swimming wakes. Gentle Motion and Economy suppress extra effects.
 
 This is the cleaned playable project. Tests, capture scripts and historical
 reports remain in the GitHub repository rather than the playable ZIP.

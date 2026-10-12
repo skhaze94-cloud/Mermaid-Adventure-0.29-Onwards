@@ -28,6 +28,9 @@ func update(rig, dt: float) -> void:
     var rib_target: float = (rig.cycle_pose.y*.065-rig.cycle_pose.x*.04)*activity*compact
     rib_target+=rig.definitive_motion.expression.z*.03-rig.gesture_arch*.012
     var waist_target: float = (rig.cycle_pose.x*.08+rig.cycle_pose.y*.035)*activity
+    var flow: float = activity*(1.0-rig.boost_blend*.85)
+    rib_target+=(sin(rig.swim_clock*2.0-.8)*.0025+sin(rig.swim_clock*3.0-1.1)*.001)*flow
+    waist_target+=(sin(rig.swim_clock*2.0-1.4)*.002+sin(rig.swim_clock*3.0-1.9)*.0008)*flow
     ribs=Spring.spring(ribs,clampf(rib_target,-.055,.055),11.0,dt)
     waist=Spring.spring(waist,clampf(waist_target,-.045,.045),9.0,dt)
     # Tiny volume change uses a separate slow clock, without implying gasping underwater.

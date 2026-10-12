@@ -1,0 +1,98 @@
+[
+  {
+    "test": "sarah_princess_test.gd",
+    "passed": true,
+    "seconds": 3.25,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPRINCESS SARAH: 714 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_ultimate_test.gd",
+    "passed": true,
+    "seconds": 22.06,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nULTIMATE SARAH: 39909 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_arm_review_test.gd",
+    "passed": true,
+    "seconds": 301.61,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH ARM REFRESH ENDPOINTS: [(-0.538207, 0.052112), (-0.55437, 0.063362), (-0.562496, 0.069155)]\nSARAH ARM AREA RATIOS: { &\"ShapedBodice\": 0.83903099991061, &\"ContinuousMenuTail\": 0.61199998456305, &\"FlexiblePaintedPart_2\": 0.98631092436975, &\"FlexiblePaintedPart_15\": 0.97876428107868, &\"ContinuousArmSkin_1\": 0.48810165036208, &\"ContinuousArmSkin_0\": 0.53701656731541, &\"ConnectedFaceHairDetails\": 1.0 }\nSARAH ARM JOINT RANGES: { \"breaststroke\": (1.097559, 0.274085), \"front_crawl\": (0.873889, 0.515229), \"sidestroke\": (0.721454, 0.451268), \"butterfly\": (0.825057, 0.53605), \"rise_scoop\": (0.846934, 0.536296), \"rise_alternate\": (0.79295, 0.522596), \"dive_spear\": (0.35392, 0.350818), \"dive_sweep\": (0.701156, 0.424434), \"boost_dolphin\": (0.048052, 0.034974), \"boost_drive\": (0.047261, 0.034974), \"waterfall_scull\": (0.798334, 0.536592), \"waterfall_surge\": (0.039978, 0.034888) }\nSARAH ARM REVIEW: 21764488 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_face_details_test.gd",
+    "passed": true,
+    "seconds": 14.77,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH FACE DETAILS: 14584 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_spine_motion_test.gd",
+    "passed": true,
+    "seconds": 87.99,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH SPINE: 534009 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_torso_motion_test.gd",
+    "passed": true,
+    "seconds": 155.63,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH TORSO: 948203 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_definitive_review_test.gd",
+    "passed": true,
+    "seconds": 118.82,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nDEFINITIVE REVIEW: 169878 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_continuity_test.gd",
+    "passed": true,
+    "seconds": 9.21,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH CONTINUITY: 4325 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_depth_motion_test.gd",
+    "passed": true,
+    "seconds": 13.67,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH DEPTH: 1581 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_v031_bundle_test.gd",
+    "passed": true,
+    "seconds": 16.31,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH V031 BUNDLE: 3768 checks, 0 failures\n"
+  },
+  {
+    "test": "sarah_breaststroke_test.gd",
+    "passed": true,
+    "seconds": 4.23,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH BREASTSTROKE: 1689 checks, 0 failures\n"
+  },
+  {
+    "test": "jump_animation_test.gd",
+    "passed": true,
+    "seconds": 2.76,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT JUMP ANIMATION TEST PASSED\n"
+  },
+  {
+    "test": "gameplay_controls_test.gd",
+    "passed": true,
+    "seconds": 1.85,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED\n"
+  },
+  {
+    "test": "visual_polish_test.gd",
+    "passed": true,
+    "seconds": 4.15,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nVISUAL POLISH: 336 checks, 0 failures\n"
+  },
+  {
+    "test": "complete_adventure_test.gd",
+    "passed": true,
+    "seconds": 11.36,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures\n"
+  },
+  {
+    "test": "scene_flow_test.gd",
+    "passed": true,
+    "seconds": 8.37,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED\n"
+  }
+]

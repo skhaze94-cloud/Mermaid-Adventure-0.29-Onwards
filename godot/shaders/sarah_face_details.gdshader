@@ -43,6 +43,8 @@ void vertex() {
             wave*(2.0+response.w*1.3)+hair_lag*8.0+body_wave*1.1);
         drift+=vec2(sin(motion_phase*.83-p.x*4.7)*.22+sin(motion_phase*1.27-p.y*6.3)*.10,
             sin(motion_phase*.91-p.x*5.5-p.y)*.48+sin(motion_phase*1.43-p.x*8.0+p.y)*.20);
+        drift+=vec2(sin(motion_phase*.63-p.x*3.8)*.07+sin(motion_phase*1.67-p.y*8.1)*.035+sin(motion_phase*2.19-p.x*10.5)*.017,
+            sin(motion_phase*.71-p.x*4.4)*.12+sin(motion_phase*1.79-p.x*10.1+p.y)*.06+sin(motion_phase*2.43-p.x*13.7)*.025);
         VERTEX+=drift*free_end;
         // Forehead locks breathe across the crown without moving eyes or brows.
         float crown=(1.0-smoothstep(.18,.32,p.y))*smoothstep(.32,.52,p.x)*(1.0-smoothstep(.92,1.0,p.x));

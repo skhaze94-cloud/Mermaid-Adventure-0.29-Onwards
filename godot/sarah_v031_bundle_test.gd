@@ -37,8 +37,8 @@ func run() -> void:
     check(Styles.choose(280,0,TAU*2.4,false,"pull")=="waterfall_scull","Cadence overrides waterfall balancing")
     var rig = load("res://godot/sarah_rig.gd").new()
     root.add_child(rig);rig.set_process(false);rig.reset_performance()
-    check(rig.ribbons[0].rest.size()==255 and rig.ribbons[1].rest.size()==255,"Hair points have not tripled")
-    check(rig.face_details.rest.size()==9555 and rig.tail_skin.rest.size()==2535,"Crown or tail points have not tripled")
+    check(rig.ribbons[0].rest.size()==765 and rig.ribbons[1].rest.size()==765,"Hair points have not tripled")
+    check(rig.face_details.rest.size()==28665 and rig.tail_skin.rest.size()==7605,"Crown or tail points have not tripled")
     rig.set_motion(Vector2(280,0),1,false,false,1)
     var seen := {}
     var entries := 0

@@ -4,77 +4,160 @@
 resource_name = "greet"
 length = 1.15
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:gesture_wave")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.18, 0.35, 0.53, 0.72, 0.9, 1.15), "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1), "update": 0, "values": [0, 1, 0.3, 1, 0.25, 0.65, 0]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.06, 0.12, 0.16, 0.18, 0.236667, 0.293333, 0.35, 0.41, 0.47, 0.53, 0.593333, 0.656667, 0.72, 0.78, 0.84, 0.9, 0.983333, 1.06667, 1.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0331464, 0.251516, 0.725254, 0.956529, 1.0, 0.836026, 0.494556, 0.3, 0.474359, 0.813424, 1.0, 0.81868, 0.467456, 0.25, 0.33021, 0.530477, 0.65, 0.489023, 0.172289, 0.0]
+}
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:gesture_nod")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
-tracks/1/keys = {"times": PackedFloat32Array(0, 0.3, 0.6, 1.15), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0, 0.45, -0.15, 0]}
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.2, 0.266667, 0.3, 0.4, 0.5, 0.6, 0.783333, 0.966667, 1.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0162551, 0.122222, 0.344444, 0.441152, 0.45, 0.309952, 0.0532383, -0.15, -0.208715, -0.0876906, 0.0]
+}
 
 [sub_resource type="Animation" id="cast"]
 resource_name = "cast"
 length = 0.22
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:gesture_reach")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.045, 0.105, 0.22), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0, -0.35, 1, 0]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.005, 0.015, 0.03, 0.04, 0.045, 0.065, 0.085, 0.105, 0.143333, 0.181667, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0145699, -0.108069, -0.293915, -0.358534, -0.35, -0.00625568, 0.568176, 1.0, 0.941852, 0.359815, 0]
+}
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:gesture_nod")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
-tracks/1/keys = {"times": PackedFloat32Array(0, 0.09, 0.22), "transitions": PackedFloat32Array(1, 1, 1), "update": 0, "values": [0, -0.25, 0]}
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.03, 0.06, 0.08, 0.09, 0.133333, 0.176667, 0.22),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.00772924, -0.0591168, -0.173789, -0.234673, -0.25, -0.201646, -0.0730453, 0.0]
+}
 
 [sub_resource type="Animation" id="reward"]
 resource_name = "reward"
 length = 0.6
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:gesture_arch")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.12, 0.33, 0.6), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0, 1, 0.25, 0]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0133333, 0.04, 0.08, 0.106667, 0.12, 0.19, 0.26, 0.33, 0.42, 0.51, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0290204, 0.223665, 0.669553, 0.923521, 1.0, 0.967686, 0.581837, 0.25, 0.0886243, 0.0165344, 0.0]
+}
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:gesture_wave")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
-tracks/1/keys = {"times": PackedFloat32Array(0, 0.15, 0.35, 0.6), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0, 0.5, 0.2, 0]}
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.05, 0.1, 0.133333, 0.15, 0.216667, 0.283333, 0.35, 0.433333, 0.516667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0150696, 0.115608, 0.342328, 0.466236, 0.5, 0.477225, 0.331699, 0.2, 0.104115, 0.0298354, 0.0]
+}
 
 [sub_resource type="Animation" id="impact"]
 resource_name = "impact"
 length = 0.34
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:gesture_arch")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.05, 0.18, 0.34), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0, -1, 0.18, 0]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.00555556, 0.0166667, 0.0333333, 0.0444444, 0.05, 0.0933333, 0.136667, 0.18, 0.233333, 0.286667, 0.34),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0277514, -0.2151, -0.652422, -0.913369, -1.0, -0.967072, -0.327478, 0.18, 0.240086, 0.100043, 0.0]
+}
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:gesture_reach")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
-tracks/1/keys = {"times": PackedFloat32Array(0, 0.05, 0.2, 0.34), "transitions": PackedFloat32Array(1, 1, 1, 1), "update": 0, "values": [0, -0.7, 0.15, 0]}
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.00555556, 0.0166667, 0.0333333, 0.0444444, 0.05, 0.1, 0.15, 0.2, 0.246667, 0.293333, 0.34),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0190215, -0.14784, -0.451235, -0.636123, -0.7, -0.70572, -0.219773, 0.15, 0.156356, 0.0615113, 0.0]
+}
 
 [sub_resource type="Animation" id="celebrate"]
 resource_name = "celebrate"
 length = 1.6
 loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath(".:gesture_wave")
 tracks/0/interp = 2
 tracks/0/loop_wrap = false
-tracks/0/keys = {"times": PackedFloat32Array(0, 0.25, 0.5, 0.8, 1.05, 1.35, 1.6), "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1), "update": 0, "values": [0.25, 1, 0.4, 1, 0.3, 0.85, 0.25]}
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0277778, 0.0833333, 0.166667, 0.222222, 0.25, 0.333333, 0.416667, 0.5, 0.6, 0.7, 0.8, 0.883333, 0.966667, 1.05, 1.15, 1.25, 1.35, 1.43333, 1.51667, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.25, 0.274897, 0.438889, 0.794444, 0.967695, 1.0, 0.862963, 0.575926, 0.4, 0.551515, 0.86303, 1.0, 0.808474, 0.495735, 0.3, 0.422323, 0.713131, 0.85, 0.676824, 0.396745, 0.25]
+}
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:gesture_arch")
 tracks/1/interp = 2
 tracks/1/loop_wrap = false
-tracks/1/keys = {"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6), "transitions": PackedFloat32Array(1, 1, 1, 1, 1), "update": 0, "values": [0, 0.65, 0, 0.65, 0]}
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0444444, 0.133333, 0.266667, 0.355556, 0.4, 0.533333, 0.666667, 0.8, 0.933333, 1.06667, 1.2, 1.33333, 1.46667, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0222908, 0.168519, 0.481481, 0.627709, 0.65, 0.481481, 0.168519, 0.0, 0.168519, 0.481481, 0.65, 0.481481, 0.168518, 0.0]
+}
 tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/path = NodePath(".:gesture_nod")
 tracks/2/interp = 2
 tracks/2/loop_wrap = false
-tracks/2/keys = {"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.6), "transitions": PackedFloat32Array(1, 1, 1, 1, 1), "update": 0, "values": [0, 0.6, 0, 0.6, 0]}
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0444444, 0.133333, 0.266667, 0.355556, 0.4, 0.533333, 0.666667, 0.8, 0.933333, 1.06667, 1.2, 1.33333, 1.46667, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0205761, 0.155556, 0.444444, 0.579424, 0.6, 0.444444, 0.155556, 0.0, 0.155556, 0.444444, 0.6, 0.444444, 0.155556, 0.0]
+}
 
 [resource]
-_data = {"greet": SubResource("greet"), "cast": SubResource("cast"), "reward": SubResource("reward"), "impact": SubResource("impact"), "celebrate": SubResource("celebrate")}
+_data = {
+&"cast": SubResource("cast"),
+&"celebrate": SubResource("celebrate"),
+&"greet": SubResource("greet"),
+&"impact": SubResource("impact"),
+&"reward": SubResource("reward")
+}

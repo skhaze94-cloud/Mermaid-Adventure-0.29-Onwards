@@ -15,7 +15,7 @@ func run() -> void:
     check(Cycles.NAMES.size()==36,"v0.29 must double the 18 body loops")
     var signatures: Array[Vector4] = []
     for name in Cycles.NAMES:
-        check(Cycles.cycles[name].size()==432,"v0.29 must triple v0.29.2 samples per loop")
+        check(Cycles.cycles[name].size()==1296,"v0.29 must triple v0.29.2 samples per loop")
         var signature := Cycles.sample(name,.7)+Cycles.sample(name,2.2)*.5
         for previous in signatures: check(previous.distance_to(signature)>.003,"Distinct performances must not duplicate another loop")
         signatures.append(signature)

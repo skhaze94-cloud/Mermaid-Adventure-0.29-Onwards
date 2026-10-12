@@ -1,6 +1,10 @@
 extends Node2D
 ## Menu-reference face, continuous tail skin and articulated native painted limbs.
 ## Pose blending and anchored UVs preserve identity throughout every performance.
+const Princess = preload("res://godot/sarah_princess_motion.gd")
+const SwimWake = preload("res://godot/sarah_swim_wake.gd")
+var swim_wake: Node2D
+var princess_variation := Vector3.ZERO
 const TailSkin = preload("res://godot/sarah_tail_skin.gd")
 const Cycles = preload("res://godot/sarah_pose_cycles.gd")
 const NEW_TAIL = preload("res://godot/assets/sarah-tail-v019.webp")
@@ -222,6 +226,8 @@ func reset_performance() -> void:
     swim_clock = 0.0
     horizontal_stroke_clock = 0.0
     camera_wave = 0.0
+    if is_instance_valid(swim_wake): swim_wake.clear()
+    princess_variation = Vector3.ZERO
     swim_style = "breaststroke"
     stroke_candidate = "breaststroke"
     stroke_candidate_time = 0.0
@@ -286,7 +292,7 @@ func _arm(index: int, parent: Node2D, length: float, height: float) -> void:
     if index==1:
         mesh.elbow_uv=Vector2(.45,.49)
         mesh.wrist_uv=Vector2(.67,.62)
-    mesh.configure(ARMS,region,Rect2(-5.0,-height*0.28,length,height),32,9)
+    mesh.configure(ARMS,region,Rect2(-5.0,-height*0.28,length,height),ArmMesh.COLUMNS,ArmMesh.ROWS)
     # Fuller upper arm with a gently tapered wrist; retain painted hands and UVs.
     for i in range(mesh.rest.size()):
         var u := (mesh.rest[i].x+5.0)/length
@@ -330,7 +336,7 @@ func _ribbon(index: int, parent: Node2D, destination: Rect2, shining: bool) -> v
     var region := Rect2(Vector2(crop[0],crop[1]) * Vector2(ATLAS.get_width(),ATLAS.get_height()), Vector2(crop[2],crop[3]) * Vector2(ATLAS.get_width(),ATLAS.get_height()))
     var mesh := Ribbon.new()
     mesh.name = "FlexiblePaintedPart_%d" % index
-    mesh.configure(ATLAS,region,destination,50,5) # 255 points: three times the v0.30 hair mesh.
+    mesh.configure(ATLAS,region,destination,152,5) # 765 points: three times v0.4.
     if shining:
         var material := ShaderMaterial.new()
         material.shader = SCALES
@@ -366,16 +372,16 @@ func _update_ribbons(dt: float, phase: float, swim_amount: float) -> void:
     ribbons[0].deform(phase*.5-.4,2.3+strength*.35,hair_drag*6.0+horizontal_drag*4.0+shared_wave)
     ribbons[1].deform(phase*.5-1.1,1.5+strength*.55,hair_drag*4.0+horizontal_drag*5.0+shared_wave*.7)
     # Array order is far then near. Keep each elbow/wrist on its own shoulder.
-    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y,arm_dynamics.cups[1].x)
-    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y,arm_dynamics.cups[0].x)
+    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y,arm_dynamics.cups[1].x,boost_blend)
+    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y,arm_dynamics.cups[0].x,boost_blend)
     for material in ribbon_materials:
         material.set_shader_parameter("motion_clock", clock)
         material.set_shader_parameter("charge_mix", boost_blend)
         material.set_shader_parameter("motion_enabled", not reduced_motion)
 
 func start_jump(chain: int, direction: float) -> void:
-    # Six performances: opposing corkscrews, roll, soaring arc, twirl and wave.
-    jump_style = jump_style_cursor % 6
+    # Eighteen performances: six aerial families with three graceful timings each.
+    jump_style = jump_style_cursor % 18
     jump_style_cursor += 1
     jump_chain = chain
     jump_direction = direction
@@ -396,18 +402,20 @@ func set_jump_state(phase: String, air_time: float, chain: int, direction: float
     jump_direction = direction
 
 func _jump_roll(progress: float) -> float:
-    if jump_style == 2:
+    progress=pow(clampf(progress,0,1),1.0+floorf(jump_style/6.0)*.12)
+    if jump_style%6 == 2:
         return spin_curve.sample_baked(progress)*TAU*jump_direction
-    if jump_style == 3:
+    if jump_style%6 == 3:
         return sin(progress*PI)*.20*jump_direction
-    if jump_style == 4:
+    if jump_style%6 == 4:
         return sin(progress*TAU*1.5)*sin(progress*PI)*.24*jump_direction
-    if jump_style == 5:
+    if jump_style%6 == 5:
         return -sin(progress*TAU)*sin(progress*PI)*.32*jump_direction
-    var handedness := 1.0 if jump_style == 0 else -1.0
+    var handedness := 1.0 if jump_style%6 == 0 else -1.0
     return sin(progress*TAU*1.15)*sin(progress*PI)*0.30*handedness*jump_direction
 
 func _joy_envelope(progress: float, delay: float) -> float:
+    progress=pow(clampf(progress,0,1),1.0+floorf(jump_style/6.0)*.12)
     return smoothstep(0.12+delay,0.30+delay,progress)*(1.0-smoothstep(0.62+delay,0.88,progress))
 
 func airborne_clearance(screen_y: float) -> float:
@@ -517,7 +525,7 @@ func _ready() -> void:
     _arm(1, far_arm, 78, 44)
     bodice = Ribbon.new()
     bodice.name = "ShapedBodice"
-    bodice.configure(ATLAS,BODICE_REGION,BODICE_BOUNDS,24,13)
+    bodice.configure(ATLAS,BODICE_REGION,BODICE_BOUNDS,74,13)
     # Keep collar/shoulders fixed and taper the lower body toward the hip.
     # UVs retain the painting; this replaces uniform squash with a waist shape.
     var shaped: PackedVector2Array = bodice.rest.duplicate()
@@ -580,6 +588,9 @@ func _ready() -> void:
     hero_light.energy = 0.24
     hero_light.position = Vector2(21.0, -12.0)
     add_child(hero_light)
+    swim_wake = SwimWake.new()
+    swim_wake.name = "PrincessSwimmingWake"
+    add_child(swim_wake)
     play_gesture("greet")
 
 func _radial_texture() -> Texture2D:
@@ -653,23 +664,23 @@ func _process(delta: float) -> void:
     jump_pose_blend = lerpf(jump_pose_blend, 1.0 if active_jump else 0.0, fast_ease)
     var air_progress := clampf(jump_air_time / 0.88,0.0,1.0)
     var playful_air := jump_phase == "airborne" and not reduced_motion
-    var handedness := 1.0 if jump_style == 0 else -1.0
-    corkscrew = sin(air_progress*TAU*1.35)*sin(air_progress*PI)*handedness if playful_air and jump_style != 2 else 0.0
+    var handedness := 1.0 if jump_style%6 == 0 else -1.0
+    corkscrew = sin(air_progress*TAU*1.35)*sin(air_progress*PI)*handedness if playful_air and jump_style%6 != 2 else 0.0
     jump_joy_near = _joy_envelope(air_progress,0.0)*jump_pose_blend if playful_air else 0.0
     jump_joy_far = _joy_envelope(air_progress,0.07)*jump_pose_blend if playful_air else 0.0
     if playful_air:
-        if jump_style==3:
+        if jump_style%6==3:
             jump_joy_near *= .40
             jump_joy_far *= .25
-        elif jump_style==4:
+        elif jump_style%6==4:
             jump_joy_near *= .70+.30*sin(air_progress*TAU)
             jump_joy_far *= .70-.30*sin(air_progress*TAU)
-        elif jump_style==5:
+        elif jump_style%6==5:
             jump_joy_far *= .45
     var tuck := sin(air_progress * PI) * jump_pose_blend if jump_phase == "airborne" else 0.0
-    if jump_style==3: tuck *= .55
-    elif jump_style==4: tuck *= .85
-    elif jump_style==5: tuck *= .75
+    if jump_style%6==3: tuck *= .55
+    elif jump_style%6==4: tuck *= .85
+    elif jump_style%6==5: tuck *= .75
     var dive := smoothstep(0.60,0.93,air_progress) * jump_pose_blend if jump_phase == "airborne" else 0.0
     var lift := jump_pose_blend if jump_phase == "ascent" else (1.0 - dive) * jump_pose_blend
     var curl := launch_curl * 0.22 + tuck * (0.42 + minf(jump_chain,3) * 0.035)
@@ -714,14 +725,21 @@ func _process(delta: float) -> void:
     var stroke_amount := maxf(swim_blend,.65 if waterfall_context!="" else 0.0)*(1.0-leap_blend)
     stroke_amount *= 1.0-clampf(absf(wave)+absf(reach)+hit_kick,0,1)
     if reduced_motion or not high_quality: stroke_amount = 0.0
+    princess_variation = Princess.weights(swim_clock)
     var stroke_near := _blended_stroke(false)
     var stroke_far := _blended_stroke(true)
     var near_target := Vector3(.0,.10,0).lerp(stroke_near,stroke_amount)
     var far_target := Vector3(.0,.09,0).lerp(stroke_far*Vector3(.91,.92,.9),stroke_amount)
+    if high_quality and not reduced_motion:
+        near_target += Princess.arm(swim_phase,false)*stroke_amount*(1.0-boost_blend)
+        far_target += Princess.arm(swim_phase,true)*stroke_amount*(1.0-boost_blend)
+    # Torpedo: quiet aligned shoulders, almost straight elbows, relaxed wrists.
+    near_target = near_target.lerp(Vector3(-.62,-.025,-.035),boost_blend)
+    far_target = far_target.lerp(Vector3(-.59,-.035,-.025),boost_blend)
     # Gentle motion keeps a quiet, readable forward boost pose.
     if reduced_motion or not high_quality:
-        near_target = near_target.lerp(Vector3(-.42,.035,-.06),boost_blend)
-        far_target = far_target.lerp(Vector3(-.34,.025,-.04),boost_blend)
+        near_target = near_target.lerp(Vector3(-.62,-.025,-.035),boost_blend)
+        far_target = far_target.lerp(Vector3(-.59,-.035,-.025),boost_blend)
     if high_quality and not reduced_motion:
         arm_pose_near = arm_dynamics.filter_pose(1,arm_pose_near,near_target,dt)
         arm_pose_far = arm_dynamics.filter_pose(0,arm_pose_far,far_target,dt)
@@ -739,7 +757,7 @@ func _process(delta: float) -> void:
     far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x-torso_motion.rib_angle,far_reach,fast_ease)
     # A readable faux yaw: foreshortening, overlap and lighting agree on depth.
     var roll := sin(air_progress*TAU-0.45)*sin(air_progress*PI) if jump_phase == "airborne" else 0.0
-    var yaw_target := clampf((corkscrew*0.95 if jump_style != 2 and playful_air else roll*0.82) + turn_pose*0.45 + sin(swim_phase*0.5)*swim_blend*0.13 + depth_bank*.9,-0.9,0.9)
+    var yaw_target := clampf((corkscrew*0.95 if jump_style%6 != 2 and playful_air else roll*0.82) + turn_pose*0.45 + sin(swim_phase*0.5)*swim_blend*0.13 + depth_bank*.9,-0.9,0.9)
     depth_turn = 0.0 if reduced_motion else lerpf(depth_turn,yaw_target,fast_ease)
     var depth := absf(depth_turn)
     torso.skew = depth_turn*0.065
@@ -791,6 +809,9 @@ func _process(delta: float) -> void:
     elif pose_set=="drift": desired_pose = desired_pose.lerp(Cycles.sample("glide",swim_phase),.35)
     desired_pose.x += turn_kick*.25 - arch*.12 + landing_compress*.08
     desired_pose.z += corkscrew*.12 - dive*.10 + depth_bank*.14
+    if high_quality and not reduced_motion:
+        desired_pose += Princess.body(swim_phase,swim_blend,boost_blend)
+    desired_pose = desired_pose.lerp(Vector4(sin(swim_phase)*.045,sin(swim_phase-.85)*.19,sin(swim_phase-1.75)*.34,0),boost_blend*.88)
     cycle_pose = cycle_pose.lerp(desired_pose,fast_ease)
     var tuck_target := clampf(launch_curl*.7+tuck*.88+brake_blend*.32+absf(turn_kick)*.8,0,1)
     tail_tuck = lerpf(tail_tuck,tuck_target,fast_ease)
@@ -816,7 +837,9 @@ func _process(delta: float) -> void:
         swim_phase,detail_gaze,expression_blend,blink_blend,high_quality and not reduced_motion)
     expression_index = 2 if blink_blend>.55 else (1 if expression_blend>.35 else 0)
     face_sprite.texture = faces[expression_index]
+    face_details.adapt_detail(high_quality)
     _update_ribbons(dt,swim_phase,swim_blend)
+    swim_wake.advance(self,dt)
     self_modulate.a = alpha_value
     if is_instance_valid(hero_light):
         var target_energy := 0.0 if reduced_motion else (0.24 + 0.24 * boost_blend)

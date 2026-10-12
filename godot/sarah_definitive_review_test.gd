@@ -19,11 +19,11 @@ func run() -> void:
         check(Cycles.sample(name,0).distance_to(Cycles.sample(name,TAU))<.00001,"Dense body loop seam")
     check(Cycles.POSES>=144*3 and Styles.SAMPLES>=144*3,"Movement points not tripled")
     check(Arms.KEYS.size()>=8*3,"Breaststroke controls not tripled")
-    check(Points.tracks.size()==22 and Points.SAMPLES>=432,"New coordinated performance tracks missing")
+    check(Points.tracks.size()==22 and Points.SAMPLES>=1296,"New coordinated performance tracks missing")
     for name in Points.tracks:
-        check(Points.tracks[name][0].size()==432 and Points.tracks[name][1].size()==432,"Incomplete performance point library")
-        for i in range(432):
-            var point := Points.sample(name,float(i)*TAU/432)
+        check(Points.tracks[name][0].size()==1296 and Points.tracks[name][1].size()==1296,"Incomplete performance point library")
+        for i in range(1296):
+            var point := Points.sample(name,float(i)*TAU/1296)
             var a: Vector4 = point[0]
             var b: Vector3 = point[1]
             check(a.is_finite() and b.is_finite(),"Non-finite control point")
