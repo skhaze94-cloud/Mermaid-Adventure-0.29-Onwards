@@ -3,10 +3,13 @@ extends "res://godot/highland_level.gd"
 const Journey := preload("res://godot/journey_data.gd")
 const LagoonArt := preload("res://godot/lagoon_art.gd")
 const CreatureArt := preload("res://godot/creature_art.gd")
-const SHADOW_BACKGROUND := preload("res://dist/assets/shadow-kingdom-v751.webp")
-const LAGOON_BACKGROUND := preload("res://dist/assets/colombia.webp")
-const MIGUEL := preload("res://dist/assets/miguel.webp")
+const SHADOW_BACKGROUND := "res://dist/assets/shadow-kingdom-v751.webp"
+const LAGOON_BACKGROUND := "res://dist/assets/colombia.webp"
+const MIGUEL := "res://dist/assets/miguel.webp"
 @export var shadow := false
+@export var chapter_painting: Texture2D
+@export var chapter_boss_painting: Texture2D
+@export var secondary_boss_painting: Texture2D
 var performance: Node2D
 var flip_performance: Node2D
 var switches: Array[Dictionary] = []
@@ -22,6 +25,9 @@ var flora_keys: Array[String] = []
 
 func _ready() -> void:
     fallen = true
+    if not chapter_painting: chapter_painting = load(SHADOW_BACKGROUND if shadow else LAGOON_BACKGROUND)
+    if not shadow and not chapter_boss_painting: chapter_boss_painting = load(MIGUEL)
+    if shadow and not secondary_boss_painting: secondary_boss_painting = load(FLIP_ART)
     bubble_unlocked = true
     boss_hp = _boss_max_health()
     boss_position = Vector2(_boss_home(),690 if shadow else 540)
@@ -32,13 +38,13 @@ func _ready() -> void:
     flora_keys = LagoonArt.keys("lagoon-flora-atlas")
     performance = preload("res://godot/boss_performance.gd").new()
     add_child(performance)
-    performance.configure(CreatureArt.atlas("carlo",0) if shadow else MIGUEL,Vector2(380,310) if shadow else Vector2(440,290),"duke" if shadow else "miguel")
+    performance.configure(CreatureArt.atlas("carlo",0) if shadow else chapter_boss_painting,Vector2(380,310) if shadow else Vector2(440,290),"duke" if shadow else "miguel")
     if shadow:
         performance.modulate = Color(.82,.72,1)
         flip_performance = preload("res://godot/boss_performance.gd").new()
         add_child(flip_performance)
         var flip_art := AtlasTexture.new()
-        flip_art.atlas = FLIP_ART
+        flip_art.atlas = secondary_boss_painting
         flip_art.region = Rect2(34,99,1487,811)
         flip_performance.configure(flip_art,Vector2(280,153),"flip")
     super._ready()
@@ -70,7 +76,9 @@ func _sync_native_visuals() -> void:
             flip_performance.set_state(flip_hp,"recover" if flip_stun>0 else "attack",flip_position-Vector2(camera,0),time,reduced_fx)
     # Keep Sarah, native HUD, input and jump choreography; these chapters own their scenery.
     for node in [world_depth,foreground_depth,relief_obstacles,water_surface,waterfall_world,environment_landmarks,native_boss]:
-        if is_instance_valid(node): node.hide()
+        if is_instance_valid(node):
+            node.hide()
+            node.set_process(false)
 func _update_swimming(dt: float) -> void:
     super._update_swimming(dt)
     if state == "victory":
@@ -302,11 +310,11 @@ func _finish_boss() -> void:
         _say("Boss clear — follow the glowing portal!",6)
         _award("boss:clear","Boss",1000,boss_position,false)
 
-const FLIP_ART = preload("res://godot/assets/flip-dolphin-v018.png")
+const FLIP_ART = "res://godot/assets/flip-dolphin-v018.png"
 const Terrain = preload("res://godot/terrain_painter.gd")
 
 func _draw_world(s: Vector2) -> void:
-    var background: Texture2D = SHADOW_BACKGROUND if shadow else LAGOON_BACKGROUND
+    var background: Texture2D = chapter_painting
     var progress := clampf(camera/maxf(1,_level_length()-s.x),0,1)
     if shadow:
         var cover := maxf(s.x/background.get_width(),s.y/background.get_height())*1.12
@@ -375,3 +383,5 @@ func _draw_boss() -> void:
     else:
         # Miguel’s wing mesh remains anchored at its shared centre.
         Polish.boss_cue(self,pos,185,_boss_vulnerable())
+
+func _uses_highland_scenery() -> bool: return false

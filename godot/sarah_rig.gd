@@ -12,7 +12,8 @@ const EXPRESSIONS = preload("res://godot/assets/sarah-expressions-v019.webp")
 const FACE_REGIONS := [Rect2(15,80,710,570),Rect2(735,80,700,570),Rect2(1445,80,710,570)]
 var face_sprite: Sprite2D
 const FaceDetails = preload("res://godot/sarah_face_details.gd")
-var face_details: Polygon2D
+const PaintedMesh = preload("res://godot/sarah_painted_mesh.gd")
+var face_details: PaintedMesh
 var detail_gaze := Vector2.ZERO
 var expression_blend := 0.0
 var blink_blend := 0.0
@@ -23,7 +24,7 @@ var definitive_motion = DefinitiveMotion.new()
 const TorsoMotion = preload("res://godot/sarah_torso_motion.gd")
 var torso_motion = TorsoMotion.new()
 var faces: Array[Texture2D] = []
-var tail_skin: Polygon2D
+var tail_skin: PaintedMesh
 var cycle_pose := Vector4.ZERO
 var tail_tuck := 0.0
 var pose_set := "idle"
@@ -45,7 +46,7 @@ var arm_pose_near := Vector3.ZERO
 var arm_pose_far := Vector3.ZERO
 const ArmDynamics = preload("res://godot/sarah_arm_dynamics.gd")
 var arm_dynamics = ArmDynamics.new()
-var bodice: Polygon2D
+var bodice: PaintedMesh
 const BODICE_BOUNDS := Rect2(-3,-40,60,60)
 const BODICE_REGION := Rect2(8,19,240,218)
 const ArmMesh = preload("res://godot/sarah_arm_mesh.gd")
@@ -119,8 +120,8 @@ var previous_vertical_speed := 0.0
 var body_pitch := 0.0
 
 # Anchored hair/tail skins and additive, interruptible native gestures.
-var ribbons: Array[Polygon2D] = []
-var arm_meshes: Array[Polygon2D] = []
+var ribbons: Array[PaintedMesh] = []
+var arm_meshes: Array[PaintedMesh] = []
 var ribbon_materials: Array[ShaderMaterial] = []
 var gesture_player: AnimationPlayer
 var gesture_wave := 0.0
@@ -149,6 +150,7 @@ var depth_turn := 0.0
 var arm_depth_swapped := false
 var volume_materials: Array[ShaderMaterial] = []
 var painted_parts: Array[Node2D] = []
+static var soft_light_texture: Texture2D
 
 func set_steering(direction: Vector2) -> void:
     steering_value = direction.limit_length(1.0)
@@ -430,7 +432,7 @@ func airborne_clearance(screen_y: float) -> float:
     # Include current painted geometry, without moving the physics body.
     for part in painted_parts:
         var transform: Transform2D = part.get_global_transform()
-        if part is Polygon2D:
+        if part is PaintedMesh:
             for point in part.polygon:
                 top = minf(top,(transform * point).y-global_position.y)
         elif part is Sprite2D:
@@ -594,6 +596,7 @@ func _ready() -> void:
     play_gesture("greet")
 
 func _radial_texture() -> Texture2D:
+    if soft_light_texture: return soft_light_texture
     var image := Image.create(96, 96, false, Image.FORMAT_RGBA8)
     image.fill(Color.TRANSPARENT)
     for y in range(96):
@@ -604,7 +607,8 @@ func _radial_texture() -> Texture2D:
             if d < 1.0:
                 image.set_pixel(x, y, Color(1.0, 1.0, 1.0,
                     pow(maxf(0.0, 1.0 - d), 2.1) * 0.74))
-    return ImageTexture.create_from_image(image)
+    soft_light_texture = ImageTexture.create_from_image(image)
+    return soft_light_texture
 
 func set_motion(velocity: Vector2, direction: float, is_boosting: bool, is_leaping: bool, opacity: float) -> void:
     velocity_value = velocity

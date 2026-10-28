@@ -1,4 +1,5 @@
 extends SceneTree
+const PaintedMesh = preload("res://godot/sarah_painted_mesh.gd")
 ## Review the production skins, not an isolated mock arm.
 const Styles = preload("res://godot/sarah_swim_styles.gd")
 var checks := 0
@@ -12,7 +13,7 @@ func check(ok: bool, why: String) -> void:
         failures+=1
         if failures<12: push_error("SARAH ARMS: "+why)
 func _initialize() -> void: call_deferred("run")
-func prepare(mesh: Polygon2D) -> void:
+func prepare(mesh: PaintedMesh) -> void:
     if not images.has(mesh.texture): images[mesh.texture]=mesh.texture.get_image()
     var image: Image = images[mesh.texture]
     var triangles := []
@@ -21,7 +22,7 @@ func prepare(mesh: Polygon2D) -> void:
         if image.get_pixelv(Vector2i(uv)).a>.6: triangles.append(tri)
     opaque_triangles[mesh]=triangles
     min_area[mesh.name]=INF
-func inspect(mesh: Polygon2D, context: String) -> void:
+func inspect(mesh: PaintedMesh, context: String) -> void:
     for point in mesh.polygon: check(point.is_finite(),context+" invalid skin vertex")
     for tri in opaque_triangles[mesh]:
         var a: Vector2 = mesh.polygon[tri[0]]
@@ -33,7 +34,7 @@ func inspect(mesh: Polygon2D, context: String) -> void:
         var ratio := (b-a).cross(c-a)/(r1-r0).cross(r2-r0)
         min_area[mesh.name]=minf(min_area[mesh.name],ratio)
         check(ratio>.02,context+" painted triangle folds or collapses: "+str(mesh.name))
-func alpha_at(mesh: Polygon2D, point: Vector2) -> float:
+func alpha_at(mesh: PaintedMesh, point: Vector2) -> float:
     var local := mesh.to_local(point)
     var image: Image = images[mesh.texture]
     for tri in mesh.polygons:
@@ -89,7 +90,7 @@ func run() -> void:
                 for i in range(2):
                     check(absf(rig.arm_dynamics.applied[i].y)<.381,"Wrist beyond safe envelope")
                     check(rig.arm_dynamics.applied[i].x> -1.301,"Elbow beyond safe envelope")
-                    var mesh: Polygon2D = rig.arm_meshes[i]
+                    var mesh: PaintedMesh = rig.arm_meshes[i]
                     for point in range(mesh.rest.size()):
                         if (mesh.rest[point].x+5.0)/(88.0 if i==1 else 78.0)<=.34:
                             check(mesh.polygon[point]==mesh.rest[point],"Sleeve attachment drifts")

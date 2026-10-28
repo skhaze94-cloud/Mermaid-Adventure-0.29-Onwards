@@ -61,6 +61,8 @@ var control_size := 1.0
 var control_opacity := 0.85
 var touch_normal: StyleBoxFlat
 var touch_pressed: StyleBoxFlat
+var touch_signature: Array = []
+var touch_redraws := 0
 
 func _ready() -> void:
     layer = 6
@@ -328,11 +330,15 @@ func action_rect(action: String) -> Rect2:
         rect.position.x = clampf(rect.position.x,12,game_size.x-12-rect.size.x)
     return rect
 func update_hud(next_info: Dictionary) -> void:
-    if info == next_info: skipped_redraws += 1
-    else: redraw_count += 1
+    if info == next_info:
+        skipped_redraws += 1
+        return
+    redraw_count += 1
     var was_paused: bool = info.get("paused",false)
     var was_victory: bool = info.get("victory",false)
-    info = next_info
+    # Keep our comparison snapshot independent of callers that reuse a Dictionary.
+    # An in-place pause/results update must still invalidate the visible controls.
+    info = next_info.duplicate(true)
     if bool(info.get("victory",false)) and not was_victory:
         _build_results()
         configure_layout(get_viewport().get_visible_rect().size,Vector2(get_viewport().get_window().size))
@@ -377,7 +383,15 @@ func _refresh() -> void:
     boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + (" · Boost now" if info.get("boss_vulnerable",false) else "")
     touch_layer.visible = info.get("touch",false) and not portrait and not info.get("paused",false) and not info.get("victory",false)
     touch_layer.modulate.a = control_opacity
-    touch_layer.queue_redraw()
+    # Preserve every joystick/cooldown frame; unrelated score, message and
+    # progress changes do not rebuild the same touch geometry and labels.
+    var next_touch: Array = [game_size,control_size,info.get("pad",Vector2.ZERO),
+        info.get("pressed",[]),info.get("bubble",false),float(info.get("energy",1.0))>=0.4,
+        info.get("cooldowns",{}).duplicate()]
+    if next_touch != touch_signature:
+        touch_signature = next_touch.duplicate(true)
+        touch_layer.queue_redraw()
+        touch_redraws += 1
     modal.visible = info.get("paused",false) or info.get("victory",false) or portrait
     modal_card.visible = not portrait
     if modal.visible:
@@ -461,7 +475,9 @@ func _process(dt: float) -> void:
     if target < shown_score or reduced: shown_score = target
     elif not info.get("paused",false): shown_score = move_toward(shown_score,target,maxf(1,(target-shown_score)*minf(dt*9,1)))
     score_label.text = Kit.number(roundi(shown_score))
-    score_label.add_theme_font_size_override("font_size",26 if score_label.text.length()<10 else 20)
+    var score_size := 26 if score_label.text.length()<10 else 20
+    if score_label.get_theme_font_size("font_size") != score_size:
+        score_label.add_theme_font_size_override("font_size",score_size)
     if not info.get("paused",false): score_pulse = maxf(0,score_pulse-dt*4)
     score_label.scale = Vector2.ONE*(1.0+(0.0 if reduced else sin(score_pulse*PI)*0.055))
     if modal.visible and not portrait:

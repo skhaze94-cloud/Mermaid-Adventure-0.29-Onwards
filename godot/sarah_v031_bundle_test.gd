@@ -1,4 +1,5 @@
 extends SceneTree
+const PaintedMesh = preload("res://godot/sarah_painted_mesh.gd")
 const Styles = preload("res://godot/sarah_swim_styles.gd")
 var checks := 0
 var failures := 0
@@ -9,7 +10,7 @@ func check(ok: bool, why: String) -> void:
         push_error("SARAH V031: "+why)
 func _initialize() -> void: call_deferred("run")
 var images := {}
-func alpha_at(part: Polygon2D, point: Vector2) -> float:
+func alpha_at(part: PaintedMesh, point: Vector2) -> float:
     var local := part.to_local(point)
     if not images.has(part.texture): images[part.texture] = part.texture.get_image()
     var source: Image = images[part.texture]

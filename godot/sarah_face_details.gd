@@ -1,4 +1,4 @@
-extends Polygon2D
+extends "res://godot/sarah_painted_mesh.gd"
 ## One persistent painted surface. Neck anchors and UVs stay fixed.
 const DETAIL_SHADER = preload("res://godot/shaders/sarah_face_details.gdshader")
 const COLUMNS := 584 # 28,665 connected points: three times v0.4.
@@ -8,11 +8,44 @@ var surface: ShaderMaterial
 var full_triangles: Array[PackedInt32Array] = []
 var play_triangles: Array[PackedInt32Array] = []
 var full_detail := true
+static var cached_feature_key := 0
+static var cached_features0 := PackedFloat32Array()
+static var cached_features1 := PackedFloat32Array()
+
+static func feature(point: Vector2, center: Vector2, radius: Vector2) -> float:
+    var d := (point-center)/radius
+    return exp(-d.dot(d)*2.0)
+
+func _prepare_features(coordinates: PackedVector2Array, source_size: Vector2, region: Rect2) -> void:
+    var key := hash([coordinates,source_size,region])
+    if cached_feature_key != key or cached_features0.is_empty():
+        var first := PackedFloat32Array()
+        var second := PackedFloat32Array()
+        first.resize(coordinates.size()*4)
+        second.resize(coordinates.size()*4)
+        for i in range(coordinates.size()):
+            # Reproduce the shader's registered paint coordinates. These masks
+            # depend only on the unchanged painting, never the live pose.
+            var p := (coordinates[i]/source_size*source_size-region.position-Vector2(.5,.5))/(region.size-Vector2.ONE)
+            var anchored := 1.0-smoothstep(.78,.90,p.y)
+            var hair := maxf(1.0-smoothstep(.38,.64,p.x),1.0-smoothstep(.10,.22,p.y))
+            first[i*4] = anchored
+            first[i*4+1] = feature(p,Vector2(.49,.70),Vector2(.10,.12))
+            first[i*4+2] = feature(p,Vector2(.83,.565),Vector2(.065,.075))
+            first[i*4+3] = feature(p,Vector2(.80,.71),Vector2(.14,.085))
+            second[i*4] = feature(p,Vector2(.82,.685),Vector2(.11,.025))
+            second[i*4+1] = feature(p,Vector2(.73,.65),Vector2(.20,.15))
+            second[i*4+2] = maxf(feature(p,Vector2(.68,.36),Vector2(.12,.05)),feature(p,Vector2(.88,.31),Vector2(.085,.05)))
+            second[i*4+3] = (1.0-smoothstep(.12,.67,p.x))*hair*anchored
+        cached_feature_key = key
+        cached_features0 = first
+        cached_features1 = second
+    custom0 = cached_features0
+    custom1 = cached_features1
 
 func configure(source: Texture2D, regions: Array) -> void:
     texture=source
     texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
-    antialiased=true
     var region: Rect2 = regions[0]
     var coordinates := PackedVector2Array()
     var triangles: Array[PackedInt32Array] = []
@@ -27,6 +60,7 @@ func configure(source: Texture2D, regions: Array) -> void:
             var b := a+COLUMNS+1
             triangles.append(PackedInt32Array([a,a+1,b+1]))
             triangles.append(PackedInt32Array([a,b+1,b]))
+    _prepare_features(coordinates,source.get_size(),region)
     polygon=rest
     uv=coordinates
     polygons=triangles

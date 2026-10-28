@@ -1,4 +1,5 @@
 extends SceneTree
+const PaintedMesh = preload("res://godot/sarah_painted_mesh.gd")
 ## Painted waist overlap, refresh-rate independence and reusable native skins.
 var checks := 0
 var failures := 0
@@ -9,7 +10,7 @@ func check(ok: bool, why: String) -> void:
     if not ok:
         failures += 1
         push_error("CHARACTER HARMONY: "+why)
-func alpha_at(part: Polygon2D, point: Vector2) -> float:
+func alpha_at(part: PaintedMesh, point: Vector2) -> float:
     var local := part.to_local(point)
     if not images.has(part.texture): images[part.texture] = part.texture.get_image()
     var source: Image = images[part.texture]
@@ -33,7 +34,7 @@ func run() -> void:
     rig.jump_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
     rig.reset_performance()
     check(rig.tail_skin.rest.size()==7605,"tail needs tripled v0.31 points (584 columns, 13 rows)")
-    check(rig.arm_meshes[0].rest.size()==297,"arms need 32 columns and nine rows")
+    check(rig.arm_meshes[0].rest.size()==891,"arms retain the v0.5 detail: 98 columns and nine rows")
     for mode in ["idle","swim","dash","turn","jump"]:
         rig.reset_jump()
         rig.reset_performance()
