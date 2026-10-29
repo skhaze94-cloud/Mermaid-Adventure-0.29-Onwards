@@ -11,6 +11,8 @@ config_version=5
 [application]
 
 config/name="Sarah Maria — Mermaid Adventure (Godot v0.5.1 — Princess Polish Sarah)"
+; Keep the application identity stable so existing user:// saves remain reachable.
+config/version="0.6.0"
 config/description="Sarah Maria Mermaid Adventure — eight connected chapters, family tutorial, graceful articulated swimming, torpedo boosts and layered water wakes."
 run/main_scene="res://godot/title_screen.tscn"
 config/features=PackedStringArray("4.3")

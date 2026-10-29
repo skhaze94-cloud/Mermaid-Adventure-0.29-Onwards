@@ -203,7 +203,6 @@ func _paint_chapter_boss() -> void:
     var pos := boss_position-Vector2(camera,0)
     if pos.x < -500 or pos.x>get_viewport_rect().size.x+500: return
     # Shared mesh actor supplies connected fins, breathing and hit/defeat reactions.
-    Polish.boss_cue(self,pos,140 if chapter_id=="palace" else 170,_boss_vulnerable())
     if chapter_id=="rana" and boss_phase!="recover":
         draw_line(Vector2(pos.x-850,laser_y),Vector2(pos.x,laser_y),Color(1,.3,.55,.65),5 if boss_phase=="attack" else 2)
     if chapter_id=="nessie":
@@ -213,3 +212,20 @@ func _portal_is_open() -> bool: return boss_hp<=0
 func _portal_hint() -> String: return "CONTINUE" if _portal_is_open() else "DEFEAT BOSS"
 
 func _uses_highland_scenery() -> bool: return false
+
+func _opal_primary_id() -> String:return chapter_id
+func _opal_opening_soon() -> bool:
+    var phase:=fmod(boss_clock,7.0)
+    return phase>=3.78 and phase<4.0
+func _opal_hit_boss(id: String, damage: int) -> int:
+    if id!=chapter_id or chapter_id=="training" or not _bubble_context_allowed() or not _opal_arena_active() or not _boss_vulnerable() or boss_hit_cooldown>0:return 0
+    var applied:=mini(boss_hp,clampi(damage,1,2));boss_hp-=applied;boss_hit_cooldown=1.1;hostile_shots.clear()
+    _award("boss:%s:%s" % [chapter_id,boss_hp],"Boss",300*applied,boss_position,false)
+    if boss_hp<=0:_award("boss:clear:%s" % chapter_id,"Boss",1000,boss_position,false);_say("Boss defeated - the portal is open!",6)
+    return applied
+func _opal_sync_fields(fx: Node2D) -> void:
+    if chapter_id=="rana" and _opal_arena_active():
+        var phase:=fmod(boss_clock,7.0)
+        if phase>=2.8 and phase<3.3:
+            var radius:=90.0+(phase-2.8)*180.0
+            fx.field(0,"rana-ring",boss_position-Vector2(camera,0),Vector2.ONE*radius*2,0.42)

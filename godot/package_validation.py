@@ -26,7 +26,7 @@ with tempfile.TemporaryDirectory(prefix='sarah-package-',dir=args.temp_dir) as t
     # Wait for all imports, rather than closing the editor during a slow scan.
     run([args.godot,'--headless','--editor','--path',str(stage/'fresh'),'--import'])
     run([args.godot,'--headless','--path',str(stage/'fresh'),'--quit-after','16'])
-    suites = ['visual_polish_test.gd','gameplay_controls_test.gd','environment_visuals_test.gd','family_layout_test.gd','complete_adventure_test.gd','scoring_ui_test.gd','title_flow_test.gd','scene_flow_test.gd','sarah_princess_test.gd','sarah_breaststroke_test.gd','jump_animation_test.gd']
+    suites = ['visual_polish_test.gd','gameplay_controls_test.gd','environment_visuals_test.gd','family_layout_test.gd','complete_adventure_test.gd','scoring_ui_test.gd','title_flow_test.gd','scene_flow_test.gd','sarah_princess_test.gd','sarah_breaststroke_test.gd','jump_animation_test.gd','opal_current_test.gd']
     # Developer checks are copied into the temporary extraction only.
     # The playable ZIP has no captures, tests or historical reports.
     for suite in suites:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://godot/highland_level.gd" id="1_level"]
 [ext_resource type="Script" path="res://godot/native_fx.gd" id="2_effects"]
@@ -18,8 +18,15 @@
 
 [ext_resource type="Script" path="res://godot/environment_landmarks.gd" id="14_landmarks"]
 
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/friendly.png" id="opal_friendly"]
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/enemies.png" id="opal_enemy"]
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/carlo.png" id="opal_boss"]
+
 [node name="HighlandGold" type="Node2D"]
 script = ExtResource("1_level")
+opal_friendly_atlas = ExtResource("opal_friendly")
+opal_enemy_atlas = ExtResource("opal_enemy")
+opal_boss_atlas = ExtResource("opal_boss")
 
 [node name="PaintedWorldDepth" type="Node2D" parent="."]
 z_index = -3

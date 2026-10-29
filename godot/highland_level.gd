@@ -22,6 +22,16 @@ const RockCollision = preload("res://godot/rock_collision.gd")
 const SarahMotion = preload("res://godot/sarah_motion.gd")
 const SWIM_SPEED := SarahMotion.SWIM_SPEED
 const BOOST_SPEED := 850.0
+const OpalCombat=preload("res://godot/opal_combat.gd")
+const OpalEffects=preload("res://godot/opal_effects.gd")
+var opal=OpalCombat.new()
+var opal_fx: Node2D
+var empty_opal_switches: Array[Dictionary]=[]
+@export var opal_friendly_atlas: Texture2D
+@export var opal_enemy_atlas: Texture2D
+@export var opal_boss_atlas: Texture2D
+var opal_joy_primed:=false
+var opal_joy_device:=-1
 
 var player := Vector2(220.0, 460.0)
 var player_velocity := Vector2.ZERO
@@ -156,6 +166,9 @@ func _ready() -> void:
     ocean_feedback = preload("res://godot/ocean_feedback.gd").new()
     add_child(ocean_life)
     add_child(ocean_feedback)
+    opal_fx=OpalEffects.new();add_child(opal_fx);move_child(opal_fx,1)
+    opal_fx.configure(_opal_art_chapter(),opal_friendly_atlas,opal_enemy_atlas,opal_boss_atlas)
+    opal.bind(self)
     get_node("/root/OceanAudio").set_chapter(_stage_index())
     process_mode = Node.PROCESS_MODE_ALWAYS
     for child in get_children():
@@ -183,12 +196,14 @@ func _ready() -> void:
     queue_redraw()
 
 func _exit_tree() -> void:
+    opal.cancel()
     # Headless CI must release MP3 playback explicitly before ResourceCache cleanup.
     if is_instance_valid(music_player):
         music_player.stop()
         music_player.stream = null
 
 func _return_to_menu() -> void:
+    opal.cancel()
     # Returning from a paused scene must release the shared scene-tree pause.
     get_tree().paused = false
     touches.clear()
@@ -196,7 +211,9 @@ func _return_to_menu() -> void:
     get_node("/root/SceneFlow").go("res://godot/title_screen.tscn", "Back to the lagoon", "Every adventure leaves a little wonder.")
 
 func _input(event: InputEvent) -> void:
-    if get_node("/root/SceneFlow").busy: return
+    if get_node("/root/SceneFlow").busy:
+        _opal_cancel_for_event(event)
+        return
     if event is InputEventKey and event.pressed and not event.echo:
         match event.keycode:
             KEY_ESCAPE, KEY_P:
@@ -209,7 +226,7 @@ func _input(event: InputEvent) -> void:
             KEY_J, KEY_SHIFT:
                 _jump()
             KEY_B, KEY_Z:
-                _fire_bubble()
+                opal.begin("key:%s" % event.keycode)
             KEY_M:
                 if music_tween and music_tween.is_running():
                     music_tween.kill()
@@ -235,6 +252,8 @@ func _input(event: InputEvent) -> void:
             KEY_ENTER:
                 if state == "victory":
                     _restart()
+    elif event is InputEventKey and not event.pressed and event.keycode in [KEY_B,KEY_Z]:
+        opal.release("key:%s" % event.keycode)
     elif event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
         if state != "playing":
             _touch_action(_touch_target(event.position))
@@ -244,8 +263,11 @@ func _input(event: InputEvent) -> void:
             if action == "pad" and "pad" in touches.values(): action = ""
             touches[event.index] = action
             _set_touch(event.index, event.position, action)
-            _touch_action(action)
+            if action=="bubble":opal.begin("touch:%s" % event.index)
+            else:_touch_action(action)
         else:
+            if touches.get(event.index,"")=="bubble" and event.canceled:opal.cancel("touch:%s" % event.index)
+            opal.release("touch:%s" % event.index)
             touches.erase(event.index)
             touch_vectors.erase(event.index)
     elif event is InputEventScreenDrag:
@@ -253,6 +275,7 @@ func _input(event: InputEvent) -> void:
             _set_touch(event.index, event.position, "pad")
         elif touches.get(event.index, "") in ["boost","jump","bubble"]:
             if not _touch_rect(touches[event.index],get_viewport_rect().size).grow(10).has_point(event.position):
+                opal.cancel("touch:%s" % event.index)
                 touches.erase(event.index)
                 touch_vectors.erase(event.index)
         # A sliding action finger releases rather than taking another button.
@@ -310,6 +333,7 @@ func _set_paused(paused: bool) -> void:
     if state == "victory" or (not paused and premium_hud.portrait):
         return
     state = "paused" if paused else "playing"
+    opal.cancel()
     touches.clear()
     touch_vectors.clear()
     jump_buffer = 0.0
@@ -354,28 +378,27 @@ func _input_vector() -> Vector2:
     return direction.limit_length(1.0)
 
 func _poll_gamepad() -> void:
-    var device := _controller_id()
-    if device < 0:
-        joy_last.clear()
-        return
-    var buttons := {
-        "jump": Input.is_joy_button_pressed(device, JOY_BUTTON_A),
-        "boost": Input.is_joy_button_pressed(device, JOY_BUTTON_B),
-        "bubble": Input.is_joy_button_pressed(device, JOY_BUTTON_X),
-        "pause": Input.is_joy_button_pressed(device, JOY_BUTTON_START)
-    }
+    var device:=_controller_id()
+    var buttons:={} if device<0 else {"jump":Input.is_joy_button_pressed(device,JOY_BUTTON_A),
+        "boost":Input.is_joy_button_pressed(device,JOY_BUTTON_B),"bubble":Input.is_joy_button_pressed(device,JOY_BUTTON_X),
+        "pause":Input.is_joy_button_pressed(device,JOY_BUTTON_START)}
+    _apply_gamepad_sample(device,buttons)
+func _apply_gamepad_sample(device: int, buttons: Dictionary) -> void:
+    if device!=opal_joy_device:opal_joy_device=device;opal_joy_primed=false
+    if opal.charge.source_id.begins_with("joy:") and opal.charge.source_id!="joy:%s" % device:opal.cancel()
+    if device<0:joy_last.clear();return
+    if not opal_joy_primed:joy_last["bubble"]=buttons["bubble"];opal_joy_primed=true
+    if not buttons["bubble"]:opal.suppressed.erase("joy:%s" % device)
     for action in buttons:
-        if buttons[action] and not joy_last.get(action, false):
-            if action == "jump":
-                if state == "victory": _restart()
-                else: _jump()
-            elif action == "boost":
-                _boost()
-            elif action == "bubble":
-                _fire_bubble()
-            elif action == "pause" and state != "victory":
-                _toggle_pause()
-    joy_last = buttons
+        if buttons[action] and not joy_last.get(action,false):
+            if action=="jump":
+                if state=="victory":_restart()
+                else:_jump()
+            elif action=="boost":_boost()
+            elif action=="bubble":opal.begin("joy:%s" % device)
+            elif action=="pause" and state!="victory":_toggle_pause()
+        if action=="bubble" and not buttons[action] and joy_last.get(action,false):opal.release("joy:%s" % device)
+    joy_last=buttons
 
 func _vibrate(soft: float, strong: float, duration: float) -> void:
     var device := _controller_id()
@@ -388,6 +411,7 @@ func _boost() -> void:
     if waterfall_phase != "":
         if waterfall_phase != "descent" or waterfall_boost_cooldown > 0.0:
             return
+        opal.cancel()
         energy -= 0.4
         var direction := _input_vector()
         if direction == Vector2.ZERO:
@@ -402,6 +426,7 @@ func _boost() -> void:
         return
     if boost_cooldown > 0.0 or jump_time > 0.0:
         return
+    opal.cancel()
     energy -= 0.4
     boost_time = 0.38
     boost_cooldown = 0.55
@@ -417,6 +442,7 @@ func _boost() -> void:
 func _jump() -> void:
     if state != "playing" or waterfall_phase != "":
         return
+    opal.cancel()
     if leap_phase != "":
         jump_buffer = 0.22
         return
@@ -447,16 +473,16 @@ func _begin_leap(chained: bool) -> void:
     _vibrate(0.24, 0.06, 0.14)
 
 func _fire_bubble() -> void:
-    if state != "playing" or not bubble_unlocked or waterfall_phase != "":
-        return
-    if fire_cooldown > 0.0 or bubble_shots.size() >= 8:
-        return
-    _sfx("bubble")
-    native_rig.play_gesture("cast")
-    fire_cooldown = 0.20
-    bubble_shots.append({"pos": player + Vector2(facing * 70, 0), "direction": facing, "life": 1.8})
-    if is_instance_valid(avina): avina.request_bubble()
-    native_fx.splash(_hero_screen_position() + Vector2(facing * 56, 0), Color("#b4dbff"), 7)
+    # Programmatic quick tap; physical sources use press/hold/release.
+    if opal.begin("script"):opal.release("script")
+func _on_bubble_fired() -> void:pass
+func _bubble_world_active() -> bool:
+    return state=="playing" and not get_tree().paused and waterfall_phase=="" and not get_node("/root/SceneFlow").busy
+func _bubble_context_allowed() -> bool:return _bubble_world_active() and bubble_unlocked
+func _opal_cancel_for_event(event: InputEvent) -> void:
+    opal.cancel()
+    if event is InputEventKey and not event.pressed and event.keycode in [KEY_B,KEY_Z]:opal.suppressed.erase("key:%s" % event.keycode)
+    elif event is InputEventScreenTouch and not event.pressed:opal.suppressed.erase("touch:%s" % event.index)
 
 func _award(id: String, category: String, amount: int, at: Vector2, chain: bool) -> void:
     var reward: Dictionary = score_book.award(id,category,amount,chain)
@@ -486,7 +512,8 @@ func _say(text: String, duration: float = 3.0) -> void:
     message_time = duration
 
 func _process(_delta: float) -> void:
-    if state != "playing":
+    if not _bubble_context_allowed():opal.cancel()
+    if state != "playing" or get_tree().paused:
         return
     _sync_native_visuals()
     if is_instance_valid(avina) and not get_tree().paused: avina.tick(_delta)
@@ -494,13 +521,12 @@ func _process(_delta: float) -> void:
 
 func _physics_process(dt: float) -> void:
     _poll_gamepad()
-    if state != "playing":
+    if state != "playing" or get_tree().paused:
+        opal.cancel()
         return
     var serial := retry_serial
     if _action_held("boost"):
         _boost()
-    if _action_held("bubble"):
-        _fire_bubble()
     score_book.tick(dt)
     time += dt
     swim_audio_clock += dt
@@ -513,7 +539,8 @@ func _physics_process(dt: float) -> void:
     boost_cooldown = maxf(0.0, boost_cooldown - dt)
     jump_buffer = maxf(0.0, jump_buffer - dt)
     splash_window = maxf(0.0, splash_window - dt)
-    fire_cooldown = maxf(0.0, fire_cooldown - dt)
+    opal.advance(dt)
+    opal_fx.advance(dt)
     leap_cooldown = maxf(0.0, leap_cooldown - dt)
     boss_hit_cooldown = maxf(0.0, boss_hit_cooldown - dt)
     energy = minf(1.0, energy + dt * 0.23)
@@ -577,8 +604,9 @@ func _hud_snapshot() -> Dictionary:
         "message_time": message_time,
         "boss_active": player.x > _boss_home() - 850.0 and boss_hp > 0,
         "boss_health": float(boss_hp) / float(_boss_max_health()),
-        "boss_vulnerable": _boss_vulnerable(),
+        "boss_vulnerable": _boss_vulnerable() and boss_hit_cooldown<=0 and (_bubble_context_allowed() or _opal_boost_available()),
         "bubble": bubble_unlocked,
+        "charge_tier":opal.charge.tier() if opal.charge.held else 0,
         "paused": state == "paused",
         "victory": state == "victory",
         "touch": simulated_touch or DisplayServer.is_touchscreen_available(),
@@ -591,6 +619,9 @@ func _hud_snapshot() -> Dictionary:
     }
 
 func _sync_native_visuals() -> void:
+    opal.refresh_targets()
+    if is_instance_valid(opal_fx):opal_fx.sync(self)
+    if is_instance_valid(native_rig):native_rig.set_bubble_charge(opal.charge.held,opal.charge.elapsed/1.35)
     if is_instance_valid(ocean_life):
         ocean_life.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,waterfall_phase == "")
         ocean_feedback.camera = camera
@@ -744,19 +775,20 @@ func _update_enemies(dt: float) -> void:
     for enemy in enemies:
         if int(enemy["hp"]) <= 0 or absf(float(enemy["x"]) - player.x) > 1200.0:
             continue
+        enemy["hit_cd"]=maxf(0.0,float(enemy.get("hit_cd",0))-dt)
         var event := Combat.step(enemy, player, time, dt, obstacles)
         if event == "fire":
-            _spawn_hostile(Vector2(enemy["x"], enemy["y"]), Vector2(enemy["aim"]), 290.0)
+            _spawn_hostile(Vector2(enemy["x"], enemy["y"]), Vector2(enemy["aim"]), 290.0, enemy["kind"])
         var pos := Vector2(float(enemy["x"]), float(enemy["y"]))
         var radius := 96.0 if enemy["kind"] == "eel" else 79.0
         if String(enemy.get("mode", "patrol")) == "recover":
             radius *= 0.75
         if player.distance_to(pos) < radius and player.y > _water_line():
             if boost_time > 0.0:
-                enemy["hp"] = 0
-                _award("enemy:%s" % enemies.find(enemy),"Enemies",50,pos,true)
-                native_fx.splash(pos - Vector2(camera, 0), Color("#e5ffce"), 17)
-                _vibrate(0.22, 0.08, 0.12)
+                var applied:=_hit_enemy(enemy,maxi(2,int(enemy["hp"])),true,boost_direction)
+                if applied>0:
+                    native_fx.splash(pos-Vector2(camera,0),Color("#e5ffce"),17)
+                    _vibrate(0.22,0.08,0.12)
             else:
                 _damage(pos)
                 if retry_serial != serial:
@@ -837,6 +869,7 @@ func _respawn() -> void:
     _say("Back to your checkpoint!", 2.6)
 
 func _reset_transients() -> void:
+    opal.reset()
     if music_tween and music_tween.is_running():
         music_tween.kill()
     leap_phase = ""
@@ -932,28 +965,11 @@ func _update_boss(dt: float) -> void:
 func _boss_vulnerable() -> bool:
     return boss_hp > 0 and boss_phase == "recover"
 
-func _spawn_hostile(pos: Vector2, direction: Vector2, speed: float) -> void:
-    if hostile_shots.size() < 32:
-        hostile_shots.append({"pos": pos, "velocity": direction * speed, "life": 2.8})
+func _spawn_hostile(pos: Vector2, direction: Vector2, speed: float, style:="") -> void:
+    if hostile_shots.size()<32:hostile_shots.append({"pos":pos,"velocity":direction*speed,"life":2.8,"style":_opal_primary_id() if style.is_empty() else style})
 
 func _update_hostile_shots(dt: float) -> void:
-    var serial := retry_serial
-    for shot in hostile_shots:
-        shot["pos"] = Vector2(shot["pos"]) + Vector2(shot["velocity"]) * dt
-        shot["life"] = float(shot["life"]) - dt
-        var pos := Vector2(shot["pos"])
-        for obstacle in obstacles:
-            if obstacle.grow(12).has_point(pos):
-                shot["life"] = 0.0
-        if float(shot["life"]) > 0.0 and player.distance_to(pos) < 48.0:
-            shot["life"] = 0.0
-            if boost_time <= 0.0:
-                _damage(pos)
-                if retry_serial != serial:
-                    return
-            else:
-                native_fx.splash(pos - Vector2(camera, 0), Color("#b5ffdc"), 8)
-    hostile_shots = hostile_shots.filter(func(shot): return float(shot["life"]) > 0.0)
+    opal.update_hostile(dt)
 
 func _touch_direction() -> Vector2:
     var result := Vector2.ZERO
@@ -962,25 +978,10 @@ func _touch_direction() -> Vector2:
     return result.limit_length(1.0)
 
 func _update_bubbles(dt: float) -> void:
-    for shot in bubble_shots:
-        shot["pos"] = Vector2(shot["pos"]) + Vector2(float(shot["direction"]) * 700.0 * dt, 0)
-        shot["life"] = float(shot["life"]) - dt
-        for obstacle in obstacles:
-            if obstacle.grow(20).has_point(Vector2(shot["pos"])):
-                shot["life"] = 0.0
-        if float(shot["life"]) <= 0.0:
-            continue
-        for enemy in enemies:
-            if int(enemy["hp"]) <= 0:
-                continue
-            if Vector2(shot["pos"]).distance_to(Vector2(float(enemy["x"]), float(enemy["y"]))) < 70.0:
-                enemy["hp"] = 0
-                shot["life"] = 0.0
-                _award("enemy:%s" % enemies.find(enemy),"Enemies",50,Vector2(enemy["x"],enemy["y"]),true)
-                break
-    bubble_shots = bubble_shots.filter(func(shot): return float(shot["life"]) > 0.0)
+    opal.update_friendly(dt)
 
 func _start_waterfall() -> void:
+    opal.cancel()
     get_node("/root/OceanAudio").set_chapter(_stage_index(),true)
     waterfall_phase = "pull"
     waterfall_time = 0.0
@@ -1079,6 +1080,7 @@ func _update_waterfall(dt: float) -> void:
         _say("There it is — the secret grotto!", 3.0)
 
 func _restart() -> void:
+    opal.cancel()
     if state == "victory" and _advance_journey():
         return
     get_tree().paused = false
@@ -1165,15 +1167,6 @@ func _draw_world(s: Vector2) -> void:
         _draw_enemy_cue(enemy, Vector2(x, float(enemy["y"])))
     if player.x > _boss_home() - s.x - 200 or camera > _boss_home() - s.x - 200:
         _draw_boss()
-    for shot in hostile_shots:
-        var pos := Vector2(shot["pos"]) - Vector2(camera, 0)
-        draw_circle(pos, 12, Color("#ffa382"))
-        draw_arc(pos, 17, 0, TAU, 16, Color("#ffe4ab"), 2)
-    for shot in bubble_shots:
-        var pos := Vector2(shot["pos"]) - Vector2(camera, 0)
-        var baby: bool = shot.get("baby",false)
-        draw_circle(pos, 14.0 if baby else 24.0, Color(0.88,0.69,1.0,0.4) if baby else Color(0.55,0.96,1.0,0.45))
-        draw_arc(pos, 12.0 if baby else 20.0, 0, TAU, 40, Color("#f4daff") if baby else Color("#d9ffff"), 3.0)
     _draw_hero(player - Vector2(camera, 0))
 
 
@@ -1197,7 +1190,6 @@ func _draw_boss() -> void:
     if x < -360 or x > get_viewport_rect().size.x + 360:
         return
     var y := boss_position.y
-    Polish.boss_cue(self,Vector2(x,y),148,_boss_vulnerable())
     if not is_instance_valid(native_boss):
         if not fallback_boss: fallback_boss = load(CARLO_PATH)
         draw_texture_rect(fallback_boss,Rect2(x-162,y-180,324,352),false)
@@ -1300,6 +1292,7 @@ func _fade_music(volume: float, duration: float) -> void:
     music_tween.tween_property(music_player, "volume_db", volume, duration)
 
 func _on_viewport_resized() -> void:
+    opal.cancel()
     touches.clear()
     touch_vectors.clear()
     if is_instance_valid(premium_hud):
@@ -1356,3 +1349,51 @@ func _ocean_event(effect: String, at: Vector2, direction := Vector2.RIGHT) -> vo
     if is_instance_valid(ocean_feedback): ocean_feedback.burst(at,effect,direction)
 
 func _uses_highland_scenery() -> bool: return true
+
+# Authoritative combat snapshots also drive the opportunity shells.
+func _opal_primary_id() -> String:return "carlo"
+func _opal_art_chapter() -> String:return _opal_primary_id()
+func _opal_make_targets() -> Array[Dictionary]:
+    var id:=_opal_primary_id()
+    return [OpalCombat.target(id,preload("res://godot/opal_roster.gd").BOSS_FITS[id],150)]
+func _opal_arena_active() -> bool:return boss_hp>0 and waterfall_phase=="" and player.x>=_boss_home()-850
+func _opal_boost_available() -> bool:return boost_time>0 or (energy>=0.4 and boost_cooldown<=0 and jump_time<=0)
+func _opal_opening_soon() -> bool:return boss_phase=="attack" and boss_phase_time>=0.47 and boss_phase_time<0.65
+func _opal_update_targets(targets: Array[Dictionary]) -> void:
+    if targets.is_empty():return
+    var target:=targets[0]
+    target["pos"]=boss_position;target["hp"]=boss_hp;target["active"]=_opal_arena_active()
+    target["open"]=_boss_vulnerable();target["opening"]=_opal_opening_soon();target["cooldown"]=boss_hit_cooldown
+    target["bubble"]=bubble_unlocked and _bubble_context_allowed();target["boost"]=_opal_boost_available()
+func _opal_target_open(target: Dictionary) -> bool:
+    return target["active"] and target["open"] and float(target["cooldown"])<=0 and (target["bubble"] or target["boost"])
+func _opal_hit_boss(_id: String, damage: int) -> int:
+    if not bubble_unlocked or not _opal_arena_active() or not _boss_vulnerable() or boss_hit_cooldown>0:return 0
+    var applied:=mini(boss_hp,clampi(damage,1,2));boss_hp-=applied;boss_hit_cooldown=2.2
+    _award("boss-hit:%s" % boss_hp,"Boss",200*applied,boss_position,false);native_boss.play_hit()
+    if boss_hp<=0:
+        _award("boss-defeat","Boss",1000,boss_position,false);bubble_unlocked=true;hostile_shots.clear();native_boss.defeat()
+        _say("Carlo defeated! Mermaid Bubble unlocked. Find the portal!",5)
+    return applied
+func _opal_switch_targets() -> Array[Dictionary]:return empty_opal_switches
+func _opal_hit_switch(_index: int) -> void:pass
+func _opal_sync_fields(_fx: Node2D) -> void:pass
+func _opal_cast_position(tier: int) -> Vector2:
+    var radius:=24.0 if tier==1 else 30.0 if tier==2 else 38.0
+    return player+Vector2(facing*(preload("res://godot/opal_roster.gd").SARAH_CAST_HAND_X+radius),0)
+func _opal_enemy_reward() -> int:return 50
+func _release_loot(_enemy: Dictionary) -> void:pass
+func _guarded(enemy: Dictionary) -> bool:return OpalCombat.Sweep.guarded(enemy,Vector2(enemy["x"],enemy["y"])-player)
+func _hit_enemy(enemy: Dictionary, damage: int, boosted: bool, incoming:=Vector2.ZERO) -> int:
+    if int(enemy["hp"])<=0 or float(enemy.get("hit_cd",0))>0:return 0
+    if incoming==Vector2.ZERO:incoming=Vector2(enemy["x"],enemy["y"])-player
+    if OpalCombat.Sweep.guarded(enemy,incoming):
+        enemy["mode"]="recover";enemy["mode_time"]=0.0;enemy["hit_cd"]=0.25
+        _say("Shell guard! Strike again while it recovers.",1.8);return 0
+    var applied:=mini(int(enemy["hp"]),maxi(0,damage))
+    if applied==0:return 0
+    enemy["hp"]=int(enemy["hp"])-applied;enemy["hit_cd"]=0.6;enemy["mode"]="recover";enemy["mode_time"]=0.0
+    var at:=Vector2(enemy["x"],enemy["y"]);_ocean_event("impact",at)
+    if boosted:invulnerable=maxf(invulnerable,0.5)
+    if int(enemy["hp"])<=0:_release_loot(enemy);_award("enemy:%s" % enemies.find(enemy),"Enemies",_opal_enemy_reward(),at,true)
+    return applied

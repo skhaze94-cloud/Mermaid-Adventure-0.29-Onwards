@@ -213,7 +213,7 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v0.4  •  SARAH MARIA" if page == "menu" else "SARAH MARIA"
+    footer.text = "v0.6  •  OPAL CURRENT" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")
@@ -250,8 +250,8 @@ func show_page(next_page: String) -> void:
             _add_button("How to play", func(): show_page("controls"))
         "controls":
             _heading("A FEW LITTLE POINTERS", "Ready to explore?", "Swim, leap and find what lies beneath.")
-            content.add_child(_label("Swim    Arrow keys / WASD / left stick\nBoost    Space / controller B\nJump    J or Shift / controller A\nBubble    B or Z / controller X\nPause    Escape / P / controller Start", 23, WHITE))
-            content.add_child(_label("On a touch screen, use the sliding pad and action buttons. Sarah earns her Bubble power after Carlo. Play in landscape.", 20, PALE))
+            content.add_child(_label("Swim    Arrow keys / WASD / left stick\nBoost    Space / controller B\nJump    J or Shift / controller A\nBubble    Hold B or Z / controller X, then release\nPause    Escape / P / controller Start", 23, WHITE))
+            content.add_child(_label("On a touch screen, use the sliding pad and action buttons. Sarah earns Bubble after Carlo. Hold for a super pearl, then release. Play in landscape.", 20, PALE))
             primary = back_button
         "credits":
             _heading("MADE WITH LOVE", "For Sarah Maria", "For every little heart with a big imagination.")

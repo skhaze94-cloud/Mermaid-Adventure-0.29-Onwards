@@ -380,14 +380,14 @@ func _refresh() -> void:
     message_back.modulate.a = hint_alpha
     boss_card.visible = info.get("boss_active",false) and not portrait
     boss_meter.value = info.get("boss_health",1.0)
-    boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + (" · Boost now" if info.get("boss_vulnerable",false) else "")
+    boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + ((" · Hit now" if info.get("bubble",false) else " · Boost now") if info.get("boss_vulnerable",false) else "")
     touch_layer.visible = info.get("touch",false) and not portrait and not info.get("paused",false) and not info.get("victory",false)
     touch_layer.modulate.a = control_opacity
     # Preserve every joystick/cooldown frame; unrelated score, message and
     # progress changes do not rebuild the same touch geometry and labels.
     var next_touch: Array = [game_size,control_size,info.get("pad",Vector2.ZERO),
         info.get("pressed",[]),info.get("bubble",false),float(info.get("energy",1.0))>=0.4,
-        info.get("cooldowns",{}).duplicate()]
+        info.get("cooldowns",{}).duplicate(),info.get("charge_tier",0)]
     if next_touch != touch_signature:
         touch_signature = next_touch.duplicate(true)
         touch_layer.queue_redraw()
@@ -540,6 +540,9 @@ func _draw_touch() -> void:
         var icon_at := rect.get_center()-Vector2.ONE*icon_size/2+Vector2(0,-5)
         Polish.glyph(touch_layer,"lock" if locked else action,icon_at+Vector2.ONE*icon_size*.5,icon_size*.78,Color("#789ba4") if locked or not available else Color("#c5f6e8"))
         var label: String = "LOCKED" if locked else ("RECHARGE" if not available else String(action).to_upper())
+        if action=="bubble" and not locked:
+            var tier:=int(info.get("charge_tier",0))
+            label="RELEASE!" if tier==3 else "CHARGING" if tier>0 else "HOLD BUBBLE"
         touch_layer.draw_string(Kit.BODY,rect.position+Vector2(0,rect.size.y-10),label,HORIZONTAL_ALIGNMENT_CENTER,rect.size.x,13,Color("#defdf5"))
         var cool := float(info.get("cooldowns",{}).get(action,0))
         if cool>0:

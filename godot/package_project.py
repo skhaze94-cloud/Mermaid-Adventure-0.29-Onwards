@@ -13,7 +13,7 @@ RUNTIME_SUFFIXES = {'.gd','.tscn','.tres','.gdshader','.json','.png','.webp','.w
 def runtime_file(p):
     relative = p.relative_to(root/'godot')
     if p.suffix not in RUNTIME_SUFFIXES or not p.is_file(): return False
-    if relative.parts[0] == 'tools': return False
+    if relative.parts[0] in {'tools','art-source'}: return False
     if any(x in {'.godot','device-qa'} or 'previews' in x for x in relative.parts): return False
     if p.name.startswith(('capture_','validation-')) or p.name.endswith('_test.gd'): return False
     if relative.parent.as_posix() == 'assets/ui-v014' and p.stem in LEGACY_UI: return False
