@@ -1467,7 +1467,12 @@
   "playable_archive": {
     "filename": "Mermaid-Adventure-v0.6-Opal-Current.zip",
     "size_bytes": 67145227,
-    "sha256": "5f5913a9758bb7970e9c4edde97b38ef1039f6ad61f3f81dd084b2dd91042056"
+    "sha256": "cdbfc9136abe4bb8ef5406208d03315d0a4a1480c8aba6333aff1c37b0336a05",
+    "source_commit": "109e571e148e866f1f5db95affc3645d33d4f9d8",
+    "runtime_files": 202,
+    "crc_passed": true,
+    "all_entries_byte_identical_to_tested_commit": true,
+    "note": "Rebuilt container after workspace cleanup. Runtime file bytes match the tested commit; ZIP timestamps may differ from the archive used for the recorded fresh-import run."
   },
   "shader_comparison": {
     "normal": {
@@ -1900,5 +1905,10 @@
         "texture_bytes": 297124833.0
       }
     }
+  },
+  "previous_verified_archive": {
+    "filename": "Mermaid-Adventure-v0.6-Opal-Current.zip",
+    "size_bytes": 67145227,
+    "sha256": "5f5913a9758bb7970e9c4edde97b38ef1039f6ad61f3f81dd084b2dd91042056"
   }
 }
