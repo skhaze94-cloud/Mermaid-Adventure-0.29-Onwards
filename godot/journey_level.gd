@@ -198,9 +198,11 @@ func _release_all_loot() -> void:
 
 func _boss_vulnerable() -> bool:
     if boss_hp<=0: return false
-    return crab_stun>0 or fmod(boss_clock,5.4)>4.1 if shadow else fmod(boss_clock,6.8)>=3.8
+    if shadow and duke_hp<=0:return flip_hp>0
+    return crab_stun>0 or fmod(boss_clock,5.4)>=3.3 if shadow else fmod(boss_clock,6.8)>=3.8
 func _update_boss(dt: float) -> void:
-    if boss_hp<=0 or player.x<(12870 if shadow else Journey.sx(6420)): return
+    if boss_hp<=0 or player.x<(12870 if shadow else Journey.sx(6420)):
+        boss_volley.clear();boss_clock=0;boss_shot_clock=0;boss_phase="windup";return
     boss_clock += dt
     boss_shot_clock += dt
     flip_stun = maxf(0,flip_stun-dt)
@@ -210,35 +212,36 @@ func _update_boss(dt: float) -> void:
         var cycle := fmod(boss_clock,6.8)
         boss_phase = "recover" if cycle>=3.8 else ("attack" if cycle>=.9 else "windup")
         boss_position = Vector2(_boss_home()-(sin((cycle-2.8)*PI)*310 if cycle>=2.8 and cycle<3.8 else 0.0),540+sin(boss_clock*1.1)*90)
-        if cycle>=.9 and cycle<2.8 and boss_shot_clock>.7:
+        boss_volley.advance(dt,self,cycle>=.9 and cycle<2.8)
+        if cycle>=.9 and cycle<2.3 and boss_shot_clock>.85 and boss_volley.pending.is_empty():
             boss_shot_clock = 0
-            var aim := (player-boss_position).normalized()
-            for angle in [-.28,0,.28]: _spawn_hostile(boss_position,aim.rotated(angle),310)
+            boss_volley.queue(boss_position,player-boss_position,.28,310,.5)
         if player.distance_to(boss_position)<160:
             if boost_time>0 and _boss_vulnerable() and boss_hit_cooldown<=0:
                 boss_hp -= 1
                 boss_hit_cooldown = 1.1
                 invulnerable = .8
-                boss_clock = 0
                 _award("boss:miguel:%s" % boss_hp,"Boss",200,boss_position,false)
             elif boost_time<=0 and not _boss_vulnerable(): _damage(boss_position)
     if boss_hp<=0: _finish_boss()
 func _update_duo(dt: float) -> void:
-    boss_phase = "recover" if _boss_vulnerable() else "windup"
+    boss_phase = "recover" if _boss_vulnerable() else ("windup" if fmod(boss_clock,5.4)<.7 else "attack")
     boss_position = Vector2(13455+sin(boss_clock*.55)*100,690+sin(boss_clock*1.1)*30)
     if flip_stun<=0:
         flip_position = flip_position.move_toward(Vector2(13358+sin(boss_clock*.9)*560,430+sin(boss_clock*1.65)*165),dt*380)
     combo_clock += dt
-    if boss_shot_clock>.9 and duke_hp>0 and fmod(boss_clock,5.4)<3:
+    var cycle:=fmod(boss_clock,5.4)
+    boss_volley.advance(dt,self,duke_hp>0 and cycle<3.0 and not _boss_vulnerable())
+    if boss_shot_clock>1.0 and duke_hp>0 and cycle>=.7 and cycle<2.4 and boss_volley.pending.is_empty() and not _boss_vulnerable():
         boss_shot_clock = 0
-        var aim := (player-boss_position).normalized()
-        for angle in [-.2,0,.2]: _spawn_hostile(boss_position,aim.rotated(angle),245)
+        boss_volley.queue(boss_position,player-boss_position,.2,245,.55)
     if combo_clock>5.8 and flip_hp>0 and duke_hp>0:
         combo_clock = 0
         flip_position = boss_position+Vector2(-100,-30)
         flip_stun = 2.2
         crab_stun = 2.2
-        _say("Comedy collision! Duke and Flip are open to boost!",2.2)
+        boss_volley.clear();boss_phase="recover"
+        _say("Comedy collision! Duke and Flip are open — Bubble or Boost!",2.2,true)
     if player.distance_to(boss_position)<155 and duke_hp>0:
         if boost_time>0 and _boss_vulnerable() and boss_hit_cooldown<=0:
             duke_hp = maxi(0,duke_hp-2)
@@ -337,7 +340,7 @@ func _opal_make_targets() -> Array[Dictionary]:
 func _opal_arena_active() -> bool:return boss_hp>0 and player.x >= (12870.0 if shadow else Journey.sx(6420))
 func _opal_opening_soon() -> bool:
     var phase:=fmod(boss_clock,5.4 if shadow else 6.8)
-    return phase>=3.88 and phase<=4.1 if shadow else phase>=3.58 and phase<3.8
+    return phase>=2.8 and phase<3.3 if shadow else phase>=3.58 and phase<3.8
 func _opal_update_targets(targets: Array[Dictionary]) -> void:
     super._opal_update_targets(targets)
     if not shadow or targets.size()<2:return
@@ -354,11 +357,12 @@ func _opal_hit_boss(id: String, damage: int) -> int:
         if id=="duke" and duke_hp>0 and _boss_vulnerable():applied=mini(duke_hp,clampi(damage,1,2));duke_hp-=applied
         elif id=="flip" and flip_hp>0:applied=mini(flip_hp,clampi(damage,1,2));flip_hp-=applied;flip_stun=0.8
         if applied==0:return 0
+        _award(("duke:"+str(duke_hp)) if id=="duke" else ("flip:"+str(flip_hp)),"Boss",applied*(60 if id=="duke" else 100),boss_position if id=="duke" else flip_position,false)
         boss_hit_cooldown=0.4;boss_hp=duke_hp+flip_hp
         if (duke_hp<=0 and flip_hp<=2) or (flip_hp<=0 and duke_hp<=2):duke_hp=0;flip_hp=0;boss_hp=0
     else:
         if id!="miguel" or not _boss_vulnerable():return 0
-        applied=mini(boss_hp,clampi(damage,1,2));boss_hp-=applied;boss_hit_cooldown=1.1;boss_clock=0
+        applied=mini(boss_hp,clampi(damage,1,2));boss_hp-=applied;boss_hit_cooldown=1.1
         _award("boss:miguel:%s" % boss_hp,"Boss",200*applied,boss_position,false)
     if boss_hp<=0:_finish_boss()
     return applied
@@ -377,3 +381,9 @@ func _opal_sync_fields(fx: Node2D) -> void:
             var at:=Vector2(enemy["x"],enemy["y"])-Vector2(camera,0)
             if at.x < -440 or at.x>get_viewport_rect().size.x+440:continue
             fx.field(used,"drum",at,Vector2(220,100),0.45);used+=1
+
+func _boss_attack_hint() -> String:
+    if shadow and boss_hit_cooldown<=0:
+        if duke_hp<=0 and flip_hp>0:return "Flip’s encore · dodge, then strike"
+        if flip_hp<=0 and duke_hp>0 and not _boss_vulnerable():return "Duke’s last act · leave the pearl lanes"
+    return super._boss_attack_hint()

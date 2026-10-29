@@ -34,11 +34,11 @@ func configure(art: Texture2D, bounds: Vector2, kind: String) -> void:
 
 func set_state(life: int, mode: String, at: Vector2, clock: float, gentle: bool) -> void:
     reduced = gentle
-    pose = mode
+    pose = "recover" if life<=0 else mode
     var dt := 0.0 if previous_clock<0 else clampf(clock-previous_clock,0.0,.10)
     previous_clock = clock
     motion_clock = clock
-    body.animate(mode,clock,dt,0.0,gentle)
+    body.animate(pose,clock,dt,0.0,gentle)
     if last_life >= 0 and life < last_life:
         hit_age = 0
         if life <= 0: defeat_age = 0

@@ -195,12 +195,12 @@ func boss_checks() -> void:
     for index in [3,4,5,6]:
         var level=create(catalog.SCENES[index]); await frames()
         level.player=Vector2(level._boss_home()-700,600); level.invulnerable=100
-        level.boss_clock=1.35; level.attack_clock=.9; level._update_boss(0)
+        level.boss_clock=1.35; level.attack_clock=1.2; level._update_boss(0)
         check(level.pending_volley.size()==3 and level.hostile_shots.is_empty(),"signature warns before firing "+level.chapter_id)
         var locked: Array[Dictionary]=level.pending_volley.duplicate(true)
         shapes.append(JSON.stringify(JSON.from_native(locked)))
         level.player.y+=140
-        level._update_boss(.141); level._update_boss(.141)
+        level._update_boss(.241); level._update_boss(.241)
         check(level.hostile_shots.size()==3 and level.pending_volley.is_empty(),"warning releases three bounded projectiles "+level.chapter_id)
         for i in range(level.hostile_shots.size()):
             var shot: Dictionary=level.hostile_shots[i]

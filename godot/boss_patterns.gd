@@ -1,6 +1,7 @@
 extends RefCounted
 ## Three-shot signatures share the existing cadence, speed, caps and hit windows.
-const WARNING_SECONDS := 0.28
+const WARNING_SECONDS := 0.48
+const INTERVALS := {"blackwater":1.0,"palace":1.15,"rana":1.05,"nessie":.95}
 const NAMES := {"palace":"Crown Waltz · watch the pearl lanes", "rana":"Rainbow Ladder · dodge the locked laser",
     "nessie":"Cresting Wake · leave the warning lanes", "blackwater":"Pincer Pearls · move out of the crossing"}
 

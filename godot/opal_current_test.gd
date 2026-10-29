@@ -147,11 +147,11 @@ func boss_checks() -> void:
         level.player=Vector2(level._boss_home()-500,800);level.boss_position=Vector2(level._boss_home(),600)
         level.boss_clock=0;level.boss_phase="windup"
         if index>0:
-            var boundary:=4.1 if index==1 else 3.8 if index==2 else 4.0
+            var boundary:=3.3 if index==1 else 3.8 if index==2 else 4.0
             level.boss_clock=boundary-0.01;level.opal.refresh_targets()
             check(not level._opal_target_open(level.opal.targets[0]) and level.opal.targets[0]["opening"],"anticipation stays closed "+str(index))
             level.boss_clock=boundary;level.opal.refresh_targets()
-            check(level._opal_target_open(level.opal.targets[0])==(index!=1),"exact open boundary "+str(index))
+            check(level._opal_target_open(level.opal.targets[0]),"exact open boundary "+str(index))
             level.boss_clock=boundary+0.01;level.opal.refresh_targets()
             check(level._opal_target_open(level.opal.targets[0]),"after boundary open "+str(index))
         var pos: Vector2=level.player;level.player.x=0;level.opal.refresh_targets()
