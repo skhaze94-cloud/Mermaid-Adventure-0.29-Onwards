@@ -55,6 +55,10 @@ var state := "playing"
 var fallen := false
 var message := "Swim right. Discover the waterfall and Carlo's kingdom!"
 var message_time := 5.0
+var message_priority := false
+var save_ready := false
+var checkpoint_pending := false
+var checkpoint_position := Vector2(220, 480)
 
 var obstacles: Array[Rect2] = []
 var enemies: Array[Dictionary] = []
@@ -194,6 +198,77 @@ func _ready() -> void:
     _apply_visual_quality()
     _sync_native_visuals()
     queue_redraw()
+    # Derived chapters finish their setup before any restored snapshot is applied.
+    _finish_scene_setup.call_deferred()
+
+func _finish_scene_setup() -> void:
+    if not is_inside_tree(): return
+    save_ready = true
+    var run := get_node_or_null("/root/AdventureRun")
+    if not is_instance_valid(run): return
+    var saved: Dictionary = run.take_restore(_stage_index())
+    if not saved.is_empty():
+        if _valid_checkpoint(saved):
+            checkpoint = float(saved["checkpoint"])
+            checkpoint_snapshot = saved["snapshot"].duplicate(true)
+            score_book.damage_taken = maxi(0, int(saved.get("damage_taken", 0)))
+            _respawn()
+            checkpoint_position = saved.get("position", player)
+            player = RockCollision.recover(checkpoint_position, obstacles, HERO_RADIUS * .73, _swim_bounds())
+            _restore_checkpoint_extras(saved.get("extra", {}))
+            camera = clampf(player.x - get_viewport_rect().size.x * .43, 0, maxf(0, _level_length() - get_viewport_rect().size.x))
+            _say("Welcome back, Sarah! Your checkpoint is ready.", 4.0)
+        else:
+            _say("Welcome back! This chapter is ready from the beginning.", 4.0)
+    _persist_checkpoint()
+    _sync_native_visuals()
+
+func _valid_checkpoint(saved: Dictionary) -> bool:
+    if not saved.get("checkpoint") is float and not saved.get("checkpoint") is int: return false
+    var x := float(saved["checkpoint"])
+    if not is_finite(x) or x < _left_bound() or x > _portal_x(): return false
+    if not saved.get("snapshot") is Dictionary: return false
+    var snapshot: Dictionary = saved["snapshot"]
+    for key in ["ledger"]:
+        if not snapshot.get(key) is Dictionary: return false
+    if not snapshot["ledger"].get("categories") is Dictionary or not snapshot["ledger"].get("seen") is Dictionary: return false
+    for key in ["score", "picked", "boss_hp"]:
+        if not snapshot.get(key) is int or int(snapshot[key]) < 0: return false
+    if int(snapshot["boss_hp"]) > _boss_max_health() or not snapshot.get("bubble") is bool: return false
+    for key in ["enemies", "treasures"]:
+        if not snapshot.get(key) is Array or snapshot[key].size() > 512: return false
+        for item in snapshot[key]:
+            if not item is Dictionary or not item.get("kind") is String: return false
+            for axis in ["x", "y"]:
+                if not item.get(axis) is float and not item.get(axis) is int: return false
+                if not is_finite(float(item[axis])): return false
+            if key == "enemies":
+                if not preload("res://godot/opal_roster.gd").ENEMY_FITS.has(item["kind"]): return false
+                if not item.get("hp") is int or int(item["hp"]) < 0: return false
+                for axis in ["bx", "by", "phase"]:
+                    if not item.get(axis) is float and not item.get(axis) is int: return false
+                    if not is_finite(float(item[axis])): return false
+            elif not item.get("taken") is bool or item["kind"] not in ["pearl","chest","heart","boost"]: return false
+    if not saved.get("position", Vector2.ZERO) is Vector2 or not Vector2(saved.get("position", Vector2.ZERO)).is_finite(): return false
+    if not saved.get("extra", {}) is Dictionary: return false
+    return _valid_checkpoint_extras(saved.get("extra", {}))
+
+func _checkpoint_extras() -> Dictionary: return {}
+func _valid_checkpoint_extras(extra: Dictionary) -> bool: return true
+func _restore_checkpoint_extras(_extra: Dictionary) -> void: pass
+
+func _checkpoint_bundle() -> Dictionary:
+    return {"checkpoint": checkpoint, "position": checkpoint_position,
+        "snapshot": checkpoint_snapshot.duplicate(true), "damage_taken": score_book.damage_taken,
+        "extra": _checkpoint_extras()}
+
+func _persist_checkpoint() -> void:
+    checkpoint_pending = false
+    if not is_inside_tree() or not save_ready or state not in ["playing", "paused"] or checkpoint_snapshot.is_empty(): return
+    var run := get_node_or_null("/root/AdventureRun")
+    if not is_instance_valid(run): return
+    if not run.store_checkpoint(_stage_index(), _checkpoint_bundle()):
+        _say(run.save_message, 6.0, true)
 
 func _exit_tree() -> void:
     opal.cancel()
@@ -204,6 +279,7 @@ func _exit_tree() -> void:
 
 func _return_to_menu() -> void:
     opal.cancel()
+    _persist_checkpoint()
     # Returning from a paused scene must release the shared scene-tree pause.
     get_tree().paused = false
     touches.clear()
@@ -346,12 +422,14 @@ func _toggle_pause() -> void:
     _set_paused(state == "playing")
 
 func _notification(what: int) -> void:
+    if what == NOTIFICATION_WM_CLOSE_REQUEST and is_node_ready(): _persist_checkpoint()
     if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_node_ready():
         touches.clear()
         touch_vectors.clear()
         joy_last.clear()
         if state == "playing":
             _set_paused(true)
+        _persist_checkpoint()
 
 func _controller_id() -> int:
     active_joy = Controls.controller_id(active_joy, Input.get_connected_joypads())
@@ -500,16 +578,25 @@ func _award(id: String, category: String, amount: int, at: Vector2, chain: bool)
         premium_hud.show_reward(reward,at-Vector2(camera,0))
 
 func _complete_score() -> void:
+    if score_book.finished: return
     var prefs = get_node("/root/AppPreferences")
-    var result: Dictionary = score_book.complete(score,picked_count,prefs.best_score)
+    var run := get_node("/root/AdventureRun")
+    var result: Dictionary = score_book.complete(score,picked_count,run.chapter_best(_stage_index()))
     score = int(result["total"])
-    prefs.best_score = int(result["best"])
+    result["reward"] = _completion_reward()
+    run.record_stage(_stage_index(), result)
+    prefs.best_score = maxi(prefs.best_score, score)
     prefs.save()
     _sfx("victory",3)
 
-func _say(text: String, duration: float = 3.0) -> void:
+func _completion_reward() -> String:
+    return "Carlo’s portal is open!" if bubble_unlocked else "Mermaid Bubble unlocked"
+
+func _say(text: String, duration: float = 3.0, priority := false) -> void:
+    if message_priority and message_time > 0.5 and not priority: return
     message = text
     message_time = duration
+    message_priority = priority
 
 func _process(_delta: float) -> void:
     if not _bubble_context_allowed():opal.cancel()
@@ -597,16 +684,22 @@ func _hud_snapshot() -> Dictionary:
         "results":score_book.result,
         "reduced":reduced_fx,
         "cooldowns":{"boost":waterfall_boost_cooldown if waterfall_phase == "descent" else boost_cooldown,"jump":leap_cooldown,"bubble":fire_cooldown},
+        "bubble_recovery":opal.charge.recovery_duration,
         "pearls": picked_count,
         "chapter": _chapter_name(), "boss_name": _boss_name(), "next_stage": _next_stage_name(),
-        "progress": clampf(player.x / _level_length(), 0.0, 1.0),
+        "progress": clampf((player.x - _route_start()) / maxf(1, _portal_x() - _route_start()), 0.0, 1.0),
         "message": message,
         "message_time": message_time,
+        "message_priority":message_priority,
+        "adventure_total":get_node("/root/AdventureRun").total_with_stage(_stage_index(), score) if state=="victory" else 0,
+        "adventure_breakdown":get_node("/root/AdventureRun").campaign_breakdown(_stage_index(), score) if state=="victory" and _stage_index()==6 else {},
+        "chapters_complete":get_node("/root/AdventureRun").completed.size(),
         "boss_active": player.x > _boss_home() - 850.0 and boss_hp > 0,
         "boss_health": float(boss_hp) / float(_boss_max_health()),
         "boss_vulnerable": _boss_vulnerable() and boss_hit_cooldown<=0 and (_bubble_context_allowed() or _opal_boost_available()),
         "bubble": bubble_unlocked,
         "charge_tier":opal.charge.tier() if opal.charge.held else 0,
+        "charge_progress":opal.charge.elapsed/opal.charge.SUPER_SECONDS if opal.charge.held else 0.0,
         "paused": state == "paused",
         "victory": state == "victory",
         "touch": simulated_touch or DisplayServer.is_touchscreen_available(),
@@ -829,7 +922,7 @@ func _damage(from_pos: Vector2) -> void:
     health -= 1
     invulnerable = 1.5
     player_velocity = (player - from_pos).normalized() * 240.0
-    _say("Ouch! Careful, Sarah.", 1.6)
+    _say("Ouch! Careful, Sarah.", 1.6, true)
     native_fx.flash(Color("#ff9bad"), 0.27, 0.33)
     native_fx.splash(_hero_screen_position(), Color("#ffc1cb"), 14)
     native_rig.play_impact()
@@ -841,8 +934,12 @@ func _save_checkpoint() -> void:
     if not checkpoint_snapshot.is_empty(): _ocean_event("checkpoint",Vector2(checkpoint,player.y))
     checkpoint_snapshot = {
         "ledger":score_book.checkpoint(), "score": score, "picked": picked_count, "treasures": treasures.duplicate(true),
-        "enemies": enemies.duplicate(true), "boss_hp": boss_hp, "bubble": bubble_unlocked
+        "enemies": enemies.duplicate(true), "boss_hp": boss_hp, "bubble": bubble_unlocked, "fallen":fallen
     }
+    checkpoint_position = RockCollision.recover(Vector2(checkpoint, player.y if _stage_index() == 7 else 480.0), obstacles, HERO_RADIUS * .73, _swim_bounds())
+    if not checkpoint_pending:
+        checkpoint_pending = true
+        _persist_checkpoint.call_deferred()
 
 func _respawn() -> void:
     retry_serial += 1
@@ -859,7 +956,7 @@ func _respawn() -> void:
     _reset_transients()
     health = MAX_HEALTH
     energy = 1.0
-    fallen = checkpoint >= Highland.WATERFALL_EXIT
+    fallen = bool(checkpoint_snapshot.get("fallen", checkpoint >= Highland.WATERFALL_EXIT))
     player = Vector2(checkpoint, 480.0)
     camera = maxf(0.0, player.x - get_viewport_rect().size.x * 0.43)
     invulnerable = 2.0
@@ -1305,6 +1402,7 @@ func _pad_rect() -> Rect2:
 
 # Hooks shared by the original Highland scene and the two HTML 9.2 chapters.
 func _level_length() -> float: return Highland.LEVEL_LENGTH
+func _route_start() -> float: return 220.0
 func _boss_home() -> float: return Highland.BOSS_X
 func _portal_x() -> float: return Highland.PORTAL_X
 func _boss_max_health() -> int: return BOSS_MAX_HEALTH
@@ -1323,7 +1421,7 @@ func _advance_journey() -> bool:
     if get_node("/root/SceneFlow").busy: return true
     var run := get_node_or_null("/root/AdventureRun")
     if not run or not run.active: return false
-    run.complete_stage(_stage_index(), score)
+    run.advance_stage(_stage_index(), score)
     get_tree().paused = false
     var target: String = run.next_scene(_stage_index())
     if target.is_empty(): target = "res://godot/title_screen.tscn"
@@ -1377,7 +1475,7 @@ func _opal_hit_boss(_id: String, damage: int) -> int:
         _say("Carlo defeated! Mermaid Bubble unlocked. Find the portal!",5)
     return applied
 func _opal_switch_targets() -> Array[Dictionary]:return empty_opal_switches
-func _opal_hit_switch(_index: int) -> void:pass
+func _opal_hit_switch(_index: int, _packet: Dictionary = {}) -> void:pass
 func _opal_sync_fields(_fx: Node2D) -> void:pass
 func _opal_cast_position(tier: int) -> Vector2:
     var radius:=24.0 if tier==1 else 30.0 if tier==2 else 38.0
@@ -1390,7 +1488,7 @@ func _hit_enemy(enemy: Dictionary, damage: int, boosted: bool, incoming:=Vector2
     if incoming==Vector2.ZERO:incoming=Vector2(enemy["x"],enemy["y"])-player
     if OpalCombat.Sweep.guarded(enemy,incoming):
         enemy["mode"]="recover";enemy["mode_time"]=0.0;enemy["hit_cd"]=0.25
-        _say("Shell guard! Strike again while it recovers.",1.8);return 0
+        _say("Shell guard! Strike again while it recovers.",1.8,true);return 0
     var applied:=mini(int(enemy["hp"]),maxi(0,damage))
     if applied==0:return 0
     enemy["hp"]=int(enemy["hp"])-applied;enemy["hit_cd"]=0.6;enemy["mode"]="recover";enemy["mode_time"]=0.0

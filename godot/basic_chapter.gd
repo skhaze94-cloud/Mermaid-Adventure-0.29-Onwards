@@ -2,6 +2,7 @@ extends "res://godot/highland_level.gd"
 ## Layout-first native chapters. Shared Sarah, controls, scoring and collision.
 const Terrain = preload("res://godot/terrain_painter.gd")
 const Chapter = preload("res://godot/chapter_data.gd")
+const Patterns = preload("res://godot/boss_patterns.gd")
 const PAINTINGS := {
     "palace":"res://dist/assets/pearl-palace.webp",
     "rana":"res://dist/assets/colombia.webp",
@@ -23,6 +24,9 @@ var attack_clock := 0.0
 var laser_y := 560.0
 var pulse_radius := 0.0
 var shot_sequence := 0
+var pending_volley: Array[Dictionary] = []
+var volley_warning := 0.0
+var volley_rays := PackedVector2Array()
 
 func _ready() -> void:
     fallen = true
@@ -47,7 +51,12 @@ func _ready() -> void:
     _say(_intro_line(),6)
 
 func _intro_line() -> String:
-    return {"palace":"Queen Antonella’s royal test — dodge pearls, boost when her ring turns green.","rana":"Rana Rex awaits — watch the laser warning, then boost in the green opening.","nessie":"Nessie stole the crown! Dodge the rush and pearls, then boost to return it.","blackwater":"Stay in Sarah’s light. Baron Bite waits at the end of the tunnel.","training":"Collect three relic chests, practise Jump and Boost, then spar with King Daddy."}[chapter_id]
+    return {"palace":"Queen Antonella’s royal test — dodge the crown pearls; Bubble or Boost when her petals open.","rana":"Rana Rex awaits — dodge the locked laser, then Bubble or Boost in the mint opening.","nessie":"Nessie stole the crown! Dodge her wake, then Bubble or Boost when the petals open.","blackwater":"Stay in Sarah’s light. Dodge Baron Bite’s pincer pearls; mint petals mean Bubble or Boost.","training":"Find your fins, practise Jump and Boost, then spar with King Daddy. Relic chests are optional."}[chapter_id]
+func _completion_reward() -> String:
+    return {"palace":"Queen Antonella’s royal test complete", "rana":"Rana’s rainbow portal is open!",
+        "nessie":"The crown is home! Thank you, Sarah Maria.", "blackwater":"Baron Bite’s tunnel is safe!",
+        "training":"A brave little mermaid and a new bubble friend"}[chapter_id]
+func _route_start() -> float: return 2920.0 if chapter_id == "nessie" else 220.0
 func _level_length() -> float: return Chapter.length_for(chapter_id)
 func _boss_home() -> float: return Chapter.boss_x(chapter_id)
 func _portal_x() -> float: return _level_length()-170
@@ -64,6 +73,7 @@ func _boss_name() -> String: return String(Chapter.source(chapter_id).get("boss"
 func _hud_snapshot() -> Dictionary:
     var result := super._hud_snapshot()
     result["journey_final"] = chapter_id=="nessie"
+    result["boss_attack"] = Patterns.NAMES.get(chapter_id,"")
     return result
 func _sync_native_visuals() -> void:
     super._sync_native_visuals()
@@ -114,10 +124,16 @@ func _reset_transients() -> void:
     shot_sequence = 0
     pulse_radius = 0
     laser_y = 560
+    pending_volley.clear()
+    volley_rays.clear()
+    volley_warning = 0
 func _boss_vulnerable() -> bool:
     return boss_hp > 0 and fmod(boss_clock,7.0)>=4.0
 func _update_boss(dt: float) -> void:
-    if boss_hp<=0 or player.x < _boss_home()-850: return
+    if boss_hp<=0:
+        pending_volley.clear();volley_rays.clear();volley_warning=0
+        return
+    if player.x < _boss_home()-850: return
     var serial := retry_serial
     boss_clock += dt
     attack_clock += dt
@@ -126,20 +142,28 @@ func _update_boss(dt: float) -> void:
     boss_position = Vector2(_boss_home(),570+sin(boss_clock*.8)*70)
     if cycle<1.3:
         laser_y = player.y
+        pending_volley.clear();volley_rays.clear();volley_warning=0
     elif cycle<4:
         if chapter_id in ["nessie","blackwater"]:
             boss_position.x -= sin((cycle-1.3)/2.7*PI)*430
-        if attack_clock>.8:
+        if not pending_volley.is_empty():
+            volley_warning = maxf(0,volley_warning-dt)
+            if volley_warning<=0:
+                for shot in pending_volley:
+                    _spawn_hostile(boss_position+Vector2(shot["offset"]),shot["direction"],270)
+                pending_volley.clear();volley_rays.clear()
+        if attack_clock>.8 and pending_volley.is_empty():
             attack_clock = 0
             shot_sequence += 1
-            var aim := (player-boss_position).normalized()
-            for angle in ([-.35,0,.35] if chapter_id!="training" else [0]):
-                _spawn_hostile(boss_position,aim.rotated(float(angle)),270)
+            pending_volley = Patterns.plan(chapter_id,boss_position,player,shot_sequence)
+            volley_warning = Patterns.WARNING_SECONDS
+            volley_rays = Patterns.warning_points(pending_volley)
         if chapter_id=="rana" and cycle>=2.8 and cycle<3.3 and absf(player.y-laser_y)<23 and player.x>_boss_home()-800 and boost_time<=0:
             _damage(boss_position)
         if chapter_id=="nessie": pulse_radius = (cycle-1.3)*190
     else:
         pulse_radius = 0
+        pending_volley.clear();volley_rays.clear();volley_warning=0
     if serial != retry_serial: return
     if player.distance_to(boss_position)<170:
         if boost_time>0 and _boss_vulnerable() and boss_hit_cooldown<=0:
@@ -189,10 +213,7 @@ func _draw_world(view: Vector2) -> void:
         if enemy.hp<=0: continue
         var pos := Vector2(enemy.x-camera,enemy.y)
         if pos.x > -200 and pos.x<view.x+200: _draw_enemy_cue(enemy,pos)
-    for shot in hostile_shots:
-        draw_circle(shot["pos"]-Vector2(camera,0),10,Color("#e6aaff"))
-    for shot in bubble_shots:
-        draw_arc(shot["pos"]-Vector2(camera,0),12 if shot.get("baby",false) else 18,0,TAU,24,Color("#efd0ff") if shot.get("baby",false) else Color("#caffff"),3)
+    # The shared Opal pools own projectile painting in every chapter.
     _paint_chapter_boss()
     var portal := Vector2(_portal_x()-camera,530)
     if portal.x > -100 and portal.x<view.x+150:
@@ -202,6 +223,12 @@ func _paint_chapter_boss() -> void:
     if boss_hp<=0 or chapter_boss_art==null: return
     var pos := boss_position-Vector2(camera,0)
     if pos.x < -500 or pos.x>get_viewport_rect().size.x+500: return
+    if not volley_rays.is_empty():
+        var tint: Color = {"palace":Color("ffc9ee"),"rana":Color("ffe39f"),"nessie":Color("a6efff"),"blackwater":Color("ffb5ce")}.get(chapter_id,Color.WHITE)
+        tint.a = .40+.35*(1-volley_warning/Patterns.WARNING_SECONDS)
+        draw_set_transform(pos)
+        draw_multiline(volley_rays,tint,2,true)
+        draw_set_transform(Vector2.ZERO)
     # Shared mesh actor supplies connected fins, breathing and hit/defeat reactions.
     if chapter_id=="rana" and boss_phase!="recover":
         draw_line(Vector2(pos.x-850,laser_y),Vector2(pos.x,laser_y),Color(1,.3,.55,.65),5 if boss_phase=="attack" else 2)

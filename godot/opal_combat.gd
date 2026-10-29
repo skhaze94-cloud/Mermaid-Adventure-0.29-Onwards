@@ -59,7 +59,7 @@ func release(source: String) -> bool:
         if recycle>=0:level.bubble_shots.remove_at(recycle)
         else:
             charge.commit_release(packet["packet_id"],false)
-            level._say("Bubble squad full - let one pop, then charge again!",1.4)
+            level._say("Bubble squad full - let one pop, then charge again!",1.4,true)
             if is_instance_valid(level.opal_fx):level.opal_fx.hide_preview()
             return false
     var local_id: int=packet["packet_id"]
@@ -108,7 +108,7 @@ func update_friendly(dt: float) -> void:
         var damage:=0
         var kind: int=hit["kind"]
         var index: int=hit["index"]
-        if kind==1:level._opal_hit_switch(index)
+        if kind==1:level._opal_hit_switch(index,shot)
         elif kind==2:
             var enemy: Dictionary=level.enemies[index]
             var amount:=1 if shot.get("baby",false) else clampi(int(shot.get("damage",1)),1,3)
@@ -134,6 +134,7 @@ func _nearest(from: Vector2, to: Vector2, shot: Dictionary) -> Dictionary:
     var switches: Array[Dictionary]=level._opal_switch_targets()
     for i in range(switches.size()):
         if switches[i]["on"]:continue
+        if switches[i].get("requires_sarah",false) and shot.get("owner","sarah")!="sarah":continue
         var t:=Sweep.circle(from,to,switches[i]["pos"],48.0)
         if t<first:first=t;category=1;chosen=i
     for i in range(level.enemies.size()):

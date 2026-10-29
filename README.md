@@ -1,6 +1,8 @@
-# Mermaid Adventure - v0.6 Opal Current
+# Mermaid Adventure - v0.6.1 Adventure Polish
 
 An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
+
+Adventure Polish adds checkpoint saves and Continue, per-chapter stars/bests, a whole-adventure finale, accurate charge/cooldown feedback and distinct, telegraphed later-boss volleys. It removes duplicate projectile drawing, prioritises immediate threats and stops settled results from rebuilding every frame. The original paintings, animations and full-quality defaults are retained. [Review fixes and validation](https://github.com/skhaze94-cloud/Mermaid-Adventure-0.29-Onwards/blob/feature/opal-current-v06/godot/ADVENTURE-POLISH.md).
 
 Opal Current adds pearlescent charge bubbles, 28 painted effect sprites, colourful enemy/boss attacks and fitted hit-opportunity shells. Quick release fires Pearl Pop; hold 0.35 seconds for Prism Bloom or 1.35 seconds for Royal Aurora, then release. Mint open petals and a star mark a valid hit; amber shields and lavender arcs show guards and hit cooldowns. The original paintings, character detail, audio and authored animation remain. [Update review](https://github.com/skhaze94-cloud/Mermaid-Adventure-0.29-Onwards/blob/feature/opal-current-v06/godot/OPAL-CURRENT.md).
 

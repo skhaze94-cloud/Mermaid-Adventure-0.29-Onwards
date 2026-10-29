@@ -111,6 +111,18 @@ func _save_checkpoint() -> void:
     checkpoint_snapshot["switches"] = switches.duplicate(true)
     checkpoint_snapshot["duke"] = duke_hp
     checkpoint_snapshot["flip"] = flip_hp
+func _valid_checkpoint(saved: Dictionary) -> bool:
+    if not super._valid_checkpoint(saved): return false
+    var snapshot: Dictionary = saved["snapshot"]
+    if not snapshot.get("switches") is Array: return false
+    if shadow:
+        if not snapshot.get("duke") is int or int(snapshot["duke"]) not in range(11): return false
+        if not snapshot.get("flip") is int or int(snapshot["flip"]) not in range(9): return false
+        if int(snapshot["boss_hp"]) != int(snapshot["duke"]) + int(snapshot["flip"]): return false
+        if snapshot["switches"].size() != Journey.switches().size(): return false
+    for switch in snapshot["switches"]:
+        if not switch is Dictionary or not switch.get("pos") is Vector2 or not switch.get("on") is bool: return false
+    return true
 func _respawn() -> void:
     super._respawn()
     fallen = true
@@ -351,7 +363,7 @@ func _opal_hit_boss(id: String, damage: int) -> int:
     if boss_hp<=0:_finish_boss()
     return applied
 func _opal_switch_targets() -> Array[Dictionary]:return switches
-func _opal_hit_switch(index: int) -> void:
+func _opal_hit_switch(index: int, _packet: Dictionary = {}) -> void:
     var switch:=switches[index]
     if switch["on"]:return
     switch["on"]=true;_award("switch:%s" % index,"Secrets",150,switch["pos"],false)

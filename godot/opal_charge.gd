@@ -12,6 +12,7 @@ const COOLDOWN := [0.20, 0.35, 0.65]
 var held := false
 var elapsed := 0.0
 var cooldown := 0.0
+var recovery_duration := 0.20
 var source_id := ""
 var pending: Dictionary = {}
 var serial := 0
@@ -59,6 +60,7 @@ func commit_release(packet_id: int, accepted: bool) -> bool:
         return false
     if accepted:
         cooldown = float(pending["cooldown_seconds"])
+        recovery_duration = cooldown
     pending.clear()
     elapsed = 0.0
     source_id = ""

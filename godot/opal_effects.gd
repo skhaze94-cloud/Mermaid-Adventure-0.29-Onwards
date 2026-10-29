@@ -35,6 +35,9 @@ var previous_friendly:=0
 var previous_hostile:=0
 var previous_foes:=0
 var active_impacts:=0
+var focus_slots: Array[int] = []
+var next_focus: Array[int] = []
+var focus_ranks: Array[float] = []
 func _ready() -> void:
     process_mode=Node.PROCESS_MODE_PAUSABLE
     if not rear_ring:
@@ -111,7 +114,8 @@ func sync(level: Node2D) -> void:
     for i in range(hostile_count,previous_hostile):hostile[i].hide()
     previous_hostile=hostile_count
     var used:=0
-    var emphatic:=0
+    next_focus.clear()
+    focus_ranks.clear()
     if on_lake:
         for enemy in level.enemies:
             if int(enemy["hp"])<=0:continue
@@ -124,9 +128,11 @@ func sync(level: Node2D) -> void:
             var cooldown:=float(enemy.get("hit_cd",0))
             var available: bool=level._bubble_context_allowed() or level._opal_boost_available()
             var mode:=3 if cooldown>0 else 0 if guarded or not available else 2
-            var near: bool=incoming.length_squared()<600.0*600.0 and emphatic<4
-            if near:emphatic+=1
-            _shell(used,at,fit,mode,0 if level._bubble_context_allowed() else 1,0.68 if near else 0.25)
+            if incoming.length_squared()<600.0*600.0:
+                var threat := -2 if enemy.get("mode","")=="attack" else -1 if enemy.get("mode","")=="windup" else 0
+                if cooldown>0: threat=1
+                _consider_focus(used,float(threat)*1000000.0+incoming.length_squared())
+            _shell(used,at,fit,mode,0 if level._bubble_context_allowed() else 1,0.68 if focus_slots.has(used) else 0.25)
             _wake(used,enemy["kind"],at,enemy.get("mode","")=="attack",Vector2(enemy.get("aim",Vector2.RIGHT)))
             var portrait:=pack_sprites[used]
             if enemy["kind"] in PACK_KINDS:
@@ -136,6 +142,12 @@ func sync(level: Node2D) -> void:
             else:portrait.hide()
             used+=1
     for i in range(used,previous_foes):_hide_shell(i);wakes[i].hide();pack_sprites[i].hide()
+    next_focus.sort()
+    if next_focus != focus_slots:
+        for slot in focus_slots:
+            if slot<used: _shell_opacity(slot,0.25)
+        for slot in next_focus: _shell_opacity(slot,0.68)
+        focus_slots.assign(next_focus)
     previous_foes=used
     for i in range(2):
         var slot:=FOE_CAP+i
@@ -158,6 +170,20 @@ func sync(level: Node2D) -> void:
     if active_impacts>0:
         for effect in impacts:
             if float(effect["life"])>0:effect["node"].position=Vector2(effect["at"])-offset
+
+func _consider_focus(slot: int, rank: float) -> void:
+    var index := 0
+    while index<focus_ranks.size() and focus_ranks[index]<=rank: index+=1
+    if index>=4: return
+    focus_ranks.insert(index,rank); next_focus.insert(index,slot)
+    if focus_ranks.size()>4: focus_ranks.pop_back(); next_focus.pop_back()
+
+func _shell_opacity(slot: int, opacity: float) -> void:
+    for key in ["rear","front","icon"]:
+        var node: CanvasItem = shells[slot][key]
+        var tint := node.modulate
+        tint.a = opacity
+        node.modulate = tint
 func _wake(slot: int, kind: String, at: Vector2, attacking: bool, aim: Vector2) -> void:
     if not attacking or kind not in MELEE:wakes[slot].hide();return
     var key:=art.key_for(kind)
@@ -220,6 +246,7 @@ func reset() -> void:
     for i in range(shells.size()):_hide_shell(i)
     for effect in impacts:effect["life"]=0.0;effect["node"].hide()
     previous_friendly=0;previous_hostile=0;previous_foes=0;active_impacts=0
+    focus_slots.clear();next_focus.clear();focus_ranks.clear()
 static func _ring(start: float, finish: float) -> ArrayMesh:
     var vertices:=PackedVector3Array();var uvs:=PackedVector2Array();var colors:=PackedColorArray();var indices:=PackedInt32Array()
     for i in range(49):
