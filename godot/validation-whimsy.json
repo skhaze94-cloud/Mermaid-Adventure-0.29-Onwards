@@ -1,0 +1,966 @@
+{
+  "version": "0.10.0",
+  "date": "2026-10-30",
+  "runtime_commit": "f0dfe74d06ec7b4eb9329ea5b345b618ad744b33",
+  "baseline": "36d2ae9eb7b8708842be4d1c75c7c07f51c3d7c4",
+  "engine": "4.4.1.stable.official.49a5bc7b6",
+  "native_suites": [
+    {
+      "test": "adventure_polish_test.gd",
+      "passed": true,
+      "seconds": 6.146,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nADVENTURE POLISH: 107 checks, 0 failures"
+    },
+    {
+      "test": "avina_tutorial_test.gd",
+      "passed": true,
+      "seconds": 7.224,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY TUTORIAL: 122 checks, 0 failures"
+    },
+    {
+      "test": "boss_polish_test.gd",
+      "passed": true,
+      "seconds": 4.131,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nBOSS POLISH: 70 checks, 0 failures"
+    },
+    {
+      "test": "bubble_polish_test.gd",
+      "passed": true,
+      "seconds": 2.2,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nBUBBLE POLISH: 25 checks, 0 failures"
+    },
+    {
+      "test": "complete_adventure_test.gd",
+      "passed": true,
+      "seconds": 17.17,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures"
+    },
+    {
+      "test": "device_layout_test.gd",
+      "passed": true,
+      "seconds": 4.232,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED"
+    },
+    {
+      "test": "environment_visuals_test.gd",
+      "passed": true,
+      "seconds": 3.527,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENVIRONMENT VISUALS TEST PASSED"
+    },
+    {
+      "test": "gameplay_controls_test.gd",
+      "passed": true,
+      "seconds": 3.182,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED"
+    },
+    {
+      "test": "journey_effects_test.gd",
+      "passed": true,
+      "seconds": 2.142,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nJOURNEY EFFECTS: 21 checks, 0 failures"
+    },
+    {
+      "test": "journey_flow_test.gd",
+      "passed": true,
+      "seconds": 7.185,
+      "exit_code": 0,
+      "tail": "\nJOURNEY FLOW: 334 checks, 0 failures; 39960 native swim ticks\n[{\"chapter\":0,\"checkpoint\":28200.0,\"checkpoints_retried\":10,\"finish\":\"(29512.94, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":9202},{\"chapter\":1,\"checkpoint\":12600.0,\"checkpoints_retried\":4,\"finish\":\"(14132.6, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":3803},{\"chapter\":2,\"checkpoint\":29483.0,\"checkpoints_retried\":9,\"finish\":\"(32983.46, 616.7357)\",\"start\":\"(220.0, 460.0)\",\"ticks\":6951},{\"chapter\":3,\"checkpoint\":7640.0,\"checkpoints_retried\":2,\"finish\":\"(10100.51, 614.1876)\",\"start\":\"(220.0, 460.0)\",\"ticks\":2075},{\"chapter\":4,\"checkpoint\":33075.0,\"checkpoints_retried\":9,\"finish\":\"(36883.45, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":9785},{\"chapter\":5,\"checkpoint\":39200.0,\"checkpoints_retried\":10,\"finish\":\"(41432.95, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":7585},{\"chapter\":6,\"checkpoint\":2820.0,\"checkpoints_retried\":0,\"finish\":\"(5332.742, 614.1874)\",\"start\":\"(2920.0, 600.0)\",\"ticks\":559}]"
+    },
+    {
+      "test": "ocean_alive_test.gd",
+      "passed": true,
+      "seconds": 6.21,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOCEAN ALIVE: 117 checks, 0 failures"
+    },
+    {
+      "test": "opal_current_test.gd",
+      "passed": true,
+      "seconds": 5.18,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOPAL CURRENT: 160 checks, 0 failures"
+    },
+    {
+      "test": "opening_journey_test.gd",
+      "passed": true,
+      "seconds": 5.236,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOPENING JOURNEY: 31 checks, 0 failures"
+    },
+    {
+      "test": "performance_integrity_test.gd",
+      "passed": true,
+      "seconds": 2.194,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPERFORMANCE INTEGRITY: 59024 checks, 0 failures"
+    },
+    {
+      "test": "scene_flow_test.gd",
+      "passed": true,
+      "seconds": 10.223,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED"
+    },
+    {
+      "test": "scoring_ui_test.gd",
+      "passed": true,
+      "seconds": 2.145,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED"
+    },
+    {
+      "test": "title_flow_test.gd",
+      "passed": true,
+      "seconds": 6.238,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT TITLE FLOW TEST PASSED"
+    },
+    {
+      "test": "visual_polish_test.gd",
+      "passed": true,
+      "seconds": 6.209,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nVISUAL POLISH: 336 checks, 0 failures"
+    },
+    {
+      "test": "whimsy_test.gd",
+      "passed": true,
+      "seconds": 7.171,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nWHIMSY: 156 checks, 0 failures"
+    }
+  ],
+  "fresh_package": {
+    "passed": true,
+    "suites": 19,
+    "fresh_extraction": true,
+    "fresh_import": true,
+    "main_scene_startup": true,
+    "log_sha256": "4360fa04b896e31ffe3002366ebff0c4b3394dbf0307c3411f66de9874988526"
+  },
+  "new_checks": {
+    "integrated_whimsy": 156,
+    "garden_lifecycle_probe": 75,
+    "garden_buffer_bounds_probe": 35,
+    "max_vertices_four_stations": 8568,
+    "vertex_cap": 12288
+  },
+  "preservation": {
+    "baseline": "36d2ae9eb7b8708842be4d1c75c7c07f51c3d7c4",
+    "retained_art_animation_shader_files": 140,
+    "changed": []
+  },
+  "artifact": {
+    "filename": "Mermaid-Adventure-v0.10.0-Whimsy.zip",
+    "bytes": 67171709,
+    "sha256": "b2aeba4a4fdbfca4fd00ccd0bd9a3b9632f600d8f0299fdbb4183da26bbac5d7",
+    "files": 209,
+    "directories": 16,
+    "source_matches": true,
+    "crc_ok": true
+  },
+  "performance": {
+    "0": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 840,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 255.0,
+          "median_ms": 255.0,
+          "p95_ms": 255.0
+        },
+        "on": {
+          "mean_ms": 275.0,
+          "median_ms": 275.0,
+          "p95_ms": 275.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0216533333333333,
+        "median_ms": 0.006,
+        "p95_ms": 0.073
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 0.252375,
+        "median_ms": 0.19,
+        "p95_ms": 0.505
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 186296964.0,
+        "on": 186296964.0
+      }
+    },
+    "1": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 4284,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 154.0,
+          "median_ms": 154.0,
+          "p95_ms": 154.0
+        },
+        "on": {
+          "mean_ms": 174.0,
+          "median_ms": 174.0,
+          "p95_ms": 174.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0071,
+        "median_ms": 0.006,
+        "p95_ms": 0.008
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 3.095,
+        "median_ms": 1.486,
+        "p95_ms": 15.162
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268490113.0,
+        "on": 268490113.0
+      }
+    },
+    "2": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 2304,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 156.0,
+          "median_ms": 156.0,
+          "p95_ms": 156.0
+        },
+        "on": {
+          "mean_ms": 176.0,
+          "median_ms": 176.0,
+          "p95_ms": 176.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0110533333333333,
+        "median_ms": 0.01,
+        "p95_ms": 0.014
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 0.4895,
+        "median_ms": 0.443,
+        "p95_ms": 0.704
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268249125.0,
+        "on": 268249125.0
+      }
+    },
+    "3": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 4608,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 124.0,
+          "median_ms": 124.0,
+          "p95_ms": 124.0
+        },
+        "on": {
+          "mean_ms": 144.0,
+          "median_ms": 144.0,
+          "p95_ms": 144.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0181333333333333,
+        "median_ms": 0.012,
+        "p95_ms": 0.032
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 0.805,
+        "median_ms": 0.808,
+        "p95_ms": 0.937
+      },
+      "station_count": 3,
+      "texture_bytes": {
+        "off": 253009228.0,
+        "on": 253009228.0
+      }
+    },
+    "4": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 3132,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 132.0,
+          "median_ms": 132.0,
+          "p95_ms": 132.0
+        },
+        "on": {
+          "mean_ms": 152.0,
+          "median_ms": 152.0,
+          "p95_ms": 152.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00736,
+        "median_ms": 0.007,
+        "p95_ms": 0.008
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 2.666875,
+        "median_ms": 1.254,
+        "p95_ms": 8.022
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268039373.0,
+        "on": 268039373.0
+      }
+    },
+    "5": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 2376,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 118.0,
+          "median_ms": 118.0,
+          "p95_ms": 118.0
+        },
+        "on": {
+          "mean_ms": 138.0,
+          "median_ms": 138.0,
+          "p95_ms": 138.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0138866666666666,
+        "median_ms": 0.012,
+        "p95_ms": 0.017
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 0.6195,
+        "median_ms": 0.671,
+        "p95_ms": 0.992
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 269232781.0,
+        "on": 269232781.0
+      }
+    },
+    "6": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 2916,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 124.0,
+          "median_ms": 124.0,
+          "p95_ms": 124.0
+        },
+        "on": {
+          "mean_ms": 144.0,
+          "median_ms": 144.0,
+          "p95_ms": 144.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00892666666666667,
+        "median_ms": 0.007,
+        "p95_ms": 0.011
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 0.514625,
+        "median_ms": 0.501,
+        "p95_ms": 0.637
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268089689.0,
+        "on": 268089689.0
+      }
+    },
+    "7": {
+      "batch_overflows": 0,
+      "batch_vertex_cap": 12288,
+      "batch_vertices": 1116,
+      "draw_calls": {
+        "off": {
+          "mean_ms": 140.0,
+          "median_ms": 140.0,
+          "p95_ms": 140.0
+        },
+        "on": {
+          "mean_ms": 163.0,
+          "median_ms": 163.0,
+          "p95_ms": 163.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00941333333333333,
+        "median_ms": 0.007,
+        "p95_ms": 0.011
+      },
+      "node_growth": 0,
+      "ornament_build_and_upload": {
+        "mean_ms": 0.291375,
+        "median_ms": 0.248,
+        "p95_ms": 0.488
+      },
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 297124833.0,
+        "on": 297124833.0
+      }
+    },
+    "environment": {
+      "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "engine": "4.4.1-stable (official)",
+      "quality": "full",
+      "resolution": [
+        1400,
+        960
+      ],
+      "scope": "Same frozen native scene with only the new flourish layers hidden/shown; no original quality changes. CPU samples measure new layers only, not FPS."
+    }
+  },
+  "initial_unbatched_review": {
+    "0": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 255.0,
+          "median_ms": 255.0,
+          "p95_ms": 255.0
+        },
+        "on": {
+          "mean_ms": 285.0,
+          "median_ms": 285.0,
+          "p95_ms": 285.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.01018,
+        "median_ms": 0.006,
+        "p95_ms": 0.062
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 186296964.0,
+        "on": 186296964.0
+      }
+    },
+    "1": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 154.0,
+          "median_ms": 154.0,
+          "p95_ms": 154.0
+        },
+        "on": {
+          "mean_ms": 222.0,
+          "median_ms": 222.0,
+          "p95_ms": 222.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00638666666666667,
+        "median_ms": 0.006,
+        "p95_ms": 0.007
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268490113.0,
+        "on": 268490113.0
+      }
+    },
+    "2": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 156.0,
+          "median_ms": 156.0,
+          "p95_ms": 156.0
+        },
+        "on": {
+          "mean_ms": 212.0,
+          "median_ms": 212.0,
+          "p95_ms": 212.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00806666666666667,
+        "median_ms": 0.006,
+        "p95_ms": 0.01
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268249125.0,
+        "on": 268249125.0
+      }
+    },
+    "3": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 124.0,
+          "median_ms": 124.0,
+          "p95_ms": 124.0
+        },
+        "on": {
+          "mean_ms": 181.0,
+          "median_ms": 181.0,
+          "p95_ms": 181.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00877333333333333,
+        "median_ms": 0.008,
+        "p95_ms": 0.011
+      },
+      "node_growth": 0,
+      "station_count": 3,
+      "texture_bytes": {
+        "off": 253009228.0,
+        "on": 253009228.0
+      }
+    },
+    "4": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 132.0,
+          "median_ms": 132.0,
+          "p95_ms": 132.0
+        },
+        "on": {
+          "mean_ms": 182.0,
+          "median_ms": 182.0,
+          "p95_ms": 182.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00736666666666667,
+        "median_ms": 0.007,
+        "p95_ms": 0.008
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268039373.0,
+        "on": 268039373.0
+      }
+    },
+    "5": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 118.0,
+          "median_ms": 118.0,
+          "p95_ms": 118.0
+        },
+        "on": {
+          "mean_ms": 174.0,
+          "median_ms": 174.0,
+          "p95_ms": 174.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0214466666666667,
+        "median_ms": 0.007,
+        "p95_ms": 0.018
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 269232781.0,
+        "on": 269232781.0
+      }
+    },
+    "6": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 124.0,
+          "median_ms": 124.0,
+          "p95_ms": 124.0
+        },
+        "on": {
+          "mean_ms": 168.0,
+          "median_ms": 168.0,
+          "p95_ms": 168.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.0132266666666667,
+        "median_ms": 0.007,
+        "p95_ms": 0.024
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 268089689.0,
+        "on": 268089689.0
+      }
+    },
+    "7": {
+      "draw_calls": {
+        "off": {
+          "mean_ms": 140.0,
+          "median_ms": 140.0,
+          "p95_ms": 140.0
+        },
+        "on": {
+          "mean_ms": 178.0,
+          "median_ms": 178.0,
+          "p95_ms": 178.0
+        }
+      },
+      "moment_slots": 12,
+      "new_layer_update": {
+        "mean_ms": 0.00931333333333334,
+        "median_ms": 0.007,
+        "p95_ms": 0.012
+      },
+      "node_growth": 0,
+      "station_count": 2,
+      "texture_bytes": {
+        "off": 297124833.0,
+        "on": 297124833.0
+      }
+    },
+    "environment": {
+      "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "engine": "4.4.1-stable (official)",
+      "quality": "full",
+      "resolution": [
+        1400,
+        960
+      ],
+      "scope": "Same frozen native scene with only the new flourish layers hidden/shown; no original quality changes. CPU samples measure new layers only, not FPS."
+    }
+  },
+  "visual_review": {
+    "count": 22,
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "quality": "full except explicitly named gentle/economy views",
+    "captures": [
+      {
+        "name": "chapter-0-whimsy",
+        "sha256": "539456e6ab7c6367aba720419336fca3a0a3547daae9a12d1f11b619860f39cc",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-0-motion",
+        "sha256": "080842aa053ef6cc9de50d698ca2777c178da296ad1b9f38760240ddb84bf3c5",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-1-whimsy",
+        "sha256": "6bae4a8cb82c23af731e103963c971de5b23285f3bb7aaa5925298f782d40566",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-1-motion",
+        "sha256": "5089eadf2deb6bf91ccbfa822e6e114d8f82aba99bc43038b4a3db311cccea4b",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-2-whimsy",
+        "sha256": "4227597f372416e6a6507f2eeffcdc9c7df47028344231ad1bf1fdfca7d43a5e",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-2-motion",
+        "sha256": "3e9e97584e5b2c5c7aad1b07fa2de93ec51bcde59a97c430a054c546f708ee9e",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-3-whimsy",
+        "sha256": "7da112c22b6a5ead44c8b96efc998cc79fb8d8c9f58a71f5eb1592ac41bc272a",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-3-motion",
+        "sha256": "431a1ea945fc0320c17f01f8185ec3846a65293255b7d3647d9df1b23d40211b",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "gentle-blackwater",
+        "sha256": "dedab0d89fd2d9cde60e38202304e6c28c342f4e64fd1a61f9cb93eddc749e9a",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-4-whimsy",
+        "sha256": "8bedf6ac9a7c21d55098c9e0da533e59d9a311b0b7359394b734b75b66fec438",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-4-motion",
+        "sha256": "ddacc8dae00805f5e1fb28354a03d3692871ef54cb89604e0b32500f6fa51a4a",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "economy-palace",
+        "sha256": "f39a749139946d07ad09e2aaf197397e5c6dac917c9c0f00d6ad7fd5c3bc5b83",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-5-whimsy",
+        "sha256": "69849e56f4f1ad386491f54effc99032572bf2123680335c80f310d4d7871078",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-5-motion",
+        "sha256": "7d26d14738d40c0e84362914d3f436a4b0e7c83e2e13dc93a9b6fff0c58b32d5",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-6-whimsy",
+        "sha256": "0834b176482703665c7faaf7a4a39dae13a4b9f6fd6259d9577f08bc1e437c38",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-6-motion",
+        "sha256": "d79187d283a2a3844b070d12395ccbd6fd3ec309bacd8f31ffafc674d3ba9856",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-7-whimsy",
+        "sha256": "ee4e44766c10221da8461bc2789d7b5991e0015a5d75258f05c22ec3889621e9",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "chapter-7-motion",
+        "sha256": "92aafd50166a7babcd0aad27a1cb7c8d04b08655117aa1be4ddda0910ba66acc",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "phone-family-whimsy",
+        "sha256": "f46e4a35f2b335a5432a978ccd07a32d90b898d244ec6fdf83c5f77c0417f611",
+        "size": [
+          844,
+          390
+        ]
+      },
+      {
+        "name": "quiet-dense-combat-1",
+        "sha256": "2583bf4f8f17b672e6a7375508f243e7cbaa83c4aad6f4640e0e926c138211a0",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "quiet-dense-combat-4",
+        "sha256": "6fcf1757ed2ba6e3fdde0a6027a83188febbcb3d74f605f0dcf7786189c0837f",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "whimsy-menu",
+        "sha256": "38555f3540a217ead59ee32066aa55305809580946b475f0842eb7431068631d",
+        "size": [
+          1400,
+          960
+        ]
+      }
+    ],
+    "proof": "godot/device-qa/whimsy/whimsy-review.jpg",
+    "proof_sha256": "05c3c405a7e747f144d23437aefa87a256b8f304c203fb0e89ef7aed6971e5ac"
+  },
+  "limitations": [
+    "Software renderer and shared host; timings do not certify physical-device FPS.",
+    "Update and ornament-build measurements are component timings, not whole-game frame time.",
+    "Initial unbatched values are an internal design review, not the released v0.9 baseline.",
+    "Scripted route/combat tests and deterministic captures are not a human full-adventure playthrough."
+  ],
+  "provenance": {
+    "package_log": "audit-v100/package-final.log",
+    "native_log": "audit-v100/regressions.json",
+    "visuals": "audit-v100/visuals-final",
+    "performance": "audit-v100/performance-final/results.json"
+  },
+  "quiet_rechecks": {
+    "shadow": {
+      "1": {
+        "batch_overflows": 0,
+        "batch_vertex_cap": 12288,
+        "batch_vertices": 4284,
+        "draw_calls": {
+          "off": {
+            "mean_ms": 154.0,
+            "median_ms": 154.0,
+            "p95_ms": 154.0
+          },
+          "on": {
+            "mean_ms": 174.0,
+            "median_ms": 174.0,
+            "p95_ms": 174.0
+          }
+        },
+        "moment_slots": 12,
+        "new_layer_update": {
+          "mean_ms": 0.00690666666666667,
+          "median_ms": 0.006,
+          "p95_ms": 0.01
+        },
+        "node_growth": 0,
+        "ornament_build_and_upload": {
+          "mean_ms": 1.0625,
+          "median_ms": 0.744,
+          "p95_ms": 2.722
+        },
+        "station_count": 2,
+        "texture_bytes": {
+          "off": 268490113.0,
+          "on": 268490113.0
+        }
+      },
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "engine": "4.4.1-stable (official)",
+        "quality": "full",
+        "resolution": [
+          1400,
+          960
+        ],
+        "scope": "Same frozen native scene with only the new flourish layers hidden/shown; no original quality changes. CPU samples measure new layers only, not FPS."
+      }
+    },
+    "palace": {
+      "4": {
+        "batch_overflows": 0,
+        "batch_vertex_cap": 12288,
+        "batch_vertices": 3132,
+        "draw_calls": {
+          "off": {
+            "mean_ms": 132.0,
+            "median_ms": 132.0,
+            "p95_ms": 132.0
+          },
+          "on": {
+            "mean_ms": 152.0,
+            "median_ms": 152.0,
+            "p95_ms": 152.0
+          }
+        },
+        "moment_slots": 12,
+        "new_layer_update": {
+          "mean_ms": 0.00972,
+          "median_ms": 0.007,
+          "p95_ms": 0.012
+        },
+        "node_growth": 0,
+        "ornament_build_and_upload": {
+          "mean_ms": 0.7395,
+          "median_ms": 0.82,
+          "p95_ms": 1.029
+        },
+        "station_count": 2,
+        "texture_bytes": {
+          "off": 200966797.0,
+          "on": 200966797.0
+        }
+      },
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "engine": "4.4.1-stable (official)",
+        "quality": "full",
+        "resolution": [
+          1400,
+          960
+        ],
+        "scope": "Same frozen native scene with only the new flourish layers hidden/shown; no original quality changes. CPU samples measure new layers only, not FPS."
+      }
+    }
+  }
+}
