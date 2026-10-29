@@ -32,7 +32,7 @@ func run() -> void:
     await snap(scene,"family-dialogue-phone")
     scene._close_dialogue();lesson(scene,5,Vector2(4730,565));scene.reef_retry=true;scene._refresh_lesson_hint()
     await snap(scene,"reef-retry-phone")
-    lesson(scene,10,Vector2(7250,440));scene.boss_hp=0;scene.bubble_unlocked=true;scene.fire_cooldown=0
+    lesson(scene,10,Vector2(7140,390));scene.boss_hp=0;scene.bubble_unlocked=true;scene.fire_cooldown=0
     scene.opal.begin("audit");scene.opal.advance(1.35);scene._refresh_lesson_hint()
     await snap(scene,"super-practice-phone")
     assert(scene.lesson_card.position.y+scene.lesson_card.size.y<scene._ui_view().y-40)

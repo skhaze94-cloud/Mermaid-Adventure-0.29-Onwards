@@ -56,8 +56,9 @@ func stress_case(name: String, path: String) -> void:
         if frame%8==0:
             for i in range(12):
                 var at: Vector2=scene.player+Vector2(250+(i%4)*90,(i/4)*70)
-                fx.impact(at,1+i%3,true)
-                if reference:reference.impact(at,1+i%3,true)
+                var tier:=1+int(frame/8)%3
+                fx.impact(at,tier,true)
+                if reference:reference.impact(at,tier,true)
         var delta:=1.0/60
         if reference and frame%2==0:
             var start:=Time.get_ticks_usec();reference.advance(delta);reference.sync(scene)
@@ -74,7 +75,7 @@ func stress_case(name: String, path: String) -> void:
                 if mismatches<3:push_error("Effects state differs: "+name+" frame "+str(frame))
         if frame%30==0:await process_frame
     var entry: Dictionary={"effects_update":stats(samples),"friendly_count":scene.bubble_shots.size(),"hostile_count":scene.hostile_shots.size(),
-        "impact_cap":fx.impacts.size(),"peak_active_impacts":12,"live_enemies":6,"node_delta":int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))-objects_before}
+        "impact_cap":fx.impacts.size(),"peak_active_impacts":12,"peak_impact_droplets":96,"live_enemies":6,"node_delta":int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT))-objects_before}
     if reference:entry["baseline_effects_update"]=stats(reference_samples)
     report[name]=entry
     print("AUDIT JOURNEY ",name," ",JSON.stringify(entry))
