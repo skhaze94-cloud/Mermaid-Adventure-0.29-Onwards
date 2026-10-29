@@ -189,6 +189,7 @@ func _ready() -> void:
         native_rig.reduced_motion = reduced_fx
         native_boss.reduced_motion = reduced_fx
     premium_hud.menu_requested.connect(_return_to_menu)
+    get_node("/root/AdventureRun").save_finished.connect(_on_save_finished)
     get_node("/root/SceneFlow").failed.connect(func(message: String): _say(message, 5.0))
     if _stage_index()!=7 and get_node("/root/AdventureRun").avina_along:
         avina = preload("res://godot/avina_companion.gd").new()
@@ -259,7 +260,7 @@ func _restore_checkpoint_extras(_extra: Dictionary) -> void: pass
 
 func _checkpoint_bundle() -> Dictionary:
     return {"checkpoint": checkpoint, "position": checkpoint_position,
-        "snapshot": checkpoint_snapshot.duplicate(true), "damage_taken": score_book.damage_taken,
+        "snapshot": checkpoint_snapshot, "damage_taken": score_book.damage_taken,
         "extra": _checkpoint_extras()}
 
 func _persist_checkpoint() -> void:
@@ -269,6 +270,9 @@ func _persist_checkpoint() -> void:
     if not is_instance_valid(run): return
     if not run.store_checkpoint(_stage_index(), _checkpoint_bundle()):
         _say(run.save_message, 6.0, true)
+
+func _on_save_finished(success: bool) -> void:
+    if not success:_say("Couldn’t save — keep the adventure open.",6.0,true)
 
 func _exit_tree() -> void:
     opal.cancel()
@@ -422,7 +426,10 @@ func _toggle_pause() -> void:
     _set_paused(state == "playing")
 
 func _notification(what: int) -> void:
-    if what == NOTIFICATION_WM_CLOSE_REQUEST and is_node_ready(): _persist_checkpoint()
+    if what == NOTIFICATION_WM_CLOSE_REQUEST and is_node_ready():
+        _persist_checkpoint()
+        var run:=get_node_or_null("/root/AdventureRun")
+        if is_instance_valid(run):run.flush_saves()
     if what == NOTIFICATION_APPLICATION_FOCUS_OUT and is_node_ready():
         touches.clear()
         touch_vectors.clear()
@@ -966,6 +973,8 @@ func _respawn() -> void:
     _say("Back to your checkpoint!", 2.6)
 
 func _reset_transients() -> void:
+    message_priority = false
+    message_time = 0.0
     opal.reset()
     if music_tween and music_tween.is_running():
         music_tween.kill()

@@ -1,5 +1,10 @@
 extends "res://godot/tools/opal_visual_audit.gd"
 ## Deterministic native views of v0.6.1 UX and signature attacks at full quality.
+func snap(scene, name: String) -> void:
+    await super.snap(scene,name)
+    if scene.state=="victory":
+        assert(scene.premium_hud.action_rect("menu").end.y<=scene.premium_hud.game_size.y,"Results controls must remain on screen")
+
 func menu_snap(menu, name: String) -> void:
     if menu.reveal_tween: menu.reveal_tween.kill()
     menu.content.modulate.a=1.0

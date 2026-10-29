@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Run all native game suites and fail on engine errors, even with a zero exit code."""
-import argparse,json,pathlib,subprocess,time
+import argparse,json,os,pathlib,subprocess,tempfile,time
 p=argparse.ArgumentParser()
 p.add_argument('--godot',required=True)
 p.add_argument('--output',type=pathlib.Path,required=True)
@@ -17,7 +17,13 @@ for suite in sorted((root/'godot').glob('*_test.gd')):
     start=time.monotonic()
     command=[a.godot,'--headless','--path',str(root),'--max-fps','60','--script','res://godot/'+suite.name]
     try:
-        run=subprocess.run(command,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=600)
+        # Preferences are genuine game inputs, including reduced motion. A
+        # fresh user-data directory prevents one suite or a local play session
+        # from silently changing another suite's expected full-quality mode.
+        with tempfile.TemporaryDirectory(prefix='mermaid-regression-') as user_data:
+            env=os.environ.copy()
+            env.update(XDG_DATA_HOME=user_data,SARAH_DISABLE_SAVES='1')
+            run=subprocess.run(command,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=600)
         output=run.stdout
         passed=run.returncode==0 and not any(marker in output for marker in ['SCRIPT ERROR','Parse Error','Compile Error','\nERROR:'])
         code=run.returncode

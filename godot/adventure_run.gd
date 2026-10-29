@@ -1,7 +1,9 @@
 extends Node
+signal save_finished(success: bool)
 ## The single route catalog owns chapter selection, continuation and ending.
 const Data = preload("res://godot/chapter_data.gd")
 const Store = preload("res://godot/progress_store.gd")
+const WriteJob = preload("res://godot/progress_write_job.gd")
 const SCENES := ["res://godot/highland_level.tscn","res://godot/shadow_kingdom.tscn","res://godot/miguel_lagoon.tscn","res://godot/blackwater_tunnel.tscn","res://godot/pearl_palace.tscn","res://godot/rana_ruin.tscn","res://godot/nessie_finale.tscn","res://godot/training_lagoon.tscn"]
 const NAMES := Data.TITLES
 var tutorial_complete := false
@@ -20,8 +22,17 @@ var storage_path := "user://sarah-adventure.json"
 var persist_enabled := true
 var save_message := ""
 var last_written: Dictionary = {}
+var last_save_ms := 0.0
+var last_enqueue_ms := 0.0
+var last_queued: Dictionary = {}
+var queued_state: Dictionary = {}
+var queued_path := ""
+var save_task := -1
+var save_job: RefCounted
 
 func _ready() -> void:
+    process_mode = Node.PROCESS_MODE_ALWAYS
+    set_process(false)
     persist_enabled = not OS.has_environment("SARAH_DISABLE_SAVES")
     load_progress()
 
@@ -73,23 +84,10 @@ func export_state() -> Dictionary:
         "adventure_best": adventure_best}
 
 func _valid_state(saved: Dictionary) -> bool:
-    for key in ["start", "current", "adventure_best"]:
-        if not saved.get(key) is int: return false
-    if int(saved["start"]) not in range(8) or int(saved["current"]) not in range(-1, 8): return false
-    if not saved.get("tutorial") is bool or not saved.get("avina") is bool: return false
-    for key in ["completed", "checkpoint", "records"]:
-        if not saved.get(key) is Dictionary: return false
-    if saved["completed"].size() > 8 or saved["records"].size() > 8: return false
-    for key in saved["completed"]:
-        if not key is int or key not in range(8) or not saved["completed"][key] is int or saved["completed"][key] < 0: return false
-    for key in saved["records"]:
-        if not key is int or key not in range(8) or not saved["records"][key] is Dictionary: return false
-        var record: Dictionary = saved["records"][key]
-        if not record.get("best") is int or record["best"] < 0: return false
-        if not record.get("stars") is int or record["stars"] not in range(1, 4): return false
-    return int(saved["adventure_best"]) >= 0
+    return Store.valid_session(saved)
 
 func load_progress() -> bool:
+    flush_saves()
     var loaded := Store.read(storage_path)
     var saved: Dictionary = loaded["state"]
     if not _valid_state(saved):
@@ -103,25 +101,66 @@ func load_progress() -> bool:
     records = saved["records"].duplicate(true)
     adventure_best = int(saved["adventure_best"])
     last_written = {} if loaded["recovered"] else saved.duplicate(true)
+    last_queued = last_written.duplicate(true)
     save_message = "Your previous checkpoint was recovered." if loaded["recovered"] else ""
     return true
 
 func _commit() -> bool:
     if not _can_persist(): return true
+    var started := Time.get_ticks_usec()
     var saved := export_state()
-    if saved == last_written: return true
-    var error := Store.write(storage_path, saved, _valid_state)
-    if error != OK:
+    if saved == last_queued or (save_task<0 and saved==last_written): return true
+    if not _valid_state(saved):
         save_message = "Your checkpoint could not be saved. Keep this adventure open."
         return false
-    last_written = saved.duplicate(true)
     resume_state = saved.duplicate(true)
-    save_message = ""
+    last_queued = saved
+    if save_task>=0:
+        # At most one active write and one newest snapshot; never overlap writers.
+        queued_state=saved;queued_path=storage_path
+    else: _start_save(saved,storage_path)
+    last_enqueue_ms=(Time.get_ticks_usec()-started)/1000.0
     return true
+
+func _start_save(saved: Dictionary, path: String) -> void:
+    save_job=WriteJob.new();save_job.snapshot=saved;save_job.path=path
+    save_task=WorkerThreadPool.add_task(save_job.execute,false,"Sarah checkpoint")
+    set_process(true)
+
+func _process(_dt: float) -> void:
+    if save_task>=0 and WorkerThreadPool.is_task_completed(save_task):
+        WorkerThreadPool.wait_for_task_completion(save_task)
+        _finish_save()
+
+func _finish_save() -> void:
+    var finished=save_job
+    save_task=-1;save_job=null
+    last_save_ms=finished.duration_ms
+    var success: bool=finished.result==OK
+    if success:
+        last_written=finished.snapshot
+        save_message=""
+    else:
+        save_message="Your checkpoint could not be saved. Keep this adventure open."
+        if queued_state.is_empty():last_queued={}
+    if not queued_state.is_empty():
+        var next:=queued_state;var path:=queued_path
+        queued_state={};queued_path=""
+        _start_save(next,path)
+    else:set_process(false)
+    save_finished.emit(success)
+
+func flush_saves() -> void:
+    # Only explicit exits, reloads and developer checks join outstanding I/O.
+    while save_task>=0:
+        WorkerThreadPool.wait_for_task_completion(save_task)
+        _finish_save()
+
+func _exit_tree() -> void: flush_saves()
 
 func store_checkpoint(index: int, point: Dictionary) -> bool:
     if not active or index != current_index: return true
-    checkpoint_data = point.duplicate(true)
+    checkpoint_data = point
     return _commit()
 
 func chapter_best(index: int) -> int:

@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 """Validate directory entries, Godot extraction and fresh project startup."""
-import argparse, pathlib, subprocess, tempfile, zipfile, hashlib, sys, shutil
+import argparse, os, pathlib, subprocess, tempfile, zipfile, hashlib, sys, shutil
 root = pathlib.Path(__file__).resolve().parent.parent
 parser = argparse.ArgumentParser()
 parser.add_argument('--godot', default='godot')
 parser.add_argument('--temp-dir', type=pathlib.Path, help='Optional writable directory for fresh-copy checks')
 args = parser.parse_args()
 def run(command):
-    result = subprocess.run(command,cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=240)
+    with tempfile.TemporaryDirectory(prefix='mermaid-package-user-') as user_data:
+        env=os.environ.copy()
+        env.update(XDG_DATA_HOME=user_data,SARAH_DISABLE_SAVES='1')
+        result = subprocess.run(command,env=env,cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=240)
     if result.returncode or any(tag in result.stdout for tag in ['SCRIPT ERROR','Parse Error','Compile Error','\nERROR:']):
         raise RuntimeError(f'Exit {result.returncode}: '+result.stdout)
     return result.stdout

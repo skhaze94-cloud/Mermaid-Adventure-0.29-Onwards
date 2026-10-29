@@ -48,6 +48,7 @@ func continuation_checks() -> void:
     level.picked_count=4; level.score_book.damage_taken=2
     level.duke_hp=7; level.flip_hp=4; level.boss_hp=11; level.switches[0]["on"]=true
     level._save_checkpoint(); await frames()
+    catalog.flush_saves()
     var written: Dictionary = Store.read(save_path)["state"]
     check(not written.is_empty(),"real checkpoint is written to disk")
     if written.is_empty():
@@ -57,6 +58,10 @@ func continuation_checks() -> void:
     check(written["current"]==1 and written["tutorial"] and written["avina"],"chapter, unlock and companion choice saved")
     check(written["checkpoint"]["snapshot"]["duke"]==7 and written["checkpoint"]["snapshot"]["flip"]==4,"duo checkpoint includes both independent bodies")
     check(level._valid_checkpoint(written["checkpoint"]),"real duo snapshot passes validation")
+    var reboot=load("res://godot/adventure_run.gd").new()
+    reboot.storage_path=save_path;root.add_child(reboot)
+    check(reboot.has_resume() and reboot.resume_chapter()==1,"fresh autoload instance discovers disk checkpoint on startup")
+    root.remove_child(reboot);reboot.free()
     var invalid: Dictionary=written["checkpoint"].duplicate(true); invalid["snapshot"]["duke"]=20
     check(not level._valid_checkpoint(invalid),"inconsistent duo HP rejected")
     dispose(level)
@@ -83,14 +88,23 @@ func continuation_checks() -> void:
     check(level.invulnerable>0 and level.checkpoint==12600.0,"restored checkpoint gives safe arrival grace")
     catalog.record_stage(1,{"total":1200,"stars":1})
     catalog.record_stage(1,{"total":1200,"stars":1})
+    catalog.flush_saves()
     check(catalog.total()==1200 and catalog.chapter_best(1)==1200,"completion and records remain idempotent")
     check(Store.read(save_path)["state"]["current"]==2,"cleared stage saves the next chapter")
+    for points in range(2000,2008):
+        catalog.records[0]={"best":points,"stars":2};catalog._commit()
+    check(catalog.save_task>=0 and catalog.queued_state["records"][0]["best"]==2007,"rapid saves coalesce to one newest queued snapshot")
+    catalog.flush_saves()
+    check(Store.read(save_path)["state"]["records"][0]["best"]==2007 and catalog.save_task<0 and catalog.queued_state.is_empty(),"flush joins every task and commits newest state")
+    catalog._commit()
+    check(catalog.save_task<0,"unchanged checkpoint does not start another write")
     dispose(level)
     catalog.begin(7)
     level=create(catalog.SCENES[7]); await frames()
     level.lesson=9; level.ring_count=3; level.boss_hp=0; level.bubble_unlocked=true
     level.player=Vector2(7300,600); level._start_hide_seek(); level._close_dialogue()
     level.hide_round=2; level._place_hidden_baby(); level._save_checkpoint(); await frames()
+    catalog.flush_saves()
     dispose(level)
     catalog.begin(0); catalog.load_progress(); check(catalog.continue_saved()==7,"tutorial checkpoint resumes in tutorial")
     level=create(catalog.SCENES[7]); await frames()
@@ -162,6 +176,9 @@ func result_checks() -> void:
     for points in hud.result_values: sum+=points
     check(sum==7250 and hud.result_rows.size()==3,"campaign breakdown reconciles to adventure total")
     check(hud.result_title.text=="THE CROWN IS HOME!","finale celebrates the crown’s return")
+    await frames(11)
+    check(hud.modal_card.get_rect().end.y<hud.game_size.y-110,"settled desktop results leave room for both buttons")
+    check(hud.action_rect("menu").end.y<=hud.game_size.y,"desktop results menu stays inside the viewport")
     var texts: int=hud.result_text_updates; var layouts: int=hud.modal_layout_updates
     for i in range(120): hud._process(1.0/60)
     check(hud.result_text_updates==texts and hud.modal_layout_updates==layouts,"settled results stop formatting and layout work")
@@ -209,6 +226,7 @@ func run() -> void:
     await feedback_checks()
     await result_checks()
     await boss_checks()
+    catalog.flush_saves()
     catalog.persist_enabled=false; prefs.persist_enabled=false; catalog.storage_path=old_path
     for stem in [save_path,save_path+".probe"]:
         for suffix in ["",".bak",".tmp"]:

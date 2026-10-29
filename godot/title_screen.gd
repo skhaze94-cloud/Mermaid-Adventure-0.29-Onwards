@@ -53,6 +53,7 @@ func _ready() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     get_tree().paused = false
     prefs = get_node("/root/AppPreferences")
+    get_node("/root/AdventureRun").save_finished.connect(_on_save_finished)
     get_node("/root/OceanAudio").set_chapter(-1)
     for font in [BODY, BOLD]:
         font.multichannel_signed_distance_field = true
@@ -394,6 +395,9 @@ func _transition_failed(message: String) -> void:
     veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
     show_page("menu")
     footer.text = message
+
+func _on_save_finished(success: bool) -> void:
+    if page=="menu":footer.text="v0.6.1  •  ADVENTURE POLISH" if success else get_node("/root/AdventureRun").save_message
 
 func _resize() -> void:
     var view := get_viewport_rect().size

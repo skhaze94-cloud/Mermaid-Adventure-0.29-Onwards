@@ -19,9 +19,9 @@
 
 ## Saving and compatibility
 
-Preferences keep their existing application identity and file. A separate versioned adventure file lives in Godot’s `user://` directory. Save writes use a verified temporary file, content checksum, atomic replacement and a last-good backup. Recovery never replaces a good backup with an incompatible primary. Object decoding is disabled. A double-precision comparison tolerance handles Godot JSON parser differences below a billionth of a world pixel; the serialized file checksum remains exact.
+Preferences keep their existing application identity and file. A separate versioned adventure file lives in Godot’s `user://` directory. Save writes use a verified temporary file, content checksum, atomic replacement and a last-good backup. Recovery never replaces a good backup with an incompatible primary. Object decoding is disabled. A strict floating-point comparison tolerance handles sub-pixel Godot JSON parser differences; the serialized file checksum remains exact.
 
-Autosaves happen at checkpoints/lesson transitions, chapter clears and safe exits/focus loss, with unchanged states skipped. Continue clears held input and transient attacks and supplies arrival protection. Chapter clears save the next chapter; completing Nessie retains records without offering a cleared campaign as Continue. Existing v0.6 preferences and best-score data are preserved. The project declares Godot 4.4 because native JSON conversion is used; verification uses Godot 4.4.1.
+Autosaves happen at checkpoints/lesson transitions, chapter clears and safe exits/focus loss, with unchanged states skipped. Serialization, verification, backup and file replacement run on a worker using an owned snapshot, without touching live scene data. There is at most one active write plus one coalesced newest request. Every task is joined, and explicit exits flush pending writes. Continue clears held input and transient attacks and supplies arrival protection. Chapter clears save the next chapter; completing Nessie retains records without offering a cleared campaign as Continue. Existing v0.6 preferences and best-score data are preserved. The project declares Godot 4.4 because native JSON conversion is used; verification uses Godot 4.4.1.
 
 ## Verification
 

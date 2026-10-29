@@ -3,6 +3,23 @@ extends RefCounted
 const VERSION := 1
 const MAX_BYTES := 4 * 1024 * 1024
 
+static func valid_session(saved: Dictionary) -> bool:
+    for key in ["start", "current", "adventure_best"]:
+        if not saved.get(key) is int: return false
+    if int(saved["start"]) not in range(8) or int(saved["current"]) not in range(-1, 8): return false
+    if not saved.get("tutorial") is bool or not saved.get("avina") is bool: return false
+    for key in ["completed", "checkpoint", "records"]:
+        if not saved.get(key) is Dictionary: return false
+    if saved["completed"].size() > 8 or saved["records"].size() > 8: return false
+    for key in saved["completed"]:
+        if not key is int or key not in range(8) or not saved["completed"][key] is int or saved["completed"][key] < 0: return false
+    for key in saved["records"]:
+        if not key is int or key not in range(8) or not saved["records"][key] is Dictionary: return false
+        var record: Dictionary = saved["records"][key]
+        if not record.get("best") is int or record["best"] < 0: return false
+        if not record.get("stars") is int or record["stars"] not in range(1, 4): return false
+    return int(saved["adventure_best"]) >= 0
+
 static func _same_value(a, b) -> bool:
     if typeof(a) != typeof(b): return false
     if a is float:

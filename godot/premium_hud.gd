@@ -74,6 +74,7 @@ var results_settled := false
 var result_text_updates := 0
 var modal_layout_signature: Array = []
 var modal_layout_updates := 0
+var modal_layout_pending := false
 
 func _ready() -> void:
     layer = 6
@@ -168,6 +169,7 @@ func _ready() -> void:
     modal.add_child(scrim)
     modal_card = Card.instantiate()
     modal.add_child(modal_card)
+    modal_card.minimum_size_changed.connect(_queue_modal_layout)
     modal_content = VBoxContainer.new()
     modal_content.mouse_filter = Control.MOUSE_FILTER_IGNORE
     modal_content.add_theme_constant_override("separation",4)
@@ -456,8 +458,19 @@ func _refresh() -> void:
         for star in stars: star.visible = false
         for label in result_rows: label.visible = false
 
+func _queue_modal_layout() -> void:
+    if modal_layout_pending: return
+    modal_layout_pending = true
+    _settle_modal_layout.call_deferred()
+
+func _settle_modal_layout() -> void:
+    modal_layout_pending = false
+    _layout_modal()
+
 func _layout_modal() -> void:
-    var signature: Array = [game_size,modal.visible,portrait,info.get("victory",false)]
+    # Autowrapped labels settle after the container's first sort. Include the
+    # cached native minimum so a provisional tall card can shrink on that sort.
+    var signature: Array = [game_size,modal.visible,portrait,info.get("victory",false),modal_card.get_combined_minimum_size()]
     if signature == modal_layout_signature: return
     modal_layout_signature = signature
     modal_layout_updates += 1
