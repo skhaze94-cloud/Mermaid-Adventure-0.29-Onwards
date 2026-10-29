@@ -18,3 +18,13 @@ Retreating outside the combat gate cancels queued fire and restarts anticipation
 Successful hits keep their existing authored flashes and pooled feedback. Every ledger-owned boss clear restores energy, gives 1.2 seconds of arrival protection, removes hostile shots and uses priority victory guidance. Boss reward banners identify hits/clears. Defeated portraits settle into recovery while their existing fade plays; Gentle Motion retains the quiet fade. Cooldown guidance waits for lavender arcs instead of inviting a blocked hit.
 
 Automated validation and native capture results are recorded in `validation-boss-polish.json`. These checks establish timing, collision/ownership safeguards and visual behaviour; human difficulty/fun testing and physical-device frame-time measurements remain outstanding.
+
+## Verification
+
+10 native suites passed, including 70 new encounter checks, 160 Opal combat checks, 25 bubble checks and the complete adventure flow. The extracted project imported and started successfully, then passed 15 suites. All 206 archive files match source and pass CRCs; all 140 retained art, animation and shader files checked against v0.7 are byte-identical.
+
+16 scripted native full-quality views cover every encounter, locked warnings, Rana’s laser, the royal dash preview, clear feedback and desktop/phone victory. The final clear replaces overlapping hit numbers with its own bonus. These are review fixtures rather than a human playthrough.
+
+![Native encounter review](device-qa/boss-polish/boss-review.jpg)
+
+[Raw checks, capture hashes and archive verification](validation-boss-polish.json). Archive SHA-256: `512e945e767f593809fe8bb9d5b87c10736c26a02bdb7d1e9216b21cb81ed063`.
