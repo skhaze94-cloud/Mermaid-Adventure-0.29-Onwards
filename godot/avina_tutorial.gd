@@ -54,6 +54,7 @@ var talk_king: Button
 var talk_queen: Button
 var dialogue_card: PanelContainer
 var speaker_label: Label
+var dialogue_practice: Button
 var dialogue_scroll: ScrollContainer
 var dialogue_content: VBoxContainer
 var dialogue_text: Label
@@ -453,13 +454,16 @@ Or she can stay with Mum and Daddy.",21,Color("f3f8ff")))
     alone_button=_button("Go alone · Avina stays with Mum and Daddy",func(): _choose_companion(false)); choices.add_child(alone_button)
     choice_card.hide()
     dialogue_card=_card(); tutorial_layer.add_child(dialogue_card)
-    dialogue_scroll=ScrollContainer.new(); dialogue_scroll.follow_focus=true; dialogue_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; dialogue_card.add_child(dialogue_scroll)
+    var dialogue_shell := VBoxContainer.new(); dialogue_shell.add_theme_constant_override("separation",10); dialogue_card.add_child(dialogue_shell)
+    dialogue_scroll=ScrollContainer.new(); dialogue_scroll.follow_focus=true; dialogue_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; dialogue_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL; dialogue_shell.add_child(dialogue_scroll)
     var speech := VBoxContainer.new(); dialogue_content=speech; speech.size_flags_horizontal=Control.SIZE_EXPAND_FILL; speech.add_theme_constant_override("separation",12); dialogue_scroll.add_child(speech)
     var top := HBoxContainer.new(); top.add_theme_constant_override("separation",18); speech.add_child(top)
     portrait=TextureRect.new(); portrait.custom_minimum_size=Vector2(90,90); portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED; top.add_child(portrait)
     speaker_label=_label("",26,Color("f7dfba")); speaker_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL; top.add_child(speaker_label)
     dialogue_text=_label("",21,Color("f3f8ff")); speech.add_child(dialogue_text)
     reply_box=VBoxContainer.new(); reply_box.add_theme_constant_override("separation",10); speech.add_child(reply_box)
+    # Keep practice available without scrolling past all of the story branches.
+    dialogue_practice=_button("Let me try it!",_close_dialogue); dialogue_shell.add_child(dialogue_practice)
     dialogue_card.hide()
     get_viewport().size_changed.connect(_layout_tutorial)
     _layout_tutorial.call_deferred()
@@ -473,7 +477,7 @@ func _open_dialogue(id: String) -> void:
     _release_tutorial_input()
     if dialogue_open: return
     dialogue_id=id; dialogue_open=true; get_tree().paused=true
-    lesson_card.hide(); premium_hud.hide(); dialogue_card.show()
+    lesson_card.hide(); premium_hud.hide(); dialogue_card.show(); dialogue_practice.show()
     var node: Array = Dialogue.NODES[id]
     speaker_label.text=("King Daddy" if node[0]=="king" else "Queen Antonella")+"
 "+node[1]
@@ -516,7 +520,8 @@ func _set_portrait(speaker: String, expression: int) -> void:
     portrait.texture=atlas
 func _layout_dialogue() -> void:
     var view := _ui_view()
-    dialogue_card.size=Vector2(minf(740,view.x-48),clampf(dialogue_content.get_combined_minimum_size().y+36,220,minf(580,view.y-48)))
+    var footer_height := dialogue_practice.get_combined_minimum_size().y+10 if dialogue_practice.visible else 0.0
+    dialogue_card.size=Vector2(minf(740,view.x-48),clampf(dialogue_content.get_combined_minimum_size().y+36+footer_height,220,minf(580,view.y-48)))
     dialogue_card.position=Vector2((view.x-dialogue_card.size.x)*.5,maxf(24,(view.y-dialogue_card.size.y)*.5))
 func _close_dialogue() -> void:
     _release_tutorial_input()
@@ -534,7 +539,7 @@ func _show_choice() -> void:
 func _choose_companion(along: bool) -> void:
     if choice_made or state!="victory": return
     choice_made=true; chosen_along=along; choice_card.hide()
-    dialogue_open=true; dialogue_card.show()
+    dialogue_open=true; dialogue_card.show(); dialogue_practice.hide()
     var lines := Dialogue.farewell(along,king_tone,queen_tone)
     speaker_label.text="King Daddy · a royal send-off"; _set_portrait("king",7)
     dialogue_text.text=lines[0]

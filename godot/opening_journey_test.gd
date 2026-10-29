@@ -49,9 +49,21 @@ func run() -> void:
     check(level.boost_time==.2 and level.player_velocity==Vector2(200,0),"conversation preserves the authored boost so the first zoom can resume")
     check(level.reply_box.get_child_count()==4,"all family branches remain with an immediate practice option")
     check(level.reply_box.get_child(3).text=="Let me try it!","immediate practice option is labelled")
+    root.content_scale_size=Vector2i(1400,960)
+    root.content_scale_mode=Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+    root.content_scale_aspect=Window.CONTENT_SCALE_ASPECT_EXPAND
+    for pixels in [Vector2i(844,390),Vector2i(1400,960)]:
+        root.size=pixels; await frames()
+        level._layout_tutorial(); await frames()
+        var safe := Rect2(Vector2.ZERO,level._ui_view())
+        check(level.dialogue_practice.is_visible_in_tree() and safe.encloses(level.dialogue_practice.get_global_rect()),str(pixels)+" direct practice action is visible inside the viewport")
+        var physical_scale: float=float(pixels.y)/level.get_viewport_rect().size.y*level.tutorial_layer.transform.get_scale().y
+        check(level.dialogue_practice.size.y*physical_scale>=44,str(pixels)+" direct practice action has a comfortable touch target")
+        level.dialogue_scroll.scroll_vertical=9999; await frames()
+        check(safe.encloses(level.dialogue_practice.get_global_rect()),str(pixels)+" practice action remains visible when replies are scrolled")
     var released:=InputEventScreenTouch.new(); released.index=4; released.pressed=false
     level._input(released)
-    level.reply_box.get_child(3).pressed.emit()
+    level.dialogue_practice.pressed.emit()
     check(not paused and not level.dialogue_open and level.touch_vectors.is_empty(),"release inside conversation cannot leave a sticky movement vector")
     level.lesson=10; level.boss_hp=0; level.bubble_unlocked=true
     level._show_lesson()
@@ -73,6 +85,8 @@ func run() -> void:
     level.practice_switch["on"]=false
     level.player=Vector2(level._portal_x()+1,550); level._update_swimming(0)
     check(level.state=="victory" and level.choice_card.visible,"super practice remains optional when leaving the lagoon")
+    level.alone_button.pressed.emit()
+    check(not level.dialogue_practice.visible,"practice shortcut hides during the final companion farewell")
     paused=false; level.free(); await frames()
     print("OPENING JOURNEY: ",checks," checks, ",failures," failures")
     quit(1 if failures else 0)
