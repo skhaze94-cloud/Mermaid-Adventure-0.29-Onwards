@@ -50,8 +50,8 @@ func _ready() -> void:
     for i in range(32):hostile.append(_sprite(front))
     for i in range(FOE_CAP+2):
         wakes.append(_sprite(rear))
-        var back:=MeshInstance2D.new();back.mesh=rear_ring;rear.add_child(back)
-        var face:=MeshInstance2D.new();face.mesh=front_ring;front.add_child(face)
+        var back:=MeshInstance2D.new();back.mesh=rear_ring;back.light_mask=0;rear.add_child(back)
+        var face:=MeshInstance2D.new();face.mesh=front_ring;face.light_mask=0;front.add_child(face)
         var icon:=MeshInstance2D.new();front.add_child(icon)
         back.hide();face.hide();icon.hide();shells.append({"rear":back,"front":face,"icon":icon})
     for i in range(FOE_CAP):pack_sprites.append(_sprite(actors))
@@ -59,8 +59,8 @@ func _ready() -> void:
     preview=_sprite(front)
     for i in range(IMPACT_CAP):
         var crown:=Node2D.new();front.add_child(crown);crown.hide()
-        var back:=MeshInstance2D.new();back.mesh=rear_ring;back.material=shell_materials[2];crown.add_child(back)
-        var face:=MeshInstance2D.new();face.mesh=front_ring;face.material=shell_materials[2];crown.add_child(face)
+        var back:=MeshInstance2D.new();back.mesh=rear_ring;back.light_mask=0;back.material=shell_materials[2];crown.add_child(back)
+        var face:=MeshInstance2D.new();face.mesh=front_ring;face.light_mask=0;face.material=shell_materials[2];crown.add_child(face)
         var drops: Array[Sprite2D]=[]
         for j in range(8):drops.append(_sprite(crown))
         impacts.append({"node":crown,"life":0.0,"duration":0.28,"tier":1,"at":Vector2.ZERO,"rear":back,"front":face,"drops":drops})
@@ -76,7 +76,7 @@ func configure(chapter: String, friendly_atlas: Texture2D=null, enemy_atlas: Tex
             pack_materials[frame]=material
     bound=true
 func _sprite(parent: Node2D) -> Sprite2D:
-    var sprite:=Sprite2D.new();sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+    var sprite:=Sprite2D.new();sprite.light_mask=0;sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
     parent.add_child(sprite);sprite.hide();return sprite
 func _paint(sprite: Sprite2D, style: String, at: Vector2, extent: float, angle:=0.0, opacity:=1.0) -> void:
     var key:=art.key_for(style)
@@ -145,7 +145,7 @@ func sync(level: Node2D) -> void:
         if not target["active"] or at.x < -500 or at.x>view.x+500:_hide_shell(slot);wakes[slot].hide();continue
         var mode:=3 if float(target["cooldown"])>0 else 2 if level._opal_target_open(target) else 1 if target["opening"] else 0
         _shell(slot,at,target["fit"],mode,0 if target["bubble"] else 1,1.0)
-        _wake(slot,target["id"],at,level.boss_phase=="attack" and target["id"] in ["carlo","flip","blackwater","nessie"],Vector2.LEFT)
+        _wake(slot,target["id"],at,target.get("attacking",false) and target["id"] in ["carlo","flip","blackwater","nessie"],Vector2.LEFT)
     for field_sprite in fields:field_sprite.hide()
     if on_lake:level._opal_sync_fields(self)
     if level.opal.charge.held and level._bubble_context_allowed():

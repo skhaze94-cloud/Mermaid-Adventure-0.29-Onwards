@@ -151,7 +151,8 @@ void fragment() {
     if (high_quality) {
         float curve=sqrt(max(0.0,1.0-pow((local_uv.y-.5)*1.7,2.0)));
         paint.rgb*=.94+curve*.06+volume*.55-(local_uv.y-.5)*depth_turn*.09;
-        float sheen=pow(max(0.0,1.0-abs(local_uv.x-.33)*2.3),3.0)*curve;
+        float sheen_base=max(0.0,1.0-abs(local_uv.x-.33)*2.3);
+        float sheen=sheen_base*sheen_base*sheen_base*curve;
         paint.rgb+=vec3(.015,.028,.035)*sheen;
     }
     if (combat_pose==1) {paint.rgb=mix(paint.rgb,vec3(1.0,.77,.44),.075);}

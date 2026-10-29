@@ -7,14 +7,17 @@ varying vec4 instance_tint;
 void vertex(){instance_tint=COLOR;}
 void fragment(){
     float angle=UV.x*6.28318530718;
-    float tube=sqrt(max(0.0,1.0-pow(UV.y*2.0-1.0,2.0)));
+    float cross=UV.y*2.0-1.0;
+    float tube=sqrt(max(0.0,1.0-cross*cross));
     float edge=smoothstep(0.0,0.15,UV.y)*(1.0-smoothstep(0.85,1.0,UV.y));
     float petals=1.0;vec3 tint=vec3(0.96,0.72,0.36);
     if(state==1){petals=1.0-smoothstep(0.97,0.995,abs(sin(angle)));}
     else if(state==2){tint=vec3(0.56,0.94,0.76);petals=1.0-smoothstep(0.82,0.92,abs(sin(angle)));}
     else if(state==3){tint=vec3(0.69,0.64,0.85);petals=1.0-smoothstep(0.78,0.91,sin(angle+0.5));}
     float facet=0.88+0.12*cos(angle*(state==0?10.0:3.0));
-    float glint=pow(max(0.0,cos(angle+2.2)),12.0);
+    float glint_base=max(0.0,cos(angle+2.2));
+    float glint2=glint_base*glint_base;float glint4=glint2*glint2;
+    float glint=glint4*glint4*glint4;
     float breath=gentle?1.0:0.96+0.04*sin(gameplay_time*2.0);
     float film=0.5+0.5*sin(angle*3.0+UV.y*11.0);
     vec3 pearl=mix(vec3(0.56,0.86,1.0),vec3(0.89,0.70,1.0),film);

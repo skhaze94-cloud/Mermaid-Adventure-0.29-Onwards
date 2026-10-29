@@ -176,6 +176,11 @@ func boss_checks() -> void:
             check(not level.opal.targets[0]["open"] and level.opal.targets[1]["open"],"Flip independent of Duke phase")
             var flip: int=level.flip_hp;shot(level,level.flip_position-Vector2(150,0));level._update_bubbles(0.2)
             check(level.flip_hp==flip-1,"independent Flip hit")
+            var old_camera: float=level.camera;level.camera=level._boss_home()-800;level.flip_stun=0;level._sync_native_visuals()
+            check(level.opal_fx.wakes[level.opal_fx.FOE_CAP+1].visible,"Flip contact wake follows his own active contact state")
+            level.flip_stun=1;level._sync_native_visuals()
+            check(not level.opal_fx.wakes[level.opal_fx.FOE_CAP+1].visible,"Flip stun suppresses contact wake")
+            level.camera=old_camera
             level.boss_hit_cooldown=0;level.boss_clock=4.2;level.flip_position=level.boss_position
             var duke: int=level.duke_hp;flip=level.flip_hp;shot(level,level.boss_position-Vector2(200,0),3,2);level._update_bubbles(0.3)
             check(level.duke_hp==duke-2 and level.flip_hp==flip,"overlap consumes once")

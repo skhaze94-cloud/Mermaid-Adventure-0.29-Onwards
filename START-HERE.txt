@@ -1,5 +1,5 @@
 Sarah Maria — Mermaid Adventure
-v0.5.1 — Princess Polish Sarah
+v0.6 — Opal Current
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
 2. Import the ROOT project.godot in Godot. Tested with Godot 4.4.1.
@@ -10,7 +10,9 @@ v0.5.1 — Princess Polish Sarah
 Swim: arrows / WASD / controller stick / touch pad
 Boost: Space / controller B
 Jump: J or Shift / controller A
-Bubble: B or Z / controller X (earned during the adventure)
+Bubble: hold B or Z / controller X / touch Bubble, then RELEASE.
+Quick release: Pearl Pop. Hold 0.35s: Prism Bloom. Hold 1.35s: Royal Aurora.
+Mint petals + star: valid hit. Amber shield: guarded. Lavender: hit cooldown.
 Pause: Escape / P / controller Start
 
 Use landscape for play. Portrait pauses safely.

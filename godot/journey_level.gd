@@ -333,6 +333,7 @@ func _opal_update_targets(targets: Array[Dictionary]) -> void:
     var flip:=targets[1]
     flip["pos"]=flip_position;flip["hp"]=flip_hp;flip["active"]=_opal_arena_active() and flip_hp>0
     flip["open"]=flip_hp>0;flip["opening"]=false;flip["cooldown"]=boss_hit_cooldown
+    flip["attacking"]=flip_hp>0 and flip_stun<=0
     flip["bubble"]=bubble_unlocked and _bubble_context_allowed();flip["boost"]=_opal_boost_available()
 func _opal_hit_boss(id: String, damage: int) -> int:
     if not _bubble_context_allowed() or not _opal_arena_active() or boss_hit_cooldown>0:return 0

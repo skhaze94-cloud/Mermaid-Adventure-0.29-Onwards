@@ -35,6 +35,12 @@ window/size/viewport_height=960
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[editor]
+
+; Serialize offline imports to avoid intermittent native font-import crashes in 4.4.1.
+; This does not change runtime threaded loading or rendering quality.
+import/use_multiple_threads=false
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

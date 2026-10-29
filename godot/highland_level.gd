@@ -1364,6 +1364,7 @@ func _opal_update_targets(targets: Array[Dictionary]) -> void:
     var target:=targets[0]
     target["pos"]=boss_position;target["hp"]=boss_hp;target["active"]=_opal_arena_active()
     target["open"]=_boss_vulnerable();target["opening"]=_opal_opening_soon();target["cooldown"]=boss_hit_cooldown
+    target["attacking"]=boss_phase=="attack"
     target["bubble"]=bubble_unlocked and _bubble_context_allowed();target["boost"]=_opal_boost_available()
 func _opal_target_open(target: Dictionary) -> bool:
     return target["active"] and target["open"] and float(target["cooldown"])<=0 and (target["bubble"] or target["boost"])
