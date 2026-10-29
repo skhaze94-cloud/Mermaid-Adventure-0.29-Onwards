@@ -15,6 +15,8 @@ const MUSIC = preload("res://dist/assets/bubble-bell-adventure.mp3")
 
 const WATER_SURFACE := 280.0
 const BOTTOM := 902.0
+const JourneyRoute = preload("res://godot/journey_route.gd")
+const HAVEN_SHELL = preload("res://godot/assets/ui-v014/shell.png")
 const HERO_RADIUS := 43.0
 const MAX_HEALTH := 5
 const BOSS_MAX_HEALTH := 3
@@ -119,6 +121,8 @@ var splash_window := 0.0
 var splash_chain := 0
 var fire_cooldown := 0.0
 var checkpoint_snapshot: Dictionary = {}
+var journey_stops: Array[Dictionary] = []
+var journey_stops_ready := false
 var boss_phase := "windup"
 var boss_phase_time := 0.0
 var boss_pattern := 0
@@ -861,24 +865,53 @@ func _update_swimming(dt: float) -> void:
         premium_hud.update_hud(_hud_snapshot())
         queue_redraw()
 
-func _check_checkpoints() -> void:
-    var positions := [
-        [2770.0, "Waterfall inlet"],
+func _checkpoint_stops() -> Array:
+    return [
+        [2770.0, "Waterfall Inlet"],
         [Highland.route_x(6500.0), "Secret Grotto"],
         [Highland.route_x(9050.0), "Kelp Cathedral"],
         [Highland.route_x(11700.0), "Shell Ruins"],
-        [Highland.route_x(13720.0), "Carlo's Court"]
+        [Highland.route_x(13720.0), "Carlo’s Court"]
     ]
-    for item in positions:
-        if player.x > float(item[0]) and checkpoint < float(item[0]):
-            checkpoint = float(item[0])
-            health = MAX_HEALTH
-            _save_checkpoint()
-            _say("Checkpoint: " + String(item[1]))
-    if player.x > _boss_home() - 900 and checkpoint < _boss_home() - 1000:
-        checkpoint = _boss_home() - 900
+
+func _prepare_journey_stops() -> void:
+    if journey_stops_ready or _stage_index()==7: return
+    journey_stops_ready=true
+    # The finale already begins beside its boss and needs no travel checkpoint.
+    if _stage_index()==6:return
+    var bounds := Rect2(_left_bound(),_water_line()+45,_level_length()-40-_left_bound(),BOTTOM-26-(_water_line()+45))
+    journey_stops=JourneyRoute.build(_checkpoint_stops(),_route_start(),_boss_home(),obstacles,enemies,bounds)
+
+func _check_checkpoints() -> void:
+    if state!="playing":return
+    _prepare_journey_stops()
+    var arrived := false
+    for stop in journey_stops:
+        if player.x>float(stop["x"])+60 and checkpoint<float(stop["x"]):
+            checkpoint=float(stop["x"])
+            last_checkpoint_message=String(stop["name"])
+            arrived=true
+    if arrived:
+        health=MAX_HEALTH
+        energy=1.0
+        if has_method("_release_all_loot"):call("_release_all_loot")
+        # Coalesce crossings into one snapshot and one sound, even after a long frame.
         _save_checkpoint()
-        _say("Checkpoint: Carlo's arena")
+        _say("Checkpoint · "+last_checkpoint_message+" · fins refreshed",3)
+
+func _draw_journey_haven() -> void:
+    if _stage_index() in [6,7] or state!="playing":return
+    _prepare_journey_stops()
+    for stop in journey_stops:
+        if not stop["haven"] or float(stop["x"])<checkpoint-1:continue
+        var at: Vector2=stop["position"]-Vector2(camera,0)
+        if at.x < -90 or at.x>get_viewport_rect().size.x+90:continue
+        var pulse := 1.0 if reduced_fx else 1.0+sin(time*1.7)*.06
+        draw_circle(at,36*pulse,Color(.36,.9,.85,.10))
+        draw_arc(at,29*pulse,0,TAU,48,Color(.64,.96,.88,.7),1.5,true)
+        draw_texture_rect(HAVEN_SHELL,Rect2(at-Vector2(20,20),Vector2(40,40)),false,Color(1,1,1,.92))
+        _draw_text(at+Vector2(-45,55),"Resting Pearl",14,Color("c7ece3"))
+        break # At most one haven is painted in a frame.
 
 func _update_enemies(dt: float) -> void:
     var serial := retry_serial
@@ -974,7 +1007,7 @@ func _respawn() -> void:
     health = MAX_HEALTH
     energy = 1.0
     fallen = bool(checkpoint_snapshot.get("fallen", checkpoint >= Highland.WATERFALL_EXIT))
-    player = Vector2(checkpoint, 480.0)
+    player = RockCollision.recover(checkpoint_position, obstacles, HERO_RADIUS*.73, _swim_bounds())
     camera = maxf(0.0, player.x - get_viewport_rect().size.x * 0.43)
     invulnerable = 2.0
     native_boss.reset_boss()
@@ -1256,6 +1289,7 @@ func _draw() -> void:
         _draw_waterfall(s)
     else:
         _draw_world(s)
+        _draw_journey_haven()
         if not boss_volley.rays.is_empty():
             draw_set_transform(Vector2(-camera,0))
             draw_multiline(boss_volley.rays,Color("ffe3a6"),2,true)

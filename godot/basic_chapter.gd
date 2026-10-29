@@ -96,17 +96,13 @@ func _update_swimming(dt: float) -> void:
         player_velocity.x = minf(0,player_velocity.x)
     if chapter_id=="blackwater" and leap_phase=="":
         player.y = maxf(player.y,_water_line()+45)
-func _check_checkpoints() -> void:
-    if state!="playing" or chapter_id=="nessie": return
+func _checkpoint_stops() -> Array:
+    if chapter_id=="nessie":return []
     var factor := _level_length()/7600.0
-    var stops: Array[float] = [1460*factor,2820*factor,4320*factor,5920*factor]
-    if chapter_id=="blackwater": stops = [4660.0,7640.0]
-    for stop in stops:
-        if player.x > stop+70 and checkpoint < stop:
-            checkpoint = stop
-            health = MAX_HEALTH
-            _save_checkpoint()
-            _say("Checkpoint — "+_chapter_name(),2.5)
+    var stops: Array = [[1460*factor,"Pearl Shallows"],[2820*factor,"Coral Gardens"],[4320*factor,"Deepwater Passage"],[5920*factor,"Royal Approach"]]
+    if chapter_id=="blackwater":stops=[[4660.0,"Lantern Hollow"],[7640.0,"Baron’s Approach"]]
+    return stops
+
 func _respawn() -> void:
     super._respawn()
     fallen = true

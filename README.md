@@ -1,4 +1,4 @@
-# Mermaid Adventure - v0.8.0 Boss Polish
+# Mermaid Adventure - v0.9.0 Journey Polish
 
 An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
 
@@ -23,3 +23,5 @@ Bubble Polish gives charged shots faster travel (700 / 780 / 860 units per secon
 [Bubble balance and validation](godot/BUBBLE-POLISH.md).
 
 Boss Polish adds truthful world-locked warnings, clearer encounter cues, recovery windows for charging, distinct volley pacing and consistent victory feedback. [Encounter review](godot/BOSS-POLISH.md).
+
+Journey Polish strengthens the complete route: collision-safe checkpoint retries, named rest pearls across long stretches, refreshed energy at checkpoints and Rana’s fight at the final approach. The family opening has responsive practice guidance, a direct return to play from conversations, and exact super-bubble teaching. Pooled effects reuse unchanged frame and impact calculations at full visual density. [Journey review, verification and remaining work](godot/JOURNEY-POLISH.md).

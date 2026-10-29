@@ -1,5 +1,5 @@
 Sarah Maria — Mermaid Adventure
-v0.8.0 — Boss Polish / Opal Current
+v0.9.0 — Journey Polish / Opal Current
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
 2. Import the ROOT project.godot in Godot 4.4 or newer. Tested with 4.4.1.
@@ -35,3 +35,7 @@ Charged bubbles travel faster; guard and vulnerability rules still apply.
 Boss tips: leave marked attack lanes, then attack during mint recovery.
 Lavender arcs mean the last hit is cooling. Carlo teaches Boost before Bubble.
 Duke and Flip share a comedy opening; Rana clears her pearls before her laser.
+
+Journey tips: resting shell pearls mark new travel checkpoints. Crossing a
+checkpoint refreshes hearts and energy. Rana now guards the final approach.
+Family conversations offer Let me try it; talk again for the full stories.

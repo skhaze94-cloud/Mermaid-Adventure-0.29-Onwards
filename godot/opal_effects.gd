@@ -38,6 +38,8 @@ var active_impacts:=0
 var focus_slots: Array[int] = []
 var next_focus: Array[int] = []
 var focus_ranks: Array[float] = []
+var paint_frames: Dictionary = {}
+var impact_directions: Array[PackedVector2Array] = []
 func _ready() -> void:
     process_mode=Node.PROCESS_MODE_PAUSABLE
     if not rear_ring:
@@ -46,6 +48,14 @@ func _ready() -> void:
     rear=Node2D.new();rear.z_index=0;add_child(rear)
     actors=Node2D.new();actors.z_index=0;add_child(actors)
     front=Node2D.new();front.z_index=3;add_child(front)
+    # The same four/six/eight radial directions are reused by every impact.
+    # Keep the original angle calculation, but perform its trigonometry once.
+    for count in [4,6,8]:
+        var directions:=PackedVector2Array()
+        for i in range(count):
+            var angle: float=float(i)/count*TAU
+            directions.append(Vector2(cos(angle),sin(angle)))
+        impact_directions.append(directions)
     for state in range(4):
         var material:=ShaderMaterial.new();material.shader=SHELL;material.set_shader_parameter("state",state)
         shell_materials.append(material)
@@ -69,6 +79,10 @@ func _ready() -> void:
         impacts.append({"node":crown,"life":0.0,"duration":0.28,"tier":1,"at":Vector2.ZERO,"rear":back,"front":face,"drops":drops})
 func configure(chapter: String, friendly_atlas: Texture2D=null, enemy_atlas: Texture2D=null, boss_atlas: Texture2D=null) -> void:
     art.configure(chapter,friendly_atlas,enemy_atlas,boss_atlas)
+    paint_frames.clear()
+    for key in art.frames:
+        var texture: AtlasTexture=art.frames[key]
+        paint_frames[key]=[texture,art.materials[key],maxf(texture.get_width(),texture.get_height()),deg_to_rad(float(art.metadata["frames"][key]["native_heading_degrees"]))]
     if chapter=="miguel":
         for name in Lagoon.frames:
             if name.get_slice("/",0) not in PACK_KINDS:continue
@@ -82,10 +96,13 @@ func _sprite(parent: Node2D) -> Sprite2D:
     var sprite:=Sprite2D.new();sprite.light_mask=0;sprite.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
     parent.add_child(sprite);sprite.hide();return sprite
 func _paint(sprite: Sprite2D, style: String, at: Vector2, extent: float, angle:=0.0, opacity:=1.0) -> void:
-    var key:=art.key_for(style)
-    var texture: AtlasTexture=art.frames[key]
-    if sprite.texture!=texture:sprite.texture=texture;sprite.material=art.materials[key]
-    sprite.position=at;sprite.rotation=angle;sprite.scale=Vector2.ONE*extent/maxf(texture.get_width(),texture.get_height())
+    _paint_frame(sprite,_frame(style),at,extent,angle,opacity)
+func _frame(style: String) -> Array:
+    if not paint_frames.has(style):paint_frames[style]=paint_frames[art.key_for(style)]
+    return paint_frames[style]
+func _paint_frame(sprite: Sprite2D, frame: Array, at: Vector2, extent: float, angle:=0.0, opacity:=1.0) -> void:
+    if sprite.texture!=frame[0]:sprite.texture=frame[0];sprite.material=frame[1]
+    sprite.position=at;sprite.rotation=angle;sprite.scale=Vector2.ONE*extent/float(frame[2])
     sprite.modulate=Color(1,1,1,opacity);sprite.show()
 func sync(level: Node2D) -> void:
     if not bound:return
@@ -108,15 +125,17 @@ func sync(level: Node2D) -> void:
     var hostile_count: int=mini(32,level.hostile_shots.size()) if on_lake else 0
     for i in range(hostile_count):
         var shot: Dictionary=level.hostile_shots[i]
-        var key:=art.key_for(shot.get("style",level._opal_primary_id()))
-        var angle:=Vector2(shot["velocity"]).angle()-deg_to_rad(float(art.metadata["frames"][key]["native_heading_degrees"]))
-        _paint(hostile[i],key,Vector2(shot["pos"])-offset,48.0,angle)
+        var frame:=_frame(shot.get("style",level._opal_primary_id()))
+        var angle:=Vector2(shot["velocity"]).angle()-float(frame[3])
+        _paint_frame(hostile[i],frame,Vector2(shot["pos"])-offset,48.0,angle)
     for i in range(hostile_count,previous_hostile):hostile[i].hide()
     previous_hostile=hostile_count
     var used:=0
     next_focus.clear()
     focus_ranks.clear()
     if on_lake:
+        var bubble_available: bool=level._bubble_context_allowed()
+        var available: bool=bubble_available or level._opal_boost_available()
         for enemy in level.enemies:
             if int(enemy["hp"])<=0:continue
             var at:=Vector2(enemy["x"],enemy["y"])-offset
@@ -126,13 +145,12 @@ func sync(level: Node2D) -> void:
             var incoming: Vector2=Vector2(enemy["x"],enemy["y"])-level.player
             var guarded: bool=preload("res://godot/opal_collision.gd").guarded(enemy,incoming)
             var cooldown:=float(enemy.get("hit_cd",0))
-            var available: bool=level._bubble_context_allowed() or level._opal_boost_available()
             var mode:=3 if cooldown>0 else 0 if guarded or not available else 2
             if incoming.length_squared()<600.0*600.0:
                 var threat := -2 if enemy.get("mode","")=="attack" else -1 if enemy.get("mode","")=="windup" else 0
                 if cooldown>0: threat=1
                 _consider_focus(used,float(threat)*1000000.0+incoming.length_squared())
-            _shell(used,at,fit,mode,0 if level._bubble_context_allowed() else 1,0.68 if focus_slots.has(used) else 0.25)
+            _shell(used,at,fit,mode,0 if bubble_available else 1,0.68 if focus_slots.has(used) else 0.25)
             _wake(used,enemy["kind"],at,enemy.get("mode","")=="attack",Vector2(enemy.get("aim",Vector2.RIGHT)))
             var portrait:=pack_sprites[used]
             if enemy["kind"] in PACK_KINDS:
@@ -186,9 +204,9 @@ func _shell_opacity(slot: int, opacity: float) -> void:
         node.modulate = tint
 func _wake(slot: int, kind: String, at: Vector2, attacking: bool, aim: Vector2) -> void:
     if not attacking or kind not in MELEE:wakes[slot].hide();return
-    var key:=art.key_for(kind)
-    var angle:=aim.angle()-deg_to_rad(float(art.metadata["frames"][key]["native_heading_degrees"]))
-    _paint(wakes[slot],key,at-aim*48,122.0 if slot<FOE_CAP else 164.0,angle,0.42)
+    var frame:=_frame(kind)
+    var angle:=aim.angle()-float(frame[3])
+    _paint_frame(wakes[slot],frame,at-aim*48,122.0 if slot<FOE_CAP else 164.0,angle,0.42)
 func _shell(slot: int, at: Vector2, fit: Vector2, mode: int, glyph: int, opacity: float) -> void:
     var shell:=shells[slot]
     for side in SHELL_SIDES:
@@ -230,10 +248,9 @@ func advance(dt: float) -> void:
         var radius:=lerpf(10,48 if int(effect["tier"])==3 else 30,progress)
         effect["rear"].scale=Vector2(radius,radius*0.75);effect["front"].scale=Vector2(radius,radius*0.75)
         effect["node"].modulate.a=(1-progress)*0.85
-        var count:=4 if int(effect["tier"])==1 else 6 if int(effect["tier"])==2 else 8
-        for i in range(count):
-            var angle:=float(i)/count*TAU
-            effect["drops"][i].position=Vector2(cos(angle),sin(angle))*radius*(0.9 if gentle else 1.15)
+        var directions:=impact_directions[clampi(int(effect["tier"]),1,3)-1]
+        for i in range(directions.size()):
+            effect["drops"][i].position=directions[i]*radius*(0.9 if gentle else 1.15)
 func hide_preview() -> void:
     if is_instance_valid(preview):preview.hide()
 func reset() -> void:
