@@ -1449,8 +1449,8 @@ func _move_around_rocks(previous: Vector2, desired: Vector2) -> Dictionary:
 
 func _water_line() -> float: return WATER_SURFACE
 
-func _sfx(effect: String, priority := 1) -> void:
-    get_node("/root/OceanAudio").play(effect,priority)
+func _sfx(effect: String, priority := 1, pitch := 0.0) -> void:
+    get_node("/root/OceanAudio").play(effect,priority,pitch)
 func _ocean_event(effect: String, at: Vector2, direction := Vector2.RIGHT) -> void:
     _sfx(effect,3 if effect in ["boss_defeat","checkpoint"] else 1)
     if is_instance_valid(ocean_feedback): ocean_feedback.burst(at,effect,direction)

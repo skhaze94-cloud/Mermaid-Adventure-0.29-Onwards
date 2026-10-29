@@ -5,9 +5,10 @@ extends RefCounted
 const PARTIAL_SECONDS := 0.35
 const SUPER_SECONDS := 1.35
 const EPSILON := 0.000001
-const DAMAGE := [1, 2, 3]
+const DAMAGE := [1, 2, 4]
+const SPEED := [700.0, 780.0, 860.0]
 const BOSS_DAMAGE := [1, 1, 2]
-const COOLDOWN := [0.20, 0.35, 0.65]
+const COOLDOWN := [0.20, 0.35, 0.45]
 
 var held := false
 var elapsed := 0.0
@@ -51,7 +52,7 @@ func prepare_release(source: String) -> Dictionary:
     var index := tier() - 1
     pending = {"packet_id": serial, "owner": "sarah", "team": "friendly",
         "attack": "bubble", "tier": index + 1, "damage": DAMAGE[index],
-        "boss_damage": BOSS_DAMAGE[index], "charge_seconds": elapsed,
+        "boss_damage": BOSS_DAMAGE[index], "speed": SPEED[index], "charge_seconds": elapsed,
         "cooldown_seconds": COOLDOWN[index]}
     return pending.duplicate(true)
 
