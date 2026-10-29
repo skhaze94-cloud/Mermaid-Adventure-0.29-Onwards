@@ -10,6 +10,16 @@ var lift := Vector2.ZERO
 var breath_clock := 0.0
 var rib_angle := 0.0
 var rib_transform := Transform2D.IDENTITY
+var cached_rest := PackedVector2Array()
+var skin_weights := PackedVector2Array()
+
+func _prepare_skin(rest: PackedVector2Array) -> void:
+    if cached_rest == rest: return
+    cached_rest = rest
+    skin_weights.resize(rest.size())
+    for i in range(rest.size()):
+        var t := (rest[i].y+40.0)/60.0
+        skin_weights[i] = Vector2(1.0-smoothstep(.45,.87,t),smoothstep(.50,.70,t)*(1.0-smoothstep(.82,.94,t)))
 
 func reset() -> void:
     ribs=Vector2.ZERO;waist=Vector2.ZERO;breath=Vector2.ZERO;lift=Vector2.ZERO
@@ -50,12 +60,12 @@ func chest_point(point: Vector2) -> Vector2:
     return rib_transform*point
 
 func deform(points: PackedVector2Array, rest: PackedVector2Array) -> PackedVector2Array:
+    _prepare_skin(rest)
     for i in range(points.size()):
-        var t := (rest[i].y+40.0)/60.0
         # Collar/shoulders move together with the ribs; the lower seam stays anchored.
-        var rib_weight := 1.0-smoothstep(.45,.87,t)
+        var rib_weight := skin_weights[i].x
         points[i]=points[i].lerp(chest_point(points[i]),rib_weight)
-        var waist_weight := smoothstep(.50,.70,t)*(1.0-smoothstep(.82,.94,t))
+        var waist_weight := skin_weights[i].y
         var curled := HIP_PIVOT+(rest[i]-HIP_PIVOT).rotated(waist.x)
         points[i]+=(curled-rest[i])*waist_weight
     return points

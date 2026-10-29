@@ -1,0 +1,1168 @@
+{
+  "release": "0.5.1",
+  "date": "2026-10-29",
+  "baseline_commit": "1fddff15c88c5d14134cbb3ccbefbd8e4becbb92",
+  "environment": {
+    "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "display": "X11",
+    "engine": "4.4.1-stable (official)",
+    "fixed_step": 0.0166666666666667,
+    "measured_frames": 60,
+    "quality": "full",
+    "resolution": [
+      1400,
+      960
+    ],
+    "warmup_frames": 30
+  },
+  "comparison": [
+    {
+      "scene": "highland-entry",
+      "label": "Highland entry",
+      "baseline_cpu_median_ms": 7.443,
+      "optimized_cpu_median_ms": 5.606,
+      "cpu_reduction_percent": 24.680908235926367,
+      "baseline_texture_bytes": 221506769.0,
+      "optimized_texture_bytes": 181660900.0,
+      "texture_reduction_percent": 17.988555916320546,
+      "baseline_rendered_frame_median_ms": 141.751,
+      "optimized_rendered_frame_median_ms": 130.776
+    },
+    {
+      "scene": "highland-boss",
+      "label": "Highland boss",
+      "baseline_cpu_median_ms": 6.967,
+      "optimized_cpu_median_ms": 5.275,
+      "cpu_reduction_percent": 24.285919334003147,
+      "baseline_texture_bytes": 221506769.0,
+      "optimized_texture_bytes": 181660900.0,
+      "texture_reduction_percent": 17.988555916320546,
+      "baseline_rendered_frame_median_ms": 126.414,
+      "optimized_rendered_frame_median_ms": 110.249
+    },
+    {
+      "scene": "waterfall",
+      "label": "Waterfall",
+      "baseline_cpu_median_ms": 7.165,
+      "optimized_cpu_median_ms": 5.216,
+      "cpu_reduction_percent": 27.2016748080949,
+      "baseline_texture_bytes": 221506769.0,
+      "optimized_texture_bytes": 181660900.0,
+      "texture_reduction_percent": 17.988555916320546,
+      "baseline_rendered_frame_median_ms": 103.613,
+      "optimized_rendered_frame_median_ms": 86.143
+    },
+    {
+      "scene": "chapter-1",
+      "label": "Shadow Crab Kingdom",
+      "baseline_cpu_median_ms": 7.264,
+      "optimized_cpu_median_ms": 5.366,
+      "cpu_reduction_percent": 26.12885462555067,
+      "baseline_texture_bytes": 317939459.0,
+      "optimized_texture_bytes": 263413533.0,
+      "texture_reduction_percent": 17.14978259430202,
+      "baseline_rendered_frame_median_ms": 155.984,
+      "optimized_rendered_frame_median_ms": 135.905
+    },
+    {
+      "scene": "chapter-2",
+      "label": "Miguel’s Lagoon",
+      "baseline_cpu_median_ms": 7.493,
+      "optimized_cpu_median_ms": 5.125,
+      "cpu_reduction_percent": 31.60282930735353,
+      "baseline_texture_bytes": 317939459.0,
+      "optimized_texture_bytes": 263413533.0,
+      "texture_reduction_percent": 17.14978259430202,
+      "baseline_rendered_frame_median_ms": 151.357,
+      "optimized_rendered_frame_median_ms": 124.667
+    },
+    {
+      "scene": "chapter-3",
+      "label": "Blackwater Tunnel",
+      "baseline_cpu_median_ms": 6.696,
+      "optimized_cpu_median_ms": 5.462,
+      "cpu_reduction_percent": 18.428912783751493,
+      "baseline_texture_bytes": 364074577.0,
+      "optimized_texture_bytes": 248733476.0,
+      "texture_reduction_percent": 31.680624873732942,
+      "baseline_rendered_frame_median_ms": 121.282,
+      "optimized_rendered_frame_median_ms": 138.241
+    },
+    {
+      "scene": "chapter-4",
+      "label": "Pearl Palace",
+      "baseline_cpu_median_ms": 7.048,
+      "optimized_cpu_median_ms": 5.959,
+      "cpu_reduction_percent": 15.45119182746879,
+      "baseline_texture_bytes": 364074577.0,
+      "optimized_texture_bytes": 263413533.0,
+      "texture_reduction_percent": 27.648468297197248,
+      "baseline_rendered_frame_median_ms": 132.038,
+      "optimized_rendered_frame_median_ms": 140.785
+    },
+    {
+      "scene": "chapter-5",
+      "label": "Rana Rex",
+      "baseline_cpu_median_ms": 7.459,
+      "optimized_cpu_median_ms": 6.655,
+      "cpu_reduction_percent": 10.778924788845679,
+      "baseline_texture_bytes": 364074577.0,
+      "optimized_texture_bytes": 263411329.0,
+      "texture_reduction_percent": 27.649073667673317,
+      "baseline_rendered_frame_median_ms": 139.126,
+      "optimized_rendered_frame_median_ms": 150.101
+    },
+    {
+      "scene": "chapter-6",
+      "label": "Nessie finale",
+      "baseline_cpu_median_ms": 7.19,
+      "optimized_cpu_median_ms": 5.401,
+      "cpu_reduction_percent": 24.881780250347706,
+      "baseline_texture_bytes": 364074577.0,
+      "optimized_texture_bytes": 263413533.0,
+      "texture_reduction_percent": 27.648468297197248,
+      "baseline_rendered_frame_median_ms": 131.82,
+      "optimized_rendered_frame_median_ms": 134.442
+    },
+    {
+      "scene": "chapter-7",
+      "label": "Family lagoon",
+      "baseline_cpu_median_ms": 7.436,
+      "optimized_cpu_median_ms": 5.719,
+      "cpu_reduction_percent": 23.090371167294244,
+      "baseline_texture_bytes": 382249885.0,
+      "optimized_texture_bytes": 289977445.0,
+      "texture_reduction_percent": 24.13929830220878,
+      "baseline_rendered_frame_median_ms": 138.542,
+      "optimized_rendered_frame_median_ms": 137.258
+    },
+    {
+      "scene": "title",
+      "label": "Title artwork",
+      "baseline_cpu_median_ms": 6.21,
+      "optimized_cpu_median_ms": 4.325,
+      "cpu_reduction_percent": 30.35426731078905,
+      "baseline_texture_bytes": 390171557.0,
+      "optimized_texture_bytes": 297964653.0,
+      "texture_reduction_percent": 23.63240024695086,
+      "baseline_rendered_frame_median_ms": 165.583,
+      "optimized_rendered_frame_median_ms": 148.499
+    }
+  ],
+  "aggregate_cpu_median_reduction_percent": 23.301986704265598,
+  "baseline_raw": {
+    "chapter-1": {
+      "cpu": {
+        "mean_ms": 7.51213333333333,
+        "median_ms": 7.264,
+        "p95_ms": 9.177
+      },
+      "draw_calls": {
+        "mean_ms": 190.766666666667,
+        "median_ms": 182.0,
+        "p95_ms": 238.0
+      },
+      "frame": {
+        "mean_ms": 154.749833333333,
+        "median_ms": 155.984,
+        "p95_ms": 182.267
+      },
+      "nodes": 19,
+      "objects": 2423.0,
+      "primitives": 62449.0,
+      "render_objects": 522.0,
+      "startup_ms": 394.583,
+      "texture_bytes": 317939459.0
+    },
+    "chapter-2": {
+      "cpu": {
+        "mean_ms": 7.92538333333333,
+        "median_ms": 7.493,
+        "p95_ms": 9.675
+      },
+      "draw_calls": {
+        "mean_ms": 118.7,
+        "median_ms": 121.0,
+        "p95_ms": 121.0
+      },
+      "frame": {
+        "mean_ms": 150.00435,
+        "median_ms": 151.357,
+        "p95_ms": 188.78
+      },
+      "nodes": 18,
+      "objects": 2444.0,
+      "primitives": 51668.0,
+      "render_objects": 423.0,
+      "startup_ms": 61.751,
+      "texture_bytes": 317939459.0
+    },
+    "chapter-3": {
+      "cpu": {
+        "mean_ms": 7.17473333333333,
+        "median_ms": 6.696,
+        "p95_ms": 8.233
+      },
+      "draw_calls": {
+        "mean_ms": 119.65,
+        "median_ms": 119.0,
+        "p95_ms": 122.0
+      },
+      "frame": {
+        "mean_ms": 124.71615,
+        "median_ms": 121.282,
+        "p95_ms": 150.523
+      },
+      "nodes": 18,
+      "objects": 2379.0,
+      "primitives": 51112.0,
+      "render_objects": 447.0,
+      "startup_ms": 299.0,
+      "texture_bytes": 364074577.0
+    },
+    "chapter-4": {
+      "cpu": {
+        "mean_ms": 7.374,
+        "median_ms": 7.048,
+        "p95_ms": 9.965
+      },
+      "draw_calls": {
+        "mean_ms": 127.65,
+        "median_ms": 127.0,
+        "p95_ms": 130.0
+      },
+      "frame": {
+        "mean_ms": 132.97585,
+        "median_ms": 132.038,
+        "p95_ms": 159.521
+      },
+      "nodes": 18,
+      "objects": 2515.0,
+      "primitives": 51318.0,
+      "render_objects": 525.0,
+      "startup_ms": 50.349,
+      "texture_bytes": 364074577.0
+    },
+    "chapter-5": {
+      "cpu": {
+        "mean_ms": 7.60985,
+        "median_ms": 7.459,
+        "p95_ms": 9.387
+      },
+      "draw_calls": {
+        "mean_ms": 123.633333333333,
+        "median_ms": 118.0,
+        "p95_ms": 160.0
+      },
+      "frame": {
+        "mean_ms": 138.641583333333,
+        "median_ms": 139.126,
+        "p95_ms": 153.695
+      },
+      "nodes": 18,
+      "objects": 2466.0,
+      "primitives": 54112.0,
+      "render_objects": 462.0,
+      "startup_ms": 71.562,
+      "texture_bytes": 364074577.0
+    },
+    "chapter-6": {
+      "cpu": {
+        "mean_ms": 7.24856666666667,
+        "median_ms": 7.19,
+        "p95_ms": 8.993
+      },
+      "draw_calls": {
+        "mean_ms": 116.166666666667,
+        "median_ms": 115.0,
+        "p95_ms": 125.0
+      },
+      "frame": {
+        "mean_ms": 131.151783333333,
+        "median_ms": 131.82,
+        "p95_ms": 146.002
+      },
+      "nodes": 18,
+      "objects": 2429.0,
+      "primitives": 51159.0,
+      "render_objects": 447.0,
+      "startup_ms": 52.653,
+      "texture_bytes": 364074577.0
+    },
+    "chapter-7": {
+      "cpu": {
+        "mean_ms": 7.64956666666667,
+        "median_ms": 7.436,
+        "p95_ms": 9.833
+      },
+      "draw_calls": {
+        "mean_ms": 133.85,
+        "median_ms": 127.0,
+        "p95_ms": 175.0
+      },
+      "frame": {
+        "mean_ms": 136.127716666667,
+        "median_ms": 138.542,
+        "p95_ms": 150.754
+      },
+      "nodes": 23,
+      "objects": 2528.0,
+      "primitives": 47410.0,
+      "render_objects": 539.0,
+      "startup_ms": 228.532,
+      "texture_bytes": 382249885.0
+    },
+    "cpu_components": {
+      "arm_skin": {
+        "mean_ms": 0.398725,
+        "median_ms": 0.309,
+        "p95_ms": 0.889
+      },
+      "hair_skin": {
+        "mean_ms": 0.131625,
+        "median_ms": 0.118,
+        "p95_ms": 0.192
+      },
+      "rig_process": {
+        "mean_ms": 5.336875,
+        "median_ms": 5.206,
+        "p95_ms": 6.437
+      },
+      "spine_and_torso": {
+        "mean_ms": 1.643875,
+        "median_ms": 1.575,
+        "p95_ms": 2.461
+      },
+      "tail_skin": {
+        "mean_ms": 2.9566,
+        "median_ms": 2.651,
+        "p95_ms": 4.93
+      }
+    },
+    "environment": {
+      "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "display": "X11",
+      "engine": "4.4.1-stable (official)",
+      "fixed_step": 0.0166666666666667,
+      "measured_frames": 60,
+      "quality": "full",
+      "resolution": [
+        1400,
+        960
+      ],
+      "warmup_frames": 30
+    },
+    "highland-boss": {
+      "cpu": {
+        "mean_ms": 7.36961666666667,
+        "median_ms": 6.967,
+        "p95_ms": 10.157
+      },
+      "draw_calls": {
+        "mean_ms": 166.633333333333,
+        "median_ms": 155.0,
+        "p95_ms": 240.0
+      },
+      "frame": {
+        "mean_ms": 127.753616666667,
+        "median_ms": 126.414,
+        "p95_ms": 148.671
+      },
+      "nodes": 17,
+      "objects": 2416.0,
+      "primitives": 55405.0,
+      "render_objects": 463.0,
+      "startup_ms": 67.452,
+      "texture_bytes": 221506769.0
+    },
+    "highland-entry": {
+      "cpu": {
+        "mean_ms": 7.7197,
+        "median_ms": 7.443,
+        "p95_ms": 10.437
+      },
+      "draw_calls": {
+        "mean_ms": 226.716666666667,
+        "median_ms": 225.0,
+        "p95_ms": 241.0
+      },
+      "frame": {
+        "mean_ms": 141.994116666667,
+        "median_ms": 141.751,
+        "p95_ms": 176.057
+      },
+      "nodes": 17,
+      "objects": 2415.0,
+      "primitives": 56789.0,
+      "render_objects": 683.0,
+      "startup_ms": 1086.611,
+      "texture_bytes": 221506769.0
+    },
+    "title": {
+      "cpu": {
+        "mean_ms": 7.10221666666667,
+        "median_ms": 6.21,
+        "p95_ms": 11.139
+      },
+      "draw_calls": {
+        "mean_ms": 158.2,
+        "median_ms": 162.0,
+        "p95_ms": 166.0
+      },
+      "frame": {
+        "mean_ms": 162.898366666667,
+        "median_ms": 165.583,
+        "p95_ms": 191.193
+      },
+      "nodes": 6,
+      "objects": 2014.0,
+      "primitives": 57791.0,
+      "render_objects": 215.0,
+      "startup_ms": 128.632,
+      "texture_bytes": 390171557.0
+    },
+    "waterfall": {
+      "cpu": {
+        "mean_ms": 7.6983,
+        "median_ms": 7.165,
+        "p95_ms": 12.525
+      },
+      "draw_calls": {
+        "mean_ms": 43.0,
+        "median_ms": 43.0,
+        "p95_ms": 43.0
+      },
+      "frame": {
+        "mean_ms": 105.08595,
+        "median_ms": 103.613,
+        "p95_ms": 130.508
+      },
+      "nodes": 17,
+      "objects": 2416.0,
+      "primitives": 44186.0,
+      "render_objects": 264.0,
+      "startup_ms": 67.461,
+      "texture_bytes": 221506769.0
+    }
+  },
+  "optimized_raw": {
+    "chapter-1": {
+      "cpu": {
+        "mean_ms": 5.87068333333333,
+        "median_ms": 5.366,
+        "p95_ms": 9.455
+      },
+      "draw_calls": {
+        "mean_ms": 190.766666666667,
+        "median_ms": 182.0,
+        "p95_ms": 238.0
+      },
+      "frame": {
+        "mean_ms": 139.557533333333,
+        "median_ms": 135.905,
+        "p95_ms": 170.363
+      },
+      "nodes": 19,
+      "objects": 2424.0,
+      "primitives": 62449.0,
+      "render_objects": 522.0,
+      "startup_ms": 408.989,
+      "texture_bytes": 263413533.0
+    },
+    "chapter-2": {
+      "cpu": {
+        "mean_ms": 5.29803333333333,
+        "median_ms": 5.125,
+        "p95_ms": 6.133
+      },
+      "draw_calls": {
+        "mean_ms": 118.7,
+        "median_ms": 121.0,
+        "p95_ms": 121.0
+      },
+      "frame": {
+        "mean_ms": 127.421466666667,
+        "median_ms": 124.667,
+        "p95_ms": 154.715
+      },
+      "nodes": 18,
+      "objects": 2445.0,
+      "primitives": 51668.0,
+      "render_objects": 423.0,
+      "startup_ms": 125.377,
+      "texture_bytes": 263413533.0
+    },
+    "chapter-3": {
+      "cpu": {
+        "mean_ms": 5.8214,
+        "median_ms": 5.462,
+        "p95_ms": 9.267
+      },
+      "draw_calls": {
+        "mean_ms": 119.65,
+        "median_ms": 119.0,
+        "p95_ms": 122.0
+      },
+      "frame": {
+        "mean_ms": 135.531583333333,
+        "median_ms": 138.241,
+        "p95_ms": 157.674
+      },
+      "nodes": 18,
+      "objects": 2372.0,
+      "primitives": 51112.0,
+      "render_objects": 447.0,
+      "startup_ms": 116.86,
+      "texture_bytes": 248733476.0
+    },
+    "chapter-4": {
+      "cpu": {
+        "mean_ms": 6.17615,
+        "median_ms": 5.959,
+        "p95_ms": 9.147
+      },
+      "draw_calls": {
+        "mean_ms": 127.65,
+        "median_ms": 127.0,
+        "p95_ms": 130.0
+      },
+      "frame": {
+        "mean_ms": 137.817716666667,
+        "median_ms": 140.785,
+        "p95_ms": 146.652
+      },
+      "nodes": 18,
+      "objects": 2510.0,
+      "primitives": 51318.0,
+      "render_objects": 525.0,
+      "startup_ms": 139.928,
+      "texture_bytes": 263413533.0
+    },
+    "chapter-5": {
+      "cpu": {
+        "mean_ms": 6.82363333333333,
+        "median_ms": 6.655,
+        "p95_ms": 9.285
+      },
+      "draw_calls": {
+        "mean_ms": 123.633333333333,
+        "median_ms": 118.0,
+        "p95_ms": 160.0
+      },
+      "frame": {
+        "mean_ms": 150.3649,
+        "median_ms": 150.101,
+        "p95_ms": 174.041
+      },
+      "nodes": 18,
+      "objects": 2461.0,
+      "primitives": 54112.0,
+      "render_objects": 462.0,
+      "startup_ms": 148.571,
+      "texture_bytes": 263411329.0
+    },
+    "chapter-6": {
+      "cpu": {
+        "mean_ms": 5.53611666666667,
+        "median_ms": 5.401,
+        "p95_ms": 7.281
+      },
+      "draw_calls": {
+        "mean_ms": 116.166666666667,
+        "median_ms": 115.0,
+        "p95_ms": 125.0
+      },
+      "frame": {
+        "mean_ms": 133.567066666667,
+        "median_ms": 134.442,
+        "p95_ms": 157.379
+      },
+      "nodes": 18,
+      "objects": 2424.0,
+      "primitives": 51159.0,
+      "render_objects": 447.0,
+      "startup_ms": 137.591,
+      "texture_bytes": 263413533.0
+    },
+    "chapter-7": {
+      "cpu": {
+        "mean_ms": 5.96206666666667,
+        "median_ms": 5.719,
+        "p95_ms": 9.999
+      },
+      "draw_calls": {
+        "mean_ms": 133.85,
+        "median_ms": 127.0,
+        "p95_ms": 175.0
+      },
+      "frame": {
+        "mean_ms": 133.378233333333,
+        "median_ms": 137.258,
+        "p95_ms": 152.018
+      },
+      "nodes": 23,
+      "objects": 2524.0,
+      "primitives": 47410.0,
+      "render_objects": 539.0,
+      "startup_ms": 454.968,
+      "texture_bytes": 289977445.0
+    },
+    "cpu_components": {
+      "arm_skin": {
+        "mean_ms": 0.2754,
+        "median_ms": 0.259,
+        "p95_ms": 0.337
+      },
+      "hair_skin": {
+        "mean_ms": 0.15785,
+        "median_ms": 0.121,
+        "p95_ms": 0.381
+      },
+      "rig_process": {
+        "mean_ms": 4.925525,
+        "median_ms": 3.554,
+        "p95_ms": 26.902
+      },
+      "spine_and_torso": {
+        "mean_ms": 0.819425,
+        "median_ms": 0.705,
+        "p95_ms": 1.219
+      },
+      "tail_skin": {
+        "mean_ms": 1.91965,
+        "median_ms": 1.89,
+        "p95_ms": 2.128
+      }
+    },
+    "environment": {
+      "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "display": "X11",
+      "engine": "4.4.1-stable (official)",
+      "fixed_step": 0.0166666666666667,
+      "measured_frames": 60,
+      "quality": "full",
+      "resolution": [
+        1400,
+        960
+      ],
+      "warmup_frames": 30
+    },
+    "highland-boss": {
+      "cpu": {
+        "mean_ms": 5.43961666666667,
+        "median_ms": 5.275,
+        "p95_ms": 6.565
+      },
+      "draw_calls": {
+        "mean_ms": 166.633333333333,
+        "median_ms": 155.0,
+        "p95_ms": 240.0
+      },
+      "frame": {
+        "mean_ms": 113.114283333333,
+        "median_ms": 110.249,
+        "p95_ms": 141.549
+      },
+      "nodes": 17,
+      "objects": 2419.0,
+      "primitives": 55405.0,
+      "render_objects": 463.0,
+      "startup_ms": 92.659,
+      "texture_bytes": 181660900.0
+    },
+    "highland-entry": {
+      "cpu": {
+        "mean_ms": 6.23451666666667,
+        "median_ms": 5.606,
+        "p95_ms": 8.945
+      },
+      "draw_calls": {
+        "mean_ms": 226.716666666667,
+        "median_ms": 225.0,
+        "p95_ms": 241.0
+      },
+      "frame": {
+        "mean_ms": 131.75405,
+        "median_ms": 130.776,
+        "p95_ms": 151.797
+      },
+      "nodes": 17,
+      "objects": 2418.0,
+      "primitives": 56789.0,
+      "render_objects": 683.0,
+      "startup_ms": 1011.044,
+      "texture_bytes": 181660900.0
+    },
+    "title": {
+      "cpu": {
+        "mean_ms": 4.90866666666667,
+        "median_ms": 4.325,
+        "p95_ms": 6.154
+      },
+      "draw_calls": {
+        "mean_ms": 158.2,
+        "median_ms": 162.0,
+        "p95_ms": 166.0
+      },
+      "frame": {
+        "mean_ms": 150.6563,
+        "median_ms": 148.499,
+        "p95_ms": 182.472
+      },
+      "nodes": 6,
+      "objects": 2010.0,
+      "primitives": 57791.0,
+      "render_objects": 215.0,
+      "startup_ms": 162.489,
+      "texture_bytes": 297964653.0
+    },
+    "waterfall": {
+      "cpu": {
+        "mean_ms": 5.2771,
+        "median_ms": 5.216,
+        "p95_ms": 6.593
+      },
+      "draw_calls": {
+        "mean_ms": 43.0,
+        "median_ms": 43.0,
+        "p95_ms": 43.0
+      },
+      "frame": {
+        "mean_ms": 89.1342333333334,
+        "median_ms": 86.143,
+        "p95_ms": 106.55
+      },
+      "nodes": 17,
+      "objects": 2419.0,
+      "primitives": 44186.0,
+      "render_objects": 264.0,
+      "startup_ms": 92.583,
+      "texture_bytes": 181660900.0
+    }
+  },
+  "isolated_blackwater_baseline": {
+    "chapter-3": {
+      "cpu": {
+        "mean_ms": 7.40748333333333,
+        "median_ms": 7.123,
+        "p95_ms": 10.099
+      },
+      "draw_calls": {
+        "mean_ms": 119.65,
+        "median_ms": 119.0,
+        "p95_ms": 122.0
+      },
+      "frame": {
+        "mean_ms": 124.894166666667,
+        "median_ms": 118.039,
+        "p95_ms": 150.268
+      },
+      "nodes": 18,
+      "objects": 2190.0,
+      "primitives": 51112.0,
+      "render_objects": 447.0,
+      "startup_ms": 1399.371,
+      "texture_bytes": 273933340.0
+    },
+    "environment": {
+      "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "display": "X11",
+      "engine": "4.4.1-stable (official)",
+      "fixed_step": 0.0166666666666667,
+      "measured_frames": 60,
+      "quality": "full",
+      "resolution": [
+        1400,
+        960
+      ],
+      "warmup_frames": 30
+    }
+  },
+  "isolated_blackwater_optimized": {
+    "chapter-3": {
+      "cpu": {
+        "mean_ms": 5.35891666666667,
+        "median_ms": 5.239,
+        "p95_ms": 7.212
+      },
+      "draw_calls": {
+        "mean_ms": 119.65,
+        "median_ms": 119.0,
+        "p95_ms": 122.0
+      },
+      "frame": {
+        "mean_ms": 122.231116666667,
+        "median_ms": 121.096,
+        "p95_ms": 146.484
+      },
+      "nodes": 18,
+      "objects": 2186.0,
+      "primitives": 51112.0,
+      "render_objects": 447.0,
+      "startup_ms": 1041.446,
+      "texture_bytes": 181660900.0
+    },
+    "environment": {
+      "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+      "display": "X11",
+      "engine": "4.4.1-stable (official)",
+      "fixed_step": 0.0166666666666667,
+      "measured_frames": 60,
+      "quality": "full",
+      "resolution": [
+        1400,
+        960
+      ],
+      "warmup_frames": 30
+    }
+  },
+  "geometry": {
+    "failures": 0,
+    "max_local_error_pixels": 3.814697265625e-06,
+    "points_compared": 5921322,
+    "states": 146,
+    "tolerance_pixels": 0.0001,
+    "writing": false
+  },
+  "pixels": [
+    {
+      "scene": "highland-entry",
+      "mean_channel_difference_0_to_255": 3.087797619047619e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "highland-boss",
+      "mean_channel_difference_0_to_255": 2.34375e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "waterfall",
+      "mean_channel_difference_0_to_255": 2.808779761904762e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-1",
+      "mean_channel_difference_0_to_255": 2.3251488095238094e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-2",
+      "mean_channel_difference_0_to_255": 2.0461309523809523e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-3",
+      "mean_channel_difference_0_to_255": 2.306547619047619e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-4",
+      "mean_channel_difference_0_to_255": 2.0833333333333333e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-5",
+      "mean_channel_difference_0_to_255": 2.027529761904762e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-6",
+      "mean_channel_difference_0_to_255": 2.2507440476190475e-05,
+      "max_channel_difference": 2,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "chapter-7",
+      "mean_channel_difference_0_to_255": 2.529761904761905e-05,
+      "max_channel_difference": 1,
+      "pixels_above_3": 0
+    },
+    {
+      "scene": "title",
+      "mean_channel_difference_0_to_255": 7.161458333333333e-05,
+      "max_channel_difference": 15,
+      "pixels_above_3": 1
+    }
+  ],
+  "regressions": [
+    {
+      "test": "avina_tutorial_test.gd",
+      "passed": true,
+      "seconds": 5.124,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY TUTORIAL: 122 checks, 0 failures"
+    },
+    {
+      "test": "character_harmony_test.gd",
+      "passed": true,
+      "seconds": 8.15,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCHARACTER HARMONY: 4475 checks, 0 failures"
+    },
+    {
+      "test": "complete_adventure_test.gd",
+      "passed": true,
+      "seconds": 14.153,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures"
+    },
+    {
+      "test": "creature_articulation_test.gd",
+      "passed": true,
+      "seconds": 1.175,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCREATURE ARTICULATION: 109458 checks, 0 failures"
+    },
+    {
+      "test": "device_layout_test.gd",
+      "passed": true,
+      "seconds": 2.171,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED"
+    },
+    {
+      "test": "enemy_engagement_test.gd",
+      "passed": true,
+      "seconds": 2.129,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENEMY ENGAGEMENT TEST PASSED"
+    },
+    {
+      "test": "enemy_visuals_test.gd",
+      "passed": true,
+      "seconds": 2.182,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENEMY VISUALS TEST PASSED"
+    },
+    {
+      "test": "environment_visuals_test.gd",
+      "passed": true,
+      "seconds": 2.172,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENVIRONMENT VISUALS TEST PASSED"
+    },
+    {
+      "test": "family_layout_test.gd",
+      "passed": true,
+      "seconds": 5.141,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures"
+    },
+    {
+      "test": "gameplay_controls_test.gd",
+      "passed": true,
+      "seconds": 2.185,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED"
+    },
+    {
+      "test": "grounding_test.gd",
+      "passed": true,
+      "seconds": 3.115,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GROUNDING TEST: 487 checks, 0 failures"
+    },
+    {
+      "test": "journey_test.gd",
+      "passed": true,
+      "seconds": 3.113,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT FIRST THREE CHAPTERS TEST PASSED"
+    },
+    {
+      "test": "jump_animation_test.gd",
+      "passed": true,
+      "seconds": 3.123,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT JUMP ANIMATION TEST PASSED"
+    },
+    {
+      "test": "level1_smoke_test.gd",
+      "passed": true,
+      "seconds": 2.168,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT LEVEL 1 LOGIC TEST PASSED"
+    },
+    {
+      "test": "ocean_alive_test.gd",
+      "passed": true,
+      "seconds": 4.14,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOCEAN ALIVE: 117 checks, 0 failures"
+    },
+    {
+      "test": "performance_integrity_test.gd",
+      "passed": true,
+      "seconds": 2.17,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPERFORMANCE INTEGRITY: 59024 checks, 0 failures"
+    },
+    {
+      "test": "rock_collision_test.gd",
+      "passed": true,
+      "seconds": 3.128,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nROCK RESCUE: 1153 checks, 0 failures"
+    },
+    {
+      "test": "sarah_arm_review_test.gd",
+      "passed": true,
+      "seconds": 122.173,
+      "exit_code": 0,
+      "tail": "SARAH ARM AREA RATIOS: { &\"ShapedBodice\": 0.83903099991061, &\"ContinuousMenuTail\": 0.61199998456305, &\"FlexiblePaintedPart_2\": 0.98632773109244, &\"FlexiblePaintedPart_15\": 0.97876437607056, &\"ContinuousArmSkin_1\": 0.48810165036208, &\"ContinuousArmSkin_0\": 0.53701656731541, &\"ConnectedFaceHairDetails\": 1.0 }\nSARAH ARM JOINT RANGES: { \"breaststroke\": (1.097559, 0.274085), \"front_crawl\": (0.873889, 0.515229), \"sidestroke\": (0.721454, 0.451268), \"butterfly\": (0.825057, 0.53605), \"rise_scoop\": (0.846934, 0.536296), \"rise_alternate\": (0.79295, 0.522596), \"dive_spear\": (0.35392, 0.350818), \"dive_sweep\": (0.701156, 0.424434), \"boost_dolphin\": (0.048052, 0.034974), \"boost_drive\": (0.047261, 0.034974), \"waterfall_scull\": (0.798334, 0.536592), \"waterfall_surge\": (0.039978, 0.034888) }\nSARAH ARM REVIEW: 21764488 checks, 0 failures"
+    },
+    {
+      "test": "sarah_breaststroke_test.gd",
+      "passed": true,
+      "seconds": 3.179,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH BREASTSTROKE: 1689 checks, 0 failures"
+    },
+    {
+      "test": "sarah_continuity_test.gd",
+      "passed": true,
+      "seconds": 7.123,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH CONTINUITY: 4325 checks, 0 failures"
+    },
+    {
+      "test": "sarah_definitive_review_test.gd",
+      "passed": true,
+      "seconds": 35.173,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nDEFINITIVE REVIEW: 169878 checks, 0 failures"
+    },
+    {
+      "test": "sarah_definitive_test.gd",
+      "passed": true,
+      "seconds": 16.165,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nDEFINITIVE SARAH: 11347 checks, 0 failures"
+    },
+    {
+      "test": "sarah_depth_motion_test.gd",
+      "passed": true,
+      "seconds": 5.178,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH DEPTH: 1581 checks, 0 failures"
+    },
+    {
+      "test": "sarah_face_details_test.gd",
+      "passed": true,
+      "seconds": 12.145,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH FACE DETAILS: 14584 checks, 0 failures"
+    },
+    {
+      "test": "sarah_fluid_motion_test.gd",
+      "passed": true,
+      "seconds": 9.137,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH FLUID MOTION: 3678 checks, 0 failures"
+    },
+    {
+      "test": "sarah_magnifique_test.gd",
+      "passed": true,
+      "seconds": 2.123,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SARAH MAGNIFIQUE TEST PASSED"
+    },
+    {
+      "test": "sarah_princess_test.gd",
+      "passed": true,
+      "seconds": 3.135,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPRINCESS SARAH: 714 checks, 0 failures"
+    },
+    {
+      "test": "sarah_spine_motion_test.gd",
+      "passed": true,
+      "seconds": 26.156,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH SPINE: 534009 checks, 0 failures"
+    },
+    {
+      "test": "sarah_torso_motion_test.gd",
+      "passed": true,
+      "seconds": 46.139,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH TORSO: 948203 checks, 0 failures"
+    },
+    {
+      "test": "sarah_ultimate_test.gd",
+      "passed": true,
+      "seconds": 18.163,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nULTIMATE SARAH: 39909 checks, 0 failures"
+    },
+    {
+      "test": "sarah_v030_bundle_test.gd",
+      "passed": true,
+      "seconds": 12.171,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH V030 BUNDLE: 3635 checks, 0 failures"
+    },
+    {
+      "test": "sarah_v031_bundle_test.gd",
+      "passed": true,
+      "seconds": 12.186,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH V031 BUNDLE: 3768 checks, 0 failures"
+    },
+    {
+      "test": "scene_flow_test.gd",
+      "passed": true,
+      "seconds": 9.187,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED"
+    },
+    {
+      "test": "scoring_ui_test.gd",
+      "passed": true,
+      "seconds": 2.175,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED"
+    },
+    {
+      "test": "title_flow_test.gd",
+      "passed": true,
+      "seconds": 6.155,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT TITLE FLOW TEST PASSED"
+    },
+    {
+      "test": "visual_polish_test.gd",
+      "passed": true,
+      "seconds": 4.129,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nVISUAL POLISH: 336 checks, 0 failures"
+    }
+  ],
+  "fresh_zip_validation": {
+    "passed": true,
+    "suites": 11,
+    "checks": [
+      "CRC",
+      "Godot directory extraction",
+      "per-file SHA256 equality",
+      "fresh asset import",
+      "title startup",
+      "11 fresh-extraction regression suites"
+    ]
+  },
+  "artwork_audio_and_authored_animation_files_unchanged": true,
+  "limitations": [
+    "Linux llvmpipe software OpenGL, not a physical GPU benchmark",
+    "Deterministic manual scene updates with tweens/particles frozen for reproducibility",
+    "No physical Windows/Android/iOS run",
+    "Rendered wall times are noisy; CPU update reductions are not FPS promises"
+  ]
+}

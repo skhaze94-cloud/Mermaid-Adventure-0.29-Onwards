@@ -8,12 +8,9 @@ const Controls = preload("res://godot/control_layout.gd")
 const Combat = preload("res://godot/enemy_combat.gd")
 const Source = preload("res://godot/chapter_data.gd")
 const Highland = preload("res://godot/highland_data.gd")
-const BACKGROUND = preload("res://dist/assets/highlands.webp")
-const HERO = preload("res://dist/assets/sarah-mermaid.webp")
+const HERO_PATH = "res://dist/assets/sarah-mermaid.webp"
 const FALL_BOULDER = preload("res://godot/assets/waterfall-boulder-v07.webp")
-const REEF = preload("res://dist/assets/barrier-reef.webp")
-const FLORA = preload("res://dist/assets/flora-layer.webp")
-const CARLO = preload("res://dist/assets/carlo.webp")
+const CARLO_PATH = "res://dist/assets/carlo.webp"
 const MUSIC = preload("res://dist/assets/bubble-bell-adventure.mp3")
 
 const WATER_SURFACE := 280.0
@@ -115,6 +112,8 @@ var boss_position := Vector2(Highland.BOSS_X, 570)
 var hostile_shots: Array[Dictionary] = []
 var retry_serial := 0
 var music_tween: Tween
+var fallback_hero: Texture2D
+var fallback_boss: Texture2D
 
 func _ready() -> void:
     if get_node("/root/AdventureRun").tutorial_complete: bubble_unlocked = true
@@ -616,7 +615,8 @@ func _sync_native_visuals() -> void:
     # Depth shaders affect scenery without refracting Sarah or covering the HUD.
     # During the waterfall, render the refractive field in front of the shaft.
     native_fx.z_index = -1
-    waterfall_world.set_phase(waterfall_phase, waterfall_time, reduced_fx, high_depth_quality)
+    if _uses_highland_scenery():
+        waterfall_world.set_phase(waterfall_phase, waterfall_time, reduced_fx, high_depth_quality)
     native_fx.set_motion(pos, velocity, jump_time <= 0.0)
     if is_instance_valid(animated_enemies):
         animated_enemies.animate_visible(camera, time, reduced_fx,
@@ -633,20 +633,21 @@ func _sync_native_visuals() -> void:
             waterfall_models[i]["hp"] = 0 if hazard["passed"] else 1
     waterfall_enemies.animate_visible(0.0, time, reduced_fx, get_process_delta_time(),
         waterfall_phase == "descent", high_depth_quality)
-    if is_instance_valid(world_depth):
-        world_depth.visible = waterfall_phase != "descent"
-        world_depth.set_camera(camera, fallen or waterfall_phase == "outflow", reduced_fx)
-    if is_instance_valid(foreground_depth):
-        foreground_depth.set_camera(camera, not waterfall_active, reduced_fx)
-    if is_instance_valid(relief_obstacles):
-        relief_obstacles.set_camera(camera, not waterfall_active)
-    if is_instance_valid(water_surface):
-        water_surface.set_scene(camera, not waterfall_active, reduced_fx)
-    environment_landmarks.set_scene(camera, fallen, waterfall_active, boss_hp <= 0, reduced_fx)
+    if _uses_highland_scenery():
+        if is_instance_valid(world_depth):
+            world_depth.visible = waterfall_phase != "descent"
+            world_depth.set_camera(camera, fallen or waterfall_phase == "outflow", reduced_fx)
+        if is_instance_valid(foreground_depth):
+            foreground_depth.set_camera(camera, not waterfall_active, reduced_fx)
+        if is_instance_valid(relief_obstacles):
+            relief_obstacles.set_camera(camera, not waterfall_active)
+        if is_instance_valid(water_surface):
+            water_surface.set_scene(camera, not waterfall_active, reduced_fx)
+        environment_landmarks.set_scene(camera, fallen, waterfall_active, boss_hp <= 0, reduced_fx)
     native_fx.set_depth_profile(fallen)
     if is_instance_valid(premium_hud):
         premium_hud.update_hud(_hud_snapshot())
-    if is_instance_valid(native_boss):
+    if _uses_highland_scenery() and is_instance_valid(native_boss):
         var boss_x := boss_position.x - camera
         var boss_y := boss_position.y
         native_boss.set_boss_state(boss_hp, _boss_vulnerable(), boss_clock, boss_x, boss_y, get_viewport_rect().size.x, boss_phase, boss_pattern)
@@ -1198,7 +1199,8 @@ func _draw_boss() -> void:
     var y := boss_position.y
     Polish.boss_cue(self,Vector2(x,y),148,_boss_vulnerable())
     if not is_instance_valid(native_boss):
-        draw_texture_rect(CARLO,Rect2(x-162,y-180,324,352),false)
+        if not fallback_boss: fallback_boss = load(CARLO_PATH)
+        draw_texture_rect(fallback_boss,Rect2(x-162,y-180,324,352),false)
     if boss_phase == "windup":
         var origin := boss_position - Vector2(camera, 0)
         if boss_pattern == 0:
@@ -1213,7 +1215,8 @@ func _draw_hero(pos: Vector2) -> void:
     draw_set_transform(pos + Vector2(0, bob), tilt, Vector2(facing, 1.0))
     # The character is now a native articulated Sprite2D hierarchy; keep fallback only.
     if not is_instance_valid(native_rig):
-        draw_texture_rect(HERO, Rect2(-115, -77, 230, 154), false, Color(1, 1, 1, opacity))
+        if not fallback_hero: fallback_hero = load(HERO_PATH)
+        draw_texture_rect(fallback_hero, Rect2(-115, -77, 230, 154), false, Color(1, 1, 1, opacity))
     draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
     if boost_time > 0.0 or waterfall_boost > 0.0:
         for i in range(5):
@@ -1351,3 +1354,5 @@ func _sfx(effect: String, priority := 1) -> void:
 func _ocean_event(effect: String, at: Vector2, direction := Vector2.RIGHT) -> void:
     _sfx(effect,3 if effect in ["boss_defeat","checkpoint"] else 1)
     if is_instance_valid(ocean_feedback): ocean_feedback.burst(at,effect,direction)
+
+func _uses_highland_scenery() -> bool: return true

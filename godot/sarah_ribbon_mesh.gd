@@ -1,4 +1,4 @@
-extends Polygon2D
+extends "res://godot/sarah_painted_mesh.gd"
 ## Small textured strip with a fixed attachment edge. UVs never leave its atlas crop.
 var rest := PackedVector2Array()
 var weights := PackedFloat32Array()
@@ -10,7 +10,6 @@ func configure(source: Texture2D, region: Rect2, destination: Rect2, columns: in
     column_offsets.resize(mesh_columns)
     texture = source
     texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
-    antialiased = true
     var coordinates := PackedVector2Array()
     var faces: Array[PackedInt32Array] = []
     for row in range(rows):

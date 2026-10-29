@@ -15,7 +15,7 @@ func _run_checks() -> void:
     var level = load("res://godot/highland_level.tscn").instantiate()
     root.add_child(level)
     # Native-Godot v0.2: these are real editor scene nodes, not HTML-style canvas sprites.
-    _check(level.native_rig.get_node("Torso/ContinuousMenuTail") is Polygon2D, "Articulated Sarah tail missing")
+    _check(level.native_rig.get_node("Torso/ContinuousMenuTail") is MeshInstance2D, "Articulated Sarah tail missing")
     _check(level.native_rig.get_node("Torso/HeadNeck") is Node2D, "Native face joint missing")
     _check(level.native_rig.get_node("Torso/NearArm") is Node2D, "Native arm joint missing")
     _check(level.native_fx.water_overlay.material is ShaderMaterial, "Water GPU shader missing")

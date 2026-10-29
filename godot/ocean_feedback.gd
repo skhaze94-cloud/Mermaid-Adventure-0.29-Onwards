@@ -19,8 +19,12 @@ func clear() -> void:
     for item in pool: item["age"] = 2.0
     queue_redraw()
 func _process(dt: float) -> void:
-    for item in pool: item["age"] = minf(2,float(item["age"])+dt)
-    queue_redraw()
+    var advancing := false
+    for item in pool:
+        if float(item["age"])<2.0:
+            item["age"] = minf(2,float(item["age"])+dt)
+            advancing = true
+    if advancing: queue_redraw()
 func _draw() -> void:
     if not active: return
     for item in pool:

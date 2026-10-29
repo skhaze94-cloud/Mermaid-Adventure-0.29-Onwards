@@ -28,15 +28,16 @@ void vertex() {
     vec2 p=(UV*atlas_size-neutral_crop.xy-vec2(.5))/(neutral_crop.zw-vec2(1.0));
     if (detail_enabled) {
         // Every feature sits in the same surface; the collar/neck stay locked.
-        float anchored=1.0-smoothstep(.78,.90,p.y);
-        float ear=feature(p,vec2(.49,.70),vec2(.10,.12));
-        float nose=feature(p,vec2(.83,.565),vec2(.065,.075));
-        float jaw=feature(p,vec2(.80,.71),vec2(.14,.085));
-        float lower_lip=feature(p,vec2(.82,.685),vec2(.11,.025));
-        float cheek=feature(p,vec2(.73,.65),vec2(.20,.15));
-        float brows=max(feature(p,vec2(.68,.36),vec2(.12,.05)),feature(p,vec2(.88,.31),vec2(.085,.05)));
-        float hair=max(1.0-smoothstep(.38,.64,p.x),1.0-smoothstep(.10,.22,p.y));
-        float free_end=(1.0-smoothstep(.12,.67,p.x))*hair*anchored;
+        // Exact static feature masks travel with each original painted vertex.
+        // Reuse them instead of evaluating seven exponentials on every frame.
+        float anchored=CUSTOM0.x;
+        float ear=CUSTOM0.y;
+        float nose=CUSTOM0.z;
+        float jaw=CUSTOM0.w;
+        float lower_lip=CUSTOM1.x;
+        float cheek=CUSTOM1.y;
+        float brows=CUSTOM1.z;
+        float free_end=CUSTOM1.w;
         // Hair trails the body wave and current; its roots remain on the skull.
         float wave=sin(motion_phase*.5-.4-p.x*2.0-p.y*.7);
         vec2 drift=vec2(-response.x*.9+hair_lag*2.0,

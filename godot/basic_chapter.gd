@@ -3,18 +3,20 @@ extends "res://godot/highland_level.gd"
 const Terrain = preload("res://godot/terrain_painter.gd")
 const Chapter = preload("res://godot/chapter_data.gd")
 const PAINTINGS := {
-    "palace":preload("res://dist/assets/pearl-palace.webp"),
-    "rana":preload("res://dist/assets/colombia.webp"),
-    "nessie":preload("res://dist/assets/colombia.webp"),
-    "blackwater":preload("res://godot/assets/waterfall-cavern-v07.webp"),
-    "training":preload("res://dist/assets/training-lagoon.webp")}
+    "palace":"res://dist/assets/pearl-palace.webp",
+    "rana":"res://dist/assets/colombia.webp",
+    "nessie":"res://dist/assets/colombia.webp",
+    "blackwater":"res://godot/assets/waterfall-cavern-v07.webp",
+    "training":"res://dist/assets/training-lagoon.webp"}
 const BOSS_ART := {
-    "palace":preload("res://godot/assets/characters-v027/queen-antonella.png"),
-    "rana":preload("res://dist/assets/rana-rex.webp"),
-    "nessie":preload("res://dist/assets/nessie.webp"),
-    "blackwater":preload("res://godot/assets/enemy-shark-v09.webp"),
-    "training":preload("res://godot/assets/characters-v027/king-daddy.png")}
+    "palace":"res://godot/assets/characters-v027/queen-antonella.png",
+    "rana":"res://dist/assets/rana-rex.webp",
+    "nessie":"res://dist/assets/nessie.webp",
+    "blackwater":"res://godot/assets/enemy-shark-v09.webp",
+    "training":"res://godot/assets/characters-v027/king-daddy.png"}
 @export_enum("palace","rana","nessie","blackwater","training") var chapter_id := "palace"
+@export var chapter_painting: Texture2D
+@export var chapter_boss_painting: Texture2D
 var performance: Node2D
 var chapter_boss_art: Texture2D
 var attack_clock := 0.0
@@ -30,7 +32,9 @@ func _ready() -> void:
     if chapter_id == "nessie":
         player = Vector2(2920,600)
         checkpoint = 2820
-    var texture: Texture2D = BOSS_ART[chapter_id]
+    if not chapter_painting: chapter_painting = load(PAINTINGS[chapter_id])
+    if not chapter_boss_painting: chapter_boss_painting = load(BOSS_ART[chapter_id])
+    var texture: Texture2D = chapter_boss_painting
     if chapter_id == "blackwater":
         chapter_boss_art = preload("res://godot/creature_art.gd").atlas("shark",0)
     else: chapter_boss_art = texture
@@ -66,7 +70,9 @@ func _sync_native_visuals() -> void:
     if is_instance_valid(performance):
         performance.set_state(boss_hp,boss_phase,boss_position-Vector2(camera,0),time,reduced_fx)
     for node in [world_depth,foreground_depth,relief_obstacles,water_surface,waterfall_world,environment_landmarks,native_boss]:
-        if is_instance_valid(node): node.hide()
+        if is_instance_valid(node):
+            node.hide()
+            node.set_process(false)
 func _update_swimming(dt: float) -> void:
     super._update_swimming(dt)
     if state=="victory":
@@ -149,7 +155,7 @@ func _update_boss(dt: float) -> void:
         elif not _boss_vulnerable() and boost_time<=0: _damage(boss_position)
 
 func _draw_world(view: Vector2) -> void:
-    var background: Texture2D = PAINTINGS[chapter_id]
+    var background: Texture2D = chapter_painting
     var progress := clampf(camera/maxf(1,_level_length()-view.x),0,1)
     if chapter_id=="blackwater":
         var cover := maxf(view.x/background.get_width(),view.y/background.get_height())*1.12
@@ -205,3 +211,5 @@ func _paint_chapter_boss() -> void:
 
 func _portal_is_open() -> bool: return boss_hp<=0
 func _portal_hint() -> String: return "CONTINUE" if _portal_is_open() else "DEFEAT BOSS"
+
+func _uses_highland_scenery() -> bool: return false

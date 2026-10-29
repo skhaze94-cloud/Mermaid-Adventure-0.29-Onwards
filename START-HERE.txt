@@ -1,5 +1,5 @@
 Sarah Maria — Mermaid Adventure
-v0.5 — Princess Polish Sarah
+v0.5.1 — Princess Polish Sarah
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
 2. Import the ROOT project.godot in Godot. Tested with Godot 4.4.1.

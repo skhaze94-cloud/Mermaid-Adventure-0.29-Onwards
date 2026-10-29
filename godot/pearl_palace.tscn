@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://godot/basic_chapter.gd" id="1_level"]
 [ext_resource type="Script" path="res://godot/native_fx.gd" id="2_effects"]
@@ -18,8 +18,13 @@
 
 [ext_resource type="Script" path="res://godot/environment_landmarks.gd" id="14_landmarks"]
 
+[ext_resource type="Texture2D" path="res://dist/assets/pearl-palace.webp" id="15_painting"]
+[ext_resource type="Texture2D" path="res://godot/assets/characters-v027/queen-antonella.png" id="16_boss_painting"]
+
 [node name="PearlPalace" type="Node2D"]
 script = ExtResource("1_level")
+chapter_painting = ExtResource("15_painting")
+chapter_boss_painting = ExtResource("16_boss_painting")
 chapter_id = "palace"
 
 [node name="PaintedWorldDepth" type="Node2D" parent="."]

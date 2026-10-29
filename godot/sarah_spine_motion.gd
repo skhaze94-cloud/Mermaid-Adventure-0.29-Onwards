@@ -6,6 +6,22 @@ var shoulder_near := Vector2.ZERO
 var shoulder_far := Vector2.ZERO
 var jaw := Vector2.ZERO
 var bend := Vector2.ZERO
+var cached_rest := PackedVector2Array()
+var paint_weights := PackedVector3Array()
+
+func _prepare_paint(rest: PackedVector2Array) -> void:
+    if cached_rest == rest: return
+    cached_rest = rest
+    paint_weights.resize(rest.size())
+    for i in range(rest.size()):
+        var p := rest[i]
+        var t := (p.y+40.0)/60.0
+        var envelope := smoothstep(.36,.55,t)*(1.0-smoothstep(.78,.94,t))
+        var band := smoothstep(.18,.25,t)*(1.0-smoothstep(.45,.58,t))
+        var near_weight := exp(-pow((p.x-22.0)/11.0,2.0))
+        var far_weight := exp(-pow((p.x-34.0)/9.0,2.0))
+        var total := maxf(1.0,near_weight+far_weight)
+        paint_weights[i] = Vector3(envelope,near_weight*band/total,far_weight*band/total)
 
 static func spring(state: Vector2, target: float, frequency: float, dt: float) -> Vector2:
     # Exact critically damped solution for a constant target, stable at any dt.
@@ -74,21 +90,14 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     if not enabled:
         rig.bodice.reset_shape()
         return
+    _prepare_paint(rig.bodice.rest)
     var points: PackedVector2Array = rig.bodice.rest.duplicate()
     for i in range(points.size()):
-        var t: float = (rig.bodice.rest[i].y-rig.BODICE_BOUNDS.position.y)/rig.BODICE_BOUNDS.size.y
+        var weights := paint_weights[i]
         # Back ripple pins the upper band; the separate shoulder pass keeps collar/hip fixed.
-        var envelope := smoothstep(.36,.55,t)*(1.0-smoothstep(.78,.94,t))
-        points[i].x += bend.x*18.0*envelope
-        points[i].y += bend.x*(points[i].x-29.0)*.12*envelope
-    # Shoulder painting glides with the sockets; collar and hip stay pinned.
-    for i in range(points.size()):
-        var p: Vector2 = rig.bodice.rest[i]
-        var t: float = (p.y-rig.BODICE_BOUNDS.position.y)/rig.BODICE_BOUNDS.size.y
-        var band := smoothstep(.18,.25,t)*(1.0-smoothstep(.45,.58,t))
-        var near_weight := exp(-pow((p.x-22.0)/11.0,2.0))
-        var far_weight := exp(-pow((p.x-34.0)/9.0,2.0))
-        var total := maxf(1.0,near_weight+far_weight)
-        points[i]+=(rig.definitive_motion.shoulder_near*near_weight+rig.definitive_motion.shoulder_far*far_weight)*band/total
+        points[i].x += bend.x*18.0*weights.x
+        points[i].y += bend.x*(points[i].x-29.0)*.12*weights.x
+        # Shoulder painting glides with the sockets; collar and hip stay pinned.
+        points[i]+=rig.definitive_motion.shoulder_near*weights.y+rig.definitive_motion.shoulder_far*weights.z
     rig.bodice.polygon=rig.torso_motion.deform(points,rig.bodice.rest)
     rig.bodice.mesh_updates+=1

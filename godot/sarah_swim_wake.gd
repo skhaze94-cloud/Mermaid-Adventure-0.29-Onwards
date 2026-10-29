@@ -8,6 +8,9 @@ var serial := 0
 func _ready() -> void:
     z_index=-3
 func clear() -> void:
+    if droplets.is_empty():
+        emission=0.0
+        return
     droplets.clear()
     emission=0.0
     queue_redraw()
@@ -15,11 +18,12 @@ func advance(rig, dt: float) -> void:
     if rig.reduced_motion or not rig.high_quality or rig.leaping or not rig.visible:
         clear()
         return
+    var damping := exp(-dt*1.8)
     for i in range(droplets.size()-1,-1,-1):
         var p: Dictionary = droplets[i]
         p.age+=dt
         p.position+=p.velocity*dt
-        p.velocity*=exp(-dt*1.8)
+        p.velocity*=damping
         if p.age>=p.life: droplets.remove_at(i)
     var speed: float = rig.velocity_value.length()
     if speed>65.0:

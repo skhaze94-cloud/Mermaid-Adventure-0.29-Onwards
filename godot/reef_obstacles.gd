@@ -10,6 +10,7 @@ var sprites: Array[Sprite2D] = []
 var positions: Array[Rect2] = []
 var camera_x := 0.0
 var view_width := 1400.0
+var last_view := Vector2(-1,-1)
 
 func _ready() -> void:
     z_index = -1
@@ -44,6 +45,10 @@ func _resize() -> void:
     set_camera(camera_x, visible)
 
 func set_camera(next_x: float, show_rocks: bool) -> void:
+    var view := get_viewport_rect().size
+    if camera_x == next_x and visible == show_rocks and last_view == view:
+        return
+    last_view = view
     camera_x = next_x
     queue_redraw()
     visible = show_rocks
