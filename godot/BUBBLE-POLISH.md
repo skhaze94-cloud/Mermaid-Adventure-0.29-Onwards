@@ -15,3 +15,9 @@ Previously ordinary enemy hit recovery lasted 0.60s even when Sarah recovered in
 Prism has a one-time soft readiness cue. The three releases use distinct pitches of the existing bubble recording; no new audio streams or voices are allocated. Successful charged hits provide brief controller feedback, omitted in Gentle Motion. Existing tiered impact art remains unchanged. Charge thresholds, cancellation on pause/focus loss/Boost/Jump, pool refusal and protected tutorial characters retain their safeguards.
 
 Validation is recorded in `validation-bubble-polish.json`. The new live-combat suite checks actual released packets, travel distances, damage, recovery, release pitch, guard preservation, cancellation and reward ownership. Existing Opal, adventure, tutorial and controls checks cover all boss gates and input routes. Native checks do not replace human balance playtesting or real-device FPS measurement.
+
+## Verification
+
+Eight native suites passed, including 25 new live bubble checks and 160 Opal combat checks. A fresh extracted/imported copy passed 14 suites and main-scene startup. All 205 packaged files match source and pass CRC verification. The 140 retained asset, animation and shader files checked against v0.6.1 are byte-identical.
+
+Archive SHA-256: `88e82b0d5128eecbbfdeb7019743716006491bb6b22b790c2e7b87c84a4aefd4`. Raw results and hashes: [validation-bubble-polish.json](validation-bubble-polish.json).
