@@ -96,16 +96,9 @@ func _update_swimming(dt: float) -> void:
             player_velocity.y = -850
             energy = minf(1,energy+dt*.5)
 
-func _check_checkpoints() -> void:
-    if state != "playing": return
-    var stops: Array = [[2860,"Outer Kingdom"],[7098,"Royal Market"],[11440,"Royal Approach"],[12600,"Duke & Flip’s Court"]] if shadow else [[Journey.sx(1550),"Orchid Shallows"],[Journey.sx(3550),"Jungle Reef"],[Journey.sx(5150),"Ribbon Gardens"],[Journey.sx(6420),"Miguel’s Arena"]]
-    for stop in stops:
-        if player.x > float(stop[0])+60 and checkpoint < float(stop[0]):
-            checkpoint = stop[0]
-            health = MAX_HEALTH
-            _release_all_loot()
-            _save_checkpoint()
-            _say("Checkpoint — "+stop[1],3)
+func _checkpoint_stops() -> Array:
+    return [[2860,"Outer Kingdom"],[7098,"Royal Market"],[11440,"Royal Approach"],[12600,"Duke & Flip’s Court"]] if shadow else [[Journey.sx(1550),"Orchid Shallows"],[Journey.sx(3550),"Jungle Reef"],[Journey.sx(5150),"Ribbon Gardens"],[Journey.sx(6420),"Miguel’s Arena"]]
+
 func _save_checkpoint() -> void:
     super._save_checkpoint()
     checkpoint_snapshot["switches"] = switches.duplicate(true)

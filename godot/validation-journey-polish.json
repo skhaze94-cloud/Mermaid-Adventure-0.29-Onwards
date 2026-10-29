@@ -1,0 +1,741 @@
+{
+  "version": "0.9.0",
+  "date": "2026-10-29",
+  "engine": "4.4.1.stable.official.49a5bc7b6",
+  "baseline": "e5f5301a7da73d7155697da8248aef6cf465f6c7",
+  "runtime_commit": "3a4d5dd0533c57c0330ca26ac2c782fdc4f12148",
+  "native_suites": [
+    {
+      "test": "adventure_polish_test.gd",
+      "passed": true,
+      "seconds": 10.372,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nADVENTURE POLISH: 107 checks, 0 failures"
+    },
+    {
+      "test": "avina_tutorial_test.gd",
+      "passed": true,
+      "seconds": null,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY TUTORIAL: 122 checks, 0 failures",
+      "source": "delegated native validation"
+    },
+    {
+      "test": "boss_polish_test.gd",
+      "passed": true,
+      "seconds": 11.111,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nBOSS POLISH: 70 checks, 0 failures"
+    },
+    {
+      "test": "bubble_polish_test.gd",
+      "passed": true,
+      "seconds": 4.354,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nBUBBLE POLISH: 25 checks, 0 failures"
+    },
+    {
+      "test": "complete_adventure_test.gd",
+      "passed": true,
+      "seconds": 31.113,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures"
+    },
+    {
+      "test": "device_layout_test.gd",
+      "passed": true,
+      "seconds": 5.462,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED"
+    },
+    {
+      "test": "family_layout_test.gd",
+      "passed": true,
+      "seconds": null,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures",
+      "source": "delegated native validation"
+    },
+    {
+      "test": "gameplay_controls_test.gd",
+      "passed": true,
+      "seconds": 4.333,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED"
+    },
+    {
+      "test": "journey_effects_test.gd",
+      "passed": true,
+      "seconds": 3.376,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nJOURNEY EFFECTS: 21 checks, 0 failures"
+    },
+    {
+      "test": "journey_flow_test.gd",
+      "passed": true,
+      "seconds": 10.255,
+      "exit_code": 0,
+      "tail": "\nJOURNEY FLOW: 334 checks, 0 failures; 39960 native swim ticks\n[{\"chapter\":0,\"checkpoint\":28200.0,\"checkpoints_retried\":10,\"finish\":\"(29512.94, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":9202},{\"chapter\":1,\"checkpoint\":12600.0,\"checkpoints_retried\":4,\"finish\":\"(14132.6, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":3803},{\"chapter\":2,\"checkpoint\":29483.0,\"checkpoints_retried\":9,\"finish\":\"(32983.46, 616.7357)\",\"start\":\"(220.0, 460.0)\",\"ticks\":6951},{\"chapter\":3,\"checkpoint\":7640.0,\"checkpoints_retried\":2,\"finish\":\"(10100.51, 614.1876)\",\"start\":\"(220.0, 460.0)\",\"ticks\":2075},{\"chapter\":4,\"checkpoint\":33075.0,\"checkpoints_retried\":9,\"finish\":\"(36883.45, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":9785},{\"chapter\":5,\"checkpoint\":39200.0,\"checkpoints_retried\":10,\"finish\":\"(41432.95, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":7585},{\"chapter\":6,\"checkpoint\":2820.0,\"checkpoints_retried\":0,\"finish\":\"(5332.742, 614.1874)\",\"start\":\"(2920.0, 600.0)\",\"ticks\":559}]"
+    },
+    {
+      "test": "journey_test.gd",
+      "passed": true,
+      "seconds": 8.326,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT FIRST THREE CHAPTERS TEST PASSED"
+    },
+    {
+      "test": "opal_current_test.gd",
+      "passed": true,
+      "seconds": null,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOPAL CURRENT: 160 checks, 0 failures",
+      "source": "delegated native validation"
+    },
+    {
+      "test": "opening_journey_test.gd",
+      "passed": true,
+      "seconds": null,
+      "exit_code": 0,
+      "tail": "OPENING JOURNEY: 31 checks, 0 failures",
+      "source": "final fixed-footer native validation"
+    },
+    {
+      "test": "performance_integrity_test.gd",
+      "passed": true,
+      "seconds": 3.32,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPERFORMANCE INTEGRITY: 59024 checks, 0 failures"
+    },
+    {
+      "test": "rock_collision_test.gd",
+      "passed": true,
+      "seconds": 10.291,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nROCK RESCUE: 1153 checks, 0 failures"
+    },
+    {
+      "test": "scene_flow_test.gd",
+      "passed": true,
+      "seconds": 13.241,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED"
+    },
+    {
+      "test": "scoring_ui_test.gd",
+      "passed": true,
+      "seconds": 4.205,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED"
+    },
+    {
+      "test": "title_flow_test.gd",
+      "passed": true,
+      "seconds": null,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT TITLE FLOW TEST PASSED",
+      "source": "delegated native validation"
+    }
+  ],
+  "route": {
+    "checks": 334,
+    "native_swim_ticks": 39960,
+    "checkpoint_retries": 44,
+    "combat": "Explicit defeated-boss fixture after actual approach; live combat covered by separate suites",
+    "human_playthrough": false
+  },
+  "package": {
+    "passed": true,
+    "suites": 18,
+    "fresh_extraction": true,
+    "fresh_import": true,
+    "main_scene_startup": true,
+    "log_sha256": "a5a58e6981971d53c220708acec0cca94b400891b5745889a624331eddb19ef9",
+    "initial_pre_footer_validation_also_passed": true
+  },
+  "artifact": {
+    "zip": "Mermaid-Adventure-v0.9.0-Journey-Polish.zip",
+    "bytes": 67161910,
+    "sha256": "ed0df99b1d772d4d22b6dd0b4a80b02e8cde3fb5af06a20db01f90aee7455b0f",
+    "files": 207,
+    "directories": 16,
+    "crc_bad": null,
+    "source_mismatches": [],
+    "preservation": {
+      "baseline": "e5f5301a7da73d7155697da8248aef6cf465f6c7",
+      "files": 140,
+      "changed": []
+    },
+    "runtime_commit": "3a4d5dd0533c57c0330ca26ac2c782fdc4f12148"
+  },
+  "performance": {
+    "baseline_commit": "e5f5301a7da73d7155697da8248aef6cf465f6c7",
+    "baseline_effects_blob": "d601f32ffd73d96c630c905ebe66f0fa80377065",
+    "effects_blob": "99036ebdd789d32f3d044177e64a359e12d70465",
+    "audit_sha256": "b5ca1dde25b9b31450f0b088d7791b898ff5f05fe3beeed5d7b8e3f3100ae046",
+    "effects": {
+      "blackwater": {
+        "baseline_effects_update": {
+          "mean_ms": 0.55125,
+          "median_ms": 0.493,
+          "p95_ms": 1.058
+        },
+        "effects_update": {
+          "mean_ms": 0.448675,
+          "median_ms": 0.396,
+          "p95_ms": 0.934
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "environment": {
+        "alternating_baseline_order": true,
+        "display": "headless",
+        "engine": "4.4.1-stable (official)",
+        "friendly": 8,
+        "hostile": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "measured_frames": 120,
+        "quality": "full",
+        "scope": "Effects sync and twelve pooled impacts; update CPU only, no hardware FPS inference",
+        "warmup_frames": 30
+      },
+      "equivalence": {
+        "compared_states": 1200,
+        "mismatches": 0
+      },
+      "highland": {
+        "baseline_effects_update": {
+          "mean_ms": 0.709333333333333,
+          "median_ms": 0.535,
+          "p95_ms": 1.326
+        },
+        "effects_update": {
+          "mean_ms": 0.470716666666667,
+          "median_ms": 0.443,
+          "p95_ms": 0.99
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "miguel": {
+        "baseline_effects_update": {
+          "mean_ms": 0.584641666666667,
+          "median_ms": 0.52,
+          "p95_ms": 1.2
+        },
+        "effects_update": {
+          "mean_ms": 0.434758333333333,
+          "median_ms": 0.4,
+          "p95_ms": 0.783
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "nessie": {
+        "baseline_effects_update": {
+          "mean_ms": 0.625183333333334,
+          "median_ms": 0.47,
+          "p95_ms": 1.704
+        },
+        "effects_update": {
+          "mean_ms": 0.431191666666667,
+          "median_ms": 0.419,
+          "p95_ms": 0.808
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "palace": {
+        "baseline_effects_update": {
+          "mean_ms": 0.564591666666667,
+          "median_ms": 0.476,
+          "p95_ms": 1.253
+        },
+        "effects_update": {
+          "mean_ms": 0.473825,
+          "median_ms": 0.39,
+          "p95_ms": 1.244
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "rana": {
+        "baseline_effects_update": {
+          "mean_ms": 0.5472,
+          "median_ms": 0.497,
+          "p95_ms": 1.067
+        },
+        "effects_update": {
+          "mean_ms": 0.469116666666666,
+          "median_ms": 0.418,
+          "p95_ms": 0.894
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "shadow": {
+        "baseline_effects_update": {
+          "mean_ms": 0.55305,
+          "median_ms": 0.501,
+          "p95_ms": 1.056
+        },
+        "effects_update": {
+          "mean_ms": 0.474125,
+          "median_ms": 0.413,
+          "p95_ms": 1.001
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      },
+      "training": {
+        "baseline_effects_update": {
+          "mean_ms": 0.741283333333333,
+          "median_ms": 0.545,
+          "p95_ms": 1.326
+        },
+        "effects_update": {
+          "mean_ms": 0.474208333333334,
+          "median_ms": 0.402,
+          "p95_ms": 0.92
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "impact_cap": 12,
+        "live_enemies": 6,
+        "node_delta": 0,
+        "peak_active_impacts": 12,
+        "peak_impact_droplets": 96
+      }
+    },
+    "native_before": {
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "engine": "4.4.1-stable (official)",
+        "fixed_step": 0.0166666666666667,
+        "friendly": 8,
+        "hostile": 32,
+        "impact_interval_frames": 24,
+        "live_enemies": 6,
+        "measured_frames": 60,
+        "note": "Manual updates; native particles/tweens frozen like the base audit. New charge/impact geometry remains active. Seeding excluded from CPU.",
+        "quality": "full",
+        "resolution": [
+          1400,
+          960
+        ],
+        "warmup_frames": 30
+      },
+      "highland": {
+        "cold_frame": {
+          "mean_ms": 223.3246,
+          "median_ms": 193.574,
+          "p95_ms": 281.729
+        },
+        "cold_max_ms": 1050.429,
+        "cpu": {
+          "mean_ms": 10.44565,
+          "median_ms": 9.568,
+          "p95_ms": 18.025
+        },
+        "draw_calls": {
+          "mean_ms": 212.116666666667,
+          "median_ms": 202.0,
+          "p95_ms": 285.0
+        },
+        "first_frame_ms": 169.707,
+        "frame": {
+          "mean_ms": 208.319866666667,
+          "median_ms": 202.945,
+          "p95_ms": 275.34
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2604.0,
+        "startup_ms": 3463.554,
+        "texture_bytes": 186646488.0
+      },
+      "palace": {
+        "cold_frame": {
+          "mean_ms": 386.811233333333,
+          "median_ms": 325.964,
+          "p95_ms": 902.205
+        },
+        "cold_max_ms": 952.673,
+        "cpu": {
+          "mean_ms": 19.4930166666667,
+          "median_ms": 13.857,
+          "p95_ms": 42.595
+        },
+        "draw_calls": {
+          "mean_ms": 154.616666666667,
+          "median_ms": 155.0,
+          "p95_ms": 160.0
+        },
+        "first_frame_ms": 200.591,
+        "frame": {
+          "mean_ms": 416.199483333333,
+          "median_ms": 317.249,
+          "p95_ms": 1498.691
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2746.0,
+        "startup_ms": 629.068,
+        "texture_bytes": 268039373.0
+      },
+      "shadow": {
+        "cold_frame": {
+          "mean_ms": 275.822133333333,
+          "median_ms": 252.148,
+          "p95_ms": 418.633
+        },
+        "cold_max_ms": 521.271,
+        "cpu": {
+          "mean_ms": 13.6474,
+          "median_ms": 11.956,
+          "p95_ms": 25.301
+        },
+        "draw_calls": {
+          "mean_ms": 191.116666666667,
+          "median_ms": 185.0,
+          "p95_ms": 240.0
+        },
+        "first_frame_ms": 226.686,
+        "frame": {
+          "mean_ms": 352.114583333333,
+          "median_ms": 314.681,
+          "p95_ms": 754.588
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2734.0,
+        "startup_ms": 865.66,
+        "texture_bytes": 268490113.0
+      },
+      "training": {
+        "cold_frame": {
+          "mean_ms": 379.331233333333,
+          "median_ms": 318.121,
+          "p95_ms": 666.47
+        },
+        "cold_max_ms": 1516.276,
+        "cpu": {
+          "mean_ms": 12.2669833333333,
+          "median_ms": 10.288,
+          "p95_ms": 24.703
+        },
+        "draw_calls": {
+          "mean_ms": 175.216666666667,
+          "median_ms": 175.0,
+          "p95_ms": 177.0
+        },
+        "first_frame_ms": 205.115,
+        "frame": {
+          "mean_ms": 261.253283333333,
+          "median_ms": 258.956,
+          "p95_ms": 334.366
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2853.0,
+        "startup_ms": 5272.096,
+        "texture_bytes": 297124833.0
+      }
+    },
+    "native_after": {
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "engine": "4.4.1-stable (official)",
+        "fixed_step": 0.0166666666666667,
+        "friendly": 8,
+        "hostile": 32,
+        "impact_interval_frames": 24,
+        "live_enemies": 6,
+        "measured_frames": 60,
+        "note": "Manual updates; native particles/tweens frozen like the base audit. New charge/impact geometry remains active. Seeding excluded from CPU.",
+        "quality": "full",
+        "resolution": [
+          1400,
+          960
+        ],
+        "warmup_frames": 30
+      },
+      "highland": {
+        "cold_frame": {
+          "mean_ms": 300.148666666667,
+          "median_ms": 250.976,
+          "p95_ms": 315.758
+        },
+        "cold_max_ms": 1695.191,
+        "cpu": {
+          "mean_ms": 43.1402166666667,
+          "median_ms": 11.763,
+          "p95_ms": 442.885
+        },
+        "draw_calls": {
+          "mean_ms": 208.783333333333,
+          "median_ms": 208.0,
+          "p95_ms": 221.0
+        },
+        "first_frame_ms": 211.216,
+        "frame": {
+          "mean_ms": 382.208133333333,
+          "median_ms": 283.728,
+          "p95_ms": 836.002
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2606.0,
+        "startup_ms": 3580.531,
+        "texture_bytes": 186646488.0
+      },
+      "palace": {
+        "cold_frame": {
+          "mean_ms": 278.831333333333,
+          "median_ms": 257.047,
+          "p95_ms": 481.162
+        },
+        "cold_max_ms": 495.563,
+        "cpu": {
+          "mean_ms": 15.32775,
+          "median_ms": 11.684,
+          "p95_ms": 45.288
+        },
+        "draw_calls": {
+          "mean_ms": 162.483333333333,
+          "median_ms": 161.0,
+          "p95_ms": 180.0
+        },
+        "first_frame_ms": 212.69,
+        "frame": {
+          "mean_ms": 311.931883333333,
+          "median_ms": 261.798,
+          "p95_ms": 772.337
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2748.0,
+        "startup_ms": 563.869,
+        "texture_bytes": 268039373.0
+      },
+      "shadow": {
+        "cold_frame": {
+          "mean_ms": 579.323333333333,
+          "median_ms": 261.488,
+          "p95_ms": 918.669
+        },
+        "cold_max_ms": 8567.729,
+        "cpu": {
+          "mean_ms": 10.5576166666667,
+          "median_ms": 9.38,
+          "p95_ms": 20.141
+        },
+        "draw_calls": {
+          "mean_ms": 185.516666666667,
+          "median_ms": 185.0,
+          "p95_ms": 198.0
+        },
+        "first_frame_ms": 225.523,
+        "frame": {
+          "mean_ms": 284.079716666667,
+          "median_ms": 265.706,
+          "p95_ms": 439.437
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2736.0,
+        "startup_ms": 1372.884,
+        "texture_bytes": 268490113.0
+      },
+      "training": {
+        "cold_frame": {
+          "mean_ms": 634.747866666667,
+          "median_ms": 435.802,
+          "p95_ms": 680.936
+        },
+        "cold_max_ms": 6975.046,
+        "cpu": {
+          "mean_ms": 26.9351,
+          "median_ms": 12.051,
+          "p95_ms": 48.009
+        },
+        "draw_calls": {
+          "mean_ms": 175.216666666667,
+          "median_ms": 175.0,
+          "p95_ms": 177.0
+        },
+        "first_frame_ms": 207.681,
+        "frame": {
+          "mean_ms": 323.360116666667,
+          "median_ms": 250.443,
+          "p95_ms": 530.402
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2860.0,
+        "startup_ms": 952.073,
+        "texture_bytes": 297124833.0
+      }
+    },
+    "limitations": [
+      "Shared-host llvmpipe samples, no physical hardware FPS conclusion.",
+      "Native full-game test freezes particles/tweens and manually advances game logic as documented in unchanged opal_stress_audit.gd.",
+      "Opening footer test briefly overlapped the start of baseline render; no engine jobs overlapped final component comparisons.",
+      "Native frame/update samples are mixed and contain large scheduling spikes in both revisions.",
+      "Effects component comparison alternates old/new measurement order and checks1200 exact atlas/mesh/material/transform/visibility states across8chapters."
+    ]
+  },
+  "visual_review": {
+    "count": 12,
+    "quality": "full",
+    "renderer": "llvmpipe Compatibility",
+    "captures": [
+      {
+        "name": "first-fins-desktop",
+        "sha256": "2346bb871373a9ca7bb39a2d9ee957a1be9f130d2b2dab2aa7a709098c8f15f4",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "first-fins-phone",
+        "sha256": "bc4ee30e48c29c49c2271c3ae4e39c6dba58f2a74463058c94620f0d27befa31",
+        "size": [
+          844,
+          390
+        ]
+      },
+      {
+        "name": "family-dialogue-phone",
+        "sha256": "838b5082430eb7787644cc40bf3face6680ff89984c75b7ed8e55bdcff58d9bf",
+        "size": [
+          844,
+          390
+        ]
+      },
+      {
+        "name": "reef-retry-phone",
+        "sha256": "5c5ed6975125df01b8e2890daf4d5116ebdf36255887757b2258c71aa47ed214",
+        "size": [
+          844,
+          390
+        ]
+      },
+      {
+        "name": "super-practice-phone",
+        "sha256": "e534691fa2ac7ae2408a2bbe114ecea8294060ca0c75ec25599b2dd4658ddebd",
+        "size": [
+          844,
+          390
+        ]
+      },
+      {
+        "name": "super-practice-desktop",
+        "sha256": "53046d979cd35c315b66d2aa9acb8c3cb728114df5ea9c025d2a3d36a1bfb569",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "haven-chapter-0",
+        "sha256": "72d9055c53a06f6abe01c3ad46198407d960f23d6c6e0475e0b89d4839ce48db",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "haven-chapter-2",
+        "sha256": "4daf3cd9c328c5fe922123438752caceb44a4a5ee25eab9a3a18315aebe6dd84",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "haven-chapter-4",
+        "sha256": "8a8625d338dcc83afec84a1b67f6baf976f7ab96035ae5fe0abe15ff4679f1af",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "haven-chapter-5",
+        "sha256": "637ac0251fb99cc2a4d24c288d25c02edde1f902777577161b42f55d8fb48906",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "rana-final-approach",
+        "sha256": "ebd4c16a34c14000da5b0c54ad519b65433f2ec9cdb04ec43c54a7b404d2e18b",
+        "size": [
+          1400,
+          960
+        ]
+      },
+      {
+        "name": "busy-palace-full-quality",
+        "sha256": "ceae68c27ec8331705961abfb42e3e7f377b0509552d40362b4ab3ac2d8140bc",
+        "size": [
+          1400,
+          960
+        ]
+      }
+    ],
+    "proof": "godot/device-qa/journey-polish/journey-review.jpg",
+    "proof_sha256": "896605efb0977d372a1967de6f2128e57a10db8efbda74e06871c28eef7351de"
+  },
+  "limitations": [
+    "No physical-device frame-time or FPS guarantee.",
+    "Scripted traversal plus combat regression coverage is not a human full-adventure playthrough.",
+    "Long chapters retain existing content; future optional exploration activities are documented."
+  ],
+  "provenance": {
+    "source": "GitHub-backed feature/journey-polish-v09",
+    "package_log": "audit-v090/package-final.log",
+    "performance_log": "audit-v090/performance/summary.json",
+    "visuals_log": "audit-v090/visuals-final/run.log"
+  }
+}

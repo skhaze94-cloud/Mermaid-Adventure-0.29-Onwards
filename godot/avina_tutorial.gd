@@ -4,11 +4,12 @@ const Royal = preload("res://godot/family_royal_actor.gd")
 const RINGS: Array[Vector2] = [Vector2(1100,430),Vector2(1900,650),Vector2(2850,420)]
 const HIDES: Array[Vector2] = [Vector2(7100,756),Vector2(7240,735),Vector2(7360,760)]
 const TITLES := ["Explore the family lagoon","Three glowing swim rings","Through the elite reef","Very dignified zoomies","Your first sky jump","Over the tall reef","Antonella’s royal gifts","Three volunteer boops","King Daddy’s final trial","A tiny game of peekaboo","Avina’s very first bubble"]
-const HINTS := ["Swim freely • arrows / WASD / stick / touch pad","Swim into each glowing ring · 0 / 3","Swim beyond the reef · relic chests are optional","Aim and Boost • Space / controller B / Boost button","Jump and land • J or Shift / controller A / Jump","Jump before the tall reef · steer right · land beyond it","Collect heart + gold · jump with the power · land","Boost boop Professor Puff, Sir Wobble and Noodle","Dodge slow spells · wait for GREEN · Boost into Daddy","Look for a little bow behind the sparkling coral","B or Z / controller X / Bubble · hold, then release for a super pearl"]
+const HINTS := ["Swim freely • arrows / WASD / stick / touch pad","Swim into each glowing ring · 0 / 3","Swim beyond the reef · relic chests are optional","Aim and Boost • Space / controller B / Boost button","Jump and land • J or Shift / controller A / Jump","Jump before the tall reef · steer right · land beyond it","Collect heart + gold · jump with the power · land","Boost boop Professor Puff, Sir Wobble and Noodle","Dodge slow spells · wait for GREEN · Boost into Daddy","Look for a little bow behind the sparkling coral","B or Z / controller X / Bubble · hold 1.35 seconds, then release for Royal Aurora"]
 var lesson := 0
 var ring_count := 0
 var explore_time := 0.0
 var landing_started := false
+var reef_retry := false
 var jump_origin := 0.0
 var heart_gift := false
 var gold_gift := false
@@ -53,6 +54,7 @@ var talk_king: Button
 var talk_queen: Button
 var dialogue_card: PanelContainer
 var speaker_label: Label
+var dialogue_practice: Button
 var dialogue_scroll: ScrollContainer
 var dialogue_content: VBoxContainer
 var dialogue_text: Label
@@ -88,7 +90,7 @@ func _restore_checkpoint_extras(extra: Dictionary) -> void:
     heart_gift = extra["heart"]; gold_gift = extra["gold"]
     gift_time = clampf(float(extra["gift_time"]),0,8); powered_jump = extra["powered_jump"]
     hide_round = int(extra["hide_round"]); practice_switch["on"] = extra["practice"]
-    dialogue_open = false; playing_daddy = false; landing_started = false
+    dialogue_open = false; playing_daddy = false; landing_started = false; reef_retry = false
     dialogue_card.hide(); choice_card.hide(); lesson_card.show(); premium_hud.show()
     if lesson >= 9:
         if not is_instance_valid(avina):
@@ -149,6 +151,7 @@ func _process(dt: float) -> void:
         reveal_time=maxf(0,reveal_time-dt)
         if reveal_time<=0 and hide_round<3: _place_hidden_baby()
     if is_instance_valid(hide_cover): hide_cover.queue_redraw()
+    _refresh_lesson_hint()
 
 func _physics_process(dt: float) -> void:
     if dialogue_open or (is_instance_valid(choice_card) and choice_card.visible) or (get_tree().paused and state=="playing"): return
@@ -166,7 +169,9 @@ func _update_swimming(dt: float) -> void:
     elif lesson==2 and player.x>3820: _advance_lesson(3,"boost")
     elif lesson in [4,5,6] and landing_started and leap_phase=="":
         if lesson==4: _advance_lesson(5,"air")
-        elif lesson==5 and jump_origin<4800 and player.x>4895: _advance_lesson(6,"gifts")
+        elif lesson==5:
+            if jump_origin<4800 and player.x>4895: _advance_lesson(6,"gifts")
+            else: reef_retry=true
         elif lesson==6 and powered_jump: _advance_lesson(7,"practice")
         landing_started=false
     elif lesson==9 and reveal_time<=0 and player.distance_to(HIDES[hide_round])<95:
@@ -186,7 +191,7 @@ func _begin_leap(chained: bool) -> void:
         native_fx.splash(_hero_screen_position(),Color("ffe39f"),25)
 func _on_bubble_fired() -> void:
     if lesson==10:
-        hint.text="Try a Royal Aurora on the pearl target above the portal — or swim through when you’re ready!" if not practice_switch["on"] else "Super bubble mastered! Swim into the glowing portal →"
+        _refresh_lesson_hint()
         if is_instance_valid(avina):avina.say("Buh-buh!",3)
 
 func _update_collectibles() -> void:
@@ -209,6 +214,7 @@ func _damage(from_pos: Vector2) -> void:
 func _advance_lesson(next: int, conversation := "") -> void:
     lesson=next
     landing_started=false
+    reef_retry=false
     if lesson==6:
         health=mini(health,4)
         treasures.append({"x":5660.0,"y":490.0,"kind":"heart","taken":false,"phase":0.0,"gift":"heart"})
@@ -367,12 +373,63 @@ func _draw_hide_cover() -> void:
 
 func _show_lesson() -> void:
     if not is_instance_valid(heading): return
-    heading.text=TITLES[lesson]
+    heading.text="%s · %s / %s" % [TITLES[lesson],lesson+1,TITLES.size()]
     dialogue.text="King Daddy · Lord of Thunder & Bedtime" if lesson<6 else ("Queen Antonella · The Pearl Queen" if lesson<8 else "The family’s enchanted lagoon")
-    hint.text=HINTS[lesson]
-    if lesson==1: hint.text="Swim into the glowing rings · %s / 3" % ring_count
-    if lesson==9: hint.text="Peekaboo · %s / 3 · swim close to the sparkling coral" % hide_round
+    _refresh_lesson_hint()
     _say("",0)
+
+func _lesson_hint() -> String:
+    # These pointers react to the action the player is practising, without another
+    # modal or a new completion requirement. Charge guidance uses the live state.
+    match lesson:
+        0:
+            return "Swim in any direction · arrows / WASD / stick / touch pad · %s more seconds to find your fins" % maxi(0,ceili(4.0-explore_time))
+        1:
+            return "Swim into the next gold ring · %s / 3 · completed rings turn mint" % ring_count
+        3,4:
+            if energy<.4 and leap_phase=="": return "Keep swimming while the aqua bar refills to 40%, then try again"
+            if lesson==4 and leap_phase!="": return "Beautiful! Steer in the air, then land back in the water"
+        5:
+            if leap_phase!="": return "Steer right over the tall reef, then splash down beyond it"
+            if reef_retry: return "Swim back LEFT of the tall reef · refill energy · Jump, steer right, land beyond it"
+            return "Start left of the tall reef · Jump before it · steer RIGHT in the air · land beyond it"
+        6:
+            if heart_gift and gold_gift: return "Royal power ready! Jump, steer, and land · gold refills if needed"
+            if heart_gift: return "Now collect the gold gift · then Jump and land while the power glows"
+            if gold_gift: return "Collect the pink heart too · then Jump and land · gold refills if needed"
+        7:
+            var remaining := 0
+            for enemy in enemies:
+                if int(enemy.hp)>0: remaining+=1
+            return "Aim toward a volunteer, then Boost · %s / 3 boops · your last three hearts are safe" % (3-remaining)
+        8:
+            if boss_hit_cooldown>0: return "Good hit! Swim clear while Daddy resets · wait for the next mint opening"
+            if _boss_vulnerable():
+                return "MINT PETALS OPEN · aim at Daddy and Boost now!" if energy>=.4 else "Mint opening! Let the aqua bar refill to 40% before Boost"
+            return "Dodge the slow spells · amber means move · mint petals mean Boost · three good hits"
+        9:
+            return "Found her! She’s hiding again… %s / 3" % hide_round if reveal_time>0 else "Peekaboo · %s / 3 · swim close to the sparkling coral" % hide_round
+        10:
+            if practice_switch["on"]: return "Super bubble mastered! Swim into the glowing portal →"
+            if opal.charge.held:
+                if opal.charge.tier()==3: return "ROYAL AURORA READY · face the pearl target at the same depth, then RELEASE!"
+                return "Keep holding Bubble for 1.35 seconds · swim to the pearl target’s depth · then release"
+            if fire_cooldown>0: return "Let Bubble recharge, then hold for Royal Aurora · the practice target is optional"
+            return "Optional: face target at same depth · hold Bubble 1.35 seconds (B / Z / controller X) · release, or take portal →"
+    return HINTS[lesson]
+
+func _refresh_lesson_hint() -> void:
+    if not is_instance_valid(hint): return
+    var next := _lesson_hint()
+    if hint.text!=next: hint.text=next
+
+func _release_tutorial_input() -> void:
+    # Touch releases happen inside the dialogue and are deliberately consumed.
+    # Discard their old vectors so closing a conversation never leaves Sarah
+    # swimming or boosting on a finger that has already lifted.
+    opal.cancel()
+    touches.clear(); touch_vectors.clear()
+    opal_joy_primed=false
 
 func _build_tutorial_ui() -> void:
     tutorial_layer=CanvasLayer.new(); tutorial_layer.layer=15; tutorial_layer.process_mode=Node.PROCESS_MODE_ALWAYS; add_child(tutorial_layer)
@@ -397,13 +454,16 @@ Or she can stay with Mum and Daddy.",21,Color("f3f8ff")))
     alone_button=_button("Go alone · Avina stays with Mum and Daddy",func(): _choose_companion(false)); choices.add_child(alone_button)
     choice_card.hide()
     dialogue_card=_card(); tutorial_layer.add_child(dialogue_card)
-    dialogue_scroll=ScrollContainer.new(); dialogue_scroll.follow_focus=true; dialogue_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; dialogue_card.add_child(dialogue_scroll)
+    var dialogue_shell := VBoxContainer.new(); dialogue_shell.add_theme_constant_override("separation",10); dialogue_card.add_child(dialogue_shell)
+    dialogue_scroll=ScrollContainer.new(); dialogue_scroll.follow_focus=true; dialogue_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED; dialogue_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL; dialogue_shell.add_child(dialogue_scroll)
     var speech := VBoxContainer.new(); dialogue_content=speech; speech.size_flags_horizontal=Control.SIZE_EXPAND_FILL; speech.add_theme_constant_override("separation",12); dialogue_scroll.add_child(speech)
     var top := HBoxContainer.new(); top.add_theme_constant_override("separation",18); speech.add_child(top)
     portrait=TextureRect.new(); portrait.custom_minimum_size=Vector2(90,90); portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE; portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED; top.add_child(portrait)
     speaker_label=_label("",26,Color("f7dfba")); speaker_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL; top.add_child(speaker_label)
     dialogue_text=_label("",21,Color("f3f8ff")); speech.add_child(dialogue_text)
     reply_box=VBoxContainer.new(); reply_box.add_theme_constant_override("separation",10); speech.add_child(reply_box)
+    # Keep practice available without scrolling past all of the story branches.
+    dialogue_practice=_button("Let me try it!",_close_dialogue); dialogue_shell.add_child(dialogue_practice)
     dialogue_card.hide()
     get_viewport().size_changed.connect(_layout_tutorial)
     _layout_tutorial.call_deferred()
@@ -414,10 +474,10 @@ func _switch_hero() -> void:
     switch_button.text="Swim as Sarah" if playing_daddy else "Try King Daddy"
     _sync_native_visuals()
 func _open_dialogue(id: String) -> void:
-    opal.cancel()
+    _release_tutorial_input()
     if dialogue_open: return
     dialogue_id=id; dialogue_open=true; get_tree().paused=true
-    lesson_card.hide(); premium_hud.hide(); dialogue_card.show()
+    lesson_card.hide(); premium_hud.hide(); dialogue_card.show(); dialogue_practice.show()
     var node: Array = Dialogue.NODES[id]
     speaker_label.text=("King Daddy" if node[0]=="king" else "Queen Antonella")+"
 "+node[1]
@@ -427,6 +487,7 @@ func _open_dialogue(id: String) -> void:
     for option in node[3]:
         var item: Array=option
         _add_reply(item[0],func(): _dialogue_answer(node[0],item[1],item[2]))
+    _add_reply("Let me try it!",_close_dialogue)
     _focus_reply()
 func _dialogue_answer(speaker: String, tone: String, response: String) -> void:
     if speaker=="king": king_tone=tone
@@ -459,9 +520,11 @@ func _set_portrait(speaker: String, expression: int) -> void:
     portrait.texture=atlas
 func _layout_dialogue() -> void:
     var view := _ui_view()
-    dialogue_card.size=Vector2(minf(740,view.x-48),clampf(dialogue_content.get_combined_minimum_size().y+36,220,minf(580,view.y-48)))
+    var footer_height := dialogue_practice.get_combined_minimum_size().y+10 if dialogue_practice.visible else 0.0
+    dialogue_card.size=Vector2(minf(740,view.x-48),clampf(dialogue_content.get_combined_minimum_size().y+36+footer_height,220,minf(580,view.y-48)))
     dialogue_card.position=Vector2((view.x-dialogue_card.size.x)*.5,maxf(24,(view.y-dialogue_card.size.y)*.5))
 func _close_dialogue() -> void:
+    _release_tutorial_input()
     dialogue_open=false; dialogue_card.hide()
     get_tree().paused=false
     premium_hud.show(); lesson_card.show()
@@ -476,7 +539,7 @@ func _show_choice() -> void:
 func _choose_companion(along: bool) -> void:
     if choice_made or state!="victory": return
     choice_made=true; chosen_along=along; choice_card.hide()
-    dialogue_open=true; dialogue_card.show()
+    dialogue_open=true; dialogue_card.show(); dialogue_practice.hide()
     var lines := Dialogue.farewell(along,king_tone,queen_tone)
     speaker_label.text="King Daddy · a royal send-off"; _set_portrait("king",7)
     dialogue_text.text=lines[0]
@@ -503,7 +566,7 @@ func _restart() -> void:
     lesson=0; ring_count=0; explore_time=0; arrival_time=0
     practice_switch["on"] = false
     heart_gift=false; gold_gift=false; gift_time=0; powered_jump=false
-    landing_started=false; hide_round=0; reveal_time=0; choice_made=false
+    landing_started=false; reef_retry=false; hide_round=0; reveal_time=0; choice_made=false
     playing_daddy=false; trial_phase=-1; cloud_active=false; wave_active=false
     king_world=Vector2(680,-160); king_tone="earnest"; queen_tone="earnest"
     if is_instance_valid(avina): avina.queue_free(); avina=null

@@ -19,6 +19,7 @@ static func boss_health(id: String) -> int:
     var boss: Dictionary = source(id).get("boss",{})
     return int(boss.get("max",boss.get("maxHp",boss.get("hp",3))))
 static func boss_x(id: String) -> float:
+    if id == "rana": return length_for(id)-1350.0
     return 3280.0 if id == "nessie" else float(source(id).get("boss",{}).get("x",6900))
 static func waterline(id: String) -> float:
     return float(source(id).get("meta",{}).get("waterline",310))
