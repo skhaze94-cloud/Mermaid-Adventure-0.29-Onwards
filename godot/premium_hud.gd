@@ -420,7 +420,7 @@ func _refresh() -> void:
     boss_meter.value = info.get("boss_health",1.0)
     boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + ((" · Hit now" if info.get("bubble",false) else " · Boost now") if info.get("boss_vulnerable",false) else "")
     boss_hint.text = String(info.get("boss_attack",""))
-    if info.get("boss_vulnerable",false) and not boss_hint.text.is_empty(): boss_hint.text="Mint petals · Bubble or Boost now"
+    if info.get("boss_vulnerable",false) and not boss_hint.text.is_empty(): boss_hint.text="Mint petals · Bubble or Boost now" if info.get("bubble",false) else "Mint petals · Boost now"
     boss_hint.visible = not boss_hint.text.is_empty()
     touch_layer.visible = info.get("touch",false) and not portrait and not info.get("paused",false) and not info.get("victory",false)
     touch_layer.modulate.a = control_opacity
@@ -500,6 +500,9 @@ func _refresh_charge() -> void:
     if cooling: charge_label.text = "Bubble cooling"
     charge_meter.value = 1-bubble_cooldown_fraction() if cooling else float(info.get("charge_progress",1)) if tier>0 else 1.0
 func show_reward(reward: Dictionary, at: Vector2) -> void:
+    if reward.get("boss_clear",false):
+        for i in range(floating.size()):
+            float_ages[i]=0.9;floating[i].hide()
     var slot := 0
     for i in range(float_ages.size()):
         if float_ages[i]>float_ages[slot]: slot=i
@@ -512,11 +515,12 @@ func show_reward(reward: Dictionary, at: Vector2) -> void:
     ui.x = clampf(ui.x,20,game_size.x-140)
     ui.y = clampf(ui.y,210,game_size.y-190)
     float_origins[slot] = ui
+    floating[slot].position = ui
     float_ages[slot] = 0
     floating[slot].visible = true
     score_pulse = 1.0
-    if (major or int(reward["extra"])>0) and banner_age>0.7:
-        banner_label.text = "Treasure Bonus!" if category == "Treasure" else ("Combo! ×%s" % reward["multiplier"] if reward["extra"]>0 else "Wonderful! +%s" % reward["points"])
+    if reward.get("boss_clear",false) or ((major or int(reward["extra"])>0) and banner_age>0.7):
+        banner_label.text = ("BOSS CLEAR!" if reward.get("boss_clear",false) else "Boss hit! +%s" % reward["points"]) if category=="Boss" else "Treasure Bonus!" if category == "Treasure" else ("Combo! ×%s" % reward["multiplier"] if reward["extra"]>0 else "Wonderful! +%s" % reward["points"])
         banner_age = 0.0
         banner.visible = true
         # Keep the celebration on the opposite side from the action.

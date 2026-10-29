@@ -54,9 +54,9 @@ func run() -> void:
     scene.fire_cooldown=0;scene.opal.reset();scene.opal.begin("audit");scene.opal.advance(.675)
     await snap(scene,"phone-charge-progress");await retire(scene);await desktop()
     for index in [3,4,5,6]:
-        scene=setup(paths[index]);scene.boss_clock=1.35;scene.attack_clock=.9;scene._update_boss(0)
+        scene=setup(paths[index]);scene.boss_clock=1.35;scene.attack_clock=1.2;scene._update_boss(0)
         await snap(scene,"signature-"+scene.chapter_id+"-warning")
-        scene._update_boss(.281);scene._update_hostile_shots(.12)
+        scene._update_boss(.481);scene._update_hostile_shots(.12)
         await snap(scene,"signature-"+scene.chapter_id+"-flight");await retire(scene)
     scene=setup(paths[7]);scene.lesson=10;scene.boss_hp=0;scene.bubble_unlocked=true
     scene.player=Vector2(7240,500);scene.camera=6570;scene.dialogue_open=false;scene.dialogue_card.hide();scene.choice_card.hide();scene._show_lesson()

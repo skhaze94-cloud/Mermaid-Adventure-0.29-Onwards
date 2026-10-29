@@ -271,7 +271,7 @@ func _update_boss(dt: float) -> void:
                 bubble_unlocked=true
                 _advance_lesson(9,"win")
                 dialogue_done=_start_hide_seek
-        elif segment!=6: _damage(boss_position)
+        elif segment not in [0,6]: _damage(boss_position)
 
 func _sync_native_visuals() -> void:
     super._sync_native_visuals()
@@ -314,6 +314,8 @@ func _draw_world(view: Vector2) -> void:
             draw_arc(point,56,0,TAU,64,Color("c7ffee") if i<ring_count else Color("ffe3a6"),5)
             if i==ring_count: draw_arc(point,64,0,TAU,64,Color(1,.9,.6,.3),2)
     if lesson==8:
+        if trial_phase==3:
+            draw_dashed_line(boss_position-Vector2(camera,0),boss_position-Vector2(camera,0)-Vector2(215,45),Color("bfe8ff"),2,12)
         if boss_phase=="windup": draw_dashed_line(boss_position-Vector2(camera,0),boss_target-Vector2(camera,0),Color("bfe8ff"),2,12)
         _draw_text(boss_position-Vector2(camera,0)+Vector2(-175,-178),move_name,18)
     if queen_demo>0:
@@ -587,7 +589,7 @@ func _opal_hit_switch(_index: int, packet: Dictionary = {}) -> void:
     hint.text = "Super bubble mastered! Swim into the glowing portal →"
     _save_checkpoint()
 func _hud_snapshot() -> Dictionary:
-    var result:=super._hud_snapshot();result["boss_active"]=lesson==8 and boss_hp>0;result["bubble"]=bubble_unlocked and lesson>=10
+    var result:=super._hud_snapshot();result["boss_attack"]=move_name if lesson==8 else "";result["boss_active"]=lesson==8 and boss_hp>0;result["bubble"]=bubble_unlocked and lesson>=10
     return result
 func _opal_arena_active() -> bool:return lesson==8 and super._opal_arena_active()
 func _opal_opening_soon() -> bool:

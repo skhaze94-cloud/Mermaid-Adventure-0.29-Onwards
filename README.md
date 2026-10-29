@@ -1,4 +1,4 @@
-# Mermaid Adventure - v0.7.0 Bubble Polish
+# Mermaid Adventure - v0.8.0 Boss Polish
 
 An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
 
@@ -21,3 +21,5 @@ The repository retains the original v0.28 baseline and release history. Review d
 Bubble Polish gives charged shots faster travel (700 / 780 / 860 units per second), distinct release pitches, a one-time Prism readiness cue and short charged-hit controller feedback. Royal Aurora deals four ordinary-enemy damage with 0.45s recovery; charge thresholds, boss damage caps, guard rules, input cancellation and visual pools are retained.
 
 [Bubble balance and validation](godot/BUBBLE-POLISH.md).
+
+Boss Polish adds truthful world-locked warnings, clearer encounter cues, recovery windows for charging, distinct volley pacing and consistent victory feedback. [Encounter review](godot/BOSS-POLISH.md).

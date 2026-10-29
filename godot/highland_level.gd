@@ -69,6 +69,7 @@ var avina: Node2D
 var bubbles: Array[Dictionary] = []
 var boss_hp := BOSS_MAX_HEALTH
 var boss_hit_cooldown := 0.0
+var boss_volley = preload("res://godot/boss_volley.gd").new()
 var boss_clock := 0.0
 var bubble_unlocked := false
 var bubble_shots: Array[Dictionary] = []
@@ -576,7 +577,15 @@ func _award(id: String, category: String, amount: int, at: Vector2, chain: bool)
     if is_instance_valid(avina) and category in ["Treasure","Secrets","Pearls"] and avina.speech_time<=0:
         avina.say("Ooooh!",1.7)
     if category == "Boss":
-        _ocean_event("boss_defeat" if amount >= 1000 else "boss_hit",at)
+        var clear := id in ["boss-defeat","boss:clear","training:dad:clear"] or id.begins_with("boss:clear:")
+        reward["boss_clear"]=clear
+        _ocean_event("boss_defeat" if clear else "boss_hit",at)
+        if clear:
+            boss_volley.clear()
+            hostile_shots.clear()
+            energy=1.0
+            invulnerable=maxf(invulnerable,1.2)
+            _say("Royal trial complete! Talk to your family." if _stage_index()==7 else "Carlo defeated! Bubble unlocked · follow the portal." if _stage_index()==0 else _boss_name()+" defeated! Follow the glowing portal.",4,true)
     elif category == "Enemies": _ocean_event("impact",at)
     elif category in ["Treasure","Secrets"]: _ocean_event("treasure",at)
     elif category == "Pearls": _ocean_event("pearl",at)
@@ -712,6 +721,7 @@ func _hud_snapshot() -> Dictionary:
         "touch": simulated_touch or DisplayServer.is_touchscreen_available(),
         "pressed": touches.values(),
         "pad": _touch_direction(),
+        "boss_attack": _boss_attack_hint(),
         "boss_phase": boss_phase,
         "boss_pattern": boss_pattern,
         "waterfall": waterfall_phase,
@@ -973,6 +983,7 @@ func _respawn() -> void:
     _say("Back to your checkpoint!", 2.6)
 
 func _reset_transients() -> void:
+    boss_volley.clear()
     message_priority = false
     message_time = 0.0
     opal.reset()
@@ -1015,6 +1026,7 @@ func _reset_transients() -> void:
 
 func _update_boss(dt: float) -> void:
     if player.x < _boss_home() - 850.0 or boss_hp <= 0:
+        boss_phase="windup";boss_phase_time=0;boss_clock=0
         return
     var serial := retry_serial
     boss_clock += dt
@@ -1022,7 +1034,7 @@ func _update_boss(dt: float) -> void:
     if boss_phase == "windup":
         if boss_phase_time <= dt:
             boss_target = player
-        if boss_phase_time >= 0.95:
+        if boss_phase_time >= 1.1:
             boss_phase = "attack"
             boss_phase_time = 0.0
             if boss_pattern == 1:
@@ -1041,7 +1053,7 @@ func _update_boss(dt: float) -> void:
         if boss_phase_time >= 0.65:
             boss_phase = "recover"
             boss_phase_time = 0.0
-    elif boss_phase_time >= 2.1:
+    elif boss_phase_time >= 2.5:
         boss_phase = "windup"
         boss_phase_time = 0.0
         boss_pattern = (boss_pattern + 1) % 3
@@ -1065,7 +1077,7 @@ func _update_boss(dt: float) -> void:
                 native_boss.defeat()
             else:
                 _say("Carlo hit! " + str(boss_hp) + " hearts remaining.", 1.2)
-        elif boost_time <= 0.0 and boss_phase != "recover":
+        elif boost_time <= 0.0 and boss_phase == "attack":
             _damage(boss_position)
 
 func _boss_vulnerable() -> bool:
@@ -1244,6 +1256,10 @@ func _draw() -> void:
         _draw_waterfall(s)
     else:
         _draw_world(s)
+        if not boss_volley.rays.is_empty():
+            draw_set_transform(Vector2(-camera,0))
+            draw_multiline(boss_volley.rays,Color("ffe3a6"),2,true)
+            draw_set_transform(Vector2.ZERO)
     # All text/UI is now drawn by PremiumHud on a separate CanvasLayer.
     # It remains crisp and remains legible above GPU post-processing.
 
@@ -1302,7 +1318,12 @@ func _draw_boss() -> void:
     if boss_phase == "windup":
         var origin := boss_position - Vector2(camera, 0)
         if boss_pattern == 0:
-            draw_arc(origin, 280, -PI, 0, 40, Color(1, 0.64, 0.38, 0.75), 4)
+            draw_arc(origin, 280, 0, TAU, 80, Color(1, 0.64, 0.38, 0.75), 4)
+        elif boss_pattern==1:
+            var aim: Vector2=(boss_target-boss_position).normalized()
+            if aim==Vector2.ZERO:aim=Vector2.LEFT
+            for angle in [-.24,0,.24]:
+                draw_line(origin,origin+aim.rotated(angle)*minf(600,boss_target.distance_to(boss_position)),Color(1,.72,.44,.8),3)
         else:
             draw_line(origin, boss_target - Vector2(camera, 0), Color(1, 0.72, 0.44, 0.8), 3)
 
@@ -1505,3 +1526,12 @@ func _hit_enemy(enemy: Dictionary, damage: int, boosted: bool, incoming:=Vector2
     if boosted:invulnerable=maxf(invulnerable,0.5)
     if int(enemy["hp"])<=0:_release_loot(enemy);_award("enemy:%s" % enemies.find(enemy),"Enemies",_opal_enemy_reward(),at,true)
     return applied
+
+func _boss_attack_hint() -> String:
+    if boss_hit_cooldown>0:return "Hit landed · wait for lavender arcs"
+    if _boss_vulnerable() and not bubble_unlocked and not _opal_boost_available():return "Recovery · let your energy refill"
+    if _stage_index()==7:return "Royal trial · watch Daddy’s next move"
+    if _boss_vulnerable():return "Recovery · Bubble or Boost" if bubble_unlocked else "Recovery · Boost now"
+    if _stage_index()==1:return "Duke’s fan · watch Flip above" if boss_volley.pending.is_empty() else "Duke’s fan · lanes locked"
+    if _stage_index()==2:return "Maraca fan · leave the marked lanes" if not boss_volley.pending.is_empty() else "Miguel’s dance · keep a dodge route"
+    return ["Claw circle · swim outside the ring","Pearl fan · dodge between lanes","Crab dash · leave the marked path"][clampi(boss_pattern,0,2)]

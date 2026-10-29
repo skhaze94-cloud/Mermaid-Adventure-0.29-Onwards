@@ -1,5 +1,5 @@
 Sarah Maria — Mermaid Adventure
-v0.7.0 — Bubble Polish / Opal Current
+v0.8.0 — Boss Polish / Opal Current
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
 2. Import the ROOT project.godot in Godot 4.4 or newer. Tested with 4.4.1.
@@ -31,3 +31,7 @@ reports remain in the GitHub repository rather than the playable ZIP.
 Bubble tuning: Pearl Pop 1 power / 0.20s recovery; Prism Bloom 2 / 0.35s;
 Royal Aurora 4 / 0.45s against ordinary enemies. Boss damage stays capped at 2.
 Charged bubbles travel faster; guard and vulnerability rules still apply.
+
+Boss tips: leave marked attack lanes, then attack during mint recovery.
+Lavender arcs mean the last hit is cooling. Carlo teaches Boost before Bubble.
+Duke and Flip share a comedy opening; Rana clears her pearls before her laser.

@@ -27,6 +27,8 @@ var shot_sequence := 0
 var pending_volley: Array[Dictionary] = []
 var volley_warning := 0.0
 var volley_rays := PackedVector2Array()
+var volley_origin := Vector2.ZERO
+var laser_cleared := false
 
 func _ready() -> void:
     fallen = true
@@ -73,7 +75,8 @@ func _boss_name() -> String: return String(Chapter.source(chapter_id).get("boss"
 func _hud_snapshot() -> Dictionary:
     var result := super._hud_snapshot()
     result["journey_final"] = chapter_id=="nessie"
-    result["boss_attack"] = Patterns.NAMES.get(chapter_id,"")
+    result["boss_attack"] = ("Laser locked · change depth now" if chapter_id=="rana" and fmod(boss_clock,7.0)>=1.3 and fmod(boss_clock,7.0)<3.3 else Patterns.NAMES.get(chapter_id,""))
+    if boss_hit_cooldown>0:result["boss_attack"]="Hit landed · wait for lavender arcs"
     return result
 func _sync_native_visuals() -> void:
     super._sync_native_visuals()
@@ -120,6 +123,7 @@ func _restart() -> void:
     _say(_intro_line(),5)
 func _reset_transients() -> void:
     super._reset_transients()
+    laser_cleared=false
     attack_clock = 0
     shot_sequence = 0
     pulse_radius = 0
@@ -133,7 +137,10 @@ func _update_boss(dt: float) -> void:
     if boss_hp<=0:
         pending_volley.clear();volley_rays.clear();volley_warning=0
         return
-    if player.x < _boss_home()-850: return
+    if player.x < _boss_home()-850:
+        pending_volley.clear();volley_rays.clear();volley_warning=0
+        boss_clock=0;attack_clock=0;boss_phase="windup"
+        return
     var serial := retry_serial
     boss_clock += dt
     attack_clock += dt
@@ -141,6 +148,7 @@ func _update_boss(dt: float) -> void:
     boss_phase = "recover" if cycle>=4 else ("windup" if cycle<1.3 else "attack")
     boss_position = Vector2(_boss_home(),570+sin(boss_clock*.8)*70)
     if cycle<1.3:
+        laser_cleared=false
         laser_y = player.y
         pending_volley.clear();volley_rays.clear();volley_warning=0
     elif cycle<4:
@@ -150,12 +158,19 @@ func _update_boss(dt: float) -> void:
             volley_warning = maxf(0,volley_warning-dt)
             if volley_warning<=0:
                 for shot in pending_volley:
-                    _spawn_hostile(boss_position+Vector2(shot["offset"]),shot["direction"],270)
+                    _spawn_hostile(volley_origin+Vector2(shot["offset"]),shot["direction"],270)
                 pending_volley.clear();volley_rays.clear()
-        if attack_clock>.8 and pending_volley.is_empty():
+        if chapter_id=="rana" and cycle>=2.3:
+            if not laser_cleared:
+                for i in range(hostile_shots.size()-1,-1,-1):
+                    if hostile_shots[i].get("style","")=="rana":hostile_shots.remove_at(i)
+                laser_cleared=true
+            pending_volley.clear();volley_rays.clear();volley_warning=0
+        if attack_clock>float(Patterns.INTERVALS.get(chapter_id,1.0)) and pending_volley.is_empty() and cycle<3.5 and not (chapter_id=="rana" and cycle>=2.3):
             attack_clock = 0
             shot_sequence += 1
-            pending_volley = Patterns.plan(chapter_id,boss_position,player,shot_sequence)
+            volley_origin=boss_position
+            pending_volley = Patterns.plan(chapter_id,volley_origin,player,shot_sequence)
             volley_warning = Patterns.WARNING_SECONDS
             volley_rays = Patterns.warning_points(pending_volley)
         if chapter_id=="rana" and cycle>=2.8 and cycle<3.3 and absf(player.y-laser_y)<23 and player.x>_boss_home()-800 and boost_time<=0:
@@ -226,12 +241,12 @@ func _paint_chapter_boss() -> void:
     if not volley_rays.is_empty():
         var tint: Color = {"palace":Color("ffc9ee"),"rana":Color("ffe39f"),"nessie":Color("a6efff"),"blackwater":Color("ffb5ce")}.get(chapter_id,Color.WHITE)
         tint.a = .40+.35*(1-volley_warning/Patterns.WARNING_SECONDS)
-        draw_set_transform(pos)
+        draw_set_transform(volley_origin-Vector2(camera,0))
         draw_multiline(volley_rays,tint,2,true)
         draw_set_transform(Vector2.ZERO)
     # Shared mesh actor supplies connected fins, breathing and hit/defeat reactions.
-    if chapter_id=="rana" and boss_phase!="recover":
-        draw_line(Vector2(pos.x-850,laser_y),Vector2(pos.x,laser_y),Color(1,.3,.55,.65),5 if boss_phase=="attack" else 2)
+    if chapter_id=="rana" and fmod(boss_clock,7.0)>=1.3 and fmod(boss_clock,7.0)<3.3:
+        draw_line(Vector2(pos.x-850,laser_y),Vector2(pos.x,laser_y),Color(1,.3,.55,.65),5 if fmod(boss_clock,7.0)>=2.8 and fmod(boss_clock,7.0)<3.3 else 2)
     if chapter_id=="nessie":
         if pulse_radius>0: draw_arc(pos,pulse_radius,0,TAU,48,Color(.75,.5,1,.45),4)
 
