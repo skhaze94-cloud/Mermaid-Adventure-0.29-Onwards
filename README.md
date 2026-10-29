@@ -1,4 +1,4 @@
-# Mermaid Adventure - v0.6.1 Adventure Polish
+# Mermaid Adventure - v0.7.0 Bubble Polish
 
 An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
 
@@ -17,3 +17,7 @@ Princess Polish Sarah triples the sampled body, arm and performance tracks and t
 The v0.4 interface and scenery cleanup remains. Original artwork, physics, controller mappings and connected adventure progression are preserved. Gentle Motion and Economy settings suppress secondary articulation and the new wake.
 
 The repository retains the original v0.28 baseline and release history. Review details: `godot/V05-PRINCESS-REVIEW.md`; checks: `godot/validation-v05.json`. The original MermaidADVENTURE repository is unchanged.
+
+Bubble Polish gives charged shots faster travel (700 / 780 / 860 units per second), distinct release pitches, a one-time Prism readiness cue and short charged-hit controller feedback. Royal Aurora deals four ordinary-enemy damage with 0.45s recovery; charge thresholds, boss damage caps, guard rules, input cancellation and visual pools are retained.
+
+[Bubble balance and validation](godot/BUBBLE-POLISH.md).

@@ -13,6 +13,7 @@ var targets: Array[Dictionary]=[]
 var retired: Dictionary={}
 var retired_order: Array[String]=[]
 var ready_chimed:=false
+var prism_chimed:=false
 var suppressed: Dictionary={}
 var obstacle_signature:=-1
 var friendly_walls: Array[Rect2]=[]
@@ -34,7 +35,7 @@ func begin(source: String) -> bool:
     if suppressed.has(source):return false
     charge.cooldown=level.fire_cooldown
     var accepted: bool=charge.begin(source,level.bubble_unlocked,level._bubble_context_allowed())
-    if accepted:ready_chimed=false
+    if accepted:ready_chimed=false;prism_chimed=false
     return accepted
 func advance(dt: float) -> void:
     if not level._bubble_context_allowed():
@@ -43,6 +44,8 @@ func advance(dt: float) -> void:
         return
     charge.cooldown=level.fire_cooldown;charge.advance(dt,level._bubble_context_allowed())
     level.fire_cooldown=charge.cooldown
+    if charge.held and charge.tier()==2 and not prism_chimed:
+        prism_chimed=true;level._sfx("ui",0,1.15)
     if charge.held and charge.tier()==3 and not ready_chimed:
         ready_chimed=true;level._sfx("pearl",0);level._vibrate(0.11,0.04,0.07)
 func release(source: String) -> bool:
@@ -68,7 +71,7 @@ func release(source: String) -> bool:
     packet["pos"]=level._opal_cast_position(packet["tier"]);packet["direction"]=level.facing
     packet["life"]=1.8;packet["consumed"]=false;level.bubble_shots.append(packet)
     charge.commit_release(local_id,true);level.fire_cooldown=charge.cooldown
-    level._sfx("bubble");level.native_rig.play_gesture("cast")
+    level._sfx("bubble",1,[1.20,1.0,0.82][int(packet["tier"])-1]);level.native_rig.play_gesture("cast")
     if is_instance_valid(level.avina):level.avina.request_bubble()
     if is_instance_valid(level.opal_fx):level.opal_fx.hide_preview()
     level._on_bubble_fired();return true
@@ -100,7 +103,8 @@ func update_friendly(dt: float) -> void:
         var from: Vector2=shot.get("spawn_from",shot["pos"]);shot.erase("spawn_from")
         var travel:=minf(maxf(dt,0.0),float(shot["life"]))
         var incoming:=Vector2(float(shot["direction"]),0)
-        var to: Vector2=Vector2(shot["pos"])+incoming*700.0*travel
+        var speed:=clampf(float(shot.get("speed",700.0)),700.0,860.0)
+        var to: Vector2=Vector2(shot["pos"])+incoming*speed*travel
         var hit:=_nearest(from,to,shot);shot["life"]=float(shot["life"])-maxf(dt,0.0)
         if hit.is_empty():shot["pos"]=to;continue
         var at:=from.lerp(to,float(hit["t"]));shot["pos"]=at
@@ -111,13 +115,19 @@ func update_friendly(dt: float) -> void:
         if kind==1:level._opal_hit_switch(index,shot)
         elif kind==2:
             var enemy: Dictionary=level.enemies[index]
-            var amount:=1 if shot.get("baby",false) else clampi(int(shot.get("damage",1)),1,3)
+            var amount:=1 if shot.get("baby",false) else clampi(int(shot.get("damage",1)),1,4)
             damage=level._hit_enemy(enemy,amount,false,incoming)
+            if damage>0 and not shot.get("baby",false):
+                # A consumed packet cannot hit twice; let the next deliberate
+                # bubble land after Sarah's own recovery instead of wasting it.
+                enemy["hit_cd"]=minf(float(enemy["hit_cd"]),Charge.COOLDOWN[clampi(int(shot.get("tier",1)),1,3)-1]*0.8)
         elif kind==3:
             var target: Dictionary=targets[index]
             if not shot.get("baby",false) and shot.get("owner","sarah")=="sarah" and target["bubble"] and target["open"] and float(target["cooldown"])<=0:
                 damage=level._opal_hit_boss(target["id"],clampi(int(shot.get("boss_damage",1)),1,2))
         if serial!=level.retry_serial:return
+        if damage>0 and int(shot.get("tier",1))>=2 and not level.reduced_fx:
+            level._vibrate(0.12,0.08 if int(shot["tier"])==2 else 0.20,0.045)
         if is_instance_valid(level.opal_fx):level.opal_fx.impact(at,int(shot.get("tier",1)),damage>0)
     Sweep.compact(level.bubble_shots)
 func _nearest(from: Vector2, to: Vector2, shot: Dictionary) -> Dictionary:

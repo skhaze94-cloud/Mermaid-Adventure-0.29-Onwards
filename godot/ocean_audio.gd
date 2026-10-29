@@ -30,7 +30,7 @@ func _ready() -> void:
     ambience.volume_db = -60
     add_child(ambience)
 
-func play(effect: String, priority := 1) -> bool:
+func play(effect: String, priority := 1, pitch_override := 0.0) -> bool:
     if not streams.has(effect): return false
     var now := Time.get_ticks_msec()
     var interval := 100 if effect in ["pearl","boss_hit","impact"] else (180 if effect == "swim" else 55)
@@ -56,6 +56,7 @@ func play(effect: String, priority := 1) -> bool:
     voice.stream_paused = false
     voice.volume_db = -27.0 if effect == "swim" else (-23.0 if effect == "ui" else (-19.0 if effect == "pearl" else -15.0))
     voice.pitch_scale = [0.97,1.0,1.035][variant%3] if effect in ["pearl","swim","bubble"] else 1.0
+    if pitch_override>0:voice.pitch_scale=clampf(pitch_override,0.7,1.4)
     priorities[slot] = priority
     if playback_enabled: voice.play()
     return true
