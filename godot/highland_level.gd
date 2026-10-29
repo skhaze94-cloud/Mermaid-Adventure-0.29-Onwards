@@ -90,6 +90,8 @@ var touches: Dictionary = {}
 var simulated_touch := false
 var ocean_life: Node2D
 var ocean_feedback: Node2D
+var whimsy_garden: Node2D
+var whimsy_moments: Node2D
 var swim_audio_clock := 0.0
 var music_player: AudioStreamPlayer
 var native_rig: Node2D
@@ -175,6 +177,11 @@ func _ready() -> void:
     ocean_feedback = preload("res://godot/ocean_feedback.gd").new()
     add_child(ocean_life)
     add_child(ocean_feedback)
+    whimsy_garden = preload("res://godot/whimsy_garden.gd").new()
+    whimsy_moments = preload("res://godot/whimsy_moments.gd").new()
+    add_child(whimsy_garden)
+    move_child(whimsy_garden,0)
+    add_child(whimsy_moments)
     opal_fx=OpalEffects.new();add_child(opal_fx);move_child(opal_fx,1)
     opal_fx.configure(_opal_art_chapter(),opal_friendly_atlas,opal_enemy_atlas,opal_boss_atlas)
     opal.bind(self)
@@ -648,6 +655,9 @@ func _physics_process(dt: float) -> void:
     splash_window = maxf(0.0, splash_window - dt)
     opal.advance(dt)
     opal_fx.advance(dt)
+    _sync_whimsy_world()
+    whimsy_garden.advance(dt)
+    whimsy_moments.advance(dt)
     leap_cooldown = maxf(0.0, leap_cooldown - dt)
     boss_hit_cooldown = maxf(0.0, boss_hit_cooldown - dt)
     energy = minf(1.0, energy + dt * 0.23)
@@ -733,6 +743,7 @@ func _hud_snapshot() -> Dictionary:
     }
 
 func _sync_native_visuals() -> void:
+    _sync_whimsy_world()
     opal.refresh_targets()
     if is_instance_valid(opal_fx):opal_fx.sync(self)
     if is_instance_valid(native_rig):native_rig.set_bubble_charge(opal.charge.held,opal.charge.elapsed/1.35)
@@ -1056,6 +1067,8 @@ func _reset_transients() -> void:
     boss_hit_cooldown = 0.0
     native_fx.reset_transients()
     if is_instance_valid(ocean_feedback): ocean_feedback.clear()
+    if is_instance_valid(whimsy_garden): whimsy_garden.reset()
+    if is_instance_valid(whimsy_moments): whimsy_moments.clear()
 
 func _update_boss(dt: float) -> void:
     if player.x < _boss_home() - 850.0 or boss_hp <= 0:
@@ -1509,6 +1522,9 @@ func _sfx(effect: String, priority := 1, pitch := 0.0) -> void:
 func _ocean_event(effect: String, at: Vector2, direction := Vector2.RIGHT) -> void:
     _sfx(effect,3 if effect in ["boss_defeat","checkpoint"] else 1)
     if is_instance_valid(ocean_feedback): ocean_feedback.burst(at,effect,direction)
+    if is_instance_valid(whimsy_moments):
+        _sync_whimsy_world()
+        whimsy_moments.celebrate(at,effect,direction)
 
 func _uses_highland_scenery() -> bool: return true
 
@@ -1569,3 +1585,18 @@ func _boss_attack_hint() -> String:
     if _stage_index()==1:return "Duke’s fan · watch Flip above" if boss_volley.pending.is_empty() else "Duke’s fan · lanes locked"
     if _stage_index()==2:return "Maraca fan · leave the marked lanes" if not boss_volley.pending.is_empty() else "Miguel’s dance · keep a dodge route"
     return ["Claw circle · swim outside the ring","Pearl fan · dodge between lanes","Crab dash · leave the marked path"][clampi(boss_pattern,0,2)]
+
+func _whimsy_combat_active() -> bool:
+    if _opal_arena_active():return true
+    for enemy in enemies:
+        if int(enemy["hp"])<=0 or absf(float(enemy["x"])-player.x)>650:continue
+        var mode: String=enemy.get("mode","")
+        if mode in ["windup","attack"] and Vector2(enemy["x"],enemy["y"]).distance_squared_to(player)<422500:return true
+    return false
+
+func _sync_whimsy_world() -> void:
+    if not is_instance_valid(whimsy_garden) or not is_instance_valid(whimsy_moments):return
+    var enabled: bool = waterfall_phase=="" and state in ["playing","paused"] and not get_node("/root/SceneFlow").busy
+    var in_combat := _whimsy_combat_active()
+    whimsy_garden.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,enabled,in_combat)
+    whimsy_moments.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,enabled,in_combat)

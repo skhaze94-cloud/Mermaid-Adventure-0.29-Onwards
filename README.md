@@ -1,4 +1,4 @@
-# Mermaid Adventure - v0.9.0 Journey Polish
+# Mermaid Adventure - v0.10.0 Whimsy
 
 An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
 
@@ -25,3 +25,5 @@ Bubble Polish gives charged shots faster travel (700 / 780 / 860 units per secon
 Boss Polish adds truthful world-locked warnings, clearer encounter cues, recovery windows for charging, distinct volley pacing and consistent victory feedback. [Encounter review](godot/BOSS-POLISH.md).
 
 Journey Polish strengthens the complete route: collision-safe checkpoint retries, named rest pearls across long stretches, refreshed energy at checkpoints and Rana’s fight at the final approach. The family opening has responsive practice guidance, a direct return to play from conversations, and exact super-bubble teaching. Pooled effects reuse unchanged frame and impact calculations at full visual density. [Journey review, verification and remaining work](godot/JOURNEY-POLISH.md).
+
+Whimsy adds eight small animated reef tableaux, proximity responses, restrained positive-event flourishes, a quiet stillness surprise and a slow pearl constellation on the title artwork. It reuses the existing paintings, keeps combat cues clear, supports Gentle Motion/Economy, and changes no gameplay or save rules. [Whimsy review and validation](godot/WHIMSY.md).
