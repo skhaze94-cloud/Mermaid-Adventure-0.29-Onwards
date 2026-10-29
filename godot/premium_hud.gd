@@ -500,6 +500,9 @@ func _refresh_charge() -> void:
     if cooling: charge_label.text = "Bubble cooling"
     charge_meter.value = 1-bubble_cooldown_fraction() if cooling else float(info.get("charge_progress",1)) if tier>0 else 1.0
 func show_reward(reward: Dictionary, at: Vector2) -> void:
+    if reward.get("boss_clear",false):
+        for i in range(floating.size()):
+            float_ages[i]=0.9;floating[i].hide()
     var slot := 0
     for i in range(float_ages.size()):
         if float_ages[i]>float_ages[slot]: slot=i
@@ -512,6 +515,7 @@ func show_reward(reward: Dictionary, at: Vector2) -> void:
     ui.x = clampf(ui.x,20,game_size.x-140)
     ui.y = clampf(ui.y,210,game_size.y-190)
     float_origins[slot] = ui
+    floating[slot].position = ui
     float_ages[slot] = 0
     floating[slot].visible = true
     score_pulse = 1.0

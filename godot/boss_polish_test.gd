@@ -77,6 +77,7 @@ func run() -> void:
     check(level.hostile_shots.is_empty() and level.energy==1 and level.invulnerable>=1.2,"clear gives a safe celebratory exit")
     check(audio.events.get("boss_defeat",0)==clears+1,"clear uses its victory audio")
     check(level.premium_hud.banner_label.text=="BOSS CLEAR!","clear banner immediately overrides the preceding hit reward")
+    check(level.premium_hud.floating.filter(func(label):return label.visible).size()==1,"clear bonus replaces overlapping last-hit numbers")
     check(level.performance.visible and level.performance.defeat_age>=0,"defeated portrait gets its authored fade")
     check(level.performance.pose=="recover","defeat settles the portrait instead of continuing attack gestures")
     level._opal_hit_boss("nessie",2)
