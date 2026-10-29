@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://godot/avina_tutorial.gd" id="1_level"]
 [ext_resource type="Script" path="res://godot/native_fx.gd" id="2_effects"]
@@ -21,8 +21,15 @@
 [ext_resource type="Texture2D" path="res://dist/assets/training-lagoon.webp" id="15_painting"]
 [ext_resource type="Texture2D" path="res://godot/assets/characters-v027/king-daddy.png" id="16_boss_painting"]
 
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/friendly.png" id="opal_friendly"]
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/enemies.png" id="opal_enemy"]
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/training.png" id="opal_boss"]
+
 [node name="FamilyTrainingLagoon" type="Node2D"]
 script = ExtResource("1_level")
+opal_friendly_atlas = ExtResource("opal_friendly")
+opal_enemy_atlas = ExtResource("opal_enemy")
+opal_boss_atlas = ExtResource("opal_boss")
 chapter_painting = ExtResource("15_painting")
 chapter_boss_painting = ExtResource("16_boss_painting")
 chapter_id = "training"

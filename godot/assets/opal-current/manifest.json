@@ -1,0 +1,1122 @@
+{
+  "version": 1,
+  "gutters_px": 16,
+  "source_alpha": "straight",
+  "mipmaps": false,
+  "source_note": "New imagegen production effect masters. Existing character/scene/audio/animation assets untouched.",
+  "atlases": {
+    "friendly": {
+      "file": "friendly.png",
+      "size": [
+        640,
+        696
+      ],
+      "rgba_bytes": 1781760,
+      "sha256": "149f334723b1f1b4c479aead687ab9c81f9b454121f12cffcb78fa5b62b6f998"
+    },
+    "enemies": {
+      "file": "enemies.png",
+      "size": [
+        576,
+        619
+      ],
+      "rgba_bytes": 1426176,
+      "sha256": "a0968b953e8460d6ab99cd91c6b2d841335b9a9d50b2d77c220021e042b93605"
+    },
+    "lagoon": {
+      "file": "lagoon.png",
+      "size": [
+        576,
+        692
+      ],
+      "rgba_bytes": 1594368,
+      "sha256": "ac2187fa62dcfa5a00212958967aecdbc3fed91c17ede953c9751a452286729d"
+    },
+    "carlo": {
+      "file": "carlo.png",
+      "size": [
+        288,
+        235
+      ],
+      "rgba_bytes": 270720,
+      "sha256": "6a3367c41103148ed7918596f2bd31ea155adbb16249a32cb1b0e97bd98d28d8"
+    },
+    "shadow": {
+      "file": "shadow.png",
+      "size": [
+        576,
+        261
+      ],
+      "rgba_bytes": 601344,
+      "sha256": "f5934ac7e86b7c39ba85fabad44f2050c15a04041e92d12b11af705ec91d332d"
+    },
+    "miguel": {
+      "file": "miguel.png",
+      "size": [
+        288,
+        218
+      ],
+      "rgba_bytes": 251136,
+      "sha256": "fc09552d5942e5aba31cd32b0d21813794ba4488ae92046a903b9ef8abe4e72c"
+    },
+    "palace": {
+      "file": "palace.png",
+      "size": [
+        288,
+        228
+      ],
+      "rgba_bytes": 262656,
+      "sha256": "0d44ee14a3c22b50edec7b718e10958d1d0f093433a3305acbc630b0c2f4d422"
+    },
+    "rana": {
+      "file": "rana.png",
+      "size": [
+        697,
+        416
+      ],
+      "rgba_bytes": 1159808,
+      "sha256": "26ea21cc18501f0f77357988bee419dc20307a418732160bfc3ff55ea91d0298"
+    },
+    "nessie": {
+      "file": "nessie.png",
+      "size": [
+        288,
+        261
+      ],
+      "rgba_bytes": 300672,
+      "sha256": "db9cfa68e626e800ac188b9368daf3613fa82e4a2b90746a88614ddb74abace2"
+    },
+    "training": {
+      "file": "training.png",
+      "size": [
+        689,
+        782
+      ],
+      "rgba_bytes": 2155192,
+      "sha256": "306b5899abc419e46e49f81cdff464fa2d6b26091824def8f78c23bf020f7747"
+    }
+  },
+  "frames": {
+    "pearl": {
+      "source": "friendly-production.png",
+      "source_sha256": "c78118989b577db0872670de9f89b8968f3f4bfa0d5e944955fd72a1c644a72c",
+      "source_region": [
+        138,
+        109,
+        420,
+        413
+      ],
+      "source_canvas": [
+        1265,
+        1243
+      ],
+      "source_crop_size": [
+        420,
+        413
+      ],
+      "export_size": [
+        256,
+        252
+      ],
+      "pivot": [
+        128.0,
+        126.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "friendly",
+      "region": [
+        16,
+        16,
+        256,
+        252
+      ]
+    },
+    "prism": {
+      "source": "friendly-production.png",
+      "source_sha256": "c78118989b577db0872670de9f89b8968f3f4bfa0d5e944955fd72a1c644a72c",
+      "source_region": [
+        716,
+        96,
+        441,
+        442
+      ],
+      "source_canvas": [
+        1265,
+        1243
+      ],
+      "source_crop_size": [
+        441,
+        442
+      ],
+      "export_size": [
+        255,
+        256
+      ],
+      "pivot": [
+        127.5,
+        128.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "friendly",
+      "region": [
+        304,
+        16,
+        255,
+        256
+      ]
+    },
+    "aurora": {
+      "source": "friendly-production.png",
+      "source_sha256": "c78118989b577db0872670de9f89b8968f3f4bfa0d5e944955fd72a1c644a72c",
+      "source_region": [
+        59,
+        592,
+        610,
+        598
+      ],
+      "source_canvas": [
+        1265,
+        1243
+      ],
+      "source_crop_size": [
+        610,
+        598
+      ],
+      "export_size": [
+        384,
+        376
+      ],
+      "pivot": [
+        192.0,
+        188.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 76,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "friendly",
+      "region": [
+        16,
+        304,
+        384,
+        376
+      ]
+    },
+    "little": {
+      "source": "friendly-production.png",
+      "source_sha256": "c78118989b577db0872670de9f89b8968f3f4bfa0d5e944955fd72a1c644a72c",
+      "source_region": [
+        784,
+        747,
+        357,
+        352
+      ],
+      "source_canvas": [
+        1265,
+        1243
+      ],
+      "source_crop_size": [
+        357,
+        352
+      ],
+      "export_size": [
+        192,
+        189
+      ],
+      "pivot": [
+        96.0,
+        94.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "friendly",
+      "region": [
+        432,
+        304,
+        192,
+        189
+      ]
+    },
+    "crab": {
+      "source": "core-production.png",
+      "source_sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840",
+      "source_region": [
+        106,
+        12,
+        526,
+        399
+      ],
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "source_crop_size": [
+        526,
+        399
+      ],
+      "export_size": [
+        256,
+        194
+      ],
+      "pivot": [
+        128.0,
+        97.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "enemies",
+      "region": [
+        304,
+        16,
+        256,
+        194
+      ]
+    },
+    "eel": {
+      "source": "core-production.png",
+      "source_sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840",
+      "source_region": [
+        847,
+        19,
+        584,
+        342
+      ],
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "source_crop_size": [
+        584,
+        342
+      ],
+      "export_size": [
+        256,
+        150
+      ],
+      "pivot": [
+        128.0,
+        75.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "enemies",
+      "region": [
+        304,
+        254,
+        256,
+        150
+      ]
+    },
+    "jelly": {
+      "source": "core-production.png",
+      "source_sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840",
+      "source_region": [
+        74,
+        377,
+        551,
+        318
+      ],
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "source_crop_size": [
+        551,
+        318
+      ],
+      "export_size": [
+        256,
+        148
+      ],
+      "pivot": [
+        128.0,
+        74.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "enemies",
+      "region": [
+        16,
+        455,
+        256,
+        148
+      ]
+    },
+    "puffer": {
+      "source": "core-production.png",
+      "source_sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840",
+      "source_region": [
+        906,
+        354,
+        438,
+        352
+      ],
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "source_crop_size": [
+        438,
+        352
+      ],
+      "export_size": [
+        256,
+        206
+      ],
+      "pivot": [
+        128.0,
+        103.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "enemies",
+      "region": [
+        16,
+        16,
+        256,
+        206
+      ]
+    },
+    "swordfish": {
+      "source": "core-production.png",
+      "source_sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840",
+      "source_region": [
+        59,
+        715,
+        731,
+        276
+      ],
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "source_crop_size": [
+        731,
+        276
+      ],
+      "export_size": [
+        256,
+        97
+      ],
+      "pivot": [
+        128.0,
+        48.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "enemies",
+      "region": [
+        304,
+        455,
+        256,
+        97
+      ]
+    },
+    "shark": {
+      "source": "core-production.png",
+      "source_sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840",
+      "source_region": [
+        905,
+        683,
+        512,
+        338
+      ],
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "source_crop_size": [
+        512,
+        338
+      ],
+      "export_size": [
+        256,
+        169
+      ],
+      "pivot": [
+        128.0,
+        84.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "enemies",
+      "region": [
+        16,
+        254,
+        256,
+        169
+      ]
+    },
+    "maraca": {
+      "source": "lagoon-production.png",
+      "source_sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d",
+      "source_region": [
+        0,
+        72,
+        468,
+        385
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        468,
+        385
+      ],
+      "export_size": [
+        256,
+        211
+      ],
+      "pivot": [
+        128.0,
+        105.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "lagoon",
+      "region": [
+        16,
+        266,
+        256,
+        211
+      ]
+    },
+    "ribbon": {
+      "source": "lagoon-production.png",
+      "source_sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d",
+      "source_region": [
+        485,
+        137,
+        539,
+        307
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        539,
+        307
+      ],
+      "export_size": [
+        256,
+        146
+      ],
+      "pivot": [
+        128.0,
+        73.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "lagoon",
+      "region": [
+        304,
+        509,
+        256,
+        146
+      ]
+    },
+    "otter": {
+      "source": "lagoon-production.png",
+      "source_sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d",
+      "source_region": [
+        4,
+        552,
+        518,
+        417
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        518,
+        417
+      ],
+      "export_size": [
+        256,
+        206
+      ],
+      "pivot": [
+        128.0,
+        103.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "lagoon",
+      "region": [
+        304,
+        266,
+        256,
+        206
+      ]
+    },
+    "orchid": {
+      "source": "lagoon-production.png",
+      "source_sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d",
+      "source_region": [
+        510,
+        547,
+        506,
+        421
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        506,
+        421
+      ],
+      "export_size": [
+        256,
+        213
+      ],
+      "pivot": [
+        128.0,
+        106.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "lagoon",
+      "region": [
+        304,
+        16,
+        256,
+        213
+      ]
+    },
+    "drum": {
+      "source": "lagoon-production.png",
+      "source_sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d",
+      "source_region": [
+        3,
+        1016,
+        519,
+        441
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        519,
+        441
+      ],
+      "export_size": [
+        256,
+        218
+      ],
+      "pivot": [
+        128.0,
+        109.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "lagoon",
+      "region": [
+        16,
+        16,
+        256,
+        218
+      ]
+    },
+    "disco": {
+      "source": "lagoon-production.png",
+      "source_sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d",
+      "source_region": [
+        507,
+        1076,
+        501,
+        326
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        501,
+        326
+      ],
+      "export_size": [
+        256,
+        167
+      ],
+      "pivot": [
+        128.0,
+        83.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "lagoon",
+      "region": [
+        16,
+        509,
+        256,
+        167
+      ]
+    },
+    "carlo": {
+      "source": "boss-a-production.png",
+      "source_sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8",
+      "source_region": [
+        181,
+        28,
+        486,
+        386
+      ],
+      "source_canvas": [
+        1448,
+        1086
+      ],
+      "source_crop_size": [
+        486,
+        386
+      ],
+      "export_size": [
+        256,
+        203
+      ],
+      "pivot": [
+        128.0,
+        101.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "carlo",
+      "region": [
+        16,
+        16,
+        256,
+        203
+      ]
+    },
+    "duke": {
+      "source": "boss-a-production.png",
+      "source_sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8",
+      "source_region": [
+        814,
+        22,
+        452,
+        405
+      ],
+      "source_canvas": [
+        1448,
+        1086
+      ],
+      "source_crop_size": [
+        452,
+        405
+      ],
+      "export_size": [
+        256,
+        229
+      ],
+      "pivot": [
+        128.0,
+        114.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "shadow",
+      "region": [
+        16,
+        16,
+        256,
+        229
+      ]
+    },
+    "flip": {
+      "source": "boss-a-production.png",
+      "source_sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8",
+      "source_region": [
+        162,
+        373,
+        507,
+        367
+      ],
+      "source_canvas": [
+        1448,
+        1086
+      ],
+      "source_crop_size": [
+        507,
+        367
+      ],
+      "export_size": [
+        256,
+        185
+      ],
+      "pivot": [
+        128.0,
+        92.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "shadow",
+      "region": [
+        304,
+        16,
+        256,
+        185
+      ]
+    },
+    "miguel": {
+      "source": "boss-a-production.png",
+      "source_sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8",
+      "source_region": [
+        840,
+        408,
+        494,
+        358
+      ],
+      "source_canvas": [
+        1448,
+        1086
+      ],
+      "source_crop_size": [
+        494,
+        358
+      ],
+      "export_size": [
+        256,
+        186
+      ],
+      "pivot": [
+        128.0,
+        93.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "miguel",
+      "region": [
+        16,
+        16,
+        256,
+        186
+      ]
+    },
+    "palace": {
+      "source": "boss-a-production.png",
+      "source_sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8",
+      "source_region": [
+        185,
+        718,
+        472,
+        361
+      ],
+      "source_canvas": [
+        1448,
+        1086
+      ],
+      "source_crop_size": [
+        472,
+        361
+      ],
+      "export_size": [
+        256,
+        196
+      ],
+      "pivot": [
+        128.0,
+        98.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "palace",
+      "region": [
+        16,
+        16,
+        256,
+        196
+      ]
+    },
+    "rana": {
+      "source": "boss-a-production.png",
+      "source_sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8",
+      "source_region": [
+        784,
+        750,
+        549,
+        324
+      ],
+      "source_canvas": [
+        1448,
+        1086
+      ],
+      "source_crop_size": [
+        549,
+        324
+      ],
+      "export_size": [
+        256,
+        151
+      ],
+      "pivot": [
+        128.0,
+        75.5
+      ],
+      "native_heading_degrees": -28,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "rana",
+      "region": [
+        16,
+        16,
+        256,
+        151
+      ]
+    },
+    "nessie": {
+      "source": "boss-b-production.png",
+      "source_sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914",
+      "source_region": [
+        25,
+        83,
+        506,
+        452
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        506,
+        452
+      ],
+      "export_size": [
+        256,
+        229
+      ],
+      "pivot": [
+        128.0,
+        114.5
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "nessie",
+      "region": [
+        16,
+        16,
+        256,
+        229
+      ]
+    },
+    "training": {
+      "source": "boss-b-production.png",
+      "source_sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914",
+      "source_region": [
+        561,
+        47,
+        434,
+        484
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        434,
+        484
+      ],
+      "export_size": [
+        230,
+        256
+      ],
+      "pivot": [
+        115.0,
+        128.0
+      ],
+      "native_heading_degrees": -50,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "training",
+      "region": [
+        16,
+        16,
+        230,
+        256
+      ]
+    },
+    "king-cloud": {
+      "source": "boss-b-production.png",
+      "source_sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914",
+      "source_region": [
+        26,
+        591,
+        518,
+        451
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        518,
+        451
+      ],
+      "export_size": [
+        384,
+        334
+      ],
+      "pivot": [
+        192.0,
+        167.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 155,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "training",
+      "region": [
+        278,
+        16,
+        384,
+        334
+      ]
+    },
+    "king-wave": {
+      "source": "boss-b-production.png",
+      "source_sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914",
+      "source_region": [
+        540,
+        554,
+        471,
+        490
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        471,
+        490
+      ],
+      "export_size": [
+        369,
+        384
+      ],
+      "pivot": [
+        184.5,
+        192.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 200,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "training",
+      "region": [
+        16,
+        382,
+        369,
+        384
+      ]
+    },
+    "king-beard": {
+      "source": "boss-b-production.png",
+      "source_sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914",
+      "source_region": [
+        32,
+        1168,
+        512,
+        252
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        512,
+        252
+      ],
+      "export_size": [
+        256,
+        126
+      ],
+      "pivot": [
+        128.0,
+        63.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 72,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "training",
+      "region": [
+        417,
+        382,
+        256,
+        126
+      ]
+    },
+    "rana-ring": {
+      "source": "boss-b-production.png",
+      "source_sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914",
+      "source_region": [
+        562,
+        1044,
+        453,
+        462
+      ],
+      "source_canvas": [
+        1024,
+        1536
+      ],
+      "source_crop_size": [
+        453,
+        462
+      ],
+      "export_size": [
+        377,
+        384
+      ],
+      "pivot": [
+        188.5,
+        192.0
+      ],
+      "native_heading_degrees": 0,
+      "max_gameplay_extent": 200,
+      "alpha_edges": "Measured alpha ownership; 8 px source halo; complete subjects; separate neighbours",
+      "atlas": "rana",
+      "region": [
+        304,
+        16,
+        377,
+        384
+      ]
+    }
+  },
+  "aliases": {
+    "blackwater": "shark"
+  },
+  "residency_MiB": {
+    "carlo": 3.318,
+    "shadow": 3.633,
+    "miguel": 3.459,
+    "palace": 3.31,
+    "rana": 4.165,
+    "nessie": 3.346,
+    "blackwater": 3.059,
+    "training": 5.115
+  }
+}

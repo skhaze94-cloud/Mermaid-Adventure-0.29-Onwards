@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="Sarah Maria — Mermaid Adventure (Godot v0.5.1 — Princess Polish Sarah)"
+; Keep the application identity stable so existing user:// saves remain reachable.
+config/version="0.6.1"
 config/description="Sarah Maria Mermaid Adventure — eight connected chapters, family tutorial, graceful articulated swimming, torpedo boosts and layered water wakes."
 run/main_scene="res://godot/title_screen.tscn"
-config/features=PackedStringArray("4.3")
+config/features=PackedStringArray("4.4")
 
 [audio]
 
@@ -32,6 +34,12 @@ window/size/viewport_width=1400
 window/size/viewport_height=960
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor]
+
+; Serialize offline imports to avoid intermittent native font-import crashes in 4.4.1.
+; This does not change runtime threaded loading or rendering quality.
+import/use_multiple_threads=false
 
 [rendering]
 

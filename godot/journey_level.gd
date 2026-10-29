@@ -111,6 +111,18 @@ func _save_checkpoint() -> void:
     checkpoint_snapshot["switches"] = switches.duplicate(true)
     checkpoint_snapshot["duke"] = duke_hp
     checkpoint_snapshot["flip"] = flip_hp
+func _valid_checkpoint(saved: Dictionary) -> bool:
+    if not super._valid_checkpoint(saved): return false
+    var snapshot: Dictionary = saved["snapshot"]
+    if not snapshot.get("switches") is Array: return false
+    if shadow:
+        if not snapshot.get("duke") is int or int(snapshot["duke"]) not in range(11): return false
+        if not snapshot.get("flip") is int or int(snapshot["flip"]) not in range(9): return false
+        if int(snapshot["boss_hp"]) != int(snapshot["duke"]) + int(snapshot["flip"]): return false
+        if snapshot["switches"].size() != Journey.switches().size(): return false
+    for switch in snapshot["switches"]:
+        if not switch is Dictionary or not switch.get("pos") is Vector2 or not switch.get("on") is bool: return false
+    return true
 func _respawn() -> void:
     super._respawn()
     fallen = true
@@ -156,10 +168,10 @@ func _update_enemies(dt: float) -> void:
             var aim: Vector2 = enemy["aim"]
             if kind == "maraca-snapper" or variant in ["bubble","shadow"]:
                 # The sound fan leaves a clear dodge lane above/below its three notes.
-                for angle in [-.3,0,.3]: _spawn_hostile(pos,aim.rotated(angle),230)
+                for angle in [-.3,0,.3]: _spawn_hostile(pos,aim.rotated(angle),230,kind)
             elif kind == "drumback-turtle":
                 _say("Drum current — swim across the lane!",1.2)
-            else: _spawn_hostile(pos,aim,210 if kind == "orchid-hermit" else 270)
+            else: _spawn_hostile(pos,aim,210 if kind == "orchid-hermit" else 270,kind)
         if kind == "drumback-turtle" and enemy.get("mode","") == "attack" and absf(player.y-pos.y)<75 and absf(player.x-pos.x)<430:
             var previous := player
             player.x += float(enemy.get("dir",-1))*110*dt
@@ -175,28 +187,9 @@ func _update_enemies(dt: float) -> void:
                         item["taken"] = true
             if enemy.get("mode","") == "recover": _release_loot(enemy)
         if pos.distance_to(player)<72 and leap_phase != "airborne":
-            if boost_time>0: _hit_enemy(enemy,2,true)
+            if boost_time>0: _hit_enemy(enemy,2,true,boost_direction)
             elif enemy.get("mode","") != "recover": _damage(pos)
         if serial != retry_serial: return
-func _guarded(enemy: Dictionary) -> bool:
-    return (enemy["kind"] == "orchid-hermit" or enemy.get("variant","") in ["guard","armoured"]) and enemy.get("mode","") != "recover" and signf(player.x-float(enemy["x"])) == float(enemy.get("dir",-1))
-func _hit_enemy(enemy: Dictionary, damage: int, boosted: bool) -> void:
-    if float(enemy.get("hit_cd",0))>0: return
-    if _guarded(enemy):
-        enemy["mode"] = "recover"
-        enemy["mode_time"] = 0.0
-        enemy["hit_cd"] = .25
-        _say("Shell guard! Strike again while it recovers.",1.8)
-        return
-    _ocean_event("impact",Vector2(enemy["x"],enemy["y"]))
-    enemy["hp"] = max(0,int(enemy["hp"])-damage)
-    enemy["hit_cd"] = .6
-    enemy["mode"] = "recover"
-    enemy["mode_time"] = 0.0
-    if boosted: invulnerable = maxf(invulnerable,.5)
-    if int(enemy["hp"]) <= 0:
-        _release_loot(enemy)
-        _award("enemy:%s" % enemies.find(enemy),"Enemies",75,Vector2(enemy["x"],enemy["y"]),true)
 func _release_loot(enemy: Dictionary) -> void:
     for i in enemy.get("loot",[]): treasures[int(i)]["taken"] = false
     enemy.erase("loot")
@@ -267,42 +260,6 @@ func _update_duo(dt: float) -> void:
         flip_hp = 0
         boss_hp = 0
 
-func _update_bubbles(dt: float) -> void:
-    for shot in bubble_shots:
-        shot["pos"] = Vector2(shot["pos"])+Vector2(float(shot["direction"])*700*dt,0)
-        shot["life"] = float(shot["life"])-dt
-        var pos: Vector2 = shot["pos"]
-        for block in obstacles:
-            if block.grow(20).has_point(pos): shot["life"] = 0
-        if float(shot["life"])<=0: continue
-        for i in range(switches.size()):
-            var switch: Dictionary = switches[i]
-            if not switch["on"] and pos.distance_to(switch["pos"])<48:
-                switch["on"] = true
-                shot["life"] = 0
-                _award("switch:%s" % i,"Secrets",150,switch["pos"],false)
-                treasures.append(Journey.pickup(switch["pos"].x+140,switch["pos"].y-40,"chest"))
-                _say("Shell switch — secret treasure revealed!",2.8)
-        if float(shot["life"])<=0: continue
-        for enemy in enemies:
-            if int(enemy["hp"])>0 and pos.distance_to(Vector2(enemy["x"],enemy["y"]))<70:
-                _hit_enemy(enemy,1,false)
-                shot["life"] = 0
-                break
-        if float(shot["life"])<=0 or boss_hp<=0 or not shadow: continue
-        if flip_hp>0 and pos.distance_to(flip_position)<100 and boss_hit_cooldown<=0:
-            flip_hp -= 1
-            flip_stun = .8
-            boss_hit_cooldown = .4
-            shot["life"] = 0
-        elif duke_hp>0 and _boss_vulnerable() and pos.distance_to(boss_position)<150 and boss_hit_cooldown<=0:
-            duke_hp -= 1
-            boss_hit_cooldown = .4
-            shot["life"] = 0
-        boss_hp = duke_hp+flip_hp
-    bubble_shots = bubble_shots.filter(func(shot): return float(shot["life"])>0)
-    if boss_hp<=0: _finish_boss()
-
 func _finish_boss() -> void:
     hostile_shots.clear()
     # The ledger makes this idempotent, including a last hit from a bubble.
@@ -351,37 +308,72 @@ func _draw_world(s: Vector2) -> void:
         var pos: Vector2 = switch["pos"]-Vector2(camera,0)
         if pos.x< -100 or pos.x>s.x+100: continue
         Polish.shell_switch(self,pos,switch["on"])
-    # Draw ordinary rewards and both projectile types using the original native icons.
+    # Native scenery/rewards; the shared Opal pools supply attack effects.
     super._draw_world(s)
     for enemy in enemies:
         if enemy["hp"]<=0 or not enemy["kind"] in Journey.PACK_KINDS: continue
         var pos := Vector2(enemy["x"]-camera,enemy["y"])
         if pos.x< -220 or pos.x>s.x+220: continue
-        var texture := LagoonArt.enemy_frame(enemy)
-        var scale := 165/float(LagoonArt.sizes[enemy["kind"]])
-        var size := texture.get_size()*scale
         if enemy["kind"] == "disco-cuttlefish" and enemy.get("mode","") in ["windup","attack"]:
             draw_arc(pos,88,-PI*.85,-PI*.15,24,Color(.9,.73,.95,.55),2,true)
-        draw_texture_rect(texture,Rect2(pos-size*.5,size),false)
         if enemy.get("mode","") == "windup": draw_arc(pos,100,0,TAU,32,Color(1,.85,.45,.7),2)
     var portal := Vector2(_portal_x()-camera,540)
     if portal.x> -180 and portal.x<s.x+180:
         Terrain.portal(self,portal,boss_hp<=0)
         if boss_hp<=0: _draw_text(portal+Vector2(-48,145),"Continue",18,Color("#c7ece3"))
 func _draw_boss() -> void:
-    if boss_hp<=0: return
-    var pos := boss_position-Vector2(camera,0)
-    if shadow:
-        if duke_hp>0:
-            # Artwork is rendered by the expressive boss mesh actor.
-            Polish.boss_cue(self,pos,152,_boss_vulnerable())
-        if flip_hp>0:
-            var flip := flip_position-Vector2(camera,0)
-            # Flip has a connected tail performance and independent hit reaction.
-            Polish.boss_cue(self,flip,115,flip_stun>0)
-            if flip_stun>0: draw_arc(flip,115,0,TAU,32,Color("#a8ffe2"),3)
-    else:
-        # Miguel’s wing mesh remains anchored at its shared centre.
-        Polish.boss_cue(self,pos,185,_boss_vulnerable())
+    if shadow and flip_hp>0 and flip_stun>0:
+        draw_arc(flip_position-Vector2(camera,0),115,0,TAU,32,Color("#a8ffe2"),3)
 
 func _uses_highland_scenery() -> bool: return false
+
+func _opal_primary_id() -> String:return "duke" if shadow else "miguel"
+func _opal_art_chapter() -> String:return "shadow" if shadow else "miguel"
+func _opal_enemy_reward() -> int:return 75
+func _opal_make_targets() -> Array[Dictionary]:
+    var fits: Dictionary=preload("res://godot/opal_roster.gd").BOSS_FITS
+    if shadow:return [OpalCombat.target("duke",fits["duke"],150),OpalCombat.target("flip",fits["flip"],100)]
+    return [OpalCombat.target("miguel",fits["miguel"],150)]
+func _opal_arena_active() -> bool:return boss_hp>0 and player.x >= (12870.0 if shadow else Journey.sx(6420))
+func _opal_opening_soon() -> bool:
+    var phase:=fmod(boss_clock,5.4 if shadow else 6.8)
+    return phase>=3.88 and phase<=4.1 if shadow else phase>=3.58 and phase<3.8
+func _opal_update_targets(targets: Array[Dictionary]) -> void:
+    super._opal_update_targets(targets)
+    if not shadow or targets.size()<2:return
+    targets[0]["hp"]=duke_hp;targets[0]["active"]=_opal_arena_active() and duke_hp>0
+    var flip:=targets[1]
+    flip["pos"]=flip_position;flip["hp"]=flip_hp;flip["active"]=_opal_arena_active() and flip_hp>0
+    flip["open"]=flip_hp>0;flip["opening"]=false;flip["cooldown"]=boss_hit_cooldown
+    flip["attacking"]=flip_hp>0 and flip_stun<=0
+    flip["bubble"]=bubble_unlocked and _bubble_context_allowed();flip["boost"]=_opal_boost_available()
+func _opal_hit_boss(id: String, damage: int) -> int:
+    if not _bubble_context_allowed() or not _opal_arena_active() or boss_hit_cooldown>0:return 0
+    var applied:=0
+    if shadow:
+        if id=="duke" and duke_hp>0 and _boss_vulnerable():applied=mini(duke_hp,clampi(damage,1,2));duke_hp-=applied
+        elif id=="flip" and flip_hp>0:applied=mini(flip_hp,clampi(damage,1,2));flip_hp-=applied;flip_stun=0.8
+        if applied==0:return 0
+        boss_hit_cooldown=0.4;boss_hp=duke_hp+flip_hp
+        if (duke_hp<=0 and flip_hp<=2) or (flip_hp<=0 and duke_hp<=2):duke_hp=0;flip_hp=0;boss_hp=0
+    else:
+        if id!="miguel" or not _boss_vulnerable():return 0
+        applied=mini(boss_hp,clampi(damage,1,2));boss_hp-=applied;boss_hit_cooldown=1.1;boss_clock=0
+        _award("boss:miguel:%s" % boss_hp,"Boss",200*applied,boss_position,false)
+    if boss_hp<=0:_finish_boss()
+    return applied
+func _opal_switch_targets() -> Array[Dictionary]:return switches
+func _opal_hit_switch(index: int, _packet: Dictionary = {}) -> void:
+    var switch:=switches[index]
+    if switch["on"]:return
+    switch["on"]=true;_award("switch:%s" % index,"Secrets",150,switch["pos"],false)
+    treasures.append(Journey.pickup(switch["pos"].x+140,switch["pos"].y-40,"chest"))
+    _say("Shell switch - secret treasure revealed!",2.8)
+func _opal_sync_fields(fx: Node2D) -> void:
+    var used:=0
+    for enemy in enemies:
+        if used>=4:break
+        if enemy["kind"]=="drumback-turtle" and int(enemy["hp"])>0 and enemy.get("mode","")=="attack":
+            var at:=Vector2(enemy["x"],enemy["y"])-Vector2(camera,0)
+            if at.x < -440 or at.x>get_viewport_rect().size.x+440:continue
+            fx.field(used,"drum",at,Vector2(220,100),0.45);used+=1

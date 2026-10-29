@@ -28,6 +28,7 @@ var message_label: Label
 var boss_card: PanelContainer
 var boss_label: Label
 var boss_meter: ProgressBar
+var boss_hint: Label
 var touch_layer: Control
 var modal: Control
 var modal_card: PanelContainer
@@ -63,6 +64,17 @@ var touch_normal: StyleBoxFlat
 var touch_pressed: StyleBoxFlat
 var touch_signature: Array = []
 var touch_redraws := 0
+var charge_card: PanelContainer
+var charge_label: Label
+var charge_meter: ProgressBar
+var ready_notice_left := 0.0
+var last_bubble_cooldown := 0.0
+var displayed_score := -1
+var results_settled := false
+var result_text_updates := 0
+var modal_layout_signature: Array = []
+var modal_layout_updates := 0
+var modal_layout_pending := false
 
 func _ready() -> void:
     layer = 6
@@ -111,6 +123,17 @@ func _ready() -> void:
     chapter = Kit.label("HIGHLAND GOLD",12,Color("#c6f2e6"))
     canvas.add_child(chapter)
     route = _meter(canvas)
+    charge_card = PanelContainer.new()
+    charge_card.add_theme_stylebox_override("panel",Kit.panel(Color(0.025,0.12,0.18,0.94),Color("#a8e8f1"),16))
+    canvas.add_child(charge_card)
+    var charge_box := VBoxContainer.new()
+    charge_card.add_child(charge_box)
+    charge_label = Kit.label("Bubble ready",14,Color("#dfffee"))
+    charge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+    charge_box.add_child(charge_label)
+    charge_meter = _meter(charge_box)
+    charge_meter.custom_minimum_size.y = 8
+    charge_card.hide()
     message_back = Panel.new()
     message_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
     message_back.add_theme_stylebox_override("panel", Kit.panel(Color(0.025,0.12,0.18,0.88),Color(0.32,0.72,0.73,0.4),10))
@@ -128,6 +151,10 @@ func _ready() -> void:
     boss_box.add_child(boss_label)
     boss_meter = _meter(boss_box)
     boss_meter.custom_minimum_size.y = 12
+    boss_hint = Kit.label("",12,Color("#bde8e3"))
+    boss_hint.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+    boss_hint.hide()
+    boss_box.add_child(boss_hint)
     touch_layer = Control.new()
     touch_layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
     canvas.add_child(touch_layer)
@@ -142,6 +169,7 @@ func _ready() -> void:
     modal.add_child(scrim)
     modal_card = Card.instantiate()
     modal.add_child(modal_card)
+    modal_card.minimum_size_changed.connect(_queue_modal_layout)
     modal_content = VBoxContainer.new()
     modal_content.mouse_filter = Control.MOUSE_FILTER_IGNORE
     modal_content.add_theme_constant_override("separation",4)
@@ -278,6 +306,8 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
     chapter.position = Vector2(18,130)
     route.position = Vector2(16,h-12)
     route.size = Vector2(w-32,6)
+    charge_card.position = Vector2((w-230)*.5,h-92)
+    charge_card.size = Vector2(230,64)
     var message_width := minf(w-40,740)
     message_back.position = Vector2((w-message_width)*0.5,174)
     message_back.size = Vector2(message_width,29)
@@ -301,6 +331,7 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
     rotate_label.position = Vector2(0,h*0.43)
     rotate_label.size = Vector2(w,90)
     banner.position = Vector2(w-258,126)
+    modal_layout_signature.clear()
     _refresh()
 func to_ui(point: Vector2) -> Vector2: return (point-safe_frame.position)/ui_scale
 func to_game(rect: Rect2) -> Rect2: return Rect2(safe_frame.position+rect.position*ui_scale,rect.size*ui_scale)
@@ -364,30 +395,41 @@ func _refresh() -> void:
     pearl_label.text = "%s pearls" % Kit.number(int(info.get("pearls",0)))
     var combo := int(info.get("combo",1))
     combo_label.text = "COMBO! ×%s" % combo if combo>1 else ""
-    combo_meter.visible = combo>1 and not portrait
+    var critical_boss: bool = info.get("boss_active",false) and info.get("message_priority",false) and float(info.get("message_time",0))>0
+    var compact_priority := critical_boss and game_size.y<720
+    combo_meter.visible = combo>1 and not portrait and not compact_priority
     combo_meter.value = float(info.get("combo_left",0))/3.0
-    combo_label.visible = combo>1 and not portrait
+    combo_label.visible = combo>1 and not portrait and not compact_priority
     chapter.position.y=155.0 if combo>1 else 130.0
     chapter.text = "The waterfall" if info.get("waterfall","") != "" else String(info.get("chapter","Highland Gold")).split(" · ")[0].capitalize()
     chapter.visible = not portrait and not (game_size.y<720 and info.get("boss_active",false))
     route.value = info.get("fall_progress" if info.get("waterfall","") != "" else "progress",0)
     route.visible = not portrait
     message_label.text = info.get("message","") if info.get("message_time",0)>0 else ""
-    message_label.visible = not portrait and not info.get("boss_active",false) and not modal.visible
+    var message_width := minf(game_size.x-40,340 if compact_priority else 740)
+    message_back.size.x = message_width
+    message_back.position = Vector2((game_size.x-message_width)*.5,boss_card.position.y-34 if critical_boss else 174)
+    message_label.position = message_back.position+Vector2(8,2)
+    message_label.size.x = message_width-16
+    message_label.visible = not portrait and (not info.get("boss_active",false) or critical_boss) and not info.get("paused",false) and not info.get("victory",false)
     message_back.visible = message_label.visible and not message_label.text.is_empty()
     var hint_alpha := clampf(float(info.get("message_time",0))/0.3,0.0,1.0)
     message_label.modulate.a = hint_alpha
     message_back.modulate.a = hint_alpha
     boss_card.visible = info.get("boss_active",false) and not portrait
     boss_meter.value = info.get("boss_health",1.0)
-    boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + (" · Boost now" if info.get("boss_vulnerable",false) else "")
+    boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + ((" · Hit now" if info.get("bubble",false) else " · Boost now") if info.get("boss_vulnerable",false) else "")
+    boss_hint.text = String(info.get("boss_attack",""))
+    if info.get("boss_vulnerable",false) and not boss_hint.text.is_empty(): boss_hint.text="Mint petals · Bubble or Boost now"
+    boss_hint.visible = not boss_hint.text.is_empty()
     touch_layer.visible = info.get("touch",false) and not portrait and not info.get("paused",false) and not info.get("victory",false)
     touch_layer.modulate.a = control_opacity
     # Preserve every joystick/cooldown frame; unrelated score, message and
     # progress changes do not rebuild the same touch geometry and labels.
     var next_touch: Array = [game_size,control_size,info.get("pad",Vector2.ZERO),
         info.get("pressed",[]),info.get("bubble",false),float(info.get("energy",1.0))>=0.4,
-        info.get("cooldowns",{}).duplicate()]
+        info.get("cooldowns",{}).duplicate(),info.get("charge_tier",0),
+        roundi(float(info.get("charge_progress",0))*64),info.get("bubble_recovery",0.2)]
     if next_touch != touch_signature:
         touch_signature = next_touch.duplicate(true)
         touch_layer.queue_redraw()
@@ -399,9 +441,12 @@ func _refresh() -> void:
         for label in floating: label.visible = false
     for action in modal_buttons:
         modal_buttons[action].visible = modal.visible and not portrait and (action != "resume" or not info.get("victory",false))
-        var rect := action_rect(action)
-        modal_buttons[action].position = rect.position
-        modal_buttons[action].size = rect.size
+    _layout_modal()
+    var cooldown := float(info.get("cooldowns",{}).get("bubble",0))
+    if last_bubble_cooldown>0 and cooldown<=0 and not info.get("paused",false): ready_notice_left=0.8
+    if int(info.get("charge_tier",0))>0: ready_notice_left=0
+    last_bubble_cooldown=cooldown
+    _refresh_charge()
     modal_buttons["restart"].text = "Next chapter  ›" if info.get("victory",false) and info.get("next_stage","") != "" else ("Back to menu" if info.get("victory",false) and info.get("journey_final",false) else "Play again")
     if not info.get("victory",false):
         result_title.text = "A MOMENT TO BREATHE"
@@ -412,6 +457,48 @@ func _refresh() -> void:
         reward_label.text = "Ready when you are, Sarah Maria."
         for star in stars: star.visible = false
         for label in result_rows: label.visible = false
+
+func _queue_modal_layout() -> void:
+    if modal_layout_pending: return
+    modal_layout_pending = true
+    _settle_modal_layout.call_deferred()
+
+func _settle_modal_layout() -> void:
+    modal_layout_pending = false
+    _layout_modal()
+
+func _layout_modal() -> void:
+    # Autowrapped labels settle after the container's first sort. Include the
+    # cached native minimum so a provisional tall card can shrink on that sort.
+    var signature: Array = [game_size,modal.visible,portrait,info.get("victory",false),modal_card.get_combined_minimum_size()]
+    if signature == modal_layout_signature: return
+    modal_layout_signature = signature
+    modal_layout_updates += 1
+    if modal.visible and not portrait:
+        result_scroll.visible = bool(info.get("victory",false))
+        modal_card.size = Vector2(minf(game_size.x-36,540),minf(game_size.y-(135 if info.get("victory",false) else 200),430 if info.get("victory",false) else 230))
+    for action in modal_buttons:
+        var rect := action_rect(action)
+        modal_buttons[action].position = rect.position
+        modal_buttons[action].size = rect.size
+
+func bubble_cooldown_fraction() -> float:
+    return clampf(float(info.get("cooldowns",{}).get("bubble",0))/maxf(.001,float(info.get("bubble_recovery",.2))),0,1)
+
+func bubble_button_label() -> String:
+    if not info.get("bubble",false): return "LOCKED"
+    if float(info.get("cooldowns",{}).get("bubble",0))>0: return "COOLING"
+    var tier := int(info.get("charge_tier",0))
+    return "RELEASE!" if tier==3 else "PRISM BLOOM" if tier==2 else "CHARGING" if tier==1 else "HOLD BUBBLE"
+
+func _refresh_charge() -> void:
+    var tier := int(info.get("charge_tier",0))
+    var cooling: bool = float(info.get("cooldowns",{}).get("bubble",0))>0
+    charge_card.visible = info.get("bubble",false) and not info.get("touch",false) and not portrait and not modal.visible and (tier>0 or cooling or ready_notice_left>0)
+    if not charge_card.visible: return
+    charge_label.text = ["Bubble ready","Pearl Pop · keep holding","Prism Bloom · keep holding","Royal Aurora · release!"][clampi(tier,0,3)]
+    if cooling: charge_label.text = "Bubble cooling"
+    charge_meter.value = 1-bubble_cooldown_fraction() if cooling else float(info.get("charge_progress",1)) if tier>0 else 1.0
 func show_reward(reward: Dictionary, at: Vector2) -> void:
     var slot := 0
     for i in range(float_ages.size()):
@@ -441,6 +528,7 @@ func clear_feedback() -> void:
     banner.visible = false
     banner_age = 99
     shown_score = 0.0
+    displayed_score = -1
     score_pulse = 0.0
 func _build_results() -> void:
     for child in breakdown.get_children():
@@ -449,8 +537,11 @@ func _build_results() -> void:
     result_rows.clear()
     result_values.clear()
     var results: Dictionary = info.get("results",{})
-    result_title.text = "ADVENTURE COMPLETE" if info.get("journey_final",false) else "STAGE CLEAR!"
+    var finale: bool = info.get("journey_final",false)
+    result_title.text = "THE CROWN IS HOME!" if finale else "STAGE CLEAR!"
+    header_crest.texture = Kit.ICONS["crown" if finale else "crest"]
     var details: Dictionary = results.get("breakdown",{})
+    if finale and not info.get("adventure_breakdown",{}).is_empty(): details=info["adventure_breakdown"]
     for category in details:
         if int(details[category]) == 0: continue
         var label := Kit.label("",15)
@@ -459,6 +550,7 @@ func _build_results() -> void:
         result_values.append(int(details[category]))
         label.set_meta("category",category)
     rating_label.text = results.get("rules","1 star: clear · 2: 3,000 · 3: 6,000")
+    if finale: rating_label.text = "%s chapters explored · Nessie’s crown returned\n%s" % [info.get("chapters_complete",1),rating_label.text]
     record_label.text = ("New Record!  " if results.get("new_record",false) else "Personal best  ")+Kit.number(int(results.get("best",0)))
     reward_label.text = results.get("reward","")+(" · Perfect! +250" if results.get("perfect",false) else "")+(" · Pearl Bonus! +100" if results.get("pearl_bonus",false) else "")
     if info.get("next_stage","") != "": reward_label.text += "\nNext: " + String(info["next_stage"])
@@ -467,6 +559,7 @@ func _build_results() -> void:
         stars[i].visible = true
         stars[i].modulate = Color.WHITE if i<int(results.get("stars",1)) else Color(0.25,0.4,0.5,0.65)
     results_elapsed = 0.0
+    results_settled = false
     result_seen = true
 func _process(dt: float) -> void:
     if info.is_empty(): return
@@ -474,37 +567,46 @@ func _process(dt: float) -> void:
     var target := float(info.get("score",0))
     if target < shown_score or reduced: shown_score = target
     elif not info.get("paused",false): shown_score = move_toward(shown_score,target,maxf(1,(target-shown_score)*minf(dt*9,1)))
-    score_label.text = Kit.number(roundi(shown_score))
+    if displayed_score != roundi(shown_score):
+        displayed_score = roundi(shown_score)
+        score_label.text = Kit.number(displayed_score)
     var score_size := 26 if score_label.text.length()<10 else 20
     if score_label.get_theme_font_size("font_size") != score_size:
         score_label.add_theme_font_size_override("font_size",score_size)
     if not info.get("paused",false): score_pulse = maxf(0,score_pulse-dt*4)
     score_label.scale = Vector2.ONE*(1.0+(0.0 if reduced else sin(score_pulse*PI)*0.055))
-    if modal.visible and not portrait:
-        result_scroll.visible = bool(info.get("victory",false))
-        modal_card.size = Vector2(minf(game_size.x-36,540),minf(game_size.y-(135 if info.get("victory",false) else 200),430 if info.get("victory",false) else 230))
-        for action in modal_buttons:
-            var rect := action_rect(action)
-            modal_buttons[action].position = rect.position
-            modal_buttons[action].size = rect.size
+    if ready_notice_left>0 and not info.get("paused",false):
+        ready_notice_left=maxf(0,ready_notice_left-dt)
+        if ready_notice_left==0: _refresh_charge()
     if info.get("victory",false):
         banner.visible = false
         for label in floating: label.visible = false
-        results_elapsed += dt
-        var factor := 1.0 if reduced else smoothstep(0,1,clampf(results_elapsed/1.4,0,1))
-        for i in range(result_rows.size()): result_rows[i].text = "%s    %s" % [result_rows[i].get_meta("category"),Kit.number(roundi(result_values[i]*factor))]
-        result_total.text = "TOTAL  "+Kit.number(roundi(target*factor))
+        if not results_settled:
+            results_elapsed += dt
+            var factor := 1.0 if reduced else smoothstep(0,1,clampf(results_elapsed/1.4,0,1))
+            for i in range(result_rows.size()): result_rows[i].text = "%s    %s" % [result_rows[i].get_meta("category"),Kit.number(roundi(result_values[i]*factor))]
+            var finale: bool = info.get("journey_final",false)
+            var total := float(info.get("adventure_total",target)) if finale else target
+            result_total.text = ("ADVENTURE TOTAL  " if finale else "TOTAL  ")+Kit.number(roundi(total*factor))
+            result_text_updates += 1
+            results_settled = factor>=1.0
         return
     if info.get("paused",false):
         banner.visible = false
         for label in floating: label.visible = false
         return
     for i in range(floating.size()):
+        if float_ages[i]>=0.9:
+            if floating[i].visible: floating[i].hide()
+            continue
         float_ages[i] += dt
         var age := float_ages[i]
         floating[i].visible = age<0.9 and not portrait
         floating[i].position = float_origins[i]+Vector2(0,0 if reduced else -age*35)
         floating[i].modulate.a = clampf((0.9-age)/0.3,0,1)
+    if banner_age>=1.5:
+        if banner.visible: banner.hide()
+        return
     banner_age += dt
     banner.visible = banner_age<1.5 and not portrait
     banner.modulate.a = minf(clampf(banner_age/0.12,0,1),clampf((1.5-banner_age)/0.25,0,1))
@@ -540,7 +642,13 @@ func _draw_touch() -> void:
         var icon_at := rect.get_center()-Vector2.ONE*icon_size/2+Vector2(0,-5)
         Polish.glyph(touch_layer,"lock" if locked else action,icon_at+Vector2.ONE*icon_size*.5,icon_size*.78,Color("#789ba4") if locked or not available else Color("#c5f6e8"))
         var label: String = "LOCKED" if locked else ("RECHARGE" if not available else String(action).to_upper())
+        if action=="bubble" and not locked:
+            label=bubble_button_label()
         touch_layer.draw_string(Kit.BODY,rect.position+Vector2(0,rect.size.y-10),label,HORIZONTAL_ALIGNMENT_CENTER,rect.size.x,13,Color("#defdf5"))
         var cool := float(info.get("cooldowns",{}).get(action,0))
         if cool>0:
-            touch_layer.draw_arc(rect.get_center(),minf(rect.size.x,rect.size.y)*0.43,-PI/2,-PI/2+TAU*clampf(cool/(0.20 if action == "bubble" else 0.9),0,1),32,Color("#ffe2ad"),3)
+            var fraction := bubble_cooldown_fraction() if action=="bubble" else clampf(cool/(0.46 if action=="boost" and info.get("waterfall","")=="descent" else 0.55 if action=="boost" else 0.35),0,1)
+            touch_layer.draw_arc(rect.get_center(),minf(rect.size.x,rect.size.y)*0.43,-PI/2,-PI/2+TAU*fraction,32,Color("#ffe2ad"),3)
+        elif action=="bubble" and int(info.get("charge_tier",0))>0:
+            var progress := clampf(float(info.get("charge_progress",0)),0,1)
+            touch_layer.draw_arc(rect.get_center(),minf(rect.size.x,rect.size.y)*0.43,-PI/2,-PI/2+TAU*progress,48,Color("#a7fff0"),3)

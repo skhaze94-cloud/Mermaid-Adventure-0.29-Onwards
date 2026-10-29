@@ -90,10 +90,10 @@ func tick(dt: float) -> void:
 
 func _little_bubble() -> void:
     if level.bubble_shots.size()>=8: return
+    if not level.opal.little_bubble(world_position+Vector2(level.facing*36,-7),level.facing):return
     cooldown = 2.8
     bubble_pending = false
     bubbles_cast += 1
-    level.bubble_shots.append({"pos":world_position+Vector2(level.facing*36,-7),"direction":level.facing,"life":1.3,"baby":true})
     level.native_fx.splash(position+Vector2(level.facing*36,-7),Color("f3cbff"),4)
     level._sfx("bubble",0)
     if bubbles_cast%4==1: say("Buh-buh!",1.8)

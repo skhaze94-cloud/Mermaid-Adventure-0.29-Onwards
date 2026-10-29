@@ -13,6 +13,7 @@ var touch_opacity := 0.85
 var persist_enabled := true
 
 func _ready() -> void:
+    persist_enabled = not OS.has_environment("SARAH_DISABLE_SAVES")
     process_mode = Node.PROCESS_MODE_ALWAYS
     _configure_menu_controller()
     var config := ConfigFile.new()

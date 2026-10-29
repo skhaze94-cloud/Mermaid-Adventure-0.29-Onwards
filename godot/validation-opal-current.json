@@ -1,0 +1,1914 @@
+{
+  "version": "0.6.0",
+  "date": "2026-10-29",
+  "baseline_commit": "087a0d9c04dc4d5bc0a3b84c9d4a31875da6c79b",
+  "engine": "Godot 4.4.1 stable",
+  "native_suite_count": 37,
+  "opal_contract_checks": 160,
+  "regressions": [
+    {
+      "test": "avina_tutorial_test.gd",
+      "passed": true,
+      "seconds": 8.325,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY TUTORIAL: 122 checks, 0 failures"
+    },
+    {
+      "test": "character_harmony_test.gd",
+      "passed": true,
+      "seconds": 12.468,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCHARACTER HARMONY: 4475 checks, 0 failures"
+    },
+    {
+      "test": "complete_adventure_test.gd",
+      "passed": true,
+      "seconds": 18.178,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures"
+    },
+    {
+      "test": "creature_articulation_test.gd",
+      "passed": true,
+      "seconds": 2.201,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCREATURE ARTICULATION: 109458 checks, 0 failures"
+    },
+    {
+      "test": "device_layout_test.gd",
+      "passed": true,
+      "seconds": 6.415,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED"
+    },
+    {
+      "test": "enemy_engagement_test.gd",
+      "passed": true,
+      "seconds": 19.74,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENEMY ENGAGEMENT TEST PASSED"
+    },
+    {
+      "test": "enemy_visuals_test.gd",
+      "passed": true,
+      "seconds": 3.515,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENEMY VISUALS TEST PASSED"
+    },
+    {
+      "test": "environment_visuals_test.gd",
+      "passed": true,
+      "seconds": 3.78,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENVIRONMENT VISUALS TEST PASSED"
+    },
+    {
+      "test": "family_layout_test.gd",
+      "passed": true,
+      "seconds": 6.174,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures"
+    },
+    {
+      "test": "gameplay_controls_test.gd",
+      "passed": true,
+      "seconds": 3.175,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED"
+    },
+    {
+      "test": "grounding_test.gd",
+      "passed": true,
+      "seconds": 6.288,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GROUNDING TEST: 487 checks, 0 failures"
+    },
+    {
+      "test": "journey_test.gd",
+      "passed": true,
+      "seconds": 5.18,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT FIRST THREE CHAPTERS TEST PASSED"
+    },
+    {
+      "test": "jump_animation_test.gd",
+      "passed": true,
+      "seconds": 4.248,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT JUMP ANIMATION TEST PASSED"
+    },
+    {
+      "test": "level1_smoke_test.gd",
+      "passed": true,
+      "seconds": 3.219,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT LEVEL 1 LOGIC TEST PASSED"
+    },
+    {
+      "test": "ocean_alive_test.gd",
+      "passed": true,
+      "seconds": 6.25,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOCEAN ALIVE: 117 checks, 0 failures"
+    },
+    {
+      "test": "opal_current_test.gd",
+      "passed": true,
+      "seconds": 6.409,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOPAL CURRENT: 160 checks, 0 failures"
+    },
+    {
+      "test": "performance_integrity_test.gd",
+      "passed": true,
+      "seconds": 2.248,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPERFORMANCE INTEGRITY: 59024 checks, 0 failures"
+    },
+    {
+      "test": "rock_collision_test.gd",
+      "passed": true,
+      "seconds": 6.201,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nROCK RESCUE: 1153 checks, 0 failures"
+    },
+    {
+      "test": "sarah_arm_review_test.gd",
+      "passed": true,
+      "seconds": 223.65,
+      "exit_code": 0,
+      "tail": "SARAH ARM AREA RATIOS: { &\"ShapedBodice\": 0.83903099991061, &\"ContinuousMenuTail\": 0.61199998456305, &\"FlexiblePaintedPart_2\": 0.98632773109244, &\"FlexiblePaintedPart_15\": 0.97876437607056, &\"ContinuousArmSkin_1\": 0.48810165036208, &\"ContinuousArmSkin_0\": 0.53701656731541, &\"ConnectedFaceHairDetails\": 1.0 }\nSARAH ARM JOINT RANGES: { \"breaststroke\": (1.097559, 0.274085), \"front_crawl\": (0.873889, 0.515229), \"sidestroke\": (0.721454, 0.451268), \"butterfly\": (0.825057, 0.53605), \"rise_scoop\": (0.846934, 0.536296), \"rise_alternate\": (0.79295, 0.522596), \"dive_spear\": (0.35392, 0.350818), \"dive_sweep\": (0.701156, 0.424434), \"boost_dolphin\": (0.048052, 0.034974), \"boost_drive\": (0.047261, 0.034974), \"waterfall_scull\": (0.798334, 0.536592), \"waterfall_surge\": (0.039978, 0.034888) }\nSARAH ARM REVIEW: 21764488 checks, 0 failures"
+    },
+    {
+      "test": "sarah_breaststroke_test.gd",
+      "passed": true,
+      "seconds": 4.205,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH BREASTSTROKE: 1689 checks, 0 failures"
+    },
+    {
+      "test": "sarah_continuity_test.gd",
+      "passed": true,
+      "seconds": 8.178,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH CONTINUITY: 4325 checks, 0 failures"
+    },
+    {
+      "test": "sarah_definitive_review_test.gd",
+      "passed": true,
+      "seconds": 41.217,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nDEFINITIVE REVIEW: 169878 checks, 0 failures"
+    },
+    {
+      "test": "sarah_definitive_test.gd",
+      "passed": true,
+      "seconds": 21.251,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nDEFINITIVE SARAH: 11347 checks, 0 failures"
+    },
+    {
+      "test": "sarah_depth_motion_test.gd",
+      "passed": true,
+      "seconds": 7.189,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH DEPTH: 1581 checks, 0 failures"
+    },
+    {
+      "test": "sarah_face_details_test.gd",
+      "passed": true,
+      "seconds": 29.264,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH FACE DETAILS: 14584 checks, 0 failures"
+    },
+    {
+      "test": "sarah_fluid_motion_test.gd",
+      "passed": true,
+      "seconds": 22.413,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH FLUID MOTION: 3678 checks, 0 failures"
+    },
+    {
+      "test": "sarah_magnifique_test.gd",
+      "passed": true,
+      "seconds": 3.234,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SARAH MAGNIFIQUE TEST PASSED"
+    },
+    {
+      "test": "sarah_princess_test.gd",
+      "passed": true,
+      "seconds": 4.214,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPRINCESS SARAH: 714 checks, 0 failures"
+    },
+    {
+      "test": "sarah_spine_motion_test.gd",
+      "passed": true,
+      "seconds": 41.301,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH SPINE: 534009 checks, 0 failures"
+    },
+    {
+      "test": "sarah_torso_motion_test.gd",
+      "passed": true,
+      "seconds": 67.253,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH TORSO: 948203 checks, 0 failures"
+    },
+    {
+      "test": "sarah_ultimate_test.gd",
+      "passed": true,
+      "seconds": 20.206,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nULTIMATE SARAH: 39909 checks, 0 failures"
+    },
+    {
+      "test": "sarah_v030_bundle_test.gd",
+      "passed": true,
+      "seconds": 13.191,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH V030 BUNDLE: 3635 checks, 0 failures"
+    },
+    {
+      "test": "sarah_v031_bundle_test.gd",
+      "passed": true,
+      "seconds": 13.204,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH V031 BUNDLE: 3768 checks, 0 failures"
+    },
+    {
+      "test": "scene_flow_test.gd",
+      "passed": true,
+      "seconds": 12.331,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED"
+    },
+    {
+      "test": "scoring_ui_test.gd",
+      "passed": true,
+      "seconds": 3.277,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED"
+    },
+    {
+      "test": "title_flow_test.gd",
+      "passed": true,
+      "seconds": 8.374,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT TITLE FLOW TEST PASSED"
+    },
+    {
+      "test": "visual_polish_test.gd",
+      "passed": true,
+      "seconds": 7.295,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nVISUAL POLISH: 336 checks, 0 failures"
+    }
+  ],
+  "source_preservation": {
+    "baseline": "087a0d9c04dc4d5bc0a3b84c9d4a31875da6c79b",
+    "original_files_checked": 107,
+    "changed_original_files": [],
+    "restored_atlases_verified": 10,
+    "exact_atlas_git_blobs": {
+      "carlo": "c039ea8d155f037c6609c80d4820f8319dc8f727",
+      "enemies": "7dc2a24f33d4382b22b95ed2c1f1b9f040d32151",
+      "friendly": "dfaf94e3715aa49df0c2a04f0b31ebaf7c3f210b",
+      "lagoon": "b7d696602de95d3bdea8c7a87728b1635bcb9f57",
+      "miguel": "81782eddb03e4b8214c9b8247168092dae7b46f7",
+      "nessie": "bb231962a863e2c0add3d79ea3d8d90f89baf9ba",
+      "palace": "b074bdfde02bc62e8a0989a649b7b78b1fc5036e",
+      "rana": "1c1ca9cf2f847cd329335b791211ce99f0156a12",
+      "shadow": "8dcc260b18b880e30e3280a135ffa58c8224cbab",
+      "training": "9dd3ad0266676fe92976dade11aff163f9b601dd"
+    }
+  },
+  "visual_review": {
+    "count": 48,
+    "pictures": [
+      "chapter-0-guarded",
+      "chapter-0-opening",
+      "chapter-0-open",
+      "chapter-0-cooldown",
+      "sarah-held-1",
+      "sarah-held-2",
+      "sarah-held-3",
+      "sarah-held-left",
+      "sarah-super-release",
+      "max-density-highland",
+      "portrait-cancel",
+      "chapter-1-guarded",
+      "chapter-1-opening",
+      "chapter-1-open",
+      "chapter-1-cooldown",
+      "max-density-duo",
+      "chapter-2-guarded",
+      "chapter-2-opening",
+      "chapter-2-open",
+      "chapter-2-cooldown",
+      "chapter-3-guarded",
+      "chapter-3-opening",
+      "chapter-3-open",
+      "chapter-3-cooldown",
+      "chapter-4-guarded",
+      "chapter-4-opening",
+      "chapter-4-open",
+      "chapter-4-cooldown",
+      "chapter-5-guarded",
+      "chapter-5-opening",
+      "chapter-5-open",
+      "chapter-5-cooldown",
+      "chapter-6-guarded",
+      "chapter-6-opening",
+      "chapter-6-open",
+      "chapter-6-cooldown",
+      "chapter-7-guarded",
+      "chapter-7-opening",
+      "chapter-7-open",
+      "chapter-7-cooldown",
+      "king-cloud-wave-beard",
+      "protected-royal-teachers",
+      "six-core-families",
+      "six-core-families-attack",
+      "six-lagoon-families",
+      "six-lagoon-families-attack",
+      "atlas-dark",
+      "atlas-light"
+    ],
+    "quality": "full",
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)"
+  },
+  "art": {
+    "production_effects": 28,
+    "atlases": 10,
+    "raw_residency_MiB": {
+      "carlo": 3.318,
+      "shadow": 3.633,
+      "miguel": 3.459,
+      "palace": 3.31,
+      "rana": 4.165,
+      "nessie": 3.346,
+      "blackwater": 3.059,
+      "training": 5.115
+    },
+    "lossy_compression": false,
+    "mipmaps": false,
+    "original_art_resized": false
+  },
+  "package_validation": {
+    "passed": true,
+    "fresh_extraction_suites": 12,
+    "checks": [
+      "CRC",
+      "directory entries",
+      "Godot extraction",
+      "byte equality",
+      "fresh import",
+      "title startup",
+      "12 native suites"
+    ],
+    "offline_import_threads": "serial",
+    "cpu_affinity": "unrestricted"
+  },
+  "limitations": [
+    "Physical Windows/Android/iOS GPU time and FPS remain unmeasured.",
+    "Charge thresholds and the added boss damage require human balance playtesting on target devices."
+  ],
+  "import_diagnostics": {
+    "parallel_import_failures": [
+      {
+        "exit_code": -6,
+        "detail": "Native allocator abort; corrupted size vs. prev_size"
+      },
+      {
+        "exit_code": -11,
+        "detail": "Native segmentation fault while importing an original font"
+      }
+    ],
+    "resolution": "Serialize offline editor imports via editor/import/use_multiple_threads=false; runtime threaded loading is unchanged.",
+    "clean_serial_package_passed": true,
+    "cause": "Exact native cause not established. The upstream concurrent-font-import issue is a similar failure, not a confirmed diagnosis.",
+    "upstream_reference": "https://github.com/godotengine/godot/issues/111039"
+  },
+  "light_mask_comparison": {
+    "before": {
+      "cold_frame": {
+        "mean_ms": 230.725566666667,
+        "median_ms": 183.602,
+        "p95_ms": 297.156
+      },
+      "cold_max_ms": 1324.708,
+      "cpu": {
+        "mean_ms": 10.6291166666667,
+        "median_ms": 8.879,
+        "p95_ms": 25.444
+      },
+      "draw_calls": {
+        "mean_ms": 193.616666666667,
+        "median_ms": 194.0,
+        "p95_ms": 199.0
+      },
+      "first_frame_ms": 164.19,
+      "frame": {
+        "mean_ms": 186.9099,
+        "median_ms": 179.902,
+        "p95_ms": 235.003
+      },
+      "friendly_count": 8,
+      "hostile_count": 32,
+      "objects": 2615.0,
+      "startup_ms": 2147.86,
+      "texture_bytes": 200966797.0
+    },
+    "after": {
+      "cold_frame": {
+        "mean_ms": 219.5003,
+        "median_ms": 188.045,
+        "p95_ms": 253.722
+      },
+      "cold_max_ms": 828.089,
+      "cpu": {
+        "mean_ms": 11.3525333333333,
+        "median_ms": 8.452,
+        "p95_ms": 30.652
+      },
+      "draw_calls": {
+        "mean_ms": 189.616666666667,
+        "median_ms": 190.0,
+        "p95_ms": 195.0
+      },
+      "first_frame_ms": 162.578,
+      "frame": {
+        "mean_ms": 209.753133333333,
+        "median_ms": 194.672,
+        "p95_ms": 274.836
+      },
+      "friendly_count": 8,
+      "hostile_count": 32,
+      "objects": 2615.0,
+      "startup_ms": 2520.106,
+      "texture_bytes": 200966797.0
+    },
+    "max_channel_difference": 0,
+    "mean_channel_difference": 0.0,
+    "changed_channels": 0
+  },
+  "performance": {
+    "normal": {
+      "baseline": {
+        "chapter-1": {
+          "cpu": {
+            "mean_ms": 6.72046666666667,
+            "median_ms": 6.275,
+            "p95_ms": 10.826
+          },
+          "draw_calls": {
+            "mean_ms": 190.766666666667,
+            "median_ms": 182.0,
+            "p95_ms": 238.0
+          },
+          "frame": {
+            "mean_ms": 185.8602,
+            "median_ms": 183.913,
+            "p95_ms": 213.559
+          },
+          "nodes": 19,
+          "objects": 2424.0,
+          "primitives": 62449.0,
+          "render_objects": 522.0,
+          "startup_ms": 560.824,
+          "texture_bytes": 263413533.0
+        },
+        "chapter-2": {
+          "cpu": {
+            "mean_ms": 7.73555,
+            "median_ms": 6.941,
+            "p95_ms": 16.194
+          },
+          "draw_calls": {
+            "mean_ms": 118.7,
+            "median_ms": 121.0,
+            "p95_ms": 121.0
+          },
+          "frame": {
+            "mean_ms": 174.308666666667,
+            "median_ms": 169.748,
+            "p95_ms": 220.17
+          },
+          "nodes": 18,
+          "objects": 2445.0,
+          "primitives": 51668.0,
+          "render_objects": 423.0,
+          "startup_ms": 206.666,
+          "texture_bytes": 263413533.0
+        },
+        "chapter-3": {
+          "cpu": {
+            "mean_ms": 6.72145,
+            "median_ms": 6.437,
+            "p95_ms": 10.071
+          },
+          "draw_calls": {
+            "mean_ms": 119.65,
+            "median_ms": 119.0,
+            "p95_ms": 122.0
+          },
+          "frame": {
+            "mean_ms": 168.696283333333,
+            "median_ms": 156.526,
+            "p95_ms": 237.168
+          },
+          "nodes": 18,
+          "objects": 2372.0,
+          "primitives": 51112.0,
+          "render_objects": 447.0,
+          "startup_ms": 207.864,
+          "texture_bytes": 248733476.0
+        },
+        "chapter-4": {
+          "cpu": {
+            "mean_ms": 8.65971666666667,
+            "median_ms": 6.739,
+            "p95_ms": 18.928
+          },
+          "draw_calls": {
+            "mean_ms": 127.65,
+            "median_ms": 127.0,
+            "p95_ms": 130.0
+          },
+          "frame": {
+            "mean_ms": 164.67455,
+            "median_ms": 155.23,
+            "p95_ms": 218.653
+          },
+          "nodes": 18,
+          "objects": 2510.0,
+          "primitives": 51318.0,
+          "render_objects": 525.0,
+          "startup_ms": 276.094,
+          "texture_bytes": 263413533.0
+        },
+        "chapter-5": {
+          "cpu": {
+            "mean_ms": 7.8752,
+            "median_ms": 6.944,
+            "p95_ms": 13.645
+          },
+          "draw_calls": {
+            "mean_ms": 123.633333333333,
+            "median_ms": 118.0,
+            "p95_ms": 160.0
+          },
+          "frame": {
+            "mean_ms": 189.298116666667,
+            "median_ms": 178.406,
+            "p95_ms": 314.385
+          },
+          "nodes": 18,
+          "objects": 2461.0,
+          "primitives": 54112.0,
+          "render_objects": 462.0,
+          "startup_ms": 220.289,
+          "texture_bytes": 263411329.0
+        },
+        "chapter-6": {
+          "cpu": {
+            "mean_ms": 8.04535,
+            "median_ms": 7.155,
+            "p95_ms": 14.816
+          },
+          "draw_calls": {
+            "mean_ms": 116.166666666667,
+            "median_ms": 115.0,
+            "p95_ms": 125.0
+          },
+          "frame": {
+            "mean_ms": 158.358533333333,
+            "median_ms": 155.208,
+            "p95_ms": 183.474
+          },
+          "nodes": 18,
+          "objects": 2424.0,
+          "primitives": 51159.0,
+          "render_objects": 447.0,
+          "startup_ms": 211.377,
+          "texture_bytes": 263413533.0
+        },
+        "chapter-7": {
+          "cpu": {
+            "mean_ms": 8.5055,
+            "median_ms": 7.578,
+            "p95_ms": 14.145
+          },
+          "draw_calls": {
+            "mean_ms": 133.85,
+            "median_ms": 127.0,
+            "p95_ms": 175.0
+          },
+          "frame": {
+            "mean_ms": 174.608533333333,
+            "median_ms": 163.301,
+            "p95_ms": 221.103
+          },
+          "nodes": 23,
+          "objects": 2524.0,
+          "primitives": 47410.0,
+          "render_objects": 539.0,
+          "startup_ms": 746.946,
+          "texture_bytes": 289977445.0
+        },
+        "cpu_components": {
+          "arm_skin": {
+            "mean_ms": 0.362525,
+            "median_ms": 0.311,
+            "p95_ms": 0.649
+          },
+          "hair_skin": {
+            "mean_ms": 0.2425,
+            "median_ms": 0.166,
+            "p95_ms": 0.839
+          },
+          "rig_process": {
+            "mean_ms": 5.21185,
+            "median_ms": 4.737,
+            "p95_ms": 10.322
+          },
+          "spine_and_torso": {
+            "mean_ms": 1.40475,
+            "median_ms": 1.088,
+            "p95_ms": 3.503
+          },
+          "tail_skin": {
+            "mean_ms": 2.733675,
+            "median_ms": 2.487,
+            "p95_ms": 5.017
+          }
+        },
+        "environment": {
+          "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+          "display": "X11",
+          "engine": "4.4.1-stable (official)",
+          "fixed_step": 0.0166666666666667,
+          "measured_frames": 60,
+          "quality": "full",
+          "resolution": [
+            1400,
+            960
+          ],
+          "warmup_frames": 30
+        },
+        "highland-boss": {
+          "cpu": {
+            "mean_ms": 6.60318333333333,
+            "median_ms": 6.507,
+            "p95_ms": 9.245
+          },
+          "draw_calls": {
+            "mean_ms": 166.633333333333,
+            "median_ms": 155.0,
+            "p95_ms": 240.0
+          },
+          "frame": {
+            "mean_ms": 155.613733333333,
+            "median_ms": 152.949,
+            "p95_ms": 181.954
+          },
+          "nodes": 17,
+          "objects": 2419.0,
+          "primitives": 55405.0,
+          "render_objects": 463.0,
+          "startup_ms": 125.379,
+          "texture_bytes": 181660900.0
+        },
+        "highland-entry": {
+          "cpu": {
+            "mean_ms": 6.89176666666667,
+            "median_ms": 6.637,
+            "p95_ms": 9.411
+          },
+          "draw_calls": {
+            "mean_ms": 226.716666666667,
+            "median_ms": 225.0,
+            "p95_ms": 241.0
+          },
+          "frame": {
+            "mean_ms": 159.740416666667,
+            "median_ms": 157.064,
+            "p95_ms": 175.855
+          },
+          "nodes": 17,
+          "objects": 2418.0,
+          "primitives": 56789.0,
+          "render_objects": 683.0,
+          "startup_ms": 1974.314,
+          "texture_bytes": 181660900.0
+        },
+        "title": {
+          "cpu": {
+            "mean_ms": 6.92985,
+            "median_ms": 6.518,
+            "p95_ms": 10.314
+          },
+          "draw_calls": {
+            "mean_ms": 158.2,
+            "median_ms": 162.0,
+            "p95_ms": 166.0
+          },
+          "frame": {
+            "mean_ms": 195.345983333333,
+            "median_ms": 193.233,
+            "p95_ms": 225.329
+          },
+          "nodes": 6,
+          "objects": 2010.0,
+          "primitives": 57791.0,
+          "render_objects": 215.0,
+          "startup_ms": 283.389,
+          "texture_bytes": 297964653.0
+        },
+        "waterfall": {
+          "cpu": {
+            "mean_ms": 6.2013,
+            "median_ms": 5.903,
+            "p95_ms": 8.615
+          },
+          "draw_calls": {
+            "mean_ms": 43.0,
+            "median_ms": 43.0,
+            "p95_ms": 43.0
+          },
+          "frame": {
+            "mean_ms": 118.952033333333,
+            "median_ms": 117.959,
+            "p95_ms": 132.726
+          },
+          "nodes": 17,
+          "objects": 2419.0,
+          "primitives": 44186.0,
+          "render_objects": 264.0,
+          "startup_ms": 125.699,
+          "texture_bytes": 181660900.0
+        }
+      },
+      "opal_current": {
+        "chapter-1": {
+          "cpu": {
+            "mean_ms": 7.5899,
+            "median_ms": 7.435,
+            "p95_ms": 11.093
+          },
+          "draw_calls": {
+            "mean_ms": 189.85,
+            "median_ms": 185.0,
+            "p95_ms": 241.0
+          },
+          "frame": {
+            "mean_ms": 212.225983333333,
+            "median_ms": 204.473,
+            "p95_ms": 283.977
+          },
+          "nodes": 20,
+          "objects": 2781.0,
+          "primitives": 63710.0,
+          "render_objects": 520.0,
+          "startup_ms": 803.768,
+          "texture_bytes": 268490113.0
+        },
+        "chapter-2": {
+          "cpu": {
+            "mean_ms": 7.94101666666667,
+            "median_ms": 7.128,
+            "p95_ms": 12.563
+          },
+          "draw_calls": {
+            "mean_ms": 112.683333333333,
+            "median_ms": 113.0,
+            "p95_ms": 114.0
+          },
+          "frame": {
+            "mean_ms": 201.874483333333,
+            "median_ms": 180.565,
+            "p95_ms": 276.309
+          },
+          "nodes": 19,
+          "objects": 2848.0,
+          "primitives": 51719.0,
+          "render_objects": 417.0,
+          "startup_ms": 254.746,
+          "texture_bytes": 268249125.0
+        },
+        "chapter-3": {
+          "cpu": {
+            "mean_ms": 7.54443333333333,
+            "median_ms": 6.57,
+            "p95_ms": 17.421
+          },
+          "draw_calls": {
+            "mean_ms": 117.083333333333,
+            "median_ms": 116.0,
+            "p95_ms": 121.0
+          },
+          "frame": {
+            "mean_ms": 248.016083333333,
+            "median_ms": 244.223,
+            "p95_ms": 386.242
+          },
+          "nodes": 19,
+          "objects": 2724.0,
+          "primitives": 51450.0,
+          "render_objects": 448.0,
+          "startup_ms": 251.956,
+          "texture_bytes": 253009228.0
+        },
+        "chapter-4": {
+          "cpu": {
+            "mean_ms": 11.1571666666667,
+            "median_ms": 7.144,
+            "p95_ms": 22.945
+          },
+          "draw_calls": {
+            "mean_ms": 124.866666666667,
+            "median_ms": 124.0,
+            "p95_ms": 128.0
+          },
+          "frame": {
+            "mean_ms": 204.846583333333,
+            "median_ms": 195.723,
+            "p95_ms": 295.589
+          },
+          "nodes": 19,
+          "objects": 2865.0,
+          "primitives": 51654.0,
+          "render_objects": 525.0,
+          "startup_ms": 297.109,
+          "texture_bytes": 268039373.0
+        },
+        "chapter-5": {
+          "cpu": {
+            "mean_ms": 15.2032,
+            "median_ms": 7.95,
+            "p95_ms": 34.075
+          },
+          "draw_calls": {
+            "mean_ms": 123.85,
+            "median_ms": 118.0,
+            "p95_ms": 160.0
+          },
+          "frame": {
+            "mean_ms": 202.821183333333,
+            "median_ms": 185.658,
+            "p95_ms": 298.811
+          },
+          "nodes": 19,
+          "objects": 2818.0,
+          "primitives": 54870.0,
+          "render_objects": 465.0,
+          "startup_ms": 304.581,
+          "texture_bytes": 269232781.0
+        },
+        "chapter-6": {
+          "cpu": {
+            "mean_ms": 7.5273,
+            "median_ms": 7.429,
+            "p95_ms": 10.59
+          },
+          "draw_calls": {
+            "mean_ms": 113.6,
+            "median_ms": 112.0,
+            "p95_ms": 124.0
+          },
+          "frame": {
+            "mean_ms": 173.890133333333,
+            "median_ms": 169.183,
+            "p95_ms": 222.019
+          },
+          "nodes": 19,
+          "objects": 2779.0,
+          "primitives": 51497.0,
+          "render_objects": 448.0,
+          "startup_ms": 323.232,
+          "texture_bytes": 268089689.0
+        },
+        "chapter-7": {
+          "cpu": {
+            "mean_ms": 10.6260166666667,
+            "median_ms": 8.211,
+            "p95_ms": 33.68
+          },
+          "draw_calls": {
+            "mean_ms": 133.85,
+            "median_ms": 127.0,
+            "p95_ms": 175.0
+          },
+          "frame": {
+            "mean_ms": 230.480916666667,
+            "median_ms": 224.896,
+            "p95_ms": 367.221
+          },
+          "nodes": 24,
+          "objects": 2885.0,
+          "primitives": 47410.0,
+          "render_objects": 539.0,
+          "startup_ms": 973.885,
+          "texture_bytes": 297124833.0
+        },
+        "cpu_components": {
+          "arm_skin": {
+            "mean_ms": 0.391125,
+            "median_ms": 0.308,
+            "p95_ms": 0.763
+          },
+          "hair_skin": {
+            "mean_ms": 0.17565,
+            "median_ms": 0.161,
+            "p95_ms": 0.238
+          },
+          "rig_process": {
+            "mean_ms": 5.002675,
+            "median_ms": 4.473,
+            "p95_ms": 6.946
+          },
+          "spine_and_torso": {
+            "mean_ms": 1.1278,
+            "median_ms": 0.887,
+            "p95_ms": 2.651
+          },
+          "tail_skin": {
+            "mean_ms": 2.434925,
+            "median_ms": 2.266,
+            "p95_ms": 4.007
+          }
+        },
+        "environment": {
+          "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+          "display": "X11",
+          "engine": "4.4.1-stable (official)",
+          "fixed_step": 0.0166666666666667,
+          "measured_frames": 60,
+          "quality": "full",
+          "resolution": [
+            1400,
+            960
+          ],
+          "warmup_frames": 30
+        },
+        "highland-boss": {
+          "cpu": {
+            "mean_ms": 8.05803333333333,
+            "median_ms": 7.542,
+            "p95_ms": 14.257
+          },
+          "draw_calls": {
+            "mean_ms": 164.2,
+            "median_ms": 153.0,
+            "p95_ms": 237.0
+          },
+          "frame": {
+            "mean_ms": 166.802166666667,
+            "median_ms": 163.327,
+            "p95_ms": 215.327
+          },
+          "nodes": 18,
+          "objects": 2775.0,
+          "primitives": 55737.0,
+          "render_objects": 461.0,
+          "startup_ms": 188.56,
+          "texture_bytes": 186296964.0
+        },
+        "highland-entry": {
+          "cpu": {
+            "mean_ms": 8.03018333333333,
+            "median_ms": 7.308,
+            "p95_ms": 14.274
+          },
+          "draw_calls": {
+            "mean_ms": 229.716666666667,
+            "median_ms": 228.0,
+            "p95_ms": 244.0
+          },
+          "frame": {
+            "mean_ms": 162.419866666667,
+            "median_ms": 163.12,
+            "p95_ms": 179.929
+          },
+          "nodes": 18,
+          "objects": 2774.0,
+          "primitives": 57181.0,
+          "render_objects": 686.0,
+          "startup_ms": 2314.898,
+          "texture_bytes": 186296964.0
+        },
+        "title": {
+          "cpu": {
+            "mean_ms": 11.1370666666667,
+            "median_ms": 6.397,
+            "p95_ms": 34.143
+          },
+          "draw_calls": {
+            "mean_ms": 158.2,
+            "median_ms": 162.0,
+            "p95_ms": 166.0
+          },
+          "frame": {
+            "mean_ms": 742.164766666667,
+            "median_ms": 260.7,
+            "p95_ms": 5046.652
+          },
+          "nodes": 6,
+          "objects": 2024.0,
+          "primitives": 57793.0,
+          "render_objects": 216.0,
+          "startup_ms": 314.513,
+          "texture_bytes": 297964653.0
+        },
+        "waterfall": {
+          "cpu": {
+            "mean_ms": 7.82926666666667,
+            "median_ms": 6.605,
+            "p95_ms": 17.567
+          },
+          "draw_calls": {
+            "mean_ms": 43.0,
+            "median_ms": 43.0,
+            "p95_ms": 43.0
+          },
+          "frame": {
+            "mean_ms": 133.559583333333,
+            "median_ms": 128.065,
+            "p95_ms": 195.789
+          },
+          "nodes": 18,
+          "objects": 2775.0,
+          "primitives": 44186.0,
+          "render_objects": 264.0,
+          "startup_ms": 193.068,
+          "texture_bytes": 186296964.0
+        }
+      },
+      "aggregate": {
+        "cpu": {
+          "sum_case_medians_before": 73.634,
+          "sum_case_medians_after": 79.719,
+          "change_percent": 8.263845506152045,
+          "mean_added_per_case": 0.5531818181818177
+        },
+        "frame": {
+          "sum_case_medians_before": 1783.537,
+          "sum_case_medians_after": 2119.933,
+          "change_percent": 18.861173051077706,
+          "mean_added_per_case": 30.58145454545454
+        },
+        "draw_calls": {
+          "sum_case_medians_before": 1494.0,
+          "sum_case_medians_after": 1481.0,
+          "change_percent": -0.8701472556894241,
+          "mean_added_per_case": -1.1818181818181819
+        }
+      },
+      "implementation_stage": "Measured immediately before the final zero-light-mask optimisation; conservative normal-route timings. The light-mask change was separately image-verified with zero changed channels."
+    },
+    "stress": {
+      "baseline": {
+        "environment": {
+          "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+          "engine": "4.4.1-stable (official)",
+          "fixed_step": 0.0166666666666667,
+          "friendly": 8,
+          "hostile": 32,
+          "impact_interval_frames": 24,
+          "live_enemies": 6,
+          "measured_frames": 60,
+          "note": "Manual updates; native particles/tweens frozen like the base audit. New charge/impact geometry remains active. Seeding excluded from CPU.",
+          "quality": "full",
+          "resolution": [
+            1400,
+            960
+          ],
+          "warmup_frames": 30
+        },
+        "highland": {
+          "cold_frame": {
+            "mean_ms": 235.714866666667,
+            "median_ms": 187.685,
+            "p95_ms": 663.63
+          },
+          "cold_max_ms": 1105.813,
+          "cpu": {
+            "mean_ms": 7.24703333333334,
+            "median_ms": 7.131,
+            "p95_ms": 9.958
+          },
+          "draw_calls": {
+            "mean_ms": 266.3,
+            "median_ms": 256.0,
+            "p95_ms": 339.0
+          },
+          "first_frame_ms": 165.889,
+          "frame": {
+            "mean_ms": 185.255383333333,
+            "median_ms": 181.714,
+            "p95_ms": 241.545
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2233.0,
+          "startup_ms": 1981.515,
+          "texture_bytes": 181660900.0
+        },
+        "palace": {
+          "cold_frame": {
+            "mean_ms": 176.3017,
+            "median_ms": 169.807,
+            "p95_ms": 187.407
+          },
+          "cold_max_ms": 378.864,
+          "cpu": {
+            "mean_ms": 7.87458333333333,
+            "median_ms": 7.126,
+            "p95_ms": 13.373
+          },
+          "draw_calls": {
+            "mean_ms": 169.366666666667,
+            "median_ms": 169.0,
+            "p95_ms": 174.0
+          },
+          "first_frame_ms": 153.618,
+          "frame": {
+            "mean_ms": 198.7963,
+            "median_ms": 179.392,
+            "p95_ms": 282.291
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2375.0,
+          "startup_ms": 316.536,
+          "texture_bytes": 263413533.0
+        },
+        "shadow": {
+          "cold_frame": {
+            "mean_ms": 231.5221,
+            "median_ms": 202.274,
+            "p95_ms": 226.837
+          },
+          "cold_max_ms": 1025.064,
+          "cpu": {
+            "mean_ms": 7.71325,
+            "median_ms": 7.242,
+            "p95_ms": 10.88
+          },
+          "draw_calls": {
+            "mean_ms": 249.233333333333,
+            "median_ms": 242.0,
+            "p95_ms": 297.0
+          },
+          "first_frame_ms": 188.679,
+          "frame": {
+            "mean_ms": 207.627966666667,
+            "median_ms": 203.286,
+            "p95_ms": 253.458
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2362.0,
+          "startup_ms": 667.606,
+          "texture_bytes": 263413533.0
+        },
+        "training": {
+          "cold_frame": {
+            "mean_ms": 272.884,
+            "median_ms": 260.733,
+            "p95_ms": 308.938
+          },
+          "cold_max_ms": 567.214,
+          "cpu": {
+            "mean_ms": 8.07611666666666,
+            "median_ms": 7.422,
+            "p95_ms": 14.167
+          },
+          "draw_calls": {
+            "mean_ms": 195.483333333333,
+            "median_ms": 196.0,
+            "p95_ms": 197.0
+          },
+          "first_frame_ms": 237.843,
+          "frame": {
+            "mean_ms": 259.530633333333,
+            "median_ms": 258.722,
+            "p95_ms": 284.89
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2476.0,
+          "startup_ms": 658.786,
+          "texture_bytes": 289977445.0
+        }
+      },
+      "opal_current": {
+        "environment": {
+          "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+          "engine": "4.4.1-stable (official)",
+          "fixed_step": 0.0166666666666667,
+          "friendly": 8,
+          "hostile": 32,
+          "impact_interval_frames": 24,
+          "live_enemies": 6,
+          "measured_frames": 60,
+          "note": "Manual updates; native particles/tweens frozen like the base audit. New charge/impact geometry remains active. Seeding excluded from CPU.",
+          "quality": "full",
+          "resolution": [
+            1400,
+            960
+          ],
+          "warmup_frames": 30
+        },
+        "highland": {
+          "cold_frame": {
+            "mean_ms": 252.801733333333,
+            "median_ms": 212.122,
+            "p95_ms": 338.996
+          },
+          "cold_max_ms": 1075.077,
+          "cpu": {
+            "mean_ms": 12.7586166666667,
+            "median_ms": 9.381,
+            "p95_ms": 35.915
+          },
+          "draw_calls": {
+            "mean_ms": 207.116666666667,
+            "median_ms": 197.0,
+            "p95_ms": 280.0
+          },
+          "first_frame_ms": 174.591,
+          "frame": {
+            "mean_ms": 223.41765,
+            "median_ms": 214.325,
+            "p95_ms": 300.263
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2589.0,
+          "startup_ms": 2088.385,
+          "texture_bytes": 186296964.0
+        },
+        "palace": {
+          "cold_frame": {
+            "mean_ms": 172.906566666667,
+            "median_ms": 165.844,
+            "p95_ms": 185.202
+          },
+          "cold_max_ms": 343.657,
+          "cpu": {
+            "mean_ms": 8.96308333333333,
+            "median_ms": 8.619,
+            "p95_ms": 13.075
+          },
+          "draw_calls": {
+            "mean_ms": 189.616666666667,
+            "median_ms": 190.0,
+            "p95_ms": 195.0
+          },
+          "first_frame_ms": 155.472,
+          "frame": {
+            "mean_ms": 199.740266666667,
+            "median_ms": 203.079,
+            "p95_ms": 252.615
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2730.0,
+          "startup_ms": 354.4,
+          "texture_bytes": 268039373.0
+        },
+        "shadow": {
+          "cold_frame": {
+            "mean_ms": 232.6527,
+            "median_ms": 206.968,
+            "p95_ms": 447.53
+          },
+          "cold_max_ms": 721.486,
+          "cpu": {
+            "mean_ms": 7.39313333333333,
+            "median_ms": 7.058,
+            "p95_ms": 9.494
+          },
+          "draw_calls": {
+            "mean_ms": 186.116666666667,
+            "median_ms": 180.0,
+            "p95_ms": 235.0
+          },
+          "first_frame_ms": 184.524,
+          "frame": {
+            "mean_ms": 196.965933333333,
+            "median_ms": 190.595,
+            "p95_ms": 254.002
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2719.0,
+          "startup_ms": 600.851,
+          "texture_bytes": 268490113.0
+        },
+        "training": {
+          "cold_frame": {
+            "mean_ms": 348.870266666667,
+            "median_ms": 300.685,
+            "p95_ms": 781.643
+          },
+          "cold_max_ms": 999.769,
+          "cpu": {
+            "mean_ms": 10.9196,
+            "median_ms": 9.025,
+            "p95_ms": 25.283
+          },
+          "draw_calls": {
+            "mean_ms": 214.733333333333,
+            "median_ms": 214.0,
+            "p95_ms": 217.0
+          },
+          "first_frame_ms": 219.402,
+          "frame": {
+            "mean_ms": 224.3282,
+            "median_ms": 215.371,
+            "p95_ms": 356.926
+          },
+          "friendly_count": 8,
+          "hostile_count": 32,
+          "objects": 2837.0,
+          "startup_ms": 1136.394,
+          "texture_bytes": 297124833.0
+        }
+      },
+      "aggregate": {
+        "cpu": {
+          "sum_case_medians_before": 28.921,
+          "sum_case_medians_after": 34.083,
+          "change_percent": 17.848622108502465,
+          "mean_added_per_case": 1.2904999999999998
+        },
+        "frame": {
+          "sum_case_medians_before": 823.114,
+          "sum_case_medians_after": 823.37,
+          "change_percent": 0.031101402721844806,
+          "mean_added_per_case": 0.06399999999999295
+        },
+        "draw_calls": {
+          "sum_case_medians_before": 863.0,
+          "sum_case_medians_after": 781.0,
+          "change_percent": -9.50173812282734,
+          "mean_added_per_case": -20.5
+        }
+      }
+    }
+  },
+  "performance_method": {
+    "resolution": [
+      1400,
+      960
+    ],
+    "quality": "full",
+    "warmup_frames": 30,
+    "measured_frames": 60,
+    "fixed_step": 0.016666666666666666,
+    "renderer": "Compatibility / llvmpipe, two software renderer threads",
+    "sequential": true,
+    "notes": [
+      "Native particles/tweens frozen following the unchanged baseline audit; new charge/impact geometry active in the dense audit.",
+      "CPU update timing excludes engine-driven immediate draw callbacks. New pooled-sprite synchronization moves some painting work into the measured update.",
+      "Startup records first and subsequent scene loads in each process, without flushing the operating-system cache. Dense cases additionally record first-frame and warm-up maximum/p95.",
+      "The original generic stat keys end in _ms even for draw_calls; draw-call values are counts.",
+      "Software host scheduling and rasterization vary; no physical-device FPS or GPU-time claim is made."
+    ]
+  },
+  "visual_sha256": {
+    "atlas-dark.png": "0f9cb169742abf69422a9e7cf6bd4e2a0331f569982986d086795be2a30747db",
+    "atlas-light.png": "c2040cd3b07544b6b2bcbd6c44843604bce83dcffdb86ee97f2983c0681599f9",
+    "chapter-0-cooldown.png": "e2f21ea5dd577fadf22c694698c34da10a6ce043641a589115d464d389c3fcb0",
+    "chapter-0-guarded.png": "3c3ec89a93be4d8bfe25696337d9bac3231ffbd0704714061ddbc97383a02b21",
+    "chapter-0-open.png": "a56e6f0b0e6668373ca4983eabaac8b5d25c4fc1bf41badaf528e70840d9951d",
+    "chapter-0-opening.png": "1d694d9b1ca709d31b8d350c2d330ca06b2d726596b9e0296969821a85db9d3b",
+    "chapter-1-cooldown.png": "8397f394fd5ae7f758d8a97384e3dd689bef9a01b3b737a69c5db5d1583d9d02",
+    "chapter-1-guarded.png": "d17b4b56ef52be49039518228359faa06ee4f03ceb09167c2848b6a9d3638eab",
+    "chapter-1-open.png": "14b9815471b31e05bcf9eceb4b1f224aa73465cfecc7f958945b99d37fb0eee7",
+    "chapter-1-opening.png": "4e59c615aaf4b6be1d1455dc63815e60fdc9e2a370b4dca66ed863b6fbcaefca",
+    "chapter-2-cooldown.png": "e80e2e2ffeb0b40ab77f4a89d94fc3a1343383e716f5711e329d642734b95fba",
+    "chapter-2-guarded.png": "37d277152753ffd3f518359618cb7c33ac31a5e8fa241f501f2523f76cc9d903",
+    "chapter-2-open.png": "8f833e765658afc2e74e5542f4e094f81b30346a20704cfd1fa1cd07f4c32965",
+    "chapter-2-opening.png": "58bc5176eb8a3fe599595065ca9d2f09cdc3ec57959f7a403d159c860f40df49",
+    "chapter-3-cooldown.png": "87f24e924c74810181dbfe5a4728ef02d56d4e7721c0bfefaa359ac0924afb87",
+    "chapter-3-guarded.png": "a7732c72d4aa58019f1db6503025934fa088bd57ef79d66e4c35e959fe659c1b",
+    "chapter-3-open.png": "245013b6f4945f9a80907e9dd8194bfa7b9260be1d8caee03cd38e55b541dafc",
+    "chapter-3-opening.png": "f5c269b53152697b0e2ba21402802ccc1a3228e24bfb3b8140df58fe0698ad50",
+    "chapter-4-cooldown.png": "d84c9ff14bb82547e925d5594ce14303ccefa977cc55208c75f506ac5d667aa6",
+    "chapter-4-guarded.png": "7f4cd0bb9fc19d9b5f6958ea231adad3f860e14b46f2d6f65448228018492b5f",
+    "chapter-4-open.png": "29d694694bb481a098317945e9b2fab3ca53be9252fd91c06130a7064aa0d78e",
+    "chapter-4-opening.png": "774470b84d4188cd220ac829989d0d9f52d86278818d48005d43b26d85bc2fd4",
+    "chapter-5-cooldown.png": "d026587436e47125a6f108eba81ececff7abe95f472841e7fdfb3e8d34c90f4b",
+    "chapter-5-guarded.png": "64b4828b6b12ab54b5b3ac144a52898d67ef235454da8e40e19d100f87fbdaa1",
+    "chapter-5-open.png": "9abd2abf9a6d26a99f71e30968bf1da1fbd59b1d3591b829edd053fd20a18136",
+    "chapter-5-opening.png": "9dfe61cd75feac7865152b46a2aa92d147339c5d0f6caea436a01ec0ebf92de6",
+    "chapter-6-cooldown.png": "36da1b9ab90b5a5f94bda2dd8f23ba14155b1e829b173c5391a57dc6b5a57b82",
+    "chapter-6-guarded.png": "32f9ca7ec5723c23459a81d80dcfd05cab0d5b87bfedd1f0dcc45f286b751d89",
+    "chapter-6-open.png": "08c27514b0c563ff4755e573d28256963739bfe01f5447f5a04665876282d37c",
+    "chapter-6-opening.png": "25664040fe3ba4d662b7d0d3c0838ebc151228d293276e15d94c00cb9689c72a",
+    "chapter-7-cooldown.png": "6f4ff37212eb50b19bd702345de326c51b5f62abbbb1a716877b167ec794b341",
+    "chapter-7-guarded.png": "5abdbe75c8b0b445d56b7db57a83503375520dbf440dcf2166235830d3a0b33a",
+    "chapter-7-open.png": "0fb8bcb75a06f8a505f50edccd0c80152bd0cd9683104823d8a612a310916b5a",
+    "chapter-7-opening.png": "c4674dc35aeb867dceb61d026c5e4fe57ec68ea8d2c203ddced88ad9a016a13e",
+    "king-cloud-wave-beard.png": "852e27550a6b8b7404057fdc457b2fb289de856baceabb88980a67123f016a31",
+    "max-density-duo.png": "189a897aa197b0f659e120e43bdf0d7c36cb47008b69584177f0bc5122df6273",
+    "max-density-highland.png": "d9e62d99168022f36183dff54876bc2949c8e7b55a68d5b7a10b4039f00d0549",
+    "portrait-cancel.png": "c35f2e431f004e229ed873b891f1ab5748b47c0bc8cb59880a11501e87e04d5f",
+    "protected-royal-teachers.png": "9d610fa23a8dbce482d001ab94139fc0f3991a9527c342038c8294bc005bbf4d",
+    "sarah-held-1.png": "e4f92c28ac2a7c4b05c378882dc5c1da814752929a57743d597eaed5a021f2a9",
+    "sarah-held-2.png": "2538208e01787c20da3547ed7650c8915e9d073762f27218ee6a575d28a04e31",
+    "sarah-held-3.png": "211150ed6e935df4817032a63fbbe88d961cc263b822646275d234de073753f2",
+    "sarah-held-left.png": "e071a40bb114272dce3d8b2a8f37ac861d3e5a62cb3929d237d2829d07366182",
+    "sarah-super-release.png": "c0854f0505dfada0d8021f3bef35c7b3f7283ee8cfe9f8d73cf118e5359445cb",
+    "six-core-families-attack.png": "8c0674c96b5fe9e8915dfd228d6478e004408553667d9af525a9a5678f505977",
+    "six-core-families.png": "4995e66906272e77d83d1900c0b3f32128a08721ab706cc78930d061fb6d4489",
+    "six-lagoon-families-attack.png": "d9c7264118771bbc137e42da003cf93d959dd2d4fb228d9195c5832523a74d3d",
+    "six-lagoon-families.png": "d6f792ace8e83317ef9c995b9796dcac51b072b231ed28651ce47cb0508cfe13"
+  },
+  "code_sha256": {
+    "godot/avina_companion.gd": "179a92f349a3e6f3889210a1dc4b2303ad5e33d46b0a1ab60308c5db9249c516",
+    "godot/avina_tutorial.gd": "7231dc519f59b0fcffc23dead428be3797f8a274b613e672a4ec5b0428e34e42",
+    "godot/basic_chapter.gd": "b8b5fdbd0359eeca492c96632706cc928eb7a5d93814451cc6546109dcbe8a77",
+    "godot/blackwater_tunnel.tscn": "afa08360e528ffd0942408e9ded0b3ae7297c674ea63e0600ba7c935778e6dca",
+    "godot/highland_level.gd": "8786fc60dc6d5f52551b5bf5c2cf4cb17e9e4e818178f925ae0780af391c1cb0",
+    "godot/highland_level.tscn": "01f311352b3e199ede3a13c59b8151a1074fdb3e287281a4ec814b0f32929b7b",
+    "godot/journey_level.gd": "4d8df6293f195508ac81464b01b05c7f8c0e6fc4d14145c301cb4ead15111046",
+    "godot/miguel_lagoon.tscn": "8b04d4f69ef1ee9b77b43cbd12295d2fe5d0b6228a5ee282e617433fac789774",
+    "godot/nessie_finale.tscn": "26449838e26617dfca72291d475705a303764044330ab71363e62c3525a2f259",
+    "godot/opal_art.gd": "2972bcde0fb667e8f17744385309b232546249ba17672ce85f73d6567f6d6b6c",
+    "godot/opal_charge.gd": "9edc4378bf864514a01b66c77c90a618ef60d075e5625468676d2a42b0dfc324",
+    "godot/opal_collision.gd": "b136e1c6965b40dfccc31540de36a5e885ff164624cb26046d897e3c73ee98c4",
+    "godot/opal_combat.gd": "06a12696dbb938817ba6fc5b1ea20b226670e8ac6a818a6fe2f0a7c6c2968690",
+    "godot/opal_current_test.gd": "4d979a25cd3140a1a92ce46be1dae813ce08196487b21685233293d846121a0e",
+    "godot/opal_effects.gd": "b9b427cbf73b816e66f34cba1b9e62bc854cfbbacd5c820fd4de23ec7661401c",
+    "godot/opal_roster.gd": "5dd5ecf7bf52cca3235a842450d59aa6f699551be4603e413d10e5c55ee1d11c",
+    "godot/package_project.py": "a8d2f006ed527a65bdf6f7e4865d2d0fb761846653ef73ee8a0ab856b023a726",
+    "godot/package_validation.py": "874d6cfe4c43f999cb6c4a8382c57e507d52c1174a3221ef477700367bae5abc",
+    "godot/pearl_palace.tscn": "571637defe5d0fe60d1214cbd5290e91d4fe01f5f693c757863db142df0c7b11",
+    "godot/premium_hud.gd": "d4efe06315d6707f665d3f1ea9ea10f92d67d211032b2ecc67c7057b41b7e046",
+    "godot/rana_ruin.tscn": "71110fb4051e8862a19576c30469cb0b1414d3c69252c40ba7819612268b4834",
+    "godot/sarah_rig.gd": "7af870d4e0c29a1a3818ffe215ec721b5bd3aba1f371c027ab60cc563345cc8c",
+    "godot/shaders/creature_skin.gdshader": "394c8e4d26f6b2d2ea0a46f18e64963cf5883f4effd0f6d12bc25bc1b1c94a38",
+    "godot/shaders/opal_portrait.gdshader": "993b455984de5a05f0c40e974819ec1f3df0d26c5fe5935f43692f315579cc70",
+    "godot/shaders/opal_projectile.gdshader": "ca10057f723591536862feecbb848333635875cc55d18b663748fd5da4de5b82",
+    "godot/shaders/opal_shell.gdshader": "230315d341dfb3992e4e39d222c14e1b9b1939d07b82d17292e73011c74dce34",
+    "godot/shadow_kingdom.tscn": "d6f258f99ed0ef2b2453b208229a656d51efdd8fb7a89e3c23e2d0ec748d706d",
+    "godot/title_screen.gd": "a7b37d8bbb00cb69e78b026357058890034ce0888b05731d3023f2908ee773eb",
+    "godot/tools/build_opal_atlases.py": "32ed23b370eb9fccaee8a6d384d68d51262e81f3b3fe74f1b0af51593725b309",
+    "godot/tools/opal_stress_audit.gd": "d7ad9b8df2f1202a8cdf081706d37638f5f06eda778c8dd58e11218c6d9114fd",
+    "godot/tools/opal_visual_audit.gd": "6b1f10e0b1b5434ce5377b60faee3619d8be6c4478e57b4064dd3d61fab3ec13",
+    "godot/training_lagoon.tscn": "9c0eea9fba5beda80c7f6ebc4598aaab9819d62900c98f4479bfbde564b5be84"
+  },
+  "playable_archive": {
+    "filename": "Mermaid-Adventure-v0.6-Opal-Current.zip",
+    "size_bytes": 67145227,
+    "sha256": "cdbfc9136abe4bb8ef5406208d03315d0a4a1480c8aba6333aff1c37b0336a05",
+    "source_commit": "109e571e148e866f1f5db95affc3645d33d4f9d8",
+    "runtime_files": 202,
+    "crc_passed": true,
+    "all_entries_byte_identical_to_tested_commit": true,
+    "note": "Rebuilt container after workspace cleanup. Runtime file bytes match the tested commit; ZIP timestamps may differ from the archive used for the recorded fresh-import run."
+  },
+  "shader_comparison": {
+    "normal": {
+      "chapter-1": {
+        "cpu": {
+          "mean_ms": 8.65475,
+          "median_ms": 7.843,
+          "p95_ms": 13.871
+        },
+        "draw_calls": {
+          "mean_ms": 189.85,
+          "median_ms": 185.0,
+          "p95_ms": 241.0
+        },
+        "frame": {
+          "mean_ms": 294.6228,
+          "median_ms": 286.846,
+          "p95_ms": 363.475
+        },
+        "nodes": 20,
+        "objects": 2781.0,
+        "primitives": 63710.0,
+        "render_objects": 520.0,
+        "startup_ms": 729.077,
+        "texture_bytes": 268490113.0
+      },
+      "chapter-2": {
+        "cpu": {
+          "mean_ms": 7.87938333333333,
+          "median_ms": 7.636,
+          "p95_ms": 11.078
+        },
+        "draw_calls": {
+          "mean_ms": 112.683333333333,
+          "median_ms": 113.0,
+          "p95_ms": 114.0
+        },
+        "frame": {
+          "mean_ms": 265.144483333333,
+          "median_ms": 252.827,
+          "p95_ms": 355.109
+        },
+        "nodes": 19,
+        "objects": 2848.0,
+        "primitives": 51719.0,
+        "render_objects": 417.0,
+        "startup_ms": 261.338,
+        "texture_bytes": 268249125.0
+      },
+      "chapter-3": {
+        "cpu": {
+          "mean_ms": 7.23303333333333,
+          "median_ms": 6.671,
+          "p95_ms": 11.727
+        },
+        "draw_calls": {
+          "mean_ms": 117.083333333333,
+          "median_ms": 116.0,
+          "p95_ms": 121.0
+        },
+        "frame": {
+          "mean_ms": 305.08265,
+          "median_ms": 252.1,
+          "p95_ms": 565.341
+        },
+        "nodes": 19,
+        "objects": 2724.0,
+        "primitives": 51450.0,
+        "render_objects": 448.0,
+        "startup_ms": 238.013,
+        "texture_bytes": 253009228.0
+      },
+      "chapter-4": {
+        "cpu": {
+          "mean_ms": 8.99808333333333,
+          "median_ms": 7.897,
+          "p95_ms": 17.34
+        },
+        "draw_calls": {
+          "mean_ms": 124.866666666667,
+          "median_ms": 124.0,
+          "p95_ms": 128.0
+        },
+        "frame": {
+          "mean_ms": 371.623066666667,
+          "median_ms": 244.504,
+          "p95_ms": 886.293
+        },
+        "nodes": 19,
+        "objects": 2865.0,
+        "primitives": 51654.0,
+        "render_objects": 525.0,
+        "startup_ms": 318.365,
+        "texture_bytes": 268039373.0
+      },
+      "chapter-5": {
+        "cpu": {
+          "mean_ms": 7.29245,
+          "median_ms": 6.692,
+          "p95_ms": 10.089
+        },
+        "draw_calls": {
+          "mean_ms": 123.85,
+          "median_ms": 118.0,
+          "p95_ms": 160.0
+        },
+        "frame": {
+          "mean_ms": 162.30185,
+          "median_ms": 162.211,
+          "p95_ms": 179.034
+        },
+        "nodes": 19,
+        "objects": 2818.0,
+        "primitives": 54870.0,
+        "render_objects": 465.0,
+        "startup_ms": 273.549,
+        "texture_bytes": 269232781.0
+      },
+      "chapter-6": {
+        "cpu": {
+          "mean_ms": 6.98898333333333,
+          "median_ms": 6.084,
+          "p95_ms": 14.026
+        },
+        "draw_calls": {
+          "mean_ms": 113.6,
+          "median_ms": 112.0,
+          "p95_ms": 124.0
+        },
+        "frame": {
+          "mean_ms": 156.35325,
+          "median_ms": 152.7,
+          "p95_ms": 200.4
+        },
+        "nodes": 19,
+        "objects": 2779.0,
+        "primitives": 51497.0,
+        "render_objects": 448.0,
+        "startup_ms": 204.79,
+        "texture_bytes": 268089689.0
+      },
+      "chapter-7": {
+        "cpu": {
+          "mean_ms": 8.82633333333333,
+          "median_ms": 7.243,
+          "p95_ms": 21.433
+        },
+        "draw_calls": {
+          "mean_ms": 133.85,
+          "median_ms": 127.0,
+          "p95_ms": 175.0
+        },
+        "frame": {
+          "mean_ms": 174.130916666667,
+          "median_ms": 162.537,
+          "p95_ms": 279.824
+        },
+        "nodes": 24,
+        "objects": 2885.0,
+        "primitives": 47410.0,
+        "render_objects": 539.0,
+        "startup_ms": 767.164,
+        "texture_bytes": 297124833.0
+      },
+      "cpu_components": {
+        "arm_skin": {
+          "mean_ms": 0.3311,
+          "median_ms": 0.299,
+          "p95_ms": 0.541
+        },
+        "hair_skin": {
+          "mean_ms": 0.1532,
+          "median_ms": 0.133,
+          "p95_ms": 0.255
+        },
+        "rig_process": {
+          "mean_ms": 6.014025,
+          "median_ms": 5.313,
+          "p95_ms": 10.924
+        },
+        "spine_and_torso": {
+          "mean_ms": 1.037275,
+          "median_ms": 0.998,
+          "p95_ms": 1.84
+        },
+        "tail_skin": {
+          "mean_ms": 2.533375,
+          "median_ms": 2.424,
+          "p95_ms": 3.564
+        }
+      },
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "display": "X11",
+        "engine": "4.4.1-stable (official)",
+        "fixed_step": 0.0166666666666667,
+        "measured_frames": 60,
+        "quality": "full",
+        "resolution": [
+          1400,
+          960
+        ],
+        "warmup_frames": 30
+      },
+      "highland-boss": {
+        "cpu": {
+          "mean_ms": 7.99296666666667,
+          "median_ms": 7.425,
+          "p95_ms": 11.702
+        },
+        "draw_calls": {
+          "mean_ms": 164.2,
+          "median_ms": 153.0,
+          "p95_ms": 237.0
+        },
+        "frame": {
+          "mean_ms": 160.008233333333,
+          "median_ms": 159.028,
+          "p95_ms": 178.694
+        },
+        "nodes": 18,
+        "objects": 2775.0,
+        "primitives": 55737.0,
+        "render_objects": 461.0,
+        "startup_ms": 159.627,
+        "texture_bytes": 186296964.0
+      },
+      "highland-entry": {
+        "cpu": {
+          "mean_ms": 9.18353333333333,
+          "median_ms": 7.939,
+          "p95_ms": 13.797
+        },
+        "draw_calls": {
+          "mean_ms": 229.716666666667,
+          "median_ms": 228.0,
+          "p95_ms": 244.0
+        },
+        "frame": {
+          "mean_ms": 179.989133333333,
+          "median_ms": 175.472,
+          "p95_ms": 227.671
+        },
+        "nodes": 18,
+        "objects": 2774.0,
+        "primitives": 57181.0,
+        "render_objects": 686.0,
+        "startup_ms": 2315.336,
+        "texture_bytes": 186296964.0
+      },
+      "title": {
+        "cpu": {
+          "mean_ms": 8.48383333333333,
+          "median_ms": 6.262,
+          "p95_ms": 21.908
+        },
+        "draw_calls": {
+          "mean_ms": 158.2,
+          "median_ms": 162.0,
+          "p95_ms": 166.0
+        },
+        "frame": {
+          "mean_ms": 275.367016666667,
+          "median_ms": 198.65,
+          "p95_ms": 895.977
+        },
+        "nodes": 6,
+        "objects": 2024.0,
+        "primitives": 57793.0,
+        "render_objects": 216.0,
+        "startup_ms": 294.331,
+        "texture_bytes": 297964653.0
+      },
+      "waterfall": {
+        "cpu": {
+          "mean_ms": 8.03155,
+          "median_ms": 7.417,
+          "p95_ms": 14.738
+        },
+        "draw_calls": {
+          "mean_ms": 43.0,
+          "median_ms": 43.0,
+          "p95_ms": 43.0
+        },
+        "frame": {
+          "mean_ms": 137.594983333333,
+          "median_ms": 133.826,
+          "p95_ms": 164.465
+        },
+        "nodes": 18,
+        "objects": 2775.0,
+        "primitives": 44186.0,
+        "render_objects": 264.0,
+        "startup_ms": 157.28,
+        "texture_bytes": 186296964.0
+      }
+    },
+    "stress": {
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "engine": "4.4.1-stable (official)",
+        "fixed_step": 0.0166666666666667,
+        "friendly": 8,
+        "hostile": 32,
+        "impact_interval_frames": 24,
+        "live_enemies": 6,
+        "measured_frames": 60,
+        "note": "Manual updates; native particles/tweens frozen like the base audit. New charge/impact geometry remains active. Seeding excluded from CPU.",
+        "quality": "full",
+        "resolution": [
+          1400,
+          960
+        ],
+        "warmup_frames": 30
+      },
+      "highland": {
+        "cold_frame": {
+          "mean_ms": 228.9836,
+          "median_ms": 193.547,
+          "p95_ms": 276.959
+        },
+        "cold_max_ms": 1107.948,
+        "cpu": {
+          "mean_ms": 8.06828333333333,
+          "median_ms": 7.68,
+          "p95_ms": 12.454
+        },
+        "draw_calls": {
+          "mean_ms": 213.116666666667,
+          "median_ms": 203.0,
+          "p95_ms": 286.0
+        },
+        "first_frame_ms": 170.205,
+        "frame": {
+          "mean_ms": 182.428616666667,
+          "median_ms": 179.492,
+          "p95_ms": 209.489
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2589.0,
+        "startup_ms": 2075.979,
+        "texture_bytes": 186296964.0
+      },
+      "palace": {
+        "cold_frame": {
+          "mean_ms": 190.2974,
+          "median_ms": 179.542,
+          "p95_ms": 289.002
+        },
+        "cold_max_ms": 385.199,
+        "cpu": {
+          "mean_ms": 8.11965,
+          "median_ms": 7.445,
+          "p95_ms": 13.849
+        },
+        "draw_calls": {
+          "mean_ms": 193.616666666667,
+          "median_ms": 194.0,
+          "p95_ms": 199.0
+        },
+        "first_frame_ms": 157.021,
+        "frame": {
+          "mean_ms": 176.23285,
+          "median_ms": 171.831,
+          "p95_ms": 218.371
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2730.0,
+        "startup_ms": 490.315,
+        "texture_bytes": 268039373.0
+      },
+      "shadow": {
+        "cold_frame": {
+          "mean_ms": 273.7147,
+          "median_ms": 216.797,
+          "p95_ms": 303.183
+        },
+        "cold_max_ms": 1853.874,
+        "cpu": {
+          "mean_ms": 12.6846833333333,
+          "median_ms": 7.474,
+          "p95_ms": 11.967
+        },
+        "draw_calls": {
+          "mean_ms": 190.116666666667,
+          "median_ms": 184.0,
+          "p95_ms": 239.0
+        },
+        "first_frame_ms": 194.358,
+        "frame": {
+          "mean_ms": 223.563233333333,
+          "median_ms": 204.178,
+          "p95_ms": 293.105
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2719.0,
+        "startup_ms": 787.467,
+        "texture_bytes": 268490113.0
+      },
+      "training": {
+        "cold_frame": {
+          "mean_ms": 228.0925,
+          "median_ms": 190.048,
+          "p95_ms": 368.287
+        },
+        "cold_max_ms": 674.629,
+        "cpu": {
+          "mean_ms": 8.0136,
+          "median_ms": 7.179,
+          "p95_ms": 14.067
+        },
+        "draw_calls": {
+          "mean_ms": 218.733333333333,
+          "median_ms": 218.0,
+          "p95_ms": 221.0
+        },
+        "first_frame_ms": 165.283,
+        "frame": {
+          "mean_ms": 196.59745,
+          "median_ms": 183.139,
+          "p95_ms": 298.207
+        },
+        "friendly_count": 8,
+        "hostile_count": 32,
+        "objects": 2837.0,
+        "startup_ms": 687.235,
+        "texture_bytes": 297124833.0
+      }
+    }
+  },
+  "previous_verified_archive": {
+    "filename": "Mermaid-Adventure-v0.6-Opal-Current.zip",
+    "size_bytes": 67145227,
+    "sha256": "5f5913a9758bb7970e9c4edde97b38ef1039f6ad61f3f81dd084b2dd91042056"
+  }
+}

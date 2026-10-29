@@ -47,11 +47,13 @@ var primary: Button
 var music_slider: HSlider
 var motion_toggle: CheckButton
 var quality_toggle: CheckButton
+var continue_requested := false
 
 func _ready() -> void:
     process_mode = Node.PROCESS_MODE_ALWAYS
     get_tree().paused = false
     prefs = get_node("/root/AppPreferences")
+    get_node("/root/AdventureRun").save_finished.connect(_on_save_finished)
     get_node("/root/OceanAudio").set_chapter(-1)
     for font in [BODY, BOLD]:
         font.multichannel_signed_distance_field = true
@@ -213,15 +215,24 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v0.4  •  SARAH MARIA" if page == "menu" else "SARAH MARIA"
+    footer.text = "v0.6.1  •  ADVENTURE POLISH" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")
-            _add_button("Begin adventure  ›", func(): selected_chapter=7; start_adventure(), true)
+            var run := get_node("/root/AdventureRun")
+            if run.has_resume():
+                _add_button("Continue adventure  ›", func(): start_adventure(true), true)
+                content.add_child(_label(run.NAMES[run.resume_chapter()]+" · saved checkpoint",18,PALE))
+            _add_button("Begin adventure  ›", func(): _request_begin(7), not run.has_resume())
             _add_button("Choose a chapter", func(): show_page("chapters"))
             _add_button("Options", func(): show_page("options"))
             _add_button("Credits & opening", func(): show_page("credits"))
-            content.add_child(_label("Personal best: "+preload("res://godot/ui_kit.gd").number(prefs.best_score),18,GOLD))
+            content.add_child(_label(("Adventure best: "+preload("res://godot/ui_kit.gd").number(run.adventure_best)) if run.adventure_best>0 else ("Personal best: "+preload("res://godot/ui_kit.gd").number(prefs.best_score)),18,GOLD))
+            if not run.save_message.is_empty(): footer.text = run.save_message
+        "new_adventure":
+            _heading("ANOTHER OCEAN TO EXPLORE", "A fresh adventure?", "Your saved checkpoint will be replaced when this adventure begins. Your stars and personal bests stay with you.")
+            _add_button("Begin this adventure  ›", func(): start_adventure(), true)
+            _add_button("Keep my saved adventure", func(): show_page("menu"))
         "chapters":
             _heading("YOUR ADVENTURE", "Choose a chapter", "Each chapter continues into the next. Meet baby Avina in the tutorial, or choose any chapter.")
             var catalog := get_node("/root/AdventureRun")
@@ -250,8 +261,8 @@ func show_page(next_page: String) -> void:
             _add_button("How to play", func(): show_page("controls"))
         "controls":
             _heading("A FEW LITTLE POINTERS", "Ready to explore?", "Swim, leap and find what lies beneath.")
-            content.add_child(_label("Swim    Arrow keys / WASD / left stick\nBoost    Space / controller B\nJump    J or Shift / controller A\nBubble    B or Z / controller X\nPause    Escape / P / controller Start", 23, WHITE))
-            content.add_child(_label("On a touch screen, use the sliding pad and action buttons. Sarah earns her Bubble power after Carlo. Play in landscape.", 20, PALE))
+            content.add_child(_label("Swim    Arrow keys / WASD / left stick\nBoost    Space / controller B\nJump    J or Shift / controller A\nBubble    Hold B or Z / controller X, then release\nPause    Escape / P / controller Start", 23, WHITE))
+            content.add_child(_label("On a touch screen, use the sliding pad and action buttons. The family tutorial grants Bubble; starting at Highland Gold earns it from Carlo instead. Quick release: Pearl Pop. Hold 0.35 seconds: Prism Bloom. Hold 1.35 seconds: Royal Aurora, then release! Swim freely while charging; Boost or Jump cancels it. Play in landscape.", 20, PALE))
             primary = back_button
         "credits":
             _heading("MADE WITH LOVE", "For Sarah Maria", "For every little heart with a big imagination.")
@@ -342,10 +353,16 @@ func _finish_intro() -> void:
     prefs.save()
     show_page("menu")
 
-func start_adventure() -> void:
+func _request_begin(index: int) -> void:
+    selected_chapter = index
+    if get_node("/root/AdventureRun").has_resume(): show_page("new_adventure")
+    else: start_adventure()
+
+func start_adventure(resume := false) -> void:
     if transitioning:
         return
     transitioning = true
+    continue_requested = resume
     prefs.intro_seen = true
     prefs.save()
     # Remove focus and block presses during the fade; no duplicate scene loads.
@@ -361,7 +378,12 @@ func start_adventure() -> void:
 
 func _enter_level() -> void:
     var run := get_node("/root/AdventureRun")
-    run.begin(selected_chapter)
+    if continue_requested:
+        selected_chapter = run.continue_saved()
+        if selected_chapter < 0:
+            _transition_failed("There is no saved checkpoint yet. Begin an adventure to make one.")
+            return
+    else: run.begin(selected_chapter)
     var flow := get_node("/root/SceneFlow")
     if not flow.failed.is_connected(_transition_failed): flow.failed.connect(_transition_failed)
     if not flow.go(run.SCENES[selected_chapter], run.NAMES[selected_chapter], "", selected_chapter):
@@ -369,9 +391,13 @@ func _enter_level() -> void:
 
 func _transition_failed(message: String) -> void:
     transitioning = false
+    continue_requested = false
     veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
     show_page("menu")
     footer.text = message
+
+func _on_save_finished(success: bool) -> void:
+    if page=="menu":footer.text="v0.6.1  •  ADVENTURE POLISH" if success else get_node("/root/AdventureRun").save_message
 
 func _resize() -> void:
     var view := get_viewport_rect().size
@@ -398,7 +424,8 @@ func _resize() -> void:
     scroll.position = Vector2(inset, 0)
     scroll.size.x = width
     content.size.x = width
-    content.add_theme_constant_override("separation", 9 if compact else 15)
+    var saved_menu: bool = page=="menu" and get_node("/root/AdventureRun").has_resume()
+    content.add_theme_constant_override("separation", 9 if compact else 12 if saved_menu else 15)
     for child in content.get_children():
         if child is Label:
             if child.name == "PageTitle":
@@ -408,6 +435,7 @@ func _resize() -> void:
                 child.add_theme_font_size_override("font_size", mini(original, 18) if compact else original)
     # A stable viewport avoids scrollbar/wrapped-text size feedback on resize.
     scroll.position.y = 24.0 if compact else h * (0.22 if page == "menu" else (0.32 if page == "intro" else 0.11))
+    if saved_menu and not compact: scroll.position.y=h*.14
     scroll.size.y = h - scroll.position.y - 70.0
     if portrait:
         # Portrait remains usable in the menu; the game has its landscape guard.
@@ -484,11 +512,14 @@ func _notification(what: int) -> void:
 
 func _add_chapter_button(index: int, title: String) -> void:
     var callback := func():
-        selected_chapter = index
-        start_adventure()
+        _request_begin(index)
     var display_title: String = {5:"Rana Rex’s Ruin",6:"Nessie · Crown Thief",7:"Family Tutorial · Avina’s Peekaboo"}.get(index,title)
     var button := _add_button(display_title, callback)
-    button.tooltip_text = title
+    var run := get_node("/root/AdventureRun")
+    var stars: int = run.chapter_stars(index)
+    if stars>0: button.text += "  "+"★".repeat(stars)
+    button.clip_text = true
+    button.tooltip_text = title+(" · Best "+preload("res://godot/ui_kit.gd").number(run.chapter_best(index)) if stars>0 else "")
     if not chapter_thumbnails.has(index):
         var artwork: Texture2D = load(CHAPTER_ART[index])
         var image := artwork.get_image() if artwork else null

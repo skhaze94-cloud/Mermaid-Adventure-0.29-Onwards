@@ -1,0 +1,33 @@
+{
+  "tool": "imagegen",
+  "purpose": "Phase-two production refinements of the Opal Current concept pack",
+  "direction": "Painted dimensional opal glass, upper-left light, complete separated subjects, transparent alpha, generous gutters, no backgrounds or typography",
+  "source_pack": "Opal Current Phase 1",
+  "masters": [
+    {
+      "file": "friendly-production.png",
+      "role": "Pearl Pop, Prism Bloom, Royal Aurora and Avina Little Pearl",
+      "sha256": "c78118989b577db0872670de9f89b8968f3f4bfa0d5e944955fd72a1c644a72c"
+    },
+    {
+      "file": "core-production.png",
+      "role": "Six core enemy attack materials",
+      "sha256": "0fb973d05f11ee2147153c2732157343b1910b3eed95e07ba727a6633c62a840"
+    },
+    {
+      "file": "lagoon-production.png",
+      "role": "Six lagoon species attack materials",
+      "sha256": "f9030e626873bf0c36f41d5bf2ed018d6ae74fcc726c34433c1b3fbdefdf858d"
+    },
+    {
+      "file": "boss-a-production.png",
+      "role": "Carlo, Duke, Flip, Miguel, Queen and Rana motifs",
+      "sha256": "e20f3d81821c0b2bbb415b687846f7a74bf94a3578acd8c7a60706b7e5a26aa8"
+    },
+    {
+      "file": "boss-b-production.png",
+      "role": "Nessie, King lightning, Concern Cloud, Wobble Wave, Beard Blast and Rana ring",
+      "sha256": "a8b737bc072a408633bf5a72c10e4ba34015e36ad971219b64b7ec0a74a22914"
+    }
+  ]
+}

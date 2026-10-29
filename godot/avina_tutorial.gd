@@ -4,7 +4,7 @@ const Royal = preload("res://godot/family_royal_actor.gd")
 const RINGS: Array[Vector2] = [Vector2(1100,430),Vector2(1900,650),Vector2(2850,420)]
 const HIDES: Array[Vector2] = [Vector2(7100,756),Vector2(7240,735),Vector2(7360,760)]
 const TITLES := ["Explore the family lagoon","Three glowing swim rings","Through the elite reef","Very dignified zoomies","Your first sky jump","Over the tall reef","Antonella’s royal gifts","Three volunteer boops","King Daddy’s final trial","A tiny game of peekaboo","Avina’s very first bubble"]
-const HINTS := ["Swim freely • arrows / WASD / stick / touch pad","Swim into each glowing ring · 0 / 3","Swim beyond the reef · relic chests are optional","Aim and Boost • Space / controller B / Boost button","Jump and land • J or Shift / controller A / Jump","Jump before the tall reef · steer right · land beyond it","Collect heart + gold · jump with the power · land","Boost boop Professor Puff, Sir Wobble and Noodle","Dodge slow spells · wait for GREEN · Boost into Daddy","Look for a little bow behind the sparkling coral","B or Z / controller X / Bubble · then swim to the portal"]
+const HINTS := ["Swim freely • arrows / WASD / stick / touch pad","Swim into each glowing ring · 0 / 3","Swim beyond the reef · relic chests are optional","Aim and Boost • Space / controller B / Boost button","Jump and land • J or Shift / controller A / Jump","Jump before the tall reef · steer right · land beyond it","Collect heart + gold · jump with the power · land","Boost boop Professor Puff, Sir Wobble and Noodle","Dodge slow spells · wait for GREEN · Boost into Daddy","Look for a little bow behind the sparkling coral","B or Z / controller X / Bubble · hold, then release for a super pearl"]
 var lesson := 0
 var ring_count := 0
 var explore_time := 0.0
@@ -59,6 +59,43 @@ var dialogue_text: Label
 var portrait: TextureRect
 var reply_box: VBoxContainer
 var hide_cover: Node2D
+var practice_switch := {"pos":Vector2(7480,390), "on":false, "requires_sarah":true}
+
+func _save_checkpoint() -> void:
+    checkpoint = clampf(player.x, _left_bound(), _portal_x()-4)
+    super._save_checkpoint()
+
+func _checkpoint_extras() -> Dictionary:
+    return {"lesson":lesson, "rings":ring_count, "explore":explore_time,
+        "heart":heart_gift, "gold":gold_gift, "gift_time":gift_time,
+        "powered_jump":powered_jump, "hide_round":hide_round, "practice":practice_switch["on"]}
+
+func _valid_checkpoint_extras(extra: Dictionary) -> bool:
+    if not extra.get("lesson") is int or extra["lesson"] not in range(11): return false
+    if not extra.get("rings") is int or extra["rings"] not in range(4): return false
+    if not extra.get("hide_round") is int or extra["hide_round"] not in range(4): return false
+    if int(extra["lesson"]) == 9 and int(extra["hide_round"]) > 2: return false
+    for key in ["heart", "gold", "powered_jump", "practice"]:
+        if not extra.get(key) is bool: return false
+    for key in ["explore", "gift_time"]:
+        if not extra.get(key) is float and not extra.get(key) is int: return false
+        if not is_finite(float(extra[key])): return false
+    return true
+
+func _restore_checkpoint_extras(extra: Dictionary) -> void:
+    lesson = int(extra["lesson"]); ring_count = int(extra["rings"])
+    explore_time = clampf(float(extra["explore"]),0,4)
+    heart_gift = extra["heart"]; gold_gift = extra["gold"]
+    gift_time = clampf(float(extra["gift_time"]),0,8); powered_jump = extra["powered_jump"]
+    hide_round = int(extra["hide_round"]); practice_switch["on"] = extra["practice"]
+    dialogue_open = false; playing_daddy = false; landing_started = false
+    dialogue_card.hide(); choice_card.hide(); lesson_card.show(); premium_hud.show()
+    if lesson >= 9:
+        if not is_instance_valid(avina):
+            avina = preload("res://godot/avina_companion.gd").new(); add_child(avina); avina.bind(self)
+        avina.follow_enabled = lesson >= 10
+        if lesson == 9: _place_hidden_baby()
+    _show_lesson()
 
 func _ready() -> void:
     super._ready()
@@ -92,7 +129,9 @@ func _check_checkpoints() -> void: pass
 func _boss_vulnerable() -> bool: return lesson==8 and boss_hp>0 and fmod(boss_clock,12)>=8.2
 
 func _process(dt: float) -> void:
-    if state!="playing" or get_tree().paused: return
+    if state!="playing" or get_tree().paused:
+        opal.cancel()
+        return
     character_dt = dt
     super._process(dt)
     if lesson==0 and player_velocity.length()>45:
@@ -145,12 +184,10 @@ func _begin_leap(chained: bool) -> void:
     if lesson==6 and heart_gift and gold_gift and gift_time>0:
         powered_jump=true; player_velocity.y=-1040
         native_fx.splash(_hero_screen_position(),Color("ffe39f"),25)
-func _fire_bubble() -> void:
-    var before := bubble_shots.size()
-    super._fire_bubble()
-    if lesson==10 and bubble_shots.size()>before:
-        hint.text="A whole bubble squad! Swim into the glowing portal →"
-        if is_instance_valid(avina): avina.say("Buh-buh!",3)
+func _on_bubble_fired() -> void:
+    if lesson==10:
+        hint.text="Try a Royal Aurora on the pearl target above the portal — or swim through when you’re ready!" if not practice_switch["on"] else "Super bubble mastered! Swim into the glowing portal →"
+        if is_instance_valid(avina):avina.say("Buh-buh!",3)
 
 func _update_collectibles() -> void:
     super._update_collectibles()
@@ -185,6 +222,7 @@ func _advance_lesson(next: int, conversation := "") -> void:
         animated_enemies.bind_enemies(enemies)
     if lesson==8: boss_clock=0; playing_daddy=false
     _show_lesson()
+    _save_checkpoint()
     if conversation!="": _open_dialogue(conversation)
 
 func _update_boss(dt: float) -> void:
@@ -220,7 +258,7 @@ func _update_boss(dt: float) -> void:
         boss_position-=Vector2(215,45)*dash
     if segment==5 and not beard_fired:
         beard_fired=true
-        for i in range(5): _spawn_hostile(boss_position+Vector2(-30,-45),Vector2.LEFT.rotated((i-2)*.24),105)
+        for i in range(5): _spawn_hostile(boss_position+Vector2(-30,-45),Vector2.LEFT.rotated((i-2)*.24),105,"king-beard")
     if player.distance_to(boss_position)<135 and boss_hit_cooldown<=0:
         if segment==6 and boost_time>0:
             boss_hp-=1; boss_hit_cooldown=1; boss_clock=0; trial_phase=-1
@@ -241,7 +279,7 @@ func _sync_native_visuals() -> void:
     performance.hide()
     var target := Vector2(clampf(player.x+200,680,6640),430)
     if lesson>=8: target=boss_position if boss_hp>0 else Vector2(6770,515)
-    king_world=king_world.lerp(target,1.0-exp(-character_dt*3.08))
+    king_world=boss_position if lesson==8 and boss_hp>0 else king_world.lerp(target,1.0-exp(-character_dt*3.08))
     var shown := king_world
     if lesson==1 and arrival_time<2.6:
         shown.y=lerpf(-160,target.y,smoothstep(0,1,arrival_time/2.6))
@@ -266,6 +304,10 @@ func _sync_native_visuals() -> void:
 
 func _draw_world(view: Vector2) -> void:
     super._draw_world(view)
+    if lesson == 10:
+        var target: Vector2 = practice_switch["pos"] - Vector2(camera,0)
+        Polish.shell_switch(self,target,practice_switch["on"])
+        _draw_text(target+Vector2(-105,60),"SUPER PRACTICE · optional" if not practice_switch["on"] else "Royal Aurora mastered!",14,Color("bfffee"))
     if lesson==1:
         for i in range(3):
             var point := RINGS[i]-Vector2(camera,0)
@@ -273,10 +315,6 @@ func _draw_world(view: Vector2) -> void:
             if i==ring_count: draw_arc(point,64,0,TAU,64,Color(1,.9,.6,.3),2)
     if lesson==8:
         if boss_phase=="windup": draw_dashed_line(boss_position-Vector2(camera,0),boss_target-Vector2(camera,0),Color("bfe8ff"),2,12)
-        if cloud_active:
-            for i in range(5): draw_circle(cloud-Vector2(camera,0)+Vector2((i-2)*16,sin(i)*10),22,Color(.7,.9,1,.4))
-        if wave_active: draw_arc(wave-Vector2(camera,0),95,-PI*.5,PI*.5,32,Color(.6,1,.95,.7),5)
-        Polish.boss_cue(self,boss_position-Vector2(camera,0),120,_boss_vulnerable())
         _draw_text(boss_position-Vector2(camera,0)+Vector2(-175,-178),move_name,18)
     if queen_demo>0:
         var center := queen_teacher.position+Vector2(65,-45)
@@ -295,6 +333,7 @@ func _start_hide_seek() -> void:
     avina.follow_enabled=false
     hide_round=0; reveal_time=0
     _place_hidden_baby()
+    _save_checkpoint()
     _open_dialogue("hide")
 func _place_hidden_baby() -> void:
     avina.world_position=HIDES[hide_round]
@@ -314,6 +353,7 @@ func _find_baby() -> void:
     else:
         avina.world_position.y-=75
         hint.text="Found her! She’s hiding again… %s / 3" % hide_round
+        _save_checkpoint()
 func _draw_hide_cover() -> void:
     if lesson!=9: return
     for i in range(3):
@@ -372,6 +412,7 @@ func _switch_hero() -> void:
     switch_button.text="Swim as Sarah" if playing_daddy else "Try King Daddy"
     _sync_native_visuals()
 func _open_dialogue(id: String) -> void:
+    opal.cancel()
     if dialogue_open: return
     dialogue_id=id; dialogue_open=true; get_tree().paused=true
     lesson_card.hide(); premium_hud.hide(); dialogue_card.show()
@@ -427,7 +468,7 @@ func _close_dialogue() -> void:
         var done := dialogue_done; dialogue_done=Callable(); done.call()
 func _show_choice() -> void:
     if choice_made or choice_card.visible or dialogue_open: return
-    lesson_card.hide(); premium_hud.hide(); choice_card.show()
+    opal.cancel(); lesson_card.hide(); premium_hud.hide(); choice_card.show()
     _layout_tutorial.call_deferred(); bring_button.grab_focus()
     if is_instance_valid(avina): avina.say("Sa-sa?",100)
 func _choose_companion(along: bool) -> void:
@@ -458,6 +499,7 @@ func _restart() -> void:
     if state=="victory": _show_choice(); return
     if dialogue_open: return
     lesson=0; ring_count=0; explore_time=0; arrival_time=0
+    practice_switch["on"] = false
     heart_gift=false; gold_gift=false; gift_time=0; powered_jump=false
     landing_started=false; hide_round=0; reveal_time=0; choice_made=false
     playing_daddy=false; trial_phase=-1; cloud_active=false; wave_active=false
@@ -467,7 +509,9 @@ func _restart() -> void:
     lesson_card.show(); choice_card.hide(); dialogue_card.hide(); premium_hud.show()
     _show_lesson()
 func _input(event: InputEvent) -> void:
-    if dialogue_open or choice_card.visible: return
+    if dialogue_open or choice_card.visible:
+        _opal_cancel_for_event(event)
+        return
     super._input(event)
 
 func _card() -> PanelContainer:
@@ -524,3 +568,36 @@ func _layout_tutorial() -> void:
     choice_card.position = Vector2((view.x-choice_width)*.5,maxf(24,(view.y-choice_card.size.y)*.5))
     if is_instance_valid(dialogue_card): _layout_dialogue()
 
+
+func _bubble_world_active() -> bool:
+    return super._bubble_world_active() and not dialogue_open and not (is_instance_valid(choice_card) and choice_card.visible)
+func _bubble_context_allowed() -> bool:return super._bubble_context_allowed() and lesson>=10
+func _opal_switch_targets() -> Array[Dictionary]:
+    var result: Array[Dictionary] = []
+    if lesson == 10: result.append(practice_switch)
+    return result
+func _opal_hit_switch(_index: int, packet: Dictionary = {}) -> void:
+    if lesson != 10 or practice_switch["on"] or packet.get("owner", "sarah") != "sarah": return
+    if int(packet.get("tier", 1)) < 3:
+        _say("Keep holding until Royal Aurora is ready, then release!",2.5,true)
+        return
+    practice_switch["on"] = true
+    _award("training:super-practice", "Secrets", 100, practice_switch["pos"], false)
+    _say("Beautiful! Royal Aurora mastered. The portal is ready.",3.0,true)
+    hint.text = "Super bubble mastered! Swim into the glowing portal →"
+    _save_checkpoint()
+func _hud_snapshot() -> Dictionary:
+    var result:=super._hud_snapshot();result["boss_active"]=lesson==8 and boss_hp>0;result["bubble"]=bubble_unlocked and lesson>=10
+    return result
+func _opal_arena_active() -> bool:return lesson==8 and super._opal_arena_active()
+func _opal_opening_soon() -> bool:
+    var phase:=fmod(boss_clock,12.0)
+    return lesson==8 and phase>=7.98 and phase<8.2
+func _opal_update_targets(targets: Array[Dictionary]) -> void:
+    super._opal_update_targets(targets)
+    if targets.is_empty():return
+    targets[0]["bubble"]=false;targets[0]["boost"]=lesson==8 and _opal_boost_available()
+func _opal_sync_fields(fx: Node2D) -> void:
+    if lesson!=8:return
+    if cloud_active:fx.field(0,"king-cloud",cloud-Vector2(camera,0),Vector2(135,120))
+    if wave_active:fx.field(1,"king-wave",wave-Vector2(camera,0),Vector2(150,200))

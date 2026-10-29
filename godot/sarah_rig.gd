@@ -141,6 +141,8 @@ var horizontal_drag := 0.0
 var horizontal_drag_speed := 0.0
 var idle_elapsed := 0.0
 var last_gesture := ""
+var bubble_hold:=0.0
+var bubble_hold_goal:=0.0
 var jump_style := 0
 var jump_style_cursor := 0
 var jump_joy_near := 0.0
@@ -218,6 +220,7 @@ func _clear_gesture_values() -> void:
     gesture_arch = 0.0
 
 func reset_performance() -> void:
+    bubble_hold=0.0; bubble_hold_goal=0.0
     if gesture_player:
         gesture_player.stop()
     _clear_gesture_values()
@@ -650,7 +653,8 @@ func _process(delta: float) -> void:
     previous_speed = speed
     var gesture_amount := (0.20 if reduced_motion else 1.0) * (0.25 if leaping or boosting else 1.0)
     var wave := gesture_wave * gesture_amount
-    var reach := gesture_reach * gesture_amount
+    bubble_hold=lerpf(bubble_hold,bubble_hold_goal,1.0-exp(-minf(dt,0.05)*12.0))
+    var reach := gesture_reach * gesture_amount + (bubble_hold*0.65 if not leaping and not boosting else 0.0)
     var arch := gesture_arch * gesture_amount
     var nod := gesture_nod * gesture_amount
     idle_elapsed = idle_elapsed + dt if speed < 20.0 and not leaping and not boosting else 0.0
@@ -782,6 +786,8 @@ func _process(delta: float) -> void:
     # Action priority prevents decorative motion from fighting a cast or jump.
     if gesture_player.is_playing() and last_gesture in ["greet","cast","celebrate","impact","reward"]:
         pose_set = {"greet":"greet","cast":"cast","celebrate":"celebrate","impact":"recover","reward":"reach"}[last_gesture]
+    elif bubble_hold>.08 and not boosting and not leaping:
+        pose_set="cast"
     elif jump_pose_blend<=.25 and not boosting:
         if turn_pose>.12: pose_set = "bank"
         elif settle_blend>.14: pose_set = "settle"
@@ -853,3 +859,6 @@ func _process(delta: float) -> void:
 
 func fin_anchor_global() -> Vector2:
     return tail_skin.to_global(tail_skin.tip_center)
+
+func set_bubble_charge(active: bool, progress: float) -> void:
+    bubble_hold_goal=0.45+clampf(progress,0.0,1.0)*0.45 if active else 0.0

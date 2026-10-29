@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="Script" path="res://godot/journey_level.gd" id="1_level"]
 [ext_resource type="Script" path="res://godot/native_fx.gd" id="2_effects"]
@@ -21,8 +21,15 @@
 [ext_resource type="Texture2D" path="res://dist/assets/shadow-kingdom-v751.webp" id="15_painting"]
 [ext_resource type="Texture2D" path="res://godot/assets/flip-dolphin-v018.png" id="16_boss_painting"]
 
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/friendly.png" id="opal_friendly"]
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/enemies.png" id="opal_enemy"]
+[ext_resource type="Texture2D" path="res://godot/assets/opal-current/shadow.png" id="opal_boss"]
+
 [node name="ShadowCrabKingdom" type="Node2D"]
 script = ExtResource("1_level")
+opal_friendly_atlas = ExtResource("opal_friendly")
+opal_enemy_atlas = ExtResource("opal_enemy")
+opal_boss_atlas = ExtResource("opal_boss")
 chapter_painting = ExtResource("15_painting")
 secondary_boss_painting = ExtResource("16_boss_painting")
 shadow = true
