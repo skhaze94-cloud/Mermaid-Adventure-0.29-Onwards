@@ -2,7 +2,7 @@ Sarah Maria — Mermaid Adventure
 v0.6.1 — Adventure Polish / Opal Current
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
-2. Import the ROOT project.godot in Godot. Tested with Godot 4.4.1.
+2. Import the ROOT project.godot in Godot 4.4 or newer. Tested with 4.4.1.
 3. Keep godot/ and dist/ beside project.godot. Wait for asset import.
 4. Press F5. Begin adventure starts the family lagoon tutorial.
    Choose a chapter opens any of the eight chapters.

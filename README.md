@@ -8,7 +8,7 @@ Opal Current adds pearlescent charge bubbles, 28 painted effect sprites, colourf
 
 The retained v0.5.1 update improves performance while preserving the original artwork, mesh detail, animation sampling, lighting, water effects and full-quality defaults. It reuses indexed skin buffers, caches fixed deformation and facial-feature calculations, loads chapter artwork with its own scene, and avoids hidden scenery and unchanged HUD work. Performance measurements and validation are documented in [the performance review](https://github.com/skhaze94-cloud/Mermaid-Adventure-0.29-Onwards/blob/performance/v05-preserve-visual-quality/godot/PERFORMANCE-REVIEW.md).
 
-Extract the playable ZIP into a new empty folder. Import the root `project.godot`, wait for asset import, then run the main scene. Validated with Godot 4.4.1 on Linux using the Compatibility renderer. Development captures, tests, reports and unused decorative controls are excluded from the playable ZIP.
+Extract the playable ZIP into a new empty folder. Import the root `project.godot` in Godot 4.4 or newer, wait for asset import, then run the main scene. Validated with Godot 4.4.1 on Linux using the Compatibility renderer. Development captures, tests, reports and unused decorative controls are excluded from the playable ZIP.
 
 Swim with arrows, WASD, controller stick or touch pad. Boost: Space / controller B. Jump: J or Shift / controller A. Bubble: hold B or Z / controller X / touch Bubble, then release. Pause: Escape / P / controller Start. Play in landscape; portrait pauses safely. Audio, Gentle Motion, Economy graphics and touch preferences are available in Options.
 
