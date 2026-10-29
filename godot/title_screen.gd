@@ -215,7 +215,7 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v0.9.0  •  JOURNEY POLISH" if page == "menu" else "SARAH MARIA"
+    footer.text = "v0.10.0  •  WHIMSY" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")
@@ -397,7 +397,7 @@ func _transition_failed(message: String) -> void:
     footer.text = message
 
 func _on_save_finished(success: bool) -> void:
-    if page=="menu":footer.text="v0.9.0  •  JOURNEY POLISH" if success else get_node("/root/AdventureRun").save_message
+    if page=="menu":footer.text="v0.10.0  •  WHIMSY" if success else get_node("/root/AdventureRun").save_message
 
 func _resize() -> void:
     var view := get_viewport_rect().size
@@ -481,6 +481,7 @@ func _draw_atmosphere() -> void:
         var y := fposmod(float(i) * 89.7 - motion * (8.0 + float(i % 4) * 3.0), view.y)
         var radius := (2.0 + float(i % 4)) * ui_scale
         motes.draw_circle(Vector2(x,y), radius, Color(0.75, 1.0, 0.95, 0.16), false, 1.0, true)
+    _draw_pearl_constellation(view, motion)
     # Soft dark backing keeps every label readable over the painting.
     for strip in range(40):
         var alpha := 0.33 * (1.0 - float(strip) / 40.0)
@@ -533,3 +534,22 @@ func _add_chapter_button(index: int, title: String) -> void:
     button.custom_minimum_size.y = 78
     button.alignment = HORIZONTAL_ALIGNMENT_LEFT
     button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+
+func _draw_pearl_constellation(view: Vector2, motion: float) -> void:
+    # A small slow orbit on the artwork side; menu text keeps its quiet backing.
+    if page not in ["menu","intro"]:return
+    var center := Vector2(view.x*.76,view.y*.39)
+    var radius := view.y*.265
+    var count := 3 if prefs.economy else 6
+    for i in range(count):
+        var angle := float(i)/count*TAU-.7+motion*.018
+        var at := center+Vector2(cos(angle)*radius,sin(angle)*radius*.82)
+        var light := .72 if prefs.reduced_motion else .65+.12*sin(motion*.8+i*1.7)
+        var r := (2.2+float(i%2)*.7)*ui_scale
+        motes.draw_circle(at,r*3.0,Color(.84,.91,1,.035*light))
+        motes.draw_circle(at,r,Color(1,.92,.76,.62*light))
+        motes.draw_circle(at-Vector2(r*.3,r*.3),r*.25,Color(1,1,1,.8))
+        if not prefs.economy:
+            var arm := (4.0+sin(float(i)))*ui_scale
+            motes.draw_line(at-Vector2(arm,0),at+Vector2(arm,0),Color(1,.94,.81,.28*light),ui_scale,true)
+            motes.draw_line(at-Vector2(0,arm),at+Vector2(0,arm),Color(1,.94,.81,.28*light),ui_scale,true)
