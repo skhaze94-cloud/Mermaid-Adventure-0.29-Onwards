@@ -1,0 +1,1297 @@
+{
+  "version": "0.11.0",
+  "name": "The Living Reef",
+  "date": "2026-10-30",
+  "base_commit": "7d90d26d1f6080c7885f7785ccb42b51104ce263",
+  "engine": "4.4.1.stable.official.49a5bc7b6",
+  "native_suites": [
+    {
+      "test": "adventure_polish_test.gd",
+      "passed": true,
+      "seconds": 8.309,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nADVENTURE POLISH: 107 checks, 0 failures"
+    },
+    {
+      "test": "boss_polish_test.gd",
+      "passed": true,
+      "seconds": 5.221,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nBOSS POLISH: 70 checks, 0 failures"
+    },
+    {
+      "test": "bubble_polish_test.gd",
+      "passed": true,
+      "seconds": 2.21,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nBUBBLE POLISH: 25 checks, 0 failures"
+    },
+    {
+      "test": "complete_adventure_test.gd",
+      "passed": true,
+      "seconds": 29.716,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCOMPLETE ADVENTURE: 93 checks, 0 failures"
+    },
+    {
+      "test": "environment_visuals_test.gd",
+      "passed": true,
+      "seconds": 3.271,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT ENVIRONMENT VISUALS TEST PASSED"
+    },
+    {
+      "test": "family_layout_test.gd",
+      "passed": true,
+      "seconds": 6.17,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures"
+    },
+    {
+      "test": "gameplay_controls_test.gd",
+      "passed": true,
+      "seconds": 2.176,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED"
+    },
+    {
+      "test": "journey_effects_test.gd",
+      "passed": true,
+      "seconds": 3.195,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nJOURNEY EFFECTS: 21 checks, 0 failures"
+    },
+    {
+      "test": "journey_flow_test.gd",
+      "passed": true,
+      "seconds": 7.218,
+      "exit_code": 0,
+      "tail": "\nJOURNEY FLOW: 334 checks, 0 failures; 39960 native swim ticks\n[{\"chapter\":0,\"checkpoint\":28200.0,\"checkpoints_retried\":10,\"finish\":\"(29512.94, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":9202},{\"chapter\":1,\"checkpoint\":12600.0,\"checkpoints_retried\":4,\"finish\":\"(14132.6, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":3803},{\"chapter\":2,\"checkpoint\":29483.0,\"checkpoints_retried\":9,\"finish\":\"(32983.46, 616.7357)\",\"start\":\"(220.0, 460.0)\",\"ticks\":6951},{\"chapter\":3,\"checkpoint\":7640.0,\"checkpoints_retried\":2,\"finish\":\"(10100.51, 614.1876)\",\"start\":\"(220.0, 460.0)\",\"ticks\":2075},{\"chapter\":4,\"checkpoint\":33075.0,\"checkpoints_retried\":9,\"finish\":\"(36883.45, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":9785},{\"chapter\":5,\"checkpoint\":39200.0,\"checkpoints_retried\":10,\"finish\":\"(41432.95, 614.1875)\",\"start\":\"(220.0, 460.0)\",\"ticks\":7585},{\"chapter\":6,\"checkpoint\":2820.0,\"checkpoints_retried\":0,\"finish\":\"(5332.742, 614.1874)\",\"start\":\"(2920.0, 600.0)\",\"ticks\":559}]"
+    },
+    {
+      "test": "jump_animation_test.gd",
+      "passed": true,
+      "seconds": 3.177,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT JUMP ANIMATION TEST PASSED"
+    },
+    {
+      "test": "living_reef_reactions_test.gd",
+      "passed": true,
+      "seconds": 3.132,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nLIVING REEF REACTIONS: 44 checks, 0 failures"
+    },
+    {
+      "test": "living_reef_test.gd",
+      "passed": true,
+      "seconds": 8.435,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nLIVING REEF: 170 checks, 0 failures; 1640 real swim ticks"
+    },
+    {
+      "test": "opal_current_test.gd",
+      "passed": true,
+      "seconds": 5.18,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOPAL CURRENT: 160 checks, 0 failures"
+    },
+    {
+      "test": "opening_journey_test.gd",
+      "passed": true,
+      "seconds": 4.234,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nOPENING JOURNEY: 31 checks, 0 failures"
+    },
+    {
+      "test": "sarah_breaststroke_test.gd",
+      "passed": true,
+      "seconds": 4.143,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH BREASTSTROKE: 1689 checks, 0 failures"
+    },
+    {
+      "test": "sarah_face_details_test.gd",
+      "passed": true,
+      "seconds": 20.241,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSARAH FACE DETAILS: 14584 checks, 0 failures"
+    },
+    {
+      "test": "sarah_princess_test.gd",
+      "passed": true,
+      "seconds": 4.191,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPRINCESS SARAH: 714 checks, 0 failures"
+    },
+    {
+      "test": "scene_flow_test.gd",
+      "passed": true,
+      "seconds": 10.191,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nSCENE FLOW TEST PASSED"
+    },
+    {
+      "test": "scoring_ui_test.gd",
+      "passed": true,
+      "seconds": 3.275,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED"
+    },
+    {
+      "test": "title_flow_test.gd",
+      "passed": true,
+      "seconds": 8.203,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT TITLE FLOW TEST PASSED"
+    },
+    {
+      "test": "visual_polish_test.gd",
+      "passed": true,
+      "seconds": 6.165,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nVISUAL POLISH: 336 checks, 0 failures"
+    },
+    {
+      "test": "whimsy_test.gd",
+      "passed": true,
+      "seconds": 6.222,
+      "exit_code": 0,
+      "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nWHIMSY: 156 checks, 0 failures"
+    }
+  ],
+  "fresh_package": {
+    "suites_passed": 21,
+    "extraction_failed_files": 0,
+    "editor_import_passed": true,
+    "startup_passed": true,
+    "clean_exit": true,
+    "log_sha256": "356f927bf599d538d28fe3e8cd04d886003b0f59c96393a8e879f1571118c548"
+  },
+  "new_activity_checks": 170,
+  "new_reaction_checks": 44,
+  "real_activity_swim_ticks": 1640,
+  "native_views": {
+    "distinct_count": 34,
+    "modes": [
+      "all eight chapters: discovery, progress, complete",
+      "phone: Highland, Miguel, Blackwater, family",
+      "Gentle Motion on phone",
+      "paused quiet",
+      "nearby combat quiet"
+    ],
+    "family_caption_rechecked": true,
+    "pictures": [
+      {
+        "name": "chapter-0-complete",
+        "sha256": "cab2840ff8d94b40a25f8289d1655b4e2801dcd1c7fc1c122d52cbd916da150a"
+      },
+      {
+        "name": "chapter-0-discovery",
+        "sha256": "be2941671b8f5409c73fa69a88cd738433b4680d801f0e3d6c56b6a03435917c"
+      },
+      {
+        "name": "chapter-0-progress",
+        "sha256": "f52a8b665a519d2983c15db7ce1530b29f89fcea123673bdac8a2f39a1804dcd"
+      },
+      {
+        "name": "chapter-1-complete",
+        "sha256": "b17e6942f8af711701ac633d7e25fe86706dfa08ce8ee0d8e43ff3915f0ece97"
+      },
+      {
+        "name": "chapter-1-discovery",
+        "sha256": "efb77369009eb0c4bb61a6178d617216503cbfe49b21ce70d1d643bfd4ec0b19"
+      },
+      {
+        "name": "chapter-1-progress",
+        "sha256": "e4de92cb915765ec9fe561970e126d001bbf567e5e1000c43dd3f0e4de692030"
+      },
+      {
+        "name": "chapter-2-complete",
+        "sha256": "6ff8556bd455ce2e2022e1503d9c8bc728d28e3082eb909526765820016cd2ae"
+      },
+      {
+        "name": "chapter-2-discovery",
+        "sha256": "8d926f3edfaa5ce947eeecc377846c72fcbb56573173a58ef97e7f7ca0514ba2"
+      },
+      {
+        "name": "chapter-2-progress",
+        "sha256": "a4d43f43b3c8b9440660d4608dc41dabf8e5c2a1b43174cba66805dd80c47fd9"
+      },
+      {
+        "name": "chapter-3-complete",
+        "sha256": "70624f2392ff5a18f804e9740f92d5b1039fc03dc0151e4d2c89e067f8b5a88d"
+      },
+      {
+        "name": "chapter-3-discovery",
+        "sha256": "b7169ade591f45ab3eb4dd5453e098db1d4dacece55a67222bdef39112c110ca"
+      },
+      {
+        "name": "chapter-3-progress",
+        "sha256": "c84696bd6a36776545fcbffe857d1e2748428056139d6945d4df44acc9310ac6"
+      },
+      {
+        "name": "chapter-4-complete",
+        "sha256": "acd97500dab7f13ae8efc43481a90acd7d63abcb868364431550dc3ff5ac592e"
+      },
+      {
+        "name": "chapter-4-discovery",
+        "sha256": "b30af85c7c4b46bb35cc524ffecb68fb4aa2ea64e9d9afa018340d7548438f48"
+      },
+      {
+        "name": "chapter-4-progress",
+        "sha256": "7927bced6409fcb85ebc91972e4c9d5d093a3642d3722caa39a45eafe4a9b3fd"
+      },
+      {
+        "name": "chapter-5-complete",
+        "sha256": "9931f817bdc670a625e9e16d72055801b9024d248aaf1da0995d37b77c773670"
+      },
+      {
+        "name": "chapter-5-discovery",
+        "sha256": "5cc698bf4fa67d8f6f5affa04afb1e479a987c25512592c02da3bca3e30a0a41"
+      },
+      {
+        "name": "chapter-5-progress",
+        "sha256": "aa233fee0bb755ba622bf831f6d7f087aacf6fc5f9e7c034f16b7f8e44156407"
+      },
+      {
+        "name": "chapter-6-complete",
+        "sha256": "d28476dd7a3c9774d103743c0f2ad75db25014ec5c95a789d2974dd2734a1005"
+      },
+      {
+        "name": "chapter-6-discovery",
+        "sha256": "fe87e434efaba498076c01d0bcd3ad503a3f52837cca017440e89422332defc8"
+      },
+      {
+        "name": "chapter-6-progress",
+        "sha256": "296d969820c203b237499e078910abfc50977fe5bb66ed67dae23e6173763ede"
+      },
+      {
+        "name": "chapter-7-complete",
+        "sha256": "2aed16706497afbb19f8de3707caa4f21f74b4d175650692087878f073122ad2"
+      },
+      {
+        "name": "chapter-7-discovery",
+        "sha256": "c03bde691d6f2fcbe0589a6a1a29284b1f84469ebaa848ff1709746371ef8903"
+      },
+      {
+        "name": "chapter-7-progress",
+        "sha256": "bc5053cbcb512b7ff541b4821625e75a93d93ec3c31b5961afedeff4049af312"
+      },
+      {
+        "name": "combat-quiet",
+        "sha256": "1dd0c9d26dd6c4574ac12b0ba86961032870981a71551dbd59182dbe047c9100"
+      },
+      {
+        "name": "paused-quiet",
+        "sha256": "d3c3b139733d28a83cc013dd140e7fc79d69cd13d2cf26ab85199b5e162b92d0"
+      },
+      {
+        "name": "phone-chapter-0",
+        "sha256": "f65f207b5f4eb668ab74900a54e28df6a7fc0fa1540d1610cb3d9c5f57dc9a06"
+      },
+      {
+        "name": "phone-chapter-2",
+        "sha256": "19def0682fdba03f92255a61d47d9bc146196963586b5bcd33ecfcdee2216a25"
+      },
+      {
+        "name": "phone-chapter-3",
+        "sha256": "14b6359ea8e60585e2545addeea440493f99554f9dabf1d7a8043a8ca253fc4f"
+      },
+      {
+        "name": "phone-chapter-7",
+        "sha256": "26b9b5f30548116ed616a183128a3b6eca6360f2e58a3900e1173f8255377e9d"
+      },
+      {
+        "name": "phone-gentle-0",
+        "sha256": "7a3845b2b9e06a804bb9ba61289de8ca814d5d96cf3c59e21d3a4b4ab266f35f"
+      },
+      {
+        "name": "phone-gentle-2",
+        "sha256": "29054b2f8bf0731888328522cad2c4c94e0a577fce9ce8ae53ad5cf8cdbd8bc1"
+      },
+      {
+        "name": "phone-gentle-3",
+        "sha256": "0b1e848fedbb7f81e0acde9f108274d7af2bbbfc8f0f4efc02aeeb24b79d7295"
+      },
+      {
+        "name": "phone-gentle-7",
+        "sha256": "58a32898084feaabaffe18045be731475aae82819d93b7956bc7861d38f1a61c"
+      }
+    ],
+    "proof": "previews/living-reef-review.jpg"
+  },
+  "preserved_assets": {
+    "count": 140,
+    "byte_identical_to_base": true,
+    "scope": "all retained files under assets/ and animations/, shaders, and dist/ paintings, fonts and atlases"
+  },
+  "new_asset": {
+    "path": "assets/living-reef/pearl-seahorse.webp",
+    "lossless_rgba_equal_to_generated_png": true,
+    "provenance": "assets/living-reef/README.md"
+  },
+  "performance": {
+    "checks": {
+      "count": 807,
+      "failures": 0
+    },
+    "summary": [
+      {
+        "chapter": 0,
+        "kind": "choir",
+        "added_draw_calls": 5.0,
+        "peak_vertices": 1830,
+        "build_block_median_ms_range": [
+          0.385,
+          0.46
+        ],
+        "node_growth": 0,
+        "overflows": 0,
+        "guide_loaded_at_bind": false,
+        "guide_texture_identity_unchanged": true
+      },
+      {
+        "chapter": 2,
+        "kind": "guide",
+        "added_draw_calls": 6.0,
+        "peak_vertices": 3714,
+        "build_block_median_ms_range": [
+          0.694,
+          0.778
+        ],
+        "node_growth": 0,
+        "overflows": 0,
+        "guide_loaded_at_bind": true,
+        "guide_texture_identity_unchanged": true
+      },
+      {
+        "chapter": 3,
+        "kind": "current",
+        "added_draw_calls": 4.0,
+        "peak_vertices": 3390,
+        "build_block_median_ms_range": [
+          0.736,
+          1.13
+        ],
+        "node_growth": 0,
+        "overflows": 0,
+        "guide_loaded_at_bind": false,
+        "guide_texture_identity_unchanged": true
+      }
+    ],
+    "raw": {
+      "0": {
+        "after_approach_memory": {
+          "nodes": 663,
+          "resources": 147,
+          "texture_bytes": 187695064
+        },
+        "at_bind_memory": {
+          "nodes": 663,
+          "resources": 147,
+          "texture_bytes": 186646488
+        },
+        "chapter": 0,
+        "guide_loaded_at_bind": false,
+        "guide_texture_identity_unchanged": true,
+        "kind": "choir",
+        "node_growth": 0,
+        "offscreen": [
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 218.0,
+                "median": 218.0,
+                "p95": 218.0
+              },
+              "frame": {
+                "mean_ms": 150.981454545455,
+                "median_ms": 140.507,
+                "p95_ms": 224.465
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.223090909090909,
+                "median_ms": 0.172,
+                "p95_ms": 0.482
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 218.0,
+                "median": 218.0,
+                "p95": 218.0
+              },
+              "frame": {
+                "mean_ms": 138.216818181818,
+                "median_ms": 131.93,
+                "p95_ms": 175.028
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.215909090909091,
+                "median_ms": 0.156,
+                "p95_ms": 0.594
+              }
+            },
+            "shown": true
+          }
+        ],
+        "overflows": 0,
+        "peak_vertices": 1830,
+        "quiet": [
+          {
+            "sample": {
+              "batch_peak": 0,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 239.0,
+                "median": 239.0,
+                "p95": 239.0
+              },
+              "frame": {
+                "mean_ms": 146.839090909091,
+                "median_ms": 145.861,
+                "p95_ms": 181.955
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 186296964
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.704090909090909,
+                "median_ms": 0.3,
+                "p95_ms": 2.661
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 1830,
+              "draw_calls": {
+                "mean": 244.0,
+                "median": 244.0,
+                "p95": 244.0
+              },
+              "frame": {
+                "mean_ms": 152.194,
+                "median_ms": 148.77,
+                "p95_ms": 174.72
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.405181818181818,
+                "median_ms": 0.385,
+                "p95_ms": 0.505
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.278636363636364,
+                "median_ms": 0.187,
+                "p95_ms": 0.602
+              }
+            },
+            "shown": true
+          },
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 1830,
+              "draw_calls": {
+                "mean": 244.0,
+                "median": 244.0,
+                "p95": 244.0
+              },
+              "frame": {
+                "mean_ms": 158.500090909091,
+                "median_ms": 151.039,
+                "p95_ms": 178.339
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.489545454545455,
+                "median_ms": 0.46,
+                "p95_ms": 0.799
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.407181818181818,
+                "median_ms": 0.243,
+                "p95_ms": 1.376
+              }
+            },
+            "shown": true
+          },
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 1830,
+              "draw_calls": {
+                "mean": 239.0,
+                "median": 239.0,
+                "p95": 239.0
+              },
+              "frame": {
+                "mean_ms": 144.477363636364,
+                "median_ms": 141.5,
+                "p95_ms": 162.611
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.316454545454545,
+                "median_ms": 0.237,
+                "p95_ms": 0.925
+              }
+            },
+            "shown": false
+          }
+        ],
+        "quiet_combat_fixture": [
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 1830,
+              "draw_calls": {
+                "mean": 239.0,
+                "median": 239.0,
+                "p95": 239.0
+              },
+              "frame": {
+                "mean_ms": 169.163636363636,
+                "median_ms": 161.855,
+                "p95_ms": 239.355
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.554818181818182,
+                "median_ms": 0.255,
+                "p95_ms": 2.578
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 1830,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 240.0,
+                "median": 240.0,
+                "p95": 240.0
+              },
+              "frame": {
+                "mean_ms": 156.922727272727,
+                "median_ms": 138.074,
+                "p95_ms": 219.759
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0434545454545455,
+                "median_ms": 0.04,
+                "p95_ms": 0.057
+              },
+              "memory": {
+                "nodes": 663,
+                "resources": 147,
+                "texture_bytes": 187695064
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.234090909090909,
+                "median_ms": 0.183,
+                "p95_ms": 0.567
+              }
+            },
+            "shown": true
+          }
+        ],
+        "vertex_cap": 12288
+      },
+      "2": {
+        "after_approach_memory": {
+          "nodes": 627,
+          "resources": 161,
+          "texture_bytes": 277686305
+        },
+        "at_bind_memory": {
+          "nodes": 627,
+          "resources": 161,
+          "texture_bytes": 278035829
+        },
+        "chapter": 2,
+        "guide_loaded_at_bind": true,
+        "guide_texture_identity_unchanged": true,
+        "kind": "guide",
+        "node_growth": 0,
+        "offscreen": [
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 135.0,
+                "median": 135.0,
+                "p95": 135.0
+              },
+              "frame": {
+                "mean_ms": 166.459454545455,
+                "median_ms": 162.699,
+                "p95_ms": 219.191
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.276181818181818,
+                "median_ms": 0.21,
+                "p95_ms": 0.81
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 135.0,
+                "median": 135.0,
+                "p95": 135.0
+              },
+              "frame": {
+                "mean_ms": 138.045454545455,
+                "median_ms": 139.436,
+                "p95_ms": 175.004
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.244090909090909,
+                "median_ms": 0.199,
+                "p95_ms": 0.612
+              }
+            },
+            "shown": true
+          }
+        ],
+        "overflows": 0,
+        "peak_vertices": 3714,
+        "quiet": [
+          {
+            "sample": {
+              "batch_peak": 0,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 133.0,
+                "median": 133.0,
+                "p95": 133.0
+              },
+              "frame": {
+                "mean_ms": 143.828545454545,
+                "median_ms": 139.028,
+                "p95_ms": 175.964
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 278035829
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.686454545454545,
+                "median_ms": 0.298,
+                "p95_ms": 4.159
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 3714,
+              "draw_calls": {
+                "mean": 139.0,
+                "median": 139.0,
+                "p95": 139.0
+              },
+              "frame": {
+                "mean_ms": 169.120818181818,
+                "median_ms": 148.605,
+                "p95_ms": 240.706
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.795545454545454,
+                "median_ms": 0.778,
+                "p95_ms": 1.205
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.246454545454545,
+                "median_ms": 0.189,
+                "p95_ms": 0.637
+              }
+            },
+            "shown": true
+          },
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 3714,
+              "draw_calls": {
+                "mean": 139.0,
+                "median": 139.0,
+                "p95": 139.0
+              },
+              "frame": {
+                "mean_ms": 136.895363636364,
+                "median_ms": 131.054,
+                "p95_ms": 174.273
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.700818181818182,
+                "median_ms": 0.694,
+                "p95_ms": 0.942
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.190181818181818,
+                "median_ms": 0.185,
+                "p95_ms": 0.266
+              }
+            },
+            "shown": true
+          },
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 3714,
+              "draw_calls": {
+                "mean": 133.0,
+                "median": 133.0,
+                "p95": 133.0
+              },
+              "frame": {
+                "mean_ms": 133.780818181818,
+                "median_ms": 136.427,
+                "p95_ms": 151.034
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.399181818181818,
+                "median_ms": 0.19,
+                "p95_ms": 2.031
+              }
+            },
+            "shown": false
+          }
+        ],
+        "quiet_combat_fixture": [
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 3714,
+              "draw_calls": {
+                "mean": 133.0,
+                "median": 133.0,
+                "p95": 133.0
+              },
+              "frame": {
+                "mean_ms": 160.737454545455,
+                "median_ms": 142.047,
+                "p95_ms": 320.033
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.420454545454545,
+                "median_ms": 0.244,
+                "p95_ms": 1.599
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3714,
+              "batch_used": 198,
+              "draw_calls": {
+                "mean": 136.0,
+                "median": 136.0,
+                "p95": 136.0
+              },
+              "frame": {
+                "mean_ms": 137.032545454545,
+                "median_ms": 136.234,
+                "p95_ms": 148.595
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.156636363636364,
+                "median_ms": 0.157,
+                "p95_ms": 0.187
+              },
+              "memory": {
+                "nodes": 627,
+                "resources": 161,
+                "texture_bytes": 277686305
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.184363636363636,
+                "median_ms": 0.169,
+                "p95_ms": 0.341
+              }
+            },
+            "shown": true
+          }
+        ],
+        "vertex_cap": 12288
+      },
+      "3": {
+        "after_approach_memory": {
+          "nodes": 597,
+          "resources": 159,
+          "texture_bytes": 254057804
+        },
+        "at_bind_memory": {
+          "nodes": 597,
+          "resources": 159,
+          "texture_bytes": 254057804
+        },
+        "chapter": 3,
+        "guide_loaded_at_bind": false,
+        "guide_texture_identity_unchanged": true,
+        "kind": "current",
+        "node_growth": 0,
+        "offscreen": [
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 108.0,
+                "median": 108.0,
+                "p95": 108.0
+              },
+              "frame": {
+                "mean_ms": 158.726272727273,
+                "median_ms": 152.656,
+                "p95_ms": 200.462
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.234272727272727,
+                "median_ms": 0.151,
+                "p95_ms": 1.029
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 0,
+              "draw_calls": {
+                "mean": 108.0,
+                "median": 108.0,
+                "p95": 108.0
+              },
+              "frame": {
+                "mean_ms": 136.828636363636,
+                "median_ms": 139.085,
+                "p95_ms": 145.021
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.119090909090909,
+                "median_ms": 0.112,
+                "p95_ms": 0.163
+              }
+            },
+            "shown": true
+          }
+        ],
+        "overflows": 0,
+        "peak_vertices": 3390,
+        "quiet": [
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 3390,
+              "draw_calls": {
+                "mean": 124.0,
+                "median": 124.0,
+                "p95": 124.0
+              },
+              "frame": {
+                "mean_ms": 134.101363636364,
+                "median_ms": 131.521,
+                "p95_ms": 170.956
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 1.10809090909091,
+                "median_ms": 1.13,
+                "p95_ms": 1.524
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.197181818181818,
+                "median_ms": 0.178,
+                "p95_ms": 0.308
+              }
+            },
+            "shown": true
+          },
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 3390,
+              "draw_calls": {
+                "mean": 120.0,
+                "median": 120.0,
+                "p95": 120.0
+              },
+              "frame": {
+                "mean_ms": 137.917,
+                "median_ms": 131.03,
+                "p95_ms": 190.172
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.325272727272727,
+                "median_ms": 0.27,
+                "p95_ms": 0.783
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 3390,
+              "draw_calls": {
+                "mean": 120.0,
+                "median": 120.0,
+                "p95": 120.0
+              },
+              "frame": {
+                "mean_ms": 134.061545454545,
+                "median_ms": 129.046,
+                "p95_ms": 166.53
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.226,
+                "median_ms": 0.204,
+                "p95_ms": 0.342
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 3390,
+              "draw_calls": {
+                "mean": 124.0,
+                "median": 124.0,
+                "p95": 124.0
+              },
+              "frame": {
+                "mean_ms": 147.618363636364,
+                "median_ms": 139.418,
+                "p95_ms": 189.837
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.844181818181818,
+                "median_ms": 0.736,
+                "p95_ms": 1.373
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.238909090909091,
+                "median_ms": 0.193,
+                "p95_ms": 0.57
+              }
+            },
+            "shown": true
+          }
+        ],
+        "quiet_combat_fixture": [
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 3390,
+              "draw_calls": {
+                "mean": 120.0,
+                "median": 120.0,
+                "p95": 120.0
+              },
+              "frame": {
+                "mean_ms": 164.128181818182,
+                "median_ms": 161.46,
+                "p95_ms": 194.153
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.0,
+                "median_ms": 0.0,
+                "p95_ms": 0.0
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 0,
+              "snapshot_and_sync": {
+                "mean_ms": 0.218363636363636,
+                "median_ms": 0.17,
+                "p95_ms": 0.613
+              }
+            },
+            "shown": false
+          },
+          {
+            "sample": {
+              "batch_peak": 3390,
+              "batch_used": 1674,
+              "draw_calls": {
+                "mean": 121.0,
+                "median": 121.0,
+                "p95": 121.0
+              },
+              "frame": {
+                "mean_ms": 138.695272727273,
+                "median_ms": 140.744,
+                "p95_ms": 164.678
+              },
+              "geometry_build_and_upload": {
+                "mean_ms": 0.367363636363636,
+                "median_ms": 0.344,
+                "p95_ms": 0.485
+              },
+              "memory": {
+                "nodes": 597,
+                "resources": 159,
+                "texture_bytes": 254057804
+              },
+              "mesh_uploads": 16,
+              "snapshot_and_sync": {
+                "mean_ms": 0.162818181818182,
+                "median_ms": 0.154,
+                "p95_ms": 0.276
+              }
+            },
+            "shown": true
+          }
+        ],
+        "vertex_cap": 12288
+      },
+      "checks": {
+        "count": 807,
+        "failures": 0
+      },
+      "environment": {
+        "adapter": "llvmpipe (LLVM 20.1.2, 256 bits)",
+        "display": "X11",
+        "engine": "4.4.1-stable (official)",
+        "fixture_clock": 2.3,
+        "frames_per_block": 16,
+        "guide_check": "Selected guide resource must exist at scene bind and retain identical instance identity on approach. Other chapters keep it unloaded.",
+        "memory_note": "Raw texture/resource counters can also reflect native font glyph caches; guide identity is checked independently.",
+        "ordering": "ABBA for even chapters, BAAB for odd chapters",
+        "quality": "full",
+        "quiet_combat_note": "Presentation snapshot fixture; actual gameplay quiet/combat integration is covered by the activity suite.",
+        "resolution": [
+          1400,
+          960
+        ],
+        "scope": "Same frozen native scene, changing only Living Reef art visibility/quiet snapshot. CPU includes its sync and actual draw geometry/upload separately. No device FPS claim.",
+        "warmup_frames": 5
+      }
+    },
+    "limitations": "Frozen same-scene art-only comparisons on shared-host llvmpipe, with concurrent headless checks. Draw/cap/cull invariants are deterministic; timings are diagnostics, not physical-device FPS. Font caches can change raw texture counters; no claim of zero added memory."
+  },
+  "archive": {
+    "filename": "Mermaid-Adventure-v0.11.0-Living-Reef.zip",
+    "bytes": 68509420,
+    "sha256": "09c70971829b6eb4a2fba5842bff1b99cd498ac8810ebe24f8de5509edb8d87f",
+    "files": 214,
+    "directories": 17,
+    "all_files_match_source": true,
+    "crc_ok": true
+  },
+  "scope_limits": [
+    "Automated full-route continuation and native visual fixtures are not a human full-adventure balance playthrough.",
+    "Physical phone/GPU frame-time testing remains separate."
+  ],
+  "resolved_validation_issues": [
+    "Native caption auto-wrap sizing was replaced with explicit compact measured panels; family placement avoids royal portraits.",
+    "Probe texture presence no longer assumes that valid Godot Resource IDs are positive.",
+    "One initial Python temporary-extraction cleanup returned ENOTEMPTY after all tests passed; cleanup retry and two full fresh reruns exited cleanly."
+  ]
+}

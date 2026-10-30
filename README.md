@@ -1,6 +1,10 @@
-# Mermaid Adventure - v0.10.0 Whimsy
+# Mermaid Adventure - v0.11.0 Living Reef
 
 An eight-chapter painted ocean adventure starring Sarah Maria, with the family lagoon tutorial, chapter selection and Avina's optional companionship.
+
+Living Reef adds one optional discovery to each chapter: three shell choirs, three little journeys with Pip the pearl seahorse and two gentle current trails. Wake choir shells with Boost or Sarah’s Bubble in any order; stay beside Pip through three stops and home; swim through the current hoops at your own pace. Each activity grants one owned Secrets reward and banks completion with a nearby checkpoint. There is no failure timer, and every existing boss, portal and tutorial requirement remains independent.
+
+Sarah looks toward nearby discoveries and offers small greetings or reward gestures; Avina joins with brief baby reactions when she is travelling with you. Combat, charge, jump and impact animations keep priority. Gentle Motion retains the activities while using quieter expressions. Pip’s new painted cutout is stored as a lossless WebP with unchanged RGBA pixels. [Living Reef play guide and implementation notes](godot/LIVING-REEF.md) · [Pip art provenance](godot/assets/living-reef/README.md).
 
 Adventure Polish adds checkpoint saves and Continue, per-chapter stars/bests, a whole-adventure finale, accurate charge/cooldown feedback and distinct, telegraphed later-boss volleys. It removes duplicate projectile drawing, prioritises immediate threats and stops settled results from rebuilding every frame. The original paintings, animations and full-quality defaults are retained. [Review fixes and validation](https://github.com/skhaze94-cloud/Mermaid-Adventure-0.29-Onwards/blob/feature/opal-current-v06/godot/ADVENTURE-POLISH.md).
 

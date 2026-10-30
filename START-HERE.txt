@@ -1,5 +1,5 @@
 Sarah Maria — Mermaid Adventure
-v0.10.0 — Whimsy / Journey Polish / Opal Current
+v0.11.0 — Living Reef / Whimsy / Journey Polish / Opal Current
 
 1. Extract the whole ZIP into a NEW EMPTY folder.
 2. Import the ROOT project.godot in Godot 4.4 or newer. Tested with 4.4.1.
@@ -43,3 +43,17 @@ Family conversations offer Let me try it; talk again for the full stories.
 Whimsy: tiny themed reef gardens respond as Sarah swims nearby. Positive
 rewards get little satin glints and sea-star flourishes. Rest quietly for a
 small surprise. Gentle Motion freezes ornaments; combat keeps them quiet.
+
+Living Reef: each chapter has one optional little discovery.
+- Shell choirs: Boost through all three shells, or use Sarah's Bubble once
+  unlocked. Any order works; Avina's little bubbles leave the task to Sarah.
+- Pip the pearl seahorse: swim beside Pip through three flower stops and home.
+  Pip waits if you swim away. Follow at your own pace; there is no failure timer.
+- Current trails: swim through the three hoops in order. A gentle current helps
+  while you swim along it; idle, turn back, or use your normal Boost to leave it.
+Completed discoveries grant 200-275 Secrets points once and bank at a nearby
+checkpoint. Earlier partial progress follows your normal checkpoint/retry rules.
+Nessie's discovery appears after her fight; the family's appears after training.
+All discoveries are optional. The original portals and tutorial exits stay open
+when their existing requirements are met. Gentle Motion keeps the same activities
+with quieter presentation; Sarah and Avina's reactions never perform attacks.
