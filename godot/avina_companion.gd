@@ -15,6 +15,9 @@ var bubbles_cast := 0
 var last_retry := -1
 var joy_blend := 0.0
 var follow_bank := 0.0
+var discovery_cooldown := 0.0
+var discovery_reaction := 0.0
+var discovery_speech := false
 
 func _ready() -> void:
     z_index = 4
@@ -32,6 +35,7 @@ func bind(owner_level: Node2D) -> void:
 
 func reset_follow() -> void:
     if not is_instance_valid(level): return
+    clear_discovery_reaction()
     world_position = level.player + Vector2(-level.facing*115,45)
     cooldown = 0.0
     bubble_pending = false
@@ -41,9 +45,27 @@ func reset_follow() -> void:
     last_retry = level.retry_serial
 
 func say(line: String, duration := 3.0) -> void:
+    discovery_speech=false
     speech = line
     speech_time = duration
     reaction = 0.65
+
+func react_to_discovery(kind: String) -> bool:
+    if not is_instance_valid(level) or not follow_enabled or not visible:return false
+    if level.state!="playing" or level.get_tree().paused or level.waterfall_phase!="":return false
+    if discovery_cooldown>0 or (speech_time>0 and not discovery_speech):return false
+    var lines := {"discovery":"Oooh!","note":"Ting!","help":"Hee!","progress":"Mo’!","complete":"Yay! Sa-sa!"}
+    if not lines.has(kind):return false
+    speech=lines[kind];speech_time=1.35;discovery_speech=true
+    discovery_reaction=0.0 if level.reduced_fx else (.55 if kind!="complete" else .70)
+    discovery_cooldown=3.0
+    queue_redraw()
+    return true
+
+func clear_discovery_reaction() -> void:
+    if discovery_speech:speech="";speech_time=0.0
+    discovery_speech=false;discovery_reaction=0.0;discovery_cooldown=0.0
+    queue_redraw()
 
 func request_bubble() -> void:
     bubble_pending = true
@@ -54,6 +76,9 @@ func tick(dt: float) -> void:
     cooldown = maxf(0,cooldown-dt)
     speech_time = maxf(0,speech_time-dt)
     reaction = maxf(0,reaction-dt)
+    discovery_cooldown=maxf(0,discovery_cooldown-dt)
+    discovery_reaction=maxf(0,discovery_reaction-dt)
+    if discovery_speech and speech_time<=0:discovery_speech=false
     if last_retry != level.retry_serial: reset_follow()
     var desired: Vector2 = level.player + Vector2(-level.facing*115,45)
     desired.y = clampf(desired.y,level._water_line()+82,820)
@@ -66,7 +91,7 @@ func tick(dt: float) -> void:
         position = level._hero_screen_position()+Vector2(-level.facing*105,66)
     var gentle: bool = level.reduced_fx
     var ease := 1.0-exp(-minf(dt,.05)*12.0)
-    joy_blend = lerpf(joy_blend,reaction,ease)
+    joy_blend = lerpf(joy_blend,maxf(reaction,0.0 if gentle else discovery_reaction),ease)
     var bank := clampf((world_position.x-previous.x)/maxf(dt,.001)/3000.0,-.06,.06)
     follow_bank = lerpf(follow_bank,bank,ease)
     sprite.flip_h = level.facing < 0

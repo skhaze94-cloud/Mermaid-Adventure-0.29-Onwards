@@ -92,6 +92,8 @@ var ocean_life: Node2D
 var ocean_feedback: Node2D
 var whimsy_garden: Node2D
 var whimsy_moments: Node2D
+var living_reef = preload("res://godot/living_reef.gd").new()
+var living_reef_art: Node2D
 var swim_audio_clock := 0.0
 var music_player: AudioStreamPlayer
 var native_rig: Node2D
@@ -182,6 +184,10 @@ func _ready() -> void:
     add_child(whimsy_garden)
     move_child(whimsy_garden,0)
     add_child(whimsy_moments)
+    living_reef.bind(self)
+    living_reef_art=preload("res://godot/living_reef_art.gd").new()
+    add_child(living_reef_art)
+    living_reef_art.bind(self,living_reef)
     opal_fx=OpalEffects.new();add_child(opal_fx);move_child(opal_fx,1)
     opal_fx.configure(_opal_art_chapter(),opal_friendly_atlas,opal_enemy_atlas,opal_boss_atlas)
     opal.bind(self)
@@ -264,6 +270,7 @@ func _valid_checkpoint(saved: Dictionary) -> bool:
             elif not item.get("taken") is bool or item["kind"] not in ["pearl","chest","heart","boost"]: return false
     if not saved.get("position", Vector2.ZERO) is Vector2 or not Vector2(saved.get("position", Vector2.ZERO)).is_finite(): return false
     if not saved.get("extra", {}) is Dictionary: return false
+    if snapshot.has("reef") and (not snapshot["reef"] is Dictionary or not living_reef.valid_state(snapshot["reef"],snapshot["ledger"])):return false
     return _valid_checkpoint_extras(saved.get("extra", {}))
 
 func _checkpoint_extras() -> Dictionary: return {}
@@ -676,6 +683,9 @@ func _physics_process(dt: float) -> void:
             return
         _update_bubbles(dt)
         _update_hostile_shots(dt)
+        if retry_serial != serial:return
+        living_reef.advance(dt)
+        living_reef_art.advance(dt)
         _check_checkpoints()
     var view := get_viewport_rect().size
     # Cinematic anticipation: the view looks ahead in Sarah's direction of travel.
@@ -744,6 +754,7 @@ func _hud_snapshot() -> Dictionary:
 
 func _sync_native_visuals() -> void:
     _sync_whimsy_world()
+    if is_instance_valid(living_reef_art):living_reef_art.sync()
     opal.refresh_targets()
     if is_instance_valid(opal_fx):opal_fx.sync(self)
     if is_instance_valid(native_rig):native_rig.set_bubble_charge(opal.charge.held,opal.charge.elapsed/1.35)
@@ -844,6 +855,7 @@ func _update_swimming(dt: float) -> void:
     else:
         player_velocity = SarahMotion.swim_velocity(player_velocity,input_dir,dt)
         player += player_velocity * dt
+    player += living_reef.current_drift(input_dir)*dt
     player.x = clampf(player.x, _left_bound(), _level_length() - 40.0)
     if player.y < 80.0:
         player.y = 80.0
@@ -995,7 +1007,7 @@ func _save_checkpoint() -> void:
     if not checkpoint_snapshot.is_empty(): _ocean_event("checkpoint",Vector2(checkpoint,player.y))
     checkpoint_snapshot = {
         "ledger":score_book.checkpoint(), "score": score, "picked": picked_count, "treasures": treasures.duplicate(true),
-        "enemies": enemies.duplicate(true), "boss_hp": boss_hp, "bubble": bubble_unlocked, "fallen":fallen
+        "enemies": enemies.duplicate(true), "boss_hp": boss_hp, "bubble": bubble_unlocked, "fallen":fallen, "reef":living_reef.export_state()
     }
     checkpoint_position = RockCollision.recover(Vector2(checkpoint, player.y if _stage_index() == 7 else 480.0), obstacles, HERO_RADIUS * .73, _swim_bounds())
     if not checkpoint_pending:
@@ -1015,6 +1027,7 @@ func _respawn() -> void:
         boss_hp = int(checkpoint_snapshot["boss_hp"])
         bubble_unlocked = bool(checkpoint_snapshot["bubble"])
     _reset_transients()
+    living_reef.restore_state(checkpoint_snapshot.get("reef",{}))
     health = MAX_HEALTH
     energy = 1.0
     fallen = bool(checkpoint_snapshot.get("fallen", checkpoint >= Highland.WATERFALL_EXIT))
@@ -1028,6 +1041,8 @@ func _respawn() -> void:
 
 func _reset_transients() -> void:
     boss_volley.clear()
+    living_reef.clear_transients()
+    if is_instance_valid(living_reef_art):living_reef_art.reset()
     message_priority = false
     message_time = 0.0
     opal.reset()
@@ -1257,6 +1272,7 @@ func _restart() -> void:
     time = 0.0
     health = MAX_HEALTH
     energy = 1.0
+    living_reef.restore_state({})
     score_book = ScoreBook.new()
     premium_hud.clear_feedback()
     score = 0
@@ -1600,3 +1616,10 @@ func _sync_whimsy_world() -> void:
     var in_combat := _whimsy_combat_active()
     whimsy_garden.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,enabled,in_combat)
     whimsy_moments.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,enabled,in_combat)
+
+func _bank_living_reef() -> void:
+    # Optional kindness banks its one-time reward at a nearby safe checkpoint.
+    # Existing save workers, ledger ownership and collision recovery remain in charge.
+    if _stage_index()!=7:checkpoint=maxf(checkpoint,clampf(player.x,_left_bound(),_portal_x()-190))
+    last_checkpoint_message="Reef memory"
+    _save_checkpoint()

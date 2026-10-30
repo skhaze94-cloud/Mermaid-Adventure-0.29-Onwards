@@ -17,6 +17,12 @@ var face_details: PaintedMesh
 var detail_gaze := Vector2.ZERO
 var expression_blend := 0.0
 var blink_blend := 0.0
+# World-interest expressions blend through the existing registered face surface.
+var discovery_focus_goal := Vector2.ZERO
+var discovery_gaze := Vector2.ZERO
+var discovery_joy_goal := 0.0
+var discovery_joy := 0.0
+var discovery_gesture := false
 const SpineMotion = preload("res://godot/sarah_spine_motion.gd")
 var spine_motion = SpineMotion.new()
 const DefinitiveMotion = preload("res://godot/sarah_definitive_motion.gd")
@@ -208,10 +214,41 @@ func play_gesture(action: String) -> void:
     # Greeting/reward cannot interrupt a cast, impact or victory performance.
     if action in ["greet","reward"] and gesture_player.is_playing():
         return
+    discovery_gesture = false
     _clear_gesture_values()
     last_gesture = action
     gesture_player.play(action)
     gesture_player.advance(0.0)
+
+func can_discovery_react() -> bool:
+    if boosting or leaping or jump_phase!="":return false
+    if hit_kick>.03 or bubble_hold_goal>.01 or bubble_hold>.08:return false
+    return not gesture_player or not gesture_player.is_playing() or last_gesture in ["greet","reward"]
+
+func can_discovery_focus() -> bool:
+    return high_quality and not reduced_motion and can_discovery_react()
+
+func set_discovery_focus(offset: Vector2, joy: float) -> void:
+    if not offset.is_finite() or not is_finite(joy) or not can_discovery_react():
+        clear_discovery_focus()
+        return
+    discovery_focus_goal=Vector2(offset.x*facing_value,offset.y).limit_length(320.0)/320.0 if can_discovery_focus() else Vector2.ZERO
+    discovery_joy_goal=clampf(joy,0.0,.72)
+
+func play_discovery_gesture(action: String) -> bool:
+    if action not in ["greet","reward"] or not can_discovery_focus():return false
+    if not gesture_player or gesture_player.is_playing():return false
+    play_gesture(action)
+    discovery_gesture=last_gesture==action and gesture_player.is_playing()
+    return discovery_gesture
+
+func clear_discovery_focus() -> void:
+    discovery_focus_goal=Vector2.ZERO;discovery_gaze=Vector2.ZERO
+    discovery_joy_goal=0.0;discovery_joy=0.0
+    # Never cancel an authored cast/impact that has superseded our own gesture.
+    if discovery_gesture and gesture_player and last_gesture in ["greet","reward"]:
+        gesture_player.stop();_clear_gesture_values()
+    discovery_gesture=false
 
 func _clear_gesture_values() -> void:
     gesture_wave = 0.0
@@ -220,6 +257,7 @@ func _clear_gesture_values() -> void:
     gesture_arch = 0.0
 
 func reset_performance() -> void:
+    clear_discovery_focus()
     bubble_hold=0.0; bubble_hold_goal=0.0
     if gesture_player:
         gesture_player.stop()
@@ -837,10 +875,17 @@ func _process(delta: float) -> void:
         tail_skin.skin(cycle_pose,tail_tuck,turn_kick)
     # Face, ear, nose and hair share the body's clocks, current, yaw and effort.
     blink_blend = FaceDetails.blink_at(clock)
-    var joy := clampf(boost_blend*.65+jump_joy_near*.45+absf(wave)*.40+absf(reach)*.12,0,1)
+    if discovery_focus_goal!=Vector2.ZERO or discovery_gaze!=Vector2.ZERO or discovery_joy_goal>0 or discovery_joy>0:
+        if can_discovery_react():
+            discovery_gaze=discovery_gaze.lerp(discovery_focus_goal,1.0-exp(-dt*6.0)) if can_discovery_focus() else Vector2.ZERO
+            discovery_joy=lerpf(discovery_joy,discovery_joy_goal,1.0-exp(-dt*7.0))
+            if discovery_gaze.length_squared()<.000001:discovery_gaze=Vector2.ZERO
+            if discovery_joy<.001:discovery_joy=0.0
+        else:clear_discovery_focus()
+    var joy := maxf(discovery_joy,clampf(boost_blend*.65+jump_joy_near*.45+absf(wave)*.40+absf(reach)*.12,0,1))
     expression_blend = lerpf(expression_blend,joy,1.0-exp(-dt*7.0))
     var look := Vector2(clampf(visual_travel.x*facing_value/760.0,-1,1),clampf(visual_travel.y/760.0,-1,1))
-    look += Vector2(depth_turn*.2,cycle_pose.x*.12)
+    look += Vector2(depth_turn*.2,cycle_pose.x*.12)+discovery_gaze*.55
     detail_gaze = detail_gaze.lerp(look.limit_length(1.0),1.0-exp(-dt*8.0))
     face_details.set_response(Vector2(visual_travel.x*facing_value,visual_travel.y)/760.0,
         depth_turn,boost_blend,torso_motion.breath.x/.0065,cycle_pose.y,hair_drag+horizontal_drag,
