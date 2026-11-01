@@ -1,0 +1,93 @@
+[
+  {
+    "test": "avina_tutorial_test.gd",
+    "passed": true,
+    "seconds": 15.293,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY TUTORIAL: 112 checks, 0 failures"
+  },
+  {
+    "test": "conversation_flow_test.gd",
+    "passed": true,
+    "seconds": 11.293,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nCONVERSATION FLOW: 269 checks, 0 failures; 33 reply branches"
+  },
+  {
+    "test": "family_layout_test.gd",
+    "passed": true,
+    "seconds": 13.273,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures"
+  },
+  {
+    "test": "friends_cavern_test.gd",
+    "passed": true,
+    "seconds": 14.303,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nFRIENDS CAVERN: 402 checks, 0 failures; 15 caverns, 23 friends"
+  },
+  {
+    "test": "gameplay_controls_test.gd",
+    "passed": true,
+    "seconds": 5.301,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED"
+  },
+  {
+    "test": "little_moments_test.gd",
+    "passed": true,
+    "seconds": 13.452,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nLITTLE MOMENTS: 36 checks, 0 failures"
+  },
+  {
+    "test": "pearl_ui_test.gd",
+    "passed": true,
+    "seconds": 16.35,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPEARL UI CONTRACT: 280 checks, 0 failures"
+  },
+  {
+    "test": "pocket_wonders_test.gd",
+    "passed": true,
+    "seconds": 23.221,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nPOCKET WONDERS: 318 checks, 0 failures; 12744 real swim ticks"
+  },
+  {
+    "test": "tutorial_caption_regression_test.gd",
+    "passed": true,
+    "seconds": 12.361,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nTUTORIAL CAPTION REGRESSION: 8 checks, 0 failures"
+  },
+  {
+    "test": "tutorial_meshy_test.gd",
+    "passed": true,
+    "seconds": 12.67,
+    "exit_code": 0,
+    "tail": "TUTORIAL MESHY: 38 checks, 0 failures"
+  },
+  {
+    "test": "tutorial_overhaul_test.gd",
+    "passed": true,
+    "seconds": 9.251,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nTUTORIAL OVERHAUL: 15 checks, 0 failures"
+  },
+  {
+    "test": "tutorial_reef_beauty_test.gd",
+    "passed": true,
+    "seconds": 9.186,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nTUTORIAL REEF 0.30: 72 checks, 0 failures"
+  },
+  {
+    "test": "tutorial_treasure_test.gd",
+    "passed": true,
+    "seconds": 12.271,
+    "exit_code": 0,
+    "tail": "Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org\n\nTREASURE 031: 100 checks, 0 failures"
+  }
+]

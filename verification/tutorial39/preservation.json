@@ -1,0 +1,4771 @@
+{
+  "baseline": "complete v0.38",
+  "unchanged_files": 1189,
+  "changed_inherited_files": [
+    "README.md",
+    "export_presets.cfg",
+    "godot/avina_tutorial.gd",
+    "godot/pocket_wonders_art.gd",
+    "godot/title_screen.gd",
+    "project.godot"
+  ],
+  "missing": [],
+  "unchanged": [
+    {
+      "path": "ASSET_PRESERVATION.json",
+      "sha256": "b16063c28a283f4cf4135188c21ff5f4d07c93a1182c1a907f6132fcaba275c5"
+    },
+    {
+      "path": "CHARACTER-ANIMATIONS.md",
+      "sha256": "627621c4b779226a3dadca189e49c351cc9cefe94175875b6b0cccbe300d32b8"
+    },
+    {
+      "path": "CONNECTED-GRACE-036.md",
+      "sha256": "72fd08843545c5976ff8f68938818bee7dddfe66be10c39d6ff83a7228ef3a38"
+    },
+    {
+      "path": "CONVERSATIONS.md",
+      "sha256": "cb572423e2b9af64507ccbe62630530bc661798ec1fe6a8a9d04e172c4e5c16c"
+    },
+    {
+      "path": "CUTE-REACTIONS.md",
+      "sha256": "367423e6d8e4d1e264e24862d970931d192392ec8ef38a3904f523a9984f240c"
+    },
+    {
+      "path": "DEEP_ROUTES.md",
+      "sha256": "0cff6b5943d2d893b48d7342ed4843bb9bd45f4cb29790b723c4bfc4245548a5"
+    },
+    {
+      "path": "FRIENDS-CAVERN-034.md",
+      "sha256": "9091a85c191d68a58f0899f2d80abe153fcebb7b2c63865d320877caf3f561fe"
+    },
+    {
+      "path": "LITTLE-MOMENTS.md",
+      "sha256": "6e2a9873300b4d30e4f344858c1cd9d7e3f9b31dd7bc2a348c99e5c3a5b7d23f"
+    },
+    {
+      "path": "LITTLE_SECRETS.md",
+      "sha256": "39571ad0f62eff9ee3d7a7a213cc0470bf203b5a58179ae5bb663544271d8d22"
+    },
+    {
+      "path": "PAINTED-REEF.md",
+      "sha256": "2971ed502dd7d243dd599ae53089fad430042b3f52b8b75befc9bb9024060d9e"
+    },
+    {
+      "path": "PEARL-STORYBOOK-038.md",
+      "sha256": "46413fe7c0a74bf3d450e42bd1e5fa25d0cd48e5636083e39f2d0ee113288a14"
+    },
+    {
+      "path": "PEARL-STORYBOOK-DESIGN.md",
+      "sha256": "d99fea9fc7c1b996c4b3f06b7d8c6ca825638dc415dfe3ed5c6a4c171ec5d099"
+    },
+    {
+      "path": "PREVIEW.jpg",
+      "sha256": "2d0199b4731215f181bd18af143a0724d23faefc5d06e72e92ffcddc97938bce"
+    },
+    {
+      "path": "PREVIEW.jpg.import",
+      "sha256": "a5de349d1762f64f1461649bf80990afb65e484f6034968461d7a9339c3ce42a"
+    },
+    {
+      "path": "SARAH-DEFINITIVE-21.md",
+      "sha256": "01884539a523a62f3fd1fe11d4b17f5bc2dda2c456645ec0e049ef393fc4ae19"
+    },
+    {
+      "path": "SARAH-FLOW.md",
+      "sha256": "25b4f42ad94d3b1a64277a2e0f9cc9bc65eaa085a467ccd0fc925b27b75091b9"
+    },
+    {
+      "path": "SARAH-GRACE-035.md",
+      "sha256": "5db82c7582faaa4269f95b151c5b8db07f5be30c55e254ee72835c416c8a143f"
+    },
+    {
+      "path": "SARAH-v037-REVIEW.md",
+      "sha256": "7210504d6c2f7835c31a41448c89d28fc9ff554ee1aae44acb9f3eb6e5fb3644"
+    },
+    {
+      "path": "START-HERE.txt",
+      "sha256": "8fc08db28d6d777007e8082350cc0f4af1d7d92810f4a9cdd59172c18fbba6a7"
+    },
+    {
+      "path": "TREASURE-CHESTS-031-README.txt",
+      "sha256": "c8f211e434fafed23493f634262f0a04e424a76cdaafff27c5ef8ab9f1cf9c67"
+    },
+    {
+      "path": "TUTORIAL-BEAUTY-032.md",
+      "sha256": "0959e50de5f005eb5e49f48c1229974d2126e93572a48fd0fc85e088661c807d"
+    },
+    {
+      "path": "TUTORIAL-BEAUTY-033.md",
+      "sha256": "c401bd6256b36980bab4a6c5323492c621a978a41867ea4952832ff6d09ea3c2"
+    },
+    {
+      "path": "TUTORIAL-FAMILY-POLISH.md",
+      "sha256": "db5e9fb6c1f3a131509fd64870aebc563a3336c6733cd4538f1ac830d296df77"
+    },
+    {
+      "path": "TUTORIAL-OVERHAUL.md",
+      "sha256": "b66a9ca51ca2043a7617ad7289417657aa888124acea2815ea19408b60552352"
+    },
+    {
+      "path": "TUTORIAL-REEF-030-README.txt",
+      "sha256": "edebbfd9b1b4d2f0ef90220260ad0716590bedfb7df43e923833dd13ceeb2dd9"
+    },
+    {
+      "path": "TUTORIAL-REEF-SPRITE-PREVIEW.png",
+      "sha256": "5cf9dc55c18cf05eb4ce25746e6bb6b893da42d31ca0d9e8bc3fb1aa51b27135"
+    },
+    {
+      "path": "TUTORIAL-REEF-SPRITE-PREVIEW.png.import",
+      "sha256": "c3b65a707761ec25e48594d29b533d11f202172afe10184e1d3800fccd2144cb"
+    },
+    {
+      "path": "TUTORIAL-REEF-TEXTURE-PREVIEW.jpg",
+      "sha256": "d6a81b03436645d5e9b3697aaa3043a8da0a1c0a336c9b43ce2cee3c2a78c955"
+    },
+    {
+      "path": "TUTORIAL-REEF-TEXTURE-PREVIEW.jpg.import",
+      "sha256": "0d8b823a21df5d67e8042551bf6210ad795b2cdd9774184829add9291e2eb221"
+    },
+    {
+      "path": "VERIFICATION.md",
+      "sha256": "c92a1b2bd2c2fab491e7c462c40d0c99cd6d748bb6d1486600428b39816a7758"
+    },
+    {
+      "path": "WHIMSY-FOUR-AUDIT.md",
+      "sha256": "5c48d70f191e54340f02eaf7b565d4cd3c2367cb5e8ba973464111cbef4413ad"
+    },
+    {
+      "path": "art-originals/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "art-originals/RECOVERY_VERIFIED.json",
+      "sha256": "cf63f85d636c850421456729a67ed3da24b1ab42c42ff365ee180fa274b24612"
+    },
+    {
+      "path": "art-originals/generation.json",
+      "sha256": "cd2932cab2ecdcea56b84f481198e40b49f78aad13f72372a830d3a0ca3b9719"
+    },
+    {
+      "path": "art-originals/manifest.json",
+      "sha256": "e5d72a1667fc541d4ad434c35c9a7f895169f54ea83db5e1e6047e28ae6193f2"
+    },
+    {
+      "path": "art-originals/royal-meshy/king-daddy-3d.glb",
+      "sha256": "0e058c6af20b6162996add34e53976925ee17c0ab06b686e353bbeefb2e2b193"
+    },
+    {
+      "path": "art-originals/royal-meshy/queen-antonella-3d.glb",
+      "sha256": "9960aade99bfc8a615d4dc77220d43bd59afe642588ac0e00cc621aed1aa5a13"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-carousel.png",
+      "sha256": "7b784193ab78db425bce36f59c9f5f6214e321fe386c0c0e3f8361a9ff8317e5"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-carousel.png.import",
+      "sha256": "a69a4d7a7985f3e0887c43c677d8d09a423c30e2a863253f7b293f3eba14279c"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-rain.png",
+      "sha256": "96868d523227d67644c2e60a7f1253fd6357b0d0906c54f52fdf206372d93ffb"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-rain.png.import",
+      "sha256": "88f1459c4671eed7add853ffd6c6314ec05f41fb59ebcd65930fe76cdc1d2944"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-whale.png",
+      "sha256": "f9c895b7a0752f6c107dbb0e72c033c956dd42fb89359dc8051b10f1c6a2a4ac"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-whale.png.import",
+      "sha256": "5f382f25f21575982c04f258bf833d6e69e44b0b623bbc289e0879937380fa2b"
+    },
+    {
+      "path": "art-originals/whimsy-ii/moon-jelly.png",
+      "sha256": "eaa41ceecd0d397de5fbdb08d6ab7b9f5a672259e0f09e24edce2f798ca334d3"
+    },
+    {
+      "path": "art-originals/whimsy-ii/moon-jelly.png.import",
+      "sha256": "fbe1ecdeadcde9d44a2863c710e3bd2b6e9d584844584b77aa4103e3160b64c5"
+    },
+    {
+      "path": "art-originals/whimsy-ii/octopus-butler.png",
+      "sha256": "18db04b65b18b88f35b9d42c852b89564a6b6e0bd7eef06fe4b4b8fee8e258f0"
+    },
+    {
+      "path": "art-originals/whimsy-ii/octopus-butler.png.import",
+      "sha256": "1f6c901e91576e12538fb45b75c54d289377ddf926a2954b9aeadef0bc1d2e5b"
+    },
+    {
+      "path": "art-originals/whimsy-ii/sea-slug-postman.png",
+      "sha256": "b49e06a53b4ceab5b035ad3abcc0e7b98232f54e55651749012a64796d42dd53"
+    },
+    {
+      "path": "art-originals/whimsy-ii/sea-slug-postman.png.import",
+      "sha256": "e0c03980038e9f4ec82cdcdd8b11de25b57c06d28e59e88835a9b68a8fcdd7a6"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-coral.png",
+      "sha256": "8501b46ce5e6586557eabe4e39aaaf7bff3ef0a03ee184cf7ac05ac59491a2e5"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-coral.png.import",
+      "sha256": "0ca1bf6bb957308ae6fae1dec3aa9275355aab31769ef992d088390068b6a3b0"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-lavender.png",
+      "sha256": "1fe925aed851eec35583746df497bd5f8db1486529569607a808c136b3689c35"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-lavender.png.import",
+      "sha256": "6e81cd0ee5ecd100cb29b23b042a376a9bf8256ef18995584c4b0eb7831443b1"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-pearl.png",
+      "sha256": "18b89562c8e9a45c5f396c0f8c5339b506af33078e6ac4bdd3dbd86be0475a89"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-pearl.png.import",
+      "sha256": "115665e19f658c3276509a35b6949314f26b942582d2f4bc6ca7bb412f7d1907"
+    },
+    {
+      "path": "art-originals/whimsy-ii/tea-table.png",
+      "sha256": "522602c5f8a5996c1baf501d3a81f8aadf5b0628f6d8bbf362c26381ba369b02"
+    },
+    {
+      "path": "art-originals/whimsy-ii/tea-table.png.import",
+      "sha256": "536a73df915ad57e172c74fb9346760452322385ad2ff35e41287818a99d0041"
+    },
+    {
+      "path": "dist/assets/bubble-bell-adventure.mp3",
+      "sha256": "daa9627e4ce026d5e356cd419ed47e4b9039d5877bccdf4054a65da85f3909ae"
+    },
+    {
+      "path": "dist/assets/bubble-bell-adventure.mp3.import",
+      "sha256": "3c272f3293ec9cae3896d317d20e36203068dcea0265c481968e95585298879d"
+    },
+    {
+      "path": "dist/assets/carlo.webp",
+      "sha256": "6dc232d7e0560f67faa64a235a17cf54d5feee13279dee79eecfd581f618f59b"
+    },
+    {
+      "path": "dist/assets/carlo.webp.import",
+      "sha256": "d8935edaa70c2f9bfc79273acdbb687fb2323ab9fefe84bf983abfed23717ca6"
+    },
+    {
+      "path": "dist/assets/colombia.webp",
+      "sha256": "fae5b08708c9027754aab3a0f48d0f74dbf52efc9ab953e4524f3ee47bcaf17c"
+    },
+    {
+      "path": "dist/assets/colombia.webp.import",
+      "sha256": "b56ae23ce99c998bfcc568043892faa409e3520db816a0ab959b908d9ae36770"
+    },
+    {
+      "path": "dist/assets/highlands.webp",
+      "sha256": "34774b5d3c6ccf335e7630bcb30e33e3f9472b6569ffcd701014052205b583f3"
+    },
+    {
+      "path": "dist/assets/highlands.webp.import",
+      "sha256": "ba541f5536dd71651c059ac5cc18eaeca451321c013ed22878dcfd1e04352c94"
+    },
+    {
+      "path": "dist/assets/miguel.webp",
+      "sha256": "c96b407eafb55c91c828eb5b8611ff98081c84e395c31b6b1aae1da6be436b3c"
+    },
+    {
+      "path": "dist/assets/miguel.webp.import",
+      "sha256": "6a29e88f0c2babbe58534bb41fffbb2b0f9904f56e9233197bdd1ca8381d5b0b"
+    },
+    {
+      "path": "dist/assets/nessie.webp",
+      "sha256": "88c8f8189bbd568eda0ef3ede8e55c897b21aa505721f39807b4f063a466d7ff"
+    },
+    {
+      "path": "dist/assets/nessie.webp.import",
+      "sha256": "ba6e0eccdcab8076ecbbfa6c2fc2bc4d0370dc6d0ca90d478a77f22006741b6f"
+    },
+    {
+      "path": "dist/assets/pearl-palace.webp",
+      "sha256": "31c58700be3b75e7ef5e7c4a7dfa078e834f72728be58e2c0157c8bd5d2effdf"
+    },
+    {
+      "path": "dist/assets/pearl-palace.webp.import",
+      "sha256": "29c21c9c7f63e10ac59076925ce9163a0a3d11cdb773b1f42980db4339a0df1a"
+    },
+    {
+      "path": "dist/assets/rana-rex.webp",
+      "sha256": "07beeb4385314549e14f1478054ce87c04a3b2752f4dfa6df418133225783e95"
+    },
+    {
+      "path": "dist/assets/rana-rex.webp.import",
+      "sha256": "8753dfa4965779b9ca9406f8b6e734f73122da42f9b0bf38a4b70417a9ff04e8"
+    },
+    {
+      "path": "dist/assets/sarah-arms-refined-v81.webp",
+      "sha256": "571b58cd4d5d5a3a402d2b9b29cd158104693fdf0ba9b0706b996a4f9c623777"
+    },
+    {
+      "path": "dist/assets/sarah-arms-refined-v81.webp.import",
+      "sha256": "ae27774a7d729a89fd892f66cd98c099227dcb75b7fb753b508a8671aa5b7e35"
+    },
+    {
+      "path": "dist/assets/sarah-mermaid.webp",
+      "sha256": "e1edcf76f38e37a848462ac57ff1d84bedc46fd6f5f63dfc1499dd5ff63f45b9"
+    },
+    {
+      "path": "dist/assets/sarah-mermaid.webp.import",
+      "sha256": "6fe0338c804c11bd9175dbff4988a43aea1b775b240e0f8bb71b67a47d009820"
+    },
+    {
+      "path": "dist/assets/sarah-parts-v81.webp",
+      "sha256": "7d536c5dd6afe0e501ca31ef20a28e78eb2cab40d275aa2cfd5526b3beef0c7d"
+    },
+    {
+      "path": "dist/assets/sarah-parts-v81.webp.import",
+      "sha256": "b673d94a50fb298a280956da74357d5ba1621f45709ac9c9ab09e61200d2fd43"
+    },
+    {
+      "path": "dist/assets/shadow-kingdom-v751.webp",
+      "sha256": "ec1b81ea3826343298b8c510ddd93aa39d3ac02a1ae2601d05f609b7c581a097"
+    },
+    {
+      "path": "dist/assets/shadow-kingdom-v751.webp.import",
+      "sha256": "aed304e8e44f92cc9da43e95a225c05056a0f13a15ba5516a1745fdef38fa85f"
+    },
+    {
+      "path": "dist/assets/training-lagoon.webp",
+      "sha256": "722e8a45550043274b03115d80a937f7effd261c6392b7f269f489a4ee6a3a31"
+    },
+    {
+      "path": "dist/assets/training-lagoon.webp.import",
+      "sha256": "760aef078dcf070a81c1537df4df009c7cc0029bad30dc300b2c8972022643d9"
+    },
+    {
+      "path": "dist/fonts/story-serif-bold.ttf",
+      "sha256": "847b33e13925f19ff87e4d934d6b3cf7cac35ce16424f6f670e40c2f377cf2df"
+    },
+    {
+      "path": "dist/fonts/story-serif-bold.ttf.import",
+      "sha256": "5b5f63f202e7e25e96c466162cadf3d1e846a80c27ea9597fedb681a222ce4ae"
+    },
+    {
+      "path": "dist/fonts/story-serif.ttf",
+      "sha256": "8f2c103bfa3fd5de71f1b92b18f21906b5a26871fb7e19a9a4c9af539c3cc7ab"
+    },
+    {
+      "path": "dist/fonts/story-serif.ttf.import",
+      "sha256": "cf4b5f9407ce374ff4660252fc0fbc917fca9277eddaf6a356eb2125ba51c340"
+    },
+    {
+      "path": "dist/fonts/treasure-display.ttf",
+      "sha256": "2ba02e68b152868aef9ba28e24b3648c7d457fe6f25c761f2c2c53fb61a73fc8"
+    },
+    {
+      "path": "dist/fonts/treasure-display.ttf.import",
+      "sha256": "71cf0b282748b65fcab8861cff8b9dd6b7993e596fe7bcdc697a03d932400deb"
+    },
+    {
+      "path": "godot/POCKETFUL-OF-WONDERS.md",
+      "sha256": "81d855028b87f581f9d8f303cbc30e53c6c8ad9cb74d50bbe4ed5c4478913d66"
+    },
+    {
+      "path": "godot/TREASURE-CHESTS-031.md",
+      "sha256": "c8f211e434fafed23493f634262f0a04e424a76cdaafff27c5ef8ab9f1cf9c67"
+    },
+    {
+      "path": "godot/TUTORIAL-REEF-030.md",
+      "sha256": "757aa765b4210185dd0e55a7d9bf816134c3f48a86f12119cb590a58cd3bed53"
+    },
+    {
+      "path": "godot/adventure_polish_test.gd",
+      "sha256": "886cfb142d5016e81373dd617ad494fd4360ac5a6c8b4bd86767c5487113ecf5"
+    },
+    {
+      "path": "godot/adventure_polish_test.gd.uid",
+      "sha256": "851c7194c3f4318f23618a4fd7e5b0432ac9dc923d22cb3949f1e13bf221be67"
+    },
+    {
+      "path": "godot/adventure_run.gd",
+      "sha256": "82ebc77526a98028cff4bb2f4b70b4928148878f61599c6a55d6e135e89b5765"
+    },
+    {
+      "path": "godot/adventure_run.gd.uid",
+      "sha256": "17307b13385be1382c49951aab326f1e304f60791304acfa844b3e0335d44ffb"
+    },
+    {
+      "path": "godot/animated_enemies.gd",
+      "sha256": "bcb82840de343b7ee48d21eef3896f36b2b4134fc140c44dc75bcfa76deb6b6b"
+    },
+    {
+      "path": "godot/animated_enemies.gd.uid",
+      "sha256": "c3fcbe99563f8c8f8629b5ebabeb155746476f2645d1a60025f28a3bc424f79f"
+    },
+    {
+      "path": "godot/animations/sarah_jump.tres",
+      "sha256": "3dc991fc6a9f099549e36a65e8b79fe159fdeff84d433583cc7fe7705da7f68a"
+    },
+    {
+      "path": "godot/animations/sarah_magnifique.tres",
+      "sha256": "916535692db2dd81c98b5843c3b7a079ae9b9183d4009e6464d04b4086de5d24"
+    },
+    {
+      "path": "godot/app_preferences.gd",
+      "sha256": "ad46377bcf16f858bade8592f4b322437b7fdc60c63cd22fa8c20594da5b4f65"
+    },
+    {
+      "path": "godot/app_preferences.gd.uid",
+      "sha256": "bafaa94b49457b6cf017a59326a8d4e7da5fdf50420ab3aac10a1c779ce56e8f"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_deep.wav",
+      "sha256": "fa2520a09ccdf86cbb1a62f0af05e13d335030cb797ea02f4da78c347a8cf644"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_deep.wav.import",
+      "sha256": "3ac4ecb1c6048f7432b1a49cf67d9cf38d7d46baa7566c0149fa44a8c5ee9da0"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_reef.wav",
+      "sha256": "d585155546506b98895cea340cfcd4dc88f5b45a400f99363870203186ad0ef6"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_reef.wav.import",
+      "sha256": "391f94e585258a9cd1a5a2178d28f55eb4050f5fb88136c64ef80cf0a0d14fe1"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_waterfall.wav",
+      "sha256": "f97a973da151c67d6c41b96dac98a45822b0ace63cab690149db2a01ae73904f"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_waterfall.wav.import",
+      "sha256": "e83479dbc28df78ff6386fab7a16c3a78a7e99a5991c75fe76cd86e22e84c893"
+    },
+    {
+      "path": "godot/assets/audio-v023/boost.wav",
+      "sha256": "8d600c66316ea5b0d026fe8d7908d4e24c16cf090b1924b90c7f515cfd6aa78c"
+    },
+    {
+      "path": "godot/assets/audio-v023/boost.wav.import",
+      "sha256": "8b83703b96b9aa5beee3c9ef64ce41707ae4f5e0c0747e4be4a3edf5609d2e3e"
+    },
+    {
+      "path": "godot/assets/audio-v023/boss_defeat.wav",
+      "sha256": "517f979848242b38653c15d4af5475f7f390e4489fbbf3161e9971c0b7ae5d3a"
+    },
+    {
+      "path": "godot/assets/audio-v023/boss_defeat.wav.import",
+      "sha256": "422c724d285f323af4a7680bec67a5d4c0c64d45a48578eda3a686a41d8973eb"
+    },
+    {
+      "path": "godot/assets/audio-v023/boss_hit.wav",
+      "sha256": "05b74e3aa7c6a8d89276326e54b15c5b91ecf6d387503e0b6b3bec7a1c435031"
+    },
+    {
+      "path": "godot/assets/audio-v023/boss_hit.wav.import",
+      "sha256": "a80aeade78641ca36c1a5f92858fae187aa35e94ffa01343e544dda0d0050341"
+    },
+    {
+      "path": "godot/assets/audio-v023/bubble.wav",
+      "sha256": "2343c0f8b4421a66a020de5428de38823fa4cb932b977b552bd6f4ef4b97e7dd"
+    },
+    {
+      "path": "godot/assets/audio-v023/bubble.wav.import",
+      "sha256": "94078a6c2c04a72b49cd406139080293dbf2c582a8c64ab56d0fdbf70349223f"
+    },
+    {
+      "path": "godot/assets/audio-v023/checkpoint.wav",
+      "sha256": "706d8c82b7f75064dbdc2500a56a77a647af7dd3fb6c516fa1ca82a4d1c087e5"
+    },
+    {
+      "path": "godot/assets/audio-v023/checkpoint.wav.import",
+      "sha256": "6f14e98469473d7882ebf146a71180ea3cff00c173566be172dc8ab189502f4c"
+    },
+    {
+      "path": "godot/assets/audio-v023/heart.wav",
+      "sha256": "86c46dc364fdae4753bb39962c5fa077c2430d2fb1d0fc89fd44f258eb8933fb"
+    },
+    {
+      "path": "godot/assets/audio-v023/heart.wav.import",
+      "sha256": "47c95d8df2559e9007c416f31b44ee148d0de194b9f6d05bc837b6e8358dda5f"
+    },
+    {
+      "path": "godot/assets/audio-v023/impact.wav",
+      "sha256": "b88b970c1c50c5281040ff6b484a98b353a70e4af4d3b614ee538e7b84f0f6fa"
+    },
+    {
+      "path": "godot/assets/audio-v023/impact.wav.import",
+      "sha256": "518bbbd870c252fa207806750f73539dddd35e2e50860dc0c31a8808067fd3f3"
+    },
+    {
+      "path": "godot/assets/audio-v023/pearl.wav",
+      "sha256": "544b89c403ab72168c01844e766b8160602b85093a63b6cc811738ba71864101"
+    },
+    {
+      "path": "godot/assets/audio-v023/pearl.wav.import",
+      "sha256": "61a8b40bd888bf90c67decf1f8ba568c8035af440e8f38c5a98b25845c2b7be9"
+    },
+    {
+      "path": "godot/assets/audio-v023/splash.wav",
+      "sha256": "e343bf44ff1bac1bbd8b90e9aaaac0aae329fb2e924d0f5bb8d6d2d5fe7e3f7c"
+    },
+    {
+      "path": "godot/assets/audio-v023/splash.wav.import",
+      "sha256": "3248fe112d4cb4e413d0a350da609917a3248d32cd03df2a41adda0ce38aa6dc"
+    },
+    {
+      "path": "godot/assets/audio-v023/swim.wav",
+      "sha256": "6581433c1596ab05cb7d8e69770b5af80f3d0cebf9d7f612cc51cc497f6b4297"
+    },
+    {
+      "path": "godot/assets/audio-v023/swim.wav.import",
+      "sha256": "2670c07ac17a5761a070e809d202f8ad4205134d4156d0443bab7af498fd5d36"
+    },
+    {
+      "path": "godot/assets/audio-v023/treasure.wav",
+      "sha256": "4a2bbb0b4be53c1f698099180191dbbcac5df7c31103ad5b371451ef520b4301"
+    },
+    {
+      "path": "godot/assets/audio-v023/treasure.wav.import",
+      "sha256": "cbf6731e2aef52e411e363c161009cdbaa56184635e7171a65993153b2b804e3"
+    },
+    {
+      "path": "godot/assets/audio-v023/ui.wav",
+      "sha256": "a17b4fde6c3e46eb122140a948929c62a45c2c125406d7a274091c228809ec72"
+    },
+    {
+      "path": "godot/assets/audio-v023/ui.wav.import",
+      "sha256": "e120fb3e8c69c05a26e0b0888bfa51bad4d4aa43576e1de780dc67305d4f2c43"
+    },
+    {
+      "path": "godot/assets/audio-v023/victory.wav",
+      "sha256": "bb59797faff52446f9dab6b75811a542f67cecf05ae8ecec8f441bf769db14fa"
+    },
+    {
+      "path": "godot/assets/audio-v023/victory.wav.import",
+      "sha256": "598507d85832f11e8601e82a579c17f26ee23d134de1a815cad71c030b738c8a"
+    },
+    {
+      "path": "godot/assets/avina-baby-v026.png",
+      "sha256": "2d11499ddac53671cb1bea28bdce0b79fab4601bdd51a374c2497198de306899"
+    },
+    {
+      "path": "godot/assets/avina-baby-v026.png.import",
+      "sha256": "decbf20d55904b3ec5176dcd7e1cebb8df3218dc9d4d5268acefc2801f9aeed9"
+    },
+    {
+      "path": "godot/assets/cavern-v034/README.md",
+      "sha256": "f943e045673407a33c207f73b21de3c4fea2b79468159aa44ed39aa8b5070aaf"
+    },
+    {
+      "path": "godot/assets/cavern-v034/archive.png",
+      "sha256": "43e9167df8a79923433060df33df2693f1f5020e7e9bfb65f000ea535534dda2"
+    },
+    {
+      "path": "godot/assets/cavern-v034/archive.png.import",
+      "sha256": "19862b2b5291c0f1f197e7a3e7bdde110eb6ebe74c1d20f3ac9f4ed2636b5286"
+    },
+    {
+      "path": "godot/assets/cavern-v034/cathedral.png",
+      "sha256": "a642aaac95569442bd1705e8717f02992242a1ae6e934ddf6e902e8c7e5f715e"
+    },
+    {
+      "path": "godot/assets/cavern-v034/cathedral.png.import",
+      "sha256": "1b417dcfeb4505ba2906904b50be60a7df622d36a1f70335eed27f8fc630e7e5"
+    },
+    {
+      "path": "godot/assets/cavern-v034/coraltheatre.png",
+      "sha256": "1c2fa1a72da94ef4b09ad5853a3c4d6789322cafe0ef1e18edf3e1320b2a5181"
+    },
+    {
+      "path": "godot/assets/cavern-v034/coraltheatre.png.import",
+      "sha256": "1efada79143ecca2a146b8013cc0dcd8cf2744e49f0e83a2888606d6007d4bc9"
+    },
+    {
+      "path": "godot/assets/cavern-v034/friends.png",
+      "sha256": "901180f80b3aa6d0a48e8f87ad126e80cda7ee6363a20a8543023e3701f1303f"
+    },
+    {
+      "path": "godot/assets/cavern-v034/friends.png.import",
+      "sha256": "419f6af8c218ab7aebd4cbd059850d9f96d38bdd78db042e0262e85df314cf5f"
+    },
+    {
+      "path": "godot/assets/cavern-v034/generation.json",
+      "sha256": "926c80395b03083337f686effb9ae3c69c29ef23677e35c273b1084e4f9b7b87"
+    },
+    {
+      "path": "godot/assets/cavern-v034/limestone.png",
+      "sha256": "5c561cb0237574a90a637223e49ad6ce7ef4af50c95370df387b28adc1abc2b0"
+    },
+    {
+      "path": "godot/assets/cavern-v034/limestone.png.import",
+      "sha256": "a6dcbdaec13a4ca93fc6e3d3288b22e1b0e11421b92512a86a5b8da525cf5b99"
+    },
+    {
+      "path": "godot/assets/cavern-v034/moonpool.png",
+      "sha256": "baa9f3398a51cd391d2598d0a219fc7ff7472cbd3697e692ee479854ec67f2f9"
+    },
+    {
+      "path": "godot/assets/cavern-v034/moonpool.png.import",
+      "sha256": "ee2d6dc690039623bb0dba63b18c6af73751f7986f9954368cf593d056ad3b88"
+    },
+    {
+      "path": "godot/assets/cavern-v034/prompts.json",
+      "sha256": "1f00a882f6a16eec58244ec3ecb115c14272ec58f067b8346372b88380861c9a"
+    },
+    {
+      "path": "godot/assets/cavern-v034/rootgarden.png",
+      "sha256": "4bd90fe8987bab5f66e4bb2e676ae736416f99ca7f1e618e0394029fecdebd92"
+    },
+    {
+      "path": "godot/assets/cavern-v034/rootgarden.png.import",
+      "sha256": "986477aeee90665506069d6a450d7240c62bbdfc5a10bb76fda006f2714dc007"
+    },
+    {
+      "path": "godot/assets/characters-v027/avina-baby.png",
+      "sha256": "f90b01db306b16b34535f730d15571426b70470209649788630565a971f00105"
+    },
+    {
+      "path": "godot/assets/characters-v027/avina-baby.png.import",
+      "sha256": "90e2d0ff4123d0e4661bf73dad8b20d526619eb67fb0d352b66fcfb4233321ad"
+    },
+    {
+      "path": "godot/assets/characters-v027/king-daddy.png",
+      "sha256": "ff4f3316c41697989321c47b161f03b1d8ed18792f5721faec4bb47f1781af17"
+    },
+    {
+      "path": "godot/assets/characters-v027/king-daddy.png.import",
+      "sha256": "283874b65d4532e8c67b56e4c214801e6911c1a9fc69f1f5a55f44f92f772aea"
+    },
+    {
+      "path": "godot/assets/characters-v027/queen-antonella.png",
+      "sha256": "7fac602b28c8f22512519914b0e72b09b405ead60e45bfc7ef4af2cb0183411f"
+    },
+    {
+      "path": "godot/assets/characters-v027/queen-antonella.png.import",
+      "sha256": "51b0c862312a194400401a88cae753bdad3a4e3d700317f28105f1b3765a1da3"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d.glb",
+      "sha256": "d8d9e14c071faeb5c5967dd819ff3181485d414965cc1b9e5dde46d367b57469"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d.glb.import",
+      "sha256": "477f1d20760bf57abc7d2ac774d54eea39152aa9b2376816ff07105432c68b39"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_0.jpg",
+      "sha256": "8fe5975f39695545a92030e669e7d7bfc6e9692b316a32c25ad53f22f34a6534"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_0.jpg.import",
+      "sha256": "e6eb7ea45e3031ebad59303a69981a500382b9b33e95b9da15752ab4630192e9"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_1.jpg",
+      "sha256": "928a0a8c3d697cd585abdb3c3625034ac792e6b0efad8564421099312599358b"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_1.jpg.import",
+      "sha256": "b1a03f2a605f88ebb3b6e361c559f973c868fde5759b32a963dec076ce76dacf"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_2.jpg",
+      "sha256": "61d2776b802707717c16acbc6f890ed8eb5b7bb4f38b50da3735a70fb490f5ea"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_2.jpg.import",
+      "sha256": "9c5770a09e75e667e7e5cd9aec31adfc807c8c7061c0d055878a3602f2a0cb4c"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d.glb",
+      "sha256": "309bcbb6da5f03edbc2da5a0a9781669b7615d36b65b8fb963cf4579ee0ec029"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d.glb.import",
+      "sha256": "38e1305cf461fd5ad455ef4470b52590df7665a87a54a02ee1d7a7c3593d7836"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_0.jpg",
+      "sha256": "4cff2fe3a1afe183d0f43646412028a37e56c8f3009fc68dcc1b69cfa2b0f4f4"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_0.jpg.import",
+      "sha256": "91adb908fa181792853bdd54de74a0ee9a51e83d6a47afd6ab726053e01df37b"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_1.jpg",
+      "sha256": "6531803029b9ae3122ed49d649f62e7c79a1d3256cb8f4c17aeb9477130abb85"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_1.jpg.import",
+      "sha256": "8c5f8caf782fa4e213ef089a2686b5a5792d46ad5b0f832b7cc1d8fd93a6ed68"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_2.jpg",
+      "sha256": "7bd9b7508788d5222fdf34b76a22639eaa50120c01ae093f18e9fcda7205a28a"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_2.jpg.import",
+      "sha256": "e0af2eb56f898832ff0213ea67362d121919683a6ef12335d5f32644bdfd5943"
+    },
+    {
+      "path": "godot/assets/enemy-carlo-v09.webp",
+      "sha256": "6fb2515dcb0bab351cf97d0e63a9a5bb5b4b47ebf4dfd0ce50b3d33042efb9ae"
+    },
+    {
+      "path": "godot/assets/enemy-carlo-v09.webp.import",
+      "sha256": "b9f7823880a026736906f0a7de0cc0526a62631613d300629a4bbee0beb3b799"
+    },
+    {
+      "path": "godot/assets/enemy-crab-v09.webp",
+      "sha256": "2f5983a7e462872e2c85a76d66d369e76d95c49983bec55ff487021d665c218e"
+    },
+    {
+      "path": "godot/assets/enemy-crab-v09.webp.import",
+      "sha256": "70184df1461fe568d26e1056c9ccd5d1f17cdfb2b7de44e13eddc83bcd10772e"
+    },
+    {
+      "path": "godot/assets/enemy-eel-v09.webp",
+      "sha256": "b48a3fe9fd60714e33c4a5a46e6be50117c2194d4f9606a9f4c0d6881126ebe8"
+    },
+    {
+      "path": "godot/assets/enemy-eel-v09.webp.import",
+      "sha256": "e0804396422c95ef53aa19de119a7719c3fa760096924edf5fd233044f603fb6"
+    },
+    {
+      "path": "godot/assets/enemy-jelly-v09.webp",
+      "sha256": "7a695a03467c984d8503560a6bf0448bf3559224668f9c7e218ba3dadffafc20"
+    },
+    {
+      "path": "godot/assets/enemy-jelly-v09.webp.import",
+      "sha256": "3b2b032a4923cda4a646ed7c6043f01a7ab83e8c023f96ac317c76050e916192"
+    },
+    {
+      "path": "godot/assets/enemy-puffer-v09.webp",
+      "sha256": "28e05a4c732fac95f3e3fc2665c7676874bbc39f88cc71543c8824f06ec0a3b6"
+    },
+    {
+      "path": "godot/assets/enemy-puffer-v09.webp.import",
+      "sha256": "7566a496792121ad31eb686b951db53b79bba711879754d774931fae2bef88f6"
+    },
+    {
+      "path": "godot/assets/enemy-shark-v09.webp",
+      "sha256": "eb2c78375045e7e16ee4474be6c110208cbb2bb44ecd9f7c8812da13cae993bc"
+    },
+    {
+      "path": "godot/assets/enemy-shark-v09.webp.import",
+      "sha256": "98ea91cfab3be6abdcec2e7faca1d6c36f6b2f85290e650ac9f4fd45ac1e0126"
+    },
+    {
+      "path": "godot/assets/enemy-swordfish-v09.webp",
+      "sha256": "76ddd938c13b300ee01041a65cbbebeffe1cc5405270f8c9b8eb86d424bc1c6d"
+    },
+    {
+      "path": "godot/assets/enemy-swordfish-v09.webp.import",
+      "sha256": "8c7458e8f883cfa2205cf40c6132021f13dbfe391ad6efdaf3c6c321b3936238"
+    },
+    {
+      "path": "godot/assets/environment-gardens-v011.webp",
+      "sha256": "e2d78df1310a16cfbd54f6fb7f46f627227c3b7f9fdf4a13e29247038bbe4769"
+    },
+    {
+      "path": "godot/assets/environment-gardens-v011.webp.import",
+      "sha256": "42e0d4b6842f9f161873b45af1807ab63403fa980036a464440cfd3396769beb"
+    },
+    {
+      "path": "godot/assets/environment-grotto-v011.webp",
+      "sha256": "71a14b011e1cb7b6ceefb4d09576aa473c40a7289bff0f1648046f7ff59cca64"
+    },
+    {
+      "path": "godot/assets/environment-grotto-v011.webp.import",
+      "sha256": "5dc29141690cbd6bd5d13044dc32bb39284a5c5e619d78444f0a5b0f26ef3e64"
+    },
+    {
+      "path": "godot/assets/environment-lake-v011.webp",
+      "sha256": "23f6a4309c17b4f94f835d4c7c63230183e78d2f692eb2a35a7f8aa50ff3d079"
+    },
+    {
+      "path": "godot/assets/environment-lake-v011.webp.import",
+      "sha256": "5833b9baf7d77785e7fc3aff11a5513a2b204eb94cc281dfcff9170743b45a17"
+    },
+    {
+      "path": "godot/assets/environment-portal-v011.webp",
+      "sha256": "c6a98038d1705c8d902d6fb49ae3f1da14f5e33fe0539f1bc363bdc67a52c0fa"
+    },
+    {
+      "path": "godot/assets/environment-portal-v011.webp.import",
+      "sha256": "8b30821922381cb46d61f84754e03f258af0046643d1e80f28c9458c74965be4"
+    },
+    {
+      "path": "godot/assets/environment-prompts-v011.json",
+      "sha256": "031997b65c991fc065e66a5b9fa03e66f60aa47e88b4fb7805159a0829989da1"
+    },
+    {
+      "path": "godot/assets/environment-props-v011.webp",
+      "sha256": "b0e8e9f9f812f87991c9d3fd30c39fe9c813aa8335429152f4bbffdf4d26355b"
+    },
+    {
+      "path": "godot/assets/environment-props-v011.webp.import",
+      "sha256": "be0b83ee06237ccc7dfada0c3a6151cc41c0b8d47febe006a4059511c692f326"
+    },
+    {
+      "path": "godot/assets/environment-rocks-v011.webp",
+      "sha256": "e1fc719cc9ecb7aa37c559378b499f6e598f3f3a2b0743db350006ac117f2fd0"
+    },
+    {
+      "path": "godot/assets/environment-rocks-v011.webp.import",
+      "sha256": "38c5dbd5bf1eea6b4abc2e2f1f0c9d9a876ae0312d3056ddeed3895e1755031b"
+    },
+    {
+      "path": "godot/assets/family-v026/king-body-v026.webp",
+      "sha256": "66246929d2bff7874419abb8c1b382b2572ff87923ebf2e80da344ed9ca46a7d"
+    },
+    {
+      "path": "godot/assets/family-v026/king-body-v026.webp.import",
+      "sha256": "1ccfd9b11db5a7271366129a9cc4ecc4074527bf717d9e861373c79230227e10"
+    },
+    {
+      "path": "godot/assets/family-v026/king-daddy-atlas.webp",
+      "sha256": "63404d1c7872c431f1fa119d3aef38baa5a01cfb0cbfb78c97b99e167bfe6604"
+    },
+    {
+      "path": "godot/assets/family-v026/king-daddy-atlas.webp.import",
+      "sha256": "6371656b0356ee1a49a8a834e146600c99f97564e67cedde759aec9c60de6c1c"
+    },
+    {
+      "path": "godot/assets/family-v026/queen-antonella-atlas.webp",
+      "sha256": "de0c104dcba2ecee12d04a9f9ae85506afc58bd595af480e8076e9adb48be62b"
+    },
+    {
+      "path": "godot/assets/family-v026/queen-antonella-atlas.webp.import",
+      "sha256": "20c96b833a577481ae071f06c490bc8168447ca040fac025347cd19431c15577"
+    },
+    {
+      "path": "godot/assets/family-v026/queen-body-v026.webp",
+      "sha256": "e7f7613e6ed209ee9dd69c1cffbf6e8f2d8f0b9a3f9d4b2addcc6fcd7ad090a5"
+    },
+    {
+      "path": "godot/assets/family-v026/queen-body-v026.webp.import",
+      "sha256": "cf3b02467b55dd375a98c06d8968131270e623750ef0e5fe8b550d4daa6fd904"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-daddy-faces-v6.webp",
+      "sha256": "10a92e287e7701527e09a2004dbc207f984f65ef25f13fb53fa4a54fd15e8afc"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-daddy-faces-v6.webp.import",
+      "sha256": "ac7ac7bdec263d1e2ffe63a71f10f483a1d4ba8393819d538e2fe4bdbd151759"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-magic-atlas.webp",
+      "sha256": "c313d01def50bc9b5ac4f9aff531e278ae0919c22c58f64995678f78eddfece0"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-magic-atlas.webp.import",
+      "sha256": "5b3898632c76b6e4a873ee2742e4aecca7bd7a99a9031e279728af39e2b4dd68"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-reef-v6.webp",
+      "sha256": "3de7189d51e9e3625075e40ee9c9a7c9d7b7c026dad85f6cc6b479e8e6988d7f"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-reef-v6.webp.import",
+      "sha256": "96bcbe6142a00ec575184dd8a15eeef05f07f1764d8d7977337c325c9fc0a165"
+    },
+    {
+      "path": "godot/assets/flip-dolphin-v018.png",
+      "sha256": "f4965c242f0fd928e02b40544efbbd1c5d18a3a3eb20c397c8459f3342c03e10"
+    },
+    {
+      "path": "godot/assets/flip-dolphin-v018.png.import",
+      "sha256": "074fa4f787539ca19c517002f16c8c61c7e8be5bbaf768f88448bd90038e98b7"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/bubble-bandit-otter.png",
+      "sha256": "98b1834f68dd5b3998879a876326d9b53a678fd7f09c2321e0d5423aad815208"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/bubble-bandit-otter.png.import",
+      "sha256": "7c797d9f885a007caf2c1f2a844d2070981cb8e734e721819a2af63325f1d207"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/disco-cuttlefish.png",
+      "sha256": "34f43d96a021eb7f88de96a316ee8792b39ee432dee70b06e41e85f416b3ecb7"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/disco-cuttlefish.png.import",
+      "sha256": "0140ed6032822d6724ea59e69892cf7bc4a488020d1a113062f79a676f389491"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/drumback-turtle.png",
+      "sha256": "4abb70c02b0dee41c427fcc27faff9ea577231bdc8a0bcfd6bf121450d4fb799"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/drumback-turtle.png.import",
+      "sha256": "d65b99097f7b5acf0ad4eedb185e8d99f147db49c3f904b782db23c07656a255"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/lagoon-flora-atlas.png",
+      "sha256": "b455d985b4187ca49110cbec8dd2b25deec3be39b87bbd9d49fd7fbe2767fa51"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/lagoon-flora-atlas.png.import",
+      "sha256": "c9e97f3dee7c9fc1e855d3330727344556ef42323ef619a2ab0bb3d98e6b79c0"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/lagoon-terrain-atlas.png",
+      "sha256": "ddd6fd639afb694b3f8b58f3efecc12af517d85ec539b78a65027863b413887c"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/lagoon-terrain-atlas.png.import",
+      "sha256": "01ee09af09d806c569039b9b3d91e6cce03a348db3a7b8f223ff5797a1abecaa"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/maraca-snapper.png",
+      "sha256": "eb13788b5d2066169293269449794c2f01cf1a2da7c5bfa7fb7856ef5369bc00"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/maraca-snapper.png.import",
+      "sha256": "1c6625b3766c2580f6e1d70fc762a03e43558d731e9eaa95b37e7226c9d96400"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/orchid-hermit.png",
+      "sha256": "faf9334af264963053d336ee9d6fa6178639e6db1039d24ec23caebe6de554d6"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/orchid-hermit.png.import",
+      "sha256": "c1641fa17b8b1a8652c83d811df852d881b455470d8d3f56f66b4e098010875b"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/ribbon-ambusher.png",
+      "sha256": "ea28ed3acb3209edc9407535e5fcd1e80cf55db7d336b80346886bc54990924a"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/ribbon-ambusher.png.import",
+      "sha256": "dc07e7cb08f5a911b7083a4c0c26af40ad151fb1e78c8a3e4de57025dbb00d8f"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/enemies.json",
+      "sha256": "f5d5c7af7e6f8f47b2833e77cb82396a23d648872dca761266b5fda3d32d6847"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/manifest.json",
+      "sha256": "3bf624642bca2fcfc86ce55f805cae66b879f57bdd158e3e37d17e7098fd6437"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/prompts.json",
+      "sha256": "64c53eb3e2efd4149981d3de8bbb85659cd16a8cb4fde04ae3abaad412ee6a32"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/validation.json",
+      "sha256": "94b8f40f20fb222ec9196b0efb2b13db009ae5157edfeb34ec6cd650cea89e30"
+    },
+    {
+      "path": "godot/assets/little-moments/bell.png",
+      "sha256": "58d94f5f191ba06ddce12e2414dc4b42dd40435f29d40241e5fc691da463b0cf"
+    },
+    {
+      "path": "godot/assets/little-moments/bell.png.import",
+      "sha256": "892f551c718708e7061b4737099cafbbfa5679642c9c0d841c8dee13e8774b26"
+    },
+    {
+      "path": "godot/assets/little-moments/dozy.png",
+      "sha256": "cc37174acdada7a0939cd37506f77e7c2c9177bf68cbb25cd8b52e0b0a146cc3"
+    },
+    {
+      "path": "godot/assets/little-moments/dozy.png.import",
+      "sha256": "14e200d5d72667a2fbc9e11216031a04f9d83a363a4c922865e05bd002aa27ce"
+    },
+    {
+      "path": "godot/assets/little-moments/fan.png",
+      "sha256": "6dcd85426b9e0fdfadf3de66a4df0def47e17a0d2d24cb730462d17e5d1c8da9"
+    },
+    {
+      "path": "godot/assets/little-moments/fan.png.import",
+      "sha256": "c4119c85d56af8bdc714ffa0415d7ebc867a5bf697cb6abc5c75839f0826d978"
+    },
+    {
+      "path": "godot/assets/little-moments/fern.png",
+      "sha256": "e49c5eb6d7f5a165967eb95e5bd5c233b70c1b8a331176e56518b716ba128f29"
+    },
+    {
+      "path": "godot/assets/little-moments/fern.png.import",
+      "sha256": "e73d7f51401bc7a644b3734449b0f576fd65bc6cd3b6b020e6986c4fc980b76c"
+    },
+    {
+      "path": "godot/assets/little-moments/generation.json",
+      "sha256": "fecb3a5c138c159719f1f5441573d918e968f4ccd509df5a2303524b62d4c0a1"
+    },
+    {
+      "path": "godot/assets/little-moments/moonfish.png",
+      "sha256": "f9a748006e6de455a03bf9cd7dccc96e344915a9f91e0e7da744942453235dc1"
+    },
+    {
+      "path": "godot/assets/little-moments/moonfish.png.import",
+      "sha256": "1cc716f41c3162bbef80aaba5141fa6bbe732369f09e3229e647aa771d81a9e9"
+    },
+    {
+      "path": "godot/assets/little-moments/music-pavilion.png",
+      "sha256": "efeb14c90f06865d08ff0c9e466971aed8795a55677a4df6242a510bd2d397ff"
+    },
+    {
+      "path": "godot/assets/little-moments/music-pavilion.png.import",
+      "sha256": "5bbfa971887c31720ffb4afd8891964ef6d19fbcaede8ad246337e80482815bc"
+    },
+    {
+      "path": "godot/assets/little-moments/orchid.png",
+      "sha256": "6cff70a3c595c308980a068a4b3c7b19b50a348328f1ca3d74661812defe0dea"
+    },
+    {
+      "path": "godot/assets/little-moments/orchid.png.import",
+      "sha256": "38884f15ed6cdb2769dfda92e8a97a4ce5910c128599b10a94ea36e9ad21ea4b"
+    },
+    {
+      "path": "godot/assets/little-moments/peekaboo.png",
+      "sha256": "f4614e147c37ee80056df494f89417c0a45a0c8784bb1f9aa4b8ba7827059870"
+    },
+    {
+      "path": "godot/assets/little-moments/peekaboo.png.import",
+      "sha256": "9fbcb741f68d90705bdb0c46140d23bf6a13682a9d46d0c3cbfc7adec3ca74ee"
+    },
+    {
+      "path": "godot/assets/little-moments/post-office.png",
+      "sha256": "d9cc7cc52297efd2057f891f7b76456de342d9e562ea79ea70042798eb616654"
+    },
+    {
+      "path": "godot/assets/little-moments/post-office.png.import",
+      "sha256": "cab61499a9598e9ff5637ae7d2528c85887745283dee10218865e3fd90a53485"
+    },
+    {
+      "path": "godot/assets/little-moments/shy-fish.png",
+      "sha256": "ebcddb3c6d207e3b40624359995dca38f76695d2e6d5a5e53310e88ca6557bd2"
+    },
+    {
+      "path": "godot/assets/little-moments/shy-fish.png.import",
+      "sha256": "3da289b3aaa0032e04cdd9c7453917872241f2338546466b1ee0a360ce74a13f"
+    },
+    {
+      "path": "godot/assets/little-moments/star.png",
+      "sha256": "f272bd913d9a648a7b68563fa8ced404512f9217f5406785d278d3e6f96e52c8"
+    },
+    {
+      "path": "godot/assets/little-moments/star.png.import",
+      "sha256": "d5c9eff8523dd9c07d319dfa174083a8f421cffa9b097fb928d9e213ff7e61c1"
+    },
+    {
+      "path": "godot/assets/little-moments/teapot.png",
+      "sha256": "550590e57b4063290724d7897d774fbb978fff89b70a3e46ff579baa80d8832b"
+    },
+    {
+      "path": "godot/assets/little-moments/teapot.png.import",
+      "sha256": "68d84a943730241cbf2783f2d3ccdf93a60b41ece2bf1cfa9a7f8358a04b09d7"
+    },
+    {
+      "path": "godot/assets/living-reef/pearl-seahorse.webp",
+      "sha256": "ee314a1a3b6dad8f580cdc92d62f46bc198736d39c7d93aef6807a539409ff1c"
+    },
+    {
+      "path": "godot/assets/living-reef/pearl-seahorse.webp.import",
+      "sha256": "d8a6c8e82a39fe18264973d73f1dc7c45c44c189c73ee8fb19e0d04655b81424"
+    },
+    {
+      "path": "godot/assets/opal-current/carlo.png",
+      "sha256": "6a3367c41103148ed7918596f2bd31ea155adbb16249a32cb1b0e97bd98d28d8"
+    },
+    {
+      "path": "godot/assets/opal-current/carlo.png.import",
+      "sha256": "d105289339982bba3cdb4345819b455bab48238c7f4c572e5cf60d799cd104f3"
+    },
+    {
+      "path": "godot/assets/opal-current/enemies.png",
+      "sha256": "a0968b953e8460d6ab99cd91c6b2d841335b9a9d50b2d77c220021e042b93605"
+    },
+    {
+      "path": "godot/assets/opal-current/enemies.png.import",
+      "sha256": "be4ea57e44fbac807cda1043b58eae43126aa51aa128e12412e03ef3731a53f7"
+    },
+    {
+      "path": "godot/assets/opal-current/friendly.png",
+      "sha256": "149f334723b1f1b4c479aead687ab9c81f9b454121f12cffcb78fa5b62b6f998"
+    },
+    {
+      "path": "godot/assets/opal-current/friendly.png.import",
+      "sha256": "e9402d8aa04f38c6746b6f85854d7a370b7319a8e582e2b9a651e342556d8c6b"
+    },
+    {
+      "path": "godot/assets/opal-current/lagoon.png",
+      "sha256": "ac2187fa62dcfa5a00212958967aecdbc3fed91c17ede953c9751a452286729d"
+    },
+    {
+      "path": "godot/assets/opal-current/lagoon.png.import",
+      "sha256": "22e6dcb650d88cfa9214f3f9e51bda5d43305ecc28ed92d56eb47565bad7723d"
+    },
+    {
+      "path": "godot/assets/opal-current/manifest.json",
+      "sha256": "278ea29f19a1b6095d02377714c321b522f0a91552caa7cd9b81e9771bb61535"
+    },
+    {
+      "path": "godot/assets/opal-current/miguel.png",
+      "sha256": "fc09552d5942e5aba31cd32b0d21813794ba4488ae92046a903b9ef8abe4e72c"
+    },
+    {
+      "path": "godot/assets/opal-current/miguel.png.import",
+      "sha256": "3f8284d53e9a2b9318dae822891f8fede7a474a3d6d23e3aebfa9c663f308959"
+    },
+    {
+      "path": "godot/assets/opal-current/nessie.png",
+      "sha256": "db9cfa68e626e800ac188b9368daf3613fa82e4a2b90746a88614ddb74abace2"
+    },
+    {
+      "path": "godot/assets/opal-current/nessie.png.import",
+      "sha256": "d7de8804a1023023264d34dbcb013a8d7fb49c905ec3d479bbca28b39fc02fde"
+    },
+    {
+      "path": "godot/assets/opal-current/palace.png",
+      "sha256": "0d44ee14a3c22b50edec7b718e10958d1d0f093433a3305acbc630b0c2f4d422"
+    },
+    {
+      "path": "godot/assets/opal-current/palace.png.import",
+      "sha256": "d536f48aa3f995c1c0e5208f32cf11149134667c45f70e64bb92bf60a2d7a3e7"
+    },
+    {
+      "path": "godot/assets/opal-current/rana.png",
+      "sha256": "26ea21cc18501f0f77357988bee419dc20307a418732160bfc3ff55ea91d0298"
+    },
+    {
+      "path": "godot/assets/opal-current/rana.png.import",
+      "sha256": "afb94cc70dc5cfac06f082636897e7a39197ccfe980cfc1cd51b4bf230926486"
+    },
+    {
+      "path": "godot/assets/opal-current/shadow.png",
+      "sha256": "f5934ac7e86b7c39ba85fabad44f2050c15a04041e92d12b11af705ec91d332d"
+    },
+    {
+      "path": "godot/assets/opal-current/shadow.png.import",
+      "sha256": "ccbc47be292d372fbaeae2343f6a4bfe93319a6b4a1d848c6f4352abdf66089c"
+    },
+    {
+      "path": "godot/assets/opal-current/training.png",
+      "sha256": "306b5899abc419e46e49f81cdff464fa2d6b26091824def8f78c23bf020f7747"
+    },
+    {
+      "path": "godot/assets/opal-current/training.png.import",
+      "sha256": "3ab8ee98f93ffe3aaa786669410bdfcb9a579e5d0c58805e4c943745a5f9d59a"
+    },
+    {
+      "path": "godot/assets/pearl38/charms.png",
+      "sha256": "fc10d0a03aaf358b3d8640fae21072ca67fad95ba36c4b0ba5f5a7f8fcbfe28a"
+    },
+    {
+      "path": "godot/assets/pearl38/charms.png.import",
+      "sha256": "c9a1aeb988df6f360449bccc9fbce07a35bc6601be9bd50ea66ed5304299bc88"
+    },
+    {
+      "path": "godot/assets/pearl38/provenance.json",
+      "sha256": "34ebae133a69697a55d70afb380c37f7515087624a0577fabf1341dfdfe7686b"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-carousel.webp",
+      "sha256": "b18957a13e7cc4fc4c2dfc2cb020771dc4cbeddbad1f91f8021cb7c05def7a16"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-carousel.webp.import",
+      "sha256": "11a63f54b9ed6e0441ca75087a94aa6a725f2b77528d7e036bd612a2ff159c57"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-rain.webp",
+      "sha256": "83301c363b0d2d017d1bf18b81afefa95f441b65f4588ffb6aff16f0739e16f6"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-rain.webp.import",
+      "sha256": "4c167ad32293ec39c460cf9322104f4f74509f2f3d755ec87c39c460e23d2a7e"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-whale.webp",
+      "sha256": "8a2c7a6c62d1653eb3d68eb66c28e2cc7fd9b92ef8f38fc139c6ce9ad2d9c5e8"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-whale.webp.import",
+      "sha256": "cc2469169338e73d2f718a7ef77cfb2c81ca43cb79d9a6a26274b60a21e1f41b"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/manifest.json",
+      "sha256": "e5d72a1667fc541d4ad434c35c9a7f895169f54ea83db5e1e6047e28ae6193f2"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/moon-jelly.webp",
+      "sha256": "578041e1e56b9f82b9144b1604b1217a913fbffff7396cb8f1009ffb2a9c915c"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/moon-jelly.webp.import",
+      "sha256": "294244705f07d73d2c882ae8d358e718f5563408a795cce530ef8543e4c8b5d1"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/octopus-butler.webp",
+      "sha256": "6eed0fc175d001001b09f5c1ae853153c2e9087e28fb3dd8fbfdb000bf0368d0"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/octopus-butler.webp.import",
+      "sha256": "ed80e5077795686418916c6224be9cc5ec7a73dae3545e3ff44cfe3b3c51ee27"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/sea-slug-postman.webp",
+      "sha256": "c63e44403395dbe5ad86e2cf14cbb966d93a99354afe219fc0f7bef8def87aa0"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/sea-slug-postman.webp.import",
+      "sha256": "be00c48a9d8979cf0d5644ceb34b32a5720bf063ff7cefcdb29358264edf6624"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-coral.webp",
+      "sha256": "5a4e3090ed21bbe11094bbb41246498ef5f3404ca3a29262bd2a4c4bc28a1c99"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-coral.webp.import",
+      "sha256": "1ef10ca2825fbb4997b3e737df862fe56881414fa529a1183bb9d3aa1f2bf92b"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-lavender.webp",
+      "sha256": "599f924fceedce50dfc9eb8d6e2009a623de9bd2fc44d6298f3ff1f67bbe7f15"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-lavender.webp.import",
+      "sha256": "819cd7f2251c22eaa46a237cbe2f4c3446f68c5e8243983976b478459eacacc1"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-pearl.webp",
+      "sha256": "5eafc73416f987adc81de0e48ffb34766fa5ea28152c078173768a6fc744cbad"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-pearl.webp.import",
+      "sha256": "606213142c708bdf8e71e085a636c39a124a531e88b0846721c9e357aaa9f4c0"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/tea-table.webp",
+      "sha256": "e5d5b75743f59247740e02f86f997aa021e96c189fc37d4d20f2d1ab1857a443"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/tea-table.webp.import",
+      "sha256": "22547a3f14e71104dc647dcc67fef1b6c30eef9c92d0a84ae534d70a483d0337"
+    },
+    {
+      "path": "godot/assets/reef-formations-v018.png",
+      "sha256": "b07b21596890bc83041b935385d2a79a60c4c049a37cb696c4707864e31e1f1a"
+    },
+    {
+      "path": "godot/assets/reef-formations-v018.png.import",
+      "sha256": "8022b389785151fb76d7bf56a8e4f0d80bcabfc7cecab024f20976cb313bbe6e"
+    },
+    {
+      "path": "godot/assets/reef-stone-v018.png",
+      "sha256": "1934c1c82357eb8d6c36d21cdebf3d7914c82822c5394f9173aacbe7670dcc65"
+    },
+    {
+      "path": "godot/assets/reef-stone-v018.png.import",
+      "sha256": "e1b3e9eaa472e4a76edcd6a5f843f72118679bfd29ac0f44559a2cb3c6e1dd93"
+    },
+    {
+      "path": "godot/assets/royal-connected36/king.bind.json",
+      "sha256": "93d0ae4cdc35c0df8b52550afbbd605366690ddf69fca632856edff9e86f83c7"
+    },
+    {
+      "path": "godot/assets/royal-connected36/king.pos36",
+      "sha256": "51cf34d1aa9084034cb2670fe50ea684390d2e53be69b07abe221d6395fb3e0b"
+    },
+    {
+      "path": "godot/assets/royal-connected36/king.skin36",
+      "sha256": "b68e28d8f1b3db7a6eddbc57a19f18245556c0b5cfdd98480e0cf629aaf1f1e8"
+    },
+    {
+      "path": "godot/assets/royal-connected36/queen.bind.json",
+      "sha256": "989a4b86b452105b64fe286a9536a672e3842fd4067b55cbc79572c2ede7ab4b"
+    },
+    {
+      "path": "godot/assets/royal-connected36/queen.pos36",
+      "sha256": "fa465d775c922482aa9187b1416f8d82281d67310707ac8333f51960194f7701"
+    },
+    {
+      "path": "godot/assets/royal-connected36/queen.skin36",
+      "sha256": "1548763cc73468877d05d173e03f2051445dd6c048dba0075156411e747ccbaa"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/away-blink.png",
+      "sha256": "1db35f847196fde35ec52d029de4c51fac16d147b961c7c0cc2cec8137429273"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/away-blink.png.import",
+      "sha256": "3fbf261673ab6cdbc8c3359a870ccea3530ad9d4e2a3359ee953a2b6930e62b0"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/away.png",
+      "sha256": "66c7478a2336b24868338a2f75d6c3156449eed66c1ddae4f7be45da1eaa8ae6"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/away.png.import",
+      "sha256": "5ea331769e47f29cf7162e74682f2c60a401e25f57b83aa33d4ecaf2f20367bb"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/bodice.png",
+      "sha256": "5ceafab960ba9e4b4ff482e81d980fc8ddcf198ae6ee5f6a35975427c3c546c8"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/bodice.png.import",
+      "sha256": "fa9bb915939f1ee5c9e71f2a23b6325620363176974128f26a7a245410bc689d"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/front-blink.png",
+      "sha256": "ef4fb4488a7caa29352d085945d9285165ec661e2df6ae17b155ce1a3e989745"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/front-blink.png.import",
+      "sha256": "a8ed55017f0ea1731a4b3a538c99da69032db896f6e4e2487e03d31c6a435287"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/front.png",
+      "sha256": "4af6b8193cf0d87f6fbe65fe7174eec38e7cef83872fd6625bcf6b0db59f4d99"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/front.png.import",
+      "sha256": "99feb7192332e01a8ad5d2dcea244b28a3633393a23089598039a4f40852394d"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/generation.json",
+      "sha256": "f33f838c054e4b093d641a24a87a03b20e6d7adc25a60e25869537443f1b4be2"
+    },
+    {
+      "path": "godot/assets/sarah-expressions-v019.webp",
+      "sha256": "6dc012b5527132fce969a7c6d7a133eef1c5f15c7fb6de21a01be19568dc6dd8"
+    },
+    {
+      "path": "godot/assets/sarah-expressions-v019.webp.import",
+      "sha256": "3c8bccba43ac558f329cda6ed87975c49081d4150bffa4b18fe4814c1827df6b"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/front-connected.png",
+      "sha256": "30cc29e302e5858d46e17029a84cd450440752d48c5bba9e99e288c6eeb6e120"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/front-connected.png.import",
+      "sha256": "7e3277ce2fde21e729bb4d35e0de73c99d9bf514119a0403aa7fbf646b110f09"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/generation.json",
+      "sha256": "06d063d7b67404fcf82520669a88a43f2cef28eb6c2f2ac7f6bf35568f0cc3a4"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/tail-connected.png",
+      "sha256": "042996432949029ac67e8f354bd6038ec50e694fdf54483818d8c6328996761a"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/tail-connected.png.import",
+      "sha256": "6a2b23023b0853b198e8f7cff270b16cec77d9a3e25638fa2e1ac21405620b28"
+    },
+    {
+      "path": "godot/assets/sarah-tail-v019.webp",
+      "sha256": "d97f2a5131c0893d4a0de73299b701ae06686079df329a723ed94c2d0cc8014f"
+    },
+    {
+      "path": "godot/assets/sarah-tail-v019.webp.import",
+      "sha256": "b7623aa28c22dffa4c6c943c175ebef549e3c878b6ecc993e5e4edd015ad4f54"
+    },
+    {
+      "path": "godot/assets/sarah-title-v08.webp",
+      "sha256": "b85ca58b88e44172d1f5adf4bb795056e0a59948c6cf5a4ff0ce43423ed2b993"
+    },
+    {
+      "path": "godot/assets/sarah-title-v08.webp.import",
+      "sha256": "f187283bbec486f4735f481033bca968cd4959bcc328dcf4a1a7f6e36e0ec571"
+    },
+    {
+      "path": "godot/assets/treasure-v031/asset_manifest.json",
+      "sha256": "3e6d56fd44b7d0a33e2d2d85ea81c501a6f214a837f70b9a4910f867a30a7bfd"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_body.png",
+      "sha256": "f6a182d69826394320dca3d8fec5a36b49b1b5bc0fbc606273ea5bba95f9c9fc"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_body.png.import",
+      "sha256": "012a5b7ecc87fb316c129e798091ae9bd919d99d309c74d3e979fe51db955190"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_closed.png",
+      "sha256": "5bff2ced80bb64da54f5c07a5ee9cba6d69926da1b949c57253584dd212c3691"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_closed.png.import",
+      "sha256": "6ad843d5942c96dcca1ece16caad3a63a50321fee32d867fa9cb58848aadd0d2"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_lid.png",
+      "sha256": "111a7e964f30c65dc1cc7c6ab15d1a9f6fb695f53430a76983cdd2b62e9bdb6d"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_lid.png.import",
+      "sha256": "6307b47b5177d91621b2712770bcd966d7391e3cc4a1e50634e59f1de6f74e1c"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_body.png",
+      "sha256": "89d49548f329ae8daf32cae96c891fa97df6e6d9b106b0a6cafc25ce52d46ba1"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_body.png.import",
+      "sha256": "6affe655ac9ff1ddbf37e4197dff89c7b91ad2a965f872d79fe36fee22d7e250"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_closed.png",
+      "sha256": "103d1c040c712d159c1faa60cf5d464eb462a3f0d0c9322685798f0c7190120a"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_closed.png.import",
+      "sha256": "396b217e33c8d1c4fcf6f0c65cd3857dd10c8eef5ede4390ad9197168eb166c5"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_lid.png",
+      "sha256": "f6bd2e7faad1d996fff2a2cfaf1ac739d30ce2a532869e546e0d7027d79e13e5"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_lid.png.import",
+      "sha256": "84b08e826bbe441d504b3e8e9f4ad3a6f4ab7b644ced2b8028bb8e28848997f4"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_body.png",
+      "sha256": "cf3bdc74bd329a7a1fc705c60068805e0768ac610880ab3276bdfcdd634dee02"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_body.png.import",
+      "sha256": "a17fc808ddac0694a40ba76220b2360f8fe4e3c67fd99ac9538f2d4fd6bc0ec5"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_closed.png",
+      "sha256": "53eccbabf85b4726396a485b67991bdd7618c1722df9e7be38d771337ffc9b0e"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_closed.png.import",
+      "sha256": "618712bd2f841430c4d519a8fa23b3a73ebba3bf35a6e7ad7123d07fd5806391"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_lid.png",
+      "sha256": "df10b0ada86990893b3bcaa9970774f449bae56a2336d2e04a0df5fe60f2808c"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_lid.png.import",
+      "sha256": "36162d48c67f259789e91ecf99009d3b73454f386df2be0e8e9f49914447d37c"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_body.png",
+      "sha256": "5e5e6b0e7d2561e58c7cf766dce9d5993fdb9b3be794cc2bd779546bb7029567"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_body.png.import",
+      "sha256": "8ac6c87ffd566e83349e6226401096f7ae4c0e37d4030e1910383c3856cffc12"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_closed.png",
+      "sha256": "ccf67808485db96b35e4eca3597ade3e25fb0cd50fb705137883eb6a435a0b75"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_closed.png.import",
+      "sha256": "2af3caf0b8123c95298df90bce173060150e3bf4069be25d34d11681d5dc8326"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_lid.png",
+      "sha256": "9983902ed6d6e2507b0ba7876f2f2e769b1e43ca445a51ccdce2af5ed19b3a2f"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_lid.png.import",
+      "sha256": "72dbfd0d027d1861f0dc0db258c29bc230c4e36db0e54156505eb9fc530e3a81"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_body.png",
+      "sha256": "610ad75ac4d5808c9c4da3bf34fb65f78713bc71f86b8cf6af9be4a30485393c"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_body.png.import",
+      "sha256": "db534b543b8e7e0769f7ac908f8b9518b7f0319cc850af4bfc14534ff9c01393"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_closed.png",
+      "sha256": "bed46195c3b4067d9613e70f90608edf93ac2b2a084f56e5631b3d1a8c77ee9b"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_closed.png.import",
+      "sha256": "363b376996e23e6ffb3fcb1f391f5b52260dbe65b6ad8c909b532b3bbb41be8f"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_lid.png",
+      "sha256": "d6c91e63ab9ef9ce56784dd38db2387d7545448cd1b342d183fb486a539b6cd9"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_lid.png.import",
+      "sha256": "21a00ba28ab4aeb6ef7397771c9d79f938149e2804839a115c0318fbf05d1534"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearl_glow.png",
+      "sha256": "60c0726ed0e0625689a66ef5908c3e61fbdff47d89d7845753ecfb847eb5555a"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearl_glow.png.import",
+      "sha256": "dd615f661ab6bad6284e99e88d4854eceb6af5be16e29f74a5b4b7d497e33ab6"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_body.png",
+      "sha256": "90fbc78b05c19d53e844eef389be2e1c4fb733cdb2af9468b8248f62d94015fc"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_body.png.import",
+      "sha256": "9aef6fa029eb09e930c08e073ece40d22f344541f37f7799ed099f86b5394899"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_closed.png",
+      "sha256": "0bd998ca5fdcecc8b91b1319a265c3685e22b078ecb9d1015aa40c826350fd3f"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_closed.png.import",
+      "sha256": "92a903ca5e9eeda48f5c8f7cd58590320e72f74acbe43a0e08822e01ff28e7b9"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_lid.png",
+      "sha256": "c3d4151f96d23132a42c07c450ae47dbe1a4dec29d4c3c28af889925f3aaf7d5"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_lid.png.import",
+      "sha256": "0eac852236f5bb2dcfdb56bb1ec0c50d68ee2c121ea3925644d303eeda3eb67f"
+    },
+    {
+      "path": "godot/assets/treasure-v031/reward_pearl.png",
+      "sha256": "d41ebdf13021b2f81da0b1d8c2262f79b0034c5bed5b11f7efcc1b5dafaa4b0a"
+    },
+    {
+      "path": "godot/assets/treasure-v031/reward_pearl.png.import",
+      "sha256": "69cb85eb585d86e55f00afbf9196d75f3cd394123819170287e3ddf88276a009"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_body.png",
+      "sha256": "6d4368f16d5e3c7827be0e9ac7006cf6470eeb027f60fd1e435027e2d6aa5ccf"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_body.png.import",
+      "sha256": "8fac58b397eaff46a50671478110793f4d5eec4c864a646048a4f6c194db9ecd"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_closed.png",
+      "sha256": "ef7d72972b8c62aa9ff1afbf6e01595765bce8fc715032e1ce20b326491203f2"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_closed.png.import",
+      "sha256": "7045c40ee41965df80707c0dde62211dd4acc77e0a6ada3c6234f6b53dad7a72"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_lid.png",
+      "sha256": "587ffb5c1fc2607f9431ee9a525b4e62a62af125a7c77eb62c2bd06afde750a2"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_lid.png.import",
+      "sha256": "31f3bd124461bb28ae503853217190fd09808f5ffdfcca3a01809647aa2dd1c8"
+    },
+    {
+      "path": "godot/assets/treasure-v031/velvet_interior.png",
+      "sha256": "d9c99623621a40941c8f09281705f5d9f2939b165209982cbe5f0ae33abd9eee"
+    },
+    {
+      "path": "godot/assets/treasure-v031/velvet_interior.png.import",
+      "sha256": "d6e3e4c25aeeb6133026935bf819c8126d226af4662a42a59128aa9af24c863d"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/bellflower-hollow.png",
+      "sha256": "455434151ae63a5449f148d21f97c3ceb7a175df790a89246164f4f4b46e645b"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/bellflower-hollow.png.import",
+      "sha256": "c1a18ce24d29f6ff5e58906c054e908f24cb87fa5aa889f6bee8b9a8d2eb5a70"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/generation.json",
+      "sha256": "ba993a837482ae0fa8b0b03b5a4c5342a18e0df26fdd2454082d0e9c822db35c"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/pearl-nursery.png",
+      "sha256": "522954c97448079a95cbe1c8a0f3f19e74dcf6c87c08a5c385f75811beff07b8"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/pearl-nursery.png.import",
+      "sha256": "12f49ad7b2e4ff25b6066b9be69ce994ac4674cc4ef00bf341f62e91acad7301"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/ASSET_MANIFEST.json",
+      "sha256": "cc3b05a9f23ae8a620f8d8adeec4460ef1b110fa6f1c207affdcf52c5eb7fe82"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/caustic_light_overlay.png",
+      "sha256": "8992b7572f41795acf7d4214e759db3466f47dae3f6239d7297249c9f970f4fd"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/caustic_light_overlay.png.import",
+      "sha256": "16fc5df1138c5731536c5c5a02dd32ab3ba621addbcec1af05a3dfa27b5c96b8"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/deep_grotto_stone_tile.png",
+      "sha256": "f861cafa4345aa668c77d6e05c0bb3b642203823be0398c0ead4d2bf15ed7579"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/deep_grotto_stone_tile.png.import",
+      "sha256": "77010694a9629d8b12041e9c1dc8a0b2cbf41376ae854f4162f48713a29414fc"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_01.png",
+      "sha256": "431ac1e868ff398e4eeec70549ff4f886c64cc34866feee76ac1fd13a6d36e41"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_01.png.import",
+      "sha256": "368aba8b01b789af042189c2069be7b6de91ce997e90facc381d000f9f704c4c"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_02.png",
+      "sha256": "f6f69c44d70bb76d60fbd75b9c8965e3fa44425920ad599f949ca1ceb8cbb5cf"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_02.png.import",
+      "sha256": "ea45570bb5762341802862b36b2caec667b1146a25e8940cb943a0e1951552d9"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_03.png",
+      "sha256": "2668d7680fcf20cd644000a11037592b8ac94906164224187a277d9e4a5fcf65"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_03.png.import",
+      "sha256": "e26808dfd01afef50a33659e66d4ce6580feef41e35b9eb3bc033179560036b5"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_04.png",
+      "sha256": "80dea434094960755a0e5ed48a312cd4456a491933eec1a647c4c8d53ba1bc14"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_04.png.import",
+      "sha256": "1fd0a51db463f10bc4a65132d09efd01586b85fdadafcf73a2dbfe9712c85162"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_05.png",
+      "sha256": "6969e6549493aabdb192baf079dd1d803a2e6132a04f653649f8324ba439739a"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_05.png.import",
+      "sha256": "f0415420b9519588e235d3f14206d4318488fb2455bf76a575b363c12893bc10"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_06.png",
+      "sha256": "0f1d96a6e7df0e9fce196e5ac33f16a61523621d0d4a6ff1ada0817e9ab75121"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_06.png.import",
+      "sha256": "6b247e6abc1abe945f8d9b5804641ef95b76361823bf09b701f1ef993fef49c6"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_01.png",
+      "sha256": "ba079b7d4ea218b196f7a84186d77f0dfeba759a13736448bb8f47bcf1ce17b1"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_01.png.import",
+      "sha256": "e67bf3ba89ebedb2b7a664afea38dc418c464434997a4761db3d4f1e918f923f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_02.png",
+      "sha256": "0c06d4864eee99073765e6f1de08c3a08c138143a0f788b69d6c131d3c0c08ec"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_02.png.import",
+      "sha256": "3c4a15b3165a9982fa62433866a82fab3b0cb9f91261ac245feb5b9c706749eb"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_03.png",
+      "sha256": "accb5a249774c5b234943d12097d8837882b5ce8c6d97190a7abb118a6bd7051"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_03.png.import",
+      "sha256": "070751691c09cc64fd678afa11a38588ddede7aa8b4498034380913ad1f81f53"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_heart_gem.png",
+      "sha256": "11eb1aebf425be8adbc773715bac5ae7877a5f37d0d3847742f8e6e87947885b"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_heart_gem.png.import",
+      "sha256": "b82cd90ab31d2f44517fa24c0571fe71d7678f2d083b4c5de268c3f7cfcdf7c3"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_ocean_crystal.png",
+      "sha256": "c2b440e4fbf4577caff27b7793c98d8cfc9dc16dce0457afcef1bb5410587a45"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_ocean_crystal.png.import",
+      "sha256": "f3f9a39bfdb53c846d36a6dcb891365dedf19df1670d3bb0756b8d66e3d151e4"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_shell_pearl.png",
+      "sha256": "68247485f29bf4ecc011403ff3c4d237c2d1885e5ba92ce64e62a25d096f29b4"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_shell_pearl.png.import",
+      "sha256": "ff19d88a2b17b328420e1280169ac1d3a98e084033c62f79fabd6e6ee3094a0f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_treasure_chest.png",
+      "sha256": "4d4622e8b8918db4c398bea06899e7538029d758dcedde96135922238f7f4d1f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_treasure_chest.png.import",
+      "sha256": "be90370e6c3cc8ad7e152ae92ff7aed9143dd29c925e1a7aa6e57c8c3eaaf994"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/kelp_floor_tile.png",
+      "sha256": "ecb2b78cab24357d0f4a63725f3d707cdb7f9ea508c112a00d4990c2e8697691"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/kelp_floor_tile.png.import",
+      "sha256": "66fb54617c69f3cf7e994d9b0be65afef427654331deccd6ede07f5cb2761adb"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/reef_coral_stone_tile.png",
+      "sha256": "c3c9c46f00900daf42d599ecedb570824229dcd62b21fa4519340a7b0f3ca12e"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/reef_coral_stone_tile.png.import",
+      "sha256": "2dd12cda781bb99cde9a1ce2d3fcb799367230a539560006a6f3bc429cc05272"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/reef_stone_teal_tile.png",
+      "sha256": "155c2e4af95c347ab88506782ac83e9d2d4420dfd8414e31d595f5cd2e898cf8"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/reef_stone_teal_tile.png.import",
+      "sha256": "35a6008ca3bd89416fbfe739b440de6224532a882de9426913411f0b24024fb1"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_01.png",
+      "sha256": "fd4609e742678d55866c57f559d417cbc0812888589262c494b6e2101c2d67ac"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_01.png.import",
+      "sha256": "7ec6d16a10de4b5450067bd015ee3986631c97e18100a20c03c0b9c06137ab50"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_02.png",
+      "sha256": "e22caaf7f87815c9be21ccb13c99342f0a334d50adfaafb276db82a5f0ff8725"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_02.png.import",
+      "sha256": "5c6549da24ae267933195c43a8be7528550dd45129b3b9913feb01a120fbed39"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_03.png",
+      "sha256": "215360ef7245dd7c63d0864ecc5c661753e3b15272d74a0ffa6ec7b7e728f621"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_03.png.import",
+      "sha256": "e42529235f2ec5c840758b258f8dc2b61f1d8665561039e0c576e504155189b8"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_04.png",
+      "sha256": "1fefdfbbecf03d7d560977a1b8a906b05cb6e1a81ef663a7e148bcd6c6b33355"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_04.png.import",
+      "sha256": "172ef0b12314bb5775940ac74dc91c8085143f96f7bf1667b7c6cbbd87a24131"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_05.png",
+      "sha256": "f88b5887fdec5911270e3628a3d846e99efe55d3961bb2452102a21f200841ff"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_05.png.import",
+      "sha256": "6510a0ff64c1538b7f86a0c2c85a161dc0fae5f07ee5790a2ece7eea91a1b0aa"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_06.png",
+      "sha256": "df54326ac43a9a10bcb9b05aea4d9692c7468ab8cdd29eedfd0b61c31dc3a9ef"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_06.png.import",
+      "sha256": "e7416a8c0c26caad50736c479a1a7489c890b56ed02e89142ee3468c5cdeeaae"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_07.png",
+      "sha256": "17ff99569c792a2e71e32616b1079aa820c7ff6b160524c3acc7c9146298fa33"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_07.png.import",
+      "sha256": "eaf578a84b950bb49233fd225240e1545294625adf76967016075df5a4f6c759"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_08.png",
+      "sha256": "71b234ffedc7db8073b73fdc70868d79e3584e52df30d12065f6c0eda2eb8e69"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_08.png.import",
+      "sha256": "a3ff37ff6c731740aacb355c81c56caaf4a14f2394c4ef2f6af7e14658f3b278"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_09.png",
+      "sha256": "4dd6d52278fe77f6e7e7f5b6d0e3eac65e969ceac6335e209cbd72f12de1407f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_09.png.import",
+      "sha256": "86512e0f5ae093ab9f85debd8a5a5ebf3e1c2f8bcbd3a9f703fee686ce7db434"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_10.png",
+      "sha256": "357304009a61e8115292a582696db06598543dde963f35829fc9edcb101bd97e"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_10.png.import",
+      "sha256": "b571824ab0fe921602eb962e977bfea2055f1b1f5886ba91ef3ba794fd43a9c9"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_11.png",
+      "sha256": "2c0ef35afd022010ad45ec28668c5f5375843d5b2233d09bdfecd360b0680da6"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_11.png.import",
+      "sha256": "66236bba994ca28ddddce42061e028018c341e68ae5d05730896857ea8d965a2"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_12.png",
+      "sha256": "1878a9357b2505aebcc9b9d286394453af9b38a52c77195549d3cc05c04745be"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_12.png.import",
+      "sha256": "af6e109b3c51cf2dc52b5c082d37316af49c9c23cc24374102716d209ecc4b01"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/sand_pearl_tile.png",
+      "sha256": "b83950ef537babc24d59f4e39649cedcb55e60f6d44f5708247c0c7f0b63b335"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/sand_pearl_tile.png.import",
+      "sha256": "631c50eeb12703700ab2317f2b7b1641835e16023df1cc9b7719101ea2733757"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_01.png",
+      "sha256": "68e86ff425d22b39921df6f0f390d0fa06c0e6511c2e5b728c82ccd627232238"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_01.png.import",
+      "sha256": "e043dcd77f20dc7f7ca7ea019e6209ddffab2b385ee235da9fb3ef9b139fb29a"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_02.png",
+      "sha256": "29e104032dac19f7617461aaeb774f8c7b0aa826e979aa31e784aec78900f1e5"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_02.png.import",
+      "sha256": "4ef405a8af57f78f8585b9917080f36c1c844ba2a8504b6ea94b627bc21a408f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_03.png",
+      "sha256": "c051443cff95ddaa7617388bf0520eb8d4e1875ca67cab9faf16709917099322"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_03.png.import",
+      "sha256": "0acee6f2396a37231824628c4ce82ac025a879a98e1b3910fa3ac203b252bd26"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/README.md",
+      "sha256": "adeca272763e0f282342995e05e084450774f64268174fdf0c6289ce31cc1b72"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/coral-gardens.png",
+      "sha256": "2eb8c858eac4e60249cd8c987ef5a3a45c99b7e542b10a96e30e8528d6d640e7"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/coral-gardens.png.import",
+      "sha256": "23fc486b9e4c376c83d49d85dcb0ec222e35cf92dcd6e38187cfd3ec1bbcfef6"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/descent-passages.png",
+      "sha256": "5aee1230b9fd581d3c70c93304234c350679b3b5166195750dfa064bc7ccd9b0"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/descent-passages.png.import",
+      "sha256": "310f647e4f569d57234ba4b6a13ce08f755f4443ed62df42bf2a50d0547e4808"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/generation.json",
+      "sha256": "88efcaad7bbe5fee6f943cc8486c203848453f56c8da753f30fd02908cd6ee0e"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/reef-formations.png",
+      "sha256": "c3c57ddd552758aba90e9784c3c08c35575f9c6fc85950a4d26660cdb787d950"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/reef-formations.png.import",
+      "sha256": "89598fe5fe3957db03770097eb2342844a618dcebb51736fa5e1eb1dd28ec9b6"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/regions.json",
+      "sha256": "9053a37f6aa25d2749449fdd1ccece5d9b0e046a5e641da0006947dfc09b6c1d"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/swim-wreaths.png",
+      "sha256": "0bef4784884d764bf9f40422075dc1827376dd6578c28a6f2e09d05bf4adfb26"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/swim-wreaths.png.import",
+      "sha256": "a0d5468456624b2fc754ee1f562d5bc5e94328b76b955b5a9a54f751d0645066"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/treasure-plinths.png",
+      "sha256": "83b184f44b3e6e462728f8a70a24ad9103d68412f339d8558484e0abcd62a7c9"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/treasure-plinths.png.import",
+      "sha256": "2934c4d8f8968c7f593eca45c397fd03230997a05c6b39b7a1fdaf2791e1aebb"
+    },
+    {
+      "path": "godot/assets/ui-v014/crest.png",
+      "sha256": "58c902a2ca104680391e2e0bcb85ad3dc0aa03b87e8cb95e1241cb77c129e931"
+    },
+    {
+      "path": "godot/assets/ui-v014/crest.png.import",
+      "sha256": "ff9af6cea3504e29417d318e2c1abf803ece55c960c74ceb7299f27a63bda448"
+    },
+    {
+      "path": "godot/assets/ui-v014/crown.png",
+      "sha256": "3484ef9d5586c871349449077d3e4d0778df3ac3c201abdcf7a3d65c14e05fb8"
+    },
+    {
+      "path": "godot/assets/ui-v014/crown.png.import",
+      "sha256": "a849f8265f096051ac1d9221de1c4eb8602330a7c75248dae97f663ccd2950d7"
+    },
+    {
+      "path": "godot/assets/ui-v014/heart.png",
+      "sha256": "812bda19cc7af6aedeecda66c7ba355924301df9e16b79b4fc6f72c393312ff6"
+    },
+    {
+      "path": "godot/assets/ui-v014/heart.png.import",
+      "sha256": "101a874d42d99cd4dd02d0ecafb088eb09aa56b03ee4c0e551a4460d17d10286"
+    },
+    {
+      "path": "godot/assets/ui-v014/shell.png",
+      "sha256": "c76db9ee8859fea88cc1807c6e259a8dfdf2db742cd025ce14c67a88b0e6fc5f"
+    },
+    {
+      "path": "godot/assets/ui-v014/shell.png.import",
+      "sha256": "84a377da533b476226e67855a149e4476cebfc6c45601117476bd416a2057201"
+    },
+    {
+      "path": "godot/assets/ui-v014/star.png",
+      "sha256": "88bba129f509b7afe58b3825864032b4fcf024e6269b2187fc95b70d48d760b8"
+    },
+    {
+      "path": "godot/assets/ui-v014/star.png.import",
+      "sha256": "00f63926c3317178d250ad8ccb2ed48cd279100dcdb94396409cffcc5045a795"
+    },
+    {
+      "path": "godot/assets/waterfall-boulder-v07.webp",
+      "sha256": "3716917224a092d693fa54f305242d6c1ddc732614f29d14259739ce4f4e302b"
+    },
+    {
+      "path": "godot/assets/waterfall-boulder-v07.webp.import",
+      "sha256": "cafda6ebfcb2e9cd910e12710908dd158e41da6470f960c7af113404200c1f8a"
+    },
+    {
+      "path": "godot/assets/waterfall-cavern-v07.webp",
+      "sha256": "c44c341496635378f63c0eb9a6f3f443c3da05ac7cc1fc9fe908737583ed6d17"
+    },
+    {
+      "path": "godot/assets/waterfall-cavern-v07.webp.import",
+      "sha256": "b4e4d65ace1c9c291a0be6fd21f502ce0d69f8d2a50694b8033ad135b0dac3b1"
+    },
+    {
+      "path": "godot/assets/whimsy-four/bibi.png",
+      "sha256": "9ffa05fa7763dcdcbfbb41a0e4c9b891b2fec5639b22a819842ba8fd732ba093"
+    },
+    {
+      "path": "godot/assets/whimsy-four/bibi.png.import",
+      "sha256": "2f16825b03ba54dda1bbdcf4f2d73208e8aca159405dfbb7fa60197441beae84"
+    },
+    {
+      "path": "godot/assets/whimsy-four/button.png",
+      "sha256": "4e9749d29ffe048d89e457cd738c2b696a30802fefc8417993ac319eb11483e3"
+    },
+    {
+      "path": "godot/assets/whimsy-four/button.png.import",
+      "sha256": "1fa469bcde54b61e7ddc78a038245351caa744a460fac56c14fa733dd4b6c795"
+    },
+    {
+      "path": "godot/assets/whimsy-four/cast.json",
+      "sha256": "02d84f694fad370700975b3df21d635c91a1a1022915709f8b4166548eb7f14e"
+    },
+    {
+      "path": "godot/assets/whimsy-four/crumb.png",
+      "sha256": "2ff822247d170ce47921a16ea24fae29f4825a9cf4d4d12f5760d8e4f0d5756a"
+    },
+    {
+      "path": "godot/assets/whimsy-four/crumb.png.import",
+      "sha256": "2d8e58522d1fd3734d0cc2cc2c22a203920925d680256c785ab7f9c5e21da457"
+    },
+    {
+      "path": "godot/assets/whimsy-four/dot.png",
+      "sha256": "e441d90109f80d75cd06855c77bb55e833e8c1f2a78fadda81d423b78e9daed2"
+    },
+    {
+      "path": "godot/assets/whimsy-four/dot.png.import",
+      "sha256": "09fe09b5671d1243d28198e3f627c89ca406b28aa4bf2f64e199ab8ca6398861"
+    },
+    {
+      "path": "godot/assets/whimsy-four/generation.json",
+      "sha256": "1786f6a694d1940bd704937adf0bd174b57fc73850498ef78f299b5f7b81481e"
+    },
+    {
+      "path": "godot/assets/whimsy-four/hush.png",
+      "sha256": "07547233a6d27ebf03a4e1718d1c867b42619fd0d250e43a23b3e9f12dda3a7d"
+    },
+    {
+      "path": "godot/assets/whimsy-four/hush.png.import",
+      "sha256": "1fa0fd49f81c7d2de1176586418b672ae00f8d4953551986109f35e4efe307a0"
+    },
+    {
+      "path": "godot/assets/whimsy-four/ludo.png",
+      "sha256": "5f47d7e0a55a2bf388c3b65122cff53f0f869e4d86cb5c677dca446c918323cc"
+    },
+    {
+      "path": "godot/assets/whimsy-four/ludo.png.import",
+      "sha256": "c226e25c049c66d4f842d1a3bc1c742d133196c23368a6405bac042efe30d38a"
+    },
+    {
+      "path": "godot/assets/whimsy-four/mallow.png",
+      "sha256": "38e660a1e4ff93def536d8959655ba3b25d1301379c12954cef05c8b693af91f"
+    },
+    {
+      "path": "godot/assets/whimsy-four/mallow.png.import",
+      "sha256": "ca92d191e7cfef31e909a1c55d102fb5b5874689b7e5f6d0ee7a438d724eb9fc"
+    },
+    {
+      "path": "godot/assets/whimsy-four/miri.png",
+      "sha256": "59dc9843633ca36b58cfd50e710635ce30ca6a1f1c6da54490fd9f71665fe8c5"
+    },
+    {
+      "path": "godot/assets/whimsy-four/miri.png.import",
+      "sha256": "294723134db89276f47a47c64ea380f0318e26b29a388d018946fb5766f18b8b"
+    },
+    {
+      "path": "godot/assets/whimsy-four/oona.png",
+      "sha256": "95f5ff3f850f70336c73892bf6653dce34d39b77fce9faef9443554751a50e46"
+    },
+    {
+      "path": "godot/assets/whimsy-four/oona.png.import",
+      "sha256": "de98caf87c47cfed796d06d73c2e58ceaaeb3981fe0a8aa8c00d714e6bfa56db"
+    },
+    {
+      "path": "godot/assets/whimsy-four/peep.png",
+      "sha256": "202df9d4e34d26e3438353f735997cac6643880acb8c14d437c3d751a9b68179"
+    },
+    {
+      "path": "godot/assets/whimsy-four/peep.png.import",
+      "sha256": "a878e75755ab7ae2ebd581d408f09409f2b3fa53e44171b5326c9a5f6d0370de"
+    },
+    {
+      "path": "godot/assets/whimsy-four/posy.png",
+      "sha256": "93fa593bba0d43783660ff1ad8fc55bb675fbe747e76f256888d0e934657c4f0"
+    },
+    {
+      "path": "godot/assets/whimsy-four/posy.png.import",
+      "sha256": "3ecdfcd075ac05a80e77a54028d53063fe3218cecec6a315604090b844d2c9ba"
+    },
+    {
+      "path": "godot/assets/whimsy-four/purl.png",
+      "sha256": "5dc971f6909d41f8f5432621e2111a0a18ca2d73fea6152f85eaa691f561d8c1"
+    },
+    {
+      "path": "godot/assets/whimsy-four/purl.png.import",
+      "sha256": "9cfea6ec1578a557ac4b132432356a5e2083f76fe747ffdc6c72a639eeb85982"
+    },
+    {
+      "path": "godot/assets/whimsy-four/saffron.png",
+      "sha256": "a09943ed3eda83f7b245561abd61727acbb60e6c0aee0d1fcf3970bef116ab06"
+    },
+    {
+      "path": "godot/assets/whimsy-four/saffron.png.import",
+      "sha256": "6cd58a486cdea46b3e1807052b4a29707b518e2419566ccb14b4c3ae43e815a9"
+    },
+    {
+      "path": "godot/assets/whimsy-four/thimble.png",
+      "sha256": "21dc9a7dcdb4c760c536a60860457aede23f177ca54fb8f2db0c0c5a2025858e"
+    },
+    {
+      "path": "godot/assets/whimsy-four/thimble.png.import",
+      "sha256": "3a7bf19cd00e30b8870eb170d48e084ec05a66c4ad11a4ae91c7773d0cf54864"
+    },
+    {
+      "path": "godot/assets/whimsy-four/tilly.png",
+      "sha256": "fee19da0c268e2fcdc8deb204f638a856aab7c4cb99cee7833f253a99a3f87c8"
+    },
+    {
+      "path": "godot/assets/whimsy-four/tilly.png.import",
+      "sha256": "bdc997dd546f47c092a5071f9265e155c8fee34df20d95cd4743d8da976645d5"
+    },
+    {
+      "path": "godot/assets/whimsy-four/vesper.png",
+      "sha256": "91cb795051723e055b5fa9c754fa4bbc4475532df408a7afa889c415248edd34"
+    },
+    {
+      "path": "godot/assets/whimsy-four/vesper.png.import",
+      "sha256": "ba19e59fd00cc60d72eca3e041534cabaf918a3617a22770c5369af650a800ce"
+    },
+    {
+      "path": "godot/avina_companion.gd",
+      "sha256": "ba01381be1aabf4f3b40f11ba91cc6a54366476f2cf202962dd79543fc6f5a17"
+    },
+    {
+      "path": "godot/avina_companion.gd.uid",
+      "sha256": "b749db69de9bd8cc7c1cc143f6fd65a3c17753822ab07ce39df35b9da23e688e"
+    },
+    {
+      "path": "godot/avina_tutorial.gd.uid",
+      "sha256": "8726db2963414f14e103b75fa056990382e5ad9e47a417da204e854c87ea0151"
+    },
+    {
+      "path": "godot/avina_tutorial_test.gd",
+      "sha256": "a34ad5f879f214fd4c2c72f8cc679a3d4dba063a713d6000d371e41c7ad4c756"
+    },
+    {
+      "path": "godot/avina_tutorial_test.gd.uid",
+      "sha256": "471b20901094ffadf5fada4ce5513e4a7bcfa7c856522b5f9f207e5185208f56"
+    },
+    {
+      "path": "godot/basic_chapter.gd",
+      "sha256": "57057071b8d420e6949d304fb088e55c946391eb7c5033bb7e88dfd20d40694b"
+    },
+    {
+      "path": "godot/basic_chapter.gd.uid",
+      "sha256": "c60b0f811dc2c7b715ea28346e20a275eb37f1be0fa59b03d22aa6db93aaf194"
+    },
+    {
+      "path": "godot/blackwater_tunnel.tscn",
+      "sha256": "afa08360e528ffd0942408e9ded0b3ae7297c674ea63e0600ba7c935778e6dca"
+    },
+    {
+      "path": "godot/boss_patterns.gd",
+      "sha256": "07bd824c64f7caef2fbd69bb4ddbbc1c690b0cd57620c1855c835743cd3d65af"
+    },
+    {
+      "path": "godot/boss_patterns.gd.uid",
+      "sha256": "87c9915c865cca608124e8558be01f82911410ecf966b6d0f659e20d2b7c7cba"
+    },
+    {
+      "path": "godot/boss_performance.gd",
+      "sha256": "3759f4653ce580a240b3f40412deae1c8565342677100d9eaeb97579308850b8"
+    },
+    {
+      "path": "godot/boss_performance.gd.uid",
+      "sha256": "6cf6a1b00c04af5eeeb7fb05d476adb71d13368b3c088bddad66f5e1445cf976"
+    },
+    {
+      "path": "godot/boss_polish_test.gd",
+      "sha256": "50c68ddca139103ed51b8b85506bc97bf08335d8571768cf22585ab2c9846e1d"
+    },
+    {
+      "path": "godot/boss_polish_test.gd.uid",
+      "sha256": "52c0e7eea6020fe33059e210e9a943b45f1478f9e85874677296d7b4cb20c032"
+    },
+    {
+      "path": "godot/boss_volley.gd",
+      "sha256": "8b12c80c8311230171738e186c10e530a0b912ef321b01793a2e79b95324d307"
+    },
+    {
+      "path": "godot/boss_volley.gd.uid",
+      "sha256": "5d4f0ec62e311c011668eec607251b51e823835bcbb274f680fd20b2c7e47a82"
+    },
+    {
+      "path": "godot/bubble_polish_test.gd",
+      "sha256": "5741f135b8c065e6af5b9c6d3a4c082e3d4cb1328139d2b285042baef1a4f663"
+    },
+    {
+      "path": "godot/bubble_polish_test.gd.uid",
+      "sha256": "42086d32011654f33f1e73d5bcccd63a0e3060485cf667bbce1458b59d407f0b"
+    },
+    {
+      "path": "godot/carlo_boss.gd",
+      "sha256": "c00a9124dcafcec32877d666bf9bb5d6d14b12c165e28947cf72205a341570d0"
+    },
+    {
+      "path": "godot/carlo_boss.gd.uid",
+      "sha256": "86f571cca9a7323768f6b8074b0e151bd626f52ad56cae12c9e36e035ee84fd7"
+    },
+    {
+      "path": "godot/cavern_art.gd",
+      "sha256": "84261245d32737efb1f59e1cc06721eb85b5eb2a3d13ea499c7e73ef8f1ffe9e"
+    },
+    {
+      "path": "godot/cavern_art.gd.uid",
+      "sha256": "5eca57e262b1f995a8bf0d5621ded559d7a3e4df738e473704c014cbd7c388f9"
+    },
+    {
+      "path": "godot/cavern_friends_data.gd",
+      "sha256": "19cb3206168423a5abcc34df1595e0afebbbe6caead41222668dc8ff57a3d12f"
+    },
+    {
+      "path": "godot/cavern_friends_data.gd.uid",
+      "sha256": "60f6436594856e33c5ed3876b42198bffb57b850a6bd86a1e43e7b3ecf97a7a3"
+    },
+    {
+      "path": "godot/chapter_data.gd",
+      "sha256": "b129b11bde61cad92a4746ac809436db2171cc700411f2b5d5373fea9a2ae3fa"
+    },
+    {
+      "path": "godot/chapter_data.gd.uid",
+      "sha256": "e60799a25bf0176b5d317d90088ac872eaa2083fc188f7c9a8073b2f9183b927"
+    },
+    {
+      "path": "godot/character_details.gd",
+      "sha256": "596b9d79602fe7565eb3b4f9b28b4825b22e59c8cd92db188326a49c08144b64"
+    },
+    {
+      "path": "godot/character_details.gd.uid",
+      "sha256": "3b7dfc8ce6da778efc661f9038b1f3241d2efd59ec277c76501f0c7620a71070"
+    },
+    {
+      "path": "godot/character_details_test.gd",
+      "sha256": "f39861b4327571691c4313fc11f6fee242c02795a031dba82f77ed67259e03c8"
+    },
+    {
+      "path": "godot/character_details_test.gd.uid",
+      "sha256": "cf098581260c909ed9f771058f3cb9fc41ba6fa21d99c8a26ac6e672f8c4cf97"
+    },
+    {
+      "path": "godot/character_harmony_test.gd",
+      "sha256": "37b9289bd8640bf0c8ee9119ef18fc5e043a3537c63e17a7c1f77f8f91035a80"
+    },
+    {
+      "path": "godot/character_harmony_test.gd.uid",
+      "sha256": "bfc7181c672c30ff8b247c81c5e9bbbac70d21c9774dbf21bba9c7ee85fc40fd"
+    },
+    {
+      "path": "godot/character_performance.gd",
+      "sha256": "b998aa651e4763db5cc313daaaa041a35e17cb866d781afa595d9bd8ef2195a9"
+    },
+    {
+      "path": "godot/character_performance.gd.uid",
+      "sha256": "3ed84712ce7b97b234bd56f7592d659a4b8dfe5d2e553a733de4f9cd7abda595"
+    },
+    {
+      "path": "godot/character_performance_test.gd",
+      "sha256": "fb439a4b3cf8b1808e82eb2467cc863f5edff5091a4d3e96d36d8acb60ef5152"
+    },
+    {
+      "path": "godot/character_performance_test.gd.uid",
+      "sha256": "79c3e31a7c9ec05db5a2017f9bc840478773791cf8edf5daf6e16d5341bea122"
+    },
+    {
+      "path": "godot/complete_adventure_test.gd",
+      "sha256": "759b957b2bb17b2a2e6c4ed7cca2cff70157dfd3310c2d57db87d95c16ffe3da"
+    },
+    {
+      "path": "godot/complete_adventure_test.gd.uid",
+      "sha256": "ca7a8d1dbe80a9eb965bc2e114e1cc705b9596c7ad5d1965890cc5f50647953f"
+    },
+    {
+      "path": "godot/control_layout.gd",
+      "sha256": "37faf9bc81d23298d7309b61d015dfdb7ab9812a02f4703e3b961144e5b9fb59"
+    },
+    {
+      "path": "godot/control_layout.gd.uid",
+      "sha256": "d9dbc1a1fdabf5ed2b057971956094041cd92a06155d98bc4b3d70b336b896b8"
+    },
+    {
+      "path": "godot/conversation_flow_test.gd",
+      "sha256": "b5d7c7bcc59141e13719de80731999da75921c2ea618387b14d78351febbe09b"
+    },
+    {
+      "path": "godot/conversation_flow_test.gd.uid",
+      "sha256": "7abc37772209bed5fc68d42c438847fb1b6ec04518245271b0176a48ed2c6968"
+    },
+    {
+      "path": "godot/creature_art.gd",
+      "sha256": "a0c4ba9372fcbc431128d6c852ade126adf1092f6874f55656584b9e9211c262"
+    },
+    {
+      "path": "godot/creature_art.gd.uid",
+      "sha256": "9800e6cd6d124619bedc6be8a7af8c6db5db40e5d13434bc82ef5a02989884fc"
+    },
+    {
+      "path": "godot/creature_articulation_test.gd",
+      "sha256": "abfbc4404f2314a917af810874b90af40f26d8a2b032573fe77eb4330dba3276"
+    },
+    {
+      "path": "godot/creature_articulation_test.gd.uid",
+      "sha256": "6ad012cf49ab6d6a6f7cdfb8cb4bf1719a2b03ae9e99c90b680c276ec0d6b895"
+    },
+    {
+      "path": "godot/creature_motion.gd",
+      "sha256": "226f0fdcc6efd7e2d02e8677cc559b96fcecf1fe5905f7859c3b03463949e46c"
+    },
+    {
+      "path": "godot/creature_motion.gd.uid",
+      "sha256": "bf8433a6370677de42369badc6c6f3134b4341d4132d98cefca72c01d7d97262"
+    },
+    {
+      "path": "godot/creature_skin.gd",
+      "sha256": "b658573bdfa3f22be6ebfaaf5b9d2c090d86e0077b32769e5d8995ee27f8a07b"
+    },
+    {
+      "path": "godot/creature_skin.gd.uid",
+      "sha256": "10e8d271757509a2e5e9b9971b5676aa9662edc02206afe9a6aad4c481f93798"
+    },
+    {
+      "path": "godot/deep_routes.gd",
+      "sha256": "43460922765ac13a3eab2606c631617b09831d121cdbbe9ae3e1e88a7f0a0ba4"
+    },
+    {
+      "path": "godot/deep_routes.gd.uid",
+      "sha256": "aaae64387f9d96e0d5404a4f5a2b654da7c8783d1696e469359d0848e03f8c25"
+    },
+    {
+      "path": "godot/deep_routes_data.gd",
+      "sha256": "9aaec17944e9e539e51e1d0fe09e9fe774690f47d24d898562165fd600b7b5e7"
+    },
+    {
+      "path": "godot/deep_routes_data.gd.uid",
+      "sha256": "84ef32d03ea19a0732abadc4ae90149e6e94150c44ae397071bfba52994df3d1"
+    },
+    {
+      "path": "godot/deep_routes_test.gd",
+      "sha256": "6e4f2854b9967404e907798a18ebd3dee476874c417af605245fd7cfc65d7d89"
+    },
+    {
+      "path": "godot/deep_routes_test.gd.uid",
+      "sha256": "ed3752c1115e965cea08104ec8a45dc3fb22a8cc7d22b510e6c4e77000c88144"
+    },
+    {
+      "path": "godot/default_bus_layout.tres",
+      "sha256": "cf9df3b3a9bef1f922ae2f8bddbc9d0aa329984fd4d1990c85c4a99d59d9a8b9"
+    },
+    {
+      "path": "godot/device-qa/layout-report.json",
+      "sha256": "4fd47072a496d93b449afa74421ddfc97f191e0481a2479a3ba4efa66f2b27eb"
+    },
+    {
+      "path": "godot/device_layout_test.gd",
+      "sha256": "73e1521a23d9a980fbec38e13c4684f157295020cf2d1ef12decde2828b3783a"
+    },
+    {
+      "path": "godot/device_layout_test.gd.uid",
+      "sha256": "a2c64d18502f87541763365ce15c5ea03b557e4a8067b335ef189494b191689b"
+    },
+    {
+      "path": "godot/device_profiles.gd",
+      "sha256": "4236b51554122861ea79451c590b77b57c766f5c47d81cb9fe67401e94bfff96"
+    },
+    {
+      "path": "godot/device_profiles.gd.uid",
+      "sha256": "d05b3855f67f7da97928c03e0a075c6b97940c5469ceae8eddc2c4b19a77e9aa"
+    },
+    {
+      "path": "godot/enemy_combat.gd",
+      "sha256": "ee6be5468128131d176b2aeccfad9855734c89f7d1c450adc3fe135569560bba"
+    },
+    {
+      "path": "godot/enemy_combat.gd.uid",
+      "sha256": "08896c083fec9089400eee70188965f61ca4af391c63ec1d3f7fd9b4003c3200"
+    },
+    {
+      "path": "godot/enemy_engagement_test.gd",
+      "sha256": "80fcfa407df0fd2409056a1f3a036ac05c67f3c7c9a15a826541a2375525d55b"
+    },
+    {
+      "path": "godot/enemy_engagement_test.gd.uid",
+      "sha256": "317a967c46f63cbb946d6a0125133d8c00e84099f304171f7888bebe8eb4e154"
+    },
+    {
+      "path": "godot/enemy_visuals_test.gd",
+      "sha256": "cbd40959f6a13aa2b66735c1728e61949d5edbb2d8b4a9514f82d472e4aeb86e"
+    },
+    {
+      "path": "godot/enemy_visuals_test.gd.uid",
+      "sha256": "108d04a84b8849111095eaa3a0b48243f3b8f132c3b9ca0595a017cc6c01d9f2"
+    },
+    {
+      "path": "godot/environment_art.gd",
+      "sha256": "88088735bf1336b1cf68642afb80dcc7693a35a9a341bdc407e24ca347ad6139"
+    },
+    {
+      "path": "godot/environment_art.gd.uid",
+      "sha256": "e077d8e600b47d6a8f213c90d8043521c20bad5d653aacc19c92ee8744d36987"
+    },
+    {
+      "path": "godot/environment_landmarks.gd",
+      "sha256": "e988754984c377cd386ccb23d5e7b1b085466c50a06eaa835a18729a9df0e3fd"
+    },
+    {
+      "path": "godot/environment_landmarks.gd.uid",
+      "sha256": "c3d4f37b1c957d3a3b034fe4ad43cebe86bc9d5a5195f04c9c955f091c1b71bb"
+    },
+    {
+      "path": "godot/environment_visuals_test.gd",
+      "sha256": "fa337511f5d1ee8a11f3a4966b21c44294b58e579f776863a1bdabb137db8759"
+    },
+    {
+      "path": "godot/environment_visuals_test.gd.uid",
+      "sha256": "c13122effc7a60199be381a9854b8476b04de0308f3716b1c4209191bc1847fb"
+    },
+    {
+      "path": "godot/family_attention.gd",
+      "sha256": "17ff3909ce5b7392ddc371178a9a9b7ed9323eca007d60af1837a97d2863eb8e"
+    },
+    {
+      "path": "godot/family_attention.gd.uid",
+      "sha256": "1afa313fffeb2a19378e4e875d2189c844f9a8f1a82815a4cb69db166b514059"
+    },
+    {
+      "path": "godot/family_attention_test.gd",
+      "sha256": "cad411becb969393bc2b3982a80a639716369b32370a882d754a18c1cf95e7db"
+    },
+    {
+      "path": "godot/family_attention_test.gd.uid",
+      "sha256": "ca847ddd340f24f81273f73237490783a99a3e95e214f11de8c8c1500ce5d1a0"
+    },
+    {
+      "path": "godot/family_dialogue.gd",
+      "sha256": "0bcc1f7d32de79bb0d35531b0fc0539f6e5b8c04b6b279cdd39c5dc468aeb07a"
+    },
+    {
+      "path": "godot/family_dialogue.gd.uid",
+      "sha256": "a859234a8e1657d04108418da47375afdf3b48e3eac2bc943cd5c5291b3c6d8c"
+    },
+    {
+      "path": "godot/family_layout_test.gd",
+      "sha256": "8a60bef9253c2c0cf34622a22a626572df9847140ba04758999c6af3b918c8f3"
+    },
+    {
+      "path": "godot/family_layout_test.gd.uid",
+      "sha256": "321e8beeda96cdb878eb12e1c0c852d7b6299e76041e0306243e84ec20b9ae52"
+    },
+    {
+      "path": "godot/family_royal_actor.gd",
+      "sha256": "8472bbb799241dae30ab51abd6ee4d872e10df37e4847b891e38e2a43c1dc414"
+    },
+    {
+      "path": "godot/family_royal_actor.gd.uid",
+      "sha256": "4e303b063392a5855296b6dd1b07dd1d39b6d4a56d33300d93140584196320bd"
+    },
+    {
+      "path": "godot/foreground_depth.gd",
+      "sha256": "6d9082a9655feee658334a4e2ce533af53b14466ff23c699117a9f05b424ed78"
+    },
+    {
+      "path": "godot/foreground_depth.gd.uid",
+      "sha256": "7a1d85c16581a0641040e4502e59f6150790922448b6f68eec854cd3c31cd540"
+    },
+    {
+      "path": "godot/friends_cavern_test.gd",
+      "sha256": "559da540cf9971a193040be8b67f9fa3247b55ff534ac3e8ea2f958a3dc3d5b1"
+    },
+    {
+      "path": "godot/friends_cavern_test.gd.uid",
+      "sha256": "915ed1b2d4e931e7c9e1e9ec21c6d5a7aac4341333e58d734bfd1d7bf6905c36"
+    },
+    {
+      "path": "godot/gameplay_controls_test.gd",
+      "sha256": "1b33cf6eb5871d5d3e45cb4a96628346913c52ae2b31d65c3041c0d08ff10aa6"
+    },
+    {
+      "path": "godot/gameplay_controls_test.gd.uid",
+      "sha256": "df9d1032fe44df0a33c5731b6683f319225ebfb3bb3789b9a35295d3d600d7a8"
+    },
+    {
+      "path": "godot/grounding_test.gd",
+      "sha256": "93a7397ac3578cb88374a998fd89b72c443821829a069787db2c16d7bad8c120"
+    },
+    {
+      "path": "godot/grounding_test.gd.uid",
+      "sha256": "bb96417649e4c5b154dd9bae7b0b53e02de0369d9b90e4230a195a003a439dc7"
+    },
+    {
+      "path": "godot/highland_data.gd",
+      "sha256": "e93a5413acb5b7f3baeccba6b6ae632c8abc2521ac08939c1a58fb682822f35e"
+    },
+    {
+      "path": "godot/highland_data.gd.uid",
+      "sha256": "53ca34a41e5487d21832d206dc90e18527508b5245dd9502fe1f78cd20d69d24"
+    },
+    {
+      "path": "godot/highland_level.gd",
+      "sha256": "3929246f2d585f7c98c3642824fc9bd56f4f1df1e883a5faa0cd0301003ea467"
+    },
+    {
+      "path": "godot/highland_level.gd.uid",
+      "sha256": "f786b0874320e956a760729ba1b95dc365ec0e3a269429f17ec9036a996b2e51"
+    },
+    {
+      "path": "godot/highland_level.tscn",
+      "sha256": "01f311352b3e199ede3a13c59b8151a1074fdb3e287281a4ec814b0f32929b7b"
+    },
+    {
+      "path": "godot/journey_data.gd",
+      "sha256": "fac985b7f4fb24debd03e8d1b94599b487ba96dd25e9426953b1339acfe642c6"
+    },
+    {
+      "path": "godot/journey_data.gd.uid",
+      "sha256": "22a0f5d8ae3f22cf1938f8f48df74750f93e0fb49e074d5aee8a5be9f873adc1"
+    },
+    {
+      "path": "godot/journey_effects_test.gd",
+      "sha256": "e0aed697ce05104946dfe94b41b0675b106b859fa599d268b3a4ecb22e4d4912"
+    },
+    {
+      "path": "godot/journey_effects_test.gd.uid",
+      "sha256": "e9a39994658c8ee499284317825befec4df076dc803f89b7910d6d07798c7fe2"
+    },
+    {
+      "path": "godot/journey_flow_test.gd",
+      "sha256": "56b26faa94e6fc5cd59d94b503e4dfe577f6f176765f94b3b1a8679aef45008e"
+    },
+    {
+      "path": "godot/journey_flow_test.gd.uid",
+      "sha256": "1b0ce290703c298a1b4ad19e7e42dfed4850206ab48aa3ce4c555bc444e7ee58"
+    },
+    {
+      "path": "godot/journey_level.gd",
+      "sha256": "ac7de75312a1c6d78910a68027b70a59bb76951a55ac0e41c93a04c29dc2e475"
+    },
+    {
+      "path": "godot/journey_level.gd.uid",
+      "sha256": "4f7ee11c98dc7513e49d49603ac116d600ce1643f4e771a3f91c161780dc5fd2"
+    },
+    {
+      "path": "godot/journey_route.gd",
+      "sha256": "c449fc3ac119fffb82c59d0cbc9317a8bd5c4939fc53737adb1d981f3d0575f1"
+    },
+    {
+      "path": "godot/journey_route.gd.uid",
+      "sha256": "42ec2f577a194f43627236ebee6e0f1e33d507de38c42914e5f524b9e5db6c04"
+    },
+    {
+      "path": "godot/journey_test.gd",
+      "sha256": "f78e2839491706bbe98e59a56a2d3f1ee192615564ebe7c55654484d0075d76f"
+    },
+    {
+      "path": "godot/journey_test.gd.uid",
+      "sha256": "12ab8d575b604ce0867c742347c42ed1b1a4666c8785d4a11b64a27214c476ee"
+    },
+    {
+      "path": "godot/jump_animation_test.gd",
+      "sha256": "ce58f1878d6afca67ae94cb521b47631555823efaba818aa0c5f126b60e0d044"
+    },
+    {
+      "path": "godot/jump_animation_test.gd.uid",
+      "sha256": "450c2b4f23b455ddae0faeb4d9963f0b9e7edc2194771af878e76f30adacc8b2"
+    },
+    {
+      "path": "godot/jump_effects.gd",
+      "sha256": "5eb7bfb627d74b4eeca5775b195047b0bf8553bcdec48320012fc1fcac96238a"
+    },
+    {
+      "path": "godot/jump_effects.gd.uid",
+      "sha256": "8523663b871ea9342784d0b8b8b819c005ca500e2bb6afb5088fdfbcdf516f3b"
+    },
+    {
+      "path": "godot/lagoon_art.gd",
+      "sha256": "14700749a4f3a3e45fc22ecb3b043caace0792445fd24a0e1394adf5df88f1f9"
+    },
+    {
+      "path": "godot/lagoon_art.gd.uid",
+      "sha256": "462a064459e8359d41821055105ec2d027298e32724b4bd20bb0c8140cb4549b"
+    },
+    {
+      "path": "godot/level1_smoke_test.gd",
+      "sha256": "66dec26727a08beaa75e2b2d910b5c8ae5a7a07e06eadc59c90dc27c6a9e715d"
+    },
+    {
+      "path": "godot/level1_smoke_test.gd.uid",
+      "sha256": "9965b0639039947c20e4c6670e7ac158d1b79c399dc543157342307a8744a7d1"
+    },
+    {
+      "path": "godot/little_moments.gd",
+      "sha256": "ff94fe5c94750f82ec9d7794938b1eb9aa6278e41eb1ae354a56ac93b7553397"
+    },
+    {
+      "path": "godot/little_moments.gd.uid",
+      "sha256": "41a2c314152e8699f4db763d3bf5197895d5149138d1c4842b98330b8995134c"
+    },
+    {
+      "path": "godot/little_moments_test.gd",
+      "sha256": "68b2ba5532f97a1e472ed37e32f911dee1968edb72bf9257b9bea842d8f70a8f"
+    },
+    {
+      "path": "godot/little_moments_test.gd.uid",
+      "sha256": "aa01e90dc93b6db4951a69d298fc3e2e0e733e89034e86d502cce5d3d4e25aeb"
+    },
+    {
+      "path": "godot/living_reef.gd",
+      "sha256": "da3a72b8a98be54de12e93f7d643fcb3c4865364d7a2bfd4a0145be481950901"
+    },
+    {
+      "path": "godot/living_reef.gd.uid",
+      "sha256": "f1f76bd7f437223d2943122cede5fb8629fe0b37b33495d4de488685bc200ade"
+    },
+    {
+      "path": "godot/living_reef_art.gd",
+      "sha256": "1d76b21bf6d6912aa3d3d5226c301f056d6e6ed2ca2cb7c3d5ba34b3f9353fbc"
+    },
+    {
+      "path": "godot/living_reef_art.gd.uid",
+      "sha256": "94715b8527a2baf68cebe5559c07f688b4976567f751122b202c064143d653c7"
+    },
+    {
+      "path": "godot/living_reef_data.gd",
+      "sha256": "dc29e4d9a9e96f21f7d0146e47e3400558e1277c0c022a45f8c236ca7de1b435"
+    },
+    {
+      "path": "godot/living_reef_data.gd.uid",
+      "sha256": "6d7a39a473911caf6b9bb4692c5b1756ceb730ce936810eb9827c1e5f278656c"
+    },
+    {
+      "path": "godot/living_reef_reactions.gd",
+      "sha256": "162f592cfb986caacd97c325402f33d62539e904cc98fca9183c422a8403688a"
+    },
+    {
+      "path": "godot/living_reef_reactions.gd.uid",
+      "sha256": "02449bb5ac387368f7ab4e399c85fa2ea1af8127ed4d32b9e139c65889c0f248"
+    },
+    {
+      "path": "godot/living_reef_reactions_test.gd",
+      "sha256": "0fd81b07e84804be8623955968f4db52317a2a4c92dac6a81ee610fd972ed0f1"
+    },
+    {
+      "path": "godot/living_reef_reactions_test.gd.uid",
+      "sha256": "d1dd10619ba3a0b02fd2470224e7356986c61c4fdef7538f41c749f126978607"
+    },
+    {
+      "path": "godot/living_reef_test.gd",
+      "sha256": "fc916e76cb679efe87d6451f225fcef120a83e3ba5948d9cea7cf617251274eb"
+    },
+    {
+      "path": "godot/living_reef_test.gd.uid",
+      "sha256": "2126b20885528216585f05a04b72ef88edc63fbed69e35e0f486b817f88a39df"
+    },
+    {
+      "path": "godot/living_shallows.gd",
+      "sha256": "007c4ab00c0fce994231308890fda6b08c37371542f2879b792e21f128c15336"
+    },
+    {
+      "path": "godot/living_shallows.gd.uid",
+      "sha256": "36d5282d0b835d8de5c5d7a048ad109d367d99b4f3d46c5fd3ddcf6c83aad5a1"
+    },
+    {
+      "path": "godot/living_shallows_test.gd",
+      "sha256": "041cc4535cdb1525bd1a57bad7262b7a1f7392ff4f0a619e60ff31e9bdd236e2"
+    },
+    {
+      "path": "godot/living_shallows_test.gd.uid",
+      "sha256": "50944f924f159e4b1c12c31d1418262eb7d4344bd4ada663bdb4f859b07e3a70"
+    },
+    {
+      "path": "godot/miguel_lagoon.tscn",
+      "sha256": "8b04d4f69ef1ee9b77b43cbd12295d2fe5d0b6228a5ee282e617433fac789774"
+    },
+    {
+      "path": "godot/native_fx.gd",
+      "sha256": "587e8c0f8bd912cd6a06bb1b52e84dd993ffb4d38982bb288cb2d4ebeb71921a"
+    },
+    {
+      "path": "godot/native_fx.gd.uid",
+      "sha256": "c9c668cf049a657f549c90f33f85c4092702c01c8b3d07c0b9a8bbcae69f4702"
+    },
+    {
+      "path": "godot/nessie_finale.tscn",
+      "sha256": "26449838e26617dfca72291d475705a303764044330ab71363e62c3525a2f259"
+    },
+    {
+      "path": "godot/nori_puppet.gd",
+      "sha256": "15c78fdc6a60b9db04463df5ea510cea031232189cc5b39ee319b6f505888dca"
+    },
+    {
+      "path": "godot/nori_puppet.gd.uid",
+      "sha256": "c05e48d79f6e1d7aedba245fc0ba720c63834c35e7fcbf20501bdc14823697d1"
+    },
+    {
+      "path": "godot/ocean_alive_test.gd",
+      "sha256": "79d04d171e98163250b07e09155549af445390cdf3dfc898ea05abff5f742049"
+    },
+    {
+      "path": "godot/ocean_alive_test.gd.uid",
+      "sha256": "4ef14ae1a8fd4ba6a44ef6d28c1ee71c0e3487b93e9e5451907dc3fdb3f9c4b7"
+    },
+    {
+      "path": "godot/ocean_audio.gd",
+      "sha256": "118255e9cd768c5919f34fff6dca11eb9043973e6179bc5a0fb06ce01e96b23a"
+    },
+    {
+      "path": "godot/ocean_audio.gd.uid",
+      "sha256": "ec1249c8f79320ce70fe51cfc3482e6a929195afbe52c781cadc4d6abf7ea928"
+    },
+    {
+      "path": "godot/ocean_feedback.gd",
+      "sha256": "5c6cc5ea66ede13cc74f033cb685196ce9d8b4e1153efbbcde004502a9daaf97"
+    },
+    {
+      "path": "godot/ocean_feedback.gd.uid",
+      "sha256": "d6ea9e586f7c92e2c0ea4de6fc95d2abb78fd35aed7a1a6746b089d3ee404d56"
+    },
+    {
+      "path": "godot/ocean_life.gd",
+      "sha256": "5f2a0a9010e9874650fd7ce4a11607880b1fb2c3c8f8d85285508f2a01c03d7a"
+    },
+    {
+      "path": "godot/ocean_life.gd.uid",
+      "sha256": "a0a683fc92a57e70df587552ac6c8dd87e56f5d11646b264112951cfbe592f7e"
+    },
+    {
+      "path": "godot/opal_art.gd",
+      "sha256": "2972bcde0fb667e8f17744385309b232546249ba17672ce85f73d6567f6d6b6c"
+    },
+    {
+      "path": "godot/opal_art.gd.uid",
+      "sha256": "bb5e2a7ca22dde37989d7c71750348f8ce5f48d64a2daa0694c4da8abd46ff02"
+    },
+    {
+      "path": "godot/opal_charge.gd",
+      "sha256": "c42758e327783a61440b22cb9793977e8b9a68a23010c0440ee54eb043b7ef3a"
+    },
+    {
+      "path": "godot/opal_charge.gd.uid",
+      "sha256": "c38a61972c63ab35ca0caeb05271918d753e282c1ac775a0952ec115e88f0d36"
+    },
+    {
+      "path": "godot/opal_collision.gd",
+      "sha256": "b136e1c6965b40dfccc31540de36a5e885ff164624cb26046d897e3c73ee98c4"
+    },
+    {
+      "path": "godot/opal_collision.gd.uid",
+      "sha256": "39b0ad4adf2fe201f137546adef0aa36b4a8dfc44789eac48afc4935d3add00c"
+    },
+    {
+      "path": "godot/opal_combat.gd",
+      "sha256": "b0a0cbd69024a6fb802d1f14ebbfc88246b2b5894cca98aa937f5d2b451c592a"
+    },
+    {
+      "path": "godot/opal_combat.gd.uid",
+      "sha256": "c1969b35983b4089a8fd619741fc0fefb393b04733659dc121c4d53da695328d"
+    },
+    {
+      "path": "godot/opal_current_test.gd",
+      "sha256": "b94e142c3d2bb368267a75168d38335144e83340639ee3492ada62ce9bfeb38c"
+    },
+    {
+      "path": "godot/opal_current_test.gd.uid",
+      "sha256": "92949aae3bf791853fef994290cf248960648f024822f5fed6b37c7996e16d2c"
+    },
+    {
+      "path": "godot/opal_effects.gd",
+      "sha256": "983a2e7d7ead3f2355ddfecbc1e33f6214856f79719e20aff081cdc47708dcea"
+    },
+    {
+      "path": "godot/opal_effects.gd.uid",
+      "sha256": "44be2001c80c029b42d8cbd3683888adb1d48e5aac2fabea32a9fed6f08ca599"
+    },
+    {
+      "path": "godot/opal_roster.gd",
+      "sha256": "5dd5ecf7bf52cca3235a842450d59aa6f699551be4603e413d10e5c55ee1d11c"
+    },
+    {
+      "path": "godot/opal_roster.gd.uid",
+      "sha256": "c22f6065c0b363d5798a400b594b42f895679b087d104235810944c132edc934"
+    },
+    {
+      "path": "godot/opening_journey_test.gd",
+      "sha256": "0efc6153fd0a4a2c5c82ef24108873f4448cf56c1aca2a8a085fe0256668054d"
+    },
+    {
+      "path": "godot/opening_journey_test.gd.uid",
+      "sha256": "4ec59588c9105d394a5388b738736606bba0f0f723e8f4142e878b4b47e5975e"
+    },
+    {
+      "path": "godot/package_extraction_test.gd",
+      "sha256": "c14a00571617e87f0fbe43d962f4ef4e33c0c538cd3923a15f488edc0e194453"
+    },
+    {
+      "path": "godot/package_extraction_test.gd.uid",
+      "sha256": "21f93f73e06c14b2bda42f5be7fbf31d54e996acc8003f438d2382ed8ce9e309"
+    },
+    {
+      "path": "godot/package_project.py",
+      "sha256": "c7d42c3feafd4cdec0bca1401750a99293c3f6c9f25cb6527275ff0e5a2468e6"
+    },
+    {
+      "path": "godot/package_validation.py",
+      "sha256": "95114bb43cf96b5ef371487d83a6b910630671b8cc3975e1d3c40cc32da382e3"
+    },
+    {
+      "path": "godot/pearl_charm.gd",
+      "sha256": "11d64b40f44046d90b3d31b85c983b0e1e48420780e935a34b05238850d0170e"
+    },
+    {
+      "path": "godot/pearl_charm.gd.uid",
+      "sha256": "c1c7c87a42817047b6e5003ba502e78e1d0c0404ffed8aec716f01acbb128329"
+    },
+    {
+      "path": "godot/pearl_palace.tscn",
+      "sha256": "571637defe5d0fe60d1214cbd5290e91d4fe01f5f693c757863db142df0c7b11"
+    },
+    {
+      "path": "godot/pearl_storybook.gd",
+      "sha256": "e4db6a633f258ff855857bcd428d1c67a61a72a27dc4cf08b50fb300febf04ad"
+    },
+    {
+      "path": "godot/pearl_storybook.gd.uid",
+      "sha256": "bae2dcccefd30f24e82f705190565e5da12ae54a87a9d729332f1a5ba86ff9b1"
+    },
+    {
+      "path": "godot/pearl_ui_test.gd",
+      "sha256": "334f8323c46cb2ce002ab307f936a5118f52b6e7cd6bba58b604cec275b43b53"
+    },
+    {
+      "path": "godot/pearl_ui_test.gd.uid",
+      "sha256": "2c2feec9c7aaf665745070dbf5d30c4ef27a537ea01cd800dcad19daaa44a6f9"
+    },
+    {
+      "path": "godot/performance_integrity_test.gd",
+      "sha256": "e47c0dd0ac1d9c9f508f6228bbba20e09f0299fbc08006ec647d9031e6284a5d"
+    },
+    {
+      "path": "godot/performance_integrity_test.gd.uid",
+      "sha256": "ce7967ec3e3def97d281dc83aa2676e2c9be6d13c1a807141d6b07eef4723d9b"
+    },
+    {
+      "path": "godot/performance_overlay.gd",
+      "sha256": "6da6895fd9b1d3a50cd73f4ea4a523f311cc686386bb48267d61a1dd5634ac2e"
+    },
+    {
+      "path": "godot/performance_overlay.gd.uid",
+      "sha256": "2fe44e8d66314dc0d170a8147f19007d3fc606996ce054da5a880bfdb2a3a6f9"
+    },
+    {
+      "path": "godot/pocket_wonders.gd",
+      "sha256": "613801700fb5204a70505ad6ef243adf7a7d872d148d9a72e551fa44b3fe6595"
+    },
+    {
+      "path": "godot/pocket_wonders.gd.uid",
+      "sha256": "6b4006fb1addc11d08b7570dc09980fa793aad7085afb475173bb991a54e674d"
+    },
+    {
+      "path": "godot/pocket_wonders_art.gd.uid",
+      "sha256": "964e04bf08acf7d77d85b12beb4129f5da255dc2218b53f5bc2a84fc8d603e87"
+    },
+    {
+      "path": "godot/pocket_wonders_data.gd",
+      "sha256": "871dcf6fecb04665a5b0515c43393115cdb8da2597081544d79b8cac949fa822"
+    },
+    {
+      "path": "godot/pocket_wonders_data.gd.uid",
+      "sha256": "fe606afa6e068b2be13a85c1a0b732b06e2fee81ca8e639d2c077e9e2ac0dcbf"
+    },
+    {
+      "path": "godot/pocket_wonders_reactions.gd",
+      "sha256": "4ff8a02ab89ef129c68c877c754a51984240c7a0e512d2b9d1a2827b3577a0fe"
+    },
+    {
+      "path": "godot/pocket_wonders_reactions.gd.uid",
+      "sha256": "371a092e972c71e18a1bd41f6e6a42724ef56385774435009d24d1866fc8e4c6"
+    },
+    {
+      "path": "godot/pocket_wonders_reactions_test.gd",
+      "sha256": "ace6a5d356a384e9991a5a27f5a88f014e8a8dde931f7b014f99a4f222c5d2bd"
+    },
+    {
+      "path": "godot/pocket_wonders_reactions_test.gd.uid",
+      "sha256": "b12321c4c807a77d2902964f73e1a1510a63ade590d05f09cc633d9d715409e3"
+    },
+    {
+      "path": "godot/pocket_wonders_test.gd",
+      "sha256": "a11c275f522d5bf17eeee42207deca4ceee544e1c80ba2eb05a1a289c4c42db1"
+    },
+    {
+      "path": "godot/pocket_wonders_test.gd.uid",
+      "sha256": "0126988a8ef1e8cc74d4bfa162f3092ac296d56b6fb879ea3588e3304a703909"
+    },
+    {
+      "path": "godot/premium_hud.gd",
+      "sha256": "43e984b11ff437bf519e4df5e1e465b58e6b6521e444c0c646f09e8c5ce8f051"
+    },
+    {
+      "path": "godot/premium_hud.gd.uid",
+      "sha256": "3aaf63e29d8722836d1e6ba7fa17ae5dd413d40aba36bc16b6c6c206721d2baa"
+    },
+    {
+      "path": "godot/progress_store.gd",
+      "sha256": "aaa6b64c5b1397f84132cad2d00cd0cd4238eddfb5ec1c25cf98b35dda6651d0"
+    },
+    {
+      "path": "godot/progress_store.gd.uid",
+      "sha256": "e7223199499fef0c840cfbe3acedbeb57bec96d2de5557278e1f249a732d3893"
+    },
+    {
+      "path": "godot/progress_write_job.gd",
+      "sha256": "80445d0c113759abbd6e2abeb6761f7ea5d666fbec527655e380941303e02188"
+    },
+    {
+      "path": "godot/progress_write_job.gd.uid",
+      "sha256": "1659d659fb7b58681f3f03d4d797b123d5359ab0f9ab957dcd800086f6cecd02"
+    },
+    {
+      "path": "godot/qa-v026/validation.json",
+      "sha256": "eef7b818c1dc929a6724d0ecb050e215097052a5b94ce1d26e37a76fc3158bd8"
+    },
+    {
+      "path": "godot/rana_ruin.tscn",
+      "sha256": "71110fb4051e8862a19576c30469cb0b1414d3c69252c40ba7819612268b4834"
+    },
+    {
+      "path": "godot/reef_ground_plane.gd",
+      "sha256": "2c8d3302f05def095412369c09419021cb602d6a411d74cfabdeff3a31a8fc59"
+    },
+    {
+      "path": "godot/reef_ground_plane.gd.uid",
+      "sha256": "733852b8e0dfbdc480dbebef8955b9d3a2c4d4593aaa8ae39313cad53fb02f72"
+    },
+    {
+      "path": "godot/reef_obstacles.gd",
+      "sha256": "3d4fc84370b3447f2283dfb91bd856217c3ac167156deac8a1c092d05823f39a"
+    },
+    {
+      "path": "godot/reef_obstacles.gd.uid",
+      "sha256": "e2f381d815b44420e08cc0fa7d79d438db6b127a7637ed080df6ac8a412f7e5d"
+    },
+    {
+      "path": "godot/rock_collision.gd",
+      "sha256": "507151d1f332208a27a4ef6ac27901bdf3d5187320cff32f0fe0f3fcc0cb2312"
+    },
+    {
+      "path": "godot/rock_collision.gd.uid",
+      "sha256": "fd80472bb2084adf14a794c6942979650d48c4041ae0b7e1b3c37fa7d69ad40a"
+    },
+    {
+      "path": "godot/rock_collision_test.gd",
+      "sha256": "d6038c9f48a1de7526ed2ba509f14ab5088e216baffe398878b9898cfaf44567"
+    },
+    {
+      "path": "godot/rock_collision_test.gd.uid",
+      "sha256": "fd8d23d04ce8fec2c78e09f67ca553a4af6f8b684f1f55187414b3eb34fc600f"
+    },
+    {
+      "path": "godot/royal_connected_skin.gd",
+      "sha256": "f9b70d8118ecb441cc0832cc76c0078ee79b933436d8d34139ffda1b95df9cde"
+    },
+    {
+      "path": "godot/royal_connected_skin.gd.uid",
+      "sha256": "43e3af3d24ebf708b53dae3bf2489445d8e6f4a5d0efc445e0cfb824ae477aee"
+    },
+    {
+      "path": "godot/royal_connected_test.gd",
+      "sha256": "ce16e228144f6491824a41e74fbc98caf1984c94550b891241bccab14e8c8087"
+    },
+    {
+      "path": "godot/royal_connected_test.gd.uid",
+      "sha256": "37b52c2c0f4f66c1dc7386fbd7856c58962fe11ea415bc591e70357b07fc29da"
+    },
+    {
+      "path": "godot/sarah_arm_cycles.gd",
+      "sha256": "20bb50780118e4d7c65f2bc19b09684e1111276e2440f9e2375cc1947b29143c"
+    },
+    {
+      "path": "godot/sarah_arm_cycles.gd.uid",
+      "sha256": "4c531e5ce51e1f4193bb2ab5b4216c82eecbbe947f23eb9a06ba38a8d5ad1e13"
+    },
+    {
+      "path": "godot/sarah_arm_dynamics.gd",
+      "sha256": "c0f9497f7bb16c22826ead009f3375097b18aa188ddcfcf81f90e7d30cfa51b9"
+    },
+    {
+      "path": "godot/sarah_arm_dynamics.gd.uid",
+      "sha256": "b16a58b3a98622d34bcbd6e8ea8e3f648633c9c88971f990a886fdb186314bac"
+    },
+    {
+      "path": "godot/sarah_arm_mesh.gd",
+      "sha256": "eb8ef6f725b5fe6d83a4bbba05d881f2af66751b34031c7bde27ba2155617171"
+    },
+    {
+      "path": "godot/sarah_arm_mesh.gd.uid",
+      "sha256": "41a36820d3e543f3bb80d69710373d4b7364a8cb71d2306ea276970e2500bd19"
+    },
+    {
+      "path": "godot/sarah_arm_review_test.gd",
+      "sha256": "b94158f46622788ebe6a356898beed26caa397588d2334463d39d7b45a845980"
+    },
+    {
+      "path": "godot/sarah_arm_review_test.gd.uid",
+      "sha256": "d5590e9d78caae58969cd09ba0c83c9313a2dccc8087e3cb591c2c6e91e6efeb"
+    },
+    {
+      "path": "godot/sarah_body_view.gd",
+      "sha256": "a1c69ac54c2d2726bf80b4a53111af913adf7d949aa3063a4156dbf041539785"
+    },
+    {
+      "path": "godot/sarah_body_view.gd.uid",
+      "sha256": "b5aa049ef6f5e95f7df8bd84c5c9f28f31cbc9342644ad24df22fcc5fc41216f"
+    },
+    {
+      "path": "godot/sarah_breaststroke_test.gd",
+      "sha256": "1c446ccc47da76914400edbc48998de01bffa21a2a9ccebb8f4d22a7b12da487"
+    },
+    {
+      "path": "godot/sarah_breaststroke_test.gd.uid",
+      "sha256": "b51e28f701600e1ac129670e0edddf408c077e34896893dd825c521264731d61"
+    },
+    {
+      "path": "godot/sarah_connected_test.gd",
+      "sha256": "ac816c18eef1ed5f5986cc3678450be4f64d1e508e4fb8438f47fd69e2ad9494"
+    },
+    {
+      "path": "godot/sarah_connected_test.gd.uid",
+      "sha256": "d802524e6f680728cb8a498b058ce0f1dcb5136f8bc197d9a20b73bbe4aa98cd"
+    },
+    {
+      "path": "godot/sarah_connected_waist.gd",
+      "sha256": "ec2892dbdefa28768fea99702eb3773732543da3661c6bf5bde253ec99351dd0"
+    },
+    {
+      "path": "godot/sarah_connected_waist.gd.uid",
+      "sha256": "b8089679f1a901b27629541b8889165d0d9cab16bbd1df3d1aebdaa3929364fa"
+    },
+    {
+      "path": "godot/sarah_continuity_test.gd",
+      "sha256": "3c3ef9194265a977b41fb9341c4b0f32fadaf4525195570b0967087308977914"
+    },
+    {
+      "path": "godot/sarah_continuity_test.gd.uid",
+      "sha256": "4a3044181f310fff5f56a894efd8c4b5f95b2511da688a42908eecaf061221c6"
+    },
+    {
+      "path": "godot/sarah_definitive_21.gd",
+      "sha256": "800acc473628918f965284f13995f5d76867059c233b1faa796523bda9aaf562"
+    },
+    {
+      "path": "godot/sarah_definitive_21.gd.uid",
+      "sha256": "d81e81039281e84f2aa193fbbe620b37fe0747f10b4de3345cd5fd9248191b58"
+    },
+    {
+      "path": "godot/sarah_definitive_21_test.gd",
+      "sha256": "ee92ef434e5898c771a5ed687616409cd2b4be884a9ace4f3fef5bbaaac68b66"
+    },
+    {
+      "path": "godot/sarah_definitive_21_test.gd.uid",
+      "sha256": "7cd4e56a25eff7a5f77876094bfab6c96a7f30683617216e106397122022aa5f"
+    },
+    {
+      "path": "godot/sarah_definitive_motion.gd",
+      "sha256": "d80884143e83d4b5786eca5e6e5a727b93cfd82eb8329d481d890ed0141cf8f7"
+    },
+    {
+      "path": "godot/sarah_definitive_motion.gd.uid",
+      "sha256": "e41fa29b7a8552ae19b497deabc2f47ae969cabc5a33d447da7200e3c1b42d72"
+    },
+    {
+      "path": "godot/sarah_definitive_review_test.gd",
+      "sha256": "55d68ae4abb54ae56d62ff02da61e7bf27beed4f7ac52c1cbda0b674c942cd42"
+    },
+    {
+      "path": "godot/sarah_definitive_review_test.gd.uid",
+      "sha256": "06ba17358eaabc625c340c0f3d2350648ea912fb9f7c25cd997bf71215503378"
+    },
+    {
+      "path": "godot/sarah_definitive_test.gd",
+      "sha256": "b9fd5e5269cc00573cab67fcb7bac85aa7d62e21db5405d5a4e52a8efde60123"
+    },
+    {
+      "path": "godot/sarah_definitive_test.gd.uid",
+      "sha256": "31e620ee89bd240108d7afbb237e841d6bc24fd9fa15f965ba239d2b6820e658"
+    },
+    {
+      "path": "godot/sarah_depth_motion_test.gd",
+      "sha256": "e8971b1f4cce6922f499b7f2b7cf8cf1e809345f016929cbbe61cd1b93f6a0ff"
+    },
+    {
+      "path": "godot/sarah_depth_motion_test.gd.uid",
+      "sha256": "0c9fe50a67788543f81ea72175914ca45e898a36ae7ff52eaf3127f6fef1b5b7"
+    },
+    {
+      "path": "godot/sarah_face_details.gd",
+      "sha256": "42502f8b3046b96518d0d2a531200c2bfe886c31a133b80dc5cae05d4c41a47b"
+    },
+    {
+      "path": "godot/sarah_face_details.gd.uid",
+      "sha256": "78754f6e753eddc615e6bda77f2652aecf6b61d18b2b1121f744382a0532448a"
+    },
+    {
+      "path": "godot/sarah_face_details_test.gd",
+      "sha256": "b0145c6d32b7e5cd694ceccbde20e1f48ac4cf3251364c1f9658371a453f5b00"
+    },
+    {
+      "path": "godot/sarah_face_details_test.gd.uid",
+      "sha256": "5412c04a40ca413a8b1010cdc0ef49911dbf4fcc247282a3be7b152cd7c5ab81"
+    },
+    {
+      "path": "godot/sarah_flow_test.gd",
+      "sha256": "6dd5f71ac375b7e7f0a83284b56c2fb8cb4eb4397ce0c07324c4ca7d67f90e75"
+    },
+    {
+      "path": "godot/sarah_flow_test.gd.uid",
+      "sha256": "96ce5b978426976927ec72560b416e581254980cbc99177f9b12fe65c9096fa6"
+    },
+    {
+      "path": "godot/sarah_fluid_motion_test.gd",
+      "sha256": "96fcc94a52d0b781efda8a668fccc4c18e6535846b8c9c85ef8ad6732998cc63"
+    },
+    {
+      "path": "godot/sarah_fluid_motion_test.gd.uid",
+      "sha256": "f9dd05180c5321c5945e8728238f1ca5d6fe0bd0b0f14650892f5f1c47fe8880"
+    },
+    {
+      "path": "godot/sarah_grace_motion.gd",
+      "sha256": "dfb8bb3466d4edc0637bd701cfb22bb11dae075786ada94dcc98e9c0274f6039"
+    },
+    {
+      "path": "godot/sarah_grace_motion.gd.uid",
+      "sha256": "ae28728d86844dbbe5d65d0f4a471ce689849bc56b18d83db3b1759858dfbc1d"
+    },
+    {
+      "path": "godot/sarah_grace_test.gd",
+      "sha256": "5b800b20916bf1cbc695d0592d6156a3e181efb3b6beb956ef99aa1d86660d83"
+    },
+    {
+      "path": "godot/sarah_grace_test.gd.uid",
+      "sha256": "0cde0e8eec8c2916a6935483e395bff16b8090f4269a31c28a98767ffd733777"
+    },
+    {
+      "path": "godot/sarah_magnifique_test.gd",
+      "sha256": "56ea1a51199bafbd5cf875e0ced983500b8e14f31fa4b8eb583fb8c45a56d4f6"
+    },
+    {
+      "path": "godot/sarah_magnifique_test.gd.uid",
+      "sha256": "494c1d8d84be36ec445c32bd68c5e05fe13e94f28377c225a84eeacd87d0783e"
+    },
+    {
+      "path": "godot/sarah_motion.gd",
+      "sha256": "d9bb19ca4bdae70b46d21f616c4b4727bc37e47766a0f41b00073fafe15537b7"
+    },
+    {
+      "path": "godot/sarah_motion.gd.uid",
+      "sha256": "1488a1b6a3b2367c08dcd2ed1c5b0855965de91c52fba9d0976a590f77bca13c"
+    },
+    {
+      "path": "godot/sarah_opening_performance.gd",
+      "sha256": "32f655e66620822d78f0367d1fe9a53b5b9663b90c4a1b4c73fa4b08059cd645"
+    },
+    {
+      "path": "godot/sarah_opening_performance.gd.uid",
+      "sha256": "0d7e013f09d49bfdceb7d6127b2fc552ae661eb72dd23e841f259d6094af8710"
+    },
+    {
+      "path": "godot/sarah_painted_mesh.gd",
+      "sha256": "043b7d9f8085b9d8b6ddae99f7935049551ba3f2797087acf54b78c75ab9b3dc"
+    },
+    {
+      "path": "godot/sarah_painted_mesh.gd.uid",
+      "sha256": "56fe5a19e3660a63611969e22292480d7360de9bc22f22b2222114da1623db88"
+    },
+    {
+      "path": "godot/sarah_performance_points.gd",
+      "sha256": "13f36f2f5d6b5f8ca06766f76944b6f54e50e95b716d13051ab716ddf23b67d5"
+    },
+    {
+      "path": "godot/sarah_performance_points.gd.uid",
+      "sha256": "1498cab7cb1ed397355333718b563d566a66e42e88524ce159ee019a10b36cd2"
+    },
+    {
+      "path": "godot/sarah_pose_cycles.gd",
+      "sha256": "26d11f97cf1287597120cc80aad1b93c62ef2e6d2653347325e947f67826c4e8"
+    },
+    {
+      "path": "godot/sarah_pose_cycles.gd.uid",
+      "sha256": "6d577e07f5a17db5fbbccef7e6f3c560c208cb3ca198c7ae4edd7f8208f4363e"
+    },
+    {
+      "path": "godot/sarah_princess_motion.gd",
+      "sha256": "abae5000ec21db28fde02c288211c9025ba313a468349f619f08b21e1e9c6e88"
+    },
+    {
+      "path": "godot/sarah_princess_motion.gd.uid",
+      "sha256": "80fcbe2305514ddafdf4143fe069c1e56c2527e5a0e12b06e687d9d595698e42"
+    },
+    {
+      "path": "godot/sarah_princess_test.gd",
+      "sha256": "677d8015102d2ae49d3fe162df2aec4893d574edce02857c44437b8cefe8959f"
+    },
+    {
+      "path": "godot/sarah_princess_test.gd.uid",
+      "sha256": "fa17a7febe158f013bf9cec31269414b5aa735c67ac6268b35f2723035547e66"
+    },
+    {
+      "path": "godot/sarah_ribbon_mesh.gd",
+      "sha256": "d70cb87633e774f0ef0c7531701c7623d9d2fd11ca2ffac19cd74a001378616d"
+    },
+    {
+      "path": "godot/sarah_ribbon_mesh.gd.uid",
+      "sha256": "66989deb426dde24514cc388f28f95d9bc8c2c6731cc9bf57170195bb3da113c"
+    },
+    {
+      "path": "godot/sarah_rig.gd",
+      "sha256": "274886a7b4812463d9ca24d5ac354ee39675df2830f694fea5f61e1715aba8d8"
+    },
+    {
+      "path": "godot/sarah_rig.gd.uid",
+      "sha256": "dfd3e638d8b053eba75eba2e2e304ee57aa2aa95a2337ef16ba57f4d65930cea"
+    },
+    {
+      "path": "godot/sarah_spine_motion.gd",
+      "sha256": "46d01335aaf257164cccebb9f5b7044e1c1042e8263e110f2f8183c48f8e4c67"
+    },
+    {
+      "path": "godot/sarah_spine_motion.gd.uid",
+      "sha256": "71d986cdc9d6f30ea4d88dfd154a82763c85286c4a6510b185410d8e53262b66"
+    },
+    {
+      "path": "godot/sarah_spine_motion_test.gd",
+      "sha256": "ab429ede5dabba3f68879a45910febb3a3d0f8e7ce075268a08b89359009e64f"
+    },
+    {
+      "path": "godot/sarah_spine_motion_test.gd.uid",
+      "sha256": "d0405e5f43e5030e869c45f50179c25a7bd4f3b4c21151574fc8928689eb7c59"
+    },
+    {
+      "path": "godot/sarah_swim_styles.gd",
+      "sha256": "c28ac7757f3b5ba97c7d742683dd6c05eeb867a78c03b40f48ced8e0b949c96f"
+    },
+    {
+      "path": "godot/sarah_swim_styles.gd.uid",
+      "sha256": "d5dc30a522901e9cae451b2901d26e841b218b1e6b7668e0db99d9632f1d6f79"
+    },
+    {
+      "path": "godot/sarah_swim_wake.gd",
+      "sha256": "377d394736b56eeff01bd17273fb616722242daf601716b20d4a70d26e11d2a0"
+    },
+    {
+      "path": "godot/sarah_swim_wake.gd.uid",
+      "sha256": "6f6529098dc2fb7664506e9ba02fb64b7450cc7fd19c7a95a609e5dfac8a95c7"
+    },
+    {
+      "path": "godot/sarah_tail_skin.gd",
+      "sha256": "58d360990a3afe77edfe92c2ebbd7ef680de4df9eb1902e1b3710426a36a4eb0"
+    },
+    {
+      "path": "godot/sarah_tail_skin.gd.uid",
+      "sha256": "d4aa09306e8cbc761e5921baa3b1a1feab299b3d6d15731a6a2467c1144c8f63"
+    },
+    {
+      "path": "godot/sarah_torso_motion.gd",
+      "sha256": "b7ae23edc111aae64f8235399da9f445d0b56da0490a8ca78a38ef1a2a1f2c9d"
+    },
+    {
+      "path": "godot/sarah_torso_motion.gd.uid",
+      "sha256": "4daddd6a4a5d208aef043fd1bd27681f80fbe85a0bc2fc6a2f9b358f6809ae0d"
+    },
+    {
+      "path": "godot/sarah_torso_motion_test.gd",
+      "sha256": "3bf51976fc890d08a51bd1daafe16dbf23a4b1d87e2f7886ab08d3309ee8049c"
+    },
+    {
+      "path": "godot/sarah_torso_motion_test.gd.uid",
+      "sha256": "5d48ba70eb92c932603ebe99deb9c66189f55d431f9680d4f6b69c3e5593cffc"
+    },
+    {
+      "path": "godot/sarah_turn_regression_test.gd",
+      "sha256": "1cf42ba0cf43e316ae07bf4b6a3a4cf0ac5c44700e6f0d354bcaf7160d475979"
+    },
+    {
+      "path": "godot/sarah_turn_regression_test.gd.uid",
+      "sha256": "48a56adbdc4141166760ffa3c136c472d64f67604d483c2228b87a65589c84e2"
+    },
+    {
+      "path": "godot/sarah_ultimate_test.gd",
+      "sha256": "bbb8d3036d046cb24ceede3998982ec8a17b82d9b5e542bc961a73ca1de7f871"
+    },
+    {
+      "path": "godot/sarah_ultimate_test.gd.uid",
+      "sha256": "14cb87fd121ee159c072da3ec3429b06e3dc073d18542d3d0a0a8ae10346ed7a"
+    },
+    {
+      "path": "godot/sarah_v030_bundle_test.gd",
+      "sha256": "19a6364e3b746e189d0ac322a43d286460d0d033855b7b26831eb60de5b3a2e6"
+    },
+    {
+      "path": "godot/sarah_v030_bundle_test.gd.uid",
+      "sha256": "8092ebc1a88f65dd55794bc992b1ba9382bb3b90d2a82ab2ff372b6808970dfd"
+    },
+    {
+      "path": "godot/sarah_v031_bundle_test.gd",
+      "sha256": "4be8ccde1527ce3f3f20aca0da5ff6ed35aadba2a38c3848ab043026eca4d730"
+    },
+    {
+      "path": "godot/sarah_v031_bundle_test.gd.uid",
+      "sha256": "e79c9005df9db8802f96a46b83283f43fa22f55d322f51fab9503d97f049ecb2"
+    },
+    {
+      "path": "godot/scene_flow.gd",
+      "sha256": "edc72be8473fbf0a16fead7208cc811bfddd584aee51bdcfe84306f8f5fb8bcb"
+    },
+    {
+      "path": "godot/scene_flow.gd.uid",
+      "sha256": "823234128f9c00dba11a14bd644cc2e8f48fb10b3a13dae2e2315a2d8d02afb0"
+    },
+    {
+      "path": "godot/scene_flow_test.gd",
+      "sha256": "5834a48b3ba6b78f37fc0845cd0e94b8a3f4d5e497081d2fcafb4b1d06c601d7"
+    },
+    {
+      "path": "godot/scene_flow_test.gd.uid",
+      "sha256": "daaa61fe511b06d2dc31316f8321af673a811117b484bbec1673f06cb133cc4c"
+    },
+    {
+      "path": "godot/score_book.gd",
+      "sha256": "96cf52c75753b1d67a3beb6f84921def4e19c53b7ed30a33861be581473a97ae"
+    },
+    {
+      "path": "godot/score_book.gd.uid",
+      "sha256": "9b559e9d23ecaeab41ef754b26f9a3954ba0450b0de2a93766cbdb60a290d8ae"
+    },
+    {
+      "path": "godot/scoring_ui_test.gd",
+      "sha256": "a62f1be1c6d4fcca02c4df33d3404b375f1c7840afe28196fe0d6ea7738b41b8"
+    },
+    {
+      "path": "godot/scoring_ui_test.gd.uid",
+      "sha256": "9cab89b373d15dbba3fcda07c22b29c7ef78de7c3efcd0828a5ff19e67f87f35"
+    },
+    {
+      "path": "godot/shaders/baby_body.gdshader",
+      "sha256": "978592d58e241a95ad371ce08cc0e195c4b04d78b05b5d5f516ea7ec6459c5bd"
+    },
+    {
+      "path": "godot/shaders/baby_body.gdshader.uid",
+      "sha256": "cd902e1780f007bc421ea3c1948e00e2127a0d12e4c55d5d51d1498c3817de39"
+    },
+    {
+      "path": "godot/shaders/boss_life.gdshader",
+      "sha256": "91b38cc07b6de48374ced430a0e590c973a498444b5957d7d71dcc29887dc1b7"
+    },
+    {
+      "path": "godot/shaders/boss_life.gdshader.uid",
+      "sha256": "cfafe92b777b9c0306d629bcb563a7c3a4ecc0bd085005a4719bb60bcae28cab"
+    },
+    {
+      "path": "godot/shaders/character_details.gdshader",
+      "sha256": "6a57f95df6be1b890cba27f605f1ce86c8f156e65b22a1743380859f658a4a5b"
+    },
+    {
+      "path": "godot/shaders/character_details.gdshader.uid",
+      "sha256": "28ccb3abb9c1eb77a56cc676d06309bbcc7de134e1a2db2b43dea9df141e9e92"
+    },
+    {
+      "path": "godot/shaders/character_details.gdshaderinc",
+      "sha256": "3cc82b6cae73aad3bf7863bff56a1ff9ff325ac81d610868f0a6703005139116"
+    },
+    {
+      "path": "godot/shaders/character_details.gdshaderinc.uid",
+      "sha256": "5292350e599a8b3e7c5ef267c96a64fdce58e5185e4969609ef599e02472a329"
+    },
+    {
+      "path": "godot/shaders/cinematic_grade.gdshader",
+      "sha256": "3077a38380afdf99ccf0498cea2f195ed3e079f2ce3f2f449fe91da49482961b"
+    },
+    {
+      "path": "godot/shaders/cinematic_grade.gdshader.uid",
+      "sha256": "4e57f8bed81822183346332c86ea5254a009e40424a4fc6730adf30384cae358"
+    },
+    {
+      "path": "godot/shaders/creature_portrait.gdshader",
+      "sha256": "b19ecdad9aadfe0c9fb6e95760e3f883c60d3dc39d0e3e723335a45eeb6624f2"
+    },
+    {
+      "path": "godot/shaders/creature_portrait.gdshader.uid",
+      "sha256": "76efe683028c5690d1f351dc223a323b950967ecca3980448b8845284db9618a"
+    },
+    {
+      "path": "godot/shaders/creature_skin.gdshader",
+      "sha256": "ed4323753c869f664375d97112f1d290e463a08616090c19eab732cee42629b6"
+    },
+    {
+      "path": "godot/shaders/creature_skin.gdshader.uid",
+      "sha256": "c670446aa3975e255db41f34fec8c706ad297c1e98b1b79c35ff522607afcca4"
+    },
+    {
+      "path": "godot/shaders/depth_mist.gdshader",
+      "sha256": "b6d180e0b6e8042297f98e691d1a5ddc316c83a512fb4dbc0a3b9888d8eb76bb"
+    },
+    {
+      "path": "godot/shaders/depth_mist.gdshader.uid",
+      "sha256": "9d1d411f3328c3b43f48e7452126e73c5f903f578f94bf4be054949107c2da33"
+    },
+    {
+      "path": "godot/shaders/environment_flow.gdshader",
+      "sha256": "64153efeb5f3f8c77b4de19a7692477df734a43a9facaa3303b8b1cd3e8201bd"
+    },
+    {
+      "path": "godot/shaders/environment_flow.gdshader.uid",
+      "sha256": "79ff91011dc87630e121f0c2a2d1a6f8b63c1e516d2e5a6950c987e11e4f556c"
+    },
+    {
+      "path": "godot/shaders/friends_cavern.gdshader",
+      "sha256": "4ad69b25ea5216b3fbfd8f0a4240abc61a8fbd11b4948d0f14fdac740cb5c3e6"
+    },
+    {
+      "path": "godot/shaders/friends_cavern.gdshader.uid",
+      "sha256": "3a58e64d9fc43b401557131b00451c52c8fa1977218537d4769dee790cb5bb1d"
+    },
+    {
+      "path": "godot/shaders/nori_living.gdshader",
+      "sha256": "81f0c344397901c9bf73ffbc0e713a0ab60cc66b41e9d8ff0ef2e637aa8b32c2"
+    },
+    {
+      "path": "godot/shaders/nori_living.gdshader.uid",
+      "sha256": "0447166434e7d9d84351eb6633be9e3d907a13c56fd04b6cfa960babdb109fa7"
+    },
+    {
+      "path": "godot/shaders/ocean_transition.gdshader",
+      "sha256": "638cffd7bf6b94f8f0f33d63ac63f7ee6b241d613365dd8c95c614f860138a3b"
+    },
+    {
+      "path": "godot/shaders/ocean_transition.gdshader.uid",
+      "sha256": "7988f963ad7e7c54dc64547b5d818ca259f87e0fc912748c3599aa7f2060c988"
+    },
+    {
+      "path": "godot/shaders/opal_portrait.gdshader",
+      "sha256": "993b455984de5a05f0c40e974819ec1f3df0d26c5fe5935f43692f315579cc70"
+    },
+    {
+      "path": "godot/shaders/opal_portrait.gdshader.uid",
+      "sha256": "5a905285765e669bbe25ab6975729d3eea66bf2aa3d8057a1c946d3de0151d77"
+    },
+    {
+      "path": "godot/shaders/opal_projectile.gdshader",
+      "sha256": "ca10057f723591536862feecbb848333635875cc55d18b663748fd5da4de5b82"
+    },
+    {
+      "path": "godot/shaders/opal_projectile.gdshader.uid",
+      "sha256": "e3d6e59e1602661cd39d2c3848952f79083b8f1616e87c2de7ffa1b1a92594ed"
+    },
+    {
+      "path": "godot/shaders/opal_shell.gdshader",
+      "sha256": "230315d341dfb3992e4e39d222c14e1b9b1939d07b82d17292e73011c74dce34"
+    },
+    {
+      "path": "godot/shaders/opal_shell.gdshader.uid",
+      "sha256": "b17e2aa0929dfe7879e3d9ed461c21d13646f30bd34837f28dac1ae8fc506d05"
+    },
+    {
+      "path": "godot/shaders/painted_depth.gdshader",
+      "sha256": "d24a17763cee7a5d4e44737eab7ed6ff300aa6a4302b7cbbda9c629290fac66f"
+    },
+    {
+      "path": "godot/shaders/painted_depth.gdshader.uid",
+      "sha256": "0b53851b50e1b9fd4566ca4d38f21ec7c78a270a918243a53f767c6eb874fbef"
+    },
+    {
+      "path": "godot/shaders/reef_material.gdshader",
+      "sha256": "b603633e589eedb6de08340dd3270f0937a83e1e261146971504cc91253fd6b4"
+    },
+    {
+      "path": "godot/shaders/reef_material.gdshader.uid",
+      "sha256": "778790d1f6f0b9ff7979494e77ac040d9220d1c8e0aab91a44e9fdd72f607dee"
+    },
+    {
+      "path": "godot/shaders/reef_rock_relief.gdshader",
+      "sha256": "ab133f695bcc62848ffdc2d48610e281a4bf716bfa3f31bf80338e0233c5195f"
+    },
+    {
+      "path": "godot/shaders/reef_rock_relief.gdshader.uid",
+      "sha256": "a947bf94bf594d36b3eac205fb82ab33a6de63e582a997336bee79b1caf4d80f"
+    },
+    {
+      "path": "godot/shaders/royal_body.gdshader",
+      "sha256": "4f6d65abdc765f652152f7ecce7ea764ebadd52042b92729ad29e1ac26615ae8"
+    },
+    {
+      "path": "godot/shaders/royal_body.gdshader.uid",
+      "sha256": "c582d0c335bb5840a14e80030f0c137b3e88d632ce64fbe3baead696e656c65e"
+    },
+    {
+      "path": "godot/shaders/sarah_body_view.gdshader",
+      "sha256": "8627851827a39c17aa5c08c7972d9784bc726b880d8cef6c511e3da7b59e4b85"
+    },
+    {
+      "path": "godot/shaders/sarah_body_view.gdshader.uid",
+      "sha256": "434ea95990caa2337b316ca3641a991d2945022f4002349c8cd5b3424431130c"
+    },
+    {
+      "path": "godot/shaders/sarah_camera_portrait.gdshader",
+      "sha256": "b734d8011c0a700471a0246f87a875843e34cbcd7c5d29874f84d93eb0880ccc"
+    },
+    {
+      "path": "godot/shaders/sarah_camera_portrait.gdshader.uid",
+      "sha256": "c1d0235ca076a4d077ee5ee56ab83b75d47ca1f12990c97fd670bef283f27261"
+    },
+    {
+      "path": "godot/shaders/sarah_face_details.gdshader",
+      "sha256": "57e09dc9d25700e02c64e5d166dbc467ab0bef57c11a2a691711c452b2b1e5bc"
+    },
+    {
+      "path": "godot/shaders/sarah_face_details.gdshader.uid",
+      "sha256": "f53f3de79a8c20d8421a26f6bb5fdd72a6960e2506323c90d7366544479b5832"
+    },
+    {
+      "path": "godot/shaders/sarah_front_arm.gdshader",
+      "sha256": "e900b99e57ad4d30c0dc7da4fc15beec94372d4807f4696edb778c3d8b0e61a5"
+    },
+    {
+      "path": "godot/shaders/sarah_front_arm.gdshader.uid",
+      "sha256": "bd02fdef5a22b47683e8563342f7295674846a760778d3dea0863370a4513cf5"
+    },
+    {
+      "path": "godot/shaders/sarah_scales.gdshader",
+      "sha256": "45cd6a4718b2643f6e4faaa52be38845e01f15543f82e87d802a5dc4ba9944d0"
+    },
+    {
+      "path": "godot/shaders/sarah_scales.gdshader.uid",
+      "sha256": "b55d47e50dbd0805b4dfbba57b2dbcb1dc8d7b3f807286a89e3c8f8a42085258"
+    },
+    {
+      "path": "godot/shaders/sarah_volume.gdshader",
+      "sha256": "77358be924179b1680125899577f7c779e4f5e62a1a1d48f09a69215d825dc9c"
+    },
+    {
+      "path": "godot/shaders/sarah_volume.gdshader.uid",
+      "sha256": "a2988b95185aa20c750e176c60962c56ae26bd8179dae42cb549f4c0ca7b3b2f"
+    },
+    {
+      "path": "godot/shaders/shallows_light.gdshader",
+      "sha256": "3e75ff1e84b9fa46bb900876ada867224cf32ade59753f98f339542e8c20b29e"
+    },
+    {
+      "path": "godot/shaders/shallows_light.gdshader.uid",
+      "sha256": "f14370785d4d21b1ab4eeb27d46f4dc632991fd0ff195fdc0f941570db803bd3"
+    },
+    {
+      "path": "godot/shaders/subtle_refraction.gdshader",
+      "sha256": "ce7d540c1d078ac0b2864eff6a54719857b4abe87d06b28aac431bdb953990ea"
+    },
+    {
+      "path": "godot/shaders/subtle_refraction.gdshader.uid",
+      "sha256": "44989ce2b3b49df70192ebcb74236488cfefa02b95b6944c3fbc7c33f9fe504e"
+    },
+    {
+      "path": "godot/shaders/title_lagoon.gdshader",
+      "sha256": "e151e6e8affdabe76519c69f144330deabc1fa53f0ae4414878a098db5565c9c"
+    },
+    {
+      "path": "godot/shaders/title_lagoon.gdshader.uid",
+      "sha256": "594a4a9d2bd470b685a048ff595ed9fbc1f5d9b5596d4f287615ca3a3d9f1676"
+    },
+    {
+      "path": "godot/shaders/tutorial_garden.gdshader",
+      "sha256": "6efbff9e5eeda16b79ee4cd0c2387905fc6f548be3fe962e5e596568c84e42a6"
+    },
+    {
+      "path": "godot/shaders/tutorial_garden.gdshader.uid",
+      "sha256": "00dc71156813ee8c9b3bd62b5813a0b6ffabaeeed5a3b29459c67fd6bbffa5b9"
+    },
+    {
+      "path": "godot/shaders/tutorial_grotto.gdshader",
+      "sha256": "41ec717feb8ccd48813a0364ec58b4d475da67249cb6c10613c1bdcf0ce835f2"
+    },
+    {
+      "path": "godot/shaders/tutorial_grotto.gdshader.uid",
+      "sha256": "c17b83be2a7d4e14e3335cac0ada648adad7953295279140dbbdb84f508e8d0b"
+    },
+    {
+      "path": "godot/shaders/underwater_caustics.gdshader",
+      "sha256": "36108a9c1325b01b3512fda4214648b09a42357a1186b97e25f113e672176a8f"
+    },
+    {
+      "path": "godot/shaders/underwater_caustics.gdshader.uid",
+      "sha256": "84f012cdd6a42d612bf9e472438394088985355b63ebf2f99847345576697fa3"
+    },
+    {
+      "path": "godot/shaders/waterfall_cavern.gdshader",
+      "sha256": "5e17d968ab06b2ea6feb4edf2732572d5f226b57e0e647f46925427a9c28534d"
+    },
+    {
+      "path": "godot/shaders/waterfall_cavern.gdshader.uid",
+      "sha256": "2b19243555df9116fb26bbf94b3143fa1e687c80bdf794cb03339f63e9d4f301"
+    },
+    {
+      "path": "godot/shaders/whimsy_neighbour.gdshader",
+      "sha256": "e93d8a4f71594c76a01a5d41272bbecd88854564cf2319f55d96597b951c444c"
+    },
+    {
+      "path": "godot/shaders/whimsy_neighbour.gdshader.uid",
+      "sha256": "b4fa71b1e1a7e02427acbe35f3e1c990a0a451c86c5b235fbc5b634acbe25d4f"
+    },
+    {
+      "path": "godot/shadow_kingdom.tscn",
+      "sha256": "d6f258f99ed0ef2b2453b208229a656d51efdd8fb7a89e3c23e2d0ec748d706d"
+    },
+    {
+      "path": "godot/source/levels-v82.json",
+      "sha256": "aae3524fb84f07b20ad76dd2f5dcb8dab9141e3841d3c85608cd12cd759d7039"
+    },
+    {
+      "path": "godot/terrain_painter.gd",
+      "sha256": "2ad1dbd0edec3dc09ad1a45985241486c81c49166005344248597fcab2263802"
+    },
+    {
+      "path": "godot/terrain_painter.gd.uid",
+      "sha256": "d7884140c150b775a3408c7fea946ecc8eedf15acf401254148403d55ae3f9d4"
+    },
+    {
+      "path": "godot/title_flow_test.gd",
+      "sha256": "0772ccb86362c5f19cb0127322e4520a1338268130ad759d0680f1ff56604dff"
+    },
+    {
+      "path": "godot/title_flow_test.gd.uid",
+      "sha256": "05082aa9c6b4bd597dcbb5150f73bc60070bfd5525595532ebe444709e57d117"
+    },
+    {
+      "path": "godot/title_screen.gd.uid",
+      "sha256": "93ad34abdabe91eb76a41467a43238daf88b87266a54c69e2d9efc6a67f61881"
+    },
+    {
+      "path": "godot/title_screen.tscn",
+      "sha256": "35a4b5f375bb51eaad903fbb4eeab473cd701efb9308666e08d61e2be11f1a04"
+    },
+    {
+      "path": "godot/tools/boss_visual_audit.gd",
+      "sha256": "df45cfe0a6701f50be52a07ad8fdc0b9789d27de407784fa832cbf932a5254fd"
+    },
+    {
+      "path": "godot/tools/boss_visual_audit.gd.uid",
+      "sha256": "d9645bf19704701ebd05613947177c2150a5868152769363dba4c26e9f578b0f"
+    },
+    {
+      "path": "godot/tools/build_opal_atlases.py",
+      "sha256": "32ed23b370eb9fccaee8a6d384d68d51262e81f3b3fe74f1b0af51593725b309"
+    },
+    {
+      "path": "godot/tools/capture_neighbour.gd",
+      "sha256": "0cf06f1b67adc3be6ef99a10cf86cabc9bca8694f7ae68b304b874400f71a2dc"
+    },
+    {
+      "path": "godot/tools/capture_neighbour.gd.uid",
+      "sha256": "5b3f91c0a4d4c6295fc44ffaac6cadea677910a69f62f82cf2a3d2ae78ed0d18"
+    },
+    {
+      "path": "godot/tools/cavern34/capture.gd",
+      "sha256": "2db258d9a069d61eac811b2e9e2be1de95d71904ebf63314c78289599fd82a03"
+    },
+    {
+      "path": "godot/tools/cavern34/capture.gd.uid",
+      "sha256": "09a556fce943fef39a476005f3563d278ceef748c903b441e54b2cb41b518ee1"
+    },
+    {
+      "path": "godot/tools/cavern34/export_smoke.gd",
+      "sha256": "6e9c7ea384b4da503c7486bc46bb2cd648e2d982d782a03c4224ae6bcbfd687c"
+    },
+    {
+      "path": "godot/tools/cavern34/export_smoke.gd.uid",
+      "sha256": "4856e7e5081b49abf85858043101c6ad22aa6a39f7e833fb16548e8ea9d21ee5"
+    },
+    {
+      "path": "godot/tools/cavern34/polygon_check.gd",
+      "sha256": "7a937b7310b03dc7c218346e571ae99395e4135b25f4e350f3c224cde2602c9c"
+    },
+    {
+      "path": "godot/tools/cavern34/polygon_check.gd.uid",
+      "sha256": "11de6b69a183a6d7ac9863ae94cff50203d0211879532a21ddda73d72338051f"
+    },
+    {
+      "path": "godot/tools/cavern34/preview.gd",
+      "sha256": "51adca7f19b3f51a4fd7005533980b2c1669a3333f3d9bd25d40d4ffd24edbfa"
+    },
+    {
+      "path": "godot/tools/cavern34/preview.gd.uid",
+      "sha256": "ac3aa4fcf6822d7121e53e300113f0b44b56a134b9524df2113fe60157de01f1"
+    },
+    {
+      "path": "godot/tools/character_details_preview.gd",
+      "sha256": "879c75000bebac7d670a1e4d7477bb9c611ba8a7326616d4eb2f5e7cb07258e1"
+    },
+    {
+      "path": "godot/tools/character_details_preview.gd.uid",
+      "sha256": "19c0e0fbdd2feebe1cc15b6ce977186d6754658894c98eae2e9734aa1a05c30e"
+    },
+    {
+      "path": "godot/tools/connected36/export_smoke.gd",
+      "sha256": "17fe6b812aaad6baf060a229cb5f14dcc078463bdebdf46313369b72ad766a69"
+    },
+    {
+      "path": "godot/tools/connected36/export_smoke.gd.uid",
+      "sha256": "101974fd939b3f94eac025c9d63cf5d9648096baa321f2851bab79bb1faa1e22"
+    },
+    {
+      "path": "godot/tools/connected36/opening_movie.gd",
+      "sha256": "991e0a8721391f410af2935f01dc5f407567d242cf6d3a87aab13168dfa34100"
+    },
+    {
+      "path": "godot/tools/connected36/opening_movie.gd.uid",
+      "sha256": "4e38b4bad724d2dc11327f14b4aa8cfbc51d31684aff88c725e27f86e63424fc"
+    },
+    {
+      "path": "godot/tools/connected36/qa_active_benchmark.gd",
+      "sha256": "d06a9d49af3019dcef54b665bde6208e83431173f232ad5e3f42b0f1f874813d"
+    },
+    {
+      "path": "godot/tools/connected36/qa_active_benchmark.gd.uid",
+      "sha256": "8199c69d675d6a0249384088eb8ff5dfa9c3d8b7ec05f6126d9809b75b2a7abf"
+    },
+    {
+      "path": "godot/tools/connected36/qa_family.gd",
+      "sha256": "97de4cd959963091000f947e635e29a10ad4b54c63034b7663899eeb562301a5"
+    },
+    {
+      "path": "godot/tools/connected36/qa_family.gd.uid",
+      "sha256": "13fa5ff1b91a7382cf0f5ee00337d08010c6600252ece5f63873663fb19830d5"
+    },
+    {
+      "path": "godot/tools/connected36/qa_opening.gd",
+      "sha256": "de90f25a49a605d2680487fa99a5a8ec71786fb74a0d8e901dca517b3800b2bb"
+    },
+    {
+      "path": "godot/tools/connected36/qa_opening.gd.uid",
+      "sha256": "462b84ce52218200dc5ac059d263a7c0c1d02360521518bfa763b30fcbd848bf"
+    },
+    {
+      "path": "godot/tools/connected36/sarah_turn_review.gd",
+      "sha256": "11d0a2015d28d2bcabb2fb272c7c31e5bde36f824e2e4fbb3661a9337f27e89f"
+    },
+    {
+      "path": "godot/tools/connected36/sarah_turn_review.gd.uid",
+      "sha256": "0f783c4ddb5fb91c7995719b8eda57f013f91813c2b54baacc5152c2a2a559b4"
+    },
+    {
+      "path": "godot/tools/connected36/windows_integrity.gd",
+      "sha256": "70c46d85b50e2195c46dac9570ae5da0a84e30a6b61131605b2e4b6e34bbae95"
+    },
+    {
+      "path": "godot/tools/connected36/windows_integrity.gd.uid",
+      "sha256": "ccb2d3b4feae12b173fc351ee50f8c9b1d5f9b847e4bf47d5b7a32cd4d71cc30"
+    },
+    {
+      "path": "godot/tools/conversation_visual_audit.gd",
+      "sha256": "c29c4d76ce3f0c0108d97b67825636a1dc5ca6203ecc551525fd27870a3e1e6e"
+    },
+    {
+      "path": "godot/tools/conversation_visual_audit.gd.uid",
+      "sha256": "6aeef55449dd77fd7a4a6508ec318e7a4dc66b71ea7eb9a22b38f73bcf20c1e5"
+    },
+    {
+      "path": "godot/tools/cute_reactions_smoke.gd",
+      "sha256": "7fa8be8ca99f7e8d884f70dcf714ab221786a9cd20ff071e1572e8682712980f"
+    },
+    {
+      "path": "godot/tools/cute_reactions_smoke.gd.uid",
+      "sha256": "bcd88ebb250ebc5cbf65540f93490f05560dc686258a3d36063b2edac1926c05"
+    },
+    {
+      "path": "godot/tools/deep_routes_visual_audit.gd",
+      "sha256": "04ab317f429fbc1e68393b436c6d4c93ee18ac3b58d0e2da68de7f4a4a462ffa"
+    },
+    {
+      "path": "godot/tools/deep_routes_visual_audit.gd.uid",
+      "sha256": "4080006132ab5c256acf41ac12af992ffab8d4f93d53e2232fed2591101ab480"
+    },
+    {
+      "path": "godot/tools/geometry_equivalence.gd",
+      "sha256": "1acacd865ab758278877c6ee4f47bb9900e11a7a93078e592550089e921b13d4"
+    },
+    {
+      "path": "godot/tools/geometry_equivalence.gd.uid",
+      "sha256": "5b891c9865db86222bfc996963cfd48ceaa9ee2bc9acac0c1aa826db793e22dc"
+    },
+    {
+      "path": "godot/tools/grace35/benchmark.gd",
+      "sha256": "29e3ac9cadeb872d4127643be7535c3031ac0454b1746da312fed2a7bbf5e60a"
+    },
+    {
+      "path": "godot/tools/grace35/benchmark.gd.uid",
+      "sha256": "bc2e046346d954f6deb46d7384e413b88d62340c0f3c1ce99733e927171e71f3"
+    },
+    {
+      "path": "godot/tools/grace35/export_smoke.gd",
+      "sha256": "7e7a4636060f0605d7ce83a42a505cec794111480bdc4342a224f4c3217a4eab"
+    },
+    {
+      "path": "godot/tools/grace35/export_smoke.gd.uid",
+      "sha256": "255e5da39c84334fe23e8bfe7ca9c5e50b8cf62a97c3271d81d141da5d1f8da5"
+    },
+    {
+      "path": "godot/tools/grace35/frame_benchmark.gd",
+      "sha256": "131824ced6e3ce1fb77d9de10a113fa591b2d28653f110368c538ad9e8a37ad8"
+    },
+    {
+      "path": "godot/tools/grace35/frame_benchmark.gd.uid",
+      "sha256": "7cd5dc9599b4cef8503b4df94571ba05f8743c795f4f8355931c8b4358fd7a3e"
+    },
+    {
+      "path": "godot/tools/grace35/gameplay.gd",
+      "sha256": "c6170d77f4bfc5301a7ba3747aba41ae946fa4019f894a905cfcf4122bb8aa42"
+    },
+    {
+      "path": "godot/tools/grace35/gameplay.gd.uid",
+      "sha256": "1ae61a0f587d6172a9efd86c2bf39e2e16bcc1f31b326aa8f3b003693a26b5ea"
+    },
+    {
+      "path": "godot/tools/grace35/review_motion.gd",
+      "sha256": "b27d30d872e833b2e6d5b5f77d2dac0016814662c1e7140a6560d4563d3ea9f3"
+    },
+    {
+      "path": "godot/tools/grace35/review_motion.gd.uid",
+      "sha256": "219d6fc1fd3223b422d182683742028249520960ed77ab719fefcb8869a659b0"
+    },
+    {
+      "path": "godot/tools/journey_stress_audit.gd",
+      "sha256": "b5ca1dde25b9b31450f0b088d7791b898ff5f05fe3beeed5d7b8e3f3100ae046"
+    },
+    {
+      "path": "godot/tools/journey_stress_audit.gd.uid",
+      "sha256": "c4526dfeb7e66d811762401c6fe5ddcb9026c819d482493036e4fd5733f88736"
+    },
+    {
+      "path": "godot/tools/journey_visual_audit.gd",
+      "sha256": "8b172cf49d44eb833939ea61f6dd4bb3abf3cec535039830718277ba50992c46"
+    },
+    {
+      "path": "godot/tools/journey_visual_audit.gd.uid",
+      "sha256": "39b6b674649698e61693c30fb23c3ed937157766d4df925a55c18f8b93afe589"
+    },
+    {
+      "path": "godot/tools/little_moments_audit.gd",
+      "sha256": "4575971c922256034b82d8d6960ff320ba4513502ed0861f1d0e20a2ae371ade"
+    },
+    {
+      "path": "godot/tools/little_moments_audit.gd.uid",
+      "sha256": "f2dec362d150374b757a991ba46b6dddde98fad1933b080ff98281dd874fe2c2"
+    },
+    {
+      "path": "godot/tools/little_moments_movies.gd",
+      "sha256": "7a64ef66010603de7b5eda2e3a1e3ecbd5db3ee4b982324fe8c59d6ffd0e187c"
+    },
+    {
+      "path": "godot/tools/little_moments_movies.gd.uid",
+      "sha256": "eed9cbd167d8c536e7c0387cbc4aa3ed80e21be9289b190cc7c653ac80287f3f"
+    },
+    {
+      "path": "godot/tools/little_moments_performance.gd",
+      "sha256": "1b854155b16caf3d6108b8c9c155ba63a49e71ccd7dd671da83904fa59ebe97e"
+    },
+    {
+      "path": "godot/tools/little_moments_performance.gd.uid",
+      "sha256": "06409b02d3e993b4a9f05c03be2820fdba620108cc31a626be771ae9d7cca980"
+    },
+    {
+      "path": "godot/tools/little_moments_phone_audit.gd",
+      "sha256": "761408f9881990d020716243f2112261cf6fd4254048c7e238cbd7acecc0a79d"
+    },
+    {
+      "path": "godot/tools/little_moments_phone_audit.gd.uid",
+      "sha256": "193515a6416984c18908a996543bda21ac21a352e1469f2d088c7e83c98ae965"
+    },
+    {
+      "path": "godot/tools/living_reef_performance_audit.gd",
+      "sha256": "99264448c6c3a5c17d0d202fd13e2c116248b90e93b68d56eae19041b23f43fb"
+    },
+    {
+      "path": "godot/tools/living_reef_performance_audit.gd.uid",
+      "sha256": "eb159881cbf6e6c1d879deb03a869ad23d0ba188d640c20eea601ce19dc86721"
+    },
+    {
+      "path": "godot/tools/living_reef_visual_audit.gd",
+      "sha256": "2fdda5b89e3418e2c5257abdb75661affee0689faa4b310af7f111d9f857aaba"
+    },
+    {
+      "path": "godot/tools/living_reef_visual_audit.gd.uid",
+      "sha256": "80746878050b9840d48a062f246ea2f09a2cea4178220ae37c55acfbcf52089f"
+    },
+    {
+      "path": "godot/tools/make_ocean_audio.py",
+      "sha256": "903140b1ab4a207f33ce28363f5c5ef8cd10cb3a8946bccfc65911cecc32f86e"
+    },
+    {
+      "path": "godot/tools/opal_stress_audit.gd",
+      "sha256": "d7ad9b8df2f1202a8cdf081706d37638f5f06eda778c8dd58e11218c6d9114fd"
+    },
+    {
+      "path": "godot/tools/opal_stress_audit.gd.uid",
+      "sha256": "462d9a0312c567cc1e68b71951c43dcb00f0ae94b1f00fdbde0726aa292fe119"
+    },
+    {
+      "path": "godot/tools/opal_stress_sample.gd",
+      "sha256": "2a3e2c2e327c244692b95443da6ee019c70ad4f48a157517e5d07bcc5fffb0d7"
+    },
+    {
+      "path": "godot/tools/opal_stress_sample.gd.uid",
+      "sha256": "4868b4d69f2b4dcf368b7bed60e41c4b060e2ba39dbc80768cb83d6d21dfbf0d"
+    },
+    {
+      "path": "godot/tools/opal_visual_audit.gd",
+      "sha256": "b3e675a29166a8d0fbfe654c3e6c6d35cd4591dd7c387fadb266594732b9b9ac"
+    },
+    {
+      "path": "godot/tools/opal_visual_audit.gd.uid",
+      "sha256": "5d63e0a9df8713f395cc4e3872cd1ec9a783317a9501abd31fd7bbbe208d2e17"
+    },
+    {
+      "path": "godot/tools/pearl38/capture.gd",
+      "sha256": "c746a7517069d02362b7697c49cc8a31b473c355b5330f8317f225419da00d8a"
+    },
+    {
+      "path": "godot/tools/pearl38/capture.gd.uid",
+      "sha256": "52f8f72712369fe85b67f2c76aa7a4ee60124440755126b6a40bc1ca407dbf6a"
+    },
+    {
+      "path": "godot/tools/pearl38/design_board.gd",
+      "sha256": "cd85954545c1b920db04a9b50aa0deda03c89b96353d992ac40794d7fdb907da"
+    },
+    {
+      "path": "godot/tools/pearl38/design_board.gd.uid",
+      "sha256": "35aeb840d660e7626ae4fd6547f8f01ba1ae819795590c42b3eaeea57ad3fb0e"
+    },
+    {
+      "path": "godot/tools/pearl38/movie.gd",
+      "sha256": "21c365ccd46eda3cb20d17455f2d21fba78e4ea0187e50f845c06f6da62fe923"
+    },
+    {
+      "path": "godot/tools/performance_audit.gd",
+      "sha256": "372c16020e4c10b20f4fe83d23467c8a5494fe0014a9ed8302a800675f76d35d"
+    },
+    {
+      "path": "godot/tools/performance_audit.gd.uid",
+      "sha256": "78979f3cfbf28e7707f7e76cca8641f7d094257777b14b74c3994bf423af461e"
+    },
+    {
+      "path": "godot/tools/pocket_wonders_performance_audit.gd",
+      "sha256": "21dc7775d9abcadf81e061cb5b5e461a336b509e46dd395f9d2870844e1e7c14"
+    },
+    {
+      "path": "godot/tools/pocket_wonders_performance_audit.gd.uid",
+      "sha256": "8b771f38bee3597e0c6bc9334c90158611e564d7d3631a2cf380cfd18ffdbe7a"
+    },
+    {
+      "path": "godot/tools/pocket_wonders_visual_audit.gd",
+      "sha256": "cb85ad4e66e3f9ece0b120e7b24e3edebfcacc38b45d02a1cf074f4ddb3807a4"
+    },
+    {
+      "path": "godot/tools/pocket_wonders_visual_audit.gd.uid",
+      "sha256": "c673713c6eae24a8c847d2c4a0ed972dba52cf28f4502d895c2f64305648263f"
+    },
+    {
+      "path": "godot/tools/polish_persistence_audit.gd",
+      "sha256": "e93078262352b6b239c2e37a827aadc33ffe8761796bee5cffef4a6c1e838a6c"
+    },
+    {
+      "path": "godot/tools/polish_persistence_audit.gd.uid",
+      "sha256": "f8409534f682088b32f697935a672348afc27e6659560aec8d21b7d2d9d86769"
+    },
+    {
+      "path": "godot/tools/polish_visual_audit.gd",
+      "sha256": "c2ffe1081da1d69fd08e79d71a45d0d2eb233b6d1283b77dd80faf336be521a7"
+    },
+    {
+      "path": "godot/tools/polish_visual_audit.gd.uid",
+      "sha256": "de8dbfb3e94bff09eb4248ee186db936fa9cfa11a040947dd68f459e2d7ec0d7"
+    },
+    {
+      "path": "godot/tools/royal36/REBUILD-BINDINGS.md",
+      "sha256": "09e5c7b897436b4dae97c0128847d2c6ccd39b405ff66d06a0ba79ecd9dfed15"
+    },
+    {
+      "path": "godot/tools/royal36/audit.gd",
+      "sha256": "3f65b8e3bb955a77878f87490022b7372539655c0eb432ab8aeaa23a0b369877"
+    },
+    {
+      "path": "godot/tools/royal36/audit.gd.uid",
+      "sha256": "e61db90efa97368bed9d23a14b4bfa19290fbdae878f2f89bc58d2fa17043382"
+    },
+    {
+      "path": "godot/tools/royal36/deformation_probe.gd",
+      "sha256": "eb99be2e40c655db3cab7807e4a0bbd457a153df9f8bff29f539c0f2412ca0e3"
+    },
+    {
+      "path": "godot/tools/royal36/deformation_probe.gd.uid",
+      "sha256": "a17efcd79f2187983950b9baa2ca99aff2e3b71c9e306c5d224db315e5f86dea"
+    },
+    {
+      "path": "godot/tools/royal36/generate_bindings36.py",
+      "sha256": "576312c5bee47a55d890ffe839c8d90fe2a1df781867f3defcb2f774f03e1cea"
+    },
+    {
+      "path": "godot/tools/royal36/hand_final.gd",
+      "sha256": "649e5ae34b65301122872de656ae8fff3dc142ce9cefb162c22f8eee01cc7768"
+    },
+    {
+      "path": "godot/tools/royal36/hand_final.gd.uid",
+      "sha256": "a24a85f257e33fac2977a994a09f72e3e9cc432c39502d10f0788243a7feeb40"
+    },
+    {
+      "path": "godot/tools/royal36/mesh_probe.gd",
+      "sha256": "f9f9bf38acd599068cef67dd57434fa883ae6f00fae0094b7b44c2cb78319f9f"
+    },
+    {
+      "path": "godot/tools/royal36/mesh_probe.gd.uid",
+      "sha256": "d29750a4613b7c24180f937d422ab512abd4aafcd0fc1c0af8ef053afb93b09e"
+    },
+    {
+      "path": "godot/tools/royal36/performance_review.gd",
+      "sha256": "e3f65683f3c6491a25978d1975caf2708133e238e2520094066ab8f5aa052fc8"
+    },
+    {
+      "path": "godot/tools/royal36/performance_review.gd.uid",
+      "sha256": "c689856033768f7c995ddd7e4cffef8738e2328e4b61e83ac76f766b56a641b0"
+    },
+    {
+      "path": "godot/tools/run_regressions.py",
+      "sha256": "466cb86c8e91fdc559a909bfb883a444ef4d5facfc73cbd6e0b748c019377c45"
+    },
+    {
+      "path": "godot/tools/sarah_21_audit.gd",
+      "sha256": "ce2a03a424845af2863f7373ef71ab1ee67f72b9542fd62fa14b6a4b1ba17646"
+    },
+    {
+      "path": "godot/tools/sarah_21_audit.gd.uid",
+      "sha256": "172a391b53ec295f002a45f832fc628081f147a2cbb50aa7c694870cfa679b1b"
+    },
+    {
+      "path": "godot/tools/sarah_21_movies.gd",
+      "sha256": "e27c185c734bd6f4bf7ea6e0997a1748b6aa1f570403dca94a6731da8b130c2a"
+    },
+    {
+      "path": "godot/tools/sarah_21_movies.gd.uid",
+      "sha256": "1156d62a07be34feb0af32f8e50888731ced4207a0c6caa2c1ba53000dee9c30"
+    },
+    {
+      "path": "godot/tools/sarah_flow_layout_audit.gd",
+      "sha256": "1a3230e94218f0d97b0a26c0ea467bb31608b1ef8937cce07a35ab4a452851a4"
+    },
+    {
+      "path": "godot/tools/sarah_flow_layout_audit.gd.uid",
+      "sha256": "e82dd2fb883a736b98f9b4293bf7c4f1c0bfeea0789eb191a30a5eda37dd50e5"
+    },
+    {
+      "path": "godot/tools/sarah_flow_movie.gd",
+      "sha256": "4eeb66ebe80fa5314e7c5464f7c80583f26fc0379ef6a70fa2b6227408122b79"
+    },
+    {
+      "path": "godot/tools/sarah_flow_movie.gd.uid",
+      "sha256": "76c8060be8dc486e29561fedcd8cba261036ae4d7c0016f0ea4622e9e07e1717"
+    },
+    {
+      "path": "godot/tools/shallows_visual_audit.gd",
+      "sha256": "c998e16e9298f0b928fc13af34abfbd6e2c92eba30b6548560e0ddd1193e210c"
+    },
+    {
+      "path": "godot/tools/shallows_visual_audit.gd.uid",
+      "sha256": "058d3d43ef6a6c31da0b714108a766bed06fdb5c9f9bd5a7b0d701d31d4aa58c"
+    },
+    {
+      "path": "godot/tools/treasure_v031/capture.gd",
+      "sha256": "a2352b75b25df374db9413bd7b95d385fabd859068710a1fa63b82772be525cd"
+    },
+    {
+      "path": "godot/tools/treasure_v031/capture.gd.uid",
+      "sha256": "68f6820befcf95228b3a3486c59839c419d071f87d3cdb475071a34305107c32"
+    },
+    {
+      "path": "godot/tools/tutorial25_audit.gd",
+      "sha256": "4ada9c87aae5ee0aaa2b89521a2578dc3bab03517dbfb56b025bce0ca6ca3f51"
+    },
+    {
+      "path": "godot/tools/tutorial25_audit.gd.uid",
+      "sha256": "13acfa6d774fdc2233fa46940282bc05f3a22d04c789ae6786d11d5960e2057c"
+    },
+    {
+      "path": "godot/tools/tutorial25_movie.gd",
+      "sha256": "c1eaba90e379358d3a172e490b8165278cc59d44eb8e940f71df41ba19c5b18f"
+    },
+    {
+      "path": "godot/tools/tutorial25_movie.gd.uid",
+      "sha256": "21aaa812fa3a4c0d70b2e7b0773a5639587519304c7ddba173e1d02f456146f1"
+    },
+    {
+      "path": "godot/tools/tutorial32/capture.gd",
+      "sha256": "ff2143f3eb64526565c8a4c1ab84b87d37a90757d5a0049acc64033c75528e60"
+    },
+    {
+      "path": "godot/tools/tutorial32/capture.gd.uid",
+      "sha256": "9c8cf4a0ba1658a59134ae329ca631d3d1adac003624a695de4cebbd80e97a95"
+    },
+    {
+      "path": "godot/tools/tutorial32/export_smoke.gd",
+      "sha256": "34fd8860f9069b32137c54b10466554fd6ab5a97d119afa16ae398fa7f4979e9"
+    },
+    {
+      "path": "godot/tools/tutorial32/export_smoke.gd.uid",
+      "sha256": "af5f94eec776a3d72753a373f46b42e0609a81133ed1ddc0e9c509f372c78daf"
+    },
+    {
+      "path": "godot/tools/tutorial33/capture.gd",
+      "sha256": "dde9c3436293fd808cf16ae8063ef9d0029ba091786ad4253e718a46115b2216"
+    },
+    {
+      "path": "godot/tools/tutorial33/capture.gd.uid",
+      "sha256": "310653146391094f7998da37c479cdbe9fb1c04011c74c9fda08d5ffc0ec37ee"
+    },
+    {
+      "path": "godot/tools/tutorial33/export_smoke.gd",
+      "sha256": "83345d11f2145a2c1482ac28eac4cc95708b101bd3bf6d0fe14ba69e0227c60d"
+    },
+    {
+      "path": "godot/tools/tutorial33/export_smoke.gd.uid",
+      "sha256": "983ccdccb82460b4a5bfd724ccadd8349540aae1546d60b9834c180e597ee8fa"
+    },
+    {
+      "path": "godot/tools/tutorial33/review_native.gd",
+      "sha256": "d52dbb7f4621bce0dd05f899721f07b327fa15124f392f63ad5f73645926d209"
+    },
+    {
+      "path": "godot/tools/tutorial33/review_native.gd.uid",
+      "sha256": "4f80b3c18188d5124991d7523ba5be377f4664dad6c0863cf8187a0cc0611b48"
+    },
+    {
+      "path": "godot/tools/tutorial_family_review.gd",
+      "sha256": "0a58b4c85d9898b3f36181dc2e5fe9c73b2fb74cb25cbd69bc75c08b425b0bf6"
+    },
+    {
+      "path": "godot/tools/tutorial_family_review.gd.uid",
+      "sha256": "83b325d1add8a18d1fc42a2d50d7c75ea8ad9fb5d9334f89b1d077a2d87f2eee"
+    },
+    {
+      "path": "godot/tools/whimsy_bounds_audit.gd",
+      "sha256": "848a67e4397eecb3b469744b91b48622f7418996c7027664b9ad58494713b261"
+    },
+    {
+      "path": "godot/tools/whimsy_bounds_audit.gd.uid",
+      "sha256": "ed43e4ee91a686dec07fc32e334b098694a7b18a4295bbaee7c2bd6d7482e4e0"
+    },
+    {
+      "path": "godot/tools/whimsy_four_visual_audit.gd",
+      "sha256": "8071fad6ba11aaa697d0753cbc2ca23f9b344733ada959ca903b43be0f90be3b"
+    },
+    {
+      "path": "godot/tools/whimsy_four_visual_audit.gd.uid",
+      "sha256": "cbc13f7c2ecb62b38e8d69a0aa0955cdc12016e0aa9f7e78630d8d398c8726ef"
+    },
+    {
+      "path": "godot/tools/whimsy_performance_audit.gd",
+      "sha256": "92c22a48cffc8d22b3a350dfbbca8bc893720afa781d9379ea86818d052c77a6"
+    },
+    {
+      "path": "godot/tools/whimsy_performance_audit.gd.uid",
+      "sha256": "85c951ef6044e6eb6a314d8451f9bc08bb5faa6f99b1f57ecef72248105324fa"
+    },
+    {
+      "path": "godot/tools/whimsy_visual_audit.gd",
+      "sha256": "6a83990883d0658b4cf6ad876b9542a24d9c51a2dafba93e51d9b85412d91feb"
+    },
+    {
+      "path": "godot/tools/whimsy_visual_audit.gd.uid",
+      "sha256": "ee898121408652c0c4ebace2c312d251d2d06268129bd7b153a8f787d95b0f30"
+    },
+    {
+      "path": "godot/training_lagoon.tscn",
+      "sha256": "9c0eea9fba5beda80c7f6ebc4598aaab9819d62900c98f4479bfbde564b5be84"
+    },
+    {
+      "path": "godot/tutorial_art_director.gd",
+      "sha256": "cea0a9de236b8a5daa4e1246c2c18b11f7d8b5123adb684a5deaa0a66e8cc990"
+    },
+    {
+      "path": "godot/tutorial_art_director.gd.uid",
+      "sha256": "95c0a36222e87d3702dcfb2ff3f57a26f5e680fb8115287bf8187d05dabe0c42"
+    },
+    {
+      "path": "godot/tutorial_atelier_art.gd",
+      "sha256": "36222f52deccac0ea7fec541660fd748debf5469f888a7ee6bbf9194d57d2838"
+    },
+    {
+      "path": "godot/tutorial_atelier_art.gd.uid",
+      "sha256": "9035203b33fd857442cc3a38c2103f612cba8d4b834d4128fe6ae3955279efb6"
+    },
+    {
+      "path": "godot/tutorial_caption_regression_test.gd",
+      "sha256": "4305e2c9267096aec28ee88ca61a3b79ad864b355fa803a8962cf1d8cc52e6a8"
+    },
+    {
+      "path": "godot/tutorial_caption_regression_test.gd.uid",
+      "sha256": "4aed0a06d99fde9c776a16196b4821737c8bdfe5f61abd54c40aa353857f86d3"
+    },
+    {
+      "path": "godot/tutorial_overhaul_test.gd",
+      "sha256": "e393fbdb27fc232a4b9341a3aae57c8fe885b5b671bed7bfa21516dc1e7c7579"
+    },
+    {
+      "path": "godot/tutorial_overhaul_test.gd.uid",
+      "sha256": "07bdf290de6d59b997803e0973aee83d4a21450b276376a1f6f3938fe7b6b5ec"
+    },
+    {
+      "path": "godot/tutorial_reef_beauty.gd",
+      "sha256": "9f6ead5aee4e2ba9973a7cd6f3e0475cc352ec9e9001458c44702fb0b8c692dd"
+    },
+    {
+      "path": "godot/tutorial_reef_beauty.gd.uid",
+      "sha256": "be4c30cb5f85fd3b373e418fdc0a74c410dc13701010cc7163e0e3d91e3b20d6"
+    },
+    {
+      "path": "godot/tutorial_reef_beauty_test.gd",
+      "sha256": "92212fd9e48190e64b72c3c058a165acbbaf10f40483e04ce4971bd0659254f0"
+    },
+    {
+      "path": "godot/tutorial_reef_beauty_test.gd.uid",
+      "sha256": "fea814d5bcc85357ed0b283a18fbac0b2ee4518c49859c247ba7b2597cdceee7"
+    },
+    {
+      "path": "godot/tutorial_treasure_chest.gd",
+      "sha256": "80935d25e5b1e82aff4263a2bfc1661717b82fca2dda8c9f561c7168f9315104"
+    },
+    {
+      "path": "godot/tutorial_treasure_chest.gd.uid",
+      "sha256": "636c36fafc7bb9733c129a73772f6f42c7d8bd63facbe8f04443336f9c803fbd"
+    },
+    {
+      "path": "godot/tutorial_treasure_gallery.gd",
+      "sha256": "48a064b5e73ae1eeb912ce9c672c4ee9921f0be027dc3ca2cb52432d46aea84e"
+    },
+    {
+      "path": "godot/tutorial_treasure_gallery.gd.uid",
+      "sha256": "5b8302fde9b4aa884087f3dd1a9b03c48c70a138f8964148431ec8103746e2a5"
+    },
+    {
+      "path": "godot/tutorial_treasure_test.gd",
+      "sha256": "8bfb6a4636e357617dbcb7f82285d133a88685b35731709948f2e441935fde0e"
+    },
+    {
+      "path": "godot/tutorial_treasure_test.gd.uid",
+      "sha256": "5a32e5d3b06aa2cc327743570d423bbc745b03ea279e24ce628964174bcb9f0c"
+    },
+    {
+      "path": "godot/ui_card.gd",
+      "sha256": "68606185798d14f01057e91f9ad4003a7b6308f4bb07ac955e6715133744a7e2"
+    },
+    {
+      "path": "godot/ui_card.gd.uid",
+      "sha256": "917c1cbca44e0b222ec4c90e8d27e1a305ef8def675e5a9042f0c1915e4de774"
+    },
+    {
+      "path": "godot/ui_card.tscn",
+      "sha256": "71f725b96028da9f37de0922198954a7313a85399158a766c9c21b57f3722e7f"
+    },
+    {
+      "path": "godot/ui_kit.gd",
+      "sha256": "5240d2e9acc8c294b91b76ceaa50a65fc6e4a6d8855093110581dc36d1017204"
+    },
+    {
+      "path": "godot/ui_kit.gd.uid",
+      "sha256": "51a786e78c198f290ef9088bd9ef3a369519bcc86b168858b4f087ce11162443"
+    },
+    {
+      "path": "godot/visual_polish.gd",
+      "sha256": "0fd4b2b67b64dbb4821dcc347123a57b5116eaaa4b01faeabf682ce6925ff2d1"
+    },
+    {
+      "path": "godot/visual_polish.gd.uid",
+      "sha256": "46a7f5fde3f36912aea33ad6bd287a5e49cf5c57378e9d1bcc4b00757cf59eb0"
+    },
+    {
+      "path": "godot/visual_polish_test.gd",
+      "sha256": "f5454a87705dd1e898da0c3b36e0746172203ff546648415883d580a735f970b"
+    },
+    {
+      "path": "godot/visual_polish_test.gd.uid",
+      "sha256": "97b1bc7d6a87afd477231ea6a44643f699f35b2391dd0ccd63f6096d1287a756"
+    },
+    {
+      "path": "godot/water_surface.gd",
+      "sha256": "16273d606c15b109c6668d14f72e5b51f6f5465d23ccffb4f9cce47dd5fa008f"
+    },
+    {
+      "path": "godot/water_surface.gd.uid",
+      "sha256": "cb64ff42e2ce01672e3a028027ce6df757c0bbe25634929e08d73b06645636c2"
+    },
+    {
+      "path": "godot/waterfall_world.gd",
+      "sha256": "d637dfda2c8ca1a929b4a0eb28e99470639385040e54a9caeed31fbbbe5d6b83"
+    },
+    {
+      "path": "godot/waterfall_world.gd.uid",
+      "sha256": "8856cb2beb9c682b679ba708eef60ffe5ada660c2690fd668294fc03a2b45994"
+    },
+    {
+      "path": "godot/whimsy_four.gd",
+      "sha256": "d6107450db0d628ad13acf4ab3250564d3e4c7d1f71d0913b1433963fde913fa"
+    },
+    {
+      "path": "godot/whimsy_four.gd.uid",
+      "sha256": "f231729f1eab790651a3e9e09dbbbd18ff978bb1510de29c343398f396d8a3f7"
+    },
+    {
+      "path": "godot/whimsy_four_art.gd",
+      "sha256": "ab175b4d9694b3de9848d43ddeef9cae2a0f19bf2850c1508cba4dc3f87096fb"
+    },
+    {
+      "path": "godot/whimsy_four_art.gd.uid",
+      "sha256": "7abaa61626189407f89355e716096ac552da5481916cbb9e098220e2f626cfaa"
+    },
+    {
+      "path": "godot/whimsy_four_data.gd",
+      "sha256": "d26290413384548b579899f57b1b5d91503c8c8ea8c4d01d443cddc6f0053a98"
+    },
+    {
+      "path": "godot/whimsy_four_data.gd.uid",
+      "sha256": "42e50745de49def5f4a19b28624198748168c828358ba0f0de4e6f619ff8fed7"
+    },
+    {
+      "path": "godot/whimsy_four_test.gd",
+      "sha256": "901cfe9e05a1fbedbbb42fe9eaef27802925d0793886d45ed042db06ec643165"
+    },
+    {
+      "path": "godot/whimsy_four_test.gd.uid",
+      "sha256": "7a25246bdbe802258707d3b2dc1fa20a07f6e8ad37ffa31e1cd64fa4e40c7f94"
+    },
+    {
+      "path": "godot/whimsy_garden.gd",
+      "sha256": "e7ee0f7b10fceba9ed8129bb6ecafd7a45523300062eeebc010fa274f9f51949"
+    },
+    {
+      "path": "godot/whimsy_garden.gd.uid",
+      "sha256": "7370c6e9f0ff0c7a371d52f927ff613c64aacbea9ae3bf0c0afe6ab37f59e56a"
+    },
+    {
+      "path": "godot/whimsy_moments.gd",
+      "sha256": "3e65f61a5229c8d324b03ef2987d7536233b096b49b36eec2920e1d65ebf8ba7"
+    },
+    {
+      "path": "godot/whimsy_moments.gd.uid",
+      "sha256": "f8081117bb1ab36d215a51fd78590180eb4100dbdf6ffa6b3f9bbf1d1269520d"
+    },
+    {
+      "path": "godot/whimsy_test.gd",
+      "sha256": "46d81f2d8f05725fb4eacb2ad5ab691e18c9bba762d37f82794cb5eafc13dea1"
+    },
+    {
+      "path": "godot/whimsy_test.gd.uid",
+      "sha256": "00064833784628bd6fd3f446aa5a24a8a6bc6193f75a25dc8cb71d765a4d77da"
+    },
+    {
+      "path": "godot/world_depth.gd",
+      "sha256": "fc6af357d5d8ee2b40b4850d72870ef9880d9bffe3a04d1dbb586657bfa43ca2"
+    },
+    {
+      "path": "godot/world_depth.gd.uid",
+      "sha256": "63bb00a5ff1757e9bbf02dc2bd36db38ce0a50ee30130217dfe7012b3f1454db"
+    },
+    {
+      "path": "verification/connected36/SARAH-STRUCTURAL-REVIEW.md",
+      "sha256": "66f3cc7964ba6476459bde4ba1c5337d4b2434897bf3bc6de350990a88bebb7d"
+    },
+    {
+      "path": "verification/connected36/actual-gameplay.json",
+      "sha256": "77c343ec44d7c3298790d30a0802899c943e419120a89aa886cd049c4e3a3058"
+    },
+    {
+      "path": "verification/connected36/android/README.md",
+      "sha256": "5aa1421cad546796f3fa643096719baa567bab91e597893ff4274f9858183989"
+    },
+    {
+      "path": "verification/connected36/android/aapt2-final.log",
+      "sha256": "17c174c8f806f7e59bfb79fe6761f65eba459047ab18478017f31ae5d4be5a30"
+    },
+    {
+      "path": "verification/connected36/android/android-package.json",
+      "sha256": "9a1c751c136b0dcbe8db4e3e9f3ec52dcb3ba08520ac5544bab975785047d3d3"
+    },
+    {
+      "path": "verification/connected36/android/apk-resource-smoke.log",
+      "sha256": "e2852b3033d1c8d861290ba6f42d36b7c60b71fba46eff7066dc7e3a22d1dfd2"
+    },
+    {
+      "path": "verification/connected36/android/apk-royal-smoke.log",
+      "sha256": "49bb6d1ddae3e6b86e4b38259d0e84ae041a782e4f456edf79c216c96bf97c77"
+    },
+    {
+      "path": "verification/connected36/android/apksigner-final.log",
+      "sha256": "1413af210d1627fde4f14e31934eb5d9d031684e4f7a5c3371a74b3bdeb8764c"
+    },
+    {
+      "path": "verification/connected36/android/engine-provenance.json",
+      "sha256": "0278f915294d810d2b54b65190ca28f534bdc21a2e05528a24be782f51d9a097"
+    },
+    {
+      "path": "verification/connected36/android/export-final.log",
+      "sha256": "bc19af30b7802516fd492b9e9d6b6861b7ba81433cb1e635dc143b52d02ff496"
+    },
+    {
+      "path": "verification/connected36/android/native451-preflight.json",
+      "sha256": "9082d537b63fbf0e30c2667717d2b1483920c889ea412c9d552b5acccebb0101"
+    },
+    {
+      "path": "verification/connected36/android/vertex-order44.json",
+      "sha256": "b5112832776a950b35917d8c40d156910dcc853aebf33f9846d562b8e965ee64"
+    },
+    {
+      "path": "verification/connected36/android/vertex-order451.json",
+      "sha256": "51fee75877e234c5b3a52c58c41ce3f45eb59c9bfd025bcfc5ee865f99825c63"
+    },
+    {
+      "path": "verification/connected36/android/zipalign-final.log",
+      "sha256": "0093b81bab40d622dda135e04b90b27c84eabe87474f07defc97d9d880509926"
+    },
+    {
+      "path": "verification/connected36/connected-test-final.log",
+      "sha256": "a57f7e49d8aaa9bc02aa89b2fcad64ebaf6041bede01db21c51b8595f0417474"
+    },
+    {
+      "path": "verification/connected36/connected-user44-test-final.log",
+      "sha256": "b09cdda93ffc5c51fce63d52394358902d28bbf8e7b6d0ea803cb1c150460ea5"
+    },
+    {
+      "path": "verification/connected36/family_attention_test.log",
+      "sha256": "a9423f5e5dfd2513ebf2c110a74210d697a34eba2657719eee20017a268997a4"
+    },
+    {
+      "path": "verification/connected36/final-binding-integrity.json",
+      "sha256": "bfa86c1d1d9f44a72caf7b3bfee3d2e97b7e65a96b1325828323ed7285fd94ca"
+    },
+    {
+      "path": "verification/connected36/gameplay.log",
+      "sha256": "7278b288eac688d042b5e1e460ebee975ac6a7a8800bbe337c3ab2c66774fbbd"
+    },
+    {
+      "path": "verification/connected36/hand-deformation-metrics.json",
+      "sha256": "e7e2966e51afba24360c088f71097e847fb6e61c212429e568ddbd4cb6a3ea41"
+    },
+    {
+      "path": "verification/connected36/independent-turn-metrics.json",
+      "sha256": "81bdf44fb120e544b4391692b5cccce46c1e23fb4aa672f17e15bd6df7ecda82"
+    },
+    {
+      "path": "verification/connected36/opening-movie.log",
+      "sha256": "e5db106c87101b698224379c5dfbf0e109c5a962a43bbf4666a352e7ea1f55d6"
+    },
+    {
+      "path": "verification/connected36/performance.json",
+      "sha256": "eecc2c436dae835ca5e468b8b26cee723907146141ed9e01ee26dd966aff100c"
+    },
+    {
+      "path": "verification/connected36/preservation.json",
+      "sha256": "c056fc271f33e73617133b23ffdb8917eeeb47273b2ba7346590120586e5ea05"
+    },
+    {
+      "path": "verification/connected36/qa-AUDIT.md",
+      "sha256": "c96c209f5cf5f31798a83c63b4c9d6b4c3b7f1e9718762bf22aada9be163c06e"
+    },
+    {
+      "path": "verification/connected36/qa-clean-after.json",
+      "sha256": "7dc0c494c4c114a06185e9610a1675d3760f363eb380be2997361e5814520882"
+    },
+    {
+      "path": "verification/connected36/qa-clean-before.json",
+      "sha256": "6246f43549aeef123644b947fd0b315ee281784aaf7d9b498c9776b72d0a1946"
+    },
+    {
+      "path": "verification/connected36/qa-clean-rss.json",
+      "sha256": "d1541d3bfe65ebacff966110a9e0350a39094a8fc2ba5081f5ac2596a2858fba"
+    },
+    {
+      "path": "verification/connected36/qa-opening-clean.log",
+      "sha256": "3763533853736ed36cc29f391698cb9bcd06f4e46f2388b232a710d324977014"
+    },
+    {
+      "path": "verification/connected36/sarah-connected-metrics.json",
+      "sha256": "3e86ac5f90d558cf0fc1be12a873d15c2ca3f85b7e75423fe3c80051ab8e7232"
+    },
+    {
+      "path": "verification/connected36/sarah_connected_test-final-user44.log",
+      "sha256": "00e8c94e3701b2805ec5968c2ceb4239b0601e159dac748e8f9385d83c7d8736"
+    },
+    {
+      "path": "verification/connected36/sarah_definitive_21_test-final-user44.log",
+      "sha256": "7b3ce8463cd4990ee189f91aa829188d29f9090f9e621596d872c76166f91fb6"
+    },
+    {
+      "path": "verification/connected36/sarah_flow_test-final-user44.log",
+      "sha256": "2a532eb8110da3c4fa63359ec743fb523458cdc0c8c22e99c23aeff86bc97dd7"
+    },
+    {
+      "path": "verification/connected36/sarah_grace_test-final-user44.log",
+      "sha256": "9e9dcdd9f1c0c293857c97d61dacb122b888587dec79d43fa6e14685e34de3ba"
+    },
+    {
+      "path": "verification/connected36/test-results.json",
+      "sha256": "5ed1168efb16bb73a0ae98a4d3db3a09e77c8b7b411af081d3fd1cc1f1719ccf"
+    },
+    {
+      "path": "verification/connected36/tutorial-scope.json",
+      "sha256": "52f03da137173d350decf42a4c759127fde851db64422f9b6d81ce9bac2ed567"
+    },
+    {
+      "path": "verification/connected36/windows-export.log",
+      "sha256": "b13cfdd9cef9c4f9792e838fe789920eb62ea6d905af5c444ab44005dab0ee0d"
+    },
+    {
+      "path": "verification/connected36/windows-pack-test.log",
+      "sha256": "6e2c7b54cfbf7de18d7031457dd6caf2163a5b274cb5f0157d356090bafe0248"
+    },
+    {
+      "path": "verification/connected36/windows-package.json",
+      "sha256": "e1985d089a8d175ac6b9345919f5160e5dd79adcd357a066edcd7c7356890c63"
+    },
+    {
+      "path": "verification/connected36/windows-skin-integrity.log",
+      "sha256": "0921e1743e79be4fd7a1910f191e885c217e6315b599a5f6e241a815492f4e58"
+    },
+    {
+      "path": "verification/connected36/world-tests.json",
+      "sha256": "c106dbab5a0735ae1da74cb0ef75df63d11a1e303ff92cdd24009a84f018f0cd"
+    },
+    {
+      "path": "verification/grace35/actual-gameplay.json",
+      "sha256": "77c343ec44d7c3298790d30a0802899c943e419120a89aa886cd049c4e3a3058"
+    },
+    {
+      "path": "verification/grace35/after-capture.log",
+      "sha256": "e0c04347ae3a6b25841ac46adf71ccb442b976e8697e6977672de6db198bd323"
+    },
+    {
+      "path": "verification/grace35/before-capture.log",
+      "sha256": "e0c04347ae3a6b25841ac46adf71ccb442b976e8697e6977672de6db198bd323"
+    },
+    {
+      "path": "verification/grace35/bench-grace35-1.json",
+      "sha256": "bf7db9717fd4533427349f2dcd47c60be2829b79a6c83f9cdca7f26826826976"
+    },
+    {
+      "path": "verification/grace35/bench-grace35-2.json",
+      "sha256": "6778ffe5e0bec67f3d9957b424b0aba43ded1c19a9d7dc5b70d94da41afd7f27"
+    },
+    {
+      "path": "verification/grace35/bench-super34-0.json",
+      "sha256": "f7a7ad1077ea51cb7b35318e687cc1b933c5afcb6e356cf3d851f2eb977c33ea"
+    },
+    {
+      "path": "verification/grace35/bench-super34-3.json",
+      "sha256": "7412019665cd7e3c8056fcc1d8ea4ffa73a3503295ee443717f0fe60bb2ffc22"
+    },
+    {
+      "path": "verification/grace35/changed-files.json",
+      "sha256": "9c19e9f127183c695ae33739a0fa4df66d4dff87ca648443e53b1fc0046390db"
+    },
+    {
+      "path": "verification/grace35/definitive21-final.log",
+      "sha256": "a0432c5c7fe0a1511e0bc17f5b9403ec0b31f9be170542009e103ee084ee0e73"
+    },
+    {
+      "path": "verification/grace35/export-smoke.log",
+      "sha256": "416bd5b1bb94f401d1743c87fac4abb8819a175bd2d410a0abf0a0aa9746957e"
+    },
+    {
+      "path": "verification/grace35/flow-final.log",
+      "sha256": "9fdad439840ae9ab7e9a116fb0a59d9f759f8e0fe7d5b3c84aca4b24f7156a83"
+    },
+    {
+      "path": "verification/grace35/frames-grace35.log",
+      "sha256": "a32472d5cd3743f6e861df5677a96f78758a7f721eed95c2efccce1f9b252530"
+    },
+    {
+      "path": "verification/grace35/frames-super34.log",
+      "sha256": "a32472d5cd3743f6e861df5677a96f78758a7f721eed95c2efccce1f9b252530"
+    },
+    {
+      "path": "verification/grace35/gameplay.log",
+      "sha256": "ad4b9b5b4cf92e02541210c5a76e12f50a22faed2ca73e61c7ab9ff1a94a9996"
+    },
+    {
+      "path": "verification/grace35/grace-final.log",
+      "sha256": "8e174189baad6d802703c8671079acdb27102cfe205a7c4f1d08e6f96805dd3a"
+    },
+    {
+      "path": "verification/grace35/performance.json",
+      "sha256": "b96f9fa9c1f1f7fb7830e34cbe306f4c3f66d11ee6f785285dd1ce85a4313b71"
+    },
+    {
+      "path": "verification/grace35/preservation.json",
+      "sha256": "64067a5fe613282883e32434be4cad1325725ef73799b449e333d968e3650e38"
+    },
+    {
+      "path": "verification/grace35/test-results.json",
+      "sha256": "187328301567904a85f50723b575e95b1da32fbd64a194fc989a79d55bdcdde0"
+    },
+    {
+      "path": "verification/grace35/windows-export-final.log",
+      "sha256": "c1dcf25b004b8cbf5705011eaf45bf2c002be3bad1630fc14a9b141d72e6e760"
+    },
+    {
+      "path": "verification/grace35/windows-package.json",
+      "sha256": "e67cb1601ea1a09f8ab1fd5fabe4904fb54586e9b33cd50ceef360b26e8eb2c4"
+    },
+    {
+      "path": "verification/grace35/world-tests.json",
+      "sha256": "847c7537d5dc96df30f3998e140ff17684e5231f5bca12cd8966609ea822da8c"
+    },
+    {
+      "path": "verification/pearl38/final-avina_tutorial.log",
+      "sha256": "de1dc174ab75109c5011b8474bb90ddbb88ed47521bdfa33e6a649224e4e1702"
+    },
+    {
+      "path": "verification/pearl38/final-conversation_flow.log",
+      "sha256": "1b9846482aa635587a069cde9ca51e8a83717e9a272c033503db2a886df65d2c"
+    },
+    {
+      "path": "verification/pearl38/final-device_layout.log",
+      "sha256": "533109e8f4fd2957e02346bdd7cc100ea7d120beea8e066c9f5e60dcba40f3ca"
+    },
+    {
+      "path": "verification/pearl38/final-family_layout.log",
+      "sha256": "52df5524707ee7f8fc20d081e2f8a771b301e67d13cbc0c0c800e9274ea08be4"
+    },
+    {
+      "path": "verification/pearl38/final-gameplay_controls.log",
+      "sha256": "1a43861ab1af90b23d2ec2ecb7290be800065869e32adca6e070117b34f55307"
+    },
+    {
+      "path": "verification/pearl38/final-living_reef.log",
+      "sha256": "31188e1b2191495d6c3b3be2a9838fa5f19f22146f14804e35b202a26dc79568"
+    },
+    {
+      "path": "verification/pearl38/final-pearl_ui.log",
+      "sha256": "735851c94cbe5204ac6fb1fd5838662545226374934213236da09f5fbf834c1a"
+    },
+    {
+      "path": "verification/pearl38/final-pocket_wonders_reactions.log",
+      "sha256": "39d56a86681476535036d162099438caa06ff5668dd0c928cb646b32fdae5939"
+    },
+    {
+      "path": "verification/pearl38/final-sarah_flow.log",
+      "sha256": "2a532eb8110da3c4fa63359ec743fb523458cdc0c8c22e99c23aeff86bc97dd7"
+    },
+    {
+      "path": "verification/pearl38/final-sarah_turn_regression.log",
+      "sha256": "d7afaeb5ee3e5d269eda178a59fbd2364456998f703c1ab8c443a04cbe068be8"
+    },
+    {
+      "path": "verification/pearl38/final-scene_flow.log",
+      "sha256": "25213f90bb8783caa26fb40c1cac6d04afddda4a92def9c5ad69e7daa0a0827e"
+    },
+    {
+      "path": "verification/pearl38/final-scoring_ui.log",
+      "sha256": "44c8d4329d5d11c5ff65b339d78d5cca5c9c1e41239f4db57aff8ce46662798d"
+    },
+    {
+      "path": "verification/pearl38/final-touch-capture-report.json",
+      "sha256": "283f7fc667f7bc27ede5ab6c4ec3cfa61337b4540dbe66042ef925ef3263297e"
+    },
+    {
+      "path": "verification/pearl38/final-tutorial_caption_regression.log",
+      "sha256": "5b894e2933343f0dd5258e635a11d44ad6e7a4c8c09fd63906a3fcd9076ec1d9"
+    },
+    {
+      "path": "verification/pearl38/final-whimsy_four.log",
+      "sha256": "18ae705c31141c096e5ee776c39eb3e754fb1784bc112bf0bcbcc13ff8a04133"
+    },
+    {
+      "path": "verification/pearl38/hud-layout-final.log",
+      "sha256": "533109e8f4fd2957e02346bdd7cc100ea7d120beea8e066c9f5e60dcba40f3ca"
+    },
+    {
+      "path": "verification/pearl38/hud-scoring.log",
+      "sha256": "44c8d4329d5d11c5ff65b339d78d5cca5c9c1e41239f4db57aff8ce46662798d"
+    },
+    {
+      "path": "verification/pearl38/movie-report.json",
+      "sha256": "9a70d2d18ad14407b6c1487905ad3a728d22c93f916bea0d8e927249fc7c6ac4"
+    },
+    {
+      "path": "verification/pearl38/native-final-capture-report.json",
+      "sha256": "27e59970b73169a30fa9c613a04554176d69ea849f8415fcafd0563bfbe26626"
+    },
+    {
+      "path": "verification/pearl38/pearl-contract-final.log",
+      "sha256": "126ae9f31f6b253ff2baaf93f1df1b7358ebf4a63e6532ba6df3d452de7915f4"
+    },
+    {
+      "path": "verification/pearl38/performance-after.json",
+      "sha256": "87c7f53857b5df8c704f24c1776c808683ec5477a9ae3d4a6b97792f6e84385d"
+    },
+    {
+      "path": "verification/pearl38/performance-before.json",
+      "sha256": "d13b8401283522be3552c3998e7cf61a1ebd4005a314938f6b297424057ae653"
+    },
+    {
+      "path": "verification/pearl38/preservation.json",
+      "sha256": "18774dcef3d227f638807bf04e875141dc300c8ade581285b53b21f94d96c942"
+    },
+    {
+      "path": "verification/pearl38/test-results.json",
+      "sha256": "9f13da88450a63fed60c027b6a0fa200e18e745cb868cdd7c598e7631d32271b"
+    },
+    {
+      "path": "verification/pearl38/windows-smoke.log",
+      "sha256": "d08b6da85500a0884ff93328dbabcfee6b066d904a7654448e884047ac5efa1f"
+    },
+    {
+      "path": "verification/pearl38/windows-ui-smoke.log",
+      "sha256": "ea693b61e23f8e39b8f7b9ee384136e972b751208c6868fafd3b11617442df8e"
+    },
+    {
+      "path": "verification/sarah37/baseline-failures.json",
+      "sha256": "cb6cb7519595765d3a527cc0f1fe45b00a1c2337f6e9e7755241244591fcedcf"
+    },
+    {
+      "path": "verification/sarah37/baseline-jump.log",
+      "sha256": "35a5294d942f598ed9681ec7f27b8558cff26f9312700f611291fac9f90c20bf"
+    },
+    {
+      "path": "verification/sarah37/changes.json",
+      "sha256": "593d0bceddf95326c47de201a673d3c5e883ace6b9a52b8b05e564575cbcbc0b"
+    },
+    {
+      "path": "verification/sarah37/cpu-before.json",
+      "sha256": "5e2393e1940a8cb67e8d4905f33c36ce0f620525de849b43a1fed81924a2a5e5"
+    },
+    {
+      "path": "verification/sarah37/cpu-final.json",
+      "sha256": "1e8307293d780146875c8651ac8a1fb6025e33691c59e7e82657de444d39dc57"
+    },
+    {
+      "path": "verification/sarah37/perf-before.json",
+      "sha256": "152dc6d33926da88f511b38fe9f00ad8f4ef94164ccfc324a78e2abafe8e204a"
+    },
+    {
+      "path": "verification/sarah37/perf-final.json",
+      "sha256": "2f569507b65d23b1d5b9ccde7431c0accaba78d519eadab40a8fe717b95cfe8d"
+    },
+    {
+      "path": "verification/sarah37/preservation.json",
+      "sha256": "d6e11f0287faf71d0ec1f1e6c6fa8fb5367dc06bb543ec0bd7dbd5887e9f8f00"
+    },
+    {
+      "path": "verification/sarah37/regression-final.log",
+      "sha256": "d7afaeb5ee3e5d269eda178a59fbd2364456998f703c1ab8c443a04cbe068be8"
+    },
+    {
+      "path": "verification/sarah37/regression.log",
+      "sha256": "d7afaeb5ee3e5d269eda178a59fbd2364456998f703c1ab8c443a04cbe068be8"
+    },
+    {
+      "path": "verification/sarah37/release-tests.json",
+      "sha256": "d4b0cd4060cdb7495be6d94ab7831e87a5b0c8144b81970b1c4217d34e680792"
+    },
+    {
+      "path": "verification/sarah37/turn-probe.log",
+      "sha256": "b5b20169f4e2f9682629fe3db9c8c0e059e109abb6549aac0961e6d567389989"
+    },
+    {
+      "path": "verification/sarah37/windows-smoke-final.log",
+      "sha256": "6e2c7b54cfbf7de18d7031457dd6caf2163a5b274cb5f0157d356090bafe0248"
+    },
+    {
+      "path": "verification/sarah37/windows-smoke.log",
+      "sha256": "6e2c7b54cfbf7de18d7031457dd6caf2163a5b274cb5f0157d356090bafe0248"
+    }
+  ]
+}

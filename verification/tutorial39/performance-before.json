@@ -1,0 +1,25 @@
+{
+  "engine": "4.4.1-stable (official)",
+  "fixture": "1120x700 nursery; 8 warm-up + 20 samples per mode. Deterministic 30 Hz presentation steps. llvmpipe; not physical-device FPS.",
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "rows": [
+    {
+      "cpu_visual_sync_ms": 1.79905,
+      "draw_calls": 178.0,
+      "frame_interval_ms": 55.2465,
+      "mode": "Full",
+      "render_primitives": 36877.0,
+      "static_bytes": 67985199.0,
+      "texture_bytes": 556434507.0
+    },
+    {
+      "cpu_visual_sync_ms": 1.5209,
+      "draw_calls": 138.0,
+      "frame_interval_ms": 56.46535,
+      "mode": "Economy",
+      "render_primitives": 35057.0,
+      "static_bytes": 67981739.0,
+      "texture_bytes": 556434507.0
+    }
+  ]
+}

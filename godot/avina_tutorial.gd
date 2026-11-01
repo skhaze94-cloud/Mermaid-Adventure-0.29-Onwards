@@ -6,6 +6,7 @@ const FamilyAttention = preload("res://godot/family_attention.gd")
 var family_attention = FamilyAttention.new()
 const TutorialReef = preload("res://godot/tutorial_reef_beauty.gd")
 const TreasureGallery = preload("res://godot/tutorial_treasure_gallery.gd")
+var mesh_y_friends: Node2D
 var treasure_gallery: Node2D
 var art_director: Node2D
 const RINGS: Array[Vector2] = [Vector2(1100,430),Vector2(1900,650),Vector2(2850,420)]
@@ -145,6 +146,7 @@ func _ready() -> void:
     treasure_gallery.name = "TutorialTreasureChests"
     add_child(treasure_gallery)
     treasure_gallery.bind(self)
+    mesh_y_friends=preload("res://godot/tutorial39_stage.gd").new();mesh_y_friends.name="LivingTutorialModels";add_child(mesh_y_friends);mesh_y_friends.bind(self)
     art_director=preload("res://godot/tutorial_art_director.gd").new();add_child(art_director);art_director.bind(self)
     _save_checkpoint()
 
@@ -335,7 +337,7 @@ func _sync_native_visuals() -> void:
     elif player.y<850 and was_exploring_tunnels:
         royal_welcome_until=time+2.4;was_exploring_tunnels=false
     var target := Vector2(clampf(player.x+350,680,6640),maxf(_water_line()+160,player.y-90))
-    if lesson==6:target=Vector2(player.x-350,maxf(_water_line()+160,player.y-90))
+    if lesson in [6,7]:target=Vector2(player.x-350,maxf(_water_line()+160,player.y-90))
     if lesson>=8: target=boss_position if boss_hp>0 else Vector2(6770,515)
     king_world=boss_position if lesson==8 and boss_hp>0 else king_world.lerp(target,1.0-exp(-character_dt*3.08))
     var shown := king_world
@@ -345,7 +347,7 @@ func _sync_native_visuals() -> void:
         shown=target+Vector2(310*(1-f),32*sin(f*PI))
         if reduced_fx:shown=target
     if lesson<8:
-        shown.x=minf(shown.x,player.x-350) if lesson==6 else maxf(shown.x,player.x+350)
+        shown.x=minf(shown.x,player.x-350) if lesson in [6,7] else maxf(shown.x,player.x+350)
     if lesson>8 and absf(shown.x-player.x)<350:shown.x=player.x+(-350 if target.x<player.x else 350)
     king.position=shown-Vector2(camera,0)
     king.set_attention(signf(player.x-king_world.x))
@@ -359,6 +361,7 @@ func _sync_native_visuals() -> void:
     if lesson>8:king_mode="idle"
     king.animate(time,king_mode,reduced_fx)
     var queen_target:=Vector2(7260,500) if lesson>=9 else Vector2(6100,530)
+    if lesson==7:queen_target=Vector2(player.x-660,530)
     if lesson>=6 and absf(queen_target.x-player.x)<340:
         queen_target.x=player.x+(350 if queen_target.x>=player.x else -350)
     var previous_queen:=queen_world
@@ -480,7 +483,7 @@ func _lesson_hint() -> String:
             return "Aim and Boost for a gentle boop · %s / 3" % (3-remaining)
         8:
             if boss_hit_cooldown>0:return "Lovely boop · swim clear while Daddy resets"
-            return "Mint petals open · aim and Boost!" if _boss_vulnerable() else "Dodge gently · mint petals mean Boost"
+            return "Mint petals open · aim and Boost!" if _boss_vulnerable() else "Dodge · mint = Boost"
         9:return "Peek behind the sparkling coral · %s / 3" % hide_round
         10:
             if practice_switch["on"]:return "A beautiful bubble! The portal is ready →"

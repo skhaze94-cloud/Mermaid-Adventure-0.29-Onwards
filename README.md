@@ -1,3 +1,7 @@
+# Mermaid Adventure v0.39 — Living Tutorial
+
+Tutorial-only Meshy sea friends, small skeletal gestures, shell cottages and hinged treasure chests. Read [LIVING-TUTORIAL-039.md](LIVING-TUTORIAL-039.md) for scope, mapping, checks, performance and limitations. Complete inherited adventure preserved.
+
 # Mermaid Adventure v0.38 — Pearl Storybook
 
 Warm ivory/seafoam dialogue and HUD, painted health/power charms, clearer tutorial choices and real active-gift feedback. Read [PEARL-STORYBOOK-038.md](PEARL-STORYBOOK-038.md) for changes, validation, measurements and limitations; the design specification is [PEARL-STORYBOOK-DESIGN.md](PEARL-STORYBOOK-DESIGN.md). Current evidence: verification/pearl38. Original adventure, controls and character rigs preserved.

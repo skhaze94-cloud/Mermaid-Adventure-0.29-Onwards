@@ -23,6 +23,7 @@ const EXTENTS := {"dream":Vector2(300,300),"tea":Vector2(460,320),"village":Vect
 const HOUSE_ROLES := ["pearl","lavender","coral"]
 const HOUSE_HEIGHTS := [124.0,148.0,116.0]
 const HOUSE_WINDOWS := [Vector2(600,650),Vector2(460,650),Vector2(520,720)]
+var replacement_painter: Callable
 var host: Node2D
 var activity: RefCounted
 var records: Array = []
@@ -320,6 +321,7 @@ func _draw() -> void:
     last_build_us=Time.get_ticks_usec()-started
 
 func _sprite(kind: String, role: String, at: Vector2, height: float, angle:=0.0, alpha:=1.0, flip:=false) -> bool:
+    if replacement_painter.is_valid() and replacement_painter.call(kind,role,at,height,angle,alpha,flip):return true
     var texture: Texture2D=textures.get(kind+"/"+role)
     if texture==null or height<=0 or alpha<=0:return false
     var size:=texture.get_size()*(height/texture.get_height())

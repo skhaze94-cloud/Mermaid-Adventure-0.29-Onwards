@@ -1,0 +1,96 @@
+[
+  {
+    "draw_calls": 182.0,
+    "logical": "(1536.0, 960.0)",
+    "model_viewport": "(1280, 800)",
+    "name": "nursery",
+    "render_primitives": 189679.0,
+    "static_bytes": 70847079.0,
+    "texture_bytes": 684044251.0,
+    "visible_models": 5,
+    "window": "(1280, 800)"
+  },
+  {
+    "draw_calls": 120.0,
+    "logical": "(1536.0, 960.0)",
+    "model_viewport": "(1280, 800)",
+    "name": "bellflower",
+    "render_primitives": 190549.0,
+    "static_bytes": 70858475.0,
+    "texture_bytes": 684044251.0,
+    "visible_models": 6,
+    "window": "(1280, 800)"
+  },
+  {
+    "draw_calls": 103.0,
+    "logical": "(1536.0, 960.0)",
+    "model_viewport": "(1280, 800)",
+    "name": "practice",
+    "render_primitives": 426718.0,
+    "static_bytes": 71150879.0,
+    "texture_bytes": 684056539.0,
+    "visible_models": 3,
+    "window": "(1280, 800)"
+  },
+  {
+    "draw_calls": 142.0,
+    "logical": "(1536.0, 960.0)",
+    "model_viewport": "(1280, 800)",
+    "name": "tea",
+    "render_primitives": 156060.0,
+    "static_bytes": 71173403.0,
+    "texture_bytes": 684056539.0,
+    "visible_models": 4,
+    "window": "(1280, 800)"
+  },
+  {
+    "actual_render_seconds": 10.630952,
+    "capture_frames": 48,
+    "note": "staged deterministic pose advancement, llvmpipe software renderer; not device FPS",
+    "seconds_at_24_fps": 2
+  },
+  {
+    "draw_calls": 210.0,
+    "logical": "(2077.0, 960.0)",
+    "model_viewport": "(844, 390)",
+    "name": "phone-nursery",
+    "render_primitives": 191727.0,
+    "static_bytes": 70762599.0,
+    "texture_bytes": 670621599.0,
+    "visible_models": 9,
+    "window": "(844, 390)"
+  },
+  {
+    "draw_calls": 147.0,
+    "logical": "(2077.0, 960.0)",
+    "model_viewport": "(844, 390)",
+    "name": "phone-bellflower",
+    "render_primitives": 146255.0,
+    "static_bytes": 70770955.0,
+    "texture_bytes": 670621599.0,
+    "visible_models": 6,
+    "window": "(844, 390)"
+  },
+  {
+    "draw_calls": 170.0,
+    "logical": "(2077.0, 960.0)",
+    "model_viewport": "(844, 390)",
+    "name": "economy-gentle",
+    "render_primitives": 189905.0,
+    "static_bytes": 70770187.0,
+    "texture_bytes": 670621599.0,
+    "visible_models": 9,
+    "window": "(844, 390)"
+  },
+  {
+    "draw_calls": 137.0,
+    "logical": "(2077.0, 960.0)",
+    "model_viewport": "(844, 390)",
+    "name": "phone-dialogue",
+    "render_primitives": 34283.0,
+    "static_bytes": 70818583.0,
+    "texture_bytes": 670621599.0,
+    "visible_models": 9,
+    "window": "(844, 390)"
+  }
+]

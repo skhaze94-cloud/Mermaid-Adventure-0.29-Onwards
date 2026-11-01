@@ -50,7 +50,7 @@ var quality_toggle: CheckButton
 var continue_requested := false
 
 func _ready() -> void:
-    get_tree().root.title="Mermaid Adventure — Pearl Storybook · v0.38"
+    get_tree().root.title="Mermaid Adventure — Living Tutorial · v0.39"
     process_mode = Node.PROCESS_MODE_ALWAYS
     get_tree().paused = false
     prefs = get_node("/root/AppPreferences")
