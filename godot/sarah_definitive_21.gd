@@ -27,6 +27,7 @@ var away_face:=false
 var handoff_blink:=0.0
 var collar_rig:=Vector2.ZERO
 var step_dt:=1.0/60.0
+var baseline_centers:=PackedVector2Array()
 func reset() -> void:
     heading=Vector2(1,0);view=Vector2.ZERO;view_goal=0;front_weight=0;portrait_weight=0;action="idle"
     has_restore=false;front_face=false;away_face=false;handoff_blink=0
@@ -60,6 +61,7 @@ func bind(rig) -> void:
     # One registered body and tail remain visible through the whole turn.
     front_body=rig.bodice;front_tail=rig.tail_skin
     body_view.bind(rig)
+    baseline_centers=rig.tail_skin.centers.duplicate()
     arm_restore.resize(2)
 func begin(rig,dt: float) -> void:
     step_dt=dt
@@ -75,13 +77,19 @@ func begin(rig,dt: float) -> void:
 func render_heading() -> float:
     # The front view takes over before chirality changes: no zero-width body.
     return (1.0 if heading.x>=0 else -1.0)*lerpf(.72,1.0,absf(heading.x))
-func sample_socket(rig,index: int) -> Vector2:
+func sample_socket(rig,index: int,projected: bool=true) -> Vector2:
     var indices:=anchor_indices[index];var weights:=anchor_weights[index]
-    return rig.bodice.polygon[indices[0]]*weights.x+rig.bodice.polygon[indices[1]]*weights.y+rig.bodice.polygon[indices[2]]*weights.z+rig.bodice.polygon[indices[3]]*weights.w
+    var point:=Vector2.ZERO
+    for k in range(4):
+        var source: int=indices[k]
+        var mapped: int=(source/75)*75+74-source%75 if projected and rig.scale.x<0 else source
+        point+=rig.bodice.polygon[mapped]*weights[k]
+    return point
+
 func apply(rig) -> void:
     for i in range(2):
         var joint=rig.far_arm if i==0 else rig.near_arm
-        joint.position=sample_socket(rig,i);arm_restore[i]=joint.transform
+        joint.position=sample_socket(rig,i,false);arm_restore[i]=joint.transform
     has_restore=true
     var turn:=1.0-absf(heading.x)
     var requested:=maxf(1.0-smoothstep(.20,.92,absf(heading.x)),smoothstep(.04,.80,maxf(view.x,0)))
@@ -96,12 +104,11 @@ func apply(rig) -> void:
     var next_away:=away_face
     if away>.60:next_away=true
     elif away<.40:next_away=false
-    if next_front!=front_face or next_away!=away_face:handoff_blink=1
+     # Natural blinks own eyelids; turning never restarts a blink.
     front_face=next_front;away_face=next_away
     portrait_weight=1.0 if front_face or away_face else 0.0
     # Face handoff is blink-registered; the torso paint and all geometry remain continuous.
-    var preblink:=exp(-pow((front_weight-.50)/.12,2)) if front_weight>.1 and front_weight<.9 else 0.0
-    var blink: float=maxf(rig.blink_blend,maxf(preblink,handoff_blink))
+    var blink: float=rig.blink_blend
     var hx: float=rig.scale.x
     var side_collar: Vector2=rig.torso.transform*(rig.head_joint.position+Vector2(3.52,-4.04).rotated(rig.head_joint.rotation))
     collar_rig=Vector2(side_collar.x*(1.0-front_weight),side_collar.y)
@@ -117,17 +124,22 @@ func apply(rig) -> void:
     _project_tail(rig,side_basis,side_hip,hip,hx)
     rig.head_joint.position=rig.torso.transform.affine_inverse()*collar_rig-Vector2(3.52,-4.04).rotated(rig.head_joint.rotation)
     # The long back painting travels continuously through a reversal instead of mirroring in one frame.
-    rig.back_hair.scale=Vector2(heading.x/render_heading(),1)
+    rig.back_hair.scale=Vector2.ONE
+    rig.back_hair.modulate.a=1.0-front_weight
     rig.bodice.visible=true;rig.tail_skin.visible=true;rig.bodice.self_modulate=Color.WHITE
     rig.face_details.visible=portrait_weight<.5;rig.face_details.modulate=Color.WHITE
     for i in range(2):
         var joint=rig.far_arm if i==0 else rig.near_arm
         var at: Vector2=sample_socket(rig,i)
         var side_arm: Transform2D=rig.torso.transform*arm_restore[i]
-        var angle: float=.52 if i==0 else 2.55
-        if rig.gesture_wave>.05 and i==0:angle=-.55-rig.gesture_wave*.35
-        var front_arm:=Transform2D(PI-angle if hx<0 else angle,Vector2.ZERO)
-        front_arm.x.x/=absf(hx);front_arm.y.x/=absf(hx)
+        # Keep the current action's shoulder pose through the registered camera view.
+        var rest_angle: float=.52 if i==0 else 2.55
+        var action_delta: float=clampf(arm_restore[i].get_rotation()-rig.torso_motion.rib_angle,-.7,.7)
+        if hx<0:side_arm.y=-side_arm.y # Keep arm parity stable throughout the left view.
+        var angle: float=rest_angle+action_delta*(1.0 if i==0 else -1.0)
+        if rig.gesture_wave>.05 and i==0:angle=lerp_angle(angle,-.55-rig.gesture_wave*.35,rig.gesture_wave)
+        var front_arm:=Transform2D(angle,Vector2.ZERO)
+        front_arm.x.x/=hx;front_arm.y.x/=hx
         var basis:=side_arm.interpolate_with(front_arm,front_weight)
         var side_origin: Vector2=rig.torso.transform*at
         var cuff:=collar_rig+Vector2((26.0 if i==0 else -26.0)/hx,14)
@@ -157,7 +169,13 @@ func _project_tail(rig,side_basis: Transform2D,side_hip: Vector2,hip: Vector2,hx
     for column in range(count+1):
         var t:=float(column)/count
         var side: Vector2=side_basis*skin.centers[column]-side_hip
-        var depth:=Vector2(32.0*sin(t*PI*1.4)*smoothstep(0,.20,t),88.0*t+8.0*sin(t*PI))
+        # A compact perspective spine retains the live action curve and its wave.
+        # Derive displacement from the current skinned spine, never a frozen turn pose.
+        var canonical: Vector2=side_basis*baseline_centers[column]-side_hip
+        var residual: Vector2=side-canonical
+        var drive: float=clampf(rig.smoothed_speed/345.0,0,1)
+        var depth:=Vector2((24.0*sin(t*PI*1.15)+residual.y*.55)*smoothstep(0,.16,t),
+            (108.0+drive*18.0)*t+residual.x*.22+residual.y*.12)
         skin.projected_centers[column]=hip+side.lerp(Vector2(depth.x/hx,depth.y),weight)
     for col in range(count+1):
         var column: int=skin.column_map[col]

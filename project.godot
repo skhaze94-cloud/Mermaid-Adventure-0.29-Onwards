@@ -12,8 +12,8 @@ config_version=5
 
 config/name="Sarah Maria — Mermaid Adventure (Godot v0.5.1 — Princess Polish Sarah)"
 ; Keep the application identity stable so existing user:// saves remain reachable.
-config/version="0.36.0"
-config/description="Mermaid Adventure v0.36 — Connected Grace & the Living Royal Family. Connected Sarah movement and articulated tutorial parents; complete Friends Cavern adventure preserved."
+config/version="0.37.0"
+config/description="Mermaid Adventure v0.37 — Sarah Connected Motion. Registered turns, action-aware arms and a continuous painted waist; complete adventure preserved."
 run/main_scene="res://godot/title_screen.tscn"
 config/features=PackedStringArray("4.4")
 

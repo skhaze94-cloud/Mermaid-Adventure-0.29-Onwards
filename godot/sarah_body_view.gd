@@ -31,21 +31,35 @@ func bind(rig) -> void:
                 var i:=row*75+col;custom[i*4]=uv.x;custom[i*4+1]=uv.y
         cached_front_uv=front_uv;cached_custom=custom
     else:front_uv=cached_front_uv
-    rig.bodice.custom0=cached_custom;rig.bodice._build_surface()
+    rig.bodice.custom0=cached_custom
+    var mirrored:=PackedFloat32Array();mirrored.resize(rig.bodice.rest.size()*4)
+    for i in range(rig.bodice.rest.size()):
+        var opposite: int=(i/75)*75+74-i%75
+        var source: Vector2=rig.bodice.uv[opposite]/rig.ATLAS.get_size()
+        mirrored[i*4]=source.x;mirrored[i*4+1]=source.y
+    rig.bodice.custom1=mirrored;rig.bodice._build_surface()
     material=ShaderMaterial.new();material.shader=load("res://godot/shaders/sarah_body_view.gdshader")
     material.set_shader_parameter("front_paint",front_texture);rig.bodice.material=material
     rig.volume_materials.append(material)
 func apply(rig,weight: float,collar: Vector2) -> void:
     material.set_shader_parameter("view_mix",weight)
-    if weight<.00001:return
     var points: PackedVector2Array=rig.bodice.polygon
     var body_transform: Transform2D=rig.torso.transform;var inverse:=body_transform.affine_inverse()
     var hx: float=rig.scale.x
+    material.set_shader_parameter("negative_view",hx<0)
+    if weight<.00001 and hx>0:return
+    var side_points:=points.duplicate()
+    if weight<.00001:
+        for row in range(13):
+            for col in range(75):points[row*75+col]=side_points[row*75+74-col]
+        rig.bodice.polygon=points
+        return
     for i in range(points.size()):
         var uv:=front_uv[i]
-        var local:=Vector2((uv.x-.5)*66.0/absf(hx)*(1+rig.torso_motion.breath.x),(uv.y-.12)*62.0)
+        var local:=Vector2((uv.x-.5)*66.0/hx*(1+rig.torso_motion.breath.x),(uv.y-.12)*62.0)
         var hip:=Vector2(0,48)
         var hip_weight:=smoothstep(.55,.92,uv.y)
         local=local.lerp(hip+(local-hip).rotated(rig.torso_motion.waist.x),hip_weight)
-        points[i]=inverse*((body_transform*points[i]).lerp(collar+local,weight))
+        var source_index: int=(i/75)*75+74-i%75 if hx<0 else i
+        points[i]=inverse*((body_transform*side_points[source_index]).lerp(collar+local,weight))
     rig.bodice.polygon=points

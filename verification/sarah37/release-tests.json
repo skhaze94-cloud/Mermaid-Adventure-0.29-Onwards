@@ -1,0 +1,62 @@
+[
+  {
+    "suite": "sarah_connected",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nCONNECTED SARAH: 4628 checks, 0 failures; min projected width 65.5999755859375 crossing displacement 3.40722107887268\n"
+  },
+  {
+    "suite": "sarah_definitive_21",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nSARAH DEFINITIVE 2.1: 5689 checks, 0 failures\n"
+  },
+  {
+    "suite": "sarah_flow",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nSARAH FLOW: 56739 checks, 0 failures\n"
+  },
+  {
+    "suite": "sarah_grace",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nSARAH GRACE: 974 checks, 0 failures\n"
+  },
+  {
+    "suite": "jump_animation",
+    "ok": false,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nERROR: JUMP ANIMATION TEST: Corkscrew needs opposing turns and independent raised arms\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: JUMP ANIMATION TEST: Airborne roll needs perspective and changing limb overlap\n   at: push_error (core/variant/variant_utility.cpp:1098)\n"
+  },
+  {
+    "suite": "gameplay_controls",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED\n"
+  },
+  {
+    "suite": "avina_tutorial",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nFAMILY TUTORIAL: 112 checks, 0 failures\n"
+  },
+  {
+    "suite": "family_attention",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nFAMILY ATTENTION: 10 checks, 0 failures\n"
+  },
+  {
+    "suite": "friends_cavern",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nFRIENDS CAVERN: 402 checks, 0 failures; 15 caverns, 23 friends\n"
+  },
+  {
+    "suite": "device_layout",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED\n"
+  },
+  {
+    "suite": "conversation_flow",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nCONVERSATION FLOW: 269 checks, 0 failures; 33 reply branches\n"
+  },
+  {
+    "suite": "scene_flow",
+    "ok": true,
+    "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nSCENE FLOW TEST PASSED\n"
+  }
+]

@@ -1,0 +1,6 @@
+Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org
+
+ERROR: JUMP ANIMATION TEST: Corkscrew needs opposing turns and independent raised arms
+   at: push_error (core/variant/variant_utility.cpp:1098)
+ERROR: JUMP ANIMATION TEST: Airborne roll needs perspective and changing limb overlap
+   at: push_error (core/variant/variant_utility.cpp:1098)

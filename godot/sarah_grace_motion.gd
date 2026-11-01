@@ -21,7 +21,7 @@ func begin(rig,dt: float) -> void:
     # Ignore a small opposite stick nudge until the swimmer actually reverses.
     # Deliberate steering and the velocity-only API still turn immediately.
     var decisive: bool=absf(rig.steering_value.x)>.34 or absf(rig.velocity_value.x)>24.0 and signf(rig.velocity_value.x)==rig.facing_value
-    if important or decisive or speed<12.0 and rig.steering_value.length_squared()<.002:
+    if decisive or speed<12.0 and rig.steering_value.length_squared()<.002:
         presentation_facing=rig.facing_value
     var no_drive: bool=rig.steering_value.length_squared()<.02
     var loss: float=maxf(0.0,previous_speed-speed)

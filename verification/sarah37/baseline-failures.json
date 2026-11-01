@@ -1,0 +1,17 @@
+[
+  {
+    "suite": "sarah_continuity",
+    "exit": 1,
+    "tail": ")\nERROR: SARAH CONTINUITY: Tail socket drifts in body space\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: SARAH CONTINUITY: Tail socket drifts in body space\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: SARAH CONTINUITY: Tail socket drifts in body space\n   at: push_error (core/variant/variant_utility.cpp:1098)\n"
+  },
+  {
+    "suite": "sarah_torso_motion",
+    "exit": 1,
+    "tail": "riant/variant_utility.cpp:1098)\nERROR: SARAH TORSO: Hip socket drifts\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: SARAH TORSO: Fallback does not restore bodice\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: SARAH TORSO: Fallback does not restore bodice\n   at: push_error (core/variant/variant_utility.cpp:1098)\n"
+  },
+  {
+    "suite": "sarah_spine_motion",
+    "exit": 1,
+    "tail": " (core/variant/variant_utility.cpp:1098)\nERROR: SARAH SPINE: Hip band moves\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: SARAH SPINE: Gentle Motion leaves mesh ripple\n   at: push_error (core/variant/variant_utility.cpp:1098)\nERROR: SARAH SPINE: Economy leaves mesh ripple\n   at: push_error (core/variant/variant_utility.cpp:1098)\n"
+  }
+]

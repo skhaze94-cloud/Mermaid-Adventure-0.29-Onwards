@@ -1,0 +1,62 @@
+{
+  "engine": "4.4-stable (official)",
+  "first_scene_frame_ms": 7604.022,
+  "instantiate_ms": 7127.826,
+  "method": "30 warm +90 timed frames, actual native rendered intervals, deterministic 60Hz character updates; tutorial world held for matching composition; screenshot writes excluded",
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "resolution": "1120x768",
+  "results": [
+    {
+      "draw_calls_mean": 168.088888888889,
+      "mean_character_script_ms": 8.25286666666667,
+      "mean_frame_ms": 272.506722222222,
+      "median_frame_ms": 240.586,
+      "mode": "Full",
+      "p95_character_script_ms": 17.817,
+      "p95_frame_ms": 458.725,
+      "primitives_mean": 338715.422222222,
+      "render_buffer_bytes": 53464126.0,
+      "rss_bytes": 0,
+      "static_bytes": 68588435.0,
+      "texture_bytes": 549337139.0
+    },
+    {
+      "draw_calls_mean": 114.633333333333,
+      "mean_character_script_ms": 1.42932222222222,
+      "mean_frame_ms": 109.232988888889,
+      "median_frame_ms": 58.323,
+      "mode": "Gentle",
+      "p95_character_script_ms": 4.342,
+      "p95_frame_ms": 269.493,
+      "primitives_mean": 109064.255555556,
+      "render_buffer_bytes": 53304286.0,
+      "rss_bytes": 0,
+      "static_bytes": 68520171.0,
+      "texture_bytes": 549337139.0
+    },
+    {
+      "draw_calls_mean": 114.633333333333,
+      "mean_character_script_ms": 2.12857777777778,
+      "mean_frame_ms": 142.696811111111,
+      "median_frame_ms": 69.5,
+      "mode": "Economy",
+      "p95_character_script_ms": 9.232,
+      "p95_frame_ms": 344.8,
+      "primitives_mean": 109064.255555556,
+      "render_buffer_bytes": 53304286.0,
+      "rss_bytes": 0,
+      "static_bytes": 68521659.0,
+      "texture_bytes": 549337139.0
+    }
+  ],
+  "royal_skeletons": [
+    {
+      "bones": 22,
+      "role": "king"
+    },
+    {
+      "bones": 21,
+      "role": "queen"
+    }
+  ]
+}

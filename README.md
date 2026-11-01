@@ -1,8 +1,6 @@
-# Mermaid Adventure v0.36 — Connected Grace & the Living Royal Family
+# Mermaid Adventure v0.37 — Sarah Connected Motion
 
-Before opening Godot after cloning, run `python restore_original_assets.py` from this directory. Several large models/textures are stored losslessly in numbered archive-parts files because the connected GitHub uploader limits requests to 16 MiB. ASSET-PARTS.json records their original paths, exact sizes and SHA-256 checksums; the restore script reconstructs and verifies them locally, with no downloads.
-
-Then open project.godot using Godot 4.4/4.4.1 (4.5.1 for Android). The complete unsplit source ZIP, which needs no reconstruction, is also in Library: https://chatgpt.com/library?file_id=libfile_649b181f24588191a78f29c207680670&account_id=personal . See CONNECTED-GRACE-036.md for changes, validation and limitations.
+Focused Sarah turn, waist, casting and animation-ownership update. Read [SARAH-v037-REVIEW.md](SARAH-v037-REVIEW.md) for the changes, measurements and remaining facial-view limitation. Complete inherited adventure and original assets preserved. Current evidence: verification/sarah37.
 
 # Mermaid Adventure v0.36 — Connected Grace & the Living Royal Family
 

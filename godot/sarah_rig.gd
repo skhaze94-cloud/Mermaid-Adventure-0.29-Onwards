@@ -792,7 +792,7 @@ func _process(delta: float) -> void:
     hair_strand.rotation = lerpf(hair_strand.rotation, -current * 1.6 + turn_kick * 0.85 + hair_drag * 0.75, ease)
     var rise := 0.0 if reduced_motion else sin(slow_phase * 1.2) * 1.6
     torso.position = Vector2(12.0, 24.0 + rise * (1.0 - boost_blend) + landing_compress * 2.0 - arch*2.0)
-    var arm_sweep := 0.0 if reduced_motion else sin(swim_phase * 0.74 + 0.65) * amount
+    var arm_sweep := 0.0 # Stroke cycles own propulsion; avoid an unrelated arm clock.
     # Opposed crawl/scull, symmetric butterfly/scoop, and streamlined boost.
     # Blend full joint tracks at the same phase, including direction changes.
     var stroke_amount := maxf(swim_blend,.65 if waterfall_context!="" else 0.0)*(1.0-leap_blend)
@@ -902,7 +902,7 @@ func _process(delta: float) -> void:
     tail_skin.transform=Transform2D(torso_motion.waist.x,torso_motion.HIP_PIVOT-tail_skin.socket.rotated(torso_motion.waist.x))
     tail_skin.curl_limit=1.36 if jump_pose_blend>.10 else 1.65
     var reversal: float=smoothstep(.04,.80,1.0-absf(definitive_21.heading.x))
-    var yaw_flow: float=lerpf(1,absf(definitive_21.heading.x),reversal)
+    var yaw_flow: float=1.0 # Orientation projects the live spine; locomotion never stops at front view.
     var followed_pose: Vector4=torso_motion.flow_pose if high_quality and not reduced_motion else cycle_pose
     var tail_pose:=followed_pose*Vector4(yaw_flow,yaw_flow,yaw_flow,1)
     if reduced_motion or not high_quality:

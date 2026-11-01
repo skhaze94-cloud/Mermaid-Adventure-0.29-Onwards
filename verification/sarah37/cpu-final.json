@@ -1,0 +1,14 @@
+[
+  {
+    "direction": 1,
+    "mean_cpu_ms": 4.46998333333333,
+    "median_cpu_ms": 3.272,
+    "p95_cpu_ms": 9.579
+  },
+  {
+    "direction": -1,
+    "mean_cpu_ms": 4.65374444444444,
+    "median_cpu_ms": 3.833,
+    "p95_cpu_ms": 10.738
+  }
+]
