@@ -3,6 +3,7 @@ extends "res://godot/whimsy_garden.gd"
 ## Painted pieces are loaded at bind. Two visible tableaux share the original
 ## Whimsy brush's single fixed 12,288-vertex surface and three caption nodes.
 const Kit = preload("res://godot/ui_kit.gd")
+const Pearl = preload("res://godot/pearl_storybook.gd")
 const Creature = preload("res://godot/creature_art.gd")
 const MAX_RECORDS := 16
 const VISIBLE_CAP := 2
@@ -67,13 +68,13 @@ func _prepare_wonders() -> void:
     if is_instance_valid(caption):return
     caption=Panel.new();caption.name="PocketWonderCaption"
     caption.mouse_filter=Control.MOUSE_FILTER_IGNORE;caption.clip_contents=true
-    caption.add_theme_stylebox_override("panel",Kit.panel(Color(.03,.12,.18,.91),Color(.91,.76,.88,.66),14))
-    caption_title=Kit.label("",20,Color("f9e3c2"))
+    caption.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10))
+    caption_title=Pearl.label("",20,Pearl.INK)
     caption_title.add_theme_font_override("font",Kit.FONT)
     caption_title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     caption_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
     caption.add_child(caption_title)
-    caption_hint=Kit.label("",17,Color("e1edf3"))
+    caption_hint=Pearl.label("",17,Pearl.INK)
     caption_hint.add_theme_font_override("font",Kit.BODY)
     caption_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     caption_hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART

@@ -2,6 +2,7 @@ extends Node2D
 ## Two persistent painted meshes per scene; one world-anchored caption, fixed
 ## decoration loops and shared cached geometry. No per-frame texture loading.
 const Kit=preload("res://godot/ui_kit.gd")
+const Pearl=preload("res://godot/pearl_storybook.gd")
 const Ground=preload("res://godot/terrain_painter.gd")
 const SHADER=preload("res://godot/shaders/whimsy_neighbour.gdshader")
 var host: Node2D
@@ -25,10 +26,10 @@ func _ready() -> void:
     mesh=_skin()
     overlay=CanvasLayer.new();overlay.layer=9;add_child(overlay)
     caption=PanelContainer.new();caption.name="OneSmallNeighbourHello";caption.theme=Kit.theme();caption.mouse_filter=Control.MOUSE_FILTER_IGNORE
-    caption.add_theme_stylebox_override("panel",Kit.panel(Color(.025,.10,.15,.95),Color("c9dcd4"),17));overlay.add_child(caption)
+    caption.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10));overlay.add_child(caption)
     var box:=VBoxContainer.new();box.mouse_filter=Control.MOUSE_FILTER_IGNORE;box.add_theme_constant_override("separation",5);caption.add_child(box)
-    caption_title=Kit.label("",16,Color("f7dfba"));box.add_child(caption_title)
-    caption_body=Kit.label("",17,Color("e1f5ee"));caption_body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;caption_body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;box.add_child(caption_body)
+    caption_title=Pearl.label("",16,Pearl.INK);box.add_child(caption_title)
+    caption_body=Pearl.label("",17,Pearl.INK);caption_body.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;caption_body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;box.add_child(caption_body)
     caption.hide()
 func bind(level: Node2D,logic: RefCounted) -> void:
     host=level;model=logic

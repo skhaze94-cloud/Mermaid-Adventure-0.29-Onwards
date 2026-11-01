@@ -1,4 +1,5 @@
 extends "res://godot/basic_chapter.gd"
+const Story=preload("res://godot/pearl_storybook.gd")
 const Dialogue = preload("res://godot/family_dialogue.gd")
 const Royal = preload("res://godot/family_royal_actor.gd")
 const FamilyAttention = preload("res://godot/family_attention.gd")
@@ -82,6 +83,10 @@ var speech_options: Array = []
 var speech_speaker := "king"
 var farewell_step := -1
 var speech_reveal: Tween
+var speech_counter: Label
+var speech_tail: Node2D
+var dialogue_footer: GridContainer
+var dialogue_layout_pending:=false
 var tutorial_action_guard := false
 var hide_cover: Node2D
 var practice_switch := {"pos":Vector2(7480,390), "on":false, "requires_sarah":true}
@@ -115,7 +120,7 @@ func _restore_checkpoint_extras(extra: Dictionary) -> void:
     hide_round = int(extra["hide_round"]); practice_switch["on"] = extra["practice"]
     family_attention.reset()
     dialogue_open = false; playing_daddy = false; landing_started = false; reef_retry = false
-    dialogue_card.hide(); choice_card.hide(); lesson_card.show(); premium_hud.show()
+    dialogue_card.hide(); choice_card.hide(); dialogue_shade.hide(); speech_tail.hide(); lesson_card.show(); premium_hud.show()
     king.configure("king",410 if lesson==8 else 390)
     arrival_time=2.6;arrival_intro_pending=false;king_world=player+Vector2(230,-90)
     if lesson >= 9:
@@ -517,12 +522,12 @@ func _build_tutorial_ui() -> void:
     var box := VBoxContainer.new(); box.add_theme_constant_override("separation",3); lesson_card.add_child(box)
     var title_row := HBoxContainer.new();title_row.add_theme_constant_override("separation",12);box.add_child(title_row)
     heading=_label("",17,Color("f7dfba"));heading.size_flags_horizontal=Control.SIZE_EXPAND_FILL;title_row.add_child(heading)
-    talk_king=_button("Help · Daddy",func():_open_dialogue(_lesson_conversation()));talk_king.custom_minimum_size=Vector2(112,46);talk_king.add_theme_font_size_override("font_size",16);title_row.add_child(talk_king)
+    talk_king=_button("Help · Daddy",func():_open_dialogue(_lesson_conversation()));talk_king.custom_minimum_size=Vector2(108,46);talk_king.add_theme_font_size_override("font_size",16);title_row.add_child(talk_king)
     dialogue=_label("",14,Color.WHITE);dialogue.hide();box.add_child(dialogue)
     hint=_label("",16,Color("c0e8df"));box.add_child(hint)
     lesson_trial_meter=ProgressBar.new();lesson_trial_meter.show_percentage=false;lesson_trial_meter.max_value=1.0;lesson_trial_meter.custom_minimum_size.y=6
-    lesson_trial_meter.theme=preload("res://godot/ui_kit.gd").theme();box.add_child(lesson_trial_meter);lesson_trial_meter.hide()
-    dialogue_shade=ColorRect.new();dialogue_shade.color=Color(.01,.04,.08,.32);dialogue_shade.mouse_filter=Control.MOUSE_FILTER_STOP;tutorial_layer.add_child(dialogue_shade);dialogue_shade.hide()
+    lesson_trial_meter.theme=Story.theme();box.add_child(lesson_trial_meter);lesson_trial_meter.hide()
+    dialogue_shade=ColorRect.new();dialogue_shade.color=Color(.01,.04,.08,.20);dialogue_shade.mouse_filter=Control.MOUSE_FILTER_STOP;tutorial_layer.add_child(dialogue_shade);dialogue_shade.hide()
     choice_card=_card(); tutorial_layer.add_child(choice_card)
     var choices := VBoxContainer.new(); choices.add_theme_constant_override("separation",12); choice_card.add_child(choices)
     choices.add_child(_label("A little travelling companion?",25,Color("f7dfba")))
@@ -530,23 +535,27 @@ func _build_tutorial_ui() -> void:
     bring_button=_button("Come along, little pearl ♡",func(): _choose_companion(true)); bring_button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;choices.add_child(bring_button)
     alone_button=_button("Stay for cuddles · I’ll explore solo",func(): _choose_companion(false)); alone_button.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;choices.add_child(alone_button)
     choice_card.hide()
-    dialogue_card=_card(); tutorial_layer.add_child(dialogue_card)
+    speech_tail=Node2D.new();speech_tail.name="StorybookSpeechTail";tutorial_layer.add_child(speech_tail)
+    speech_tail.draw.connect(_draw_speech_tail);speech_tail.hide()
+    dialogue_card=_card();dialogue_card.name="StorybookConversation"; tutorial_layer.add_child(dialogue_card)
     var shell := VBoxContainer.new(); shell.add_theme_constant_override("separation",10); dialogue_card.add_child(shell)
     dialogue_scroll=ScrollContainer.new();dialogue_scroll.follow_focus=true;dialogue_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;dialogue_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;shell.add_child(dialogue_scroll)
     dialogue_content=VBoxContainer.new();dialogue_content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;dialogue_content.add_theme_constant_override("separation",10);dialogue_scroll.add_child(dialogue_content)
-    dialogue_content.minimum_size_changed.connect(func():_layout_dialogue.call_deferred())
+    dialogue_content.minimum_size_changed.connect(_queue_dialogue_layout)
     var top := HBoxContainer.new();top.add_theme_constant_override("separation",14);dialogue_content.add_child(top)
     portrait=TextureRect.new();portrait.custom_minimum_size=Vector2(68,58);portrait.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;portrait.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;top.add_child(portrait)
-    speaker_label=_label("",23,Color("f7dfba"));speaker_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top.add_child(speaker_label)
+    speaker_label=_label("",22,Story.INK);speaker_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL;top.add_child(speaker_label)
+    speech_counter=_label("",14,Story.MUTED);speech_counter.autowrap_mode=TextServer.AUTOWRAP_OFF;speech_counter.custom_minimum_size.x=50;speech_counter.horizontal_alignment=HORIZONTAL_ALIGNMENT_RIGHT;speech_counter.size_flags_horizontal=Control.SIZE_SHRINK_END;speech_counter.add_theme_color_override("font_color",Story.MUTED);speech_counter.vertical_alignment=VERTICAL_ALIGNMENT_CENTER;top.add_child(speech_counter)
     dialogue_text=_label("",21,Color("f3f8ff"));dialogue_content.add_child(dialogue_text)
     reply_box=VBoxContainer.new();reply_box.add_theme_constant_override("separation",7);dialogue_content.add_child(reply_box);reply_box.hide()
     extra_box=HBoxContainer.new();extra_box.add_theme_constant_override("separation",10);dialogue_content.add_child(extra_box);extra_box.hide()
     switch_button=_button("Try Daddy’s fins",func():_close_dialogue();_switch_hero());extra_box.add_child(switch_button)
     talk_queen=_button("A word with Mum",func():_present_conversation("gifts"));extra_box.add_child(talk_queen)
-    var footer := HBoxContainer.new();footer.add_theme_constant_override("separation",10);shell.add_child(footer)
-    reply_toggle=_button("Say something…",_toggle_replies);reply_toggle.size_flags_horizontal=Control.SIZE_EXPAND_FILL;footer.add_child(reply_toggle)
-    extras_toggle=_button("Little extras",func():extra_box.visible=not extra_box.visible;reply_box.hide();_layout_dialogue.call_deferred());footer.add_child(extras_toggle)
-    dialogue_practice=_button("Continue ›",_advance_speech);dialogue_practice.size_flags_horizontal=Control.SIZE_EXPAND_FILL;footer.add_child(dialogue_practice)
+    dialogue_footer=GridContainer.new();dialogue_footer.columns=3
+    dialogue_footer.add_theme_constant_override("h_separation",10);dialogue_footer.add_theme_constant_override("v_separation",8);shell.add_child(dialogue_footer)
+    reply_toggle=_button("Say something…",_toggle_replies);reply_toggle.size_flags_horizontal=Control.SIZE_EXPAND_FILL;dialogue_footer.add_child(reply_toggle)
+    extras_toggle=_button("Little extras",func():extra_box.visible=not extra_box.visible;reply_box.hide();_layout_dialogue.call_deferred());dialogue_footer.add_child(extras_toggle)
+    dialogue_practice=_button("Continue ›",_advance_speech);dialogue_practice.size_flags_horizontal=Control.SIZE_EXPAND_FILL;dialogue_footer.add_child(dialogue_practice);dialogue_footer.move_child(dialogue_practice,0);Story.button(dialogue_practice,true)
     dialogue_card.hide()
     get_viewport().size_changed.connect(_layout_tutorial)
     _layout_tutorial.call_deferred()
@@ -600,6 +609,8 @@ func _show_speech() -> void:
     if is_instance_valid(queen_teacher):queen_teacher.set_dialogue_pose(who=="queen")
     speaker_label.text={"king":"King Daddy","queen":"Mum · Queen Antonella","sarah":"Sarah","avina":"Avina"}[who]
     dialogue_text.text=beat["text"]
+    speech_counter.text="%s / %s" % [speech_index+1,speech_beats.size()]
+    speech_counter.visible=speech_beats.size()>1
     _set_portrait(who,2 if (king_tone if who=="king" else queen_tone)=="cheeky" else 1)
     var last := speech_index==speech_beats.size()-1
     _clear_replies();reply_box.hide();extra_box.hide();reply_toggle.text="Say something…"
@@ -615,6 +626,7 @@ func _show_speech() -> void:
         speech_reveal=create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
         speech_reveal.tween_property(dialogue_text,"modulate:a",1.0,.16)
     _focus_reply()
+    speech_tail.queue_redraw()
 
 func _advance_speech() -> void:
     if not dialogue_open:return
@@ -665,17 +677,55 @@ func _set_portrait(speaker: String, expression: int) -> void:
     atlas.atlas=preload("res://godot/assets/family-v026/king-daddy-atlas.webp") if speaker=="king" else preload("res://godot/assets/family-v026/queen-antonella-atlas.webp")
     atlas.region=Rect2(768+(expression%2)*384,int(expression/2)*256,384,256)
     portrait.texture=atlas
+func _queue_dialogue_layout() -> void:
+    if dialogue_layout_pending:return
+    dialogue_layout_pending=true
+    _settle_dialogue_layout.call_deferred()
+func _settle_dialogue_layout() -> void:
+    dialogue_layout_pending=false
+    _layout_dialogue()
 func _layout_dialogue() -> void:
     var view := _ui_view()
     dialogue_shade.size=view
-    # A bottom conversation dock leaves the characters and lagoon visible.
-    var width:=minf(700,view.x-40)
-    var height:=clampf(dialogue_content.get_combined_minimum_size().y+96,190,minf(440,view.y-32))
-    dialogue_card.size=Vector2(width,height)
-    dialogue_card.position=Vector2((view.x-width)*.5,view.y-dialogue_card.size.y-20)
+    var width:=minf(720,view.x-32)
+    var compact: bool=width<570
+    dialogue_footer.columns=1 if compact else 3
+    dialogue_practice.custom_minimum_size.y=60
+    reply_toggle.custom_minimum_size.y=54 if compact else 60
+    extras_toggle.custom_minimum_size.y=54 if compact else 60
+    dialogue_text.add_theme_font_size_override("font_size",20 if compact else 22)
+    speaker_label.add_theme_font_size_override("font_size",20 if compact else 22)
+    portrait.custom_minimum_size=Vector2(54,48) if compact else Vector2(64,56)
+    switch_button.text="Sarah’s fins again" if playing_daddy else "Try Daddy’s fins";talk_queen.text="Talk to Mum"
+    switch_button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;talk_queen.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+    # The content owns wrapping; the scroll owns height. Long optional replies
+    # must never enlarge the card beyond its safe area.
+    dialogue_card.custom_minimum_size=Vector2.ZERO
+    dialogue_card.size.x=width
+    var max_height:=minf(430,view.y-32)
+    var footer_height: float=dialogue_footer.get_combined_minimum_size().y
+    var wanted: float=dialogue_content.get_combined_minimum_size().y+footer_height+46
+    dialogue_card.size.y=clampf(wanted,minf(190,max_height),max_height)
+    dialogue_card.position=Vector2((view.x-width)*.5,view.y-dialogue_card.size.y-16)
+    speech_tail.visible=dialogue_open and dialogue_card.visible and not compact
+    speech_tail.queue_redraw()
+
+func _draw_speech_tail() -> void:
+    if not is_instance_valid(dialogue_card) or not dialogue_open or not speech_tail.visible:return
+    var speaker: String=speech_beats[speech_index]["speaker"] if not speech_beats.is_empty() else ""
+    var actor: Node2D=king if speaker=="king" else queen_teacher if speaker=="queen" else native_rig if speaker=="sarah" else avina
+    if not is_instance_valid(actor):return
+    var at: Vector2=tutorial_layer.transform.affine_inverse()*actor.get_global_transform_with_canvas().origin
+    var panel:=Rect2(dialogue_card.position,dialogue_card.size)
+    if at.y>=panel.position.y-30 or at.x<16 or at.x>_ui_view().x-16:return
+    var x:=clampf(at.x,panel.position.x+42,panel.end.x-42)
+    var points:=PackedVector2Array([Vector2(x-11,panel.position.y+2),Vector2(x,panel.position.y-12),Vector2(x+11,panel.position.y+2)])
+    speech_tail.draw_colored_polygon(points,Story.IVORY)
+    speech_tail.draw_polyline(PackedVector2Array([points[0],points[1],points[2]]),Story.SEAFOAM,1.0,true)
+
 func _close_dialogue() -> void:
     _release_tutorial_input()
-    dialogue_open=false;dialogue_card.hide();dialogue_shade.hide();farewell_step=-1
+    dialogue_open=false;dialogue_card.hide();dialogue_shade.hide();speech_tail.hide();farewell_step=-1
     if is_instance_valid(king):king.end_dialogue_pose()
     if is_instance_valid(queen_teacher):queen_teacher.end_dialogue_pose()
     get_tree().paused=state=="paused"
@@ -685,7 +735,7 @@ func _close_dialogue() -> void:
         var done := dialogue_done;dialogue_done=Callable();done.call()
 func _show_choice() -> void:
     if choice_made or choice_card.visible or dialogue_open:return
-    _release_tutorial_input();lesson_card.hide();premium_hud.hide();dialogue_shade.show();choice_card.show()
+    _release_tutorial_input();lesson_card.hide();premium_hud.hide();speech_tail.hide();dialogue_shade.show();choice_card.show()
     _layout_tutorial.call_deferred();bring_button.grab_focus()
     if is_instance_valid(avina):avina.say("Sa-sa?",3)
 func _choose_companion(along: bool) -> void:
@@ -696,7 +746,7 @@ func _choose_companion(along: bool) -> void:
 func _finish_tutorial() -> void:
     var run := get_node("/root/AdventureRun")
     run.tutorial_complete=true; run.avina_along=chosen_along
-    dialogue_open=false; dialogue_card.hide(); dialogue_shade.hide(); get_tree().paused=false
+    dialogue_open=false; dialogue_card.hide(); dialogue_shade.hide(); speech_tail.hide(); get_tree().paused=false
     super._advance_journey()
 func _advance_journey() -> bool:
     _show_choice(); return true
@@ -712,7 +762,7 @@ func _restart() -> void:
     king_world=Vector2(680,490);arrival_intro_pending=false;arrival_time=0; king_tone="earnest"; queen_tone="earnest"
     if is_instance_valid(avina): avina.queue_free(); avina=null
     super._restart()
-    lesson_card.show(); choice_card.hide(); dialogue_card.hide(); dialogue_shade.hide(); premium_hud.show()
+    lesson_card.show(); choice_card.hide(); dialogue_card.hide(); dialogue_shade.hide(); speech_tail.hide(); premium_hud.show()
     _show_lesson()
 func _set_paused(pause_game: bool) -> void:
     super._set_paused(pause_game)
@@ -734,38 +784,20 @@ func _input(event: InputEvent) -> void:
 
 func _card() -> PanelContainer:
     var panel := PanelContainer.new()
-    var style := StyleBoxFlat.new()
-    style.bg_color = Color(.025,.105,.15,.91)
-    style.border_color = Color("91b9b3")
-    style.set_border_width_all(1)
-    style.set_corner_radius_all(22)
-    style.content_margin_left = 16; style.content_margin_right = 16
-    style.content_margin_top = 12; style.content_margin_bottom = 12
-    panel.add_theme_stylebox_override("panel",style)
+    panel.theme=Story.theme()
+    panel.add_theme_stylebox_override("panel",Story.panel())
     panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
     return panel
-func _label(text: String, size_px: int, color: Color) -> Label:
-    var label := Label.new()
-    label.text = text
-    label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-    var font: FontFile=preload("res://dist/fonts/story-serif.ttf")
-    font.multichannel_signed_distance_field=true
-    label.add_theme_font_override("font",font)
-    label.add_theme_font_size_override("font_size",size_px)
-    label.add_theme_color_override("font_color",color)
-    label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+func _label(text: String, size_px: int, _color: Color) -> Label:
+    var label:=Story.label(text,size_px)
+    label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
     return label
 func _button(text: String, callback: Callable) -> Button:
     var button := Button.new()
     button.text = text
     button.custom_minimum_size.y = 60
-    var font: FontFile=preload("res://dist/fonts/story-serif-bold.ttf")
-    font.multichannel_signed_distance_field=true
-    button.add_theme_font_override("font",font)
-    button.add_theme_font_size_override("font_size",18)
-    button.add_theme_stylebox_override("normal",preload("res://godot/ui_kit.gd").panel(Color("133d4e"),Color("558c91"),12))
-    button.add_theme_stylebox_override("focus",preload("res://godot/ui_kit.gd").panel(Color(0,0,0,0),Color("ffe1a2"),12))
-    button.add_theme_stylebox_override("hover",preload("res://godot/ui_kit.gd").panel(Color("205365"),Color("ffe1a2"),12))
+    button.focus_mode=Control.FOCUS_ALL
+    Story.button(button)
     button.pressed.connect(callback)
     return button
 func _ui_view() -> Vector2:
@@ -777,10 +809,11 @@ func _ui_view() -> Vector2:
 func _layout_tutorial() -> void:
     var view := _ui_view()
     talk_king.custom_minimum_size.y=60.0 if simulated_touch or DisplayServer.is_touchscreen_available() else 46.0
-    var width := minf(440,view.x-440)
-    width=maxf(280,width)
+    var available:=view.x-316
+    var width:=minf(430,maxf(240,available))
     lesson_card.size=Vector2(width,0)
-    lesson_card.position=Vector2((view.x-width)*.5,14)
+    lesson_card.position=Vector2(214+(available-width)*.5,14) if available>=240 else Vector2((view.x-width)*.5,108)
+    if premium_hud.portrait:lesson_card.hide()
     choice_card.size=Vector2(minf(570,view.x-40),0)
     choice_card.position=Vector2((view.x-choice_card.size.x)*.5,maxf(20,(view.y-choice_card.size.y)*.5))
     if is_instance_valid(dialogue_card):_layout_dialogue()
@@ -811,6 +844,8 @@ func _opal_hit_switch(_index: int, packet: Dictionary = {}) -> void:
 func _hud_snapshot() -> Dictionary:
     var result:=super._hud_snapshot();result["boss_attack"]=move_name if lesson==8 else "";result["boss_active"]=lesson==8 and boss_hp>0;result["bubble"]=bubble_unlocked and lesson>=10
     result["tutorial"]=true
+    result["powerups"]=[]
+    if gift_time>0:result["powerups"]=[{"id":"royal_boost","label":"Royal boost","remaining":gift_time,"duration":8.0}]
     # The single lesson cue already explains the trial. Keep just its slim meter.
     result["boss_attack"]=""
     return result

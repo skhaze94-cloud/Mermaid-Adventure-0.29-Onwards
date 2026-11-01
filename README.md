@@ -1,3 +1,7 @@
+# Mermaid Adventure v0.38 — Pearl Storybook
+
+Warm ivory/seafoam dialogue and HUD, painted health/power charms, clearer tutorial choices and real active-gift feedback. Read [PEARL-STORYBOOK-038.md](PEARL-STORYBOOK-038.md) for changes, validation, measurements and limitations; the design specification is [PEARL-STORYBOOK-DESIGN.md](PEARL-STORYBOOK-DESIGN.md). Current evidence: verification/pearl38. Original adventure, controls and character rigs preserved.
+
 # Mermaid Adventure v0.37 — Sarah Connected Motion
 
 Focused Sarah turn, waist, casting and animation-ownership update. Read [SARAH-v037-REVIEW.md](SARAH-v037-REVIEW.md) for the changes, measurements and remaining facial-view limitation. Complete inherited adventure and original assets preserved. Current evidence: verification/sarah37.

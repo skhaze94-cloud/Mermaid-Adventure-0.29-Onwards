@@ -1,5 +1,7 @@
 extends Node2D
 ## A protected baby follower. Bubble is her only gameplay action.
+const Pearl=preload("res://godot/pearl_storybook.gd")
+static var speech_style: StyleBoxFlat
 const PORTRAIT = preload("res://godot/assets/characters-v027/avina-baby.png")
 var follow_enabled := true
 var level: Node2D
@@ -129,14 +131,12 @@ func _little_bubble() -> void:
 
 func _draw() -> void:
     if speech_time<=0: return
-    var font := ThemeDB.fallback_font
+    var font: Font=Pearl.FONT
     var width := font.get_string_size(speech,HORIZONTAL_ALIGNMENT_LEFT,-1,16).x
     var rect := Rect2(-width*.5-10,-92,width+20,30)
     draw_style_box(_speech_style(),rect)
-    draw_string(font,Vector2(-width*.5,-71),speech,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("503d6e"))
+    draw_string(font,Vector2(-width*.5,-71),speech,HORIZONTAL_ALIGNMENT_LEFT,-1,16,Pearl.INK)
 
 func _speech_style() -> StyleBoxFlat:
-    var style := StyleBoxFlat.new()
-    style.bg_color = Color("fff6ff")
-    style.set_corner_radius_all(13)
-    return style
+    if not speech_style:speech_style=Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,13,10)
+    return speech_style

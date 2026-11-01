@@ -1,0 +1,37 @@
+{
+  "engine": "4.4-stable (official)",
+  "method": "1120x768 tutorial stage;30warm+60 measured frames per mode;real render intervals, deterministic60Hz character updates, existing world unchanged",
+  "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+  "results": [
+    {
+      "draw_calls": 158.3,
+      "mean_character_and_snapshot_ms": 6.99438333333333,
+      "mean_frame_ms": 297.581516666667,
+      "mode": "Full",
+      "p95_frame_ms": 521.009,
+      "primitives": 338179.816666667,
+      "static_bytes": 68550975.0,
+      "texture_bytes": 549337139.0
+    },
+    {
+      "draw_calls": 108.5,
+      "mean_character_and_snapshot_ms": 1.6269,
+      "mean_frame_ms": 120.354283333333,
+      "mode": "Gentle",
+      "p95_frame_ms": 298.42,
+      "primitives": 107075.0,
+      "static_bytes": 68482455.0,
+      "texture_bytes": 549337139.0
+    },
+    {
+      "draw_calls": 108.5,
+      "mean_character_and_snapshot_ms": 1.84815,
+      "mean_frame_ms": 126.505683333333,
+      "mode": "Economy",
+      "p95_frame_ms": 382.743,
+      "primitives": 107075.0,
+      "static_bytes": 68483687.0,
+      "texture_bytes": 549337139.0
+    }
+  ]
+}

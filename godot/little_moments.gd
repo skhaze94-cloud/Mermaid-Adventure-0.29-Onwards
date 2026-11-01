@@ -1,6 +1,7 @@
 extends Node2D
 ## Four optional, input-free stories in two opening areas. No gameplay timers.
 const Kit=preload("res://godot/ui_kit.gd")
+const Pearl=preload("res://godot/pearl_storybook.gd")
 const Terrain=preload("res://godot/terrain_painter.gd")
 var host: Node2D
 var clock:=0.0
@@ -52,9 +53,9 @@ func _ready() -> void:
     dozy=_sprite("dozy",130)
     music=_sprite("music-pavilion",230)
     message_box=PanelContainer.new();message_box.mouse_filter=Control.MOUSE_FILTER_IGNORE;message_box.z_index=8
-    message_box.add_theme_stylebox_override("panel",Kit.panel(Color(.025,.12,.18,.95),Color("d9c7a0"),15));add_child(message_box)
+    message_box.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10));add_child(message_box)
     message_content=Control.new();message_content.mouse_filter=Control.MOUSE_FILTER_IGNORE;message_box.add_child(message_content)
-    message_label=Kit.label("",19,Color("f6e8cc"));message_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;message_content.add_child(message_label)
+    message_label=Pearl.label("",19,Pearl.INK);message_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;message_content.add_child(message_label)
     var body_font: FontFile=Kit.BODY
     body_font.multichannel_signed_distance_field=true
     message_label.add_theme_font_override("font",Kit.BODY)

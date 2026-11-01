@@ -1,0 +1,133 @@
+{
+  "baseline": "v0.37",
+  "version": "0.38.0",
+  "unique_suites": 17,
+  "all_available_suites_pass": true,
+  "final_suite_batch_complete": true,
+  "suites": [
+    {
+      "suite": "pearl_ui",
+      "ok": true,
+      "result": "PEARL UI CONTRACT: 280 checks, 0 failures"
+    },
+    {
+      "suite": "scoring_ui",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nGODOT SCORING UI TEST PASSED\n"
+    },
+    {
+      "suite": "gameplay_controls",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nGODOT GAMEPLAY CONTROLS TEST PASSED\n"
+    },
+    {
+      "suite": "device_layout",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nGODOT DEVICE LAYOUT TEST PASSED\n"
+    },
+    {
+      "suite": "conversation_flow",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nCONVERSATION FLOW: 269 checks, 0 failures; 33 reply branches\n"
+    },
+    {
+      "suite": "family_layout",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nFAMILY LAYOUT: 20 checks, 0 failures\n"
+    },
+    {
+      "suite": "avina_tutorial",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nFAMILY TUTORIAL: 112 checks, 0 failures\n"
+    },
+    {
+      "suite": "tutorial_caption_regression",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nTUTORIAL CAPTION REGRESSION: 8 checks, 0 failures\n"
+    },
+    {
+      "suite": "pocket_wonders_reactions",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nPOCKET WONDERS REACTIONS: 57 checks, 0 failures\n"
+    },
+    {
+      "suite": "living_reef",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nLIVING REEF: 170 checks, 0 failures; 1640 real swim ticks\n"
+    },
+    {
+      "suite": "whimsy_four",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nWHIMSY FOUR: 358 checks, 0 failures; 22 residents, 4 new loops\n"
+    },
+    {
+      "suite": "sarah_turn_regression",
+      "ok": true,
+      "result": "989624,\"far_arm\":28.0188331604004,\"hair\":169.961502075195,\"near_arm\":88.528938293457,\"tail\":61.3690986633301}},{\"crossing\":{\"frame\":14,\"front\":1.0,\"heading\":-0.0442433431744576,\"steps\":{\"body\":0.714621484279633,\"far_arm\":0.0946781113743782,\"hair\":167.590057373047,\"near_arm\":0.192059859633446,\"tail\":0.609907805919647}},\"hz\":120,\"peaks\":{\"body\":12.7207937240601,\"far_arm\":14.3986396789551,\"hair\":167.590057373047,\"near_arm\":46.849853515625,\"tail\":32.1474876403809}},{\"cast\":false,\"physical_velocity_x\":270.0,\"tiny_input_facing\":1.0},{\"cast\":true,\"physical_velocity_x\":270.0,\"tiny_input_facing\":1.0}]\n"
+    },
+    {
+      "suite": "sarah_flow",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nSARAH FLOW: 56739 checks, 0 failures\n"
+    },
+    {
+      "suite": "scene_flow",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nSCENE FLOW TEST PASSED\n"
+    },
+    {
+      "suite": "friends_cavern",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nFRIENDS CAVERN: 402 checks, 0 failures; 15 caverns, 23 friends\n"
+    },
+    {
+      "suite": "little_moments",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nLITTLE MOMENTS: 36 checks, 0 failures\n"
+    },
+    {
+      "suite": "pocket_wonders",
+      "ok": true,
+      "result": "Godot Engine v4.4.stable.official.4c311cbee - https://godotengine.org\n\nPOCKET WONDERS: 318 checks, 0 failures; 12744 real swim ticks\n"
+    }
+  ],
+  "native_capture_batches": [
+    {
+      "folder": "native-final",
+      "views": 56,
+      "geometry_failures": 0
+    },
+    {
+      "folder": "final-touch",
+      "views": 8,
+      "geometry_failures": 0
+    }
+  ],
+  "windows_embedded_pack_checks": {
+    "world_and_resources": 107,
+    "pearl_ui": 11
+  },
+  "staged_preview": {
+    "actual_charge_begin": true,
+    "actual_charge_release": true,
+    "fps": 24,
+    "frames": 192,
+    "gift_duration": 8,
+    "key_frames": [
+      0,
+      24,
+      48,
+      80,
+      96,
+      110,
+      145,
+      170
+    ],
+    "resolution": "1280x720",
+    "seconds": 8,
+    "type": "staged native UI review; held player placement, not a full playthrough or device FPS test"
+  },
+  "physical_windows_test": false,
+  "physical_android_test": false,
+  "known_inherited_diagnostics": "Historical continuity, torso, spine and jump-animation suites had failures reproduced in unchanged v0.36/v0.37 and are not claimed as passing here. The historical character-harmony fixture timed out in this run and depends on obsolete mesh-count/royal-mesh API assumptions; it is not counted as passing."
+}

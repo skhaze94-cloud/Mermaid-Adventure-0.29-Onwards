@@ -50,7 +50,7 @@ var quality_toggle: CheckButton
 var continue_requested := false
 
 func _ready() -> void:
-    get_tree().root.title="Mermaid Adventure — Connected Grace · v0.36"
+    get_tree().root.title="Mermaid Adventure — Pearl Storybook · v0.38"
     process_mode = Node.PROCESS_MODE_ALWAYS
     get_tree().paused = false
     prefs = get_node("/root/AppPreferences")
@@ -216,7 +216,7 @@ func show_page(next_page: String) -> void:
     scroll.scroll_vertical = 0
     skip.visible = false
     back_button.visible = page != "menu"
-    footer.text = "v"+str(ProjectSettings.get_setting("application/config/version","0.26.0"))+"  •  CONNECTED GRACE" if page == "menu" else "SARAH MARIA"
+    footer.text = "v"+str(ProjectSettings.get_setting("application/config/version","0.26.0"))+"  •  PEARL STORYBOOK" if page == "menu" else "SARAH MARIA"
     match page:
         "menu":
             _heading("SARAH MARIA", "Mermaid\nAdventure", "Follow your wonder.")
@@ -398,7 +398,7 @@ func _transition_failed(message: String) -> void:
     footer.text = message
 
 func _on_save_finished(success: bool) -> void:
-    if page=="menu":footer.text="v"+str(ProjectSettings.get_setting("application/config/version","0.26.0"))+"  •  CONNECTED GRACE" if success else get_node("/root/AdventureRun").save_message
+    if page=="menu":footer.text="v"+str(ProjectSettings.get_setting("application/config/version","0.26.0"))+"  •  PEARL STORYBOOK" if success else get_node("/root/AdventureRun").save_message
 
 func _resize() -> void:
     var view := get_viewport_rect().size

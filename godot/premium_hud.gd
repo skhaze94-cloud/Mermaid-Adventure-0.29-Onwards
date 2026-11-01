@@ -3,7 +3,17 @@ signal menu_requested
 const Polish = preload("res://godot/visual_polish.gd")
 const Controls = preload("res://godot/control_layout.gd")
 const Kit = preload("res://godot/ui_kit.gd")
+const Pearl=preload("res://godot/pearl_storybook.gd")
+const Charm=preload("res://godot/pearl_charm.gd")
 const Card = preload("res://godot/ui_card.tscn")
+var pause_button: Button
+var powerup_row: HBoxContainer
+var powerup_badges: Dictionary={}
+var previous_health:=-1
+var health_feedback:=0.0
+var heal_feedback:=false
+var boost_caption: Label
+var health_style: StyleBoxFlat
 var canvas: Control
 var info: Dictionary = {}
 var game_size := Vector2(1400,960)
@@ -50,6 +60,7 @@ var float_ages: Array[float] = []
 var float_origins: Array[Vector2] = []
 var banner: Control
 var banner_label: Label
+var reward_charm: TextureRect
 var banner_age := 99.0
 var banner_sparkles: Array[TextureRect] = []
 var shown_score := 0.0
@@ -83,24 +94,27 @@ func _ready() -> void:
     canvas = Control.new()
     canvas.name = "PearlAndCrownHUD"
     canvas.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    canvas.theme = Kit.theme()
-    touch_normal = Kit.panel(Color(0.025,0.12,0.18,0.94),Color("#6fc9c7"),22)
-    touch_pressed = Kit.panel(Color("#145565"),Color("#ffb7e5"),28)
+    canvas.theme = Pearl.theme()
+    touch_normal = Pearl.panel(Color("#fff4dce8"),Pearl.SEAFOAM,24,8)
+    touch_pressed = Pearl.panel(Pearl.MINT,Pearl.GOLD,28,8)
     add_child(canvas)
     score_card = Card.instantiate()
     canvas.add_child(score_card)
+    score_card.theme=Pearl.theme();score_card.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,20,10))
+    var score_stack:=VBoxContainer.new();score_stack.add_theme_constant_override("separation",0);score_card.add_child(score_stack)
     var score_box := HBoxContainer.new()
     score_box.mouse_filter=Control.MOUSE_FILTER_IGNORE
     score_box.add_theme_constant_override("separation",9)
-    score_card.add_child(score_box)
-    score_box.add_child(Kit.icon("shell",Vector2(30,30)))
-    score_label=Kit.label("0",22,Color("#ffe3a1"));score_box.add_child(score_label)
-    pearl_label=Kit.label("0 pearls",14,Color("#acdcd9"));score_box.add_child(pearl_label)
-    combo_label = Kit.label("",14,Color("#ffb7ec"))
+    score_stack.add_child(score_box)
+    score_box.add_child(Pearl.icon("shell",Vector2(26,26)))
+    score_label=Pearl.label("0",22);score_box.add_child(score_label)
+    pearl_label=Pearl.label("0 pearls",13,Pearl.MUTED);score_stack.add_child(pearl_label)
+    combo_label = Kit.label("",14,Pearl.IVORY)
     canvas.add_child(combo_label)
     combo_meter = _meter(canvas)
     health_card = Card.instantiate()
     canvas.add_child(health_card)
+    health_card.theme=Pearl.theme();health_style=Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,20,10);health_card.add_theme_stylebox_override("panel",health_style)
     var health_box := VBoxContainer.new()
     health_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
     health_card.add_child(health_box)
@@ -109,44 +123,48 @@ func _ready() -> void:
     health_row.add_theme_constant_override("separation",4)
     health_box.add_child(health_row)
     for i in range(5):
-        var heart := Kit.icon("heart",Vector2(22,22))
+        var heart := Pearl.icon("heart",Vector2(27,27))
         health_row.add_child(heart)
         hearts.append(heart)
     
+    boost_caption=Pearl.label("Boost energy",14,Pearl.MUTED);health_box.add_child(boost_caption)
     energy_meter = _meter(health_box)
     energy_meter.custom_minimum_size.y = 6
+    powerup_row=HBoxContainer.new();powerup_row.add_theme_constant_override("separation",8);powerup_row.mouse_filter=Control.MOUSE_FILTER_IGNORE;canvas.add_child(powerup_row)
     chapter = Kit.label("HIGHLAND GOLD",12,Color("#c6f2e6"))
     canvas.add_child(chapter)
     route = _meter(canvas)
     charge_card = PanelContainer.new()
-    charge_card.add_theme_stylebox_override("panel",Kit.panel(Color(0.025,0.12,0.18,0.94),Color("#a8e8f1"),16))
+    charge_card.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10))
     canvas.add_child(charge_card)
     var charge_box := VBoxContainer.new()
     charge_card.add_child(charge_box)
-    charge_label = Kit.label("Bubble ready",14,Color("#dfffee"))
+    charge_label = Pearl.label("Bubble ready",14)
     charge_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    charge_box.add_child(charge_label)
+    var charge_heading:=HBoxContainer.new();charge_heading.alignment=BoxContainer.ALIGNMENT_CENTER;charge_heading.add_theme_constant_override("separation",6);charge_heading.add_child(Pearl.icon("bubble",Vector2(25,25)));charge_box.add_child(charge_heading)
+    charge_heading.add_child(charge_label)
     charge_meter = _meter(charge_box)
     charge_meter.custom_minimum_size.y = 8
     charge_card.hide()
     message_back = Panel.new()
     message_back.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    message_back.add_theme_stylebox_override("panel", Kit.panel(Color(0.025,0.12,0.18,0.88),Color(0.32,0.72,0.73,0.4),10))
+    message_back.add_theme_stylebox_override("panel", Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10))
     canvas.add_child(message_back)
-    message_label = Kit.label("",15)
+    message_label = Pearl.label("",17)
     message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     canvas.add_child(message_label)
     boss_card = Card.instantiate()
     canvas.add_child(boss_card)
+    boss_card.theme=Pearl.theme();boss_card.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10))
     var boss_box := VBoxContainer.new()
     boss_card.add_child(boss_box)
-    boss_label = Kit.label("CARLO THE CRAB",16,Color("#ffe3a1"))
+    boss_label = Pearl.label("Carlo the Crab",16)
     boss_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
     boss_box.add_child(boss_label)
     boss_meter = _meter(boss_box)
     boss_meter.custom_minimum_size.y = 12
-    boss_hint = Kit.label("",12,Color("#bde8e3"))
+    boss_hint = Pearl.label("",12,Pearl.MUTED)
     boss_hint.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
     boss_hint.hide()
     boss_box.add_child(boss_hint)
@@ -164,12 +182,13 @@ func _ready() -> void:
     modal.add_child(scrim)
     modal_card = Card.instantiate()
     modal.add_child(modal_card)
+    modal_card.theme=Pearl.theme();modal_card.add_theme_stylebox_override("panel",Pearl.panel())
     modal_card.minimum_size_changed.connect(_queue_modal_layout)
     modal_content = VBoxContainer.new()
     modal_content.mouse_filter = Control.MOUSE_FILTER_IGNORE
     modal_content.add_theme_constant_override("separation",4)
     modal_card.add_child(modal_content)
-    result_title = Kit.label("",26,Color("#ffe3a1"))
+    result_title = Pearl.label("",26)
     result_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     result_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     result_title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -187,7 +206,7 @@ func _ready() -> void:
         var star := Kit.icon("star",Vector2(40,40))
         star_row.add_child(star)
         stars.append(star)
-    rating_label = Kit.label("",12,Color("#a9dfdd"))
+    rating_label = Pearl.label("",12,Pearl.MUTED)
     rating_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     rating_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     modal_content.add_child(rating_label)
@@ -202,17 +221,17 @@ func _ready() -> void:
     breakdown.size_flags_horizontal = Control.SIZE_EXPAND_FILL
     breakdown.mouse_filter = Control.MOUSE_FILTER_IGNORE
     scroll.add_child(breakdown)
-    result_total = Kit.label("",24,Color("#ffe3a1"))
+    result_total = Pearl.label("",24)
     result_total.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     modal_content.add_child(result_total)
-    record_label = Kit.label("",14,Color("#ffb7ec"))
+    record_label = Pearl.label("",14,Pearl.ROSE)
     record_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     var record_row := HBoxContainer.new()
     record_row.alignment = BoxContainer.ALIGNMENT_CENTER
     record_row.add_child(Kit.icon("crown",Vector2(26,26)))
     record_row.add_child(record_label)
     modal_content.add_child(record_row)
-    reward_label = Kit.label("",13,Color("#a9f4de"))
+    reward_label = Pearl.label("",13,Pearl.MUTED)
     reward_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     modal_content.add_child(reward_label)
     for action in ["resume","restart","menu"]:
@@ -222,10 +241,11 @@ func _ready() -> void:
         button.expand_icon = true
         button.add_theme_constant_override("icon_max_width",26)
         button.pressed.connect(func(): _modal_action(action))
+        Pearl.button(button,action=="resume")
         modal.add_child(button)
         modal_buttons[action] = button
     menu_button = modal_buttons["menu"]
-    rotate_label = Kit.label("ROTATE TO LANDSCAPE\nYour adventure is paused",24,Color("#ffe3a1"))
+    rotate_label = Kit.label("Turn your screen sideways\nYour adventure is paused",24,Pearl.IVORY)
     rotate_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     canvas.add_child(rotate_label)
     for i in range(12):
@@ -242,15 +262,19 @@ func _ready() -> void:
     toast.name="RewardToast"
     toast.mouse_filter=Control.MOUSE_FILTER_IGNORE
     toast.size=Vector2(240,48)
-    toast.add_theme_stylebox_override("panel",Kit.panel(Color("#103847"),Color("#6cbcb9"),12))
+    toast.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10))
     banner.add_child(toast)
-    banner_label=Kit.label("",17,Color("#ffe4b0"))
+    reward_charm=Pearl.icon("shell",Vector2(30,30));reward_charm.name="RewardCharm"
+    reward_charm.position=Vector2(8,9);reward_charm.size=Vector2(30,30);reward_charm.hide();banner.add_child(reward_charm)
+    banner_label=Pearl.label("",17)
     banner_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     banner_label.position=Vector2(10,7)
     banner_label.size=Vector2(220,34)
     banner.add_child(banner_label)
     banner.visible = false
+    pause_button=Button.new();pause_button.name="PauseAdventure";pause_button.text="Ⅱ";pause_button.tooltip_text="Pause adventure";Pearl.button(pause_button);pause_button.pressed.connect(func():get_parent()._touch_action("pause"));canvas.add_child(pause_button)
     _ignore_decoration(canvas)
+    pause_button.mouse_filter=Control.MOUSE_FILTER_STOP
     get_viewport().size_changed.connect(_resize)
     _resize()
 
@@ -291,16 +315,19 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
         control_opacity = prefs.touch_opacity
     var w := game_size.x
     var h := game_size.y
-    score_card.position = Vector2(14,14)
-    score_card.size = Vector2(200,54)
-    health_card.position = Vector2(w-190-(82 if info.get("touch",false) else 0),14)
-    health_card.size = Vector2(176,58)
-    combo_label.position = Vector2(18,76)
-    combo_meter.position = Vector2(18,104)
+    score_card.position = Vector2(w-332,14)
+    score_card.size = Vector2(230,70)
+    health_card.position = Vector2(14,14)
+    health_card.size = Vector2(184,82)
+    powerup_row.position=Vector2(14,106)
+    powerup_row.size=Vector2(184,50)
+    pause_button.position=action_rect("pause").position;pause_button.size=action_rect("pause").size
+    combo_label.position = Vector2(w-330,92)
+    combo_meter.position = Vector2(w-330,118)
     combo_meter.size = Vector2(minf(240,w*0.34),8)
-    chapter.position = Vector2(18,76)
-    route.position = Vector2(16,h-12)
-    route.size = Vector2(w-32,6)
+    chapter.position = Vector2(18,166)
+    route.position = Vector2(18,190)
+    route.size = Vector2(160,4)
     charge_card.position = Vector2((w-230)*.5,h-92)
     charge_card.size = Vector2(230,64)
     var message_width := minf(w-40,740)
@@ -318,7 +345,7 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
     for star in stars: star.custom_minimum_size = Vector2.ONE*(28 if h<600 else 40)
     result_scroll.custom_minimum_size.y = 54 if h<600 else 108
     result_title.add_theme_font_size_override("font_size",22 if h<600 else 26)
-    modal_card.size = Vector2(minf(w-36,540),minf(h-135,430))
+    modal_card.size = Vector2(minf(w-36,540),minf(h-160,430))
     for action in modal_buttons:
         var rect := action_rect(action)
         modal_buttons[action].position = rect.position
@@ -342,9 +369,9 @@ func pad_vector(point: Vector2) -> Vector2:
     return offset.normalized()*clampf((offset.length()-18)/24,0,1)
 func action_rect(action: String) -> Rect2:
     if info.get("paused",false) and action in ["resume","restart","menu"]:
-        return Rect2(game_size.x*0.5-135,modal_card.position.y+modal_card.size.y+10+["resume","restart","menu"].find(action)*54,270,48)
+        return Rect2(game_size.x*0.5-135,modal_card.position.y+modal_card.size.y+10+["resume","restart","menu"].find(action)*62,270,56)
     if info.get("victory",false) and action in ["restart","menu"]:
-        return Rect2(game_size.x*0.5-120,modal_card.position.y+modal_card.size.y+(70 if action == "menu" else 10),240,40 if action == "menu" else 50)
+        return Rect2(game_size.x*0.5-120,modal_card.position.y+modal_card.size.y+(76 if action == "menu" else 10),240,56)
     if action == "menu": return Rect2(game_size.x*0.5-135,game_size.y*0.5+139,270,64)
     var rect := Controls.rect(action,game_size)
     if action in ["boost","jump","bubble"]:
@@ -383,9 +410,18 @@ func _refresh() -> void:
     if not is_instance_valid(score_card): return
     rotate_label.visible = portrait
     score_card.visible = not portrait and not info.get("tutorial",false) and not modal.visible
-    health_card.visible = not portrait
-    health_card.position.x = game_size.x-190-(82 if info.get("touch",false) else 0)
-    for i in range(5): hearts[i].modulate = Color.WHITE if i<int(info.get("health",5)) else Color(0.28,0.38,0.46,0.5)
+    health_card.visible = not portrait and not info.get("paused",false) and not info.get("victory",false)
+    health_card.position.x = 14
+    pause_button.visible=not info.get("touch",false) and not portrait and not info.get("paused",false) and not info.get("victory",false)
+    _refresh_powerups()
+    var hp:=clampi(int(info.get("health",5)),0,5)
+    if previous_health>=0 and hp!=previous_health:
+        health_feedback=.65;heal_feedback=hp>previous_health
+    previous_health=hp
+    health_card.tooltip_text="Health: %s of 5"%hp
+    for i in range(5):
+        hearts[i].texture=Pearl.texture("heart" if i<hp else "empty_heart")
+        hearts[i].modulate=Color.WHITE
     energy_meter.value = info.get("energy",1.0)
     pearl_label.text = "· %s pearls" % Kit.number(int(info.get("pearls",0)))
     var combo := int(info.get("combo",1))
@@ -395,17 +431,18 @@ func _refresh() -> void:
     combo_meter.visible = combo>1 and not portrait and not compact_priority
     combo_meter.value = float(info.get("combo_left",0))/3.0
     combo_label.visible = combo>1 and not portrait and not compact_priority
-    chapter.position.y=116.0 if combo>1 else 76.0
+    chapter.position.y=166.0 if powerup_row.visible else 108.0
+    route.position.y=chapter.position.y+24
     chapter.text = "The waterfall" if info.get("waterfall","") != "" else String(info.get("chapter","Highland Gold")).split(" · ")[0].capitalize()
     chapter.visible = not portrait and not info.get("tutorial",false) and not info.get("boss_active",false) and not modal.visible
     route.value = info.get("fall_progress" if info.get("waterfall","") != "" else "progress",0)
-    route.visible = not portrait
+    route.visible = not portrait and not info.get("tutorial",false) and not modal.visible
     message_label.text = info.get("message","") if info.get("message_time",0)>0 else ""
     var message_width := minf(game_size.x-48,480)
     var layout_key: Array=[message_label.text,message_width]
     if layout_key!=message_layout_key:
         message_layout_key=layout_key
-        var text_height:=Kit.BODY.get_multiline_string_size(String(message_label.text),HORIZONTAL_ALIGNMENT_CENTER,message_width-24,15).y
+        var text_height:=Kit.BODY.get_multiline_string_size(String(message_label.text),HORIZONTAL_ALIGNMENT_CENTER,message_width-24,17).y
         message_height=clampf(text_height+20,42,100)
     message_back.size=Vector2(message_width,message_height)
     message_back.position=Vector2((game_size.x-message_width)*.5,92 if critical_boss else game_size.y-212-message_height)
@@ -478,7 +515,7 @@ func _layout_modal() -> void:
     modal_layout_updates += 1
     if modal.visible and not portrait:
         result_scroll.visible = bool(info.get("victory",false))
-        modal_card.size = Vector2(minf(game_size.x-36,540),minf(game_size.y-(135 if info.get("victory",false) else 200),430 if info.get("victory",false) else 230))
+        modal_card.size = Vector2(minf(game_size.x-36,540),minf(game_size.y-(160 if info.get("victory",false) else 200),430 if info.get("victory",false) else 230))
     for action in modal_buttons:
         var rect := action_rect(action)
         modal_buttons[action].position = rect.position
@@ -521,8 +558,14 @@ func show_reward(reward: Dictionary, at: Vector2) -> void:
     float_ages[slot] = 0
     floating[slot].visible = true
     score_pulse = 1.0
-    if reward.get("boss_clear",false) or ((major or int(reward["extra"])>0) and banner_age>0.7):
-        banner_label.text = ("BOSS CLEAR!" if reward.get("boss_clear",false) else "Boss hit! +%s" % reward["points"]) if category=="Boss" else "Treasure Bonus!" if category == "Treasure" else ("Combo! ×%s" % reward["multiplier"] if reward["extra"]>0 else "Wonderful! +%s" % reward["points"])
+    var discovery: bool=category=="Secrets"
+    if reward.get("boss_clear",false) or ((major or discovery or int(reward["extra"])>0) and banner_age>0.7):
+        banner_label.text = ("Beautifully done!" if reward.get("boss_clear",false) else "Boss hit! +%s" % reward["points"]) if category=="Boss" else "A lovely little treasure!" if category == "Treasure" else "A little discovery!" if discovery else ("Combo! ×%s" % reward["multiplier"] if reward["extra"]>0 else "Wonderful! +%s" % reward["points"])
+        reward_charm.visible=major or discovery or bool(reward.get("boss_clear",false))
+        if reward_charm.visible:reward_charm.texture=Pearl.texture("slug" if discovery else "pearl" if category=="Pearls" else "shell")
+        banner_label.position.x=44 if reward_charm.visible else 10
+        banner_label.size.x=184 if reward_charm.visible else 220
+        banner_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_LEFT if reward_charm.visible else HORIZONTAL_ALIGNMENT_CENTER
         banner_age = 0.0
         banner.visible = true
         # Keep the celebration on the opposite side from the action.
@@ -550,7 +593,7 @@ func _build_results() -> void:
     if finale and not info.get("adventure_breakdown",{}).is_empty(): details=info["adventure_breakdown"]
     for category in details:
         if int(details[category]) == 0: continue
-        var label := Kit.label("",15)
+        var label := Pearl.label("",15)
         breakdown.add_child(label)
         result_rows.append(label)
         result_values.append(int(details[category]))
@@ -570,6 +613,14 @@ func _build_results() -> void:
 func _process(dt: float) -> void:
     if info.is_empty(): return
     var reduced: bool = info.get("reduced",false)
+    if not info.get("paused",false):health_feedback=maxf(0,health_feedback-dt)
+    var health_alpha:=1.0
+    if not reduced and health_feedback>0:
+        health_alpha=.88+.12*absf(cos((.65-health_feedback)*PI/.65))
+    var health_tint:=Color(1,1,1,health_alpha)
+    if health_card.modulate!=health_tint:health_card.modulate=health_tint
+    var health_edge: Color=(Pearl.MINT if heal_feedback else Pearl.ROSE) if health_feedback>0 else (Pearl.ROSE if previous_health<=2 else Pearl.SEAFOAM)
+    if health_style.border_color!=health_edge:health_style.border_color=health_edge
     var target := float(info.get("score",0))
     if target < shown_score or reduced: shown_score = target
     elif not info.get("paused",false): shown_score = move_toward(shown_score,target,maxf(1,(target-shown_score)*minf(dt*9,1)))
@@ -628,15 +679,15 @@ func _draw_touch() -> void:
     var factor := control_size
     var direction: Vector2 = info.get("pad",Vector2.ZERO)
     var radius := 58.0*factor
-    touch_layer.draw_circle(center,radius,Color(.025,.12,.18,.92))
-    touch_layer.draw_arc(center,radius,0,TAU,64,Color(.45,.80,.78,.85),2,true)
+    touch_layer.draw_circle(center,radius,Color("#fff4dce8"))
+    touch_layer.draw_arc(center,radius,0,TAU,64,Pearl.SEAFOAM,2,true)
     for angle in [0,PI*.5,PI,PI*1.5]:
         var axis := Vector2.RIGHT.rotated(angle)
-        touch_layer.draw_line(center+axis*radius*.76,center+axis*radius*.88,Color(.65,.9,.86,.65),2,true)
+        touch_layer.draw_line(center+axis*radius*.76,center+axis*radius*.88,Pearl.MUTED,2,true)
     var knob := center+direction*35.0*maxf(1,factor)
-    if direction.length()>0.05: touch_layer.draw_line(center,knob,Color("#a5fff5"),3,true)
-    touch_layer.draw_circle(knob,20*factor,Color("#75d3c6"))
-    touch_layer.draw_arc(knob,20*factor,0,TAU,40,Color("#c1f4e6"),1.5,true)
+    if direction.length()>0.05: touch_layer.draw_line(center,knob,Pearl.SEAFOAM,3,true)
+    touch_layer.draw_circle(knob,20*factor,Pearl.MINT)
+    touch_layer.draw_arc(knob,20*factor,0,TAU,40,Pearl.SEAFOAM,1.5,true)
     for action in ["jump","boost","bubble","pause"]:
         if action=="bubble" and not info.get("bubble",false):continue
         var rect := action_rect(action)
@@ -645,17 +696,38 @@ func _draw_touch() -> void:
         var pressed: bool = action in info.get("pressed",[])
         var style := touch_pressed if pressed else touch_normal
         touch_layer.draw_style_box(style,rect)
-        var icon_size := minf(rect.size.x,rect.size.y)*0.64*minf(1,factor)
-        var icon_at := rect.get_center()-Vector2.ONE*icon_size/2+Vector2(0,-5)
-        Polish.glyph(touch_layer,"lock" if locked else action,icon_at+Vector2.ONE*icon_size*.5,icon_size*.78,Color("#789ba4") if locked or not available else Color("#c5f6e8"))
+        var icon_size := minf(rect.size.x,rect.size.y)*0.52*minf(1,factor)
+        var icon_at := rect.get_center()-Vector2.ONE*icon_size/2+Vector2(0,-10)
+        if action in ["jump","boost","bubble"] and not locked:
+            touch_layer.draw_texture_rect(Pearl.texture(action),Rect2(icon_at,Vector2.ONE*icon_size),false,Color(1,1,1,.45 if not available else 1))
+        else:
+            Polish.glyph(touch_layer,"lock" if locked else action,icon_at+Vector2.ONE*icon_size*.5,icon_size*.78,Pearl.MUTED if locked or not available else Pearl.INK)
         var label: String = "LOCKED" if locked else ("RECHARGE" if not available else String(action).to_upper())
         if action=="bubble" and not locked:
             label=bubble_button_label()
-        touch_layer.draw_string(Kit.BODY,rect.position+Vector2(0,rect.size.y-10),label,HORIZONTAL_ALIGNMENT_CENTER,rect.size.x,13,Color("#defdf5"))
+            label={"PRISM BLOOM":"PRISM","CHARGING":"HOLD…"}.get(label,label)
+        touch_layer.draw_string(Kit.BODY,rect.position+Vector2(0,rect.size.y-10),label,HORIZONTAL_ALIGNMENT_CENTER,rect.size.x,16,Pearl.INK)
         var cool := float(info.get("cooldowns",{}).get(action,0))
         if cool>0:
             var fraction := bubble_cooldown_fraction() if action=="bubble" else clampf(cool/(0.46 if action=="boost" and info.get("waterfall","")=="descent" else 0.55 if action=="boost" else 0.35),0,1)
-            touch_layer.draw_arc(rect.get_center(),minf(rect.size.x,rect.size.y)*0.43,-PI/2,-PI/2+TAU*fraction,32,Color("#ffe2ad"),3)
+            touch_layer.draw_arc(rect.get_center()+Vector2(0,-10),minf(rect.size.x,rect.size.y)*0.30,-PI/2,-PI/2+TAU*fraction,32,Pearl.GOLD,3)
         elif action=="bubble" and int(info.get("charge_tier",0))>0:
             var progress := clampf(float(info.get("charge_progress",0)),0,1)
-            touch_layer.draw_arc(rect.get_center(),minf(rect.size.x,rect.size.y)*0.43,-PI/2,-PI/2+TAU*progress,48,Color("#a7fff0"),3)
+            touch_layer.draw_arc(rect.get_center()+Vector2(0,-10),minf(rect.size.x,rect.size.y)*0.30,-PI/2,-PI/2+TAU*progress,48,Pearl.INK,3)
+
+func _refresh_powerups() -> void:
+    var active: Array=[]
+    for data in info.get("powerups",[]):
+        if data is Dictionary and float(data.get("remaining",0))>0 and not String(data.get("id","")).is_empty():active.append(data)
+        if active.size()==2:break
+    var wanted: Array=[]
+    for data in active:wanted.append(String(data["id"]))
+    for id in powerup_badges.keys():
+        if not id in wanted:
+            var node: Control=powerup_badges[id];powerup_row.remove_child(node);node.queue_free();powerup_badges.erase(id)
+    for data in active:
+        var id:=String(data["id"])
+        if not powerup_badges.has(id):
+            var badge:=Charm.new();powerup_row.add_child(badge);powerup_badges[id]=badge
+        powerup_badges[id].set_powerup(data,bool(info.get("reduced",false)))
+    powerup_row.visible=not active.is_empty() and not portrait and not info.get("paused",false) and not info.get("victory",false)

@@ -2,6 +2,7 @@ extends "res://godot/whimsy_garden.gd"
 ## Presentation only. The host/model own discovery, progress and reward ledgers.
 ## Reuse the Whimsy brush's fixed dynamic mesh for every small line/petal/glow.
 const Kit = preload("res://godot/ui_kit.gd")
+const Pearl = preload("res://godot/pearl_storybook.gd")
 const Creature = preload("res://godot/creature_art.gd")
 const GUIDE_PATH := "res://godot/assets/living-reef/pearl-seahorse.webp"
 var host: Node2D
@@ -36,11 +37,11 @@ func _prepare_caption() -> void:
     # huge temporary minimum at width zero; that must never resize the panel.
     caption=Panel.new();caption.name="ReefDiscoveryCaption"
     caption.mouse_filter=Control.MOUSE_FILTER_IGNORE;caption.clip_contents=true
-    caption.add_theme_stylebox_override("panel",Kit.panel(Color(.025,.12,.18,.88),Color(.79,.68,.84,.62),14))
-    caption_title=Kit.label("",20,Color("f5dfbd"));caption_title.add_theme_font_override("font",Kit.FONT)
+    caption.add_theme_stylebox_override("panel",Pearl.panel(Pearl.IVORY,Pearl.SEAFOAM,18,10))
+    caption_title=Pearl.label("",20,Pearl.INK);caption_title.add_theme_font_override("font",Kit.FONT)
     caption_title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     caption_title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;caption.add_child(caption_title)
-    caption_hint=Kit.label("",17,Color("e5edf4"));caption_hint.add_theme_font_override("font",Kit.BODY)
+    caption_hint=Pearl.label("",17,Pearl.INK);caption_hint.add_theme_font_override("font",Kit.BODY)
     caption_hint.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
     caption_hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;caption.add_child(caption_hint)
     caption_candidates.resize(7)

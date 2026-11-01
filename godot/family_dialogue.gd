@@ -9,11 +9,11 @@ const NODES := {
     ["I’ll take the safe route.","earnest","Excellent. Look ahead, steer around stone, and let your tail do the work."],
     ["Does it have a health bar?","cheeky","Not yet. It is still negotiating its contract."],
     ["Where did the treasure come from?","curious","Mum hid three chests at different depths. Curiosity deserves a reward."]]],
-"boost":["king","Very dignified zoomies","Aim first, boost second! Use Boost when your aqua bar is nearly half full. It refills while you swim.",[
+"boost":["king","Very dignified zoomies","Aim first, little pearl. Then—zoom!\nKing Daddy: Use Boost when your aqua bar is nearly half full. It refills while you swim.",[
     ["Stand back. Zoomies incoming.","cheeky","The royal beard has been secured. Proceed."],
     ["I’ll aim before I boost.","earnest","Beautiful. A little control makes a big difference."],
     ["What if the bar runs out?","curious","Keep swimming while it recharges. We have all the time in the lagoon."]]],
-"jump":["king","Time to meet the sky","Start underwater, then Jump. Steer through the air and splash back into the sea.",[
+"jump":["king","Time to meet the sky","Let’s say hello to the sky.\nKing Daddy: Start underwater, then Jump. Steer through the air and splash back into the sea.",[
     ["One small splash first.","earnest","A wonderful start. Land gently; you can practise as often as you like."],
     ["Please rate my landing kindly.","cheeky","I have already ordered the trophy. Your mother is checking the invoice."],
     ["Can I bounce again?","curious","Tap Jump around splashdown to chain a second leap. Watch your landing."]]],
@@ -37,7 +37,7 @@ const NODES := {
     ["One last hug?","earnest","Always, little mermaid. You have earned every splash."],
     ["Can I have the lightning staff?","cheeky","No. Your mother would issue a very strongly worded look."],
     ["What is that tiny giggle?","curious","Antonella: Avina has discovered hide-and-seek. Check the coral just before the portal!"]]],
-"bubble":["queen","A little bubble magic","Avina has a tiny bubble for you. Tap Bubble for a little pearl, or hold it until Royal Aurora is ready, then release.",[
+"bubble":["queen","A little bubble magic","Avina has a tiny bubble for you, darling.\nAntonella: Tap Bubble for a little pearl. Or hold until Royal Aurora is ready, then release.",[
     ["How do I aim it?","curious","Face the pearl target at the same depth. Hold Bubble for 1.35 seconds, then release. The big bubble flies straight ahead."],
     ["Can Avina help too?","earnest","She has her own tiny bubbles, darling. This practice target needs Sarah’s big Royal Aurora. You can also leave it and take the portal."],
     ["A very dignified bubble beard?","cheeky","Daddy: Mine took years of practice.\nAntonella: And one extremely patient bath towel."]]],

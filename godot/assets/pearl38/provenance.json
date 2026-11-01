@@ -1,0 +1,17 @@
+{
+  "generated_with": "built-in imagegen",
+  "role": "8 painted UI icons on transparent 4x2 atlas",
+  "source": "exec-c067dbfe-7599-4ac5-bbd8-cf9772bf4d98.png",
+  "layout": [
+    "heart",
+    "empty_heart",
+    "bubble",
+    "boost",
+    "jump",
+    "pearl",
+    "shell",
+    "slug"
+  ],
+  "visual_direction": "Pearl Storybook with restrained Coral Charms accents",
+  "prompt": "Eight independent painted enamel icons in a regular4x2 transparent grid: pink full pearl heart, seafoam empty pearl heart, iridescent bubble, turquoise mermaid fin, golden upward leap arrow over wave, pearl in half-shell, peachscallop, lavender sea slug withmintfrills. Warm ivory-gold rims, tactile paint, clear silhouettes at32px, no text or panel backgrounds."
+}
