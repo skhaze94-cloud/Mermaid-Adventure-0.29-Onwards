@@ -1,0 +1,1929 @@
+{
+  "before": {
+    "engine": "4.4-stable (official)",
+    "first_scene_frame_ms": 10315.528,
+    "instantiate_ms": 9646.489,
+    "method": "30 warm +90 timed frames, actual native rendered intervals, deterministic 60Hz character updates; tutorial world held for matching composition; screenshot writes excluded",
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "resolution": "1120x768",
+    "results": [
+      {
+        "draw_calls_mean": 168.266666666667,
+        "mean_character_script_ms": 5.04262222222222,
+        "mean_frame_ms": 208.566544444444,
+        "median_frame_ms": 202.012,
+        "mode": "Full",
+        "p95_character_script_ms": 8.956,
+        "p95_frame_ms": 263.56,
+        "primitives_mean": 338521.644444444,
+        "render_buffer_bytes": 31096250.0,
+        "rss_bytes": 0,
+        "static_bytes": 67751883.0,
+        "texture_bytes": 548292659.0
+      },
+      {
+        "draw_calls_mean": 116.366666666667,
+        "mean_character_script_ms": 1.39534444444444,
+        "mean_frame_ms": 208.070333333333,
+        "median_frame_ms": 203.601,
+        "mode": "Gentle",
+        "p95_character_script_ms": 2.757,
+        "p95_frame_ms": 265.519,
+        "primitives_mean": 332205.766666667,
+        "render_buffer_bytes": 30936410.0,
+        "rss_bytes": 0,
+        "static_bytes": 67675411.0,
+        "texture_bytes": 548292659.0
+      },
+      {
+        "draw_calls_mean": 116.366666666667,
+        "mean_character_script_ms": 1.40773333333333,
+        "mean_frame_ms": 210.543588888889,
+        "median_frame_ms": 201.872,
+        "mode": "Economy",
+        "p95_character_script_ms": 4.383,
+        "p95_frame_ms": 268.461,
+        "primitives_mean": 332205.766666667,
+        "render_buffer_bytes": 30936410.0,
+        "rss_bytes": 0,
+        "static_bytes": 67676899.0,
+        "texture_bytes": 548292659.0
+      }
+    ],
+    "royal_skeletons": [
+      {
+        "bones": 0,
+        "role": "king"
+      },
+      {
+        "bones": 0,
+        "role": "queen"
+      }
+    ]
+  },
+  "after": {
+    "engine": "4.4-stable (official)",
+    "first_scene_frame_ms": 7014.819,
+    "instantiate_ms": 6583.694,
+    "method": "30 warm +90 timed frames, actual native rendered intervals, deterministic 60Hz character updates; tutorial world held for matching composition; screenshot writes excluded",
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "resolution": "1120x768",
+    "results": [
+      {
+        "draw_calls_mean": 168.022222222222,
+        "mean_character_script_ms": 5.61656666666667,
+        "mean_frame_ms": 221.639866666667,
+        "median_frame_ms": 216.718,
+        "mode": "Full",
+        "p95_character_script_ms": 9.751,
+        "p95_frame_ms": 266.001,
+        "primitives_mean": 338713.466666667,
+        "render_buffer_bytes": 53448526.0,
+        "rss_bytes": 0,
+        "static_bytes": 68546391.0,
+        "texture_bytes": 549337139.0
+      },
+      {
+        "draw_calls_mean": 114.633333333333,
+        "mean_character_script_ms": 1.30607777777778,
+        "mean_frame_ms": 95.6507555555556,
+        "median_frame_ms": 52.173,
+        "mode": "Gentle",
+        "p95_character_script_ms": 3.298,
+        "p95_frame_ms": 241.107,
+        "primitives_mean": 109064.255555556,
+        "render_buffer_bytes": 53288686.0,
+        "rss_bytes": 0,
+        "static_bytes": 68478127.0,
+        "texture_bytes": 549337139.0
+      },
+      {
+        "draw_calls_mean": 114.633333333333,
+        "mean_character_script_ms": 1.41792222222222,
+        "mean_frame_ms": 90.1422555555556,
+        "median_frame_ms": 48.796,
+        "mode": "Economy",
+        "p95_character_script_ms": 4.931,
+        "p95_frame_ms": 230.009,
+        "primitives_mean": 109064.255555556,
+        "render_buffer_bytes": 53288686.0,
+        "rss_bytes": 0,
+        "static_bytes": 68479615.0,
+        "texture_bytes": 549337139.0
+      }
+    ],
+    "royal_skeletons": [
+      {
+        "bones": 22,
+        "role": "king"
+      },
+      {
+        "bones": 21,
+        "role": "queen"
+      }
+    ]
+  },
+  "method": "User-supplied Godot 4.4 stable, Mesa llvmpipe software OpenGL,1120x768. Sequential runs; no other Godot jobs. Thirty warm + ninety measured frames per mode; deterministic60Hz character ticks; screenshot writes excluded. These are fixture wall times, not physical device FPS.",
+  "rss": {
+    "summary": [
+      {
+        "label": "before",
+        "samples": 178,
+        "minimum_rss_bytes": 221184,
+        "maximum_rss_bytes": 1086312448,
+        "maximum_hwm_bytes": 1092866048
+      },
+      {
+        "label": "after",
+        "samples": 119,
+        "minimum_rss_bytes": 159092736,
+        "maximum_rss_bytes": 1116610560,
+        "maximum_hwm_bytes": 1124352000
+      }
+    ],
+    "samples": [
+      {
+        "label": "before",
+        "seconds": 0.001045483997586416,
+        "VmHWM": 221184,
+        "VmRSS": 221184
+      },
+      {
+        "label": "before",
+        "seconds": 0.5019508059995132,
+        "VmHWM": 103907328,
+        "VmRSS": 103907328
+      },
+      {
+        "label": "before",
+        "seconds": 1.0029295599997567,
+        "VmHWM": 198111232,
+        "VmRSS": 198111232
+      },
+      {
+        "label": "before",
+        "seconds": 1.5055257879976125,
+        "VmHWM": 260251648,
+        "VmRSS": 260251648
+      },
+      {
+        "label": "before",
+        "seconds": 2.0065927839968936,
+        "VmHWM": 306708480,
+        "VmRSS": 306708480
+      },
+      {
+        "label": "before",
+        "seconds": 2.5076938399979554,
+        "VmHWM": 335749120,
+        "VmRSS": 335749120
+      },
+      {
+        "label": "before",
+        "seconds": 3.0156192949980323,
+        "VmHWM": 377004032,
+        "VmRSS": 377004032
+      },
+      {
+        "label": "before",
+        "seconds": 3.5167206409969367,
+        "VmHWM": 414408704,
+        "VmRSS": 414408704
+      },
+      {
+        "label": "before",
+        "seconds": 4.0177047309989575,
+        "VmHWM": 447684608,
+        "VmRSS": 435961856
+      },
+      {
+        "label": "before",
+        "seconds": 4.519021165997401,
+        "VmHWM": 530964480,
+        "VmRSS": 530964480
+      },
+      {
+        "label": "before",
+        "seconds": 5.025929743998859,
+        "VmHWM": 591724544,
+        "VmRSS": 591724544
+      },
+      {
+        "label": "before",
+        "seconds": 5.527162139998836,
+        "VmHWM": 657711104,
+        "VmRSS": 657711104
+      },
+      {
+        "label": "before",
+        "seconds": 6.028397735997714,
+        "VmHWM": 707006464,
+        "VmRSS": 637599744
+      },
+      {
+        "label": "before",
+        "seconds": 6.52944412099896,
+        "VmHWM": 811098112,
+        "VmRSS": 811098112
+      },
+      {
+        "label": "before",
+        "seconds": 7.035741828996834,
+        "VmHWM": 838770688,
+        "VmRSS": 838770688
+      },
+      {
+        "label": "before",
+        "seconds": 7.537111821999133,
+        "VmHWM": 907464704,
+        "VmRSS": 907464704
+      },
+      {
+        "label": "before",
+        "seconds": 8.038268635998975,
+        "VmHWM": 974782464,
+        "VmRSS": 974782464
+      },
+      {
+        "label": "before",
+        "seconds": 8.539320461997704,
+        "VmHWM": 1022369792,
+        "VmRSS": 956502016
+      },
+      {
+        "label": "before",
+        "seconds": 9.040307579998625,
+        "VmHWM": 1022369792,
+        "VmRSS": 956502016
+      },
+      {
+        "label": "before",
+        "seconds": 9.541386598997633,
+        "VmHWM": 1022369792,
+        "VmRSS": 956567552
+      },
+      {
+        "label": "before",
+        "seconds": 10.042724128998088,
+        "VmHWM": 1022369792,
+        "VmRSS": 976412672
+      },
+      {
+        "label": "before",
+        "seconds": 10.543682553998224,
+        "VmHWM": 1022369792,
+        "VmRSS": 1021657088
+      },
+      {
+        "label": "before",
+        "seconds": 11.044696662000206,
+        "VmHWM": 1035882496,
+        "VmRSS": 1035882496
+      },
+      {
+        "label": "before",
+        "seconds": 11.54823351199957,
+        "VmHWM": 1086713856,
+        "VmRSS": 1086312448
+      },
+      {
+        "label": "before",
+        "seconds": 12.049376515999029,
+        "VmHWM": 1092866048,
+        "VmRSS": 959787008
+      },
+      {
+        "label": "before",
+        "seconds": 12.550719349997962,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 13.05274568099776,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 13.55382194199774,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 14.056837310999981,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 14.558180725998682,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 15.06181855899922,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 15.563027003998286,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 16.063950676998502,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 16.566772250000213,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 17.06804244799787,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 17.569693808996817,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 18.073245152998425,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 18.581017864999012,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 19.084511188997567,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 19.585629484998208,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 20.08710319399688,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 20.58806629099854,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 21.089100348999636,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 21.59032630799993,
+        "VmHWM": 1092866048,
+        "VmRSS": 959811584
+      },
+      {
+        "label": "before",
+        "seconds": 22.091368622997834,
+        "VmHWM": 1092866048,
+        "VmRSS": 959819776
+      },
+      {
+        "label": "before",
+        "seconds": 22.596391109997057,
+        "VmHWM": 1092866048,
+        "VmRSS": 959840256
+      },
+      {
+        "label": "before",
+        "seconds": 23.09834974199839,
+        "VmHWM": 1092866048,
+        "VmRSS": 959844352
+      },
+      {
+        "label": "before",
+        "seconds": 23.60006566899756,
+        "VmHWM": 1092866048,
+        "VmRSS": 959844352
+      },
+      {
+        "label": "before",
+        "seconds": 24.10096452899961,
+        "VmHWM": 1092866048,
+        "VmRSS": 959856640
+      },
+      {
+        "label": "before",
+        "seconds": 24.60242893599934,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 25.1061891069985,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 25.60765550099677,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 26.108681298999727,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 26.612295015998825,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 27.12437803499779,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 27.62544369099851,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 28.126576889997523,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 28.627553522997914,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 29.134185539998725,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 29.636892862999957,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 30.137903309998364,
+        "VmHWM": 1092866048,
+        "VmRSS": 983482368
+      },
+      {
+        "label": "before",
+        "seconds": 30.639115424997726,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 31.14019131399982,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 31.641340880996722,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 32.14216597799896,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 32.64323252499889,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 33.14505273999748,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 33.64629167399835,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 34.14979290399788,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 34.65083627700005,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 35.15191839899853,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 35.65606952699818,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 36.15957715499826,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 36.66332762899765,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 37.164880284999526,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 37.66596979799942,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 38.16757299099845,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 38.668503203996806,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 39.17623598799764,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 39.67733168799896,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 40.17883729699679,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 40.67994446899684,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 41.181176291000156,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 41.6820056209981,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 42.18344307699954,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 42.68437241900028,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 43.18851204899693,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 43.689703543997894,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 44.190664341997035,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 44.69186412199997,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 45.19661678099874,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 45.69770097400033,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 46.19938963799723,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 46.7014162939995,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 47.21302336199733,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 47.71543015499992,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 48.21845605099952,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 48.71964480799943,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 49.22066112099856,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 49.72428834699895,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 50.225258739999845,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 50.77578236699992,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 51.2796502659985,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 51.78062041999874,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 52.2844523040003,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 52.78532424099831,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 53.28654434299824,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 53.78854999699979,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 54.29251901599855,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 54.79352664099861,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 55.296240552997915,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 55.79902651599696,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 56.30577064499812,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 56.80742476699743,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 57.30883378599901,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 57.82092062499942,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 58.3221194329999,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 58.82806411999991,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 59.3289378399968,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 59.829799972998444,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 60.33069790999798,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 60.83196507699904,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 61.33294971799842,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 61.833856277997256,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 62.33474781899713,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 62.836094742997375,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 63.33750461899763,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 63.838352075999865,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 64.34058052199907,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 64.84457816199938,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 65.34540946499692,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 65.84625822599992,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 66.35244241399778,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 66.85359861599864,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 67.35648719899837,
+        "VmHWM": 1092866048,
+        "VmRSS": 983486464
+      },
+      {
+        "label": "before",
+        "seconds": 67.86004467499879,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 68.36266626299766,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 68.86483781099741,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 69.36664080799892,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 69.867748122997,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 70.37164530999871,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 70.87608993999675,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 71.37723763800022,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 71.88070400599827,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 72.38183098599984,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 72.88408239499768,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 73.39304504000029,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 73.89407289500014,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 74.39501088599718,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 74.89597433199742,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 75.39776607999738,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 75.89861706399824,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 76.39963907399942,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 76.90050449599948,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 77.40405428099984,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 77.91001719899941,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 78.41088117199979,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 78.91175023799951,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 79.41292078299739,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 79.91400780299955,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 80.41490870899725,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 80.91618396699778,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 81.422088755,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 81.92359937599758,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 82.42808557699755,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 82.92927466699985,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 83.43290009999691,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 83.93377221499759,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 84.43464502200004,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 84.9356733099994,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 85.43985369700022,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 85.94076969299931,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 86.44415940799809,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 86.9450097379995,
+        "VmHWM": 1092866048,
+        "VmRSS": 982433792
+      },
+      {
+        "label": "before",
+        "seconds": 87.44592596399889,
+        "VmHWM": 1092866048,
+        "VmRSS": 911831040
+      },
+      {
+        "label": "before",
+        "seconds": 87.94697193499815,
+        "VmHWM": 1092866048,
+        "VmRSS": 907014144
+      },
+      {
+        "label": "before",
+        "seconds": 88.44793361199845,
+        "VmHWM": 1092866048,
+        "VmRSS": 907014144
+      },
+      {
+        "label": "before",
+        "seconds": 88.95193718399969,
+        "VmHWM": 1092866048,
+        "VmRSS": 695136256
+      },
+      {
+        "label": "after",
+        "seconds": 0.5024407109995082,
+        "VmHWM": 159092736,
+        "VmRSS": 159092736
+      },
+      {
+        "label": "after",
+        "seconds": 1.0034166860023106,
+        "VmHWM": 238714880,
+        "VmRSS": 238714880
+      },
+      {
+        "label": "after",
+        "seconds": 1.5055569860014657,
+        "VmHWM": 306745344,
+        "VmRSS": 306745344
+      },
+      {
+        "label": "after",
+        "seconds": 2.0068858510021528,
+        "VmHWM": 343195648,
+        "VmRSS": 343195648
+      },
+      {
+        "label": "after",
+        "seconds": 2.5082025340016116,
+        "VmHWM": 403439616,
+        "VmRSS": 403439616
+      },
+      {
+        "label": "after",
+        "seconds": 3.0090938489993277,
+        "VmHWM": 447983616,
+        "VmRSS": 431951872
+      },
+      {
+        "label": "after",
+        "seconds": 3.510092241001985,
+        "VmHWM": 547926016,
+        "VmRSS": 547926016
+      },
+      {
+        "label": "after",
+        "seconds": 4.011115661000076,
+        "VmHWM": 671707136,
+        "VmRSS": 671707136
+      },
+      {
+        "label": "after",
+        "seconds": 4.512230049000209,
+        "VmHWM": 784220160,
+        "VmRSS": 784220160
+      },
+      {
+        "label": "after",
+        "seconds": 5.031319042001996,
+        "VmHWM": 858431488,
+        "VmRSS": 858431488
+      },
+      {
+        "label": "after",
+        "seconds": 5.533976059999986,
+        "VmHWM": 930254848,
+        "VmRSS": 930254848
+      },
+      {
+        "label": "after",
+        "seconds": 6.034930068999529,
+        "VmHWM": 1022808064,
+        "VmRSS": 956710912
+      },
+      {
+        "label": "after",
+        "seconds": 6.549775685001805,
+        "VmHWM": 1022808064,
+        "VmRSS": 968663040
+      },
+      {
+        "label": "after",
+        "seconds": 7.050675509999564,
+        "VmHWM": 1022808064,
+        "VmRSS": 1018597376
+      },
+      {
+        "label": "after",
+        "seconds": 7.551594728000055,
+        "VmHWM": 1082597376,
+        "VmRSS": 1082597376
+      },
+      {
+        "label": "after",
+        "seconds": 8.05253090900078,
+        "VmHWM": 1117487104,
+        "VmRSS": 1116610560
+      },
+      {
+        "label": "after",
+        "seconds": 8.553470689999813,
+        "VmHWM": 1124352000,
+        "VmRSS": 990818304
+      },
+      {
+        "label": "after",
+        "seconds": 9.054813038001157,
+        "VmHWM": 1124352000,
+        "VmRSS": 990842880
+      },
+      {
+        "label": "after",
+        "seconds": 9.559972240000207,
+        "VmHWM": 1124352000,
+        "VmRSS": 990842880
+      },
+      {
+        "label": "after",
+        "seconds": 10.061136390002503,
+        "VmHWM": 1124352000,
+        "VmRSS": 990842880
+      },
+      {
+        "label": "after",
+        "seconds": 10.564590183999826,
+        "VmHWM": 1124352000,
+        "VmRSS": 990842880
+      },
+      {
+        "label": "after",
+        "seconds": 11.065809010000521,
+        "VmHWM": 1124352000,
+        "VmRSS": 990842880
+      },
+      {
+        "label": "after",
+        "seconds": 11.566718829999445,
+        "VmHWM": 1124352000,
+        "VmRSS": 990842880
+      },
+      {
+        "label": "after",
+        "seconds": 12.06832520700118,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 12.570560594002018,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 13.072660814999836,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 13.573981284000183,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 14.075180766001722,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 14.576419197001087,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 15.077583488000528,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 15.582165822001116,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 16.08444580899959,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 16.585944566999387,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 17.086979028001224,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 17.597666980000213,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 18.099505829999543,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 18.60174385800201,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 19.102931126999465,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012256768
+      },
+      {
+        "label": "after",
+        "seconds": 19.60511124199911,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 20.10822255700259,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 20.609390984001948,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 21.110738961000607,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 21.613438615000632,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 22.118257014000847,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 22.619135016000655,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 23.120844940000097,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 23.62602691700158,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 24.126910040002258,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 24.627891418000218,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012260864
+      },
+      {
+        "label": "after",
+        "seconds": 25.12917661100073,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012371456
+      },
+      {
+        "label": "after",
+        "seconds": 25.630156226001418,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012371456
+      },
+      {
+        "label": "after",
+        "seconds": 26.131158001000586,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012371456
+      },
+      {
+        "label": "after",
+        "seconds": 26.63252344400098,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012371456
+      },
+      {
+        "label": "after",
+        "seconds": 27.133604286002083,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012371456
+      },
+      {
+        "label": "after",
+        "seconds": 27.63800616500157,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 28.138989278002555,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 28.64276416800203,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 29.143672221001907,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 29.646068001002277,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 30.146950973001367,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 30.648001851001027,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 31.15401730099984,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 31.654971756001032,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 32.155875317999744,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 32.65877789200022,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 33.15982725499998,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 33.662828568001714,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 34.16394589999982,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 34.66566409100051,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 35.27451863200258,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 35.77831377400071,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 36.28714207899975,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 36.7888391230008,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 37.29346930899919,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 37.80040425400148,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 38.30127881299995,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 38.810957850000705,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 39.31212079699981,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 39.81308590399931,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 40.318308572001115,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 40.81936856700122,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 41.321031046001735,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 41.82200032400215,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 42.32323134100079,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 42.82515322300242,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 43.32883049200245,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 43.829792210999585,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 44.33076242000243,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 44.83537923100084,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 45.33983628600254,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 45.840728286999365,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 46.342591840999376,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 46.84481175600013,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 47.34610729700216,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 47.84846039600234,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 48.34986947899961,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 48.851552359999914,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 49.352534583002125,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 49.854226325001946,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 50.35822963600003,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 50.85931152100238,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 51.3608867360017,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 51.86303856900122,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 52.36627180299911,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012375552
+      },
+      {
+        "label": "after",
+        "seconds": 52.86777250100204,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012346880
+      },
+      {
+        "label": "after",
+        "seconds": 53.368978082002286,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012338688
+      },
+      {
+        "label": "after",
+        "seconds": 53.8767791930004,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012338688
+      },
+      {
+        "label": "after",
+        "seconds": 54.37869931000023,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012338688
+      },
+      {
+        "label": "after",
+        "seconds": 54.879636339999706,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012338688
+      },
+      {
+        "label": "after",
+        "seconds": 55.382223021002574,
+        "VmHWM": 1124352000,
+        "VmRSS": 1012338688
+      },
+      {
+        "label": "after",
+        "seconds": 55.88389264500074,
+        "VmHWM": 1124352000,
+        "VmRSS": 1011286016
+      },
+      {
+        "label": "after",
+        "seconds": 56.385027850999904,
+        "VmHWM": 1124352000,
+        "VmRSS": 1011286016
+      },
+      {
+        "label": "after",
+        "seconds": 56.88631367400012,
+        "VmHWM": 1124352000,
+        "VmRSS": 1011286016
+      },
+      {
+        "label": "after",
+        "seconds": 57.39078537000023,
+        "VmHWM": 1124352000,
+        "VmRSS": 1011286016
+      },
+      {
+        "label": "after",
+        "seconds": 57.891849871000886,
+        "VmHWM": 1124352000,
+        "VmRSS": 1011318784
+      },
+      {
+        "label": "after",
+        "seconds": 58.39279902600174,
+        "VmHWM": 1124352000,
+        "VmRSS": 739348480
+      },
+      {
+        "label": "after",
+        "seconds": 58.8938296439992,
+        "VmHWM": 1124352000,
+        "VmRSS": 734453760
+      },
+      {
+        "label": "after",
+        "seconds": 59.39487755200025,
+        "VmHWM": 1124352000,
+        "VmRSS": 734453760
+      },
+      {
+        "label": "after",
+        "seconds": 59.89806096200118,
+        "VmHWM": 1124352000,
+        "VmRSS": 723910656
+      }
+    ]
+  }
+}

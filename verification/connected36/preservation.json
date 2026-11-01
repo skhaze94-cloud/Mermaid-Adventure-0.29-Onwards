@@ -1,0 +1,990 @@
+{
+  "baseline": "v0.35 Sarah Grace verified complete source ZIP",
+  "inherited_checked": 246,
+  "records": [
+    {
+      "path": "PREVIEW.jpg",
+      "sha256": "2d0199b4731215f181bd18af143a0724d23faefc5d06e72e92ffcddc97938bce"
+    },
+    {
+      "path": "TUTORIAL-REEF-SPRITE-PREVIEW.png",
+      "sha256": "5cf9dc55c18cf05eb4ce25746e6bb6b893da42d31ca0d9e8bc3fb1aa51b27135"
+    },
+    {
+      "path": "TUTORIAL-REEF-TEXTURE-PREVIEW.jpg",
+      "sha256": "d6a81b03436645d5e9b3697aaa3043a8da0a1c0a336c9b43ce2cee3c2a78c955"
+    },
+    {
+      "path": "art-originals/royal-meshy/king-daddy-3d.glb",
+      "sha256": "0e058c6af20b6162996add34e53976925ee17c0ab06b686e353bbeefb2e2b193"
+    },
+    {
+      "path": "art-originals/royal-meshy/queen-antonella-3d.glb",
+      "sha256": "9960aade99bfc8a615d4dc77220d43bd59afe642588ac0e00cc621aed1aa5a13"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-carousel.png",
+      "sha256": "7b784193ab78db425bce36f59c9f5f6214e321fe386c0c0e3f8361a9ff8317e5"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-rain.png",
+      "sha256": "96868d523227d67644c2e60a7f1253fd6357b0d0906c54f52fdf206372d93ffb"
+    },
+    {
+      "path": "art-originals/whimsy-ii/dream-whale.png",
+      "sha256": "f9c895b7a0752f6c107dbb0e72c033c956dd42fb89359dc8051b10f1c6a2a4ac"
+    },
+    {
+      "path": "art-originals/whimsy-ii/moon-jelly.png",
+      "sha256": "eaa41ceecd0d397de5fbdb08d6ab7b9f5a672259e0f09e24edce2f798ca334d3"
+    },
+    {
+      "path": "art-originals/whimsy-ii/octopus-butler.png",
+      "sha256": "18db04b65b18b88f35b9d42c852b89564a6b6e0bd7eef06fe4b4b8fee8e258f0"
+    },
+    {
+      "path": "art-originals/whimsy-ii/sea-slug-postman.png",
+      "sha256": "b49e06a53b4ceab5b035ad3abcc0e7b98232f54e55651749012a64796d42dd53"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-coral.png",
+      "sha256": "8501b46ce5e6586557eabe4e39aaaf7bff3ef0a03ee184cf7ac05ac59491a2e5"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-lavender.png",
+      "sha256": "1fe925aed851eec35583746df497bd5f8db1486529569607a808c136b3689c35"
+    },
+    {
+      "path": "art-originals/whimsy-ii/shell-cottage-pearl.png",
+      "sha256": "18b89562c8e9a45c5f396c0f8c5339b506af33078e6ac4bdd3dbd86be0475a89"
+    },
+    {
+      "path": "art-originals/whimsy-ii/tea-table.png",
+      "sha256": "522602c5f8a5996c1baf501d3a81f8aadf5b0628f6d8bbf362c26381ba369b02"
+    },
+    {
+      "path": "dist/assets/bubble-bell-adventure.mp3",
+      "sha256": "daa9627e4ce026d5e356cd419ed47e4b9039d5877bccdf4054a65da85f3909ae"
+    },
+    {
+      "path": "dist/assets/carlo.webp",
+      "sha256": "6dc232d7e0560f67faa64a235a17cf54d5feee13279dee79eecfd581f618f59b"
+    },
+    {
+      "path": "dist/assets/colombia.webp",
+      "sha256": "fae5b08708c9027754aab3a0f48d0f74dbf52efc9ab953e4524f3ee47bcaf17c"
+    },
+    {
+      "path": "dist/assets/highlands.webp",
+      "sha256": "34774b5d3c6ccf335e7630bcb30e33e3f9472b6569ffcd701014052205b583f3"
+    },
+    {
+      "path": "dist/assets/miguel.webp",
+      "sha256": "c96b407eafb55c91c828eb5b8611ff98081c84e395c31b6b1aae1da6be436b3c"
+    },
+    {
+      "path": "dist/assets/nessie.webp",
+      "sha256": "88c8f8189bbd568eda0ef3ede8e55c897b21aa505721f39807b4f063a466d7ff"
+    },
+    {
+      "path": "dist/assets/pearl-palace.webp",
+      "sha256": "31c58700be3b75e7ef5e7c4a7dfa078e834f72728be58e2c0157c8bd5d2effdf"
+    },
+    {
+      "path": "dist/assets/rana-rex.webp",
+      "sha256": "07beeb4385314549e14f1478054ce87c04a3b2752f4dfa6df418133225783e95"
+    },
+    {
+      "path": "dist/assets/sarah-arms-refined-v81.webp",
+      "sha256": "571b58cd4d5d5a3a402d2b9b29cd158104693fdf0ba9b0706b996a4f9c623777"
+    },
+    {
+      "path": "dist/assets/sarah-mermaid.webp",
+      "sha256": "e1edcf76f38e37a848462ac57ff1d84bedc46fd6f5f63dfc1499dd5ff63f45b9"
+    },
+    {
+      "path": "dist/assets/sarah-parts-v81.webp",
+      "sha256": "7d536c5dd6afe0e501ca31ef20a28e78eb2cab40d275aa2cfd5526b3beef0c7d"
+    },
+    {
+      "path": "dist/assets/shadow-kingdom-v751.webp",
+      "sha256": "ec1b81ea3826343298b8c510ddd93aa39d3ac02a1ae2601d05f609b7c581a097"
+    },
+    {
+      "path": "dist/assets/training-lagoon.webp",
+      "sha256": "722e8a45550043274b03115d80a937f7effd261c6392b7f269f489a4ee6a3a31"
+    },
+    {
+      "path": "dist/fonts/story-serif-bold.ttf",
+      "sha256": "847b33e13925f19ff87e4d934d6b3cf7cac35ce16424f6f670e40c2f377cf2df"
+    },
+    {
+      "path": "dist/fonts/story-serif.ttf",
+      "sha256": "8f2c103bfa3fd5de71f1b92b18f21906b5a26871fb7e19a9a4c9af539c3cc7ab"
+    },
+    {
+      "path": "dist/fonts/treasure-display.ttf",
+      "sha256": "2ba02e68b152868aef9ba28e24b3648c7d457fe6f25c761f2c2c53fb61a73fc8"
+    },
+    {
+      "path": "godot/adventure_run.gd",
+      "sha256": "82ebc77526a98028cff4bb2f4b70b4928148878f61599c6a55d6e135e89b5765"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_deep.wav",
+      "sha256": "fa2520a09ccdf86cbb1a62f0af05e13d335030cb797ea02f4da78c347a8cf644"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_reef.wav",
+      "sha256": "d585155546506b98895cea340cfcd4dc88f5b45a400f99363870203186ad0ef6"
+    },
+    {
+      "path": "godot/assets/audio-v023/ambience_waterfall.wav",
+      "sha256": "f97a973da151c67d6c41b96dac98a45822b0ace63cab690149db2a01ae73904f"
+    },
+    {
+      "path": "godot/assets/audio-v023/boost.wav",
+      "sha256": "8d600c66316ea5b0d026fe8d7908d4e24c16cf090b1924b90c7f515cfd6aa78c"
+    },
+    {
+      "path": "godot/assets/audio-v023/boss_defeat.wav",
+      "sha256": "517f979848242b38653c15d4af5475f7f390e4489fbbf3161e9971c0b7ae5d3a"
+    },
+    {
+      "path": "godot/assets/audio-v023/boss_hit.wav",
+      "sha256": "05b74e3aa7c6a8d89276326e54b15c5b91ecf6d387503e0b6b3bec7a1c435031"
+    },
+    {
+      "path": "godot/assets/audio-v023/bubble.wav",
+      "sha256": "2343c0f8b4421a66a020de5428de38823fa4cb932b977b552bd6f4ef4b97e7dd"
+    },
+    {
+      "path": "godot/assets/audio-v023/checkpoint.wav",
+      "sha256": "706d8c82b7f75064dbdc2500a56a77a647af7dd3fb6c516fa1ca82a4d1c087e5"
+    },
+    {
+      "path": "godot/assets/audio-v023/heart.wav",
+      "sha256": "86c46dc364fdae4753bb39962c5fa077c2430d2fb1d0fc89fd44f258eb8933fb"
+    },
+    {
+      "path": "godot/assets/audio-v023/impact.wav",
+      "sha256": "b88b970c1c50c5281040ff6b484a98b353a70e4af4d3b614ee538e7b84f0f6fa"
+    },
+    {
+      "path": "godot/assets/audio-v023/pearl.wav",
+      "sha256": "544b89c403ab72168c01844e766b8160602b85093a63b6cc811738ba71864101"
+    },
+    {
+      "path": "godot/assets/audio-v023/splash.wav",
+      "sha256": "e343bf44ff1bac1bbd8b90e9aaaac0aae329fb2e924d0f5bb8d6d2d5fe7e3f7c"
+    },
+    {
+      "path": "godot/assets/audio-v023/swim.wav",
+      "sha256": "6581433c1596ab05cb7d8e69770b5af80f3d0cebf9d7f612cc51cc497f6b4297"
+    },
+    {
+      "path": "godot/assets/audio-v023/treasure.wav",
+      "sha256": "4a2bbb0b4be53c1f698099180191dbbcac5df7c31103ad5b371451ef520b4301"
+    },
+    {
+      "path": "godot/assets/audio-v023/ui.wav",
+      "sha256": "a17b4fde6c3e46eb122140a948929c62a45c2c125406d7a274091c228809ec72"
+    },
+    {
+      "path": "godot/assets/audio-v023/victory.wav",
+      "sha256": "bb59797faff52446f9dab6b75811a542f67cecf05ae8ecec8f441bf769db14fa"
+    },
+    {
+      "path": "godot/assets/avina-baby-v026.png",
+      "sha256": "2d11499ddac53671cb1bea28bdce0b79fab4601bdd51a374c2497198de306899"
+    },
+    {
+      "path": "godot/assets/cavern-v034/archive.png",
+      "sha256": "43e9167df8a79923433060df33df2693f1f5020e7e9bfb65f000ea535534dda2"
+    },
+    {
+      "path": "godot/assets/cavern-v034/cathedral.png",
+      "sha256": "a642aaac95569442bd1705e8717f02992242a1ae6e934ddf6e902e8c7e5f715e"
+    },
+    {
+      "path": "godot/assets/cavern-v034/coraltheatre.png",
+      "sha256": "1c2fa1a72da94ef4b09ad5853a3c4d6789322cafe0ef1e18edf3e1320b2a5181"
+    },
+    {
+      "path": "godot/assets/cavern-v034/friends.png",
+      "sha256": "901180f80b3aa6d0a48e8f87ad126e80cda7ee6363a20a8543023e3701f1303f"
+    },
+    {
+      "path": "godot/assets/cavern-v034/limestone.png",
+      "sha256": "5c561cb0237574a90a637223e49ad6ce7ef4af50c95370df387b28adc1abc2b0"
+    },
+    {
+      "path": "godot/assets/cavern-v034/moonpool.png",
+      "sha256": "baa9f3398a51cd391d2598d0a219fc7ff7472cbd3697e692ee479854ec67f2f9"
+    },
+    {
+      "path": "godot/assets/cavern-v034/rootgarden.png",
+      "sha256": "4bd90fe8987bab5f66e4bb2e676ae736416f99ca7f1e618e0394029fecdebd92"
+    },
+    {
+      "path": "godot/assets/characters-v027/avina-baby.png",
+      "sha256": "f90b01db306b16b34535f730d15571426b70470209649788630565a971f00105"
+    },
+    {
+      "path": "godot/assets/characters-v027/king-daddy.png",
+      "sha256": "ff4f3316c41697989321c47b161f03b1d8ed18792f5721faec4bb47f1781af17"
+    },
+    {
+      "path": "godot/assets/characters-v027/queen-antonella.png",
+      "sha256": "7fac602b28c8f22512519914b0e72b09b405ead60e45bfc7ef4af2cb0183411f"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d.glb",
+      "sha256": "d8d9e14c071faeb5c5967dd819ff3181485d414965cc1b9e5dde46d367b57469"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_0.jpg",
+      "sha256": "8fe5975f39695545a92030e669e7d7bfc6e9692b316a32c25ad53f22f34a6534"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_1.jpg",
+      "sha256": "928a0a8c3d697cd585abdb3c3625034ac792e6b0efad8564421099312599358b"
+    },
+    {
+      "path": "godot/assets/characters-v028/king-daddy-3d_2.jpg",
+      "sha256": "61d2776b802707717c16acbc6f890ed8eb5b7bb4f38b50da3735a70fb490f5ea"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d.glb",
+      "sha256": "309bcbb6da5f03edbc2da5a0a9781669b7615d36b65b8fb963cf4579ee0ec029"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_0.jpg",
+      "sha256": "4cff2fe3a1afe183d0f43646412028a37e56c8f3009fc68dcc1b69cfa2b0f4f4"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_1.jpg",
+      "sha256": "6531803029b9ae3122ed49d649f62e7c79a1d3256cb8f4c17aeb9477130abb85"
+    },
+    {
+      "path": "godot/assets/characters-v028/queen-antonella-3d_2.jpg",
+      "sha256": "7bd9b7508788d5222fdf34b76a22639eaa50120c01ae093f18e9fcda7205a28a"
+    },
+    {
+      "path": "godot/assets/enemy-carlo-v09.webp",
+      "sha256": "6fb2515dcb0bab351cf97d0e63a9a5bb5b4b47ebf4dfd0ce50b3d33042efb9ae"
+    },
+    {
+      "path": "godot/assets/enemy-crab-v09.webp",
+      "sha256": "2f5983a7e462872e2c85a76d66d369e76d95c49983bec55ff487021d665c218e"
+    },
+    {
+      "path": "godot/assets/enemy-eel-v09.webp",
+      "sha256": "b48a3fe9fd60714e33c4a5a46e6be50117c2194d4f9606a9f4c0d6881126ebe8"
+    },
+    {
+      "path": "godot/assets/enemy-jelly-v09.webp",
+      "sha256": "7a695a03467c984d8503560a6bf0448bf3559224668f9c7e218ba3dadffafc20"
+    },
+    {
+      "path": "godot/assets/enemy-puffer-v09.webp",
+      "sha256": "28e05a4c732fac95f3e3fc2665c7676874bbc39f88cc71543c8824f06ec0a3b6"
+    },
+    {
+      "path": "godot/assets/enemy-shark-v09.webp",
+      "sha256": "eb2c78375045e7e16ee4474be6c110208cbb2bb44ecd9f7c8812da13cae993bc"
+    },
+    {
+      "path": "godot/assets/enemy-swordfish-v09.webp",
+      "sha256": "76ddd938c13b300ee01041a65cbbebeffe1cc5405270f8c9b8eb86d424bc1c6d"
+    },
+    {
+      "path": "godot/assets/environment-gardens-v011.webp",
+      "sha256": "e2d78df1310a16cfbd54f6fb7f46f627227c3b7f9fdf4a13e29247038bbe4769"
+    },
+    {
+      "path": "godot/assets/environment-grotto-v011.webp",
+      "sha256": "71a14b011e1cb7b6ceefb4d09576aa473c40a7289bff0f1648046f7ff59cca64"
+    },
+    {
+      "path": "godot/assets/environment-lake-v011.webp",
+      "sha256": "23f6a4309c17b4f94f835d4c7c63230183e78d2f692eb2a35a7f8aa50ff3d079"
+    },
+    {
+      "path": "godot/assets/environment-portal-v011.webp",
+      "sha256": "c6a98038d1705c8d902d6fb49ae3f1da14f5e33fe0539f1bc363bdc67a52c0fa"
+    },
+    {
+      "path": "godot/assets/environment-props-v011.webp",
+      "sha256": "b0e8e9f9f812f87991c9d3fd30c39fe9c813aa8335429152f4bbffdf4d26355b"
+    },
+    {
+      "path": "godot/assets/environment-rocks-v011.webp",
+      "sha256": "e1fc719cc9ecb7aa37c559378b499f6e598f3f3a2b0743db350006ac117f2fd0"
+    },
+    {
+      "path": "godot/assets/family-v026/king-body-v026.webp",
+      "sha256": "66246929d2bff7874419abb8c1b382b2572ff87923ebf2e80da344ed9ca46a7d"
+    },
+    {
+      "path": "godot/assets/family-v026/king-daddy-atlas.webp",
+      "sha256": "63404d1c7872c431f1fa119d3aef38baa5a01cfb0cbfb78c97b99e167bfe6604"
+    },
+    {
+      "path": "godot/assets/family-v026/queen-antonella-atlas.webp",
+      "sha256": "de0c104dcba2ecee12d04a9f9ae85506afc58bd595af480e8076e9adb48be62b"
+    },
+    {
+      "path": "godot/assets/family-v026/queen-body-v026.webp",
+      "sha256": "e7f7613e6ed209ee9dd69c1cffbf6e8f2d8f0b9a3f9d4b2addcc6fcd7ad090a5"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-daddy-faces-v6.webp",
+      "sha256": "10a92e287e7701527e09a2004dbc207f984f65ef25f13fb53fa4a54fd15e8afc"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-magic-atlas.webp",
+      "sha256": "c313d01def50bc9b5ac4f9aff531e278ae0919c22c58f64995678f78eddfece0"
+    },
+    {
+      "path": "godot/assets/family-v026/tutorial-reef-v6.webp",
+      "sha256": "3de7189d51e9e3625075e40ee9c9a7c9d7b7c026dad85f6cc6b479e8e6988d7f"
+    },
+    {
+      "path": "godot/assets/flip-dolphin-v018.png",
+      "sha256": "f4965c242f0fd928e02b40544efbbd1c5d18a3a3eb20c397c8459f3342c03e10"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/bubble-bandit-otter.png",
+      "sha256": "98b1834f68dd5b3998879a876326d9b53a678fd7f09c2321e0d5423aad815208"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/disco-cuttlefish.png",
+      "sha256": "34f43d96a021eb7f88de96a316ee8792b39ee432dee70b06e41e85f416b3ecb7"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/drumback-turtle.png",
+      "sha256": "4abb70c02b0dee41c427fcc27faff9ea577231bdc8a0bcfd6bf121450d4fb799"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/lagoon-flora-atlas.png",
+      "sha256": "b455d985b4187ca49110cbec8dd2b25deec3be39b87bbd9d49fd7fbe2767fa51"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/lagoon-terrain-atlas.png",
+      "sha256": "ddd6fd639afb694b3f8b58f3efecc12af517d85ec539b78a65027863b413887c"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/maraca-snapper.png",
+      "sha256": "eb13788b5d2066169293269449794c2f01cf1a2da7c5bfa7fb7856ef5369bc00"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/orchid-hermit.png",
+      "sha256": "faf9334af264963053d336ee9d6fa6178639e6db1039d24ec23caebe6de554d6"
+    },
+    {
+      "path": "godot/assets/lagoon-pack/assets/ribbon-ambusher.png",
+      "sha256": "ea28ed3acb3209edc9407535e5fcd1e80cf55db7d336b80346886bc54990924a"
+    },
+    {
+      "path": "godot/assets/little-moments/bell.png",
+      "sha256": "58d94f5f191ba06ddce12e2414dc4b42dd40435f29d40241e5fc691da463b0cf"
+    },
+    {
+      "path": "godot/assets/little-moments/dozy.png",
+      "sha256": "cc37174acdada7a0939cd37506f77e7c2c9177bf68cbb25cd8b52e0b0a146cc3"
+    },
+    {
+      "path": "godot/assets/little-moments/fan.png",
+      "sha256": "6dcd85426b9e0fdfadf3de66a4df0def47e17a0d2d24cb730462d17e5d1c8da9"
+    },
+    {
+      "path": "godot/assets/little-moments/fern.png",
+      "sha256": "e49c5eb6d7f5a165967eb95e5bd5c233b70c1b8a331176e56518b716ba128f29"
+    },
+    {
+      "path": "godot/assets/little-moments/moonfish.png",
+      "sha256": "f9a748006e6de455a03bf9cd7dccc96e344915a9f91e0e7da744942453235dc1"
+    },
+    {
+      "path": "godot/assets/little-moments/music-pavilion.png",
+      "sha256": "efeb14c90f06865d08ff0c9e466971aed8795a55677a4df6242a510bd2d397ff"
+    },
+    {
+      "path": "godot/assets/little-moments/orchid.png",
+      "sha256": "6cff70a3c595c308980a068a4b3c7b19b50a348328f1ca3d74661812defe0dea"
+    },
+    {
+      "path": "godot/assets/little-moments/peekaboo.png",
+      "sha256": "f4614e147c37ee80056df494f89417c0a45a0c8784bb1f9aa4b8ba7827059870"
+    },
+    {
+      "path": "godot/assets/little-moments/post-office.png",
+      "sha256": "d9cc7cc52297efd2057f891f7b76456de342d9e562ea79ea70042798eb616654"
+    },
+    {
+      "path": "godot/assets/little-moments/shy-fish.png",
+      "sha256": "ebcddb3c6d207e3b40624359995dca38f76695d2e6d5a5e53310e88ca6557bd2"
+    },
+    {
+      "path": "godot/assets/little-moments/star.png",
+      "sha256": "f272bd913d9a648a7b68563fa8ced404512f9217f5406785d278d3e6f96e52c8"
+    },
+    {
+      "path": "godot/assets/little-moments/teapot.png",
+      "sha256": "550590e57b4063290724d7897d774fbb978fff89b70a3e46ff579baa80d8832b"
+    },
+    {
+      "path": "godot/assets/living-reef/pearl-seahorse.webp",
+      "sha256": "ee314a1a3b6dad8f580cdc92d62f46bc198736d39c7d93aef6807a539409ff1c"
+    },
+    {
+      "path": "godot/assets/opal-current/carlo.png",
+      "sha256": "6a3367c41103148ed7918596f2bd31ea155adbb16249a32cb1b0e97bd98d28d8"
+    },
+    {
+      "path": "godot/assets/opal-current/enemies.png",
+      "sha256": "a0968b953e8460d6ab99cd91c6b2d841335b9a9d50b2d77c220021e042b93605"
+    },
+    {
+      "path": "godot/assets/opal-current/friendly.png",
+      "sha256": "149f334723b1f1b4c479aead687ab9c81f9b454121f12cffcb78fa5b62b6f998"
+    },
+    {
+      "path": "godot/assets/opal-current/lagoon.png",
+      "sha256": "ac2187fa62dcfa5a00212958967aecdbc3fed91c17ede953c9751a452286729d"
+    },
+    {
+      "path": "godot/assets/opal-current/miguel.png",
+      "sha256": "fc09552d5942e5aba31cd32b0d21813794ba4488ae92046a903b9ef8abe4e72c"
+    },
+    {
+      "path": "godot/assets/opal-current/nessie.png",
+      "sha256": "db9cfa68e626e800ac188b9368daf3613fa82e4a2b90746a88614ddb74abace2"
+    },
+    {
+      "path": "godot/assets/opal-current/palace.png",
+      "sha256": "0d44ee14a3c22b50edec7b718e10958d1d0f093433a3305acbc630b0c2f4d422"
+    },
+    {
+      "path": "godot/assets/opal-current/rana.png",
+      "sha256": "26ea21cc18501f0f77357988bee419dc20307a418732160bfc3ff55ea91d0298"
+    },
+    {
+      "path": "godot/assets/opal-current/shadow.png",
+      "sha256": "f5934ac7e86b7c39ba85fabad44f2050c15a04041e92d12b11af705ec91d332d"
+    },
+    {
+      "path": "godot/assets/opal-current/training.png",
+      "sha256": "306b5899abc419e46e49f81cdff464fa2d6b26091824def8f78c23bf020f7747"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-carousel.webp",
+      "sha256": "b18957a13e7cc4fc4c2dfc2cb020771dc4cbeddbad1f91f8021cb7c05def7a16"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-rain.webp",
+      "sha256": "83301c363b0d2d017d1bf18b81afefa95f441b65f4588ffb6aff16f0739e16f6"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/dream-whale.webp",
+      "sha256": "8a2c7a6c62d1653eb3d68eb66c28e2cc7fd9b92ef8f38fc139c6ce9ad2d9c5e8"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/moon-jelly.webp",
+      "sha256": "578041e1e56b9f82b9144b1604b1217a913fbffff7396cb8f1009ffb2a9c915c"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/octopus-butler.webp",
+      "sha256": "6eed0fc175d001001b09f5c1ae853153c2e9087e28fb3dd8fbfdb000bf0368d0"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/sea-slug-postman.webp",
+      "sha256": "c63e44403395dbe5ad86e2cf14cbb966d93a99354afe219fc0f7bef8def87aa0"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-coral.webp",
+      "sha256": "5a4e3090ed21bbe11094bbb41246498ef5f3404ca3a29262bd2a4c4bc28a1c99"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-lavender.webp",
+      "sha256": "599f924fceedce50dfc9eb8d6e2009a623de9bd2fc44d6298f3ff1f67bbe7f15"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/shell-cottage-pearl.webp",
+      "sha256": "5eafc73416f987adc81de0e48ffb34766fa5ea28152c078173768a6fc744cbad"
+    },
+    {
+      "path": "godot/assets/pocket-wonders/tea-table.webp",
+      "sha256": "e5d5b75743f59247740e02f86f997aa021e96c189fc37d4d20f2d1ab1857a443"
+    },
+    {
+      "path": "godot/assets/reef-formations-v018.png",
+      "sha256": "b07b21596890bc83041b935385d2a79a60c4c049a37cb696c4707864e31e1f1a"
+    },
+    {
+      "path": "godot/assets/reef-stone-v018.png",
+      "sha256": "1934c1c82357eb8d6c36d21cdebf3d7914c82822c5394f9173aacbe7670dcc65"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/away-blink.png",
+      "sha256": "1db35f847196fde35ec52d029de4c51fac16d147b961c7c0cc2cec8137429273"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/away.png",
+      "sha256": "66c7478a2336b24868338a2f75d6c3156449eed66c1ddae4f7be45da1eaa8ae6"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/bodice.png",
+      "sha256": "5ceafab960ba9e4b4ff482e81d980fc8ddcf198ae6ee5f6a35975427c3c546c8"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/front-blink.png",
+      "sha256": "ef4fb4488a7caa29352d085945d9285165ec661e2df6ae17b155ce1a3e989745"
+    },
+    {
+      "path": "godot/assets/sarah-definitive-21/front.png",
+      "sha256": "4af6b8193cf0d87f6fbe65fe7174eec38e7cef83872fd6625bcf6b0db59f4d99"
+    },
+    {
+      "path": "godot/assets/sarah-expressions-v019.webp",
+      "sha256": "6dc012b5527132fce969a7c6d7a133eef1c5f15c7fb6de21a01be19568dc6dd8"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/front-connected.png",
+      "sha256": "30cc29e302e5858d46e17029a84cd450440752d48c5bba9e99e288c6eeb6e120"
+    },
+    {
+      "path": "godot/assets/sarah-flow-v026/tail-connected.png",
+      "sha256": "042996432949029ac67e8f354bd6038ec50e694fdf54483818d8c6328996761a"
+    },
+    {
+      "path": "godot/assets/sarah-tail-v019.webp",
+      "sha256": "d97f2a5131c0893d4a0de73299b701ae06686079df329a723ed94c2d0cc8014f"
+    },
+    {
+      "path": "godot/assets/sarah-title-v08.webp",
+      "sha256": "b85ca58b88e44172d1f5adf4bb795056e0a59948c6cf5a4ff0ce43423ed2b993"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_body.png",
+      "sha256": "f6a182d69826394320dca3d8fec5a36b49b1b5bc0fbc606273ea5bba95f9c9fc"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_closed.png",
+      "sha256": "5bff2ced80bb64da54f5c07a5ee9cba6d69926da1b949c57253584dd212c3691"
+    },
+    {
+      "path": "godot/assets/treasure-v031/coralheart_lid.png",
+      "sha256": "111a7e964f30c65dc1cc7c6ab15d1a9f6fb695f53430a76983cdd2b62e9bdb6d"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_body.png",
+      "sha256": "89d49548f329ae8daf32cae96c891fa97df6e6d9b106b0a6cafc25ce52d46ba1"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_closed.png",
+      "sha256": "103d1c040c712d159c1faa60cf5d464eb462a3f0d0c9322685798f0c7190120a"
+    },
+    {
+      "path": "godot/assets/treasure-v031/crystalwake_lid.png",
+      "sha256": "f6bd2e7faad1d996fff2a2cfaf1ac739d30ce2a532869e546e0d7027d79e13e5"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_body.png",
+      "sha256": "cf3bdc74bd329a7a1fc705c60068805e0768ac610880ab3276bdfcdd634dee02"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_closed.png",
+      "sha256": "53eccbabf85b4726396a485b67991bdd7618c1722df9e7be38d771337ffc9b0e"
+    },
+    {
+      "path": "godot/assets/treasure-v031/goldencrown_lid.png",
+      "sha256": "df10b0ada86990893b3bcaa9970774f449bae56a2336d2e04a0df5fe60f2808c"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_body.png",
+      "sha256": "5e5e6b0e7d2561e58c7cf766dce9d5993fdb9b3be794cc2bd779546bb7029567"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_closed.png",
+      "sha256": "ccf67808485db96b35e4eca3597ade3e25fb0cd50fb705137883eb6a435a0b75"
+    },
+    {
+      "path": "godot/assets/treasure-v031/kelpwood_lid.png",
+      "sha256": "9983902ed6d6e2507b0ba7876f2f2e769b1e43ca445a51ccdce2af5ed19b3a2f"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_body.png",
+      "sha256": "610ad75ac4d5808c9c4da3bf34fb65f78713bc71f86b8cf6af9be4a30485393c"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_closed.png",
+      "sha256": "bed46195c3b4067d9613e70f90608edf93ac2b2a084f56e5631b3d1a8c77ee9b"
+    },
+    {
+      "path": "godot/assets/treasure-v031/moonshell_lid.png",
+      "sha256": "d6c91e63ab9ef9ce56784dd38db2387d7545448cd1b342d183fb486a539b6cd9"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearl_glow.png",
+      "sha256": "60c0726ed0e0625689a66ef5908c3e61fbdff47d89d7845753ecfb847eb5555a"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_body.png",
+      "sha256": "90fbc78b05c19d53e844eef389be2e1c4fb733cdb2af9468b8248f62d94015fc"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_closed.png",
+      "sha256": "0bd998ca5fdcecc8b91b1319a265c3685e22b078ecb9d1015aa40c826350fd3f"
+    },
+    {
+      "path": "godot/assets/treasure-v031/pearlkeeper_lid.png",
+      "sha256": "c3d4151f96d23132a42c07c450ae47dbe1a4dec29d4c3c28af889925f3aaf7d5"
+    },
+    {
+      "path": "godot/assets/treasure-v031/reward_pearl.png",
+      "sha256": "d41ebdf13021b2f81da0b1d8c2262f79b0034c5bed5b11f7efcc1b5dafaa4b0a"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_body.png",
+      "sha256": "6d4368f16d5e3c7827be0e9ac7006cf6470eeb027f60fd1e435027e2d6aa5ccf"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_closed.png",
+      "sha256": "ef7d72972b8c62aa9ff1afbf6e01595765bce8fc715032e1ce20b326491203f2"
+    },
+    {
+      "path": "godot/assets/treasure-v031/sunken_lid.png",
+      "sha256": "587ffb5c1fc2607f9431ee9a525b4e62a62af125a7c77eb62c2bd06afde750a2"
+    },
+    {
+      "path": "godot/assets/treasure-v031/velvet_interior.png",
+      "sha256": "d9c99623621a40941c8f09281705f5d9f2939b165209982cbe5f0ae33abd9eee"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/bellflower-hollow.png",
+      "sha256": "455434151ae63a5449f148d21f97c3ceb7a175df790a89246164f4f4b46e645b"
+    },
+    {
+      "path": "godot/assets/tutorial-v025/pearl-nursery.png",
+      "sha256": "522954c97448079a95cbe1c8a0f3f19e74dcf6c87c08a5c385f75811beff07b8"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/caustic_light_overlay.png",
+      "sha256": "8992b7572f41795acf7d4214e759db3466f47dae3f6239d7297249c9f970f4fd"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/deep_grotto_stone_tile.png",
+      "sha256": "f861cafa4345aa668c77d6e05c0bb3b642203823be0398c0ead4d2bf15ed7579"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_01.png",
+      "sha256": "431ac1e868ff398e4eeec70549ff4f886c64cc34866feee76ac1fd13a6d36e41"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_02.png",
+      "sha256": "f6f69c44d70bb76d60fbd75b9c8965e3fa44425920ad599f949ca1ceb8cbb5cf"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_03.png",
+      "sha256": "2668d7680fcf20cd644000a11037592b8ac94906164224187a277d9e4a5fcf65"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_04.png",
+      "sha256": "80dea434094960755a0e5ed48a312cd4456a491933eec1a647c4c8d53ba1bc14"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_05.png",
+      "sha256": "6969e6549493aabdb192baf079dd1d803a2e6132a04f653649f8324ba439739a"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/flora_06.png",
+      "sha256": "0f1d96a6e7df0e9fce196e5ac33f16a61523621d0d4a6ff1ada0817e9ab75121"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_01.png",
+      "sha256": "ba079b7d4ea218b196f7a84186d77f0dfeba759a13736448bb8f47bcf1ce17b1"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_02.png",
+      "sha256": "0c06d4864eee99073765e6f1de08c3a08c138143a0f788b69d6c131d3c0c08ec"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/hanging_lantern_03.png",
+      "sha256": "accb5a249774c5b234943d12097d8837882b5ce8c6d97190a7abb118a6bd7051"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_heart_gem.png",
+      "sha256": "11eb1aebf425be8adbc773715bac5ae7877a5f37d0d3847742f8e6e87947885b"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_ocean_crystal.png",
+      "sha256": "c2b440e4fbf4577caff27b7793c98d8cfc9dc16dce0457afcef1bb5410587a45"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_shell_pearl.png",
+      "sha256": "68247485f29bf4ecc011403ff3c4d237c2d1885e5ba92ce64e62a25d096f29b4"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/item_treasure_chest.png",
+      "sha256": "4d4622e8b8918db4c398bea06899e7538029d758dcedde96135922238f7f4d1f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/kelp_floor_tile.png",
+      "sha256": "ecb2b78cab24357d0f4a63725f3d707cdb7f9ea508c112a00d4990c2e8697691"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/reef_coral_stone_tile.png",
+      "sha256": "c3c9c46f00900daf42d599ecedb570824229dcd62b21fa4519340a7b0f3ca12e"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/reef_stone_teal_tile.png",
+      "sha256": "155c2e4af95c347ab88506782ac83e9d2d4420dfd8414e31d595f5cd2e898cf8"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_01.png",
+      "sha256": "fd4609e742678d55866c57f559d417cbc0812888589262c494b6e2101c2d67ac"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_02.png",
+      "sha256": "e22caaf7f87815c9be21ccb13c99342f0a334d50adfaafb276db82a5f0ff8725"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_03.png",
+      "sha256": "215360ef7245dd7c63d0864ecc5c661753e3b15272d74a0ffa6ec7b7e728f621"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_04.png",
+      "sha256": "1fefdfbbecf03d7d560977a1b8a906b05cb6e1a81ef663a7e148bcd6c6b33355"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_05.png",
+      "sha256": "f88b5887fdec5911270e3628a3d846e99efe55d3961bb2452102a21f200841ff"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_06.png",
+      "sha256": "df54326ac43a9a10bcb9b05aea4d9692c7468ab8cdd29eedfd0b61c31dc3a9ef"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_07.png",
+      "sha256": "17ff99569c792a2e71e32616b1079aa820c7ff6b160524c3acc7c9146298fa33"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_08.png",
+      "sha256": "71b234ffedc7db8073b73fdc70868d79e3584e52df30d12065f6c0eda2eb8e69"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_09.png",
+      "sha256": "4dd6d52278fe77f6e7e7f5b6d0e3eac65e969ceac6335e209cbd72f12de1407f"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_10.png",
+      "sha256": "357304009a61e8115292a582696db06598543dde963f35829fc9edcb101bd97e"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_11.png",
+      "sha256": "2c0ef35afd022010ad45ec28668c5f5375843d5b2233d09bdfecd360b0680da6"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/rock_prop_12.png",
+      "sha256": "1878a9357b2505aebcc9b9d286394453af9b38a52c77195549d3cc05c04745be"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/sand_pearl_tile.png",
+      "sha256": "b83950ef537babc24d59f4e39649cedcb55e60f6d44f5708247c0c7f0b63b335"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_01.png",
+      "sha256": "68e86ff425d22b39921df6f0f390d0fa06c0e6511c2e5b728c82ccd627232238"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_02.png",
+      "sha256": "29e104032dac19f7617461aaeb774f8c7b0aa826e979aa31e784aec78900f1e5"
+    },
+    {
+      "path": "godot/assets/tutorial-v030/water_ribbon_03.png",
+      "sha256": "c051443cff95ddaa7617388bf0520eb8d4e1875ca67cab9faf16709917099322"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/coral-gardens.png",
+      "sha256": "2eb8c858eac4e60249cd8c987ef5a3a45c99b7e542b10a96e30e8528d6d640e7"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/descent-passages.png",
+      "sha256": "5aee1230b9fd581d3c70c93304234c350679b3b5166195750dfa064bc7ccd9b0"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/reef-formations.png",
+      "sha256": "c3c57ddd552758aba90e9784c3c08c35575f9c6fc85950a4d26660cdb787d950"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/swim-wreaths.png",
+      "sha256": "0bef4784884d764bf9f40422075dc1827376dd6578c28a6f2e09d05bf4adfb26"
+    },
+    {
+      "path": "godot/assets/tutorial-v033/treasure-plinths.png",
+      "sha256": "83b184f44b3e6e462728f8a70a24ad9103d68412f339d8558484e0abcd62a7c9"
+    },
+    {
+      "path": "godot/assets/ui-v014/crest.png",
+      "sha256": "58c902a2ca104680391e2e0bcb85ad3dc0aa03b87e8cb95e1241cb77c129e931"
+    },
+    {
+      "path": "godot/assets/ui-v014/crown.png",
+      "sha256": "3484ef9d5586c871349449077d3e4d0778df3ac3c201abdcf7a3d65c14e05fb8"
+    },
+    {
+      "path": "godot/assets/ui-v014/heart.png",
+      "sha256": "812bda19cc7af6aedeecda66c7ba355924301df9e16b79b4fc6f72c393312ff6"
+    },
+    {
+      "path": "godot/assets/ui-v014/shell.png",
+      "sha256": "c76db9ee8859fea88cc1807c6e259a8dfdf2db742cd025ce14c67a88b0e6fc5f"
+    },
+    {
+      "path": "godot/assets/ui-v014/star.png",
+      "sha256": "88bba129f509b7afe58b3825864032b4fcf024e6269b2187fc95b70d48d760b8"
+    },
+    {
+      "path": "godot/assets/waterfall-boulder-v07.webp",
+      "sha256": "3716917224a092d693fa54f305242d6c1ddc732614f29d14259739ce4f4e302b"
+    },
+    {
+      "path": "godot/assets/waterfall-cavern-v07.webp",
+      "sha256": "c44c341496635378f63c0eb9a6f3f443c3da05ac7cc1fc9fe908737583ed6d17"
+    },
+    {
+      "path": "godot/assets/whimsy-four/bibi.png",
+      "sha256": "9ffa05fa7763dcdcbfbb41a0e4c9b891b2fec5639b22a819842ba8fd732ba093"
+    },
+    {
+      "path": "godot/assets/whimsy-four/button.png",
+      "sha256": "4e9749d29ffe048d89e457cd738c2b696a30802fefc8417993ac319eb11483e3"
+    },
+    {
+      "path": "godot/assets/whimsy-four/cast.json",
+      "sha256": "02d84f694fad370700975b3df21d635c91a1a1022915709f8b4166548eb7f14e"
+    },
+    {
+      "path": "godot/assets/whimsy-four/crumb.png",
+      "sha256": "2ff822247d170ce47921a16ea24fae29f4825a9cf4d4d12f5760d8e4f0d5756a"
+    },
+    {
+      "path": "godot/assets/whimsy-four/dot.png",
+      "sha256": "e441d90109f80d75cd06855c77bb55e833e8c1f2a78fadda81d423b78e9daed2"
+    },
+    {
+      "path": "godot/assets/whimsy-four/hush.png",
+      "sha256": "07547233a6d27ebf03a4e1718d1c867b42619fd0d250e43a23b3e9f12dda3a7d"
+    },
+    {
+      "path": "godot/assets/whimsy-four/ludo.png",
+      "sha256": "5f47d7e0a55a2bf388c3b65122cff53f0f869e4d86cb5c677dca446c918323cc"
+    },
+    {
+      "path": "godot/assets/whimsy-four/mallow.png",
+      "sha256": "38e660a1e4ff93def536d8959655ba3b25d1301379c12954cef05c8b693af91f"
+    },
+    {
+      "path": "godot/assets/whimsy-four/miri.png",
+      "sha256": "59dc9843633ca36b58cfd50e710635ce30ca6a1f1c6da54490fd9f71665fe8c5"
+    },
+    {
+      "path": "godot/assets/whimsy-four/oona.png",
+      "sha256": "95f5ff3f850f70336c73892bf6653dce34d39b77fce9faef9443554751a50e46"
+    },
+    {
+      "path": "godot/assets/whimsy-four/peep.png",
+      "sha256": "202df9d4e34d26e3438353f735997cac6643880acb8c14d437c3d751a9b68179"
+    },
+    {
+      "path": "godot/assets/whimsy-four/posy.png",
+      "sha256": "93fa593bba0d43783660ff1ad8fc55bb675fbe747e76f256888d0e934657c4f0"
+    },
+    {
+      "path": "godot/assets/whimsy-four/purl.png",
+      "sha256": "5dc971f6909d41f8f5432621e2111a0a18ca2d73fea6152f85eaa691f561d8c1"
+    },
+    {
+      "path": "godot/assets/whimsy-four/saffron.png",
+      "sha256": "a09943ed3eda83f7b245561abd61727acbb60e6c0aee0d1fcf3970bef116ab06"
+    },
+    {
+      "path": "godot/assets/whimsy-four/thimble.png",
+      "sha256": "21dc9a7dcdb4c760c536a60860457aede23f177ca54fb8f2db0c0c5a2025858e"
+    },
+    {
+      "path": "godot/assets/whimsy-four/tilly.png",
+      "sha256": "fee19da0c268e2fcdc8deb204f638a856aab7c4cb99cee7833f253a99a3f87c8"
+    },
+    {
+      "path": "godot/assets/whimsy-four/vesper.png",
+      "sha256": "91cb795051723e055b5fa9c754fa4bbc4475532df408a7afa889c415248edd34"
+    },
+    {
+      "path": "godot/blackwater_tunnel.tscn",
+      "sha256": "afa08360e528ffd0942408e9ded0b3ae7297c674ea63e0600ba7c935778e6dca"
+    },
+    {
+      "path": "godot/deep_routes.gd",
+      "sha256": "43460922765ac13a3eab2606c631617b09831d121cdbbe9ae3e1e88a7f0a0ba4"
+    },
+    {
+      "path": "godot/family_dialogue.gd",
+      "sha256": "458d528fdf5d24aac2e0809d4b328c404d6db49d14ebcf05ab627fa0316fb7e1"
+    },
+    {
+      "path": "godot/highland_level.gd",
+      "sha256": "3929246f2d585f7c98c3642824fc9bd56f4f1df1e883a5faa0cd0301003ea467"
+    },
+    {
+      "path": "godot/highland_level.tscn",
+      "sha256": "01f311352b3e199ede3a13c59b8151a1074fdb3e287281a4ec814b0f32929b7b"
+    },
+    {
+      "path": "godot/miguel_lagoon.tscn",
+      "sha256": "8b04d4f69ef1ee9b77b43cbd12295d2fe5d0b6228a5ee282e617433fac789774"
+    },
+    {
+      "path": "godot/nessie_finale.tscn",
+      "sha256": "26449838e26617dfca72291d475705a303764044330ab71363e62c3525a2f259"
+    },
+    {
+      "path": "godot/pearl_palace.tscn",
+      "sha256": "571637defe5d0fe60d1214cbd5290e91d4fe01f5f693c757863db142df0c7b11"
+    },
+    {
+      "path": "godot/progress_store.gd",
+      "sha256": "aaa6b64c5b1397f84132cad2d00cd0cd4238eddfb5ec1c25cf98b35dda6651d0"
+    },
+    {
+      "path": "godot/rana_ruin.tscn",
+      "sha256": "71110fb4051e8862a19576c30469cb0b1414d3c69252c40ba7819612268b4834"
+    },
+    {
+      "path": "godot/sarah_motion.gd",
+      "sha256": "d9bb19ca4bdae70b46d21f616c4b4727bc37e47766a0f41b00073fafe15537b7"
+    },
+    {
+      "path": "godot/shadow_kingdom.tscn",
+      "sha256": "d6f258f99ed0ef2b2453b208229a656d51efdd8fb7a89e3c23e2d0ec748d706d"
+    },
+    {
+      "path": "godot/source/levels-v82.json",
+      "sha256": "aae3524fb84f07b20ad76dd2f5dcb8dab9141e3841d3c85608cd12cd759d7039"
+    },
+    {
+      "path": "godot/title_screen.tscn",
+      "sha256": "35a4b5f375bb51eaad903fbb4eeab473cd701efb9308666e08d61e2be11f1a04"
+    },
+    {
+      "path": "godot/training_lagoon.tscn",
+      "sha256": "9c0eea9fba5beda80c7f6ebc4598aaab9819d62900c98f4479bfbde564b5be84"
+    },
+    {
+      "path": "godot/ui_card.tscn",
+      "sha256": "71f725b96028da9f37de0922198954a7313a85399158a766c9c21b57f3722e7f"
+    }
+  ]
+}

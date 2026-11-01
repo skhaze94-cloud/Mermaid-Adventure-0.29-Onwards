@@ -14,6 +14,7 @@ void fragment() {
     float arms = smoothstep(0.38,0.44,UV.y)*(1.0-smoothstep(0.52,0.57,UV.y));
     float hands = smoothstep(0.17,0.38,abs(UV.x-0.5));
     uv.y += strength*arms*hands*(sin(clock*3.5+UV.x*4.0)*0.004+joy*sin(clock*6.0)*0.007);
+    uv.y += strength*tail*sin(clock*4.7+UV.x*5.0)*.002;
     vec4 paint = texture(TEXTURE,clamp(uv,vec2(0.001),vec2(0.999)));
     COLOR = paint*tint;
 }

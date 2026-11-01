@@ -64,9 +64,7 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     shoulder_near=spring(shoulder_near,near_target,14.0,dt)
     shoulder_far=spring(shoulder_far,far_target,13.0,dt)
     rig.near_arm.rotation+=shoulder_near.x+rig.torso_motion.rib_angle
-    rig.near_arm.position=rig.torso_motion.chest_point(rig.near_arm.position)
     rig.far_arm.rotation+=shoulder_far.x+rig.torso_motion.rib_angle
-    rig.far_arm.position=rig.torso_motion.chest_point(rig.far_arm.position)
     jaw=Vector2(rig.definitive_motion.expression.y,rig.definitive_motion.jaw_spring.y) if enabled else Vector2.ZERO
     rig.face_details.surface.set_shader_parameter("jaw_open",jaw.x)
     var neck_target: float = -back.x*.32+nod*.055-rig.depth_bank*.055
@@ -76,7 +74,7 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
         neck_target -= back.y*.014
         neck_target += wave*activity*.20+rig.definitive_motion.expression.x
         neck_target -= clampf(rig.body_pitch*.08,-.025,.025)
-        neck_target += rig.detail_gaze.y*.022+rig.turn_kick*.025
+        neck_target += rig.grace_motion.gaze_lead.y*.028+rig.turn_kick*.025
         neck_target -= rig.torso_motion.rib_angle*.35
     neck=spring(neck,clampf(neck_target,-.10,.10),10.0,dt)
     rig.head_joint.rotation=neck.x+rig.torso_motion.rib_angle
@@ -88,7 +86,7 @@ func apply(rig, dt: float, arch: float, nod: float, phase: float = 0.0) -> void:
     var bend_target: float = (wave*activity+arch*.025+rig.hair_drag*.045) if enabled else 0.0
     bend=spring(bend,clampf(bend_target,-.075,.075),13.0,dt)
     if not enabled:
-        rig.bodice.reset_shape()
+        rig.bodice.polygon=rig.torso_motion.base_shape(rig.bodice.rest)
         return
     _prepare_paint(rig.bodice.rest)
     var points: PackedVector2Array = rig.bodice.rest.duplicate()

@@ -18,13 +18,13 @@ func reset() -> void:
 func update(rig, dt: float) -> void:
     var shoulders := Vector4.ZERO
     var face := Vector3.ZERO
-    var idle := Points.sample("idle",rig.swim_clock)
+    var idle := Points.sample("idle",rig.pose_phase())
     var activity: float = maxf(rig.swim_blend,.65 if rig.waterfall_context!="" else 0.0)
     shoulders=idle[0]*(1.0-activity); face=idle[1]*(1.0-activity)
     for name in rig.stroke_weights:
         var weight: float = rig.stroke_weights[name]*activity
         if weight<.00001: continue
-        var point := Points.sample(name,rig.swim_clock)
+        var point := Points.sample(name,rig.pose_phase())
         shoulders+=point[0]*weight; face+=point[1]*weight
     var action := ""
     var amount := 0.0
@@ -41,14 +41,12 @@ func update(rig, dt: float) -> void:
     elif rig.brake_blend>.10:
         action="recover"; amount=rig.brake_blend
     if action!="":
-        var point := Points.sample(action,rig.swim_clock)
+        var point := Points.sample(action,rig.pose_phase())
         shoulders=shoulders.lerp(point[0],amount)
         face=face.lerp(point[1],amount)
     var enabled: bool = rig.high_quality and not rig.reduced_motion
     if not enabled:
         reset()
-        rig.near_arm.position=Vector2(22,-28)
-        rig.far_arm.position=Vector2(34,-25)
         return
     # Roll softly accompanies socket glide; no arbitrary independent ticking.
     var decay := exp(-dt*11.0)
@@ -66,5 +64,3 @@ func update(rig, dt: float) -> void:
     jaw_spring=Spine.spring(jaw_spring,face.y,11.0,dt)
     chest_spring=Spine.spring(chest_spring,face.z,12.0,dt)
     expression=Vector3(head_spring.x,jaw_spring.x,chest_spring.x)
-    rig.near_arm.position=Vector2(22,-28)+shoulder_near
-    rig.far_arm.position=Vector2(34,-25)+shoulder_far

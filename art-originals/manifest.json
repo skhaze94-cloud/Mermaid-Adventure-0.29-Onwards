@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "conversion": "Pillow WEBP lossless=True exact=True method=6; unchanged RGBA pixels and dimensions",
+  "assets": {
+    "dream-whale": {
+      "file": "dream-whale.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        34,
+        59,
+        1199,
+        1100
+      ],
+      "bytes": 1063360,
+      "sha256": "8a2c7a6c62d1653eb3d68eb66c28e2cc7fd9b92ef8f38fc139c6ce9ad2d9c5e8",
+      "source_sha256": "f9c895b7a0752f6c107dbb0e72c033c956dd42fb89359dc8051b10f1c6a2a4ac",
+      "exact_decoded_rgba_equal": true
+    },
+    "dream-carousel": {
+      "file": "dream-carousel.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        84,
+        0,
+        1089,
+        1245
+      ],
+      "bytes": 1578314,
+      "sha256": "b18957a13e7cc4fc4c2dfc2cb020771dc4cbeddbad1f91f8021cb7c05def7a16",
+      "source_sha256": "7b784193ab78db425bce36f59c9f5f6214e321fe386c0c0e3f8361a9ff8317e5",
+      "exact_decoded_rgba_equal": true
+    },
+    "dream-rain": {
+      "file": "dream-rain.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        112,
+        209,
+        1047,
+        958
+      ],
+      "bytes": 1108642,
+      "sha256": "83301c363b0d2d017d1bf18b81afefa95f441b65f4588ffb6aff16f0739e16f6",
+      "source_sha256": "96868d523227d67644c2e60a7f1253fd6357b0d0906c54f52fdf206372d93ffb",
+      "exact_decoded_rgba_equal": true
+    },
+    "tea-table": {
+      "file": "tea-table.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        19,
+        73,
+        1216,
+        1107
+      ],
+      "bytes": 1134312,
+      "sha256": "e5d5b75743f59247740e02f86f997aa021e96c189fc37d4d20f2d1ab1857a443",
+      "source_sha256": "522602c5f8a5996c1baf501d3a81f8aadf5b0628f6d8bbf362c26381ba369b02",
+      "exact_decoded_rgba_equal": true
+    },
+    "moon-jelly": {
+      "file": "moon-jelly.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        75,
+        64,
+        1120,
+        1161
+      ],
+      "bytes": 1235354,
+      "sha256": "578041e1e56b9f82b9144b1604b1217a913fbffff7396cb8f1009ffb2a9c915c",
+      "source_sha256": "eaa41ceecd0d397de5fbdb08d6ab7b9f5a672259e0f09e24edce2f798ca334d3",
+      "exact_decoded_rgba_equal": true
+    },
+    "octopus-butler": {
+      "file": "octopus-butler.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        93,
+        63,
+        1126,
+        1140
+      ],
+      "bytes": 1213862,
+      "sha256": "6eed0fc175d001001b09f5c1ae853153c2e9087e28fb3dd8fbfdb000bf0368d0",
+      "source_sha256": "18db04b65b18b88f35b9d42c852b89564a6b6e0bd7eef06fe4b4b8fee8e258f0",
+      "exact_decoded_rgba_equal": true
+    },
+    "shell-cottage-pearl": {
+      "file": "shell-cottage-pearl.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        24,
+        69,
+        1197,
+        1108
+      ],
+      "bytes": 1120020,
+      "sha256": "5eafc73416f987adc81de0e48ffb34766fa5ea28152c078173768a6fc744cbad",
+      "source_sha256": "18b89562c8e9a45c5f396c0f8c5339b506af33078e6ac4bdd3dbd86be0475a89",
+      "exact_decoded_rgba_equal": true
+    },
+    "shell-cottage-lavender": {
+      "file": "shell-cottage-lavender.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        33,
+        49,
+        1188,
+        1155
+      ],
+      "bytes": 1542504,
+      "sha256": "599f924fceedce50dfc9eb8d6e2009a623de9bd2fc44d6298f3ff1f67bbe7f15",
+      "source_sha256": "1fe925aed851eec35583746df497bd5f8db1486529569607a808c136b3689c35",
+      "exact_decoded_rgba_equal": true
+    },
+    "shell-cottage-coral": {
+      "file": "shell-cottage-coral.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        31,
+        89,
+        1194,
+        1080
+      ],
+      "bytes": 1120892,
+      "sha256": "5a4e3090ed21bbe11094bbb41246498ef5f3404ca3a29262bd2a4c4bc28a1c99",
+      "source_sha256": "8501b46ce5e6586557eabe4e39aaaf7bff3ef0a03ee184cf7ac05ac59491a2e5",
+      "exact_decoded_rgba_equal": true
+    },
+    "sea-slug-postman": {
+      "file": "sea-slug-postman.webp",
+      "size": [
+        1254,
+        1254
+      ],
+      "region": [
+        0,
+        89,
+        1254,
+        1058
+      ],
+      "bytes": 1052652,
+      "sha256": "c63e44403395dbe5ad86e2cf14cbb966d93a99354afe219fc0f7bef8def87aa0",
+      "source_sha256": "b49e06a53b4ceab5b035ad3abcc0e7b98232f54e55651749012a64796d42dd53",
+      "exact_decoded_rgba_equal": true
+    }
+  }
+}

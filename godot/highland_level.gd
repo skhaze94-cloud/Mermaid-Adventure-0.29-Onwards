@@ -15,6 +15,7 @@ const MUSIC = preload("res://dist/assets/bubble-bell-adventure.mp3")
 
 const WATER_SURFACE := 280.0
 const BOTTOM := 902.0
+const DeepData=preload("res://godot/deep_routes_data.gd")
 const JourneyRoute = preload("res://godot/journey_route.gd")
 const HAVEN_SHELL = preload("res://godot/assets/ui-v014/shell.png")
 const HERO_RADIUS := 43.0
@@ -63,6 +64,10 @@ var checkpoint_pending := false
 var checkpoint_position := Vector2(220, 480)
 
 var obstacles: Array[Rect2] = []
+var surface_obstacles: Array[Rect2] = []
+var deep_routes: Node2D
+var neighbourhood=preload("res://godot/whimsy_four.gd").new()
+var neighbourhood_art: Node2D
 var enemies: Array[Dictionary] = []
 const EnvironmentArt = preload("res://godot/environment_art.gd")
 var collectible_art := {"pearl": EnvironmentArt.prop("pearl"), "chest": EnvironmentArt.prop("chest"), "heart": EnvironmentArt.prop("heart"), "boost": EnvironmentArt.prop("boost")}
@@ -90,6 +95,14 @@ var touches: Dictionary = {}
 var simulated_touch := false
 var ocean_life: Node2D
 var ocean_feedback: Node2D
+var whimsy_garden: Node2D
+var whimsy_moments: Node2D
+var living_reef = preload("res://godot/living_reef.gd").new()
+var living_reef_art: Node2D
+var pocket_wonders = preload("res://godot/pocket_wonders.gd").new()
+var pocket_wonders_art: Node2D
+var living_shallows: Node2D
+var little_moments: Node2D
 var swim_audio_clock := 0.0
 var music_player: AudioStreamPlayer
 var native_rig: Node2D
@@ -136,9 +149,10 @@ var fallback_boss: Texture2D
 
 func _ready() -> void:
     if get_node("/root/AdventureRun").tutorial_complete: bubble_unlocked = true
-    obstacles = _stage_obstacles()
+    _rebuild_stage_geometry()
     enemies = _stage_enemies()
     treasures = _stage_treasure()
+    DeepData.merge_treasures(treasures,_stage_index())
     music_player = AudioStreamPlayer.new()
     music_player.stream = MUSIC
     music_player.bus = "Music"
@@ -155,6 +169,9 @@ func _ready() -> void:
     native_rig = get_node("SarahAtlasRig")
     jump_effects = get_node("JumpChoreographyFX")
     native_boss = get_node("CarloNativeBoss")
+    # The entire painted character must clear opaque cavern water, including
+    # her low-z tail; lifting only the face/arms leaves a severed silhouette.
+    native_rig.z_index=4
     animated_enemies = get_node("AnimatedEnemySprites")
     animated_enemies.bind_enemies(enemies)
     waterfall_enemies = get_node("WaterfallEnemySprites")
@@ -171,10 +188,36 @@ func _ready() -> void:
     world_depth = get_node("PaintedWorldDepth")
     foreground_depth = get_node("SparseForegroundDepth")
     relief_obstacles = get_node("ReliefReefObstacles")
+    if _uses_highland_scenery() and DeepData.enabled(_stage_index()):relief_obstacles.set_geometry(surface_obstacles)
     ocean_life = preload("res://godot/ocean_life.gd").new()
     ocean_feedback = preload("res://godot/ocean_feedback.gd").new()
     add_child(ocean_life)
     add_child(ocean_feedback)
+    whimsy_garden = preload("res://godot/whimsy_garden.gd").new()
+    whimsy_moments = preload("res://godot/whimsy_moments.gd").new()
+    add_child(whimsy_garden)
+    move_child(whimsy_garden,0)
+    add_child(whimsy_moments)
+    living_reef.bind(self)
+    living_reef_art=preload("res://godot/living_reef_art.gd").new()
+    add_child(living_reef_art)
+    living_reef_art.bind(self,living_reef)
+    pocket_wonders.bind(self)
+    pocket_wonders_art=preload("res://godot/pocket_wonders_art.gd").new()
+    add_child(pocket_wonders_art)
+    pocket_wonders_art.bind(self,pocket_wonders)
+    if DeepData.enabled(_stage_index()):
+        deep_routes=preload("res://godot/deep_routes.gd").new()
+        add_child(deep_routes)
+        deep_routes.bind(self)
+    neighbourhood.bind(self)
+    neighbourhood_art=preload("res://godot/whimsy_four_art.gd").new();add_child(neighbourhood_art);neighbourhood_art.bind(self,neighbourhood)
+    if _stage_index()==0:
+        living_shallows=preload("res://godot/living_shallows.gd").new()
+        add_child(living_shallows)
+        living_shallows.bind(self)
+    if _stage_index() in [0,7]:
+        little_moments=preload("res://godot/little_moments.gd").new();add_child(little_moments);little_moments.bind(self)
     opal_fx=OpalEffects.new();add_child(opal_fx);move_child(opal_fx,1)
     opal_fx.configure(_opal_art_chapter(),opal_friendly_atlas,opal_enemy_atlas,opal_boss_atlas)
     opal.bind(self)
@@ -223,6 +266,7 @@ func _finish_scene_setup() -> void:
             player = RockCollision.recover(checkpoint_position, obstacles, HERO_RADIUS * .73, _swim_bounds())
             _restore_checkpoint_extras(saved.get("extra", {}))
             camera = clampf(player.x - get_viewport_rect().size.x * .43, 0, maxf(0, _level_length() - get_viewport_rect().size.x))
+            if is_instance_valid(deep_routes):deep_routes.sync(true)
             _say("Welcome back, Sarah! Your checkpoint is ready.", 4.0)
         else:
             _say("Welcome back! This chapter is ready from the beginning.", 4.0)
@@ -257,6 +301,9 @@ func _valid_checkpoint(saved: Dictionary) -> bool:
             elif not item.get("taken") is bool or item["kind"] not in ["pearl","chest","heart","boost"]: return false
     if not saved.get("position", Vector2.ZERO) is Vector2 or not Vector2(saved.get("position", Vector2.ZERO)).is_finite(): return false
     if not saved.get("extra", {}) is Dictionary: return false
+    if snapshot.has("reef") and (not snapshot["reef"] is Dictionary or not living_reef.valid_state(snapshot["reef"],snapshot["ledger"])):return false
+    if snapshot.has("wonders") and (not snapshot["wonders"] is Dictionary or not pocket_wonders.valid_state(snapshot["wonders"],snapshot["ledger"])):return false
+    if snapshot.has("neighbours") and (not snapshot["neighbours"] is Dictionary or not neighbourhood.valid_state(snapshot["neighbours"],snapshot["ledger"])):return false
     return _valid_checkpoint_extras(saved.get("extra", {}))
 
 func _checkpoint_extras() -> Dictionary: return {}
@@ -280,6 +327,7 @@ func _on_save_finished(success: bool) -> void:
     if not success:_say("Couldn’t save — keep the adventure open.",6.0,true)
 
 func _exit_tree() -> void:
+    preload("res://godot/terrain_painter.gd").authored_reefs.clear()
     opal.cancel()
     # Headless CI must release MP3 playback explicitly before ResourceCache cleanup.
     if is_instance_valid(music_player):
@@ -595,7 +643,7 @@ func _award(id: String, category: String, amount: int, at: Vector2, chain: bool)
     elif category == "Pearls": _ocean_event("pearl",at)
 
     if is_instance_valid(premium_hud):
-        premium_hud.show_reward(reward,at-Vector2(camera,0))
+        premium_hud.show_reward(reward,at-Vector2(camera,_camera_y()))
 
 func _complete_score() -> void:
     if score_book.finished: return
@@ -615,11 +663,18 @@ func _completion_reward() -> String:
 func _say(text: String, duration: float = 3.0, priority := false) -> void:
     if message_priority and message_time > 0.5 and not priority: return
     message = text
-    message_time = duration
+    message_time = maxf(duration,minf(7.0,1.2+text.length()/23.0)) if not text.is_empty() and not priority else duration
     message_priority = priority
 
 func _process(_delta: float) -> void:
     if not _bubble_context_allowed():opal.cancel()
+    if not pocket_wonders.world_active():pocket_wonders.suspend()
+    if not neighbourhood.active():
+        neighbourhood.suspend()
+        if is_instance_valid(neighbourhood_art):neighbourhood_art.sync()
+    if is_instance_valid(deep_routes) and (state!="playing" or get_tree().paused):deep_routes.sync()
+    if is_instance_valid(living_shallows) and (state!="playing" or get_tree().paused):living_shallows.sync()
+    if is_instance_valid(little_moments) and (state!="playing" or get_tree().paused):little_moments.sync()
     if state != "playing" or get_tree().paused:
         return
     _sync_native_visuals()
@@ -648,6 +703,9 @@ func _physics_process(dt: float) -> void:
     splash_window = maxf(0.0, splash_window - dt)
     opal.advance(dt)
     opal_fx.advance(dt)
+    _sync_whimsy_world()
+    whimsy_garden.advance(dt)
+    whimsy_moments.advance(dt)
     leap_cooldown = maxf(0.0, leap_cooldown - dt)
     boss_hit_cooldown = maxf(0.0, boss_hit_cooldown - dt)
     energy = minf(1.0, energy + dt * 0.23)
@@ -666,12 +724,22 @@ func _physics_process(dt: float) -> void:
             return
         _update_bubbles(dt)
         _update_hostile_shots(dt)
+        if retry_serial != serial:return
+        living_reef.advance(dt)
+        living_reef_art.advance(dt)
+        pocket_wonders.advance(dt)
+        pocket_wonders_art.advance(dt)
+        neighbourhood.advance(dt)
+        if is_instance_valid(living_shallows):living_shallows.advance(dt)
+        if is_instance_valid(little_moments):little_moments.advance(dt)
         _check_checkpoints()
     var view := get_viewport_rect().size
     # Cinematic anticipation: the view looks ahead in Sarah's direction of travel.
     var anticipation := 0.0 if waterfall_phase != "" else clampf(player_velocity.x * 0.18, -100.0, 160.0)
     var camera_target := clampf(player.x - view.x * 0.43 + anticipation, 0.0, maxf(0.0, _level_length() - view.x))
+    if is_instance_valid(deep_routes):camera_target=deep_routes.room_camera_x(camera_target)
     camera = lerpf(camera, camera_target, 1.0 - exp(-dt * (7.2 if boost_time > 0.0 else 5.8)))
+    if is_instance_valid(deep_routes):deep_routes.advance(dt)
     # Presentation is refreshed once per rendered frame in _process().
 
 func _hero_screen_position() -> Vector2:
@@ -706,7 +774,7 @@ func _hud_snapshot() -> Dictionary:
         "cooldowns":{"boost":waterfall_boost_cooldown if waterfall_phase == "descent" else boost_cooldown,"jump":leap_cooldown,"bubble":fire_cooldown},
         "bubble_recovery":opal.charge.recovery_duration,
         "pearls": picked_count,
-        "chapter": _chapter_name(), "boss_name": _boss_name(), "next_stage": _next_stage_name(),
+        "chapter": deep_routes.area_name() if is_instance_valid(deep_routes) and not deep_routes.area_name().is_empty() else _chapter_name(), "boss_name": _boss_name(), "next_stage": _next_stage_name(),
         "progress": clampf((player.x - _route_start()) / maxf(1, _portal_x() - _route_start()), 0.0, 1.0),
         "message": message,
         "message_time": message_time,
@@ -733,6 +801,13 @@ func _hud_snapshot() -> Dictionary:
     }
 
 func _sync_native_visuals() -> void:
+    if is_instance_valid(deep_routes):deep_routes.sync()
+    _sync_whimsy_world()
+    if is_instance_valid(living_reef_art):living_reef_art.sync()
+    if is_instance_valid(pocket_wonders_art):pocket_wonders_art.sync()
+    if is_instance_valid(neighbourhood_art):neighbourhood_art.sync()
+    if is_instance_valid(living_shallows):living_shallows.sync()
+    if is_instance_valid(little_moments):little_moments.sync()
     opal.refresh_targets()
     if is_instance_valid(opal_fx):opal_fx.sync(self)
     if is_instance_valid(native_rig):native_rig.set_bubble_charge(opal.charge.held,opal.charge.elapsed/1.35)
@@ -783,7 +858,7 @@ func _sync_native_visuals() -> void:
             world_depth.visible = waterfall_phase != "descent"
             world_depth.set_camera(camera, fallen or waterfall_phase == "outflow", reduced_fx)
         if is_instance_valid(foreground_depth):
-            foreground_depth.set_camera(camera, not waterfall_active, reduced_fx)
+            foreground_depth.set_camera(camera, not waterfall_active and not (not fallen and camera<3100), reduced_fx)
         if is_instance_valid(relief_obstacles):
             relief_obstacles.set_camera(camera, not waterfall_active)
         if is_instance_valid(water_surface):
@@ -833,11 +908,12 @@ func _update_swimming(dt: float) -> void:
     else:
         player_velocity = SarahMotion.swim_velocity(player_velocity,input_dir,dt)
         player += player_velocity * dt
+    player += living_reef.current_drift(input_dir)*dt
     player.x = clampf(player.x, _left_bound(), _level_length() - 40.0)
     if player.y < 80.0:
         player.y = 80.0
         player_velocity.y = maxf(player_velocity.y, 0.0)
-    player.y = clampf(player.y, 80.0 if leap_phase != "" else _water_line() + 45.0, BOTTOM - 26.0)
+    player.y = clampf(player.y, 80.0 if leap_phase != "" else _water_line() + 45.0, _world_bottom() - 26.0)
     var collision := _move_around_rocks(previous, player)
     player = collision["position"]
     player_velocity = collision["velocity"]
@@ -883,7 +959,7 @@ func _prepare_journey_stops() -> void:
     journey_stops=JourneyRoute.build(_checkpoint_stops(),_route_start(),_boss_home(),obstacles,enemies,bounds)
 
 func _check_checkpoints() -> void:
-    if state!="playing":return
+    if state!="playing" or (is_instance_valid(deep_routes) and player.y>920):return
     _prepare_journey_stops()
     var arrived := false
     for stop in journey_stops:
@@ -956,10 +1032,12 @@ func _update_collectibles() -> void:
                 _ocean_event("heart",pos)
                 _say("Boost crystal!", 1.3)
             else:
-                _award("pickup:%s" % treasures.find(treasure),"Treasure" if kind == "chest" else "Pearls",100 if kind == "chest" else 10,pos,true)
+                _award(String(treasure.get("deep_id","pickup:%s" % treasures.find(treasure))),"Treasure" if kind == "chest" else "Pearls",100 if kind == "chest" else 10,pos,true)
                 picked_count += 1
                 if kind == "chest":
-                    _say("Treasure chest! +100", 1.4)
+                    if treasure.has("deep_id"):
+                        _save_checkpoint()
+                    _say("A little cavern treasure · memory saved!" if treasure.has("deep_id") else "Treasure chest! +100", 1.8)
                     native_fx.splash(pos - Vector2(camera, 0), Color("#ffeaaa"), 29)
                 elif picked_count % 5 == 0:
                     native_fx.splash(pos - Vector2(camera, 0), Color("#b2feff"), 12)
@@ -984,9 +1062,10 @@ func _save_checkpoint() -> void:
     if not checkpoint_snapshot.is_empty(): _ocean_event("checkpoint",Vector2(checkpoint,player.y))
     checkpoint_snapshot = {
         "ledger":score_book.checkpoint(), "score": score, "picked": picked_count, "treasures": treasures.duplicate(true),
-        "enemies": enemies.duplicate(true), "boss_hp": boss_hp, "bubble": bubble_unlocked, "fallen":fallen
+        "enemies": enemies.duplicate(true), "boss_hp": boss_hp, "bubble": bubble_unlocked, "fallen":fallen, "reef":living_reef.export_state(), "wonders":pocket_wonders.export_state(),"neighbours":neighbourhood.export_state()
     }
-    checkpoint_position = RockCollision.recover(Vector2(checkpoint, player.y if _stage_index() == 7 else 480.0), obstacles, HERO_RADIUS * .73, _swim_bounds())
+    var underground:=is_instance_valid(deep_routes) and player.y>920
+    checkpoint_position = RockCollision.recover(Vector2(player.x if underground else checkpoint, player.y if underground or _stage_index()==7 else 480.0), obstacles, HERO_RADIUS * .73, _swim_bounds())
     if not checkpoint_pending:
         checkpoint_pending = true
         _persist_checkpoint.call_deferred()
@@ -999,16 +1078,21 @@ func _respawn() -> void:
         score = int(checkpoint_snapshot["score"])
         picked_count = int(checkpoint_snapshot["picked"])
         treasures.assign(checkpoint_snapshot["treasures"].duplicate(true))
+        DeepData.merge_treasures(treasures,_stage_index(),score_book.seen)
         enemies.assign(checkpoint_snapshot["enemies"].duplicate(true))
         animated_enemies.bind_enemies(enemies)
         boss_hp = int(checkpoint_snapshot["boss_hp"])
         bubble_unlocked = bool(checkpoint_snapshot["bubble"])
     _reset_transients()
+    living_reef.restore_state(checkpoint_snapshot.get("reef",{}))
+    pocket_wonders.restore_state(checkpoint_snapshot.get("wonders",{}))
+    neighbourhood.restore_state(checkpoint_snapshot.get("neighbours",{}))
     health = MAX_HEALTH
     energy = 1.0
     fallen = bool(checkpoint_snapshot.get("fallen", checkpoint >= Highland.WATERFALL_EXIT))
     player = RockCollision.recover(checkpoint_position, obstacles, HERO_RADIUS*.73, _swim_bounds())
     camera = maxf(0.0, player.x - get_viewport_rect().size.x * 0.43)
+    if is_instance_valid(deep_routes):deep_routes.sync(true)
     invulnerable = 2.0
     native_boss.reset_boss()
     if not music_muted:
@@ -1017,6 +1101,11 @@ func _respawn() -> void:
 
 func _reset_transients() -> void:
     boss_volley.clear()
+    living_reef.clear_transients()
+    pocket_wonders.clear_transients()
+    neighbourhood.clear_transients()
+    if is_instance_valid(living_reef_art):living_reef_art.reset()
+    if is_instance_valid(pocket_wonders_art):pocket_wonders_art.reset()
     message_priority = false
     message_time = 0.0
     opal.reset()
@@ -1056,6 +1145,8 @@ func _reset_transients() -> void:
     boss_hit_cooldown = 0.0
     native_fx.reset_transients()
     if is_instance_valid(ocean_feedback): ocean_feedback.clear()
+    if is_instance_valid(whimsy_garden): whimsy_garden.reset()
+    if is_instance_valid(whimsy_moments): whimsy_moments.clear()
 
 func _update_boss(dt: float) -> void:
     if player.x < _boss_home() - 850.0 or boss_hp <= 0:
@@ -1244,6 +1335,9 @@ func _restart() -> void:
     time = 0.0
     health = MAX_HEALTH
     energy = 1.0
+    living_reef.restore_state({})
+    pocket_wonders.restore_state({})
+    neighbourhood.restore_state({})
     score_book = ScoreBook.new()
     premium_hud.clear_feedback()
     score = 0
@@ -1264,10 +1358,11 @@ func _restart() -> void:
     fallen = not _has_waterfall()
     waterfall_phase = ""
     touches.clear()
-    obstacles = _stage_obstacles()
+    _rebuild_stage_geometry()
     enemies = _stage_enemies()
     animated_enemies.bind_enemies(enemies)
     treasures = _stage_treasure()
+    DeepData.merge_treasures(treasures,_stage_index())
     state = "playing"
     _save_checkpoint()
     if not music_muted:
@@ -1495,7 +1590,7 @@ func _advance_journey() -> bool:
 
 func _swim_bounds() -> Rect2:
     var top := 80.0 if leap_phase != "" else _water_line() + 45.0
-    return Rect2(_left_bound(), top, _level_length() - 40.0 - _left_bound(), BOTTOM - 26.0 - top)
+    return Rect2(_left_bound(), top, _level_length() - 40.0 - _left_bound(), _world_bottom() - 26.0 - top)
 
 func _move_around_rocks(previous: Vector2, desired: Vector2) -> Dictionary:
     var bounds := _swim_bounds()
@@ -1509,6 +1604,9 @@ func _sfx(effect: String, priority := 1, pitch := 0.0) -> void:
 func _ocean_event(effect: String, at: Vector2, direction := Vector2.RIGHT) -> void:
     _sfx(effect,3 if effect in ["boss_defeat","checkpoint"] else 1)
     if is_instance_valid(ocean_feedback): ocean_feedback.burst(at,effect,direction)
+    if is_instance_valid(whimsy_moments):
+        _sync_whimsy_world()
+        whimsy_moments.celebrate(at,effect,direction)
 
 func _uses_highland_scenery() -> bool: return true
 
@@ -1569,3 +1667,38 @@ func _boss_attack_hint() -> String:
     if _stage_index()==1:return "Duke’s fan · watch Flip above" if boss_volley.pending.is_empty() else "Duke’s fan · lanes locked"
     if _stage_index()==2:return "Maraca fan · leave the marked lanes" if not boss_volley.pending.is_empty() else "Miguel’s dance · keep a dodge route"
     return ["Claw circle · swim outside the ring","Pearl fan · dodge between lanes","Crab dash · leave the marked path"][clampi(boss_pattern,0,2)]
+
+func _whimsy_combat_active() -> bool:
+    if _opal_arena_active():return true
+    for enemy in enemies:
+        if int(enemy["hp"])<=0 or absf(float(enemy["x"])-player.x)>650:continue
+        var mode: String=enemy.get("mode","")
+        if mode in ["windup","attack"] and Vector2(enemy["x"],enemy["y"]).distance_squared_to(player)<422500:return true
+    return false
+
+func _sync_whimsy_world() -> void:
+    if not is_instance_valid(whimsy_garden) or not is_instance_valid(whimsy_moments):return
+    var enabled: bool = waterfall_phase=="" and state in ["playing","paused"] and not get_node("/root/SceneFlow").busy
+    var in_combat := _whimsy_combat_active()
+    whimsy_garden.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,enabled,in_combat)
+    whimsy_moments.set_world(camera,_water_line(),player,_stage_index(),reduced_fx,not high_depth_quality,enabled,in_combat)
+
+func _bank_living_reef() -> void:
+    # Optional kindness banks its one-time reward at a nearby safe checkpoint.
+    # Existing save workers, ledger ownership and collision recovery remain in charge.
+    if _stage_index()!=7:checkpoint=maxf(checkpoint,clampf(player.x,_left_bound(),_portal_x()-190))
+    last_checkpoint_message="Reef memory"
+    _save_checkpoint()
+
+func _bank_pocket_wonders() -> void:
+    # Both optional packs use the existing atomic checkpoint/ledger save path.
+    _bank_living_reef()
+    last_checkpoint_message="Wonder remembered"
+
+func _rebuild_stage_geometry() -> void:
+    surface_obstacles=DeepData.surface_rocks(_stage_obstacles(),_stage_index())
+    obstacles=surface_obstacles.duplicate()
+    obstacles.append_array(DeepData.solids(_stage_index(),_level_length()))
+
+func _world_bottom() -> float:return DeepData.BOTTOM if DeepData.enabled(_stage_index()) else BOTTOM
+func _camera_y() -> float:return deep_routes.camera_y if is_instance_valid(deep_routes) else 0.0

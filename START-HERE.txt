@@ -1,41 +1,21 @@
-Sarah Maria — Mermaid Adventure
-v0.9.0 — Journey Polish / Opal Current
+MERMAID ADVENTURE v0.36 — CONNECTED GRACE & THE LIVING ROYAL FAMILY
 
-1. Extract the whole ZIP into a NEW EMPTY folder.
-2. Import the ROOT project.godot in Godot 4.4 or newer. Tested with 4.4.1.
-3. Keep godot/ and dist/ beside project.godot. Wait for asset import.
-4. Press F5. Begin adventure starts the family lagoon tutorial.
-   Choose a chapter opens any of the eight chapters.
-   Continue adventure restores your last checkpoint, unlocks and Avina choice.
-   Checkpoints and chapter results save automatically; stars and best scores stay.
+Windows: extract the Windows ZIP to a new folder and run Mermaid Adventure.exe.
+Source: open project.godot using Godot4.4/4.4.1; allow original assets to import.
+Android: use official Godot4.5.1 export templates for16KiB-native-page compatibility.
+The supplied APK is UNSIGNED and requires the original Mermaid signing key before
+installation/update. No replacement key has been invented.
 
-Swim: arrows / WASD / controller stick / touch pad
-Boost: Space / controller B
-Jump: J or Shift / controller A
-Bubble: hold B or Z / controller X / touch Bubble, then RELEASE.
-Quick release: Pearl Pop. Hold 0.35s: Prism Bloom. Hold 1.35s: Royal Aurora.
-Mint petals + star: valid hit. Amber shield: guarded. Lavender: hit cooldown.
-The charge meter shows your tier. COOLING means wait for the next bubble.
-The tutorial’s super-bubble practice target is optional; its portal stays open.
-Pause: Escape / P / controller Start
+Read CONNECTED-GRACE-036.md for structural changes, exact bone bindings,
+rebuild instructions, visual review, performance and remaining limits.
+Current evidence: verification/connected36. Stable application/save identity retained.
 
-Use landscape for play. Portrait pauses safely.
-Options includes audio, Gentle Motion, Economy graphics and touch controls.
+Swim: arrows / WASD / controller left stick.
+Boost: Space / controller B. Jump: J or Shift / controller A.
+Bubble: hold B or Z / controller X, then release.
+Pause: Escape / P / controller Start.
+Options: sound, Gentle Motion and Economy graphics.
 
-Princess Polish Sarah adds finer coordinated motion, a torpedo boost pose,
-and layered swimming wakes. Gentle Motion and Economy suppress extra effects.
-
-This is the cleaned playable project. Tests, capture scripts and historical
-reports remain in the GitHub repository rather than the playable ZIP.
-
-Bubble tuning: Pearl Pop 1 power / 0.20s recovery; Prism Bloom 2 / 0.35s;
-Royal Aurora 4 / 0.45s against ordinary enemies. Boss damage stays capped at 2.
-Charged bubbles travel faster; guard and vulnerability rules still apply.
-
-Boss tips: leave marked attack lanes, then attack during mint recovery.
-Lavender arcs mean the last hit is cooling. Carlo teaches Boost before Bubble.
-Duke and Flip share a comedy opening; Rana clears her pearls before her laser.
-
-Journey tips: resting shell pearls mark new travel checkpoints. Crossing a
-checkpoint refreshes hearts and energy. Rana now guards the final approach.
-Family conversations offer Let me try it; talk again for the full stories.
+The original Whimsy/Friends Cavern adventure, all characters, paintings, royal
+models, treasure chests, dialogue, progression and saves remain.
+Physical Windows/Android execution and device performance remain untested here.

@@ -1,0 +1,55 @@
+{
+  "tool": "built-in image_gen",
+  "release": "0.34.0",
+  "assets": [
+    {
+      "file": "friends.png",
+      "sha256": "901180f80b3aa6d0a48e8f87ad126e80cda7ee6363a20a8543023e3701f1303f",
+      "original": "exec-11298954-36dc-4760-9d12-bc4f498deffb.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: production transparent character sprite atlas for a hand-painted mermaid adventure. One PNG canvas with exactly THREE columns and TWO rows, six fully isolated friendly underwater characters, large clear gaps around each, genuinely transparent background. Each character is shown full body in a charming three-quarter pose, generally looking to the right, each with warm expressive eyes, a tiny smile, soft painted highlights, rich finely brushed texture, lovely restrained cream, peach, jade and lavender colours. Top left: Coda, a plump little sea-otter bell polisher with a cream belly, a tiny brass handbell and a blue neckerchief. Top middle: Folio, a lilac nautilus librarian with a beautiful spiral shell and a small rolled sea-leaf scroll, delicate tentacles. Top right: Luma, a moonjelly friend with a pearl-blue bell, a little star beret, two expressive eyes, flowing lilac ribbon tentacles and a tiny lantern. Bottom left: Pipette, a round golden boxfish post carrier with little fins and a small sea-leaf shoulder mailbag, holding a shell envelope. Bottom middle: Tango, a coral-pink hermit crab theatre usher in an ammonite shell with a tiny velvet bow, waving one claw. Bottom right: Rill, a mint and peach axolotl stream guide, wide frilly gills, soft fins, a little blue shell charm and an inviting hand. Six completely different silhouettes, lovely storybook personality and simple readable faces at small game size. No scenery, platforms, labels, text, UI, boxes, frame or drop-shadow panels. 1800 by 1200 pixels."
+    },
+    {
+      "file": "rootgarden.png",
+      "sha256": "4bd90fe8987bab5f66e4bb2e676ae736416f99ca7f1e618e0394029fecdebd92",
+      "original": "exec-90a4da2f-e497-475d-9fe4-e2eeb19aecfb.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: one continuous production background painting for an underwater Friends Cavern in a painted mermaid game. A broad naturally carved flooded limestone chamber with pale twisting tree roots along the left edge, a jade kelp garden on the right, small cream anemones, soft green ferns, distant hazy teal arches and tiny pearl buds. The upper middle is open clear turquoise water with light flowing down from the shallow lagoon above. All of the scene is underwater: no air, horizon or waterline. The middle 60 percent must be quiet generous open swimming space, with detailed scenery concentrated at the outer sides, a few far-away ledges, and a softly lit sandy bottom near the lower edge. The scene reads continuously from the bright descent at its top through the room to the deep floor, without a horizontal material change or a framing doorway. Beautiful sophisticated hand-painted family storybook, layered atmospheric perspective, natural irregular silhouettes, warm ivory highlights, restrained teal and sage palette. No characters, treasure, text, UI, straight box-shaped walls, identical repeated arches, or neon glow. Landscape 1536 by 1024."
+    },
+    {
+      "file": "cathedral.png",
+      "sha256": "a642aaac95569442bd1705e8717f02992242a1ae6e934ddf6e902e8c7e5f715e",
+      "original": "exec-d745e7d4-d5f2-436b-a0b0-eaac9cf463f9.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: one continuous underwater cavern background painting for a charming mermaid exploration game. A sunken bell cathedral made by nature: asymmetrical tall blue limestone columns, fossil scallops and pale-gold hanging shell bells along the left and right sides, a few lavender sea flowers, distant shadowed stone arches and drifting dust in blue water. No buildings or hard manufactured pillars. Clear water and soft golden caustic rays enter at the upper middle and lead down to a pale sandy floor near the lower edge. Entire scene underwater, no sky, air, horizon or waterline. The central 60 percent stays spacious and quiet for swimming and characters. Detailed painted brushwork, lovely warm-cool light, natural mineral textures, subtle atmospheric depth, gentle magical storybook beauty. One coherent painting from the descent to the floor; no stacked panels, dividing lines, square cave doorway or abrupt texture bands. No characters, items, text, UI, repeated identical objects or neon. Landscape 1536 by 1024."
+    },
+    {
+      "file": "archive.png",
+      "sha256": "43e9167df8a79923433060df33df2693f1f5020e7e9bfb65f000ea535534dda2",
+      "original": "exec-3eb18e39-d4ce-4e3a-9569-8cda1bf9ab48.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: one continuous painted underwater Friends Cavern environment. The Ribbonlight Archive: serene honey-ivory limestone shoulders with natural shallow niches, delicate curling amber ribbon kelp, shell-fossil spirals, soft coral-pink anemones and small hanging sea-leaf scroll shapes tucked at the sides. A mysterious distant teal corridor dissolves into clear water. Bright aqua water descends gently through the upper middle to the same pale sandy chamber below; there is no air, horizon or waterline. Keep the middle 60 percent clear of large obstructions. Rich hand-painted storybook texture, elegant rather than busy, gentle luminous caustic light, soft edge detail, very natural asymmetry. The entire canvas is one coherent flooded chamber with no horizontal artwork transition or straight rectangular framing edge. No characters, treasure, text, lettering, UI, giant books, duplicated shelf patterns or neon. Landscape 1536 by 1024."
+    },
+    {
+      "file": "moonpool.png",
+      "sha256": "baa9f3398a51cd391d2598d0a219fc7ff7472cbd3697e692ee479854ec67f2f9",
+      "original": "exec-3d3eeaa2-ca96-47da-bff1-f1bcc4ad8c58.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: a continuous underwater cavern background painting for a beautiful family mermaid game. A peaceful Moonpool grotto, opalescent blue and lavender limestone, pale natural calcite ribbons, sparse tiny warm lantern-flowers clinging to side rocks, a few curling sea grasses, distant moon-blue submerged arches. Soft silver light streams from the clear upper water through the whole flooded chamber to a faintly pearly sandy floor near the bottom. Entire scene is below the water, no visible sky, air, horizon or waterline. Quiet open swimming space across the middle 60 percent, richly detailed soft rocky shoulders at the outer edges. Delicate hand-painted children's adventure quality, lovely painterly reflections, misty depth and warm points of light, naturally irregular shapes. No straight doorway or horizontal texture band, one coherent painting throughout. No characters, jellyfish, items, text, UI, copied arch motifs or neon. Landscape 1536 by 1024."
+    },
+    {
+      "file": "coraltheatre.png",
+      "sha256": "1c2fa1a72da94ef4b09ad5853a3c4d6789322cafe0ef1e18edf3e1320b2a5181",
+      "original": "exec-c5bdd84d-a1c5-4d77-9a11-5d5c251a66cf.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: one continuous underwater cavern painting for a warm beautiful mermaid exploration game. A whimsical natural coral amphitheatre: layered peach and rose limestone terraces along the outer sides, pale scallop-shaped fossils, a few rich green sea fans and lavender sprigs, distant arching reef shapes receding into tranquil blue water. A few small shell-like flowers appear as spectators far to the sides, but no living characters. Gentle aqua light descends through clear water at the top centre and scatters over a soft pale sandy floor near the bottom. All below water; no air, horizon or waterline. Central 60 percent is generous calm swimming space. Rich detailed storybook paint, atmospheric perspective, irregular organic edges, an inviting and unhurried mood, restrained jewel colours and lovely caustics. One continuous artwork from descent to chamber floor; no square doorway, dividing panels or horizontal material bands. No characters, treasure, text, UI, repeated identical objects or neon. Landscape 1536 by 1024."
+    },
+    {
+      "file": "limestone.png",
+      "sha256": "5c561cb0237574a90a637223e49ad6ce7ef4af50c95370df387b28adc1abc2b0",
+      "original": "exec-5b2c3b9a-22b6-46ba-8c42-99272e0c2c16.png",
+      "original_pixels_preserved": true,
+      "prompt": "Use case: illustration-story. Asset type: one seamless, tileable production material texture for underwater cavern walls in an exquisitely hand-painted storybook mermaid game. A continuous naturally eroded limestone rock surface with broad soft flowing mineral strata, gentle rounded organic ridges, small fine-grained pores and very sparse wisps of moss. Deep muted teal, blue-green slate, soft sage-grey and restrained warm limestone undertones. Beautiful painted brush texture, gentle diffuse underwater light, subtle depth, low contrast. This must look like one continuous carved bedrock mass rather than separate piled stones: no bricks, no distinct boulder grid, no cobblestones, no polygon mosaic, no tile outlines, no giant cracks, no fossils, no shells, no flowers or recognisable repeating motifs. No bright highlights, no dark black crevices, no vignette, no perspective or central subject. Full square canvas covered in material, continuous edges suited to seamless repetition. No characters, objects, text, UI or labels. 1024 by 1024 pixels."
+    }
+  ]
+}

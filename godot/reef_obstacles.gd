@@ -16,6 +16,16 @@ func _ready() -> void:
     z_index = -1
     texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
     positions = preload("res://godot/chapter_data.gd").obstacles_for("highland")
+    _build_sprites()
+    get_viewport().size_changed.connect(_resize)
+    _resize()
+
+func set_geometry(rocks: Array[Rect2]) -> void:
+    for sprite in sprites:sprite.queue_free()
+    sprites.clear();materials.clear();positions=rocks.duplicate()
+    _build_sprites();last_view=Vector2(-1,-1);_resize()
+
+func _build_sprites() -> void:
     for i in range(positions.size()):
         var r := positions[i]
         var overhead := r.position.y < 340.0
@@ -25,6 +35,8 @@ func _ready() -> void:
         sprite.texture = Terrain.formation((i%2) if overhead else (2+i%2))
         sprite.centered = false
         sprite.flip_v = false
+        sprite.flip_h = i%3==1
+        sprite.modulate=Color(.96+.035*sin(i*1.7),.98+.02*cos(i*2.3),1)
         sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
         var material := ShaderMaterial.new()
         material.shader = RELIEF_SHADER
@@ -37,8 +49,6 @@ func _ready() -> void:
         sprite.scale = Vector2((r.size.x+12)/sprite.texture.get_width(),(r.size.y+12)/sprite.texture.get_height())
         add_child(sprite)
         sprites.append(sprite)
-    get_viewport().size_changed.connect(_resize)
-    _resize()
 
 func _resize() -> void:
     view_width = get_viewport_rect().size.x

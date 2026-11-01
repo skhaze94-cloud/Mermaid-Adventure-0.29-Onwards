@@ -75,6 +75,8 @@ var result_text_updates := 0
 var modal_layout_signature: Array = []
 var modal_layout_updates := 0
 var modal_layout_pending := false
+var message_layout_key: Array = []
+var message_height := 42.0
 
 func _ready() -> void:
     layer = 6
@@ -87,20 +89,13 @@ func _ready() -> void:
     add_child(canvas)
     score_card = Card.instantiate()
     canvas.add_child(score_card)
-    var score_box := VBoxContainer.new()
-    score_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+    var score_box := HBoxContainer.new()
+    score_box.mouse_filter=Control.MOUSE_FILTER_IGNORE
+    score_box.add_theme_constant_override("separation",9)
     score_card.add_child(score_box)
-    var row := HBoxContainer.new()
-    row.mouse_filter = Control.MOUSE_FILTER_IGNORE
-    score_box.add_child(row)
-    row.add_child(Kit.icon("shell",Vector2(52,52)))
-    var figures := VBoxContainer.new()
-    row.add_child(figures)
-    figures.add_child(Kit.label("ADVENTURE SCORE",11,Color("#acdcd9")))
-    score_label = Kit.label("0",26,Color("#ffe3a1"))
-    figures.add_child(score_label)
-    pearl_label = Kit.label("0 pearls",14)
-    score_box.add_child(pearl_label)
+    score_box.add_child(Kit.icon("shell",Vector2(30,30)))
+    score_label=Kit.label("0",22,Color("#ffe3a1"));score_box.add_child(score_label)
+    pearl_label=Kit.label("0 pearls",14,Color("#acdcd9"));score_box.add_child(pearl_label)
     combo_label = Kit.label("",14,Color("#ffb7ec"))
     canvas.add_child(combo_label)
     combo_meter = _meter(canvas)
@@ -114,12 +109,12 @@ func _ready() -> void:
     health_row.add_theme_constant_override("separation",4)
     health_box.add_child(health_row)
     for i in range(5):
-        var heart := Kit.icon("heart",Vector2(26,26))
+        var heart := Kit.icon("heart",Vector2(22,22))
         health_row.add_child(heart)
         hearts.append(heart)
-    health_box.add_child(Kit.label("MERMAID ENERGY",10,Color("#acdcd9")))
+    
     energy_meter = _meter(health_box)
-    energy_meter.custom_minimum_size.y = 12
+    energy_meter.custom_minimum_size.y = 6
     chapter = Kit.label("HIGHLAND GOLD",12,Color("#c6f2e6"))
     canvas.add_child(chapter)
     route = _meter(canvas)
@@ -140,7 +135,7 @@ func _ready() -> void:
     canvas.add_child(message_back)
     message_label = Kit.label("",15)
     message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-    message_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+    message_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
     canvas.add_child(message_label)
     boss_card = Card.instantiate()
     canvas.add_child(boss_card)
@@ -297,13 +292,13 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
     var w := game_size.x
     var h := game_size.y
     score_card.position = Vector2(14,14)
-    score_card.size = Vector2(minf(260,w*0.38),100)
+    score_card.size = Vector2(200,54)
     health_card.position = Vector2(w-190-(82 if info.get("touch",false) else 0),14)
-    health_card.size = Vector2(176,92)
-    combo_label.position = Vector2(18,117)
-    combo_meter.position = Vector2(18,140)
+    health_card.size = Vector2(176,58)
+    combo_label.position = Vector2(18,76)
+    combo_meter.position = Vector2(18,104)
     combo_meter.size = Vector2(minf(240,w*0.34),8)
-    chapter.position = Vector2(18,130)
+    chapter.position = Vector2(18,76)
     route.position = Vector2(16,h-12)
     route.size = Vector2(w-32,6)
     charge_card.position = Vector2((w-230)*.5,h-92)
@@ -313,8 +308,8 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
     message_back.size = Vector2(message_width,29)
     message_label.position = message_back.position + Vector2(8,2)
     message_label.size = Vector2(message_width-16,25)
-    boss_card.position = Vector2((w-minf(w-40,340))/2,150 if h<720 else 204)
-    boss_card.size = Vector2(minf(w-40,340),66)
+    boss_card.position = Vector2((w-minf(w-40,300))/2,14)
+    boss_card.size = Vector2(minf(w-40,300),60)
     touch_layer.size = game_size
     modal.size = game_size
     modal.get_node("ModalScrim").size = game_size
@@ -330,7 +325,7 @@ func configure_layout(viewport_size: Vector2, window_size: Vector2, safe_pixels 
         modal_buttons[action].size = rect.size
     rotate_label.position = Vector2(0,h*0.43)
     rotate_label.size = Vector2(w,90)
-    banner.position = Vector2(w-258,126)
+    banner.position = Vector2(w-258,88)
     modal_layout_signature.clear()
     _refresh()
 func to_ui(point: Vector2) -> Vector2: return (point-safe_frame.position)/ui_scale
@@ -387,12 +382,12 @@ func update_hud(next_info: Dictionary) -> void:
 func _refresh() -> void:
     if not is_instance_valid(score_card): return
     rotate_label.visible = portrait
-    score_card.visible = not portrait
+    score_card.visible = not portrait and not info.get("tutorial",false) and not modal.visible
     health_card.visible = not portrait
     health_card.position.x = game_size.x-190-(82 if info.get("touch",false) else 0)
     for i in range(5): hearts[i].modulate = Color.WHITE if i<int(info.get("health",5)) else Color(0.28,0.38,0.46,0.5)
     energy_meter.value = info.get("energy",1.0)
-    pearl_label.text = "%s pearls" % Kit.number(int(info.get("pearls",0)))
+    pearl_label.text = "· %s pearls" % Kit.number(int(info.get("pearls",0)))
     var combo := int(info.get("combo",1))
     combo_label.text = "COMBO! ×%s" % combo if combo>1 else ""
     var critical_boss: bool = info.get("boss_active",false) and info.get("message_priority",false) and float(info.get("message_time",0))>0
@@ -400,25 +395,32 @@ func _refresh() -> void:
     combo_meter.visible = combo>1 and not portrait and not compact_priority
     combo_meter.value = float(info.get("combo_left",0))/3.0
     combo_label.visible = combo>1 and not portrait and not compact_priority
-    chapter.position.y=155.0 if combo>1 else 130.0
+    chapter.position.y=116.0 if combo>1 else 76.0
     chapter.text = "The waterfall" if info.get("waterfall","") != "" else String(info.get("chapter","Highland Gold")).split(" · ")[0].capitalize()
-    chapter.visible = not portrait and not (game_size.y<720 and info.get("boss_active",false))
+    chapter.visible = not portrait and not info.get("tutorial",false) and not info.get("boss_active",false) and not modal.visible
     route.value = info.get("fall_progress" if info.get("waterfall","") != "" else "progress",0)
     route.visible = not portrait
     message_label.text = info.get("message","") if info.get("message_time",0)>0 else ""
-    var message_width := minf(game_size.x-40,340 if compact_priority else 740)
-    message_back.size.x = message_width
-    message_back.position = Vector2((game_size.x-message_width)*.5,boss_card.position.y-34 if critical_boss else 174)
-    message_label.position = message_back.position+Vector2(8,2)
-    message_label.size.x = message_width-16
-    message_label.visible = not portrait and (not info.get("boss_active",false) or critical_boss) and not info.get("paused",false) and not info.get("victory",false)
-    message_back.visible = message_label.visible and not message_label.text.is_empty()
+    var message_width := minf(game_size.x-48,480)
+    var layout_key: Array=[message_label.text,message_width]
+    if layout_key!=message_layout_key:
+        message_layout_key=layout_key
+        var text_height:=Kit.BODY.get_multiline_string_size(String(message_label.text),HORIZONTAL_ALIGNMENT_CENTER,message_width-24,15).y
+        message_height=clampf(text_height+20,42,100)
+    message_back.size=Vector2(message_width,message_height)
+    message_back.position=Vector2((game_size.x-message_width)*.5,92 if critical_boss else game_size.y-212-message_height)
+    message_label.position=message_back.position+Vector2(12,8)
+    message_label.size=Vector2(message_width-24,message_height-16)
+    message_label.visible = not portrait and not message_label.text.is_empty() and (not info.get("boss_active",false) or critical_boss) and not info.get("paused",false) and not info.get("victory",false) and (not info.get("tutorial",false) or info.get("message_priority",false))
+    message_back.visible=message_label.visible
     var hint_alpha := clampf(float(info.get("message_time",0))/0.3,0.0,1.0)
     message_label.modulate.a = hint_alpha
     message_back.modulate.a = hint_alpha
-    boss_card.visible = info.get("boss_active",false) and not portrait
+    boss_card.visible = info.get("boss_active",false) and not portrait and not info.get("tutorial",false)
+    boss_card.position.y=114 if info.get("tutorial",false) else 14
     boss_meter.value = info.get("boss_health",1.0)
     boss_label.text = String(info.get("boss_name","Carlo the Crab")).split(" · ")[0].capitalize() + ((" · Hit now" if info.get("bubble",false) else " · Boost now") if info.get("boss_vulnerable",false) else "")
+    if info.get("tutorial",false):boss_label.text="Daddy · "+("your turn!" if info.get("boss_vulnerable",false) else "a friendly trial")
     boss_hint.text = String(info.get("boss_attack",""))
     if info.get("boss_vulnerable",false) and not boss_hint.text.is_empty(): boss_hint.text="Mint petals · Bubble or Boost now" if info.get("bubble",false) else "Mint petals · Boost now"
     boss_hint.visible = not boss_hint.text.is_empty()
@@ -429,7 +431,7 @@ func _refresh() -> void:
     var next_touch: Array = [game_size,control_size,info.get("pad",Vector2.ZERO),
         info.get("pressed",[]),info.get("bubble",false),float(info.get("energy",1.0))>=0.4,
         info.get("cooldowns",{}).duplicate(),info.get("charge_tier",0),
-        roundi(float(info.get("charge_progress",0))*64),info.get("bubble_recovery",0.2)]
+        roundi(float(info.get("charge_progress",0))*64),info.get("bubble_recovery",0.2),info.get("tutorial",false)]
     if next_touch != touch_signature:
         touch_signature = next_touch.duplicate(true)
         touch_layer.queue_redraw()
@@ -489,7 +491,7 @@ func bubble_button_label() -> String:
     if not info.get("bubble",false): return "LOCKED"
     if float(info.get("cooldowns",{}).get("bubble",0))>0: return "COOLING"
     var tier := int(info.get("charge_tier",0))
-    return "RELEASE!" if tier==3 else "PRISM BLOOM" if tier==2 else "CHARGING" if tier==1 else "HOLD BUBBLE"
+    return "RELEASE!" if tier==3 else "PRISM BLOOM" if tier==2 else "CHARGING" if tier==1 else "BUBBLE"
 
 func _refresh_charge() -> void:
     var tier := int(info.get("charge_tier",0))
@@ -636,6 +638,7 @@ func _draw_touch() -> void:
     touch_layer.draw_circle(knob,20*factor,Color("#75d3c6"))
     touch_layer.draw_arc(knob,20*factor,0,TAU,40,Color("#c1f4e6"),1.5,true)
     for action in ["jump","boost","bubble","pause"]:
+        if action=="bubble" and not info.get("bubble",false):continue
         var rect := action_rect(action)
         var locked: bool = action == "bubble" and not info.get("bubble",false)
         var available: bool = action not in ["jump","boost"] or float(info.get("energy",1.0))>=0.4

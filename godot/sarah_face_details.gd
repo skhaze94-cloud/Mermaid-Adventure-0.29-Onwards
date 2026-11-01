@@ -1,8 +1,8 @@
 extends "res://godot/sarah_painted_mesh.gd"
 ## One persistent painted surface. Neck anchors and UVs stay fixed.
 const DETAIL_SHADER = preload("res://godot/shaders/sarah_face_details.gdshader")
-const COLUMNS := 584 # 28,665 connected points: three times v0.4.
-const ROWS := 49
+const COLUMNS := 128 # Sampling follows displayed detail; original painting stays full resolution.
+const ROWS := 33
 var rest := PackedVector2Array()
 var surface: ShaderMaterial
 var full_triangles: Array[PackedInt32Array] = []
@@ -87,11 +87,8 @@ func configure(source: Texture2D, regions: Array) -> void:
     reset_details()
 
 func adapt_detail(high: bool) -> void:
-    var width := 710.0*get_global_transform_with_canvas().get_scale().abs().x
-    var wanted := high and (width>110.0 if full_detail else width>130.0)
-    if wanted==full_detail: return
-    full_detail=wanted
-    polygons=full_triangles if full_detail else play_triangles
+    # The right-sized fixed surface needs no index/UV rebuild when scale changes.
+    full_detail=high
 
 static func blink_at(time: float) -> float:
     var phase := fposmod(time,4.7)

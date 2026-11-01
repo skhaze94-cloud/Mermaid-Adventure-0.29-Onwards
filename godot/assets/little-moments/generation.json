@@ -1,0 +1,112 @@
+{
+  "assets": [
+    {
+      "id": "post",
+      "file": "post-office.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-81cf658b-6ed4-4233-aee2-e03a4cadc6ee.png",
+      "prompt": "Use case: illustration-story. Asset type: one transparent painted environmental vignette for a rich mermaid storybook game, to be placed once as an underwater landmark. Subject: Nori's tiny sea-slug post office, an asymmetrical cosy house formed from a curled cream-and-rose conch, a navy awning, a little copper letter slot, three different sealed envelopes resting on a driftwood sorting shelf, a bell hanging from one curving stalk and a small anemone at its foot. No character. The entire vignette is a single connected composition, full object visible with generous transparent margins. Warm intricately painted gouache, pearly pastel highlights, believable soft volume, tactile natural materials, kind whimsical ocean charm matching a mint sea-slug postman with a navy cap. Three-quarter side view readable in a side-scrolling 2D game. No scenery, no ocean background, no lettering or words, no border or watermark. Genuinely transparent background. Clear silhouette, not a generic castle or repeated coral cluster.",
+      "tool": "built-in ImageGen",
+      "sha256": "d9cc7cc52297efd2057f891f7b76456de342d9e562ea79ea70042798eb616654",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "fish",
+      "file": "shy-fish.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-4ec61150-d57c-4864-a1c2-f62461640369.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE painted fish character cutout, a unique shy friend in a mermaid game. Subject: a little plump golden-apricot glassfish with a deep indigo mask around enormous kind dark eyes, tiny rose cheeks, delicate translucent petal fins and a flowing asymmetrical cobalt-and-copper fan tail. Its whole body faces left in three-quarter side view with a curious slightly shy smile and purposeful eye contact. Full character visible, generous clear transparent margins. Exquisite warm storybook gouache with subtle pearlescent highlights, dimensional soft painting and tactile details, readable clean silhouette. No objects, no other fish, no scenery, no water, no floor, no shadows or glow outside the silhouette, no text or watermark. Genuinely transparent background, clean alpha edges.",
+      "tool": "built-in ImageGen",
+      "sha256": "ebcddb3c6d207e3b40624359995dca38f76695d2e6d5a5e53310e88ca6557bd2",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "dozy",
+      "file": "dozy.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-c4d56835-68da-4d61-866c-3cec8266bd1f.png",
+      "prompt": "Use case: illustration-story. ONE full-body character cutout for a mermaid storybook game, genuinely transparent background. Dozy, a very small sleepy mauve cuttlefish caretaker with a wide ruffled fin skirt, eight short curled soft arms, one drooping plum nightcap and enormous kind half-closed dark eyes. One arm carefully holds a little amber lantern shaped like a pear with a curved brass handle, another rests on a folded teal quilt. Three-quarter side view facing right. Warm intricate hand-painted gouache, pearlescent highlights and beautifully shaded dimensional anatomy, clear appealing silhouette, tactile fabric and brass. Entire character and attached props visible with generous transparent margins. The lantern glows ONLY INSIDE its glass; no outside glow, no shadow, no scenery, no floor, no ocean, no background, no words or watermark. Unique body shape, no shell and no snail features.",
+      "tool": "built-in ImageGen",
+      "sha256": "cc37174acdada7a0939cd37506f77e7c2c9177bf68cbb25cd8b52e0b0a146cc3",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "music",
+      "file": "music-pavilion.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-49ce2b29-0dcb-4a6e-b088-de8f700d0310.png",
+      "prompt": "Use case: illustration-story. ONE connected transparent environmental vignette for a hand-painted mermaid storybook game: a tiny underwater music pavilion grown around an ancient twisted driftwood root. Three distinctly DIFFERENT instruments belong to this one arrangement: on the left an open abalone bowl with a hanging copper bell, in the middle an elegant curved twig harp with six gold strings, on the right a little basalt arch suspending three unequal crystal chimes. A few low velvet moss cushions and two delicate white bellflowers nestle among its feet. Asymmetrical sculptural silhouette, warm gouache, pearl and amber highlights, soft dimensional painting and tactile timber, stone and metal, exquisite charming craftsmanship. Full pavilion visible, generous transparent margin, side view readable as a small game landmark. No characters, no floor or landscape, no shadows or glow outside the objects, no water background, no words, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "efeb14c90f06865d08ff0c9e466971aed8795a55677a4df6242a510bd2d397ff",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "fern",
+      "file": "fern.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-fea7c134-69b4-43f8-b345-239df3aaba44.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE unique painted botanical landmark cutout for a mermaid storybook side-scrolling game. A tall airy spiral sea-fern growing from a single weathered terracotta boot, with curling mint fronds, tiny folded pink buds and one pearl dew drop. Thin vertical silhouette, no other plants. Exquisite warm hand-painted gouache with fine tactile details, dimensional soft shading, gentle pearlescent pastel highlights, elegant readable shape, beautiful craftsmanship. Full subject visible with generous TRANSPARENT margins. Side view, base at bottom centre. No landscape, no floor plane, no backdrop, no outside glow, no outside shadows, no words, no labels, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "e49c5eb6d7f5a165967eb95e5bd5c233b70c1b8a331176e56518b716ba128f29",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "teapot",
+      "file": "teapot.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-30a9aeaa-155f-45e6-a914-9fc9ed6a0e56.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE unique painted botanical landmark cutout for a mermaid storybook side-scrolling game. A squat chipped turquoise porcelain teapot whose lid has become a little rooftop garden of soft white sea-daisies, with a tiny copper watering spout. Wide low silhouette; no shells, no buildings, no extra plants. Exquisite warm hand-painted gouache with fine tactile details, dimensional soft shading, gentle pearlescent pastel highlights, elegant readable shape, beautiful craftsmanship. Full subject visible with generous TRANSPARENT margins. Side view, base at bottom centre. No landscape, no floor plane, no backdrop, no outside glow, no outside shadows, no words, no labels, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "550590e57b4063290724d7897d774fbb978fff89b70a3e46ff579baa80d8832b",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "fan",
+      "file": "fan.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-7444ea4f-679d-42b4-959c-4447aaf2025b.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE unique painted botanical landmark cutout for a mermaid storybook side-scrolling game. One magnificent broad asymmetrical lace-like indigo sea-fan rooted in a small rough amethyst stone, with delicate gold branch tips and tiny peach polyps. Open flat fan silhouette; no flowers, no other plants. Exquisite warm hand-painted gouache with fine tactile details, dimensional soft shading, gentle pearlescent pastel highlights, elegant readable shape, beautiful craftsmanship. Full subject visible with generous TRANSPARENT margins. Side view, base at bottom centre. No landscape, no floor plane, no backdrop, no outside glow, no outside shadows, no words, no labels, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "6dcd85426b9e0fdfadf3de66a4df0def47e17a0d2d24cb730462d17e5d1c8da9",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "orchid",
+      "file": "orchid.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-7f6bd5d0-525c-4611-80c5-4f2d3756baa2.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE unique painted botanical landmark cutout for a mermaid storybook side-scrolling game. Three long arching dark green ribbons of kelp bearing unequal ivory-and-lilac orchid blooms, entwined around a slender curved driftwood stake. Graceful crescent silhouette; no pot, no shells, no other plants. Exquisite warm hand-painted gouache with fine tactile details, dimensional soft shading, gentle pearlescent pastel highlights, elegant readable shape, beautiful craftsmanship. Full subject visible with generous TRANSPARENT margins. Side view, base at bottom centre. No landscape, no floor plane, no backdrop, no outside glow, no outside shadows, no words, no labels, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "6cff70a3c595c308980a068a4b3c7b19b50a348328f1ca3d74661812defe0dea",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "bell",
+      "file": "bell.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-ff5867c6-8631-4787-a1af-729bb1e3af0a.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE unique painted botanical landmark cutout for a mermaid storybook side-scrolling game. A little upside-down glass bell-jar nursery resting on a three-legged brass cradle, containing three tiny pink pearl sprouts over velvet moss. Round transparent silhouette with clearly visible glass edges; no other props or background. Exquisite warm hand-painted gouache with fine tactile details, dimensional soft shading, gentle pearlescent pastel highlights, elegant readable shape, beautiful craftsmanship. Full subject visible with generous TRANSPARENT margins. Side view, base at bottom centre. No landscape, no floor plane, no backdrop, no outside glow, no outside shadows, no words, no labels, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "58d94f5f191ba06ddce12e2414dc4b42dd40435f29d40241e5fc691da463b0cf",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "star",
+      "file": "star.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-408d4532-c320-44e1-92b4-04704bf0ce30.png",
+      "prompt": "Use case: illustration-story. Asset type: ONE unique painted botanical landmark cutout for a mermaid storybook side-scrolling game. A low sculptural cushion of sapphire star-shaped sea succulents growing around one pale crescent-shaped stone, with a tiny curled orange shrimp resting at its edge. Distinct low crescent silhouette; no other plants. Exquisite warm hand-painted gouache with fine tactile details, dimensional soft shading, gentle pearlescent pastel highlights, elegant readable shape, beautiful craftsmanship. Full subject visible with generous TRANSPARENT margins. Side view, base at bottom centre. No landscape, no floor plane, no backdrop, no outside glow, no outside shadows, no words, no labels, no border or watermark. Genuinely transparent background.",
+      "tool": "built-in ImageGen",
+      "sha256": "f272bd913d9a648a7b68563fa8ced404512f9217f5406785d278d3e6f96e52c8",
+      "runtime_size_limit": 512
+    },
+    {
+      "id": "peekaboo",
+      "file": "peekaboo.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-af1727a9-8f7c-4d7f-b889-9a211dae2144.png",
+      "tool": "built-in ImageGen",
+      "sha256": "f4614e147c37ee80056df494f89417c0a45a0c8784bb1f9aa4b8ba7827059870",
+      "runtime_size_limit": 512,
+      "prompt": "Use case: illustration-story. ONE connected transparent environmental vignette for a beautiful mermaid storybook game: Avina's little peekaboo garden, a low wide arrangement of THREE entirely different hiding places connected by a winding pale root along the base. LEFT: an upright curled scarlet feather-coral frond, CENTER: a hollow turquoise sea-pot with an arched window framed by one creamy trumpet bloom, RIGHT: a tall soft golden eelgrass tuft with little pink seed pearls. Keep the three tall forms at roughly one quarter, one half and three quarters of the composition, separated by visible open water gaps. No baby or other characters. Wide horizontal silhouette with full objects in view and transparent generous margins. Rich delicate hand-painted gouache, beautiful tactile natural textures, pearlescent highlights, soft dimensional shading and friendly whimsical shapes. No ocean, no landscape, no backdrop, no outside glow or shadow, no text, no border or watermark. Genuinely transparent background."
+    },
+    {
+      "id": "moonfish",
+      "file": "moonfish.png",
+      "original_path": "/workspace/scratch/610d908cd9d2/generated_images/exec-22783cd3-744d-4224-82b6-f22188e825f4.png",
+      "tool": "built-in ImageGen",
+      "sha256": "f9a748006e6de455a03bf9cd7dccc96e344915a9f91e0e7da744942453235dc1",
+      "runtime_size_limit": 512,
+      "prompt": "Use case: illustration-story. ONE unique small friendly fish character cutout for a beautiful mermaid storybook game. A tiny pear-shaped silvery moonfish with a round pale mint body, a short plum tail shaped like a folded ribbon, little triangular rose fins and enormous round kind black eyes with pearly highlights. Face slightly to the right with a delighted gentle expression. It should look clearly different from a goldfish with a long fan tail: small simple rounded moon silhouette, no flowing fins. Exquisite hand-painted gouache, soft dimensional shading, delicate pearly scales and warm charming personality. Full character visible with generous transparent margins. No props, no other characters, no scenery, no ocean background, no outside glow or shadow, no text or watermark. Genuinely transparent background."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://github.com/godotengine/godot-builds/releases/download/4.5.1-stable/Godot_v4.5.1-stable_linux.x86_64.zip",
+    "download_sha256": "02ec53d1cc7dbb9cc6355393c61b9ab43d1244751a124f10248a4802830788cd"
+  },
+  {
+    "url": "https://github.com/godotengine/godot-builds/releases/download/4.5.1-stable/Godot_v4.5.1-stable_export_templates.tpz",
+    "member": "templates/android_debug.apk",
+    "bytes": 124501622,
+    "sha256": "a94aa329eda7ef265ec5504324f45b2c4a97acf5b5786e32879f6ac3ad8d3e3b"
+  },
+  {
+    "url": "https://github.com/godotengine/godot-builds/releases/download/4.5.1-stable/Godot_v4.5.1-stable_export_templates.tpz",
+    "member": "templates/android_release.apk",
+    "bytes": 102152390,
+    "sha256": "5c65ea869de294d14738371089b38d2ccf6a101e904e79a1df9f9db37b237711"
+  }
+]

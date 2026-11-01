@@ -10,7 +10,7 @@ func snap(scene, name: String) -> void:
     assert(root.get_texture().get_image().save_png(output+"/"+name+".png")==OK)
     pictures.append(name);print("OPAL VISUAL ",name)
 func setup(path: String):
-    var scene=load(path).instantiate();root.add_child(scene)
+    var scene=load(path).instantiate();root.add_child(scene);scene.music_player.stop();scene.music_player.stream=null
     var calls: Array[Node]=[];var animations: Array[AnimationPlayer]=[];freeze(scene,calls,animations)
     scene.music_player.stop();scene.state="playing";scene.invulnerable=0;scene.fallen=true;scene.time=7.5;scene.message_time=0
     scene.player=Vector2(scene._boss_home()-500,610);scene.camera=scene._boss_home()-850

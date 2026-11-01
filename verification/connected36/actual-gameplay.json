@@ -1,0 +1,12 @@
+{
+  "bubble_released": true,
+  "charge_accepted": true,
+  "controls": "actual _physics_process, touch-vector input, boost/jump/opal APIs; fixed 60 Hz simulation; 12 fps capture",
+  "final_position": "(13274.42, 560.6614)",
+  "jump_phases": [
+    "",
+    "ascent",
+    "airborne"
+  ],
+  "maximum_chain": 1
+}

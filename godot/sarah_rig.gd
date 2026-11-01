@@ -1,13 +1,17 @@
 extends Node2D
 ## Menu-reference face, continuous tail skin and articulated native painted limbs.
 ## Pose blending and anchored UVs preserve identity throughout every performance.
+const Definitive21 = preload("res://godot/sarah_definitive_21.gd")
+var definitive_21 = Definitive21.new()
+const GraceMotion = preload("res://godot/sarah_grace_motion.gd")
+var grace_motion = GraceMotion.new()
 const Princess = preload("res://godot/sarah_princess_motion.gd")
 const SwimWake = preload("res://godot/sarah_swim_wake.gd")
 var swim_wake: Node2D
 var princess_variation := Vector3.ZERO
 const TailSkin = preload("res://godot/sarah_tail_skin.gd")
 const Cycles = preload("res://godot/sarah_pose_cycles.gd")
-const NEW_TAIL = preload("res://godot/assets/sarah-tail-v019.webp")
+const NEW_TAIL = preload("res://godot/assets/sarah-flow-v026/tail-connected.png")
 const EXPRESSIONS = preload("res://godot/assets/sarah-expressions-v019.webp")
 const FACE_REGIONS := [Rect2(15,80,710,570),Rect2(735,80,700,570),Rect2(1445,80,710,570)]
 var face_sprite: Sprite2D
@@ -17,12 +21,20 @@ var face_details: PaintedMesh
 var detail_gaze := Vector2.ZERO
 var expression_blend := 0.0
 var blink_blend := 0.0
+# World-interest expressions blend through the existing registered face surface.
+var discovery_focus_goal := Vector2.ZERO
+var discovery_gaze := Vector2.ZERO
+var discovery_joy_goal := 0.0
+var discovery_joy := 0.0
+var discovery_gesture := false
 const SpineMotion = preload("res://godot/sarah_spine_motion.gd")
 var spine_motion = SpineMotion.new()
 const DefinitiveMotion = preload("res://godot/sarah_definitive_motion.gd")
 var definitive_motion = DefinitiveMotion.new()
 const TorsoMotion = preload("res://godot/sarah_torso_motion.gd")
 var torso_motion = TorsoMotion.new()
+const ConnectedWaist=preload("res://godot/sarah_connected_waist.gd")
+var connected_waist: MeshInstance2D
 var faces: Array[Texture2D] = []
 var tail_skin: PaintedMesh
 var cycle_pose := Vector4.ZERO
@@ -187,12 +199,15 @@ func _update_stroke(dt: float, speed: float) -> void:
     if speed>35 and absf(visual_travel.y)<maxf(90.0,speed*.32) and not boosting and waterfall_context=="" and leap_blend<.5:
         horizontal_stroke_clock+=advance
 
+func pose_phase() -> float:
+    return grace_motion.phase
+
 func _blended_stroke(far: bool) -> Vector3:
     var result := Vector3.ZERO
     for style in SwimStyles.NAMES:
         var weight: float = stroke_weights.get(style,0.0)
         if weight > .00001:
-            result += SwimStyles.sample(style,swim_clock,far)*weight
+            result += SwimStyles.sample(style,pose_phase(),far)*weight
     return result
 
 func set_quality(high: bool) -> void:
@@ -205,13 +220,45 @@ func set_quality(high: bool) -> void:
 func play_gesture(action: String) -> void:
     if not gesture_player or not gesture_player.has_animation(action):
         return
+    if action in ["greet","reward","celebrate"] and (boosting or leaping or jump_phase!="" or bubble_hold_goal>.01 or hit_kick>.08):return
     # Greeting/reward cannot interrupt a cast, impact or victory performance.
     if action in ["greet","reward"] and gesture_player.is_playing():
         return
+    discovery_gesture = false
     _clear_gesture_values()
     last_gesture = action
     gesture_player.play(action)
     gesture_player.advance(0.0)
+
+func can_discovery_react() -> bool:
+    if boosting or leaping or jump_phase!="":return false
+    if hit_kick>.03 or bubble_hold_goal>.01 or bubble_hold>.08:return false
+    return not gesture_player or not gesture_player.is_playing() or last_gesture in ["greet","reward"]
+
+func can_discovery_focus() -> bool:
+    return high_quality and not reduced_motion and can_discovery_react()
+
+func set_discovery_focus(offset: Vector2, joy: float) -> void:
+    if not offset.is_finite() or not is_finite(joy) or not can_discovery_react():
+        clear_discovery_focus()
+        return
+    discovery_focus_goal=Vector2(offset.x*facing_value,offset.y).limit_length(320.0)/320.0 if can_discovery_focus() else Vector2.ZERO
+    discovery_joy_goal=clampf(joy,0.0,.72)
+
+func play_discovery_gesture(action: String) -> bool:
+    if action not in ["greet","reward"] or not can_discovery_focus():return false
+    if not gesture_player or gesture_player.is_playing():return false
+    play_gesture(action)
+    discovery_gesture=last_gesture==action and gesture_player.is_playing()
+    return discovery_gesture
+
+func clear_discovery_focus() -> void:
+    discovery_focus_goal=Vector2.ZERO;discovery_gaze=Vector2.ZERO
+    discovery_joy_goal=0.0;discovery_joy=0.0
+    # Never cancel an authored cast/impact that has superseded our own gesture.
+    if discovery_gesture and gesture_player and last_gesture in ["greet","reward"]:
+        gesture_player.stop();_clear_gesture_values()
+    discovery_gesture=false
 
 func _clear_gesture_values() -> void:
     gesture_wave = 0.0
@@ -220,6 +267,10 @@ func _clear_gesture_values() -> void:
     gesture_arch = 0.0
 
 func reset_performance() -> void:
+    clear_discovery_focus()
+    definitive_21.reset()
+    grace_motion.reset()
+    if is_instance_valid(connected_waist):connected_waist.reset_shape()
     bubble_hold=0.0; bubble_hold_goal=0.0
     if gesture_player:
         gesture_player.stop()
@@ -261,6 +312,7 @@ func reset_performance() -> void:
         joint.rotation = 0.0
     _reset_depth_pose()
     torso.position = Vector2(12,24)
+    back_hair.scale=Vector2.ONE
     for ribbon in ribbons + arm_meshes:
         ribbon.reset_shape()
     cycle_pose = Vector4.ZERO
@@ -276,6 +328,7 @@ func reset_performance() -> void:
     definitive_motion.reset()
     torso_motion.reset()
     tail_skin.root_bend=0.0
+    tail_skin.rotation=0.0;tail_skin.position=Vector2(1,6)
     near_arm.position=Vector2(22,-28)
     far_arm.position=Vector2(34,-25)
     if bodice: bodice.reset_shape()
@@ -365,7 +418,7 @@ func _update_ribbons(dt: float, phase: float, swim_amount: float) -> void:
     if not active:
         if mesh_was_active:
             for ribbon in ribbons + arm_meshes:
-                ribbon.reset_shape()
+                if ribbon!=tail_skin:ribbon.reset_shape()
         mesh_was_active = false
         return
     mesh_was_active = true
@@ -377,8 +430,9 @@ func _update_ribbons(dt: float, phase: float, swim_amount: float) -> void:
     ribbons[0].deform(phase*.5-.4,2.3+strength*.35,hair_drag*6.0+horizontal_drag*4.0+shared_wave)
     ribbons[1].deform(phase*.5-1.1,1.5+strength*.55,hair_drag*4.0+horizontal_drag*5.0+shared_wave*.7)
     # Array order is far then near. Keep each elbow/wrist on its own shoulder.
-    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y,arm_dynamics.cups[1].x,boost_blend)
-    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y,arm_dynamics.cups[0].x,boost_blend)
+    var rest_detail:=0.0 if reduced_motion or animation_mode!="idle" or gesture_player.is_playing() or bubble_hold>.01 or bubble_hold_goal>.01 or hit_kick>.01 else .006*pow(maxf(0,sin(clock*.43)),2)
+    arm_meshes[1].skin(arm_dynamics.applied[1].x,arm_dynamics.applied[1].y,arm_dynamics.cups[1].x+rest_detail*sin(clock*2.1),boost_blend)
+    arm_meshes[0].skin(arm_dynamics.applied[0].x,arm_dynamics.applied[0].y,arm_dynamics.cups[0].x+rest_detail*sin(clock*1.9+1.4),boost_blend)
     for material in ribbon_materials:
         material.set_shader_parameter("motion_clock", clock)
         material.set_shader_parameter("charge_mix", boost_blend)
@@ -409,15 +463,16 @@ func set_jump_state(phase: String, air_time: float, chain: int, direction: float
 func _jump_roll(progress: float) -> float:
     progress=pow(clampf(progress,0,1),1.0+floorf(jump_style/6.0)*.12)
     if jump_style%6 == 2:
-        return spin_curve.sample_baked(progress)*TAU*jump_direction
+        if jump_chain>=2:return spin_curve.sample_baked(progress)*TAU*jump_direction
+        return sin(progress*PI)*.17*jump_direction
     if jump_style%6 == 3:
         return sin(progress*PI)*.20*jump_direction
     if jump_style%6 == 4:
-        return sin(progress*TAU*1.5)*sin(progress*PI)*.24*jump_direction
+        return sin(progress*TAU*1.5)*sin(progress*PI)*.20*jump_direction
     if jump_style%6 == 5:
-        return -sin(progress*TAU)*sin(progress*PI)*.32*jump_direction
+        return -sin(progress*TAU)*sin(progress*PI)*.24*jump_direction
     var handedness := 1.0 if jump_style%6 == 0 else -1.0
-    return sin(progress*TAU*1.15)*sin(progress*PI)*0.30*handedness*jump_direction
+    return sin(progress*TAU*1.15)*sin(progress*PI)*0.22*handedness*jump_direction
 
 func _joy_envelope(progress: float, delay: float) -> float:
     progress=pow(clampf(progress,0,1),1.0+floorf(jump_style/6.0)*.12)
@@ -517,7 +572,8 @@ func _ready() -> void:
     tail_skin = TailSkin.new()
     tail_skin.name = "ContinuousMenuTail"
     # Seat the painted hip beneath the bodice's lower waist, with overlap.
-    tail_skin.setup(NEW_TAIL,Rect2(24,28,2126,669),Rect2(-150,-33,184,80))
+    var tail_resolution:=Vector2(NEW_TAIL.get_size())/Vector2(2172,724)
+    tail_skin.setup(NEW_TAIL,Rect2(Vector2(24,28)*tail_resolution,Vector2(2126,669)*tail_resolution),Rect2(-150,-33,184,80))
     tail_skin.material = _volume_material([24.0/2172,28.0/724,2126.0/2172,669.0/724])
     tail_skin.material.set_shader_parameter("waist_role",2)
     add_child(tail_skin)
@@ -596,6 +652,9 @@ func _ready() -> void:
     swim_wake = SwimWake.new()
     swim_wake.name = "PrincessSwimmingWake"
     add_child(swim_wake)
+    definitive_21.bind(self)
+    connected_waist=ConnectedWaist.new();connected_waist.name="ConnectedPelvisSkin"
+    torso.add_child(connected_waist);connected_waist.bind(self);painted_parts.append(connected_waist)
     play_gesture("greet")
 
 func _radial_texture() -> Texture2D:
@@ -616,11 +675,6 @@ func _radial_texture() -> Texture2D:
 func set_motion(velocity: Vector2, direction: float, is_boosting: bool, is_leaping: bool, opacity: float) -> void:
     velocity_value = velocity
     facing_value = -1.0 if direction < 0.0 else 1.0
-    if facing_value != last_facing:
-        # Quick turn recoil without mirroring through an ugly zero-width pose.
-        turn_kick = -0.22 * facing_value
-        turn_elapsed = 0.0
-        last_facing = facing_value
     boosting = is_boosting
     leaping = is_leaping
     alpha_value = opacity
@@ -630,7 +684,16 @@ func play_impact() -> void:
     play_gesture("impact")
 
 func _process(delta: float) -> void:
+    if not is_visible_in_tree() or delta<=0:return
     var dt := minf(delta, 0.05)
+    grace_motion.begin(self,dt)
+    if grace_motion.presentation_facing != last_facing:
+        turn_kick=-.16*grace_motion.presentation_facing
+        turn_elapsed=0.0
+        last_facing=grace_motion.presentation_facing
+    definitive_21.begin(self,dt)
+    if (boosting or leaping or jump_phase!="" or bubble_hold_goal>.01) and gesture_player.is_playing() and last_gesture in ["greet","reward","celebrate"]:
+        gesture_player.stop();_clear_gesture_values();last_gesture=""
     clock += dt
     var ease := 1.0 - exp(-dt * 9.0)
     var fast_ease := 1.0 - exp(-dt * 16.0)
@@ -645,27 +708,25 @@ func _process(delta: float) -> void:
     animation_mode = "boost" if boost_blend > 0.6 else ("leap" if leap_blend > 0.6 else ("swim" if swim_blend > 0.22 else "idle"))
     # Integrate frequency instead of multiplying all elapsed time by changing speed.
     _update_stroke(dt,smoothed_speed)
-    var swim_phase := swim_clock
+    grace_motion.update_phase(self,dt)
+    var swim_phase := pose_phase()
     turn_elapsed = minf(1.0,turn_elapsed + dt)
     var turn_pose := sin(clampf(turn_elapsed/0.30,0.0,1.0)*PI) if not reduced_motion else 0.0
-    var braking := steering_value.length_squared() < 0.02 and speed > 30.0 and previous_speed > speed
-    brake_blend = lerpf(brake_blend,1.0 if braking else 0.0,fast_ease)
+    brake_blend = grace_motion.brake
     previous_speed = speed
-    var gesture_amount := (0.20 if reduced_motion else 1.0) * (0.25 if leaping or boosting else 1.0)
+    var gesture_amount := (0.20 if reduced_motion else 1.0) * (0.0 if leaping or boosting or hit_kick>.1 else 1.0)
     var wave := gesture_wave * gesture_amount
     bubble_hold=lerpf(bubble_hold,bubble_hold_goal,1.0-exp(-minf(dt,0.05)*12.0))
     var reach := gesture_reach * gesture_amount + (bubble_hold*0.65 if not leaping and not boosting else 0.0)
     var arch := gesture_arch * gesture_amount
     var nod := gesture_nod * gesture_amount
     idle_elapsed = idle_elapsed + dt if speed < 20.0 and not leaping and not boosting else 0.0
-    if idle_elapsed > 8.0 and not gesture_player.is_playing():
-        play_gesture("greet")
-        idle_elapsed = 0.0
+    # Greetings belong to actual encounters and the authored opening performance.
     var slow_phase := clock * 1.6
     var bank_target := clampf(steering_value.y*.10+horizontal_drag*.24,-.12,.12)
     depth_bank = 0.0 if reduced_motion else lerpf(depth_bank,bank_target,ease)
-    settle_blend = lerpf(settle_blend,1.0 if speed<35 and smoothed_speed>55 else 0.0,ease)
-    var amount := (0.04 + 0.135 * swim_blend) * (1.0 - boost_blend * 0.65) * (1.0 - leap_blend * 0.62)
+    settle_blend = grace_motion.settle
+    var amount := (0.025 + 0.09 * swim_blend) * grace_motion.quietness() * (1.0 - boost_blend * 0.65) * (1.0 - leap_blend * 0.62)
     if reduced_motion:
         amount = 0.0
     var active_jump := jump_phase != ""
@@ -685,6 +746,10 @@ func _process(delta: float) -> void:
             jump_joy_far *= .70-.30*sin(air_progress*TAU)
         elif jump_style%6==5:
             jump_joy_far *= .45
+    var jump_expression := .38 if jump_chain<2 else .78
+    corkscrew *= jump_expression
+    jump_joy_near *= .62 if jump_chain<2 else .90
+    jump_joy_far *= .46 if jump_chain<2 else .78
     var tuck := sin(air_progress * PI) * jump_pose_blend if jump_phase == "airborne" else 0.0
     if jump_style%6==3: tuck *= .55
     elif jump_style%6==4: tuck *= .85
@@ -699,7 +764,7 @@ func _process(delta: float) -> void:
     var drag_target := clampf(velocity_value.y / 3600.0 - vertical_acceleration / 20000.0,-0.24,0.24)
     hair_drag_speed += ((drag_target - hair_drag) * 95.0 - hair_drag_speed * 17.0) * dt
     hair_drag += hair_drag_speed * dt
-    var drag_x_target := clampf((velocity_value.x*facing_value-smoothed_speed)/1800.0,-0.22,0.22)
+    var drag_x_target := clampf((velocity_value.x*grace_motion.presentation_facing-smoothed_speed)/1800.0,-0.22,0.22)
     horizontal_drag_speed += ((drag_x_target-horizontal_drag)*75.0-horizontal_drag_speed*15.0)*dt
     horizontal_drag += horizontal_drag_speed*dt
     if reduced_motion:
@@ -710,7 +775,7 @@ func _process(delta: float) -> void:
     body_pitch = lerp_angle(body_pitch,pitch_target,ease)
     if reduced_motion:
         body_pitch = clampf(body_pitch,-0.22,0.22)
-    rotation = body_pitch * facing_value
+    rotation = body_pitch * definitive_21.heading.x
     if jump_phase == "airborne" and not reduced_motion:
         rotation += _jump_roll(air_progress)
     if reduced_motion:
@@ -721,7 +786,7 @@ func _process(delta: float) -> void:
         lift *= 0.3
         dive *= 0.3
     # All motion is local to joints; collision location and face stay stable.
-    scale = Vector2(facing_value * (1.0 + stretch) * (1.0 - turn_pose*0.12), 1.0 - stretch * 0.65)
+    scale = Vector2(definitive_21.render_heading() * (1.0 + stretch) * (1.0 - turn_pose*0.12), 1.0 - stretch * 0.65)
     var current := 0.0 if reduced_motion else sin(slow_phase) * 0.035
     back_hair.rotation = lerpf(back_hair.rotation, current + turn_kick * 0.5 + swim_blend * 0.018 + hair_drag + horizontal_drag - depth_bank*.22, ease)
     hair_strand.rotation = lerpf(hair_strand.rotation, -current * 1.6 + turn_kick * 0.85 + hair_drag * 0.75, ease)
@@ -733,14 +798,16 @@ func _process(delta: float) -> void:
     var stroke_amount := maxf(swim_blend,.65 if waterfall_context!="" else 0.0)*(1.0-leap_blend)
     stroke_amount *= 1.0-clampf(absf(wave)+absf(reach)+hit_kick,0,1)
     if reduced_motion or not high_quality: stroke_amount = 0.0
-    princess_variation = Princess.weights(swim_clock)
+    princess_variation = Princess.weights(swim_phase)
     var stroke_near := _blended_stroke(false)
     var stroke_far := _blended_stroke(true)
+    stroke_near=stroke_near.lerp(Vector3(-.15,.035,-.025),grace_motion.glide*.62)
+    stroke_far=stroke_far.lerp(Vector3(-.10,.045,-.02),grace_motion.glide*.62)
     var near_target := Vector3(.0,.10,0).lerp(stroke_near,stroke_amount)
     var far_target := Vector3(.0,.09,0).lerp(stroke_far*Vector3(.91,.92,.9),stroke_amount)
     if high_quality and not reduced_motion:
-        near_target += Princess.arm(swim_phase,false)*stroke_amount*(1.0-boost_blend)
-        far_target += Princess.arm(swim_phase,true)*stroke_amount*(1.0-boost_blend)
+        near_target += Princess.arm(swim_phase,false)*stroke_amount*(1.0-boost_blend)*grace_motion.quietness()
+        far_target += Princess.arm(swim_phase,true)*stroke_amount*(1.0-boost_blend)*grace_motion.quietness()
     # Torpedo: quiet aligned shoulders, almost straight elbows, relaxed wrists.
     near_target = near_target.lerp(Vector3(-.62,-.025,-.035),boost_blend)
     far_target = far_target.lerp(Vector3(-.59,-.035,-.025),boost_blend)
@@ -756,7 +823,7 @@ func _process(delta: float) -> void:
         arm_pose_far = arm_pose_far.lerp(far_target,fast_ease)
     var near_reach: float = arm_pose_near.x + arm_sweep * .35 - 0.13 * leap_blend - lift * 0.34 + tuck * 0.08 - dive * 0.10 + hit_kick * 0.14 + wave*0.32 - reach*0.22 - brake_blend*0.18 - jump_joy_near*0.95 + definitive_motion.shoulder_near.y*.045
     near_reach -= camera_wave*.48
-    var far_reach: float = arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.34 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045
+    var far_reach: float = arm_pose_far.x - arm_sweep * .3 + 0.12 * leap_blend - lift * 0.24 - tuck * 0.07 - dive * 0.20 - hit_kick * 0.12 - wave*0.10 - reach*0.18 + brake_blend*0.14 - jump_joy_far*1.20 + definitive_motion.shoulder_far.y*.045
     # Ease into a sideward raised reach, instead of taking the forearm through
     # the face. The soft limit has a continuous slope rather than a hard stop.
     if near_reach < -.5: near_reach=-.5+.20*tanh((near_reach+.5)/.20)
@@ -765,7 +832,7 @@ func _process(delta: float) -> void:
     far_arm.rotation = lerpf(far_arm.rotation-spine_motion.shoulder_far.x-torso_motion.rib_angle,far_reach,fast_ease)
     # A readable faux yaw: foreshortening, overlap and lighting agree on depth.
     var roll := sin(air_progress*TAU-0.45)*sin(air_progress*PI) if jump_phase == "airborne" else 0.0
-    var yaw_target := clampf((corkscrew*0.95 if jump_style%6 != 2 and playful_air else roll*0.82) + turn_pose*0.45 + sin(swim_phase*0.5)*swim_blend*0.13 + depth_bank*.9,-0.9,0.9)
+    var yaw_target := clampf((corkscrew*0.95 if jump_style%6 != 2 and playful_air else roll*(.30 if jump_chain<2 else .70)) + turn_pose*0.45 + sin(swim_phase*0.5)*swim_blend*0.07*grace_motion.quietness() + depth_bank*.9,-0.9,0.9)
     depth_turn = 0.0 if reduced_motion else lerpf(depth_turn,yaw_target,fast_ease)
     var depth := absf(depth_turn)
     torso.skew = depth_turn*0.065
@@ -779,7 +846,9 @@ func _process(delta: float) -> void:
     far_arm.z_index = 1 if arm_depth_swapped else -1
     near_arm.modulate = Color.WHITE.lerp(Color(0.77,0.84,0.94,1.0),maxf(depth_turn,0.0))
     far_arm.modulate = Color(0.84,0.88,0.94,1.0).lerp(Color.WHITE,maxf(depth_turn,0.0))
-    for material in volume_materials + ribbon_materials:
+    for material in volume_materials:
+        material.set_shader_parameter("depth_turn",depth_turn)
+    for material in ribbon_materials:
         material.set_shader_parameter("depth_turn",depth_turn)
     pose_set = "boost" if boosting else ("rise" if velocity_value.y < -90 else ("playful" if jump_pose_blend>.25 or wave>.15 else ("glide" if brake_blend>.12 else ("swim" if swim_blend>.22 else "idle"))))
     # Twelve additional contextual loops complement the six original poses.
@@ -820,7 +889,8 @@ func _process(delta: float) -> void:
     desired_pose.x += turn_kick*.25 - arch*.12 + landing_compress*.08
     desired_pose.z += corkscrew*.12 - dive*.10 + depth_bank*.14
     if high_quality and not reduced_motion:
-        desired_pose += Princess.body(swim_phase,swim_blend,boost_blend)
+        desired_pose += Princess.body(swim_phase,swim_blend,boost_blend)*grace_motion.quietness()
+    desired_pose*=lerpf(1.0,.76,grace_motion.glide)
     desired_pose = desired_pose.lerp(Vector4(sin(swim_phase)*.045,sin(swim_phase-.85)*.19,sin(swim_phase-1.75)*.34,0),boost_blend*.88)
     cycle_pose = cycle_pose.lerp(desired_pose,fast_ease)
     var tuck_target := clampf(launch_curl*.7+tuck*.88+brake_blend*.32+absf(turn_kick)*.8,0,1)
@@ -828,27 +898,44 @@ func _process(delta: float) -> void:
     # Shared stroke wave passes through the back before the neck settles.
     definitive_motion.update(self,dt)
     spine_motion.apply(self,dt,arch,nod,swim_phase)
-    tail_skin.position = Vector2(1,6)
+    # The same hip frame deforms the lower torso and seats the proximal tail.
+    tail_skin.transform=Transform2D(torso_motion.waist.x,torso_motion.HIP_PIVOT-tail_skin.socket.rotated(torso_motion.waist.x))
+    tail_skin.curl_limit=1.36 if jump_pose_blend>.10 else 1.65
+    var reversal: float=smoothstep(.04,.80,1.0-absf(definitive_21.heading.x))
+    var yaw_flow: float=lerpf(1,absf(definitive_21.heading.x),reversal)
+    var followed_pose: Vector4=torso_motion.flow_pose if high_quality and not reduced_motion else cycle_pose
+    var tail_pose:=followed_pose*Vector4(yaw_flow,yaw_flow,yaw_flow,1)
     if reduced_motion or not high_quality:
-        tail_skin.reset_shape()
+        tail_skin.skin_coarse(tail_pose,tail_tuck*yaw_flow,dt,reduced_motion)
     else:
         tail_skin.detail_phase=swim_phase
         tail_skin.detail_strength=(.35+swim_blend*.65)*(1.0-boost_blend*.65)
-        tail_skin.skin(cycle_pose,tail_tuck,turn_kick)
+        tail_skin.skin(tail_pose,tail_tuck*yaw_flow,turn_kick*yaw_flow)
     # Face, ear, nose and hair share the body's clocks, current, yaw and effort.
     blink_blend = FaceDetails.blink_at(clock)
-    var joy := clampf(boost_blend*.65+jump_joy_near*.45+absf(wave)*.40+absf(reach)*.12,0,1)
+    if discovery_focus_goal!=Vector2.ZERO or discovery_gaze!=Vector2.ZERO or discovery_joy_goal>0 or discovery_joy>0:
+        if can_discovery_react():
+            discovery_gaze=discovery_gaze.lerp(discovery_focus_goal,1.0-exp(-dt*6.0)) if can_discovery_focus() else Vector2.ZERO
+            discovery_joy=lerpf(discovery_joy,discovery_joy_goal,1.0-exp(-dt*7.0))
+            if discovery_gaze.length_squared()<.000001:discovery_gaze=Vector2.ZERO
+            if discovery_joy<.001:discovery_joy=0.0
+        else:clear_discovery_focus()
+    var joy := maxf(discovery_joy,clampf(boost_blend*.65+jump_joy_near*.45+absf(wave)*.40+absf(reach)*.12,0,1))
     expression_blend = lerpf(expression_blend,joy,1.0-exp(-dt*7.0))
-    var look := Vector2(clampf(visual_travel.x*facing_value/760.0,-1,1),clampf(visual_travel.y/760.0,-1,1))
-    look += Vector2(depth_turn*.2,cycle_pose.x*.12)
-    detail_gaze = detail_gaze.lerp(look.limit_length(1.0),1.0-exp(-dt*8.0))
-    face_details.set_response(Vector2(visual_travel.x*facing_value,visual_travel.y)/760.0,
+    var look := Vector2(clampf(visual_travel.x*definitive_21.heading.x/760.0,-1,1),clampf(visual_travel.y/760.0,-1,1))
+    look=look.lerp(grace_motion.gaze_lead*.65,.58)
+    look += Vector2(depth_turn*.2,cycle_pose.x*.12)+discovery_gaze*.55
+    detail_gaze = detail_gaze.lerp(look.limit_length(1.0),1.0-exp(-dt*14.0))
+    face_details.set_response(Vector2(visual_travel.x*definitive_21.heading.x,visual_travel.y)/760.0,
         depth_turn,boost_blend,torso_motion.breath.x/.0065,cycle_pose.y,hair_drag+horizontal_drag,
         swim_phase,detail_gaze,expression_blend,blink_blend,high_quality and not reduced_motion)
     expression_index = 2 if blink_blend>.55 else (1 if expression_blend>.35 else 0)
     face_sprite.texture = faces[expression_index]
     face_details.adapt_detail(high_quality)
+    definitive_21.apply(self)
     _update_ribbons(dt,swim_phase,swim_blend)
+    definitive_21.finish_arms(self)
+    connected_waist.apply(self)
     swim_wake.advance(self,dt)
     self_modulate.a = alpha_value
     if is_instance_valid(hero_light):

@@ -1,0 +1,27 @@
+{
+  "method": "built-in image_gen",
+  "assets": [
+    {
+      "file": "tail-connected.png",
+      "source": "godot/assets/sarah-tail-v019.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: this exact isolated painted mermaid tail sprite. It is a production game asset for Sarah. Preserve canvas aspect ratio, pose, transparent background and the entire tail and flukes left of the final 15 percent, including the exact iridescent turquoise, blue, lavender scales and delicate fins. Change ONLY the rightmost proximal hip/root region: remove the obvious hollow purple circular tube/cuff/rim at the right end. Replace that hollow cuff with a solid, softly modeled continuation of the same small pearlescent scales, transitioning through violet and blue, with a clean rounded opaque right edge suitable for overlapping underneath a matching violet torso. There must be no hollow opening, pipe ring, seam line, sleeve edge or separate waistband. Keep the top and bottom silhouette and small side fins extremely close to the original; do not add any character body, face, arms, accessories or extra objects. This should feel like one living mermaid tail connecting naturally under a bodice, not a detached costume tube. Exactly one isolated sprite, transparent background.",
+      "runtime_size_limit": 2048,
+      "sha256": "042996432949029ac67e8f354bd6038ec50e694fdf54483818d8c6328996761a",
+      "dimensions": [
+        2172,
+        724
+      ]
+    },
+    {
+      "file": "front-connected.png",
+      "source": "godot/assets/sarah-definitive-21/bodice.png",
+      "prompt": "Use case: precise-object-edit. Edit target: this exact front-facing violet iridescent scale bodice sprite for Sarah the little storybook mermaid. Preserve the transparent background, centered composition and the upper 65 percent exactly: same rounded neckline, same shoulder/sleeve openings, same scale design, lilac palette and hand-painted highlights. Change ONLY the lower third. Remove the flared outward blouse hem entirely: no shirt edge, no trim, no peplum, no bottom outline suggesting a separate top. Instead the sides should curve inward smoothly into a solid short mermaid hip/tail-root extension, ending at the same bottom height with a moderately narrow smoothly rounded opaque end about 40 percent of the full shoulder width, suitable for overlapping a blue mermaid tail underneath. Scales should flow continuously from violet at the waist to blue-violet and turquoise toward this lower tip, with no belt, no waistband, no hole and no discontinuity. Keep it childlike, modest and anatomically simple, as one continuous painted scaled torso into the tail. No head, face, arms, hands, full long tail or extra objects. One isolated sprite only, genuine transparent background. Keep the same square canvas and same positions/size of neck and shoulders.",
+      "runtime_size_limit": 512,
+      "sha256": "30cc29e302e5858d46e17029a84cd450440752d48c5bba9e99e288c6eeb6e120",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    }
+  ]
+}

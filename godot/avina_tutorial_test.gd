@@ -8,17 +8,18 @@ func check(ok: bool, note: String) -> void:
 func frames(count := 6) -> void:
     for i in range(count): await process_frame
 func close_conversation(level, answer := 0) -> void:
+    if not level.dialogue_open:level._open_dialogue(level._lesson_conversation())
     check(level.dialogue_open and paused,"conversation pauses gameplay")
-    check(level.reply_box.get_child_count()>=3,"branched reply choices")
     var at: Vector2=level.player
     level._physics_process(.1)
     check(level.player==at,"dialogue freezes gameplay physics")
+    while level.speech_index+1<level.speech_beats.size():level.dialogue_practice.pressed.emit()
+    level.reply_toggle.pressed.emit()
+    check(level.reply_box.get_child_count()==3,"three optional Sarah replies")
     level.reply_box.get_child(answer).pressed.emit()
-    check(level.reply_box.get_child_count()==2,"reply opens second dialogue branch")
-    level.reply_box.get_child(0).pressed.emit()
-    check(level.reply_box.get_child_count()==1,"follow-up tip reaches final node")
-    level.reply_box.get_child(0).pressed.emit()
-    check(not paused or level.dialogue_open,"conversation can resume or open next chapter dialogue")
+    check(not level.reply_box.visible and not level.reply_toggle.visible,"response has one clear way back to play")
+    while level.dialogue_open:level.dialogue_practice.pressed.emit()
+    check(not paused,"conversation resumes gameplay")
 func land(level, at: Vector2) -> void:
     level.player=at; level.leap_phase=""; level.jump_time=0; level.player_velocity=Vector2.ZERO
     level._update_swimming(0)
@@ -31,9 +32,9 @@ func run() -> void:
     change_scene_to_file(catalog.SCENES[7]); await frames()
     var level=current_scene
     level.set_physics_process(false); level.set_process(false)
-    check(level.obstacles.size()==11 and level.boss_hp==3 and level.enemies.is_empty(),"original reef and Daddy trial preserved")
+    check(level.obstacles.size()>=11 and level.boss_hp==3 and level.enemies.is_empty(),"original reef and Daddy trial preserved")
     check(level.avina==null,"baby absent from training fight")
-    check(level.treasures.filter(func(item):return item.kind=="chest").size()==3,"all three original relics")
+    check(level.treasures.filter(func(item):return item.kind=="chest").size()>=3,"all three original relics and cavern additions")
     level._switch_hero(); check(level.playing_daddy,"try King Daddy hero option")
     level._switch_hero()
     level.player_velocity=Vector2(100,0); level._process(4.1)
@@ -77,7 +78,7 @@ func run() -> void:
         level._update_boss(0)
     check(level.boss_hp==0 and level.lesson==9 and level.avina==null,"three green hits win, baby still waits for sendoff")
     close_conversation(level,1)
-    check(level.dialogue_id=="hide" and is_instance_valid(level.avina),"baby arrives after fight and family praise")
+    check(not level.dialogue_open and is_instance_valid(level.avina),"baby arrives without another forced conversation")
     close_conversation(level,1)
     for i in range(3):
         level.reveal_time=0; level._place_hidden_baby(); level.player=level.HIDES[i]; level._update_swimming(0)
@@ -90,9 +91,9 @@ func run() -> void:
     check(level.choice_card.visible and paused,"choice appears at portal")
     level.bring_button.pressed.emit()
     check(level.dialogue_text.text.contains("beard"),"cheeky Daddy reply affects take-along farewell")
-    level.reply_box.get_child(0).pressed.emit()
+    level.dialogue_practice.pressed.emit()
     check(level.dialogue_text.text.contains("lightning staff"),"Antonella’s tone affects her farewell")
-    level.reply_box.get_child(0).pressed.emit(); await frames(18)
+    level.dialogue_practice.pressed.emit(); await frames(18)
     check(current_scene._stage_index()==0 and catalog.avina_along and not paused,"bring baby starts adventure")
     check(current_scene.bubble_unlocked and is_instance_valid(current_scene.avina),"learned bubble and baby cross transition")
     current_scene._restart()
@@ -109,8 +110,8 @@ func run() -> void:
     level=current_scene; level.set_physics_process(false); level.set_process(false)
     level.lesson=10; level.boss_hp=0; level.player=Vector2(level._portal_x()+1,550); level._update_swimming(0)
     level.alone_button.pressed.emit(); check(level.dialogue_text.text.contains("solo explorer"),"solo Daddy branch")
-    level.reply_box.get_child(0).pressed.emit(); check(level.dialogue_text.text.contains("stay with us"),"solo Antonella branch")
-    level.reply_box.get_child(0).pressed.emit(); await frames(18)
+    level.dialogue_practice.pressed.emit(); check(level.dialogue_text.text.contains("stay with us"),"solo Antonella branch")
+    level.dialogue_practice.pressed.emit(); await frames(18)
     check(current_scene._stage_index()==0 and not catalog.avina_along and current_scene.avina==null and not paused,"solo continues without baby")
     current_scene.free(); await frames()
     print("FAMILY TUTORIAL: ",checks," checks, ",failures," failures")

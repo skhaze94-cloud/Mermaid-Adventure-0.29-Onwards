@@ -1,0 +1,214 @@
+{
+  "source": "New generated treasure-chest painting; individually segmented and layered for this implementation.",
+  "assets": [
+    {
+      "id": "pearlkeeper",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        197,
+        151
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 125.34,
+      "visible_bounds": [
+        20,
+        44,
+        216,
+        166
+      ],
+      "files": [
+        "pearlkeeper_closed.png",
+        "pearlkeeper_lid.png",
+        "pearlkeeper_body.png"
+      ]
+    },
+    {
+      "id": "coralheart",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        189,
+        157
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 128.22,
+      "visible_bounds": [
+        23,
+        36,
+        209,
+        174
+      ],
+      "files": [
+        "coralheart_closed.png",
+        "coralheart_lid.png",
+        "coralheart_body.png"
+      ]
+    },
+    {
+      "id": "moonshell",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        174,
+        158
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 133.44,
+      "visible_bounds": [
+        32,
+        36,
+        192,
+        174
+      ],
+      "files": [
+        "moonshell_closed.png",
+        "moonshell_lid.png",
+        "moonshell_body.png"
+      ]
+    },
+    {
+      "id": "kelpwood",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        187,
+        165
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 123.0,
+      "visible_bounds": [
+        29,
+        36,
+        197,
+        174
+      ],
+      "files": [
+        "kelpwood_closed.png",
+        "kelpwood_lid.png",
+        "kelpwood_body.png"
+      ]
+    },
+    {
+      "id": "crystalwake",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        197,
+        153
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 126.0,
+      "visible_bounds": [
+        20,
+        42,
+        216,
+        168
+      ],
+      "files": [
+        "crystalwake_closed.png",
+        "crystalwake_lid.png",
+        "crystalwake_body.png"
+      ]
+    },
+    {
+      "id": "sunken",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        191,
+        147
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 125.34,
+      "visible_bounds": [
+        20,
+        44,
+        216,
+        166
+      ],
+      "files": [
+        "sunken_closed.png",
+        "sunken_lid.png",
+        "sunken_body.png"
+      ]
+    },
+    {
+      "id": "goldencrown",
+      "canvas": [
+        256,
+        224
+      ],
+      "painting_native_size": [
+        194,
+        157
+      ],
+      "pivot": [
+        128.0,
+        210
+      ],
+      "hinge_y": 126.48,
+      "visible_bounds": [
+        20,
+        36,
+        215,
+        174
+      ],
+      "files": [
+        "goldencrown_closed.png",
+        "goldencrown_lid.png",
+        "goldencrown_body.png"
+      ]
+    }
+  ],
+  "canvas_size": [
+    256,
+    224
+  ],
+  "effects": [
+    "pearl_glow.png",
+    "velvet_interior.png",
+    "reward_pearl.png"
+  ],
+  "gameplay_assignments": {
+    "surface:650:720": "pearlkeeper",
+    "surface:1490:540": "coralheart",
+    "surface:2450:739.9": "moonshell",
+    "cavern:7:nursery:chest": "crystalwake",
+    "cavern:7:bellflower:chest": "goldencrown"
+  },
+  "optional_unplaced_styles": [
+    "kelpwood",
+    "sunken"
+  ]
+}

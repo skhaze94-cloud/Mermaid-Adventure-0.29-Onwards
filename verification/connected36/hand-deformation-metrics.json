@@ -1,0 +1,15 @@
+{
+  "king": {
+    "hand_and_cuff_triangles": 923,
+    "area_ratio_min": 0.6559773598381363,
+    "area_ratio_1pct": 0.970625012574288,
+    "area_ratio_median": 0.9999999544637285,
+    "area_ratio_max": 2.0701311510468314,
+    "normal_dot_min": 0.6656691081406096,
+    "inverted_relative_to_rest": 0,
+    "fully_rigid_hand_triangles": 723,
+    "rigid_hand_area_min": 0.999999861052615,
+    "rigid_hand_area_max": 1.0000000373684048,
+    "note": "3Dtriangleareasunderactualwaveboneposes;wristtransitionallowsdeformation,palm/fingerrigidpatchpreservesarea."
+  }
+}

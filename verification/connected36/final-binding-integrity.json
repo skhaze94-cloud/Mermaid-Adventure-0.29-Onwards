@@ -1,0 +1,33 @@
+[
+  {
+    "role": "king",
+    "vertices": 76795,
+    "max_weight_sum_error": 1.1920928955078125e-07,
+    "sha256": "b68e28d8f1b3db7a6eddbc57a19f18245556c0b5cfdd98480e0cf629aaf1f1e8",
+    "distal_hand_zones": [
+      {
+        "bone": "right_hand",
+        "fully_rigid_vertices": 672,
+        "transition_vertices": 459
+      }
+    ]
+  },
+  {
+    "role": "queen",
+    "vertices": 153727,
+    "max_weight_sum_error": 1.1920928955078125e-07,
+    "sha256": "1548763cc73468877d05d173e03f2051445dd6c048dba0075156411e747ccbaa",
+    "distal_hand_zones": [
+      {
+        "bone": "right_hand",
+        "fully_rigid_vertices": 443,
+        "transition_vertices": 726
+      },
+      {
+        "bone": "left_hand",
+        "fully_rigid_vertices": 353,
+        "transition_vertices": 858
+      }
+    ]
+  }
+]

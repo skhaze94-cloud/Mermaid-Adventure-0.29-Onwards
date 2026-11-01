@@ -1,0 +1,12 @@
+{
+  "version": "0.36.0",
+  "architecture": "PE32+ x86-64",
+  "embedded_world_checks": 105,
+  "embedded_skin_checks": 12,
+  "physical_windows_test": false,
+  "sha256": {
+    "Mermaid Adventure.exe": "a0c7b1865ed3ef48eb4d6620faa719620cc29efa26cd5b310577d6984c708931",
+    "READ-ME.txt": "4aaa37abd66cff26e1d1b0c6521e5e52678d441ec42699f2de7b75007fe5d271"
+  },
+  "zip_bytes": 281709732
+}

@@ -1,0 +1,50 @@
+{
+  "release": "0.33.0",
+  "assets": [
+    {
+      "file": "reef-formations.png",
+      "sha256": "c3c57ddd552758aba90e9784c3c08c35575f9c6fc85950a4d26660cdb787d950",
+      "original_generated_file": "exec-91422f35-f2d8-4dbe-88b6-32b7b395ff87.png",
+      "generator": "built-in image_gen",
+      "original_pixels_preserved": true,
+      "prompt_record": "Transparent production sprite atlas, four columns by three rows. Twelve isolated hand-painted underwater limestone/coral formations: scalloped peach sea-fan shelf; mossy fossil boulder/anemone; fluted blue shell reef; golden-grass honeycomb terrace; narrow upright coral pillar; suspended pendant and kelp; oval islet/roots; slanted fern slab; stepped limestone; lavender fossil ledge; ribbed coral saddle; split boulder and mint sponges. Each silhouette distinct, restrained storybook colours, true alpha, no labels, characters or gems.",
+      "record_type": "reconstructed generation brief; exact wording is in the generation conversation"
+    },
+    {
+      "file": "coral-gardens.png",
+      "sha256": "2eb8c858eac4e60249cd8c987ef5a3a45c99b7e542b10a96e30e8528d6d640e7",
+      "original_generated_file": "exec-12915832-fb9c-4c73-916c-6e467d2033e9.png",
+      "generator": "built-in image_gen",
+      "original_pixels_preserved": true,
+      "prompt_record": "Transparent four-by-two atlas of eight distinct storybook sea gardens: ivory lace fan/shell; jade ribbon kelp/pearl buds; peach coral/mussels; cream tube sponges; lavender fan/anemone; honey-gold finger coral/scallop; blue eelgrass; moon-white coral/rose urchin/pearl. Generous separation, planted small bases, no neon, jewels or labels.",
+      "record_type": "reconstructed generation brief; exact wording is in the generation conversation"
+    },
+    {
+      "file": "treasure-plinths.png",
+      "sha256": "83b184f44b3e6e462728f8a70a24ad9103d68412f339d8558484e0abcd62a7c9",
+      "original_generated_file": "exec-1b8efaac-662a-426f-87b1-5168161e1265.png",
+      "generator": "built-in image_gen",
+      "original_pixels_preserved": true,
+      "prompt_record": "Transparent three-by-two atlas of six low chest supports: mother-pearl scallop cradle; peach coral cream stone; lavender ammonite terrace; blue calcite sponge shelf; honey-gold coral rosette/split stone; mint limestone/curling roots. Painted ocean storybook style, wide low silhouettes, isolated true alpha, no chests, no labels.",
+      "record_type": "reconstructed generation brief; exact wording is in the generation conversation"
+    },
+    {
+      "file": "swim-wreaths.png",
+      "sha256": "0bef4784884d764bf9f40422075dc1827376dd6578c28a6f2e09d05bf4adfb26",
+      "original_generated_file": "exec-889b841f-8dd3-468b-b02c-2cc48c8df32a.png",
+      "generator": "built-in image_gen",
+      "original_pixels_preserved": true,
+      "prompt_record": "Transparent three-column atlas of three different open swimming hoops: pale-gold seagrass/scallop/pearls; ivory fossil coral/peach branches; sea-glass lavender kelp/top-shell crest. Centres transparent and at least two-thirds of diameter, no branches across the opening, no jewelry, neon or labels. Soft detailed storybook paint.",
+      "record_type": "reconstructed generation brief; exact wording is in the generation conversation"
+    },
+    {
+      "file": "descent-passages.png",
+      "sha256": "5aee1230b9fd581d3c70c93304234c350679b3b5166195750dfa064bc7ccd9b0",
+      "original_generated_file": "exec-f26830a6-2b25-4a8b-9be8-a9087ad5819f.png",
+      "generator": "built-in image_gen",
+      "original_pixels_preserved": true,
+      "prompt_record": "Use case: illustration-story. Asset type: one opaque environment-painting atlas for a hand-painted underwater mermaid game. Paint FOUR different narrow VERTICAL underwater descent passages, side by side in FOUR exactly equal columns across a 2048 by 768 landscape canvas. Each column is its own coherent 512-by-768 view looking straight into a natural flooded limestone cleft; there are no dividing lines or labels. The top of each passage opens into luminous shallow turquoise water, with soft daylight filtering down. The bottom leads deeper into a peaceful blue grotto. Clear softly textured water occupies the middle third of every passage, with irregular cream-and-teal limestone shoulders, wispy seagrass, occasional small white shell fossils and natural hanging kelp at the left and right edges. Beautiful hand-painted children's adventure storybook quality, restrained brushwork, atmospheric perspective, subtle caustic light, soft irregular rock forms. Columns 1 and 2 use a pearl-and-seafoam nursery palette and visibly different cliff silhouettes. Columns 3 and 4 use a slightly lavender-blue bellflower grotto palette, a few tiny hanging bell-like sea flowers at the edges, and different asymmetric clefts. Maintain continuous vertical water flow and generous swimmable negative space; the passage should feel naturally carved and inviting rather than a geometric doorway. No sky or above-water horizon, no floor cutting across the middle, no straight-sided rectangles within any column, no repeated arch motif, no buildings, no characters, no treasure, no text, no UI, no outlines, no grid. This is production game scenery rather than a contact-sheet photograph, and the painterly colour should fill the entire canvas.",
+      "record_type": "exact prompt"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "role": "king",
+    "source_vertices_sha256": "51cf34d1aa9084034cb2670fe50ea684390d2e53be69b07abe221d6395fb3e0b",
+    "vertices": 76795
+  },
+  {
+    "role": "queen",
+    "source_vertices_sha256": "fa465d775c922482aa9187b1416f8d82281d67310707ac8333f51960194f7701",
+    "vertices": 153727
+  }
+]

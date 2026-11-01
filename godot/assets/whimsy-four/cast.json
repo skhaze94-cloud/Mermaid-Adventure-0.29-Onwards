@@ -1,0 +1,197 @@
+{
+  "version": 1,
+  "characters": [
+    {
+      "id": "mallow",
+      "name": "Mallow",
+      "role": "the quilt keeper",
+      "kind": "nest",
+      "lines": [
+        "Your fins look tired. I saved you the soft side.",
+        "This quilt has a pocket for especially little dreams.",
+        "Shh. The blanket is practising being a cloud."
+      ],
+      "file": "mallow.png"
+    },
+    {
+      "id": "tilly",
+      "name": "Tilly",
+      "role": "the pearl nursery helper",
+      "kind": "nest",
+      "lines": [
+        "I counted the eggs twice. They keep looking rounder.",
+        "Would you like to help me wish them a good morning?",
+        "One day they will be brave little swimmers too."
+      ],
+      "file": "tilly.png"
+    },
+    {
+      "id": "posy",
+      "name": "Posy",
+      "role": "the crab florist",
+      "kind": "garden",
+      "lines": [
+        "I grew this bouquet for whoever needed a little hello.",
+        "The shy flowers open when somebody is kind.",
+        "No occasion needed. Tuesdays are quite enough."
+      ],
+      "file": "posy.png"
+    },
+    {
+      "id": "purl",
+      "name": "Purl",
+      "role": "the cuttlefish knitter",
+      "kind": "garden",
+      "lines": [
+        "A scarf for a mermaid? Let me measure your tail.",
+        "I dropped a stitch. Posy planted it.",
+        "It is a very long scarf. The sea is quite draughty."
+      ],
+      "file": "purl.png"
+    },
+    {
+      "id": "ludo",
+      "name": "Ludo",
+      "role": "the frogfish lamplighter",
+      "kind": "light",
+      "lines": [
+        "I light the little lamps so nobody feels lost.",
+        "This one is for anyone taking the long way home.",
+        "Vesper says the dark is just a book before you open it."
+      ],
+      "file": "ludo.png"
+    },
+    {
+      "id": "vesper",
+      "name": "Vesper",
+      "role": "the ribbon-eel librarian",
+      "kind": "light",
+      "lines": [
+        "Welcome to the library. Every story has a happy shallows.",
+        "Please return your dreams whenever you have new ones.",
+        "I keep the quiet stories on the softest shelf."
+      ],
+      "file": "vesper.png"
+    },
+    {
+      "id": "peep",
+      "name": "Peep",
+      "role": "the pufferfish pastry chef",
+      "kind": "bakery",
+      "lines": [
+        "A bubble tart? It is mostly air, but lovingly prepared.",
+        "Please mind the crumbs. They have learned to swim.",
+        "Saffron grew the blueberries. I did the important puffing."
+      ],
+      "file": "peep.png"
+    },
+    {
+      "id": "saffron",
+      "name": "Saffron",
+      "role": "the seadragon gardener",
+      "kind": "bakery",
+      "lines": [
+        "Every tiny leaf gets its very own good morning.",
+        "Peep thinks this is a pastry garden. I let him.",
+        "Your wake gave the flowers a lovely little dance."
+      ],
+      "file": "saffron.png"
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "role": "the dumbo-octopus tailor",
+      "kind": "rain",
+      "lines": [
+        "Have you lost a button? I found an excellent blue one.",
+        "Eight arms. One button. Somehow still behind schedule.",
+        "I make pockets for things too small to explain."
+      ],
+      "file": "button.png"
+    },
+    {
+      "id": "hush",
+      "name": "Hush",
+      "role": "the umbrella jelly",
+      "kind": "rain",
+      "lines": [
+        "A little rain is lovely when it knows where to fall.",
+        "Button made my umbrella. I made the weather.",
+        "You can rest here. This cloud only rains lullabies."
+      ],
+      "file": "hush.png"
+    },
+    {
+      "id": "crumb",
+      "name": "Sir Crumb",
+      "role": "the very polite tea crab",
+      "kind": "tea",
+      "lines": [
+        "A cup for Sarah. I have warmed the handle.",
+        "Please excuse the biscuit. It insists on being formal.",
+        "Dot says crumbs are simply very small celebrations."
+      ],
+      "file": "crumb.png"
+    },
+    {
+      "id": "dot",
+      "name": "Dot",
+      "role": "the pearl seamstress",
+      "kind": "tea",
+      "lines": [
+        "One pearl for a smile. That is the entire dress code.",
+        "Sir Crumb asked me to mend a biscuit. I embroidered it.",
+        "Every little imperfect pearl belongs somewhere."
+      ],
+      "file": "dot.png"
+    },
+    {
+      "id": "miri",
+      "name": "Miri",
+      "role": "the shell-orchestra conductor",
+      "kind": "music",
+      "lines": [
+        "A little room for a very grand rehearsal!",
+        "Oona is our audience. She applauds in her sleep.",
+        "Ready? One, two… oh, the cymbal has become a hat."
+      ],
+      "file": "miri.png"
+    },
+    {
+      "id": "oona",
+      "name": "Oona",
+      "role": "the dreaming narwhal",
+      "kind": "music",
+      "lines": [
+        "I was dreaming of a smaller moon. This one fits.",
+        "Miri plays the soft songs when my eyes get heavy.",
+        "Would you hold a little wish while I have a nap?"
+      ],
+      "file": "oona.png"
+    },
+    {
+      "id": "bibi",
+      "name": "Bibi",
+      "role": "the batfish kite maker",
+      "kind": "stars",
+      "lines": [
+        "I made a kite for the current. It wrote back with a dance.",
+        "You do not need a sky to have an up.",
+        "Thimble says the string is how a kite remembers home."
+      ],
+      "file": "bibi.png"
+    },
+    {
+      "id": "thimble",
+      "name": "Grandmother Thimble",
+      "role": "the nautilus astronomer",
+      "kind": "stars",
+      "lines": [
+        "Look closely, little mermaid. The sea has stars too.",
+        "Bibi is testing whether wishes need a tail.",
+        "I have mapped the way home. It looks rather like a hug."
+      ],
+      "file": "thimble.png"
+    }
+  ]
+}

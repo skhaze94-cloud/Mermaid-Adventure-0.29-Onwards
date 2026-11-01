@@ -7,6 +7,7 @@ const FORMATIONS = preload("res://godot/assets/reef-formations-v018.png")
 const REGIONS := [Rect2(41,48,710,559),Rect2(800,39,695,571),
     Rect2(24,669,729,292),Rect2(788,656,727,309)]
 static var formation_frames: Array[Texture2D] = []
+static var authored_reefs: Dictionary={}
 const TINTS := {"shadow":Color(.88,.74,1), "palace":Color(1,.94,1),
     "blackwater":Color(.56,.73,.82), "rana":Color(.75,.96,.82),
     "nessie":Color(.73,.92,.91), "training":Color(.92,1,.94),
@@ -46,6 +47,7 @@ static func seabed(canvas: CanvasItem, view: Vector2, camera: float, theme: Stri
     var rim := PackedVector2Array()
     for x in range(-32,int(view.x)+65,24): rim.append(Vector2(x,ground_y(x+camera,base_y)+1))
     canvas.draw_polyline(rim,Color(.27,.56,.55,.10*opacity),2,true)
+    if theme=="training":return
     # Organic small caps conceal the horizontal atlas-foot seam in the stone bed.
     var first := int(floor(camera/210.0))-1
     for i in range(first,first+int(ceil(view.x/210.0))+3):
@@ -55,6 +57,7 @@ static func seabed(canvas: CanvasItem, view: Vector2, camera: float, theme: Stri
         canvas.draw_texture_rect(formation(2+posmod(i,2)),Rect2(world_x-camera-width*.5,top,width,42),false,Color(tint.r,tint.g,tint.b,.72*opacity))
 
 static func support(canvas: CanvasItem, rect: Rect2, theme: String) -> void:
+    if theme=="training":return
     # Recessed buttress, with fixed-size stone detail rather than a stretched sprite.
     var center := rect.get_center().x
     var top := rect.position.y+rect.size.y*.61
@@ -77,19 +80,7 @@ static func support(canvas: CanvasItem, rect: Rect2, theme: String) -> void:
 
 
 static func rock(canvas: CanvasItem, rect: Rect2, index: int, theme: String) -> void:
-    var tint: Color = TINTS.get(theme,Color.WHITE)
-    var floor_rock := rect.position.y > 450.0
-    if floor_rock:
-        # Extend the painted foot into sediment; collision stays at its source rectangle.
-        var foot := maxf(rect.end.y,GROUND_Y+10.0)
-        var visual := Rect2(rect.position-Vector2(6,6),Vector2(rect.size.x+12,foot-rect.position.y+6))
-        contact(canvas,Vector2(rect.get_center().x,GROUND_Y+3),rect.size.x,.40)
-        canvas.draw_texture_rect(formation(2+index%2),visual,false,tint)
-    else:
-        # Recessed reef neck behind an elevated ledge. Soft atmosphere makes its
-        # decorative support distinct from the opaque collision-bearing cap.
-        support(canvas,rect,theme)
-        canvas.draw_texture_rect(formation(index%2),rect.grow(6),false,tint)
+    unique_rock(canvas,rect,index,theme);return
 
 static func formation(index: int) -> Texture2D:
     if formation_frames.is_empty():
@@ -100,6 +91,33 @@ static func formation(index: int) -> Texture2D:
             atlas.filter_clip = true
             formation_frames.append(atlas)
     return formation_frames[index]
+
+static func unique_rock(canvas: CanvasItem,rect: Rect2,index: int,theme: String) -> void:
+    # Keep the painted alpha contour; vary the actual silhouette through a
+    # cached skin rather than stretching a rectangle of bare stone texture.
+    var floor_rock:=rect.position.y>450
+    if not floor_rock:support(canvas,rect,theme)
+    var height:=maxf(rect.size.y,GROUND_Y+10-rect.position.y) if floor_rock else rect.size.y
+    var key: String=theme+":"+str(index)+":"+str(rect.size)+":"+str(rect.position.y)
+    if not authored_reefs.has(key):
+        var vertices:=PackedVector3Array();var uv:=PackedVector2Array();var colours:=PackedColorArray();var indices:=PackedInt32Array()
+        var region: Rect2=REGIONS[2+index%2 if floor_rock else index%2]
+        var atlas_size:=Vector2(FORMATIONS.get_width(),FORMATIONS.get_height())
+        var tint: Color=TINTS.get(theme,Color.WHITE)
+        for row in range(7):
+            for column in range(13):
+                var u:=column/12.0;var v:=row/6.0
+                var bend:=sin(v*PI)*sin(index*1.73+v*3)*rect.size.x*.045
+                vertices.append(Vector3(u*(rect.size.x+12)+bend,v*(height+6)+sin(u*PI)*sin(index+v*3)*5,0))
+                uv.append((region.position+Vector2(u,v)*region.size)/atlas_size)
+                colours.append(tint*Color(.97+sin(index*.7)*.025,.98+cos(index*.9)*.02,1,1))
+        for row in range(6):
+            for column in range(12):
+                var n:=row*13+column;indices.append_array(PackedInt32Array([n,n+1,n+13,n+1,n+14,n+13]))
+        var arrays:=[];arrays.resize(Mesh.ARRAY_MAX);arrays[Mesh.ARRAY_VERTEX]=vertices;arrays[Mesh.ARRAY_TEX_UV]=uv;arrays[Mesh.ARRAY_COLOR]=colours;arrays[Mesh.ARRAY_INDEX]=indices
+        var mesh:=ArrayMesh.new();mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays);authored_reefs[key]=mesh
+    canvas.draw_mesh(authored_reefs[key],FORMATIONS,Transform2D(0,rect.position-Vector2(6,6)))
+    if floor_rock:contact(canvas,Vector2(rect.get_center().x,GROUND_Y+3),rect.size.x,.35)
 
 static func panorama(canvas: CanvasItem, painting: Texture2D, view: Vector2,
         waterline: float, source_line: float, progress: float) -> void:

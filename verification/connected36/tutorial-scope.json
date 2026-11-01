@@ -1,0 +1,8 @@
+{
+  "changed_methods": [
+    "_restore_checkpoint_extras",
+    "_sync_native_visuals"
+  ],
+  "unchanged_methods": 86,
+  "reason": "visual royal cue selection and visual state reset only; lessons, controls, dialogue text, physics, rewards and checkpoint data functions untouched"
+}

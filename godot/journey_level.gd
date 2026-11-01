@@ -283,8 +283,8 @@ func _draw_world(s: Vector2) -> void:
         draw_line(Vector2(0,_water_line()),Vector2(s.x,_water_line()),Color(.5,.95,.95,.65),3)
     texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
     Terrain.seabed(self,s,camera,"shadow" if shadow else "miguel")
-    for i in range(obstacles.size()):
-        var block := obstacles[i]
+    for i in range(surface_obstacles.size()):
+        var block := surface_obstacles[i]
         var rect := Rect2(block.position-Vector2(camera,0),block.size)
         if rect.end.x< -20 or rect.position.x>s.x+20: continue
         Terrain.rock(self,rect,i,"shadow" if shadow else "miguel")

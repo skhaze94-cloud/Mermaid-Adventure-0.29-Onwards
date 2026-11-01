@@ -1,0 +1,66 @@
+{
+  "tool": "built-in image_gen; no CLI/API fallback",
+  "mode": "reference-guided transparent painted components; blink variants edit their matching portrait",
+  "reference_assets": [
+    "res://dist/assets/sarah-expressions-v019.webp",
+    "res://dist/assets/sarah-parts-v81.webp"
+  ],
+  "prompt_record": "Production prompt specifications reconstructed from the asset brief; not a verbatim tool-call transcript.",
+  "assets": [
+    {
+      "file": "front.png",
+      "prompt_specification": "Use case: illustration-story. Transparent painted character component for Sarah Maria Mermaid Adventure. Preserve the reference Sarah: warm young mermaid with chestnut curls, large brown eyes, small flower accents, kind smile, pearlescent lavender clothing. Rich soft storybook paint, coherent anatomy, no scenery, text, border or watermark. Keep generous transparent margins. A head, neck and flowing hair view turned toward the player, nearly frontal, with a small warm smile. No torso or arms; preserve her likeness and softly painted dimensional features.",
+      "generation_id": "c22fa023-e6ba-4940-af12-9d1f33e94eb1",
+      "runtime_size_limit": 512,
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "4af6b8193cf0d87f6fbe65fe7174eec38e7cef83872fd6625bcf6b0db59f4d99"
+    },
+    {
+      "file": "front-blink.png",
+      "prompt_specification": "Use case: illustration-story. Transparent painted character component for Sarah Maria Mermaid Adventure. Preserve the reference Sarah: warm young mermaid with chestnut curls, large brown eyes, small flower accents, kind smile, pearlescent lavender clothing. Rich soft storybook paint, coherent anatomy, no scenery, text, border or watermark. Keep generous transparent margins. Match the front portrait exactly, including silhouette, registration, hair, face proportions and lighting. Close both eyelids gently for a blink. Change only the eyelids.",
+      "generation_id": "92c11556-8fbe-4e90-8b65-884472b6f1c2",
+      "runtime_size_limit": 512,
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "ef4fb4488a7caa29352d085945d9285165ec661e2df6ae17b155ce1a3e989745"
+    },
+    {
+      "file": "away.png",
+      "prompt_specification": "Use case: illustration-story. Transparent painted character component for Sarah Maria Mermaid Adventure. Preserve the reference Sarah: warm young mermaid with chestnut curls, large brown eyes, small flower accents, kind smile, pearlescent lavender clothing. Rich soft storybook paint, coherent anatomy, no scenery, text, border or watermark. Keep generous transparent margins. Head, neck and flowing hair turned gently back toward the lagoon, a restrained three-quarter view. Preserve identity, flower placement, warm smile and painted curls; no unsupported rear view.",
+      "generation_id": "bca161b5-ba94-49d2-8371-c0f81503c331",
+      "runtime_size_limit": 512,
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "66c7478a2336b24868338a2f75d6c3156449eed66c1ddae4f7be45da1eaa8ae6"
+    },
+    {
+      "file": "away-blink.png",
+      "prompt_specification": "Use case: illustration-story. Transparent painted character component for Sarah Maria Mermaid Adventure. Preserve the reference Sarah: warm young mermaid with chestnut curls, large brown eyes, small flower accents, kind smile, pearlescent lavender clothing. Rich soft storybook paint, coherent anatomy, no scenery, text, border or watermark. Keep generous transparent margins. Match the away portrait exactly. Close both eyelids gently for a blink. Keep the hair, silhouette, facial registration, colours and lighting unchanged.",
+      "generation_id": "519a5820-f3f4-4881-8e4b-25657c0731db",
+      "runtime_size_limit": 512,
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "1db35f847196fde35ec52d029de4c51fac16d147b961c7c0cc2cec8137429273"
+    },
+    {
+      "file": "bodice.png",
+      "prompt_specification": "Use case: illustration-story. Transparent painted character component for Sarah Maria Mermaid Adventure. Preserve the reference Sarah: warm young mermaid with chestnut curls, large brown eyes, small flower accents, kind smile, pearlescent lavender clothing. Rich soft storybook paint, coherent anatomy, no scenery, text, border or watermark. Keep generous transparent margins. A front-facing lavender pearlescent bodice with softly rounded shoulder sleeve caps, a clear neck opening and coherent waist. No head, hands, forearms or tail. Use the reference clothing colours and painterly texture; transparent component for a layered character rig.",
+      "generation_id": "a9a3bc80-72d9-44a9-860a-c6723c107b90",
+      "runtime_size_limit": 512,
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "sha256": "5ceafab960ba9e4b4ff482e81d980fc8ddcf198ae6ee5f6a35975427c3c546c8"
+    }
+  ]
+}

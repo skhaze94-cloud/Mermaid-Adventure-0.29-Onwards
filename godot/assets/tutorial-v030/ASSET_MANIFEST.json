@@ -1,0 +1,280 @@
+{
+  "release": "Mermaid Adventure 0.30 \u2014 Tutorial Reef Visual Upgrade",
+  "scope": "tutorial only",
+  "character_appearance_changed": false,
+  "new_asset_count": 34,
+  "assets": [
+    {
+      "file": "caustic_light_overlay.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGBA",
+      "bytes": 35901,
+      "sha256": "8992b7572f41795acf7d4214e759db3466f47dae3f6239d7297249c9f970f4fd"
+    },
+    {
+      "file": "deep_grotto_stone_tile.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB",
+      "bytes": 585691,
+      "sha256": "f861cafa4345aa668c77d6e05c0bb3b642203823be0398c0ead4d2bf15ed7579"
+    },
+    {
+      "file": "flora_01.png",
+      "width": 281,
+      "height": 261,
+      "mode": "RGBA",
+      "bytes": 139431,
+      "sha256": "431ac1e868ff398e4eeec70549ff4f886c64cc34866feee76ac1fd13a6d36e41"
+    },
+    {
+      "file": "flora_02.png",
+      "width": 260,
+      "height": 259,
+      "mode": "RGBA",
+      "bytes": 122008,
+      "sha256": "f6f69c44d70bb76d60fbd75b9c8965e3fa44425920ad599f949ca1ceb8cbb5cf"
+    },
+    {
+      "file": "flora_03.png",
+      "width": 275,
+      "height": 254,
+      "mode": "RGBA",
+      "bytes": 130667,
+      "sha256": "2668d7680fcf20cd644000a11037592b8ac94906164224187a277d9e4a5fcf65"
+    },
+    {
+      "file": "flora_04.png",
+      "width": 284,
+      "height": 337,
+      "mode": "RGBA",
+      "bytes": 145451,
+      "sha256": "80dea434094960755a0e5ed48a312cd4456a491933eec1a647c4c8d53ba1bc14"
+    },
+    {
+      "file": "flora_05.png",
+      "width": 272,
+      "height": 281,
+      "mode": "RGBA",
+      "bytes": 140879,
+      "sha256": "6969e6549493aabdb192baf079dd1d803a2e6132a04f653649f8324ba439739a"
+    },
+    {
+      "file": "flora_06.png",
+      "width": 281,
+      "height": 283,
+      "mode": "RGBA",
+      "bytes": 140878,
+      "sha256": "0f1d96a6e7df0e9fce196e5ac33f16a61523621d0d4a6ff1ada0817e9ab75121"
+    },
+    {
+      "file": "hanging_lantern_01.png",
+      "width": 300,
+      "height": 268,
+      "mode": "RGBA",
+      "bytes": 131999,
+      "sha256": "ba079b7d4ea218b196f7a84186d77f0dfeba759a13736448bb8f47bcf1ce17b1"
+    },
+    {
+      "file": "hanging_lantern_02.png",
+      "width": 263,
+      "height": 262,
+      "mode": "RGBA",
+      "bytes": 115928,
+      "sha256": "0c06d4864eee99073765e6f1de08c3a08c138143a0f788b69d6c131d3c0c08ec"
+    },
+    {
+      "file": "hanging_lantern_03.png",
+      "width": 294,
+      "height": 268,
+      "mode": "RGBA",
+      "bytes": 124215,
+      "sha256": "accb5a249774c5b234943d12097d8837882b5ce8c6d97190a7abb118a6bd7051"
+    },
+    {
+      "file": "item_heart_gem.png",
+      "width": 505,
+      "height": 496,
+      "mode": "RGBA",
+      "bytes": 332209,
+      "sha256": "11eb1aebf425be8adbc773715bac5ae7877a5f37d0d3847742f8e6e87947885b"
+    },
+    {
+      "file": "item_ocean_crystal.png",
+      "width": 388,
+      "height": 541,
+      "mode": "RGBA",
+      "bytes": 260025,
+      "sha256": "c2b440e4fbf4577caff27b7793c98d8cfc9dc16dce0457afcef1bb5410587a45"
+    },
+    {
+      "file": "item_shell_pearl.png",
+      "width": 511,
+      "height": 537,
+      "mode": "RGBA",
+      "bytes": 392389,
+      "sha256": "68247485f29bf4ecc011403ff3c4d237c2d1885e5ba92ce64e62a25d096f29b4"
+    },
+    {
+      "file": "item_treasure_chest.png",
+      "width": 590,
+      "height": 515,
+      "mode": "RGBA",
+      "bytes": 527130,
+      "sha256": "4d4622e8b8918db4c398bea06899e7538029d758dcedde96135922238f7f4d1f"
+    },
+    {
+      "file": "kelp_floor_tile.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB",
+      "bytes": 606934,
+      "sha256": "ecb2b78cab24357d0f4a63725f3d707cdb7f9ea508c112a00d4990c2e8697691"
+    },
+    {
+      "file": "reef_coral_stone_tile.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB",
+      "bytes": 641345,
+      "sha256": "c3c9c46f00900daf42d599ecedb570824229dcd62b21fa4519340a7b0f3ca12e"
+    },
+    {
+      "file": "reef_stone_teal_tile.png",
+      "width": 512,
+      "height": 512,
+      "mode": "RGB",
+      "bytes": 633666,
+      "sha256": "155c2e4af95c347ab88506782ac83e9d2d4420dfd8414e31d595f5cd2e898cf8"
+    },
+    {
+      "file": "rock_prop_01.png",
+      "width": 339,
+      "height": 263,
+      "mode": "RGBA",
+      "bytes": 141576,
+      "sha256": "fd4609e742678d55866c57f559d417cbc0812888589262c494b6e2101c2d67ac"
+    },
+    {
+      "file": "rock_prop_02.png",
+      "width": 299,
+      "height": 263,
+      "mode": "RGBA",
+      "bytes": 123788,
+      "sha256": "e22caaf7f87815c9be21ccb13c99342f0a334d50adfaafb276db82a5f0ff8725"
+    },
+    {
+      "file": "rock_prop_03.png",
+      "width": 324,
+      "height": 266,
+      "mode": "RGBA",
+      "bytes": 135929,
+      "sha256": "215360ef7245dd7c63d0864ecc5c661753e3b15272d74a0ffa6ec7b7e728f621"
+    },
+    {
+      "file": "rock_prop_04.png",
+      "width": 334,
+      "height": 129,
+      "mode": "RGBA",
+      "bytes": 64996,
+      "sha256": "1fefdfbbecf03d7d560977a1b8a906b05cb6e1a81ef663a7e148bcd6c6b33355"
+    },
+    {
+      "file": "rock_prop_05.png",
+      "width": 306,
+      "height": 152,
+      "mode": "RGBA",
+      "bytes": 71173,
+      "sha256": "f88b5887fdec5911270e3628a3d846e99efe55d3961bb2452102a21f200841ff"
+    },
+    {
+      "file": "rock_prop_06.png",
+      "width": 316,
+      "height": 138,
+      "mode": "RGBA",
+      "bytes": 66792,
+      "sha256": "df54326ac43a9a10bcb9b05aea4d9692c7468ab8cdd29eedfd0b61c31dc3a9ef"
+    },
+    {
+      "file": "rock_prop_07.png",
+      "width": 355,
+      "height": 223,
+      "mode": "RGBA",
+      "bytes": 119913,
+      "sha256": "17ff99569c792a2e71e32616b1079aa820c7ff6b160524c3acc7c9146298fa33"
+    },
+    {
+      "file": "rock_prop_08.png",
+      "width": 311,
+      "height": 238,
+      "mode": "RGBA",
+      "bytes": 112076,
+      "sha256": "71b234ffedc7db8073b73fdc70868d79e3584e52df30d12065f6c0eda2eb8e69"
+    },
+    {
+      "file": "rock_prop_09.png",
+      "width": 331,
+      "height": 223,
+      "mode": "RGBA",
+      "bytes": 113955,
+      "sha256": "4dd6d52278fe77f6e7e7f5b6d0e3eac65e969ceac6335e209cbd72f12de1407f"
+    },
+    {
+      "file": "rock_prop_10.png",
+      "width": 348,
+      "height": 254,
+      "mode": "RGBA",
+      "bytes": 136170,
+      "sha256": "357304009a61e8115292a582696db06598543dde963f35829fc9edcb101bd97e"
+    },
+    {
+      "file": "rock_prop_11.png",
+      "width": 303,
+      "height": 260,
+      "mode": "RGBA",
+      "bytes": 121746,
+      "sha256": "2c0ef35afd022010ad45ec28668c5f5375843d5b2233d09bdfecd360b0680da6"
+    },
+    {
+      "file": "rock_prop_12.png",
+      "width": 321,
+      "height": 266,
+      "mode": "RGBA",
+      "bytes": 123686,
+      "sha256": "1878a9357b2505aebcc9b9d286394453af9b38a52c77195549d3cc05c04745be"
+    },
+    {
+      "file": "sand_pearl_tile.png",
+      "width": 512,
+      "height": 128,
+      "mode": "RGB",
+      "bytes": 74665,
+      "sha256": "b83950ef537babc24d59f4e39649cedcb55e60f6d44f5708247c0c7f0b63b335"
+    },
+    {
+      "file": "water_ribbon_01.png",
+      "width": 368,
+      "height": 166,
+      "mode": "RGBA",
+      "bytes": 108855,
+      "sha256": "68e86ff425d22b39921df6f0f390d0fa06c0e6511c2e5b728c82ccd627232238"
+    },
+    {
+      "file": "water_ribbon_02.png",
+      "width": 320,
+      "height": 171,
+      "mode": "RGBA",
+      "bytes": 92371,
+      "sha256": "29e104032dac19f7617461aaeb774f8c7b0aa826e979aa31e784aec78900f1e5"
+    },
+    {
+      "file": "water_ribbon_03.png",
+      "width": 357,
+      "height": 157,
+      "mode": "RGBA",
+      "bytes": 104458,
+      "sha256": "c051443cff95ddaa7617388bf0520eb8d4e1875ca67cab9faf16709917099322"
+    }
+  ]
+}

@@ -1,3 +1,11 @@
 .godot/
+node_modules/
+exports/
+art-originals/royal-meshy/king-daddy-3d.glb
+art-originals/royal-meshy/queen-antonella-3d.glb
+godot/assets/characters-v028/king-daddy-3d.glb
+godot/assets/characters-v028/queen-antonella-3d.glb
+godot/assets/characters-v028/queen-antonella-3d_0.jpg
+godot/assets/characters-v028/queen-antonella-3d_2.jpg
 *.import
 *.uid

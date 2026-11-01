@@ -125,6 +125,7 @@ func update_friendly(dt: float) -> void:
             var target: Dictionary=targets[index]
             if not shot.get("baby",false) and shot.get("owner","sarah")=="sarah" and target["bubble"] and target["open"] and float(target["cooldown"])<=0:
                 damage=level._opal_hit_boss(target["id"],clampi(int(shot.get("boss_damage",1)),1,2))
+        elif kind==4:level.living_reef.hit_bubble(index,shot)
         if serial!=level.retry_serial:return
         if damage>0 and int(shot.get("tier",1))>=2 and not level.reduced_fx:
             level._vibrate(0.12,0.08 if int(shot["tier"])==2 else 0.20,0.045)
@@ -160,6 +161,12 @@ func _nearest(from: Vector2, to: Vector2, shot: Dictionary) -> Dictionary:
             if not target["active"]:continue
             var t:=Sweep.circle(from,to,target["pos"],target["radius"])
             if t<first:first=t;category=3;chosen=i
+    if not shot.get("baby",false) and shot.get("owner","sarah")=="sarah":
+        var reef_points: Array=level.living_reef.bubble_targets()
+        for i in range(reef_points.size()):
+            if level.living_reef.activated[i]:continue
+            var t:=Sweep.circle(from,to,reef_points[i],52)
+            if t<first:first=t;category=4;chosen=i
     return {} if category<0 else {"t":first,"kind":category,"index":chosen}
 func update_hostile(dt: float) -> void:
     if not level._bubble_world_active() or level.hostile_shots.is_empty():return

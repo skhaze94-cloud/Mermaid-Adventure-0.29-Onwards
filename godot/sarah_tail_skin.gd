@@ -1,6 +1,6 @@
 extends "res://godot/sarah_ribbon_mesh.gd"
 ## One connected painted tail; centerline skin preserves length while curling.
-const SEGMENTS := 584 # 7,605 paint points: three times v0.4.
+const SEGMENTS := 192 # Subpixel centreline spacing at normal gameplay size.
 var detail_phase := 0.0
 var detail_strength := 0.0
 var socket := Vector2.ZERO
@@ -20,6 +20,12 @@ var row_wave := PackedVector4Array()
 var row_edge := PackedVector2Array()
 var row_offset := PackedFloat32Array()
 var row_distance := PackedFloat32Array()
+const ROOT_ARC := -.5*PI+.57
+var projected_centers:=PackedVector2Array()
+var projected_hip_tangent:=Vector2.DOWN
+var curl_limit:=1.65
+var coarse_elapsed:=1.0
+var coarse_points:=PackedVector2Array()
 func setup(source: Texture2D, region: Rect2, destination: Rect2) -> void:
     configure(source,region,destination,SEGMENTS,13)
     socket = Vector2(destination.end.x,destination.get_center().y)
@@ -45,16 +51,16 @@ func setup(source: Texture2D, region: Rect2, destination: Rect2) -> void:
     skin(Vector4.ZERO,0,0)
 func skin(pose: Vector4, tuck: float, steering: float) -> void:
     centers[0] = socket
-    angles[0] = 0
-    column_normals[0] = Vector2.DOWN
-    bend_value = pose.y+tuck*1.55+steering*.35
+    angles[0] = ROOT_ARC
+    column_normals[0] = Vector2.DOWN.rotated(ROOT_ARC)
+    bend_value = clampf(pose.y+tuck*1.08+steering*.25,-1.05,1.30)
     var step := tail_length/SEGMENTS
     for i in range(1,SEGMENTS+1):
         var t := (float(i)-.5)/SEGMENTS
         # Travel through the body, then fold at the middle; the socket stays fixed.
-        var angle := pose.x*smoothstep(0,.28,t)
+        var angle := ROOT_ARC*(1.0-smoothstep(0,.26,t))+pose.x*smoothstep(0,.28,t)
         # The waist bend flows into the proximal tail, with zero displacement at the socket.
-        angle += root_bend*smoothstep(0,.18,t)*(1.0-smoothstep(.45,.80,t))
+        angle += root_bend*smoothstep(0,.15,t)*(1.0-smoothstep(.38,.75,t))
         angle += bend_value*smoothstep(.22,.70,t)
         angle += pose.z*smoothstep(.67,1,t)
         var release := smoothstep(.15,.48,t)
@@ -62,10 +68,11 @@ func skin(pose: Vector4, tuck: float, steering: float) -> void:
             +sin(detail_phase*1.17-t*8.0)*.004+sin(detail_phase*1.81-t*11.0)*.002
             +sin(detail_phase*.43-t*3.5)*.0015+sin(detail_phase*2.31-t*14.0)*.0008+sin(detail_phase*2.87-t*17.0)*.0004
             +sin(detail_phase*.61-t*4.1)*.001+sin(detail_phase*1.53-t*9.6)*.0006+sin(detail_phase*3.17-t*19.1)*.0003)
+        angle=(curl_limit*tanh(angle/curl_limit)) if angle>=0 else 1.15*tanh(angle/1.15)
         angles[i] = angle
         centers[i] = centers[i-1]+Vector2(-step,0).rotated(angle)
         # Every painted row uses this same column angle. Rotate once, keeping
-        # all 7,605 points and the exact centerline/curvature sampling.
+        # all 2,509 points and the exact centerline/curvature sampling.
         column_normals[i] = Vector2.DOWN.rotated(angles[i])
     # Column waves are shared by all 13 painted rows. Cache the trigonometry.
     for column in range(SEGMENTS+1):
@@ -102,6 +109,28 @@ func skin(pose: Vector4, tuck: float, steering: float) -> void:
     polygon = points
     tip_center = centers[SEGMENTS-3]
     mesh_updates += 1
+func skin_coarse(pose: Vector4,tuck: float,dt: float,quiet: bool) -> void:
+    coarse_elapsed+=dt
+    if coarse_elapsed<1.0/(15.0 if quiet else 30.0):return
+    coarse_elapsed=0
+    if coarse_points.size()!=rest.size():coarse_points=rest.duplicate()
+    # 24 centerline samples, no per-row trigonometry or micro-flutter.
+    var count:=24;var step:=tail_length/count;var previous:=socket
+    centers[0]=socket;angles[0]=ROOT_ARC
+    var amount:=.10 if quiet else .72
+    for j in range(1,count+1):
+        var t:=float(j)/count
+        var angle: float=ROOT_ARC*(1.0-smoothstep(0,.26,t))+(pose.x*smoothstep(0,.3,t)+(pose.y+tuck*.7)*smoothstep(.22,.75,t)+pose.z*smoothstep(.65,1,t))*amount
+        angle=clampf(angle,-.8,1.12)
+        var next:=previous+Vector2(-step,0).rotated(angle)
+        var lo:=int(float(j-1)/count*SEGMENTS);var hi:=int(float(j)/count*SEGMENTS)
+        for k in range(lo,hi+1):
+            var f:=float(k-lo)/maxi(1,hi-lo);centers[k]=previous.lerp(next,f);angles[k]=lerpf(angles[lo],angle,f)
+        previous=next
+    for col in range(SEGMENTS+1):
+        var column:=column_map[col];var normal:=Vector2.DOWN.rotated(angles[column]);var center:=centers[column]
+        for row in range(13):coarse_points[row*(SEGMENTS+1)+col]=center+normal*row_distance[row]
+    polygon=coarse_points;tip_center=centers[SEGMENTS-3];mesh_updates+=1
 func reset_shape() -> void:
     super.reset_shape()
     tip_center = Vector2(socket.x-tail_length,socket.y)
@@ -109,3 +138,4 @@ func reset_shape() -> void:
     root_bend = 0
     detail_phase = 0
     detail_strength = 0
+    coarse_elapsed=1.0

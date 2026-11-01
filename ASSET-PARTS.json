@@ -1,0 +1,81 @@
+[
+  {
+    "target": "art-originals/royal-meshy/king-daddy-3d.glb",
+    "bytes": 81386308,
+    "sha256": "0e058c6af20b6162996add34e53976925ee17c0ab06b686e353bbeefb2e2b193",
+    "parts": [
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part00",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part01",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part02",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part03",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part04",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part05",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part06",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part07",
+      "archive-parts/art-originals__royal-meshy__king-daddy-3d.glb.part08"
+    ]
+  },
+  {
+    "target": "art-originals/royal-meshy/queen-antonella-3d.glb",
+    "bytes": 174076844,
+    "sha256": "9960aade99bfc8a615d4dc77220d43bd59afe642588ac0e00cc621aed1aa5a13",
+    "parts": [
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part00",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part01",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part02",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part03",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part04",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part05",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part06",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part07",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part08",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part09",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part10",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part11",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part12",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part13",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part14",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part15",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part16",
+      "archive-parts/art-originals__royal-meshy__queen-antonella-3d.glb.part17"
+    ]
+  },
+  {
+    "target": "godot/assets/characters-v028/king-daddy-3d.glb",
+    "bytes": 12501680,
+    "sha256": "d8d9e14c071faeb5c5967dd819ff3181485d414965cc1b9e5dde46d367b57469",
+    "parts": [
+      "archive-parts/godot__assets__characters-v028__king-daddy-3d.glb.part00",
+      "archive-parts/godot__assets__characters-v028__king-daddy-3d.glb.part01"
+    ]
+  },
+  {
+    "target": "godot/assets/characters-v028/queen-antonella-3d.glb",
+    "bytes": 35666924,
+    "sha256": "309bcbb6da5f03edbc2da5a0a9781669b7615d36b65b8fb963cf4579ee0ec029",
+    "parts": [
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d.glb.part00",
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d.glb.part01",
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d.glb.part02",
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d.glb.part03"
+    ]
+  },
+  {
+    "target": "godot/assets/characters-v028/queen-antonella-3d_0.jpg",
+    "bytes": 15383969,
+    "sha256": "4cff2fe3a1afe183d0f43646412028a37e56c8f3009fc68dcc1b69cfa2b0f4f4",
+    "parts": [
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d_0.jpg.part00",
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d_0.jpg.part01"
+    ]
+  },
+  {
+    "target": "godot/assets/characters-v028/queen-antonella-3d_2.jpg",
+    "bytes": 10602785,
+    "sha256": "7bd9b7508788d5222fdf34b76a22639eaa50120c01ae093f18e9fcda7205a28a",
+    "parts": [
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d_2.jpg.part00",
+      "archive-parts/godot__assets__characters-v028__queen-antonella-3d_2.jpg.part01"
+    ]
+  }
+]

@@ -141,6 +141,7 @@ void vertex() {
         p=hinge(p,vec2(.55,.52),joints.w,1.0);
         p.x=.55+(p.x-.55)*(1.0-abs(posture.z)*.25);
     }
+    if(animate_detail && high_quality){p.y+=sin(visual_clock*4.2+float(anatomy))*.0018*smoothstep(.60,.95,local_uv.y);}
     VERTEX=(p-vec2(.5))*vec2(facing,1.0);
     UV=cell_uv.xy+UV*cell_uv.zw;
 }

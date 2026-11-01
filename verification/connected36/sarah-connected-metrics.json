@@ -1,0 +1,369 @@
+{
+  "checks": 4628,
+  "crossing_centerline_step": 0.292457580566406,
+  "failures": 0,
+  "maximum_centerline_step": 81.9604110717773,
+  "minimum_effective_full_grid_width": 65.599983215332,
+  "samples": [
+    {
+      "centerline_step": 0.0,
+      "frame": 0,
+      "heading": 0.953327596187592,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 11.9675168991089,
+      "frame": 1,
+      "heading": 0.839461326599121,
+      "view": 0.0347382106270159
+    },
+    {
+      "centerline_step": 37.9286956787109,
+      "frame": 2,
+      "heading": 0.688390016555786,
+      "view": 0.243861143944754
+    },
+    {
+      "centerline_step": 45.6374168395996,
+      "frame": 3,
+      "heading": 0.520530760288239,
+      "view": 0.581898118109444
+    },
+    {
+      "centerline_step": 31.2463932037354,
+      "frame": 4,
+      "heading": 0.349413931369781,
+      "view": 0.888680502037217
+    },
+    {
+      "centerline_step": 9.36962509155273,
+      "frame": 5,
+      "heading": 0.18366539478302,
+      "view": 1.0
+    },
+    {
+      "centerline_step": 0.158927917480469,
+      "frame": 6,
+      "heading": 0.0284617971628904,
+      "view": 1.0
+    },
+    {
+      "centerline_step": 0.166122436523438,
+      "frame": 7,
+      "heading": -0.1134073138237,
+      "view": 1.0
+    },
+    {
+      "centerline_step": 1.13727307319641,
+      "frame": 8,
+      "heading": -0.240770161151886,
+      "view": 0.990743880125568
+    },
+    {
+      "centerline_step": 12.3530330657959,
+      "frame": 9,
+      "heading": -0.353520214557648,
+      "view": 0.882996301035837
+    },
+    {
+      "centerline_step": 20.4137535095215,
+      "frame": 10,
+      "heading": -0.452223569154739,
+      "view": 0.717826063427687
+    },
+    {
+      "centerline_step": 23.6439647674561,
+      "frame": 11,
+      "heading": -0.537843525409698,
+      "view": 0.546101040058135
+    },
+    {
+      "centerline_step": 23.72145652771,
+      "frame": 12,
+      "heading": -0.611550867557526,
+      "view": 0.393336434268765
+    },
+    {
+      "centerline_step": 21.8079891204834,
+      "frame": 13,
+      "heading": -0.674595654010773,
+      "view": 0.269322802176512
+    },
+    {
+      "centerline_step": 18.869649887085,
+      "frame": 14,
+      "heading": -0.728223562240601,
+      "view": 0.175043218792986
+    },
+    {
+      "centerline_step": 15.6433734893799,
+      "frame": 15,
+      "heading": -0.773623704910278,
+      "view": 0.107187928421462
+    },
+    {
+      "centerline_step": 12.599178314209,
+      "frame": 16,
+      "heading": -0.811897993087769,
+      "view": 0.0608584244901041
+    },
+    {
+      "centerline_step": 9.60153007507324,
+      "frame": 17,
+      "heading": -0.844046056270599,
+      "view": 0.0310375046779537
+    },
+    {
+      "centerline_step": 4.90079879760742,
+      "frame": 18,
+      "heading": -0.870960116386414,
+      "view": 0.0132853571033492
+    },
+    {
+      "centerline_step": 3.20159196853638,
+      "frame": 19,
+      "heading": -0.893426358699799,
+      "view": 0.00398601404196441
+    },
+    {
+      "centerline_step": 2.17023754119873,
+      "frame": 20,
+      "heading": -0.912130355834961,
+      "view": 0.000355787176027911
+    },
+    {
+      "centerline_step": 1.68652725219727,
+      "frame": 21,
+      "heading": -0.927665054798126,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.44390988349915,
+      "frame": 22,
+      "heading": -0.940539538860321,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.23570430278778,
+      "frame": 23,
+      "heading": -0.951188206672668,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.04040038585663,
+      "frame": 24,
+      "heading": -0.959979891777039,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.847942292690277,
+      "frame": 25,
+      "heading": -0.967226326465607,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.65278571844101,
+      "frame": 26,
+      "heading": -0.973189949989319,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.453113585710526,
+      "frame": 27,
+      "heading": -0.978090822696686,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.301437705755234,
+      "frame": 28,
+      "heading": -0.982113003730774,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.357640296220779,
+      "frame": 29,
+      "heading": -0.985409915447235,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.446098893880844,
+      "frame": 30,
+      "heading": -0.988109290599823,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.576603949069977,
+      "frame": 31,
+      "heading": -0.990317046642303,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.733498156070709,
+      "frame": 32,
+      "heading": -0.992120862007141,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.917566776275635,
+      "frame": 33,
+      "heading": -0.993593275547028,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.1375744342804,
+      "frame": 34,
+      "heading": -0.994794070720673,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.38837707042694,
+      "frame": 35,
+      "heading": -0.995772540569305,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.64459180831909,
+      "frame": 36,
+      "heading": -0.996569216251373,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 2.85893630981445,
+      "frame": 37,
+      "heading": -0.997217416763306,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.02135252952576,
+      "frame": 38,
+      "heading": -0.997744381427765,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.21433782577515,
+      "frame": 39,
+      "heading": -0.998172521591187,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.42274403572083,
+      "frame": 40,
+      "heading": -0.998520135879517,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.63151001930237,
+      "frame": 41,
+      "heading": -0.998802244663239,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.82601380348206,
+      "frame": 42,
+      "heading": -0.999031007289886,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.99324440956116,
+      "frame": 43,
+      "heading": -0.999216437339783,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 4.1219162940979,
+      "frame": 44,
+      "heading": -0.999366641044617,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 4.20322179794312,
+      "frame": 45,
+      "heading": -0.999488294124603,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 4.22993469238281,
+      "frame": 46,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 4.19831228256226,
+      "frame": 47,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 4.1040244102478,
+      "frame": 48,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.94605612754822,
+      "frame": 49,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.72478151321411,
+      "frame": 50,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.44233989715576,
+      "frame": 51,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 3.10274219512939,
+      "frame": 52,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 2.71133518218994,
+      "frame": 53,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 2.27487850189209,
+      "frame": 54,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.80118095874786,
+      "frame": 55,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.29906594753265,
+      "frame": 56,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.77983570098877,
+      "frame": 57,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 0.898800194263458,
+      "frame": 58,
+      "heading": -1.0,
+      "view": 0.0
+    },
+    {
+      "centerline_step": 1.13239586353302,
+      "frame": 59,
+      "heading": -1.0,
+      "view": 0.0
+    }
+  ]
+}

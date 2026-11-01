@@ -1,0 +1,121 @@
+{
+  "source_unique_counted_checks": 164916,
+  "source_engine": "user-supplied4.4 stable Linux x64",
+  "windows_pack_checks": 117,
+  "android_pack_checks": 2220,
+  "physical_windows_test": false,
+  "physical_android_test": false,
+  "suites": [
+    {
+      "suite": "family_attention_test",
+      "exit": 0,
+      "ok": true,
+      "result": "FAMILY ATTENTION: 10 checks, 0 failures"
+    },
+    {
+      "suite": "avina_tutorial_test",
+      "exit": 0,
+      "ok": true,
+      "result": "FAMILY TUTORIAL: 112 checks, 0 failures"
+    },
+    {
+      "suite": "tutorial_treasure_test",
+      "exit": 0,
+      "ok": true,
+      "result": "TREASURE 031: 100 checks, 0 failures"
+    },
+    {
+      "suite": "tutorial_overhaul_test",
+      "exit": 0,
+      "ok": true,
+      "result": "TUTORIAL OVERHAUL: 15 checks, 0 failures"
+    },
+    {
+      "suite": "family_layout_test",
+      "exit": 0,
+      "ok": true,
+      "result": "FAMILY LAYOUT: 20 checks, 0 failures"
+    },
+    {
+      "suite": "little_moments_test",
+      "exit": 0,
+      "ok": true,
+      "result": "LITTLE MOMENTS: 36 checks, 0 failures"
+    },
+    {
+      "suite": "conversation_flow_test",
+      "exit": 0,
+      "ok": true,
+      "result": "CONVERSATION FLOW: 269 checks, 0 failures; 33 reply branches"
+    },
+    {
+      "suite": "whimsy_four_test",
+      "exit": 0,
+      "ok": true,
+      "result": "WHIMSY FOUR: 358 checks, 0 failures; 22 residents, 4 new loops"
+    },
+    {
+      "suite": "tutorial_caption_regression_test",
+      "exit": 0,
+      "ok": true,
+      "result": "TUTORIAL CAPTION REGRESSION: 8 checks, 0 failures"
+    },
+    {
+      "suite": "friends_cavern_test",
+      "exit": 0,
+      "ok": true,
+      "result": "FRIENDS CAVERN: 402 checks, 0 failures; 15 caverns, 23 friends"
+    },
+    {
+      "suite": "deep_routes_test",
+      "exit": 0,
+      "ok": true,
+      "result": "DEEP ROUTES: 596 checks, 0 failures; 11 complete cavern loops; deepest 2011.78271484375; swim ticks 9308"
+    },
+    {
+      "suite": "device_layout_test",
+      "exit": 0,
+      "ok": true,
+      "result": "GODOT DEVICE LAYOUT TEST PASSED"
+    },
+    {
+      "suite": "title_flow_test",
+      "exit": 0,
+      "ok": true,
+      "result": "GODOT TITLE FLOW TEST PASSED"
+    },
+    {
+      "suite": "sarah_connected_test",
+      "engine": "user-supplied Godot 4.4 stable Linux x86_64",
+      "exit": 0,
+      "ok": true,
+      "result": "CONNECTED SARAH: 4628 checks, 0 failures; min projected width 65.599983215332 crossing displacement 0.29245758056641"
+    },
+    {
+      "suite": "sarah_flow_test",
+      "engine": "user-supplied Godot 4.4 stable Linux x86_64",
+      "exit": 0,
+      "ok": true,
+      "result": "SARAH FLOW: 56739 checks, 0 failures"
+    },
+    {
+      "suite": "sarah_definitive_21_test",
+      "engine": "user-supplied Godot 4.4 stable Linux x86_64",
+      "exit": 0,
+      "ok": true,
+      "result": "SARAH DEFINITIVE 2.1: 5689 checks, 0 failures"
+    },
+    {
+      "suite": "sarah_grace_test",
+      "engine": "user-supplied Godot 4.4 stable Linux x86_64",
+      "exit": 0,
+      "ok": true,
+      "result": "SARAH GRACE: 974 checks, 0 failures"
+    },
+    {
+      "suite": "royal_connected_test",
+      "ok": true,
+      "result": "94960 checks, 0 failures"
+    }
+  ]
+}

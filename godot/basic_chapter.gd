@@ -205,17 +205,17 @@ func _draw_world(view: Vector2) -> void:
         draw_rect(Rect2(0,_water_line(),view.x,view.y-_water_line()),Color(.04,.09,.2,.16))
         draw_line(Vector2(0,_water_line()),Vector2(view.x,_water_line()),Color(.65,.94,1,.6),2)
     texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
-    Terrain.seabed(self,view,camera,chapter_id)
-    for i in range(obstacles.size()):
-        var block := obstacles[i]
+    _draw_chapter_seabed(view)
+    for i in range(surface_obstacles.size()):
+        var block := surface_obstacles[i]
         var rect := Rect2(block.position-Vector2(camera,0),block.size)
         if rect.end.x<0 or rect.position.x>view.x: continue
-        Terrain.rock(self,rect,i,chapter_id)
+        _draw_chapter_rock(rect,i)
     # Reused painted flora adds depth even in the open Nessie arena.
-    for i in range(int(ceil(_level_length()/390.0))):
-        var x := 180+i*390-camera
+    for i in range(7 if chapter_id=="training" else int(ceil(_level_length()/390.0))):
+        var x := 180+i*(1060 if chapter_id=="training" else 390)-camera
         if x < -200 or x > view.x+200: continue
-        Terrain.garden(self,Vector2(x,Terrain.ground_y(x+camera)),i+_stage_index(),chapter_id,115+(i%3)*20)
+        _draw_chapter_garden(x,i)
     for treasure in treasures:
         if treasure.taken: continue
         var pos := Vector2(treasure.x-camera,treasure.y)
@@ -267,3 +267,11 @@ func _opal_sync_fields(fx: Node2D) -> void:
         if phase>=2.8 and phase<3.3:
             var radius:=90.0+(phase-2.8)*180.0
             fx.field(0,"rana-ring",boss_position-Vector2(camera,0),Vector2.ONE*radius*2,0.42)
+
+func _draw_chapter_seabed(view: Vector2) -> void:
+    Terrain.seabed(self,view,camera,chapter_id)
+
+func _draw_chapter_rock(rect: Rect2,index: int) -> void:
+    Terrain.rock(self,rect,index,chapter_id)
+func _draw_chapter_garden(x: float,index: int) -> void:
+    Terrain.garden(self,Vector2(x,Terrain.ground_y(x+camera)),index+_stage_index(),chapter_id,115+(index%3)*20)

@@ -1,0 +1,103 @@
+{
+  "tool": "Built-in image_gen",
+  "method": "one transparent full-body character per call",
+  "style": "Warm storybook gouache, pearlescent highlights, soft ocean pastel palette, clear full-body silhouettes and kind expressive eyes. No scenery or text.",
+  "characters": [
+    {
+      "id": "mallow",
+      "name": "Mallow",
+      "prompt": "a tiny sea-bunny nudibranch with two rabbitlike rhinophores, cream and rose body, carrying an oversized folded patchwork bedtime quilt with a gold star clasp",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a tiny sea-bunny nudibranch with two rabbitlike rhinophores, cream and rose body, carrying an oversized folded patchwork bedtime quilt with a gold star clasp. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Mallow."
+    },
+    {
+      "id": "tilly",
+      "name": "Tilly",
+      "prompt": "a round baby sea turtle with a sage shell, strawberry ribbon bonnet and a little cradle of glowing pearl eggs",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a round baby sea turtle with a sage shell, strawberry ribbon bonnet and a little cradle of glowing pearl eggs. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Tilly."
+    },
+    {
+      "id": "posy",
+      "name": "Posy",
+      "prompt": "a smiling coral-pink hermit crab florist wearing a spiral shell that is a lush little flower shop, holding a small bouquet of blue anemones",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a smiling coral-pink hermit crab florist wearing a spiral shell that is a lush little flower shop, holding a small bouquet of blue anemones. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Posy."
+    },
+    {
+      "id": "purl",
+      "name": "Purl",
+      "prompt": "a lavender cuttlefish grandmother with kind round spectacles, delicate frilled mantle, happily knitting a long mint scarf with two gold needles",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a lavender cuttlefish grandmother with kind round spectacles, delicate frilled mantle, happily knitting a long mint scarf with two gold needles. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Purl."
+    },
+    {
+      "id": "ludo",
+      "name": "Ludo",
+      "prompt": "a tiny plump deep-sea frogfish lamplighter, midnight-blue velvet fins, hanging a warm gold lantern from his curved head lure, carrying a miniature ladder",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a tiny plump deep-sea frogfish lamplighter, midnight-blue velvet fins, hanging a warm gold lantern from his curved head lure, carrying a miniature ladder. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Ludo."
+    },
+    {
+      "id": "vesper",
+      "name": "Vesper",
+      "prompt": "a graceful ribbon eel librarian, plum and pale lilac, small round spectacles, hugging a rolled parchment story and a little stack of shell-shaped books",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a graceful ribbon eel librarian, plum and pale lilac, small round spectacles, hugging a rolled parchment story and a little stack of shell-shaped books. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Vesper."
+    },
+    {
+      "id": "peep",
+      "name": "Peep",
+      "prompt": "a perfectly round golden baby pufferfish pastry chef in an oversized white shell-chef hat, holding a blueberry bubble tart on a pearl plate, tiny polite fins",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a perfectly round golden baby pufferfish pastry chef in an oversized white shell-chef hat, holding a blueberry bubble tart on a pearl plate, tiny polite fins. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Peep."
+    },
+    {
+      "id": "saffron",
+      "name": "Saffron",
+      "prompt": "a mint and peach leafy sea dragon gardener with leaflike fins, straw sunhat decorated with an orchid, pouring a little watering can onto one flower",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a mint and peach leafy sea dragon gardener with leaflike fins, straw sunhat decorated with an orchid, pouring a little watering can onto one flower. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Saffron."
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "prompt": "a peach dumbo octopus tailor with big floppy ear-fins, sewing a single enormous blue button onto a little yellow waistcoat",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a peach dumbo octopus tailor with big floppy ear-fins, sewing a single enormous blue button onto a little yellow waistcoat. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Button."
+    },
+    {
+      "id": "hush",
+      "name": "Hush",
+      "prompt": "a dreamy small lilac jellyfish with a translucent pink bell shaped like a frilled umbrella, a tiny sleeping face, holding a miniature raincloud in one curled tentacle",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a dreamy small lilac jellyfish with a translucent pink bell shaped like a frilled umbrella, a tiny sleeping face, holding a miniature raincloud in one curled tentacle. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Hush."
+    },
+    {
+      "id": "crumb",
+      "name": "Sir Crumb",
+      "prompt": "a dignified tiny cream and caramel biscuit crab with a monocle, short velvet cape and a porcelain teacup balanced on one raised claw",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a dignified tiny cream and caramel biscuit crab with a monocle, short velvet cape and a porcelain teacup balanced on one raised claw. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Sir Crumb."
+    },
+    {
+      "id": "dot",
+      "name": "Dot",
+      "prompt": "a little pearl oyster seamstress, open rosy shell cradling an expressive smiling pearl face, ribbon tape measure and a gold thimble, arranging a strand of tiny pearls",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a little pearl oyster seamstress, open rosy shell cradling an expressive smiling pearl face, ribbon tape measure and a gold thimble, arranging a strand of tiny pearls. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Dot."
+    },
+    {
+      "id": "miri",
+      "name": "Miri",
+      "prompt": "a small teal mimic octopus conductor with a curled purple mantle, coral baton in one arm, two shells as little cymbals in other arms, delighted theatrical expression",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a small teal mimic octopus conductor with a curled purple mantle, coral baton in one arm, two shells as little cymbals in other arms, delighted theatrical expression. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Miri."
+    },
+    {
+      "id": "oona",
+      "name": "Oona",
+      "prompt": "a round soft blue baby narwhal with a short pearly spiral tusk, a floppy lavender star-covered nightcap, hugging a crescent-shaped gold pillow",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a round soft blue baby narwhal with a short pearly spiral tusk, a floppy lavender star-covered nightcap, hugging a crescent-shaped gold pillow. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Oona."
+    },
+    {
+      "id": "bibi",
+      "name": "Bibi",
+      "prompt": "a whimsical rosy batfish kite maker with little walking fins and a shy smile, holding a delicate kite made of a translucent maple-shaped kelp leaf and a gold thread spool",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a whimsical rosy batfish kite maker with little walking fins and a shy smile, holding a delicate kite made of a translucent maple-shaped kelp leaf and a gold thread spool. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Bibi."
+    },
+    {
+      "id": "thimble",
+      "name": "Grandmother Thimble",
+      "prompt": "a kindly grandmother nautilus astronomer with a large ivory-and-apricot spiral shell, tiny gold spectacles and a little brass telescope held by two curled tentacles",
+      "full_prompt": "Use case: illustration-story. Asset type: ONE full-body painted character sprite for Sarah Maria Mermaid Adventure Whimsy 4.0. Primary subject: a kindly grandmother nautilus astronomer with a large ivory-and-apricot spiral shell, tiny gold spectacles and a little brass telescope held by two curled tentacles. One character only, fully visible with all props attached to the character silhouette, centred with generous transparent margins on all four sides. Three-quarter side-facing view towards the right. Exquisite warm children's storybook gouache and softly shaded illustrated game art, pearlescent highlights, large kind expressive eyes, blush cheeks, tactile painterly texture, clear charming silhouette, delicate gold accents, soft ocean pastel palette. Match the richness and softness of an illustrated sea-slug postman with a navy postal hat and mint pearlescent body. Genuinely transparent background, no ground plane, no scenery, no lettering, no labels, no border or watermark. Character name for design intent only: Grandmother Thimble."
+    }
+  ]
+}

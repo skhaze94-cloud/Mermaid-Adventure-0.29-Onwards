@@ -29,9 +29,9 @@ with tempfile.TemporaryDirectory(prefix='sarah-package-',dir=args.temp_dir) as t
     # Wait for all imports, rather than closing the editor during a slow scan.
     run([args.godot,'--headless','--editor','--path',str(stage/'fresh'),'--import'])
     run([args.godot,'--headless','--path',str(stage/'fresh'),'--quit-after','16'])
-    suites = ['visual_polish_test.gd','gameplay_controls_test.gd','environment_visuals_test.gd','family_layout_test.gd','complete_adventure_test.gd','scoring_ui_test.gd','title_flow_test.gd','scene_flow_test.gd','sarah_princess_test.gd','sarah_breaststroke_test.gd','jump_animation_test.gd','opal_current_test.gd','adventure_polish_test.gd','bubble_polish_test.gd','boss_polish_test.gd','opening_journey_test.gd','journey_flow_test.gd','journey_effects_test.gd']
-    # Developer checks are copied into the temporary extraction only.
-    # The playable ZIP has no captures, tests or historical reports.
+    suites = ['sarah_flow_test.gd','tutorial_overhaul_test.gd','character_performance_test.gd','character_details_test.gd','little_moments_test.gd','sarah_definitive_21_test.gd','whimsy_four_test.gd','avina_tutorial_test.gd','conversation_flow_test.gd','device_layout_test.gd','visual_polish_test.gd','gameplay_controls_test.gd','environment_visuals_test.gd','family_layout_test.gd','complete_adventure_test.gd','scoring_ui_test.gd','title_flow_test.gd','scene_flow_test.gd','sarah_princess_test.gd','sarah_breaststroke_test.gd','jump_animation_test.gd','opal_current_test.gd','adventure_polish_test.gd','bubble_polish_test.gd','boss_polish_test.gd','opening_journey_test.gd','journey_flow_test.gd','journey_effects_test.gd','whimsy_test.gd','living_reef_test.gd','living_reef_reactions_test.gd','pocket_wonders_test.gd','pocket_wonders_reactions_test.gd','living_shallows_test.gd','deep_routes_test.gd']
+    # Re-copy the checked-in release suites into the temporary extraction.
+    # Each invocation uses its own preferences/save directory above.
     for suite in suites:
         shutil.copyfile(root/'godot'/suite,stage/'fresh/godot'/suite)
         print(run([args.godot,'--headless','--path',str(stage/'fresh'),'--max-fps','60','--script','res://godot/'+suite]).strip(),flush=True)

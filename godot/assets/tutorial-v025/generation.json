@@ -1,0 +1,29 @@
+{
+  "method": "built-in image_gen",
+  "prompts": [
+    "Use case: illustration-story. Asset type: painted underwater cavern backdrop for a warm children's mermaid game. Create a wide 2:1 hand-painted storybook Pearl Nursery grotto, beautiful natural limestone scallops, turquoise translucent water, pearl oyster niches and pale seafern fronds, warm cream and teal reflected light, sandy natural gently sloped floor, tiny coral growths. Organic irregular curved rock ceiling around top and side edges, spacious calm open water across the central 70 percent, two discreet shelf-like rocks near the lower left and lower right, pale distant roots and soft light rays. Side-on flat 2D game backdrop perspective, not isometric. Absolutely no people, no animals, no characters, no chests, no arrows, no ladders, no collectible trails, no text, no borders, no interface, no flat geometric platforms. The setting feels like a found beautiful ocean refuge, not a constructed game obstacle course. Painterly brush texture, richly detailed but quiet center for animated characters; edge rocks must blend into dark underwater stone.",
+    "Use case: illustration-story. Asset type: painted underwater cavern backdrop for a warm children's mermaid game. Wide 2:1 storybook Bellflower Hollow grotto distinct from a nursery: lavender-blue hanging bellflower sea plants, curved naturally eroded blue slate, a sandy crescent floor, amber bioluminescent blooms among tiny fan corals, soft indigo water with lavender and golden reflected light. Organic scalloped rock ceiling and sides, irregular niches, spacious calm uncluttered central 70 percent. One small cozy resting rock off to the right near the lower edge and fine hanging roots left. Side-on flat 2D game backdrop perspective, not isometric. No people, no animals, no characters, no chests, no arrows, no ladders, no collectible trails, no text, no borders, no interface, no geometric platforms. Richly hand painted, tender and magical but calm enough to hold conversations, edges blending into dark blue underwater stone."
+  ],
+  "files": [
+    "pearl-nursery.png",
+    "bellflower-hollow.png"
+  ],
+  "assets": [
+    {
+      "file": "pearl-nursery.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "522954c97448079a95cbe1c8a0f3f19e74dcf6c87c08a5c385f75811beff07b8"
+    },
+    {
+      "file": "bellflower-hollow.png",
+      "dimensions": [
+        1774,
+        887
+      ],
+      "sha256": "455434151ae63a5449f148d21f97c3ceb7a175df790a89246164f4f4b46e645b"
+    }
+  ]
+}

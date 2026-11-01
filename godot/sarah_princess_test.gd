@@ -11,18 +11,18 @@ func _initialize() -> void: call_deferred("run")
 func run() -> void:
     var rig = load("res://godot/sarah_rig.gd").new()
     root.add_child(rig);rig.set_process(false);rig.reset_performance()
-    check(rig.tail_skin.rest.size()==7605 and rig.face_details.rest.size()==28665,"Tail/face detail does not triple v0.4")
-    check(rig.bodice.rest.size()==975 and rig.arm_meshes[1].rest.size()==891,"Body/arm detail does not triple v0.4")
+    check(rig.tail_skin.rest.size()==2509 and rig.face_details.rest.size()==4257,"Right-sized tail/face sampling changed unexpectedly")
+    check(rig.bodice.rest.size()==975 and rig.arm_meshes[1].rest.size()==1287,"Bodice/shoulder sampling changed unexpectedly")
     check(rig.ribbons[0].rest.size()==765,"Hair detail does not triple v0.4")
     rig.face_details.adapt_detail(true)
-    check(not rig.face_details.full_detail,"Normal gameplay shades unnecessary face subdivisions")
+    check(rig.face_details.vertex_count<5000,"Normal gameplay exceeds fixed face geometry budget")
     rig.face_sprite.scale*=2.0
     rig.face_details.adapt_detail(true)
     check(rig.face_details.full_detail,"Close-up loses full face articulation")
     rig.face_sprite.scale*=.5
     rig.face_details.adapt_detail(true)
-    check(rig.face_details.polygons.size()<rig.face_details.full_triangles.size(),"Adaptive face topology does not reduce draw work")
-    check(rig.face_details.rest.size()==28665,"Adaptive drawing discards authored face points")
+    check(rig.face_details.polygons.size()==rig.face_details.full_triangles.size(),"Face scale changes rebuild fixed topology")
+    check(rig.face_details.rest.size()==4257,"Adaptive drawing discards authored face points")
     for i in range(300):
         var weights := Princess.weights(float(i)*.1)
         check(absf(weights.x+weights.y+weights.z-1.0)<.0001 and weights.x>=0 and weights.y>=0 and weights.z>=0,"Variation weights invalid")

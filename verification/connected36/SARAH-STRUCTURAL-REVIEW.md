@@ -1,0 +1,19 @@
+# Sarah v0.36 structural review
+
+Runtime changes are limited to sarah_rig.gd, sarah_definitive_21.gd, sarah_body_view.gd, sarah_torso_motion.gd, sarah_tail_skin.gd, sarah_spine_motion.gd and new sarah_connected_waist.gd. New focused suite: sarah_connected_test.gd. No paintings/textures were added or changed. There is one additional 169-vertex anatomical pelvis mesh (one draw); the original body/tail/face/arm meshes remain.
+
+Confirmed causes and corrections:
+
+- The old side pose joined a nearly vertical abdomen to a horizontally tangent tail. Added a distributed lower-torso pelvis arc and the matching curved proximal-tail tangent, easing into the existing length-preserving swimming centerline.
+- The old front turn rotated the whole long tail rigidly -90 degrees. Replaced that with an individually projected, curved and foreshortened centerline. Cross-section normals come from the actual projected curve, so its visible width and fluke do not collapse into a ribbon.
+- The old body projection divided front vertex positions by signed facing while mixing with side vertices, producing opposing row orientations and an opaque torso fold during the negative-facing exit. Front geometry now uses absolute facing width, so the body grid keeps a coherent orientation through that morph.
+- A broad 13x13 pelvis loft now follows actual deformed lower-bodice, projected hip and proximal-tail sections. Its width is perpendicular to that same screen-space centerline. The original scale painting supplies its registered UVs; it is anatomical skin, not an accessory or visual effect.
+- Tail fin anchors now follow the projected tip, keeping wake placement attached. Economy/Gentle retain a cached curved base pelvis instead of restoring the old square-jointed rest shape. Hidden and zero-delta character updates remain suspended.
+
+Visual foundation reviewed and accepted by root: audit36/sarah/release (46 consecutive 60 Hz frames, 0.767 seconds, plus side.png); matching baseline audit36/sarah/baseline. Both are 1000x640 at identical displayed scale and scripted steering after identical 2-second warmup. They are real native OpenGL Godot captures. The earlier after/final experiment folders are rejected iterations and should NOT be shipped as final evidence.
+
+Independent read-only 360-frame, four-leg reversal review is in audit36/turn-review. Final tail transverse/tangent sine >=0.9812, full-grid transverse width >=65.6; loft sine >=0.9991, width >=21.12, triangle area >=+0.38994, zero folded loft frames. These are mesh measurements, not a claim that every painted pixel is opaque. Opaque body morph frames above .1 view weight have no negative-Jacobian cells; tiny stable-side lower-edge quads remain in the historic painted-grid base but are underneath the joined pelvis surface. Root inspected the final side and turn_12 views and accepted the visible foundation.
+
+Intentional changes to historical assumptions: the tail's projected front view is no longer a rigid vertical affine transform; it has a curved projected centerline. The rest pelvis is curved even in simplified modes, so obsolete tests requiring bodice polygon==unbent rest in Economy/Gentle no longer describe the desired anatomy. Existing current Flow, registered-body/action and Grace suites all pass without assertion edits. Each topology-counting suite adds one check for the new fixed pelvis mesh. Model-space tail arc length remains preserved; its screen projection can foreshorten for depth.
+
+Remaining limits: painted 2.5D view interpolation and registered portrait artwork remain; this is not unrestricted 3D anatomy. Artwork registration is still view-dependent. Actual physical Windows/Android frame times and memory are for parent QA to report. Do not call this perfect or infer device FPS from these software-rendered captures.

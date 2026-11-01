@@ -30,7 +30,8 @@ func run() -> void:
         var level = current_scene
         check(level.get_script()!=null and level._stage_index()==index,"chapter button loads correct scene: "+str(index))
         level.set_physics_process(false)
-        check(level.obstacles.size()==Data.source(Data.IDS[index]).obstacles.size(),"all source formations imported")
+        check(level._stage_obstacles().size()==Data.source(Data.IDS[index]).obstacles.size(),"all original source formations imported before authored cavern entrances are cut")
+        check(level.obstacles.size()>=level.surface_obstacles.size(),"combined collision includes the surface geometry and any new cavern walls")
         check(level.enemies.size()==(0 if index==7 else Data.source(Data.IDS[index]).enemies.size()),"all source enemies imported")
         check(level.boss_hp==level._boss_max_health(),"source boss health initialized")
         check(catalog.active and catalog.start_index==index,"selected chapter starts a linked run")
@@ -67,8 +68,8 @@ func run() -> void:
         level._sync_native_visuals()
         if expected==7:
             level.bring_button.pressed.emit()
-            level.reply_box.get_child(0).pressed.emit()
-            level.reply_box.get_child(0).pressed.emit()
+            level.dialogue_practice.pressed.emit()
+            level.dialogue_practice.pressed.emit()
         else: level.premium_hud.modal_buttons["restart"].pressed.emit()
         await frames(12)
         check(not paused,"Continue must release paused tree "+str(expected))

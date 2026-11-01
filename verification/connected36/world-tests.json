@@ -1,0 +1,80 @@
+[
+  {
+    "suite": "family_attention_test",
+    "exit": 0,
+    "ok": true,
+    "result": "FAMILY ATTENTION: 10 checks, 0 failures"
+  },
+  {
+    "suite": "avina_tutorial_test",
+    "exit": 0,
+    "ok": true,
+    "result": "FAMILY TUTORIAL: 112 checks, 0 failures"
+  },
+  {
+    "suite": "tutorial_treasure_test",
+    "exit": 0,
+    "ok": true,
+    "result": "TREASURE 031: 100 checks, 0 failures"
+  },
+  {
+    "suite": "tutorial_overhaul_test",
+    "exit": 0,
+    "ok": true,
+    "result": "TUTORIAL OVERHAUL: 15 checks, 0 failures"
+  },
+  {
+    "suite": "family_layout_test",
+    "exit": 0,
+    "ok": true,
+    "result": "FAMILY LAYOUT: 20 checks, 0 failures"
+  },
+  {
+    "suite": "little_moments_test",
+    "exit": 0,
+    "ok": true,
+    "result": "LITTLE MOMENTS: 36 checks, 0 failures"
+  },
+  {
+    "suite": "conversation_flow_test",
+    "exit": 0,
+    "ok": true,
+    "result": "CONVERSATION FLOW: 269 checks, 0 failures; 33 reply branches"
+  },
+  {
+    "suite": "whimsy_four_test",
+    "exit": 0,
+    "ok": true,
+    "result": "WHIMSY FOUR: 358 checks, 0 failures; 22 residents, 4 new loops"
+  },
+  {
+    "suite": "tutorial_caption_regression_test",
+    "exit": 0,
+    "ok": true,
+    "result": "TUTORIAL CAPTION REGRESSION: 8 checks, 0 failures"
+  },
+  {
+    "suite": "friends_cavern_test",
+    "exit": 0,
+    "ok": true,
+    "result": "FRIENDS CAVERN: 402 checks, 0 failures; 15 caverns, 23 friends"
+  },
+  {
+    "suite": "deep_routes_test",
+    "exit": 0,
+    "ok": true,
+    "result": "DEEP ROUTES: 596 checks, 0 failures; 11 complete cavern loops; deepest 2011.78271484375; swim ticks 9308"
+  },
+  {
+    "suite": "device_layout_test",
+    "exit": 0,
+    "ok": true,
+    "result": "GODOT DEVICE LAYOUT TEST PASSED"
+  },
+  {
+    "suite": "title_flow_test",
+    "exit": 0,
+    "ok": true,
+    "result": "GODOT TITLE FLOW TEST PASSED"
+  }
+]

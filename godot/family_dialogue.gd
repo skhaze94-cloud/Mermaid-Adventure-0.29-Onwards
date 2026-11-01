@@ -9,11 +9,11 @@ const NODES := {
     ["I’ll take the safe route.","earnest","Excellent. Look ahead, steer around stone, and let your tail do the work."],
     ["Does it have a health bar?","cheeky","Not yet. It is still negotiating its contract."],
     ["Where did the treasure come from?","curious","Mum hid three chests at different depths. Curiosity deserves a reward."]]],
-"boost":["king","Very dignified zoomies","Aim first, boost second! Space, controller B, or the Boost button. Your aqua bar needs 40% and refills itself.",[
+"boost":["king","Very dignified zoomies","Aim first, boost second! Use Boost when your aqua bar is nearly half full. It refills while you swim.",[
     ["Stand back. Zoomies incoming.","cheeky","The royal beard has been secured. Proceed."],
     ["I’ll aim before I boost.","earnest","Beautiful. A little control makes a big difference."],
     ["What if the bar runs out?","curious","Keep swimming while it recharges. We have all the time in the lagoon."]]],
-"jump":["king","Time to meet the sky","Press J or Shift, controller A, or Jump. Start underwater with 40% energy. Steer in the air and land back in the water.",[
+"jump":["king","Time to meet the sky","Start underwater, then Jump. Steer through the air and splash back into the sea.",[
     ["One small splash first.","earnest","A wonderful start. Land gently; you can practise as often as you like."],
     ["Please rate my landing kindly.","cheeky","I have already ordered the trophy. Your mother is checking the invoice."],
     ["Can I bounce again?","curious","Tap Jump around splashdown to chain a second leap. Watch your landing."]]],
@@ -29,14 +29,18 @@ const NODES := {
     ["Gentle boops only.","earnest","That’s the spirit. Our volunteers are here to help you learn."],
     ["Is Noodle actually pasta?","cheeky","A career change is being considered. Please respect his privacy."],
     ["How do I aim my boop?","curious","Swim toward a volunteer, aim at it, then Boost. You cannot lose your last three hearts here."]]],
-"trial":["king","The ancient trials!","Dodge my slow spells. When my shield turns GREEN, Boost into me. Three good hits!\nAntonella: None of his moves are patented.",[
+"trial":["king","The ancient trials!","Dodge my slow spells. When my shield opens with mint petals, Boost into me. Three good hits!\nAntonella: None of his moves are patented.",[
     ["I’m ready for the green glow.","earnest","Aim, boost, and believe in your tail. I am very proud of you."],
     ["Your cloud looks friendly.","cheeky","FEAR THE CLOUD!\nSarah: It likes me.\nDaddy: That is a professional boundary issue."],
-    ["Can you explain your moves?","curious","Watch the aim line, slow bolts, friendly cloud, wobble wave, Dad Dash and Bubble Beard Blast. After that: green means GO!"]]],
+    ["Can you explain your moves?","curious","Watch the aim line, slow bolts, friendly cloud, wobble wave, Dad Dash and Bubble Beard Blast. After that: mint petals mean GO!"]]],
 "win":["king","Feared across three bathtubs","That’s my brilliant little mermaid!\nSarah: I survived the Bubble Beard Blast.\nAntonella: Two bathtubs. One was the sink.\nDaddy: The records are disputed.",[
     ["One last hug?","earnest","Always, little mermaid. You have earned every splash."],
     ["Can I have the lightning staff?","cheeky","No. Your mother would issue a very strongly worded look."],
     ["What is that tiny giggle?","curious","Antonella: Avina has discovered hide-and-seek. Check the coral just before the portal!"]]],
+"bubble":["queen","A little bubble magic","Avina has a tiny bubble for you. Tap Bubble for a little pearl, or hold it until Royal Aurora is ready, then release.",[
+    ["How do I aim it?","curious","Face the pearl target at the same depth. Hold Bubble for 1.35 seconds, then release. The big bubble flies straight ahead."],
+    ["Can Avina help too?","earnest","She has her own tiny bubbles, darling. This practice target needs Sarah’s big Royal Aurora. You can also leave it and take the portal."],
+    ["A very dignified bubble beard?","cheeky","Daddy: Mine took years of practice.\nAntonella: And one extremely patient bath towel."]]],
 "hide":["queen","A very tiny surprise","A giggle behind the coral! Avina wants three rounds of peekaboo before you go.\nDaddy: Her hiding technique is mostly bow.",[
     ["I’ll find you, little pearl!","earnest","Swim close to the sparkling plants. Look for her little bow. She will pop out when you reach her."],
     ["The bow is giving you away!","cheeky","Avina: Hee!\nAntonella: Please do not tell the bow. It is doing its best."],
@@ -50,3 +54,18 @@ static func farewell(along: bool, king_tone: String, queen_tone: String) -> Arra
     if queen_tone=="cheeky": queen += " And please leave the lightning staff here. I have counted it."
     elif queen_tone=="curious": queen += " You can always revisit this lagoon from Choose a chapter."
     return [king,queen]
+
+
+## One speaker per beat. Explicit names change the portrait as well as the text.
+static func beats(text: String, first_speaker: String) -> Array[Dictionary]:
+    var result: Array[Dictionary] = []
+    var speaker := first_speaker
+    for raw in text.split("\n",false):
+        var line := String(raw).strip_edges()
+        for prefix in {"King Daddy:":"king","Daddy:":"king","Antonella:":"queen","Sarah:":"sarah","Avina:":"avina"}:
+            if line.begins_with(prefix):
+                speaker={"King Daddy:":"king","Daddy:":"king","Antonella:":"queen","Sarah:":"sarah","Avina:":"avina"}[prefix]
+                line=line.trim_prefix(prefix).strip_edges()
+                break
+        if not line.is_empty():result.append({"speaker":speaker,"text":line})
+    return result

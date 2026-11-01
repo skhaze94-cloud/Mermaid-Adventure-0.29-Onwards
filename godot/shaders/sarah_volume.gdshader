@@ -7,6 +7,7 @@ uniform bool volume_enabled = true;
 uniform int waist_role = 0;
 uniform bool waist_unified = true;
 uniform bool sleeve_connected = false;
+uniform float front_view = 0.0;
 uniform sampler2D torso_paint : source_color;
 uniform sampler2D join_tail_paint : source_color;
 uniform vec2 arm_origin = vec2(0.0);
@@ -27,6 +28,7 @@ float tail_alpha(vec2 point) {
 void fragment() {
     vec4 painted = COLOR;
     vec2 p = clamp((UV-atlas_bounds.xy)/(atlas_bounds.zw-atlas_bounds.xy),vec2(0.0),vec2(1.0));
+    painted.a*=mix(1.0,smoothstep(.17,.23,p.x),front_view);
     if (sleeve_connected && p.x<0.20) {
         vec2 body=arm_origin+local_paint_point.x*arm_axis_x+local_paint_point.y*arm_axis_y;
         // Feather only over conservatively opaque torso paint. The outer
@@ -45,13 +47,7 @@ void fragment() {
         float luminance = dot(painted.rgb,vec3(0.2126,0.7152,0.0722));
         pearl *= luminance / dot(pearl,vec3(0.2126,0.7152,0.0722));
         painted.rgb = mix(painted.rgb,pearl,blend*(waist_role == 1 ? 0.76 : 0.48));
-        if (waist_role==1 && p.y>0.72) {
-            float cover=min(min(tail_alpha(local_paint_point+vec2(1.5,0.0)),tail_alpha(local_paint_point-vec2(1.5,0.0))),
-                min(tail_alpha(local_paint_point+vec2(0.0,1.5)),tail_alpha(local_paint_point-vec2(0.0,1.5))));
-            // Reveal the actual moving tail beneath the lower scales rather
-            // than drawing another connector or an opaque waist band.
-            painted.a*=1.0-smoothstep(0.975,0.999,cover)*smoothstep(0.72,0.97,p.y)*0.88;
-        }
+
     }
     // An elliptical cross-section adds painted volume without extra textures.
     float side = (p.y-0.5)*2.0;

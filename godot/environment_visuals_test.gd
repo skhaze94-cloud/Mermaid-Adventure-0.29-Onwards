@@ -31,7 +31,8 @@ func _run() -> void:
     level.foreground_depth.set_camera(4000.0,true,true)
     for entry in world.far_entries + world.middle_entries + level.foreground_depth.entries:
         check(is_zero_approx(entry["sprite"].rotation), "Reduced motion must reset sway immediately")
-    check(level.relief_obstacles.positions == Highland.obstacles(), "Collision geometry changed during art pass")
+    check(level._stage_obstacles() == Highland.obstacles(), "Original Highland source geometry must remain available")
+    check(level.relief_obstacles.positions == level.surface_obstacles, "Visible surface rocks must match the authored entrance cuts")
     for kind in ["pearl","chest","heart","boost"]:
         check(level.collectible_art[kind] is AtlasTexture, "Missing painted collectible " + kind)
     level.high_depth_quality = false

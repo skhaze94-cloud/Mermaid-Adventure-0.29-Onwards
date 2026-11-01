@@ -1,0 +1,221 @@
+{
+  "schema": "RW36SKIN: 8-byte ASCII magic, uint32_le N, 4*N uint8 joint indices, 4*N float32_le weights",
+  "role": "queen",
+  "vertex_count": 153727,
+  "source_vertices_sha256": "fa465d775c922482aa9187b1416f8d82281d67310707ac8333f51960194f7701",
+  "bones": [
+    {
+      "name": "pelvis",
+      "parent": -1,
+      "position": [
+        0,
+        -0.04,
+        0.01
+      ]
+    },
+    {
+      "name": "waist",
+      "parent": 0,
+      "position": [
+        0,
+        0.14,
+        0.015
+      ]
+    },
+    {
+      "name": "chest",
+      "parent": 1,
+      "position": [
+        0,
+        0.38,
+        0.015
+      ]
+    },
+    {
+      "name": "neck",
+      "parent": 2,
+      "position": [
+        0,
+        0.54,
+        0.035
+      ]
+    },
+    {
+      "name": "head",
+      "parent": 3,
+      "position": [
+        0,
+        0.7,
+        0.06
+      ]
+    },
+    {
+      "name": "left_upper",
+      "parent": 2,
+      "position": [
+        -0.17,
+        0.385,
+        0.015
+      ]
+    },
+    {
+      "name": "left_lower",
+      "parent": 5,
+      "position": [
+        -0.24,
+        0.12,
+        0.13
+      ]
+    },
+    {
+      "name": "left_hand",
+      "parent": 6,
+      "position": [
+        -0.36,
+        -0.03,
+        0.16
+      ]
+    },
+    {
+      "name": "right_upper",
+      "parent": 2,
+      "position": [
+        0.18,
+        0.385,
+        0.02
+      ]
+    },
+    {
+      "name": "right_lower",
+      "parent": 8,
+      "position": [
+        0.28,
+        0.27,
+        0.14
+      ]
+    },
+    {
+      "name": "right_hand",
+      "parent": 9,
+      "position": [
+        0.4,
+        0.43,
+        0.2
+      ]
+    },
+    {
+      "name": "left_thigh",
+      "parent": 0,
+      "position": [
+        -0.12,
+        -0.08,
+        0.015
+      ]
+    },
+    {
+      "name": "left_shin",
+      "parent": 11,
+      "position": [
+        -0.09,
+        -0.49,
+        0.06
+      ]
+    },
+    {
+      "name": "left_foot",
+      "parent": 12,
+      "position": [
+        -0.09,
+        -0.87,
+        0.13
+      ]
+    },
+    {
+      "name": "right_thigh",
+      "parent": 0,
+      "position": [
+        0.13,
+        -0.08,
+        0.015
+      ]
+    },
+    {
+      "name": "right_shin",
+      "parent": 14,
+      "position": [
+        0.09,
+        -0.49,
+        0.06
+      ]
+    },
+    {
+      "name": "right_foot",
+      "parent": 15,
+      "position": [
+        0.09,
+        -0.87,
+        0.13
+      ]
+    },
+    {
+      "name": "cloth_left",
+      "parent": 0,
+      "position": [
+        -0.22,
+        -0.08,
+        -0.1
+      ]
+    },
+    {
+      "name": "cloth_right",
+      "parent": 0,
+      "position": [
+        0.22,
+        -0.08,
+        -0.1
+      ]
+    },
+    {
+      "name": "cloth_back",
+      "parent": 2,
+      "position": [
+        0,
+        0.35,
+        -0.18
+      ]
+    },
+    {
+      "name": "hair",
+      "parent": 4,
+      "position": [
+        0,
+        0.68,
+        -0.1
+      ]
+    }
+  ],
+  "binding_bytes": 3074552,
+  "max_influences": 4,
+  "arm_vertices_over_half_weight": [
+    4005,
+    3781
+  ],
+  "staff_rigid_vertices": 0,
+  "distal_hand_zones": [
+    {
+      "bone": "right_hand",
+      "fully_rigid_vertices": 443,
+      "transition_vertices": 726
+    },
+    {
+      "bone": "left_hand",
+      "fully_rigid_vertices": 353,
+      "transition_vertices": 858
+    }
+  ],
+  "notes": [
+    "Original GLB remains untouched. Skin uses exact imported production vertex order.",
+    "Rest positions are global; local rest origins are global-minus-parent-global. Identity rest bases.",
+    "Conservative masks author distinct anatomy, rear costume, skirt drape and rigid staff. Hand poses preserve original open/gripping geometry."
+  ]
+}

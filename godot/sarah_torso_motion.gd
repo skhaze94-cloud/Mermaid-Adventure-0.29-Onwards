@@ -3,6 +3,8 @@ extends RefCounted
 const Spring = preload("res://godot/sarah_spine_motion.gd")
 const RIB_PIVOT := Vector2(29,-14)
 const HIP_PIVOT := Vector2(35,13)
+# The pelvis is a distributed curve, not a right-angle socket above a straight tail.
+const PELVIS_ARC := .57
 var ribs := Vector2.ZERO
 var waist := Vector2.ZERO
 var breath := Vector2.ZERO
@@ -12,6 +14,10 @@ var rib_angle := 0.0
 var rib_transform := Transform2D.IDENTITY
 var cached_rest := PackedVector2Array()
 var skin_weights := PackedVector2Array()
+var cached_base:=PackedVector2Array()
+var middle_follow:=Vector2.ZERO
+var tip_follow:=Vector2.ZERO
+var flow_pose:=Vector4.ZERO
 
 func _prepare_skin(rest: PackedVector2Array) -> void:
     if cached_rest == rest: return
@@ -19,11 +25,12 @@ func _prepare_skin(rest: PackedVector2Array) -> void:
     skin_weights.resize(rest.size())
     for i in range(rest.size()):
         var t := (rest[i].y+40.0)/60.0
-        skin_weights[i] = Vector2(1.0-smoothstep(.45,.87,t),smoothstep(.50,.70,t)*(1.0-smoothstep(.82,.94,t)))
+        skin_weights[i] = Vector2(1.0-smoothstep(.45,.87,t),smoothstep(.55,.93,t))
 
 func reset() -> void:
     ribs=Vector2.ZERO;waist=Vector2.ZERO;breath=Vector2.ZERO;lift=Vector2.ZERO
     breath_clock=0.0
+    middle_follow=Vector2.ZERO;tip_follow=Vector2.ZERO;flow_pose=Vector4.ZERO
     rib_angle=0.0;rib_transform=Transform2D.IDENTITY
 
 func update(rig, dt: float) -> void:
@@ -37,12 +44,13 @@ func update(rig, dt: float) -> void:
     # Ribs respond to the middle wave; the waist follows the hip wave at another delay.
     var rib_target: float = (rig.cycle_pose.y*.065-rig.cycle_pose.x*.04)*activity*compact
     rib_target+=rig.definitive_motion.expression.z*.03-rig.gesture_arch*.012
-    var waist_target: float = (rig.cycle_pose.x*.08+rig.cycle_pose.y*.035)*activity
+    var waist_target: float = (rig.cycle_pose.x*.10+rig.cycle_pose.y*.045)*activity
+    waist_target+=rig.brake_blend*.025-rig.bubble_hold*.018+rig.depth_bank*.09
     var flow: float = activity*(1.0-rig.boost_blend*.85)
-    rib_target+=(sin(rig.swim_clock*2.0-.8)*.0025+sin(rig.swim_clock*3.0-1.1)*.001)*flow
-    waist_target+=(sin(rig.swim_clock*2.0-1.4)*.002+sin(rig.swim_clock*3.0-1.9)*.0008)*flow
+    rib_target+=(sin(rig.pose_phase()*2.0-.8)*.0025+sin(rig.pose_phase()*3.0-1.1)*.001)*flow
+    waist_target+=(sin(rig.pose_phase()*2.0-1.4)*.002+sin(rig.pose_phase()*3.0-1.9)*.0008)*flow
     ribs=Spring.spring(ribs,clampf(rib_target,-.055,.055),11.0,dt)
-    waist=Spring.spring(waist,clampf(waist_target,-.045,.045),9.0,dt)
+    waist=Spring.spring(waist,clampf(waist_target,-.065,.065),9.0,dt)
     # Tiny volume change uses a separate slow clock, without implying gasping underwater.
     var breath_target: float = sin(breath_clock*1.45)*.0065*(1.0-rig.boost_blend*.60)
     breath=Spring.spring(breath,breath_target,7.0,dt)
@@ -55,6 +63,10 @@ func update(rig, dt: float) -> void:
     basis.origin=RIB_PIVOT-basis.basis_xform(RIB_PIVOT)+Vector2(0,lift.x)
     rib_transform=basis
     rig.tail_skin.root_bend=waist.x
+    # One owner propagates the locomotion/action envelope through pelvis, middle, then fluke.
+    middle_follow=Spring.spring(middle_follow,rig.cycle_pose.y,11.0,dt)
+    tip_follow=Spring.spring(tip_follow,rig.cycle_pose.z,8.0,dt)
+    flow_pose=Vector4(rig.cycle_pose.x,middle_follow.x,tip_follow.x,rig.cycle_pose.w)
 
 func chest_point(point: Vector2) -> Vector2:
     return rib_transform*point
@@ -66,6 +78,15 @@ func deform(points: PackedVector2Array, rest: PackedVector2Array) -> PackedVecto
         var rib_weight := skin_weights[i].x
         points[i]=points[i].lerp(chest_point(points[i]),rib_weight)
         var waist_weight := skin_weights[i].y
-        var curled := HIP_PIVOT+(rest[i]-HIP_PIVOT).rotated(waist.x)
-        points[i]+=(curled-rest[i])*waist_weight
+        var curled := HIP_PIVOT+(points[i]-HIP_PIVOT).rotated(waist.x+PELVIS_ARC)
+        points[i]=points[i].lerp(curled,waist_weight)
     return points
+
+func base_shape(rest: PackedVector2Array) -> PackedVector2Array:
+    if cached_base.size()!=rest.size():
+        _prepare_skin(rest)
+        cached_base=rest.duplicate()
+        for i in range(rest.size()):
+            var curled:=HIP_PIVOT+(rest[i]-HIP_PIVOT).rotated(PELVIS_ARC)
+            cached_base[i]=rest[i].lerp(curled,skin_weights[i].y)
+    return cached_base

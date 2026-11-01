@@ -38,7 +38,7 @@ func run() -> void:
         check(rig.arm_pose_near.y> -1.30,"Recovery folds the forearm too tightly")
         check(absf(rig.arm_pose_near.x-rig.arm_pose_far.x)<.4,"Arms alternate instead of synchronized breaststroke")
         for mesh in rig.arm_meshes:
-            check(mesh.polygon[0]==mesh.rest[0],"Elbow skin pulls the shoulder seam")
+            check(mesh.polygon[0].rotated(mesh.root_lock_angle).distance_to(mesh.rest[0])<.0001,"Elbow skin pulls the shoulder seam")
             var valid := true
             for point in mesh.polygon: valid = valid and point.is_finite()
             check(valid,"Stroke produces invalid arm geometry")

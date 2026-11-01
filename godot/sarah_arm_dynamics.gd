@@ -61,7 +61,7 @@ func update(rig, dt: float) -> void:
             wrist_target+=rig.gesture_wave*expression*.23-rig.gesture_reach*expression*.16
             wrist_target+=rig.jump_joy_near*sin(rig.jump_air_time*18)*.10
         else:
-            wrist_target-=rig.gesture_wave*expression*.12
+            wrist_target-=rig.gesture_wave*expression*.045
             wrist_target+=rig.jump_joy_far*sin(rig.jump_air_time*16+.8)*.10
         if i==1:
             elbow_target-=rig.camera_wave*.50
@@ -73,6 +73,6 @@ func update(rig, dt: float) -> void:
         wrists[i]=spring_linear(wrists[i],previous_targets[i].y,wrist_target,18.0,dt)
         previous_targets[i]=Vector2(elbow_target,wrist_target)
         applied[i]=Vector2(elbows[i].x,wrists[i].x)
-        var cup_target: float = clampf(-wrists[i].x*.35+sin(rig.swim_clock-.6+i*.12)*.035*rig.swim_blend+rig.gesture_wave*.035,-.12,.14)*compact
+        var cup_target: float = clampf(-wrists[i].x*.35+sin(rig.pose_phase()-.6+i*.12)*.035*rig.swim_blend+rig.gesture_wave*.035,-.12,.14)*compact
         cups[i]=spring_linear(cups[i],previous_cups[i],cup_target,18.0,dt)
         previous_cups[i]=cup_target
